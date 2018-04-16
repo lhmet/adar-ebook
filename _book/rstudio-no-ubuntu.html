@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="intro.html">
-<link rel="next" href="instalacao.html">
+<link rel="prev" href="testando-o-r.html">
+<link rel="next" href="iu.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -139,18 +139,52 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="install" class="section level1">
-<h1><span class="header-section-number">Capítulo 2</span> Instalação do R e RStudio</h1>
-<p>O <em>R</em> é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o <em>R</em> pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o <a href="http://www.rstudio.com/">RStudio</a>.</p>
-<p>A seguir descreve-se como instalar o <em>R</em> no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.</p> 
+<div id="rstudio-no-ubuntu" class="section level2">
+<h2><span class="header-section-number">2.4</span> Rstudio no Ubuntu</h2>
+<p>O RStudio é um ambiente integrado de desenvolvimento (<a href="http://en.wikipedia.org/wiki/Integrated_development_environment">IDE</a>) construído especificamente para o <em>R</em>. Assim como o <em>R</em>, o RStudio pode ser baixado gratuitamente e é multiplataforma.</p>
+<p>Para instalação da versão do RStudio para <em><a href="https://pt.wikipedia.org/wiki/Ambiente_de_desktop">Desktop</a></em>, você precisa saber se seu sistema operacional é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:</p>
+<pre><code>$ arch</code></pre>
+<pre><code>x86_64</code></pre>
+<pre><code>$ lsb_release --release | cut -f2</code></pre>
+<pre><code>14.04</code></pre>
+<p>Se retornar <strong>x86_64</strong> sua máquina é 64-bit.</p>
+<p>Com essa informação e versão do sistema operacional, siga os seguintes passos:</p>
+<ol style="list-style-type: decimal">
+<li>acesse <a href="http://www.rstudio.com/">RStudio</a></li>
+<li>clique em <em>Download RStudio</em></li>
+<li>Procure a opção <em>RStudio Desktop</em> (FREE) e clique <em>download</em></li>
+</ol>
+<p><img src="images/rstudio-choose.png" width="498" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Selecione sua plataforma</li>
+</ol>
+<p><img src="images/rstudio-plataform-options.png" width="501" /></p>
+<p>clique sobre o link da sua plataforma, p.ex.: <em>RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)</em></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com <em>Ubuntu Software Center</em> e então clicar em <code>instalar</code>. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via <strong>terminal</strong><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> com os seguintes comandos:</li>
+</ol>
+<pre><code>$ cd /local/do/arquivo/baixado
+$ sudo dpkg -i arquivoBaixado.deb
+$ sudo apt-get install -f</code></pre>
+<p>Abra o RStudio digitando no terminal:</p>
+<pre><code>$ rstudio &amp;</code></pre>
+<p>Agora você está pronto para começar a programar em <em>R</em> aproveitando as facilidades que o <a href="http://www.rstudio.com/">RStudio</a> oferece.</p>
+
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>digite ‘Ctrl+Alt+t’ para abrir um terminal no Linux Ubuntu<a href="rstudio-no-ubuntu.html#fnref5">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="instalacao.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="testando-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="iu.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

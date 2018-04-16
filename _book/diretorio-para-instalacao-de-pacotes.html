@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="intro.html">
-<link rel="next" href="instalacao.html">
+<link rel="prev" href="instalacao.html">
+<link rel="next" href="testando-o-r.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -139,18 +139,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="install" class="section level1">
-<h1><span class="header-section-number">Capítulo 2</span> Instalação do R e RStudio</h1>
-<p>O <em>R</em> é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o <em>R</em> pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o <a href="http://www.rstudio.com/">RStudio</a>.</p>
-<p>A seguir descreve-se como instalar o <em>R</em> no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.</p> 
+<div id="diretorio-para-instalacao-de-pacotes" class="section level2">
+<h2><span class="header-section-number">2.2</span> Diretório para instalação de pacotes</h2>
+<p>Para termos melhor controle sobre os pacotes do <em>R</em> instalados no sistema é recomendado criar um diretório (<code>/home/usuario/.R/libs</code>) no seu <code>home</code>. O diretório do <code>home</code> pode ser obtido com o comando <code>echo $HOME</code>.</p>
+<pre><code>$ mkdir -p `echo $HOME`/.R/libs/</code></pre>
+<p>Para informar ao <strong>R</strong> onde procurar os pacotes que instalamos criamos um arquivo chamado <code>.Renviron</code> no diretório <code>$HOME</code> contendo a linha <code>R_LIBS=/home/usuario/.R/libs/</code>, o que pode ser feito com o comando:</p>
+<pre><code>$ R_LIBS=`echo $HOME/.R/libs/`
+$ echo $R_LIBS &gt;&gt; `echo $HOME/.Renviron`</code></pre>
+<p>Esse caminho fica então visível ao <em>R</em>, o que pode ser verificado executando a função <code>.libPaths()</code> no console do <em>R</em>.</p>
+<pre><code>$ R</code></pre>
+<p>No console do R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">.libPaths</span>()
+[<span class="dv">1</span>] <span class="st">&quot;/home/pqgfapergs1/.R/libs&quot;</span>     <span class="st">&quot;/usr/local/lib/R/site-library&quot;</span>
+[<span class="dv">3</span>] <span class="st">&quot;/usr/lib/R/site-library&quot;</span>       <span class="st">&quot;/usr/lib/R/library&quot;</span>           </code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="instalacao.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="instalacao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="testando-o-r.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

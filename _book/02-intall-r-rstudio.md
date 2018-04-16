@@ -2,180 +2,250 @@
 
 
 
+O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o [RStudio](http://www.rstudio.com/).
 
-Objetivos de aprendizagem:
+A seguir descreve-se como instalar o *R* no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-1. Descrever os principais reservatórios no ciclo hidrológico global e seus tamanhos relativos 
+## Instalação
 
-2. Descrever os principais fluxos conectando os reservatórios do ciclo hidrológico global
+O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
 
-3. Descrever as propriedades da água relevantes para <span style="font-variant:small-caps;">hidrometeorologia</span>
+### Windows 
 
-4. Converter massa, volume e fluxos de energia
+A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
 
-5. Aplicar a equação do balanço de massa para um volume de controle particular
+A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
-6. Informar as taxas médias do ciclo hidrológico global e os tempos de residência da água nos diferentes reservatórios
-
-7. Definir bacia hidrográfica e explicar sua relevância para <span style="font-variant:small-caps;">hidrometeorologia</span>
-
-8. Construir uma bacia hidrográfica a partir de dados topográficos para uso em análises hidrológicas
-
-
-## Sistema Hidroclimático Terrestre
-
-O clima da Terra é entendido como um **sistema** composto de diversas esferas que interagem entre si através de trocas de energia, água e dos ciclos biogeoquímicos. As principais componentes do sistema climático são:
-
-- Atmosfera (ar)
-
-- Hidrosfera (água)
-
-- Criosfera (porções congeladas da Terra)
-
-- Biosfera (organismos vivos)
-
-- Pedosfera (solo)
-
-- Antroposfera (humanos)
-
-
-A componente humana é um importante agente de mudança ambiental através das mudanças do uso e cobertura da superfície terrestre que afetam diretamente componentes do ciclo hidrológico e dos ciclos biogeoquímicos. Diversos processos físicos, biológicos e químicos dentro do sistema terrestre geram *feedbacks* no sistema climático que acentuam ou mitigam mudanças no clima. Muitos desses *feedbacks* estão associados aos ecossistemas terrestres e as atividades humanas. Um entendimento mais abrangente sobre o clima da Terra requer que todas componentes do sistema climático (físicas, químicas, biológicas e sócio-econômicas) sejam consideradas. 
-
-<div class="rmdnote">
-<p>Como leitura complementar sobre as esferas do sistema climático recomenda-se a leitura do <a href="http://ead06.proj.ufsm.br/moodle/mod/resource/view.php?id=316666">Capítulo 1</a> do Livro <em>Terrestrial Hydrometeorology</em> <span class="citation">[@Shuttle2012]</span>.</p>
+<div class="figure">
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
+<p class="caption">(\#fig:unnamed-chunk-1)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
 
-A esfera de grande interesse é a Hidrosfera que descreve a água contida no planeta Terra armazenada em rios, lagos, oceanos, solo e ar. A Terra armazena cerca de 1377 milhões  de km^3^ de água. Esta quantidade espalhada sobre a área superficial da Terra (510 milhões de km^2^) seria equivalente a uma lâmina de água de profundidade média de 2700 m.
+### Linux 
 
-Os oceanos comportam 97% daquele volume de água (Tabela \@ref(tab:water-earth)). Isto equivale a uma lâmina d'água de profundidade média de 3700 m espalhada sobre a área superficial dos oceanos.  
+#### Ubuntu
 
-Outros 1,9% estão congelados nas calotas polares, geleiras, solo permanentemente congelado ([permafrost](https://pt.wikipedia.org/wiki/Pergelissolo)). Apenas 1,1 % da água da Terra é líquida e encontrada na superfície continental. Rios, lagos e áreas alagáveis (pântanos, banhados, manguezais) contém 178000 km^3^ de água. 
-
-Mais de 15 milhões de km^3^ de água estão abaixo da superfície. Aquíferos profundos que incluem a água subterrânea armazenam maior parte desse volume. O solo próximo a superfície (umidade do solo), armazena muito pouca água (122000 km^3^). A atmosfera tem a menor quantidade de água ~13000 km^3^ ou ~25 mm de água espalhados sobre a área superficial da Terra.
-
-A pequena fração de água armazenada nos reservatórios de água doce (lagos, rios, umidade do solo), na atmosfera e a biosfera podem subestimar a importância deles uma vez que tendem a ser os mais dinâmicos do ciclo hidrológico, conforme descrito em mais detalhes a seguir.
+Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
 
 
-
-Table: (\#tab:water-earth)Água armazenada no planeta Terra. Adaptado de @Trenberth2007.
-
-Reservatório        Volume (Km^3^)   Total de água (%)   Total de água doce (%)
------------------  ---------------  ------------------  -----------------------
-Oceano               1.335.040.000              97,000                       NA
-Água doce               41.984.700               3,000                       NA
-Áreas congeladas        26.372.000               1,900                    62,80
-Água subterrânea        15.300.000               1,100                    36,40
-Lagos e Rios               178.000               0,013                     0,42
-Água no solo               122.000               0,009                     0,29
-Atmosfera                   12.700               0,001                     0,03
-
-A água é uma parte importante do sistema climático. Os oceanos armazenam e transportam calor, redistribuindo o aquecimento geograficamente desigual da Terra pelo Sol. O armazenamento de carbono nos oceanos regula a concentração do CO~2~ atmosférico. O vapor d'água é o gás de efeito estufa mais importante em termos de concentração e [aquecimento radiativo](https://en.wikipedia.org/wiki/Radiative_forcing). O vapor d'água condensa para formar nuvens. As nuvens podem gerar precipitação e também afetar o balanço global de radiação refletindo radiação solar, absorvendo e emitindo radiação de onda longa. O calor latente liberado durante a condensação fornece considerável energia para abastecer as tempestades. O ciclo hidrológico entre a atmosfera, o oceano e a superfície terrestre continental regula a quantidade de vapor d'água no ar. As taxas de precipitação e evaporação dependem da temperatura do ar e de outros fatores climáticos de forma que quando o clima muda a quantidade de vapor d'água na atmosfera também muda.
+```r
+sudo apt-get install r-base
+```
 
 
+#### R sempre atualizado
 
-## Ciclo Hidrológico
+Se você prefere trabalhar com a última versão estável do R, precisamos configurar o Linux Ubuntu para atualizar automaticamente o *R*. Também uma boa prática definir um diretório para armazenamento dos pacotes utilizados. 
 
-PAREI AQUI
-A água se move entre os reservatórios via fluxos.  Some of the key hydrologic fluxes include: precipitation (either in liquid or solid form), evaporation and transpiration (together referred to as evapotranspiration), infiltration, recharge, and runoff. Precipitation and evapotranspiration are the key fluxes between the atmosphere and surface (land and oceans). Precipitation may accumulate when it falls as snow while rainfall is partitioned at the surface into infiltration and surface runoff. Percolation of water through the unsaturated soil zone recharges groundwater aquifers which ultimately 
-25. feeds surface water bodies via lateral flow and runoff. The atmospheric water is replenished via evaporation from the soil and open water surfaces and transpiration from vegetation.    Fluxes and storage are directly linked via mass balance as described in more detail below.
+O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
 
-A key aspect of the hydrologic cycle is the fact that it is driven by energy inputs (primarily from the sun; Figure 1.3). At the global scale, the system is essentially closed with respect to water; negligible water is entering or leaving the system. In other words, there is no external forcing in terms of a water flux. Systems with no external forcing will generally eventually come to an equilibrium state. So what makes the hydrologic cycle so dynamic? The solar radiative energy input, which is external to the system, drives the hydrologic cycle. Averaged over the globe, 342 W m-2 of solar radiative energy is being continuously input to the system at the top of the atmosphere. This energy input must be dissipated, and this is done, to a large extent, via the hydrologic cycle. Due to this fact, the study of hydrology is not isolated to the study of water storage and movement, but also must often include study of energy storage and movements.
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de longo prazo (LTS) mais recentes são:
 
+- 14.04 (abril de 2014, *codename* `trusty`) 
+- 16.04 (abril de 2016, *codename* `xenial`)
 
-O ciclo hidrológico é o movimento vertical e horizontal da água em suas diferentes fases (vapor, líquida ou sólida) entre a os oceanos, a atmosfera e a superfície terrestre. Clicando na figura abaixo você pode visualizar uma animação do ciclo hidrológico produzida pela [NASA](http://www.nasa.gov/vision/earth/environment/warm_wetworld.html).
-
-
-
-<center>
-[![Animação do ciclo hidrológico](images/animacaociclohidro.jpg)](https://www.youtube.com/watch?v=Az2xdNu0ZRk)
-</center>
-
-O ciclo da água é um processo global de circulação fechada controlado pela energia solar, a força de coriolis e a força da gravidade. 
-
-A <span style="font-variant:small-caps;">evaporação</span> é processo físico pelo qual a água líquida nos oceanos ou no continente muda para vapor no ar. Isto ocorre quando o ar não saturado entra em contato com uma superfície úmida. A evaporação fornece umidade para atmosfera que retorna para a superfície como chuva ou neve. A <span style="font-variant:small-caps;">evaporação</span> também consome uma grande quantidade de calor, o que ajuda a resfriar a superfície evaporante. O vapor d'água na atmosfera, pode condensar formando nuvens e dependendo das condições atmosféricas essa água pode retornar a superfície como precipitação. Quando o vapor d’água condensa na atmosfera é liberado calor. Esse calor é uma importante fonte de energia para a circulação atmosférica e as tempestades.
-Os oceanos são a maior fonte água para <span style="font-variant:small-caps;">evaporação</span> Os solos contêm menos de 1% da água doce não congelada na terra. Entretanto, a água do solo é um importante determinante dos fluxos do balanço de energia  e do clima próximo a superfície. Além disso, A descarga de água dos rios para os oceanos, dilui a água dos oceanos, evitando torná-la mais salgada, o que por sua vez influencia o transporte de calor pelos oceanos. 
-
-Os rios também carregam nutrientes para o oceano o que influencia a produtividade dos ecossistemas marinhos e o ciclo de carbono entre a atmosfera, terra e oceano.
-
-A água é a fonte de vida na terra. Entre 60-90% do corpo humano e da biomassa vegetal é água, e sua disponibilidade determina onde as plantas crescem e quão bem elas crescem. Dessa forma, o ciclo de carbono está intimamente vinculado ao ciclo hidrológico. O balanço de energia global é fortemente influenciado pela alta capacidade da água armazenar energia térmica e pela grande quantidade de energia requerida para sua mudança de fase. A abundância de água na atmosfera e oceanos exerce um importante papel como regulador do clima, sendo o vapor d’água um dos mais importantes gases-estufa.
-
-Os recursos hídricos foram sempre considerados como ilimitados, entretanto o século vinte testemunhou um grande crescimento no uso da água, assim como um aumento no risco de sua contaminação. Está previsto que a população global irá dobrar de valor nos próximos 50 anos, o que causará uma pressão maior sobre os recursos hídricos. 
-
-Diante dos cenários de mudanças climáticas projetados deve ocorrer uma intensificação do ciclo hidrológico evidenciada pelo aumento da variabilidade da precipitação (maior freqüência de eventos extremos e estiagens), o que ressalta ainda mais a importância de um planejamento do uso dos recursos hídricos desde já. Estimativas recentes sugerem que as mudanças climáticas quantificarão por um aumento de 20% na escassez de água global.
-
-
-- - -
-
-## Questão da escala
-
-O ciclo da água no sistema terrestre e sua variabilidade na escala global, regional e local são influenciados por uma variedade de processos, interações mútuas, mecanismos de *feedback* e processos antropogênicos. As escalas em que esses processos interagem espacial e temporalmente variam para cada componente do sistema terrestre (atmosfera, hidrosfera, criosfera e biosfera) de uma forma complexa.
-
-
-
-
-
-
-
-https://www.youtube.com/embed/8oRjP8yj2Wo
-
-
-
-<center>
-[![Animação do ciclo hidrológico](images/animacaociclohidro.jpg)](http://www.youtube.com/watch?v=Az2xdNu0ZRk)
-<center>
-
-Source: 
-http://www.nasa.gov/vision/earth/environment/warm_wetworld.html 
-
-
-
-teste 2
-
- "And here's to you, <span style="background-color:green">Mrs. Robinson</span>, Jesus loves you more than you will know."
-
-
-<span style="color: red; font-size:0.85em;">ENFASE COM COR FNS</span> 
-
-
- <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
- <a href="/donate">DONATE</a>
- </div>
- 
-- - - 
-
+[^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
  
-## Propriedades da água
+O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+
+##### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
+
+A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando:
+   
+    $ cat /etc/apt/sources.list | head -15
+    
+
+```
+## # deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted
+## 
+## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+## # newer versions of the distribution.
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## 
+## ## Major bug fix updates produced after the final release of the
+## ## distribution.
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## 
+## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## ## team. Also, please note that software in universe WILL NOT receive any
+## ## review or updates from the Ubuntu security team.
+```
+
+Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
+
+    $ lsb_release --codename | cut -f2
+   
+
+```
+trusty
+```
+
+[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
+
+Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^3] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+
+[^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+
+O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
+
+
+    $ sudo su
+
+
+Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
+
+    # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
  
-A água não é a molécula mais abundante no planeta, mas é a mais importante para todas formas de vida. A vida surgiu na água e é impossível sobreviver sem ela. Aproximadamente 60% do tecido animal e 90% do tecido das plantas é constituído de água. 
+Note que a variável `repos` é uma sequência de caracteres com as seguintes informações:
 
-Em geral a *água* é um termo usado para se referir a parte da água doce que é renovável anualmente e inclui a água superficial, a água no solo e no sub-solo. 
+    deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/
 
-capítulo \@ref(intro).
+O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu. 
 
-## Bacia Hidrográfica
+Para acrescentar essa informação no final do arquivo `sources.list` digite no terminal linux:
 
-Para compreender melhor os processo hidrológicos é necessário definir um volume de controle mais apropriado do que áreas continentais ou politicamente definidas. A maior parte dos problemas requerem volumes de controle de escala muito inferior a continental. 
+    # echo $repos >> /etc/apt/sources.list
 
-**[menor escala, mais aberto o ciclo]**
+Feito isso, você pode retornar a sessão de usuário comum, usando o comando abaixo:
 
-Qualquer volume pode ser usado para aplicar a a equação do balanço hídrico, mas em hidrologia o volume de controle ou a unidade hidrológica fundamental é a <span style="font-variant:small-caps;">Bacia Hidrográfica</span>[^].
+    # exit
+
+##### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
+
+Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4] Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+
+    $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+
+[^4]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+        
+e então use essa informação como entrada no `apt-key` com
+
+    $ gpg -a --export E084DAB9 | sudo apt-key add -
+      
+Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:
+
+    $ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+    $ gpg -a --export E084DAB9 | sudo apt-key add -
 
 
+##### Atualização da lista de repositórios do Ubuntu e instalação do *R*
+
+Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):
+
+    $ sudo apt-get update
+    
+Agora, pode instalar o binário do R:
+
+    $ sudo apt-get install r-base
+
+## Diretório para instalação de pacotes
+
+Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
+
+    $ mkdir -p `echo $HOME`/.R/libs/
+    
+Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
+
+    $ R_LIBS=`echo $HOME/.R/libs/`
+    $ echo $R_LIBS >> `echo $HOME/.Renviron`
+
+Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
+
+    $ R
+
+No console do R:
 
 
-<div class="rmdnote">
-<p><span style="font-variant: small-caps;">Bacia Hidrográfica</span> (BH): Área de captação natural sobre a superfície terrestre que faz convergir os escoamentos para um ponto chamado exutório. A <span style="font-variant: small-caps;">Bacia Hidrográfica</span> é constituída de um conjunto de superfícies vertentes e uma rede de drenagem formada por cursos d'água que confluem até resultar em um leito único no exutório.</p>
-<p>A BH é definida a partir de uma localização específica, geralmente ao longo de um curso d'água e a área terrestre associada pode ser considerada <strong>captar</strong> a água que escoa por aquele ponto. Então é possível definir inúmeras BH para um rio específico.</p>
-<p>O exutório é o ponto que defini a delimitação de uma BH, para onde toda precipitação captada à montante converge por escoamento superficial e sub-superficial.</p>
+```r
+> .libPaths()
+[1] "/home/pqgfapergs1/.R/libs"     "/usr/local/lib/R/site-library"
+[3] "/usr/lib/R/site-library"       "/usr/lib/R/library"           
+```
+    
+
+## Testando o *R*
+
+Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
+
+    $ R
+
+A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
+
+
+```r
+> 1:10
+ [1]  1  2  3  4  5  6  7  8  9 10
+> plot(1:10)
+```
+
+<div class="figure">
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="384" />
+<p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
-*watershed*: pequena BH
-
-*basin*: grande BH
-
-*catchment*: termo genérico para BH (qualquer escala)
+Vamos sair do *R* sem salvar os dados da seção.
 
 
+```r
+> q(save = "no")
+```
+
+## Rstudio no Ubuntu
+
+O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Assim como o *R*, o RStudio pode ser baixado gratuitamente e é multiplataforma. 
+
+Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org/wiki/Ambiente_de_desktop)*, você precisa saber se seu sistema operacional é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:
+
+    $ arch
+
+
+```
+x86_64
+```
+
+    $ lsb_release --release | cut -f2
+
+
+```
+14.04
+```
+
+Se retornar **x86_64** sua máquina é 64-bit.
+
+Com essa informação e versão do sistema operacional, siga os seguintes passos:
+
+  1. acesse [RStudio](http://www.rstudio.com/)
+  2. clique em *Download RStudio*
+  3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
+
+<img src="images/rstudio-choose.png" width="498" />
+
+  5. Selecione sua plataforma
+  
+<img src="images/rstudio-plataform-options.png" width="501" />
+  
+clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
+
+  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via **terminal**[^5] com os seguintes comandos:
+
+[^5]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
+
+```
+$ cd /local/do/arquivo/baixado
+$ sudo dpkg -i arquivoBaixado.deb
+$ sudo apt-get install -f
+```
+
+
+Abra o RStudio digitando no terminal:
+
+    $ rstudio &
+    
+Agora você está pronto para começar a programar em *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. 
 
