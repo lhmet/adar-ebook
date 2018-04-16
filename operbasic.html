@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+<meta name="date" content="2018-04-16">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="pluviometria.html">
+<link rel="next" href="formacao-do-solo.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programacao-computacional.html"><a href="programacao-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>1.5</b> R</a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="por-que-um-meteorologista-usaria-o-r.html"><a href="por-que-um-meteorologista-usaria-o-r.html"><i class="fa fa-check"></i><b>1.8</b> Por que um meteorologista usaria o R?</a></li>
+<li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.10" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>1.10</b> RStudio</a></li>
+<li class="chapter" data-level="1.11" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.11</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="sistema-hidroclimatico-terrestre.html"><a href="sistema-hidroclimatico-terrestre.html"><i class="fa fa-check"></i><b>2.1</b> Sistema Hidroclimático Terrestre</a></li>
+<li class="chapter" data-level="2.2" data-path="ciclo-hidrologico.html"><a href="ciclo-hidrologico.html"><i class="fa fa-check"></i><b>2.2</b> Ciclo Hidrológico</a></li>
+<li class="chapter" data-level="2.3" data-path="questao-da-escala.html"><a href="questao-da-escala.html"><i class="fa fa-check"></i><b>2.3</b> Questão da escala</a></li>
+<li class="chapter" data-level="2.4" data-path="propriedades-da-agua.html"><a href="propriedades-da-agua.html"><i class="fa fa-check"></i><b>2.4</b> Propriedades da água</a></li>
+<li class="chapter" data-level="2.5" data-path="bacia-hidrografica.html"><a href="bacia-hidrografica.html"><i class="fa fa-check"></i><b>2.5</b> Bacia Hidrográfica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="pluviometria.html"><a href="pluviometria.html"><i class="fa fa-check"></i><b>3.1</b> Pluviometria</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>4</b> Operações básicas</a><ul>
+<li class="chapter" data-level="4.1" data-path="formacao-do-solo.html"><a href="formacao-do-solo.html"><i class="fa fa-check"></i><b>4.1</b> Formação do solo</a></li>
+<li class="chapter" data-level="4.2" data-path="propriedades-do-solo.html"><a href="propriedades-do-solo.html"><i class="fa fa-check"></i><b>4.2</b> Propriedades do solo</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="propriedades-do-solo.html"><a href="propriedades-do-solo.html#materiais"><i class="fa fa-check"></i><b>4.2.1</b> Materiais</a></li>
+<li class="chapter" data-level="4.2.2" data-path="propriedades-do-solo.html"><a href="propriedades-do-solo.html#hidricas"><i class="fa fa-check"></i><b>4.2.2</b> Hídricas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="textura-e-estrutura.html"><a href="textura-e-estrutura.html"><i class="fa fa-check"></i><b>4.3</b> Textura e Estrutura</a></li>
+<li class="chapter" data-level="4.4" data-path="movimento-da-agua-no-solo.html"><a href="movimento-da-agua-no-solo.html"><i class="fa fa-check"></i><b>4.4</b> Movimento da água no solo</a></li>
+<li class="chapter" data-level="4.5" data-path="infiltracao.html"><a href="infiltracao.html"><i class="fa fa-check"></i><b>4.5</b> Infiltração</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="infiltracao.html"><a href="infiltracao.html#modelo-de-frente-de-umedecimento-de-green-ampt"><i class="fa fa-check"></i><b>4.5.1</b> Modelo de frente de umedecimento de Green-Ampt</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="evapotranspiracao-de-referencia.html"><a href="evapotranspiracao-de-referencia.html"><i class="fa fa-check"></i><b>5.1</b> Evapotranspiração de referência</a></li>
+<li class="chapter" data-level="5.2" data-path="evapotranspiracao-da-cultura.html"><a href="evapotranspiracao-da-cultura.html"><i class="fa fa-check"></i><b>5.2</b> Evapotranspiração da cultura</a></li>
+<li class="chapter" data-level="5.3" data-path="evapotranspiracao-real.html"><a href="evapotranspiracao-real.html"><i class="fa fa-check"></i><b>5.3</b> Evapotranspiração real</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="operbasic" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Operações básicas</h1>
+<p>Os solos são caracterizados por uma típica sequência de horizontes que constituem o perfil do solo.</p> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pluviometria.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formacao-do-solo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/04-operacoes-basicas.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

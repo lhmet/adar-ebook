@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+<meta name="date" content="2018-04-16">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="windows.html">
+<link rel="next" href="apt-protegido.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a></li>
+<li class="chapter" data-level="3" data-path="instalacao.html"><a href="instalacao.html"><i class="fa fa-check"></i><b>3</b> Instalação</a><ul>
+<li class="chapter" data-level="3.1" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>3.1</b> Windows</a></li>
+<li class="chapter" data-level="3.2" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>3.2</b> Linux</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="linux.html"><a href="linux.html#ubuntu"><i class="fa fa-check"></i><b>3.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linux.html"><a href="linux.html#r-sempre-atualizado"><i class="fa fa-check"></i><b>3.2.2</b> R sempre atualizado</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linux.html"><a href="linux.html#incluindo-repositorio-do-r-na-lista-de-repositorios-do-ubuntu"><i class="fa fa-check"></i><b>3.2.3</b> Incluindo repositório do <em>R</em> na Lista de repositórios do Ubuntu</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="apt-protegido.html"><a href="apt-protegido.html"><i class="fa fa-check"></i><b>3.3</b> <a href="https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt">APT protegido</a></a></li>
+<li class="chapter" data-level="3.4" data-path="atualizacao-da-lista-de-repositorios-do-ubuntu-e-instalacao-do-r.html"><a href="atualizacao-da-lista-de-repositorios-do-ubuntu-e-instalacao-do-r.html"><i class="fa fa-check"></i><b>3.4</b> Atualização da lista de repositórios do Ubuntu e instalação do <em>R</em></a></li>
+<li class="chapter" data-level="3.5" data-path="diretorio-para-instalacao-de-pacotes.html"><a href="diretorio-para-instalacao-de-pacotes.html"><i class="fa fa-check"></i><b>3.5</b> Diretório para instalação de pacotes</a></li>
+<li class="chapter" data-level="3.6" data-path="testando-o-r.html"><a href="testando-o-r.html"><i class="fa fa-check"></i><b>3.6</b> Testando o <em>R</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>4</b> Rstudio no Ubuntu</a></li>
+<li class="chapter" data-level="5" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>5</b> Interface do Usuário</a></li>
+<li class="chapter" data-level="6" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>6</b> Operações básicas</a></li>
+<li class="chapter" data-level="7" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>7</b> Tipos de dados</a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linux" class="section level2">
+<h2><span class="header-section-number">3.2</span> Linux</h2>
+<div id="ubuntu" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Ubuntu</h3>
+<p>Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório <em>default</em> do Ubuntu não é a última. Se isso for problema para você então basta executar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sudo apt<span class="op">-</span>get install r<span class="op">-</span>base</code></pre></div>
+</div>
+<div id="r-sempre-atualizado" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> R sempre atualizado</h3>
+<p>Se você prefere trabalhar com a última versão estável do R, precisamos configurar o Linux Ubuntu para atualizar automaticamente o <em>R</em>. Também uma boa prática definir um diretório para armazenamento dos pacotes utilizados.</p>
+<p>O procedimento de instalação requer senha de superusuário do sistema ou de privilégios <a href="https://en.wikipedia.org/wiki/Sudo">sudo</a>. Caso não tenha, consulte o administrador do sistema.</p>
+<p>Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. As versões de Suporte de longo prazo (LTS) mais recentes são:</p>
+<ul>
+<li>14.04 (abril de 2014, <em>codename</em> <code>trusty</code>)</li>
+<li>16.04 (abril de 2016, <em>codename</em> <code>xenial</code>)</li>
+</ul>
+<p>O <a href="http://www.r-project.org/">R</a> é distribuído na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o <a href="http://cran.r-project.org/mirrors.html">repósitório do R</a> mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<a href="http://cran-r.c3sl.ufpr.br/" class="uri">http://cran-r.c3sl.ufpr.br/</a>).</p>
+</div>
+<div id="incluindo-repositorio-do-r-na-lista-de-repositorios-do-ubuntu" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Incluindo repositório do <em>R</em> na Lista de repositórios do Ubuntu</h3>
+<p>A lista de repositórios do sistema é armazenada no arquivo <code>/etc/apt/sources.list</code>. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho <code>Ctr+Alt+t</code>), digite o seguinte comando:</p>
+<pre><code>$ cat /etc/apt/sources.list | head -15</code></pre>
+<pre><code>## # deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted
+## 
+## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+## # newer versions of the distribution.
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## 
+## ## Major bug fix updates produced after the final release of the
+## ## distribution.
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## 
+## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## ## team. Also, please note that software in universe WILL NOT receive any
+## ## review or updates from the Ubuntu security team.</code></pre>
+<p>Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> :</p>
+<pre><code>$ lsb_release --codename | cut -f2</code></pre>
+<pre><code>trusty</code></pre>
+<p>Precisamos incluir no arquivo <code>sources.list</code> o repositório da UFPR. Assim o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> fará a atualização do <em>R</em> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <em>R</em>.</p>
+<p>O endereço do repositório da UFPR será inserido na última linha do arquivo <code>sources.list</code> usando alguns comandos linux. Essa tarefa requer privilégios de <a href="https://pt.wikipedia.org/wiki/Superusu%C3%A1rio">superusuário</a>. Vamos trocar do seu usuário para o superusuário.</p>
+<pre><code>$ sudo su</code></pre>
+<p>Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.</p>
+<pre><code># repos=&quot;deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/&quot;</code></pre>
+<p>Note que a variável <code>repos</code> é uma sequência de caracteres com as seguintes informações:</p>
+<pre><code>deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/</code></pre>
+<p>O valor da variável <code>repos</code> é mostrado pelo comando: <code>$repos</code>. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.</p>
+<p>Para acrescentar essa informação no final do arquivo <code>sources.list</code> digite no terminal linux:</p>
+<pre><code># echo $repos &gt;&gt; /etc/apt/sources.list</code></pre>
+<p>Podemos retornar a sessão de usuário comum (<em>lsi</em>):</p>
+<pre><code># exit</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Clique <a href="http://releases.ubuntu.com">aqui</a> para saber mais sobre as versões do Ubuntu.<a href="linux.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso digite no terminal Linux <code>$ sudo apt-get install lsb-release</code>.<a href="linux.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a> é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.<a href="linux.html#fnref3">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="windows.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="apt-protegido.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/02-intall-r-rstudio.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
