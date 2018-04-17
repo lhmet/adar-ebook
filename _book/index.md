@@ -1,7 +1,7 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 author: "Jônatan Tatsch"
-date: "2018-04-16"
+date: "2018-04-17"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -17,7 +17,7 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 
 
-<img src="images/TB1.jpg" width="70%" style="display: block; margin: auto;" />
+
 
 
 

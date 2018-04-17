@@ -2,18 +2,18 @@
 
 
 
-O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o [RStudio](http://www.rstudio.com/).
+A interação do usuário com o R é por meio da linha de comando. Essa interação pode ser facilitada com o uso do [RStudio](http://www.rstudio.com/).
 
 A seguir descreve-se como instalar o *R* no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-## Instalação
+## Instalando o R
 
 O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
 
 ### Windows 
 
 A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
-Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutorial foi escrito a última versão foi a [R 3.4.4](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe).
 
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
@@ -27,7 +27,7 @@ A instalação do R para Windows a partir do executável acima incluirá na inst
 
 #### Ubuntu
 
-Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
+Há várias formas de instalar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
 
 
 ```r
@@ -59,13 +59,14 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
     
 
 ```
-## # deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted
+## # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
 ## 
 ## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 ## # newer versions of the distribution.
-## deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## 
+## # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
+## deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
 ## ## Major bug fix updates produced after the final release of the
 ## ## distribution.
 ## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
@@ -73,7 +74,6 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
 ## 
 ## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## ## team. Also, please note that software in universe WILL NOT receive any
-## ## review or updates from the Ubuntu security team.
 ```
 
 Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
@@ -144,32 +144,7 @@ Agora, pode instalar o binário do R:
 
     $ sudo apt-get install r-base
 
-## Diretório para instalação de pacotes
-
-Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
-
-    $ mkdir -p `echo $HOME`/.R/libs/
-    
-Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
-
-    $ R_LIBS=`echo $HOME/.R/libs/`
-    $ echo $R_LIBS >> `echo $HOME/.Renviron`
-
-Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
-
-    $ R
-
-No console do R:
-
-
-```r
-> .libPaths()
-[1] "/home/pqgfapergs1/.R/libs"     "/usr/local/lib/R/site-library"
-[3] "/usr/lib/R/site-library"       "/usr/lib/R/library"           
-```
-    
-
-## Testando o *R*
+##### Testando o *R*
 
 Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
@@ -195,6 +170,34 @@ Vamos sair do *R* sem salvar os dados da seção.
 ```r
 > q(save = "no")
 ```
+
+
+## Diretório para instalação de pacotes
+
+Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
+
+    $ mkdir -p `echo $HOME`/.R/libs/
+    
+Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
+
+    $ R_LIBS=`echo $HOME/.R/libs/`
+    $ echo $R_LIBS >> `echo $HOME/.Renviron`
+
+Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
+
+    $ R
+
+No console do R:
+
+
+```r
+> .libPaths()
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
+```
+    
+
+
 
 ## Rstudio no Ubuntu
 
