@@ -18,7 +18,7 @@ Depois clicar em *Download R for Windows* e  *install R for the first time*. Qua
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
 <div class="figure">
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows."  />
 <p class="caption">(\#fig:unnamed-chunk-1)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
@@ -49,7 +49,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
  
-O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2017-01-27). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ##### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
@@ -59,21 +59,21 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
     
 
 ```
-## # deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted
-## 
 ## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 ## # newer versions of the distribution.
-## deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb http://archive.ubuntu.com/ubuntu/ trusty main restricted
+## # deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted
 ## 
 ## ## Major bug fix updates produced after the final release of the
 ## ## distribution.
-## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## # deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
 ## 
 ## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## ## team. Also, please note that software in universe WILL NOT receive any
 ## ## review or updates from the Ubuntu security team.
+## deb http://archive.ubuntu.com/ubuntu/ trusty universe
+## deb-src http://archive.ubuntu.com/ubuntu/ trusty universe
 ```
 
 Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
@@ -164,8 +164,8 @@ No console do R:
 
 ```r
 > .libPaths()
-[1] "/home/pqgfapergs1/.R/libs"     "/usr/local/lib/R/site-library"
-[3] "/usr/lib/R/site-library"       "/usr/lib/R/library"           
+[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
+[3] "/home/travis/R-bin/lib/R/library"
 ```
     
 
@@ -224,11 +224,11 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
   2. clique em *Download RStudio*
   3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
 
-<img src="images/rstudio-choose.png" width="498" />
+![](images/rstudio-choose.png)<!-- -->
 
   5. Selecione sua plataforma
   
-<img src="images/rstudio-plataform-options.png" width="501" />
+![](images/rstudio-plataform-options.png)<!-- -->
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 
