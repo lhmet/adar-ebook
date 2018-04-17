@@ -14,18 +14,18 @@ opts_chunk$set(cache = FALSE,
                collapse = TRUE)
 ```
 
-O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o [RStudio](http://www.rstudio.com/).
+A interação do usuário com o R é por meio da linha de comando. Essa interação pode ser facilitada com o uso do [RStudio](http://www.rstudio.com/).
 
 A seguir descreve-se como instalar o *R* no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-## Instalação
+## Instalando o R
 
 O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
 
 ### Windows 
 
 A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
-Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutorial foi escrito a última versão foi a [R 3.4.4](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe).
 
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
@@ -38,7 +38,7 @@ knitr::include_graphics("images/rgui-windows.png")
 
 #### Ubuntu
 
-Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
+Há várias formas de instalar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
 
 ```{r, eval = FALSE}
 sudo apt-get install r-base
@@ -138,6 +138,26 @@ Agora, pode instalar o binário do R:
 
     $ sudo apt-get install r-base
 
+##### Testando o *R*
+
+Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
+
+    $ R
+
+A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
+
+```{r Chunck4, comment="", fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números.", prompt=TRUE, collapse=TRUE}
+1:10
+plot(1:10)
+```
+
+Vamos sair do *R* sem salvar os dados da seção.
+
+```{r Chunck5, comment="", eval = FALSE, prompt=TRUE}
+q(save = "no")
+```
+
+
 ## Diretório para instalação de pacotes
 
 Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
@@ -160,24 +180,7 @@ No console do R:
 ```
     
 
-## Testando o *R*
 
-Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
-
-    $ R
-
-A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
-
-```{r Chunck4, comment="", fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números.", prompt=TRUE, collapse=TRUE}
-1:10
-plot(1:10)
-```
-
-Vamos sair do *R* sem salvar os dados da seção.
-
-```{r Chunck5, comment="", eval = FALSE, prompt=TRUE}
-q(save = "no")
-```
 
 ## Rstudio no Ubuntu
 
@@ -217,7 +220,7 @@ knitr::include_graphics('images/rstudio-plataform-options.png')
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 
-  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via **terminal**[^5] com os seguintes comandos:
+  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^5] com os seguintes comandos:
 
 [^5]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 
