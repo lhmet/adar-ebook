@@ -175,8 +175,8 @@ O <code class='sourceCode bash'><span class='ex'>R</span></code> inclui o preenc
 
 
 <div class="figure" style="text-align: center">
-<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comando do R." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comando do R.</p>
+<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comandos do R.</p>
 </div>
 
 
@@ -197,7 +197,7 @@ $ R CMD BATCH opcoes arqentrada arqsaida
 
 Onde: `arqentrada`é o nome do script (`.R`) contendo o código R a ser executado; `arqsaida` é o arquivo (`.Rout`) com as saídas dos comandos executados no R; `opcoes` é a lista de opções que controlam a execução.
 
-Vamos rodar o exemplo [script1.R](https://raw.githubusercontent.com/lhmet/adar-ufsm/master/R/script1.R)^[1] no modo de processamento em lote. O script1.R contém alguns códigos da seção #install.
+Vamos rodar o exemplo [script1.R](https://raw.githubusercontent.com/lhmet/adar-ufsm/master/R/script1.R) a^[1] no modo de processamento em lote. O script1.R contém alguns códigos da seção \@ref(install).
 
 ^[1]: Faça download deste arquivo e entre no diretório (p.ex.: `cd /home/usuario/Downloads`) em que ele foi salvo para executar o R no modo de processamento de lote.
 
@@ -208,10 +208,10 @@ $ R CMD BATCH script1.R
 
 Após a execução será gerado o arquivo `script1.Rout`, criado por *default* quando o `arqsaida` não é especificado. Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
 
-Você pode especificar o nome do `arqsaida` como desejar. Por exemplo, vamos salvar o arquivo de saída como `saida_script1_adatadehoje.log`.
+Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mostra-se como salvar o arquivo de saída incluindo a data em que ele foi gerado, `script1-saida-adatadehoje.log`.
 
 ```
-$ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
+$ R CMD BATCH script1.R script1-saida-`date "+%y%m%d"`.log
 ```
 
 Para mais informações sobre rodar o <code class='sourceCode bash'><span class='ex'>R</span></code> na linha de comando do Linux digite no terminal `$ R --help`.

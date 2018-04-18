@@ -1,10 +1,12 @@
 # Operações básicas {#operbasic}
 
+a
+
 
 
 ## Convenção
 
-A partir deste capítulo, os códigos a serem avaliadas no <code class="sourceCode bash"><span class="ex">R</span></code> terão o prompt do <code class="sourceCode bash"><span class="ex">R</span></code> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code>. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <code class="sourceCode bash"><span class="ex">R</span></code> em seu computador. Por exemplo:
+A partir deste capítulo, os códigos a serem avaliadas no <code class='sourceCode bash'><span class='ex'>R</span></code> terão o prompt do <code class='sourceCode bash'><span class='ex'>R</span></code> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <code class='sourceCode bash'><span class='ex'>R</span></code>. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <code class='sourceCode bash'><span class='ex'>R</span></code> em seu computador. Por exemplo:
 
 
 ```r

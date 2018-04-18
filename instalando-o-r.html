@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -128,15 +128,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.3" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>2.3</b> Rstudio no Ubuntu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-1.html"><a href="r-1.html"><i class="fa fa-check"></i><b>3.1</b> R</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="r-1.html"><a href="r-1.html#linha-de-comando-do-r"><i class="fa fa-check"></i><b>3.1.1</b> Linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code></a></li>
+<li class="chapter" data-level="3.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="expressInSeq.html"><a href="expressInSeq.html"><i class="fa fa-check"></i><b>3.2</b> Expressões em sequência</a></li>
-<li class="chapter" data-level="3.3" data-path="navegacao-entre-as-expressoes-ja-avaliadas.html"><a href="navegacao-entre-as-expressoes-ja-avaliadas.html"><i class="fa fa-check"></i><b>3.3</b> Navegação entre as expressões já avaliadas</a></li>
-<li class="chapter" data-level="3.4" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>3.4</b> Comentários</a></li>
-<li class="chapter" data-level="3.5" data-path="auto-preenchimento-de-funcoes.html"><a href="auto-preenchimento-de-funcoes.html"><i class="fa fa-check"></i><b>3.5</b> Auto preenchimento de funções</a></li>
-<li class="chapter" data-level="3.6" data-path="r-no-modo-nao-interativo.html"><a href="r-no-modo-nao-interativo.html"><i class="fa fa-check"></i><b>3.6</b> <code class="sourceCode bash"><span class="ex">R</span></code> no modo não interativo</a></li>
-<li class="chapter" data-level="3.7" data-path="rodando-script-de-dentro-do-r.html"><a href="rodando-script-de-dentro-do-r.html"><i class="fa fa-check"></i><b>3.7</b> Rodando script de dentro do <code class="sourceCode bash"><span class="ex">R</span></code></a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.3" data-path="rodando-script-de-dentro-do-r.html"><a href="rodando-script-de-dentro-do-r.html"><i class="fa fa-check"></i><b>3.3</b> Rodando script de dentro do <code class='sourceCode bash'><span class="ex">R</span></code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>4</b> Operações básicas</a><ul>
 <li class="chapter" data-level="4.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>4.1</b> Convenção</a></li>
@@ -175,7 +174,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>A forma de instalar o R no Windows é baixar o binário executável da <strong>Rede Abrangente de Arquivos do R</strong> (<a href="https://cran.r-project.org/">CRAN</a>). Depois clicar em <em>Download R for Windows</em> e <em>install R for the first time</em>. Quando este tutorial foi escrito a última versão foi a <a href="https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe">R 3.4.4</a>.</p>
 <p>A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada <code>RGui.exe</code>, mostrada abaixo.</p>
 <div class="figure"><span id="fig:unnamed-chunk-1"></span>
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows."  />
 <p class="caption">
 Figure 2.1: Interface gráfica do usuário no R para Windows.
 </p>
@@ -197,33 +196,16 @@ Figure 2.1: Interface gráfica do usuário no R para Windows.
 <li>14.04 (abril de 2014, <em>codename</em> <code>trusty</code>)</li>
 <li>16.04 (abril de 2016, <em>codename</em> <code>xenial</code>)</li>
 </ul>
-<p>O <a href="http://www.r-project.org/">R</a> é distribuído na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o <a href="http://cran.r-project.org/mirrors.html">repósitório do R</a> mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<a href="http://cran-r.c3sl.ufpr.br/" class="uri">http://cran-r.c3sl.ufpr.br/</a>).</p>
+<p>O <a href="http://www.r-project.org/">R</a> é distribuído na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2017-01-27). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o <a href="http://cran.r-project.org/mirrors.html">repósitório do R</a> mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<a href="http://cran-r.c3sl.ufpr.br/" class="uri">http://cran-r.c3sl.ufpr.br/</a>).</p>
 <div id="incluindo-repositorio-do-r-na-lista-de-repositorios-do-ubuntu" class="section level5">
 <h5><span class="header-section-number">2.1.2.2.1</span> Incluindo repositório do <em>R</em> na Lista de repositórios do Ubuntu</h5>
-<p>A lista de repositórios do sistema é armazenada no arquivo <code>/etc/apt/sources.list</code>. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho <code>Ctr+Alt+t</code>), digite o seguinte comando:</p>
-<pre><code>$ cat /etc/apt/sources.list | head -15</code></pre>
-<pre><code>## # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
-## 
-## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-## # newer versions of the distribution.
-## # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
-## deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
-## ## Major bug fix updates produced after the final release of the
-## ## distribution.
-## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## 
-## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## ## team. Also, please note that software in universe WILL NOT receive any</code></pre>
-<p>Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> :</p>
+<p>A lista de repositórios do sistema é armazenada no arquivo <code>/etc/apt/sources.list</code>. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> :</p>
 <pre><code>$ lsb_release --codename | cut -f2</code></pre>
 <pre><code>trusty</code></pre>
-<p>Precisamos incluir no arquivo <code>sources.list</code> o repositório da UFPR. Assim o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> fará a atualização do <em>R</em> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <em>R</em>.</p>
+<p>Precisamos incluir no arquivo <code>sources.list</code> o espelho do repositório do R mais próximo. Veja a lista de espelhos de repositórios do R <a href="https://cran.r-project.org/mirrors.html">aqui</a>. Assim o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> fará a atualização do <em>R</em> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <em>R</em>.</p>
 <p>O endereço do repositório da UFPR será inserido na última linha do arquivo <code>sources.list</code> usando alguns comandos linux. Essa tarefa requer privilégios de <a href="https://pt.wikipedia.org/wiki/Superusu%C3%A1rio">superusuário</a>. Vamos trocar do seu usuário para o superusuário.</p>
 <pre><code>$ sudo su</code></pre>
-<p>Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.</p>
+<p>Vamos definir no terminal uma variável com o endereço do repositório (da UFPR nesse caso) e o nome de versão do Ubuntu.</p>
 <pre><code># repos=&quot;deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/&quot;</code></pre>
 <p>Note que a variável <code>repos</code> é uma sequência de caracteres com as seguintes informações:</p>
 <pre><code>deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/</code></pre>
@@ -275,7 +257,7 @@ Figure 2.2: Gráfico da sequência de 10 números.
 <hr />
 <ol start="1">
 <li id="fn1"><p>Clique <a href="http://releases.ubuntu.com">aqui</a> para saber mais sobre as versões do Ubuntu.<a href="instalando-o-r.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso digite no terminal Linux <code>$ sudo apt-get install lsb-release</code>.<a href="instalando-o-r.html#fnref2">↩</a></p></li>
+<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso, digite no terminal Linux <code>sudo apt-get install lsb-release</code>.<a href="instalando-o-r.html#fnref2">↩</a></p></li>
 <li id="fn3"><p>o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a> é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.<a href="instalando-o-r.html#fnref3">↩</a></p></li>
 <li id="fn4"><p>Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja <a href="http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html">aqui</a>.<a href="instalando-o-r.html#fnref4">↩</a></p></li>
 </ol>
