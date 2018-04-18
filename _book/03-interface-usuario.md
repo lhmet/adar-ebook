@@ -174,10 +174,7 @@ O <code class='sourceCode bash'><span class='ex'>R</span></code> inclui o preenc
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comandos do R.</p>
-</div>
+
 
 
 ## <code class='sourceCode bash'><span class='ex'>R</span></code> no modo de processamento em lote

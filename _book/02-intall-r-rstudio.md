@@ -18,7 +18,7 @@ Depois clicar em *Download R for Windows* e  *install R for the first time*. Qua
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
 <div class="figure">
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="1042" />
 <p class="caption">(\#fig:unnamed-chunk-1)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
@@ -137,7 +137,7 @@ A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequênc
 ```
 
 <div class="figure">
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="384" />
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números."  />
 <p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
@@ -204,11 +204,11 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
   2. clique em *Download RStudio*
   3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
 
-<img src="images/rstudio-choose.png" width="498" />
+<img src="images/rstudio-choose.png" width="996" />
 
   5. Selecione sua plataforma
   
-<img src="images/rstudio-plataform-options.png" width="501" />
+<img src="images/rstudio-plataform-options.png" width="1002" />
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 

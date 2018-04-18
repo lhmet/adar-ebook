@@ -21,7 +21,7 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 
 
-<img src="images/TB1.jpg" width="70%" style="display: block; margin: auto;" />
+
 
 
 
