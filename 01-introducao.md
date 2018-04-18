@@ -114,6 +114,8 @@ Breve intro.
 
 - Acesso ao estado da arte da ciência de dados (*Big Data*, *Data Mining*, *Machine Leraning*)
 
+- é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
+
 - Interface com Fortran, C, C++, Python
 
 - [Visualização de dados](https://cran.r-project.org/web/views/Graphics.html)
@@ -177,37 +179,6 @@ Logo, requer ferramentas específicas para:
 * São apenas ~20 anos de evolução
  
 * Há muito o que melhorar
-
-
-## RStudio
-
-
-[RStudio](https://www.rstudio.com/) é um **ambiente de desenvolvimento integrado** livre e de código aberto. 
-
-![RStudio IDE](images/screenshot_rstudio.png)
-
-
-- Multiplataforma (Windos, Linux e Mac)
-  
-- ênfase da sintaxe do R, auto-preenchimento de código, identação inteligente
-  
-- execução do R diretamente do editor
-  
-- manejo de diretórios e projetos
-  
-- histórico de gráficos, zoom, atalhos para exportar imagens 
- 
-- Integrado com [knitr](https://en.wikipedia.org/wiki/Knitr)
- 
-- Integrado com [GitHub](https://github.com/) para controle de versões
-
-
-
-
-
-
-
-
 
 
 

@@ -2,23 +2,23 @@
 
 
 
-O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica como o [RStudio](http://www.rstudio.com/).
+A interação do usuário com o R é por meio da linha de comando. Essa interação pode ser facilitada com o uso do [RStudio](http://www.rstudio.com/).
 
 A seguir descreve-se como instalar o *R* no Windows e no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-## Instalação
+## Instalando o R
 
 O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
 
 ### Windows 
 
 A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
-Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutorial foi escrito a última versão foi a [R 3.4.4](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe).
 
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
 <div class="figure">
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows."  />
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
 <p class="caption">(\#fig:unnamed-chunk-1)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
@@ -27,7 +27,7 @@ A instalação do R para Windows a partir do executável acima incluirá na inst
 
 #### Ubuntu
 
-Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
+Há várias formas de instalar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
 
 
 ```r
@@ -49,7 +49,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
  
-O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2017-01-27). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ##### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
@@ -59,21 +59,21 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
     
 
 ```
+## # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
+## 
 ## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 ## # newer versions of the distribution.
-## deb http://archive.ubuntu.com/ubuntu/ trusty main restricted
-## # deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted
-## 
+## # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
+## deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
 ## ## Major bug fix updates produced after the final release of the
 ## ## distribution.
-## deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## # deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
 ## 
 ## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## ## team. Also, please note that software in universe WILL NOT receive any
-## ## review or updates from the Ubuntu security team.
-## deb http://archive.ubuntu.com/ubuntu/ trusty universe
-## deb-src http://archive.ubuntu.com/ubuntu/ trusty universe
 ```
 
 Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
@@ -144,32 +144,7 @@ Agora, pode instalar o binário do R:
 
     $ sudo apt-get install r-base
 
-## Diretório para instalação de pacotes
-
-Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
-
-    $ mkdir -p `echo $HOME`/.R/libs/
-    
-Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
-
-    $ R_LIBS=`echo $HOME/.R/libs/`
-    $ echo $R_LIBS >> `echo $HOME/.Renviron`
-
-Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
-
-    $ R
-
-No console do R:
-
-
-```r
-> .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
-```
-    
-
-## Testando o *R*
+##### Testando o *R*
 
 Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
@@ -195,6 +170,34 @@ Vamos sair do *R* sem salvar os dados da seção.
 ```r
 > q(save = "no")
 ```
+
+
+## Diretório para instalação de pacotes
+
+Para termos melhor controle sobre os pacotes do *R* instalados no sistema é recomendado criar um diretório (`/home/usuario/.R/libs`) no seu `home`. O diretório do `home` pode ser obtido com o comando `echo $HOME`.
+
+    $ mkdir -p `echo $HOME`/.R/libs/
+    
+Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
+
+    $ R_LIBS=`echo $HOME/.R/libs/`
+    $ echo $R_LIBS >> `echo $HOME/.Renviron`
+
+Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
+
+    $ R
+
+No console do R:
+
+
+```r
+> .libPaths()
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
+```
+    
+
+
 
 ## Rstudio no Ubuntu
 
@@ -224,15 +227,15 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
   2. clique em *Download RStudio*
   3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
 
-![](images/rstudio-choose.png)<!-- -->
+<img src="images/rstudio-choose.png" width="498" />
 
   5. Selecione sua plataforma
   
-![](images/rstudio-plataform-options.png)<!-- -->
+<img src="images/rstudio-plataform-options.png" width="501" />
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 
-  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via **terminal**[^5] com os seguintes comandos:
+  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^5] com os seguintes comandos:
 
 [^5]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 
