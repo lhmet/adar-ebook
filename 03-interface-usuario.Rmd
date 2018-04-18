@@ -10,26 +10,24 @@ opts_chunk$set(prompt = TRUE,
                fig.path = "images/", 
                comment = "",
                collapse = TRUE)
+rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 ```
 
 
-Na maior parte do tempo você provavelmente usará o <code class="sourceCode bash"><span class="ex">R</span></code> no **modo interativo**: rodando comandos e vendo os resultados.
+Na maior parte do tempo você provavelmente usará o `r rblue` no **modo interativo**: rodando comandos e vendo os resultados.
  
-Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.
-
-Nessa situação, uma alternativa é você construir um *script*. Ou seja, um arquivo texto, com a extensão `.R`, contendo o conjunto de expressões da sua análise.
+Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise associada um código extenso e que precisa ser repetida com dados atualizados semanalmente. Nessa situação, recomenda-se a criação de um script , ou seja, um arquivo texto, com a extensão `.R`, contendo o código de sua análise.
 
 Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o Prompt de comando (`cmd.exe`) do SO Windows.
 
-Nesta seção apresenta-se ao leitor estes dois modos de uso do <code class="sourceCode bash"><span class="ex">R</span></code>.
+Nesta seção apresenta-se ao leitor estes dois modos de execução do `r rblue`
 
 
+## `r rblue` no modo interativo
 
-### Linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code>
+No Linux o `r rblue` pode ser aberto simplesmente digitando em um terminal a letra `R`. 
 
-No Linux o <code class="sourceCode bash"><span class="ex">R</span></code> pode ser aberto simplesmente digitando em um terminal a letra `R`. 
-
-```{bash, eval = FALSE}
+```{bash, eval = FALSE, prompt = FALSE}
 $ R
 ```
 
@@ -55,15 +53,15 @@ Type 'q()' to quit R.
 > 
 ```
 
-A janela com a linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code> apresenta o *prompt* do <code class="sourceCode bash"><span class="ex">R</span></code> (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o <code class="sourceCode bash"><span class="ex">R</span></code> interpreta o comando e retorna o resultado. 
+A janela com a linha de comando do `r rblue` apresenta o *prompt* do `r rblue` (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o `r rblue` interpreta o comando e retorna o resultado. 
 
-Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do <code class="sourceCode bash"><span class="ex">R</span></code>. Portanto, a linha de comando é a mais importante ferramenta do <code class="sourceCode bash"><span class="ex">R</span></code>, pois todas expressões são avaliadas através dela. 
+Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do `r rblue`. Portanto, a linha de comando é a mais importante ferramenta do `r rblue`, pois todas expressões são avaliadas através dela. 
 
 ```{r Chunk1}
 62 + 38
 ```
 
-A expressão é avaliada pelo <code class="sourceCode bash"><span class="ex">R</span></code>, o resultado é mostrado, mas o seu valor é perdido.
+A expressão é avaliada pelo `r rblue`, o resultado é mostrado, mas o seu valor é perdido.
 
 O número entre colchetes que aparece como resultado da operação ("[1]" no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.
 
@@ -73,7 +71,7 @@ O número entre colchetes que aparece como resultado da operação ("[1]" no cas
 
 O elemento `[18]` da sequência de 100 até 1 é o número `83`.
 
-Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o <code class="sourceCode bash"><span class="ex">R</span></code> mostra um sinal de `+`.
+Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o `r rblue` mostra um sinal de `+`.
 
 ```{r Chunk3, message=FALSE}
 1 * 2 * 3 * 4 * 5 *
@@ -88,7 +86,7 @@ Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a 
   3
 ```
 
-## Expressões em sequência {#expressInSeq}
+### Expressões em sequência {#expressInSeq}
 
 Podemos executar todas expressões anteriores em apenas uma linha, usando o ponto e vírgula  `;` para separar as expressões:
 
@@ -105,9 +103,9 @@ As expressões também podem ser separadas por uma nova linha (`<enter>`) entre 
 4-3
 ```
 
-## Navegação entre as expressões já avaliadas
+### Navegação entre as expressões já avaliadas
 
-Você pode usar as teclas `r emo::ji("arrow_up")` e `r emo::ji("arrow_down")` para navegar entre as expressões já avaliadas pelo <code class="sourceCode bash"><span class="ex">R</span></code>. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
+Você pode usar as teclas `r emo::ji("arrow_up")` e `r emo::ji("arrow_down")` para navegar entre as expressões já avaliadas pelo `r rblue`. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
 
 Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
 
@@ -119,27 +117,35 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
 
 Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + C`. As teclas `Ctrl + l` tem o efeito de limpar a tela.
 
-## Comentários
+### Comentários
 
-No <code class="sourceCode bash"><span class="ex">R</span></code>, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo <code class="sourceCode bash"><span class="ex">R</span></code>. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <code class="sourceCode bash"><span class="ex">R</span></code>.
+No `r rblue`, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo `r rblue`. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo `r rblue`.
 
-```{r Chunk8}
- 17 + 3 # adicionando 17 e 3
-# A expressão abaixo será ignorada 
-# 10 + 4
+```{r, collapse=TRUE}
+# comentário antes do código 
+```
+```{r Chunk8, collapse=TRUE}
+17 + 3 # comentário ao lado do código: adicionando 17 e 3
 ```
 
-## Auto preenchimento de funções
 
-O <code class="sourceCode bash"><span class="ex">R</span></code> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla `<tab>`. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.
+### Auto preenchimento de funções
+
+O `r rblue` inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla `<tab>`. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.
 
 ```{r Chunk9, eval = FALSE}
 read#<tab> pressione <tab> para ver as opções de comandos que iniciam com o termo read
 ```
 
-## <code class="sourceCode bash"><span class="ex">R</span></code> no modo não interativo 
 
-Na maior parte do tempo você provavelmente usará o <code class="sourceCode bash"><span class="ex">R</span></code> no modo interativo: rodando comandos e vendo os resultados.
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'),out.width='100%', fig.cap="Auto preenchimento de código na linha de comandos do R."}
+knitr::include_graphics('images/screenscast-autocomplete-r.gif')
+```
+
+
+## `r rblue` no modo de processamento em lote
+
+Na maior parte do tempo você provavelmente usará o `r rblue` no modo interativo: rodando comandos e vendo os resultados.
  
 Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.
 
@@ -147,7 +153,7 @@ Nessa situação, uma alternativa é você construir um *script*. Ou seja, um ar
 
 Esse script pode ser rodado no modo de processamento em lote (do termo em inglês *Batch Processing*) pelo R através do seguinte comando no terminal Linux:
 
-```{bash, eval = FALSE}
+```{bash, eval = FALSE, prompt = FALSE}
 $ R CMD BATCH opcoes arqentrada arqsaida
 ```
 
@@ -170,9 +176,9 @@ Você pode especificar o nome do `arqsaida` como desejar. Por exemplo, vamos sal
 $ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
 ```
 
-Para mais informações sobre rodar o <code class="sourceCode bash"><span class="ex">R</span></code> na linha de comando do Linux digite no terminal `$ R --help`.
+Para mais informações sobre rodar o `r rblue` na linha de comando do Linux digite no terminal `$ R --help`.
 
-## Rodando script de dentro do <code class="sourceCode bash"><span class="ex">R</span></code>
+## Rodando script de dentro do `r rblue`
 
 No modo iterativo, ou seja pela linha de comando, também é possível rodar comandos no modo *Batch* através da função `source()`.
 

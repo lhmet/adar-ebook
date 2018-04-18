@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="comentarios.html">
-<link rel="next" href="r-no-modo-nao-interativo.html">
+<link rel="prev" href="r-no-modo-interativo.html">
+<link rel="next" href="rodando-script-de-dentro-do-r.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -143,15 +143,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.18" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>2.18</b> Rstudio no Ubuntu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-1.html"><a href="r-1.html"><i class="fa fa-check"></i><b>3.1</b> R</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="r-1.html"><a href="r-1.html#linha-de-comando-do-r"><i class="fa fa-check"></i><b>3.1.1</b> Linha de comando do <code class='sourceCode bash'><span class="ex">R</span></code></a></li>
+<li class="chapter" data-level="3.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="expressInSeq.html"><a href="expressInSeq.html"><i class="fa fa-check"></i><b>3.2</b> Expressões em sequência</a></li>
-<li class="chapter" data-level="3.3" data-path="navegacao-entre-as-expressoes-ja-avaliadas.html"><a href="navegacao-entre-as-expressoes-ja-avaliadas.html"><i class="fa fa-check"></i><b>3.3</b> Navegação entre as expressões já avaliadas</a></li>
-<li class="chapter" data-level="3.4" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>3.4</b> Comentários</a></li>
-<li class="chapter" data-level="3.5" data-path="auto-preenchimento-de-funcoes.html"><a href="auto-preenchimento-de-funcoes.html"><i class="fa fa-check"></i><b>3.5</b> Auto preenchimento de funções</a></li>
-<li class="chapter" data-level="3.6" data-path="r-no-modo-nao-interativo.html"><a href="r-no-modo-nao-interativo.html"><i class="fa fa-check"></i><b>3.6</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo não interativo</a></li>
-<li class="chapter" data-level="3.7" data-path="rodando-script-de-dentro-do-r.html"><a href="rodando-script-de-dentro-do-r.html"><i class="fa fa-check"></i><b>3.7</b> Rodando script de dentro do <code class='sourceCode bash'><span class="ex">R</span></code></a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.3" data-path="rodando-script-de-dentro-do-r.html"><a href="rodando-script-de-dentro-do-r.html"><i class="fa fa-check"></i><b>3.3</b> Rodando script de dentro do <code class='sourceCode bash'><span class="ex">R</span></code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>4</b> Operações básicas</a><ul>
 <li class="chapter" data-level="4.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>4.1</b> Convenção</a></li>
@@ -182,19 +181,36 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="auto-preenchimento-de-funcoes" class="section level2">
-<h2><span class="header-section-number">3.5</span> Auto preenchimento de funções</h2>
-<p>O <code class='sourceCode bash'><span class="ex">R</span></code> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla <code>&lt;tab&gt;</code>. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>read<span class="co">#&lt;tab&gt; pressione &lt;tab&gt; para ver as opções de comandos que iniciam com o termo read</span></code></pre></div>
-<p>Use o <code class='sourceCode bash'><span class="ex">R</span></code>.</p>
+<div id="r-no-modo-de-processamento-em-lote" class="section level2">
+<h2><span class="header-section-number">3.2</span> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</h2>
+<p>Na maior parte do tempo você provavelmente usará o <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo: rodando comandos e vendo os resultados.</p>
+<p>Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.</p>
+<p>Nessa situação, uma alternativa é você construir um <em>script</em>. Ou seja, um arquivo texto, com a extensão <code>.R</code>, contendo o conjunto de expressões da sua análise.</p>
+<p>Esse script pode ser rodado no modo de processamento em lote (do termo em inglês <em>Batch Processing</em>) pelo R através do seguinte comando no terminal Linux:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">R</span> CMD BATCH opcoes arqentrada arqsaida</code></pre></div>
+<p>Onde: <code>arqentrada</code>é o nome do script (<code>.R</code>) contendo o código R a ser executado; <code>arqsaida</code> é o arquivo (<code>.Rout</code>) com as saídas dos comandos executados no R; <code>opcoes</code> é a lista de opções que controlam a execução.</p>
+<p>Vamos rodar o exemplo <a href="https://raw.githubusercontent.com/lhmet/adar-ufsm/master/R/script1.R">script1.R</a><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> no modo de processamento em lote. O script1.R contém alguns códigos da seção #install.</p>
+<p><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>: Faça download deste arquivo e entre no diretório (p.ex.: <code>cd /home/usuario/Downloads</code>) em que ele foi salvo para executar o R no modo de processamento de lote.</p>
+<pre><code>$ R CMD BATCH script1.R</code></pre>
+<p>Após a execução será gerado o arquivo <code>script1.Rout</code>, criado por <em>default</em> quando o <code>arqsaida</code> não é especificado. Você pode notar que este arquivo tem o mesmo nome do <code>arqentrada</code>, exceto que a sua extensão foi alterada para <code>.Rout</code>.</p>
+<p>Você pode especificar o nome do <code>arqsaida</code> como desejar. Por exemplo, vamos salvar o arquivo de saída como <code>saida_script1_adatadehoje.log</code>.</p>
+<pre><code>$ R CMD BATCH script1.R saida_script1_`date &quot;+%y%m%d&quot;`.log</code></pre>
+<p>Para mais informações sobre rodar o <code class='sourceCode bash'><span class="ex">R</span></code> na linha de comando do Linux digite no terminal <code>$ R --help</code>.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>1<a href="r-no-modo-de-processamento-em-lote.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>1<a href="r-no-modo-de-processamento-em-lote.html#fnref2">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="comentarios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-no-modo-nao-interativo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-no-modo-interativo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rodando-script-de-dentro-do-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
