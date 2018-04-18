@@ -235,7 +235,7 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 
-  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via **terminal**[^5] com os seguintes comandos:
+  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^5] com os seguintes comandos:
 
 [^5]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 

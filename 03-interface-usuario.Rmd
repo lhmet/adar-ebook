@@ -1,13 +1,188 @@
 # Interface do Usuário {#iu}
 
 
+```{r setup, include = FALSE}
+rm(list = ls())
+pcks <- c("knitr", "emo")
+easypackages::libraries(pcks)
+opts_chunk$set(prompt = TRUE,
+               cache = FALSE, 
+               fig.path = "images/", 
+               comment = "",
+               collapse = TRUE)
+```
 
-```{r satcloud, eval=FALSE, ref.label='satcloud', fig.cap='Animação conceitual do ciclo hidrológico. Fonte: .'}
-knitr::include_graphics('images/SatCloud.gif')
+
+Na maior parte do tempo você provavelmente usará o <code class="sourceCode bash"><span class="ex">R</span></code> no **modo interativo**: rodando comandos e vendo os resultados.
+ 
+Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.
+
+Nessa situação, uma alternativa é você construir um *script*. Ou seja, um arquivo texto, com a extensão `.R`, contendo o conjunto de expressões da sua análise.
+
+Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o Prompt de comando (`cmd.exe`) do SO Windows.
+
+Nesta seção apresenta-se ao leitor estes dois modos de uso do <code class="sourceCode bash"><span class="ex">R</span></code>.
+
+
+
+### Linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code>
+
+No Linux o <code class="sourceCode bash"><span class="ex">R</span></code> pode ser aberto simplesmente digitando em um terminal a letra `R`. 
+
+```{bash, eval = FALSE}
+$ R
+```
+
+```
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+```
+
+A janela com a linha de comando do <code class="sourceCode bash"><span class="ex">R</span></code> apresenta o *prompt* do <code class="sourceCode bash"><span class="ex">R</span></code> (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o <code class="sourceCode bash"><span class="ex">R</span></code> interpreta o comando e retorna o resultado. 
+
+Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do <code class="sourceCode bash"><span class="ex">R</span></code>. Portanto, a linha de comando é a mais importante ferramenta do <code class="sourceCode bash"><span class="ex">R</span></code>, pois todas expressões são avaliadas através dela. 
+
+```{r Chunk1}
+62 + 38
+```
+
+A expressão é avaliada pelo <code class="sourceCode bash"><span class="ex">R</span></code>, o resultado é mostrado, mas o seu valor é perdido.
+
+O número entre colchetes que aparece como resultado da operação ("[1]" no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.
+
+```{r Chunk2}
+100:1
+```
+
+O elemento `[18]` da sequência de 100 até 1 é o número `83`.
+
+Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o <code class="sourceCode bash"><span class="ex">R</span></code> mostra um sinal de `+`.
+
+```{r Chunk3, message=FALSE}
+1 * 2 * 3 * 4 * 5 *
+6 * 7 * 8 * 9 * 10
+```
+
+Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a expressão não estiver completa o sinal de + se repetirá. Até que você digite o número que deseja subtrair de 4.
+
+```{r Chunk4}
+4 -
+  
+  3
+```
+
+## Expressões em sequência {#expressInSeq}
+
+Podemos executar todas expressões anteriores em apenas uma linha, usando o ponto e vírgula  `;` para separar as expressões:
+
+```{r Chunk5}
+62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
+```
+
+As expressões também podem ser separadas por uma nova linha (`<enter>`) entre cada um delas.
+
+```{r Chunk6}
+62 + 38
+100:1
+1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
+4-3
+```
+
+## Navegação entre as expressões já avaliadas
+
+Você pode usar as teclas `r emo::ji("arrow_up")` e `r emo::ji("arrow_down")` para navegar entre as expressões já avaliadas pelo <code class="sourceCode bash"><span class="ex">R</span></code>. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
+
+Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
+
+```{r Chunk7}
+15 + 4
+100:1
+#tecle <Ctr + l>
+```
+
+Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + C`. As teclas `Ctrl + l` tem o efeito de limpar a tela.
+
+## Comentários
+
+No <code class="sourceCode bash"><span class="ex">R</span></code>, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo <code class="sourceCode bash"><span class="ex">R</span></code>. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <code class="sourceCode bash"><span class="ex">R</span></code>.
+
+```{r Chunk8}
+ 17 + 3 # adicionando 17 e 3
+# A expressão abaixo será ignorada 
+# 10 + 4
+```
+
+## Auto preenchimento de funções
+
+O <code class="sourceCode bash"><span class="ex">R</span></code> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla `<tab>`. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.
+
+```{r Chunk9, eval = FALSE}
+read#<tab> pressione <tab> para ver as opções de comandos que iniciam com o termo read
+```
+
+## <code class="sourceCode bash"><span class="ex">R</span></code> no modo não interativo 
+
+Na maior parte do tempo você provavelmente usará o <code class="sourceCode bash"><span class="ex">R</span></code> no modo interativo: rodando comandos e vendo os resultados.
+ 
+Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.
+
+Nessa situação, uma alternativa é você construir um *script*. Ou seja, um arquivo texto, com a extensão `.R`, contendo o conjunto de expressões da sua análise.
+
+Esse script pode ser rodado no modo de processamento em lote (do termo em inglês *Batch Processing*) pelo R através do seguinte comando no terminal Linux:
+
+```{bash, eval = FALSE}
+$ R CMD BATCH opcoes arqentrada arqsaida
+```
+
+Onde: `arqentrada`é o nome do script (`.R`) contendo o código R a ser executado; `arqsaida` é o arquivo (`.Rout`) com as saídas dos comandos executados no R; `opcoes` é a lista de opções que controlam a execução.
+
+Vamos rodar o exemplo [script1.R](https://raw.githubusercontent.com/lhmet/adar-ufsm/master/R/script1.R)^[1] no modo de processamento em lote. O script1.R contém alguns códigos da seção #install.
+
+^[1]: Faça download deste arquivo e entre no diretório (p.ex.: `cd /home/usuario/Downloads`) em que ele foi salvo para executar o R no modo de processamento de lote.
+
+
+```
+$ R CMD BATCH script1.R
+```
+
+Após a execução será gerado o arquivo `script1.Rout`, criado por *default* quando o `arqsaida` não é especificado. Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
+
+Você pode especificar o nome do `arqsaida` como desejar. Por exemplo, vamos salvar o arquivo de saída como `saida_script1_adatadehoje.log`.
+
+```
+$ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
+```
+
+Para mais informações sobre rodar o <code class="sourceCode bash"><span class="ex">R</span></code> na linha de comando do Linux digite no terminal `$ R --help`.
+
+## Rodando script de dentro do <code class="sourceCode bash"><span class="ex">R</span></code>
+
+No modo iterativo, ou seja pela linha de comando, também é possível rodar comandos no modo *Batch* através da função `source()`.
+
+```{r Chunk21, eval = FALSE}
+source("R/script1.R")
 ```
 
 
 
-## Pluviometria
 
-Em construção.
+
+
+   
