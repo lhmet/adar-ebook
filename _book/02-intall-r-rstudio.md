@@ -53,30 +53,7 @@ O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas a
 
 ##### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
-A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando:
-   
-    $ cat /etc/apt/sources.list | head -15
-    
-
-```
-## # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
-## 
-## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-## # newer versions of the distribution.
-## # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
-## deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
-## deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
-## ## Major bug fix updates produced after the final release of the
-## ## distribution.
-## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-## 
-## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## ## team. Also, please note that software in universe WILL NOT receive any
-```
-
-Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
+A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando[^2] :
 
     $ lsb_release --codename | cut -f2
    
@@ -85,10 +62,10 @@ Para descobrir o nome da versão do sistema operacional, digite na terminal linu
 trusty
 ```
 
-[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
+[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
 
-Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^3] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+Precisamos incluir no arquivo `sources.list` o espelho do repositório do R mais próximo. Veja a lista de espelhos de repositórios do R [aqui](https://cran.r-project.org/mirrors.html). Assim o gerenciador de pacotes 
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^3] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
 
 [^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
@@ -98,7 +75,7 @@ O endereço do repositório da UFPR será inserido na última linha do arquivo `
     $ sudo su
 
 
-Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
+Vamos definir no terminal uma variável com o endereço do repositório (da UFPR nesse caso) e o nome de versão do Ubuntu.
 
     # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
  
