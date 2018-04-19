@@ -136,12 +136,12 @@ A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequênc
 > plot(1:10)
 ```
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números."  />
 <p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
-Vamos sair do *R* sem salvar os dados da seção.
+Você pode sair do *R*, sem salvar os dados da seção, com o código a seguir:
 
 
 ```r
@@ -204,11 +204,11 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
   2. clique em *Download RStudio*
   3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
 
-<img src="images/rstudio-choose.png" width="996" />
+<img src="images/rstudio-choose.png" width="996" style="display: block; margin: auto;" />
 
   5. Selecione sua plataforma
   
-<img src="images/rstudio-plataform-options.png" width="1002" />
+<img src="images/rstudio-plataform-options.png" width="1002" style="display: block; margin: auto;" />
   
 clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 

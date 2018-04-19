@@ -6,11 +6,11 @@
 
 Na maior parte do tempo você provavelmente usará o <code class='sourceCode bash'><span class='ex'>R</span></code> no **modo interativo**: rodando comandos e vendo os resultados.
  
-Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise associada um código extenso e que precisa ser repetida com dados atualizados semanalmente. Nessa situação, recomenda-se a criação de um script , ou seja, um arquivo texto, com a extensão `.R`, contendo o código de sua análise.
+Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise com um código bem extenso e que precisa ser  repetida com dados atualizados semanalmente. Nessa situação, recomenda-se a criação de um script, ou seja, um arquivo texto, com a extensão `.R`, contendo o código de sua análise.
 
 Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o Prompt de comando (`cmd.exe`) do SO Windows.
 
-Nesta seção apresenta-se ao leitor estes dois modos de execução do <code class='sourceCode bash'><span class='ex'>R</span></code>
+Nesta seção apresenta-se ao leitor estes dois modos de execução do <code class='sourceCode bash'><span class='ex'>R</span></code>.
 
 
 ## <code class='sourceCode bash'><span class='ex'>R</span></code> no modo interativo
@@ -96,7 +96,7 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 
 ```r
-> 62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
+> 62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10; 4 - 3
 [1] 100
   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
  [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
@@ -108,24 +108,7 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 [1] 1
 ```
 
-As expressões também podem ser separadas por uma nova linha (`<enter>`) entre cada um delas.
 
-
-```r
-> 62 + 38
-[1] 100
-> 100:1
-  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
-> 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
-[1] 3628800
-> 4-3
-[1] 1
-```
 
 ### Navegação entre as expressões já avaliadas
 
@@ -176,55 +159,76 @@ O <code class='sourceCode bash'><span class='ex'>R</span></code> inclui o preenc
 
 
 
+### Primeiro *script* {#primeiro-script}
+
+O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <code class='sourceCode bash'><span class='ex'>R</span></code> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
+
+
+```r
+# Primeiro script no R
+#----------------------------------------------------------------
+# cálculos básicos
+15 + 4
+1:100
+1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
+4-3
+#----------------------------------------------------------------
+# salvando um gráfico em um arquivo pdf
+arquivo_pdf <- "plot-script1.pdf"
+pdf(arquivo_pdf)        # cria e abre um arquivo pdf
+plot(1:100)             # faz o gráfico
+dev.off()               # fecha o arquivo pdf
+#----------------------------------------------------------------
+# definindo uma variável x
+x <- 1:100
+x
+```
+
+Este conjunto de linhas de código, quando inseridos em um arquivo texto[^6] formam um primeiro *script* <code class='sourceCode bash'><span class='ex'>R</span></code>. Este *script* pode ser executado pelo <code class='sourceCode bash'><span class='ex'>R</span></code> através da função `source()`, usando como argumento o caminho para o local do *script*. 
+
+[^6]: Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: [gedit](https://help.gnome.org/users/gedit/stable/index.html.pt_BR) no SO Linux, ou [Notepad](https://pt.wikipedia.org/wiki/Bloco_de_Notas) no SO Windows).
+
+
+```r
+> source("/home/usuario/adar/script1.R")
+```
+
+
+Este *script* produzirá como saída o arquivo `/home/usuario/adar/plot-script1.pdf`. Você pode visualizar o arquivo para conferir o gráficos de pontos gerado.
+
 
 ## <code class='sourceCode bash'><span class='ex'>R</span></code> no modo de processamento em lote
 
-Na maior parte do tempo você provavelmente usará o <code class='sourceCode bash'><span class='ex'>R</span></code> no modo interativo: rodando comandos e vendo os resultados.
- 
-Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise que precisa ser repetida com dados atualizados semanalmente. A análise requer a execução de centenas de expressões para se chegar no resultado final.
 
-Nessa situação, uma alternativa é você construir um *script*. Ou seja, um arquivo texto, com a extensão `.R`, contendo o conjunto de expressões da sua análise.
+Para rodar um *script* no modo de processamento em lote do <code class='sourceCode bash'><span class='ex'>R</span></code> através do seguinte comando no terminal Linux:
 
-Esse script pode ser rodado no modo de processamento em lote (do termo em inglês *Batch Processing*) pelo R através do seguinte comando no terminal Linux:
-
-
-```bash
+```
 $ R CMD BATCH opcoes arqentrada arqsaida
 ```
 
-Onde: `arqentrada`é o nome do script (`.R`) contendo o código R a ser executado; `arqsaida` é o arquivo (`.Rout`) com as saídas dos comandos executados no R; `opcoes` é a lista de opções que controlam a execução.
+Onde: `arqentrada`é o nome do script (arquivo com a extensão `.R`) a ser executado; `arqsaida` é o arquivo (com a extensão `.Rout`) com as saídas dos comandos executados no R; `opcoes` é a lista de opções que controlam a execução.
 
-Vamos rodar o exemplo [script1.R](https://raw.githubusercontent.com/lhmet/adar-ufsm/master/R/script1.R) a^[1] no modo de processamento em lote. O script1.R contém alguns códigos da seção \@ref(install).
-
-^[1]: Faça download deste arquivo e entre no diretório (p.ex.: `cd /home/usuario/Downloads`) em que ele foi salvo para executar o R no modo de processamento de lote.
-
+Vamos rodar como exemplo, o `script1.R` da seção \@ref(primeiro-script). 
 
 ```
-$ R CMD BATCH script1.R
+$ R CMD BATCH /home/usuario/adar/script1.R
 ```
 
-Após a execução será gerado o arquivo `script1.Rout`, criado por *default* quando o `arqsaida` não é especificado. Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
+O comando acima, produzirá dois arquivos de saída: 
+ 
+1. `script1.Rout`[^7] criado por *default* quando o `arqsaida` não é especificado, e;
+
+[^7]: Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
+
+2. arquivo \"plot-script1.pdf\".
+
 
 Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mostra-se como salvar o arquivo de saída incluindo a data em que ele foi gerado, `script1-saida-adatadehoje.log`.
 
 ```
-$ R CMD BATCH script1.R script1-saida-`date "+%y%m%d"`.log
+$ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180418.Rout `.
 
-Para mais informações sobre rodar o <code class='sourceCode bash'><span class='ex'>R</span></code> na linha de comando do Linux digite no terminal `$ R --help`.
+Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 
-## Rodando script de dentro do <code class='sourceCode bash'><span class='ex'>R</span></code>
-
-No modo iterativo, ou seja pela linha de comando, também é possível rodar comandos no modo *Batch* através da função `source()`.
-
-
-```r
-> source("R/script1.R")
-```
-
-
-
-
-
-
-   
