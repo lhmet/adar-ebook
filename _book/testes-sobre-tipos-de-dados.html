@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="r-nao-e-perfeito.html">
-<link rel="next" href="install.html">
+<link rel="prev" href="classes-de-dados.html">
+<link rel="next" href="conversao-entre-tipos-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -183,28 +183,51 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="para-saber-mais-sobre-o-r" class="section level2">
-<h2><span class="header-section-number">1.10</span> Para saber mais sobre o R</h2>
-<p><a href="http://cran.r-project.org/manuals.html"><strong>Documentação oficial</strong></a> - <a href="https://cran.r-project.org/other-docs.html">Manuais do R traduzidos</a></p>
-<p><a href="http://www.r-project.org/doc/bib/R-books.html"><strong>Lista de Livros relacionados ao R</strong></a></p>
-<ul>
-<li><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r">Livros gratuitos</a> (em inglês)</li>
-</ul>
-<p><strong>Fóruns:</strong></p>
-<ul>
-<li><p>lista Brasileira de discussão do programa R: <a href="https://listas.inf.ufpr.br/cgi-bin/mailman/listinfo/r-br"><strong>R-br</strong></a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/tagged/r">stackoverflow</a> <br/></p></li>
-</ul>
-
+<div id="testes-sobre-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">5.2</span> Testes sobre tipos de dados</h2>
+<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">typeof</span>(x)
+[<span class="dv">1</span>] <span class="dv">51</span>
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>vl; <span class="kw">typeof</span>(vl)
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>data1; <span class="kw">typeof</span>(data1)
+[<span class="dv">1</span>] <span class="st">&quot;2012-06-28&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">is.numeric</span>(x)
+[<span class="dv">1</span>] <span class="dv">51</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co">#  num.real?</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(5L)
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span>charf; <span class="kw">is.factor</span>(charf)
+[<span class="dv">1</span>] Vai chover hoje?
+Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span>i; <span class="kw">is.integer</span>(i)
+[<span class="dv">1</span>] <span class="dv">3</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.function</span>(sqrt)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.finite</span>(i)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.nan</span>(x)
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.na</span>(x)
+[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-nao-e-perfeito.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conversao-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -234,7 +257,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/05-tipos-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

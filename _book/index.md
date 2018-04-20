@@ -1,7 +1,7 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 author: "Jônatan Tatsch"
-date: "2018-04-18"
+date: "2018-04-20"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -36,7 +36,7 @@ O material do livro inclui o uso de dados ambientais de diferentes áreas (meteo
 
 O texto é intercalado com trechos de códigos que podem ser reproduzidos e os resultados visualizados no computador do leitor. 
 
-Após a introdução ao <code class='sourceCode bash'><span class='ex'>R</span></code> apresenta-se as capacidades específicas do <code class='sourceCode bash'><span class='ex'>R</span></code> para manipulação de dados. Baseado na experiência do autor são empregados os pacotes mais adequados para cada finalidade, como `dplyr` e `tidyr` para o processamento de dados e o `ggplot2` para visualização de dados.
+Após a introdução ao <code class='sourceCode bash'><span class='ex'>R</span></code> apresenta-se as capacidades específicas do <code class='sourceCode bash'><span class='ex'>R</span></code> para manipulação de dados. Baseado na experiência do autor são empregados os pacotes mais adequados para cada finalidade, como **dplyr** e **tidyr** para o processamento de dados e o **ggplot2** para visualização de dados.
 
 A intenção do livro é que após a leitura, o leitor tenha o conhecimento suficiente para desenvolver códigos que automatizem tarefas repetitivas, assim reduzindo o tempo na etapa de preparação de dados. Esta programação mais efetiva permitirá focar mais na análise de dados e na comunicação dos resultados, seja ela na forma de documentos acadêmicos, ou relatórios técnicos em empresas públicas e privadas.
 

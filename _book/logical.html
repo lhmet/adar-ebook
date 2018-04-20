@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="r-nao-e-perfeito.html">
-<link rel="next" href="install.html">
+<link rel="prev" href="character.html">
+<link rel="next" href="date.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -152,16 +152,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>4.3.3</b> Nomeando variáveis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>5.1</b> Classes de dados</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>5.1.1</b> <em>numeric</em></a></li>
-<li class="chapter" data-level="5.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>5.1.2</b> <em>character</em></a></li>
-<li class="chapter" data-level="5.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>5.1.3</b> <em>logical</em></a></li>
-<li class="chapter" data-level="5.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>5.1.4</b> <em>Date</em></a></li>
+<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a></li>
+<li class="chapter" data-level="6" data-path="tipos-de-dados.html"><a href="tipos-de-dados.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="numeric.html"><a href="numeric.html"><i class="fa fa-check"></i><b>6.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="6.2" data-path="character.html"><a href="character.html"><i class="fa fa-check"></i><b>6.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="6.3" data-path="logical.html"><a href="logical.html"><i class="fa fa-check"></i><b>6.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.4" data-path="date.html"><a href="date.html"><i class="fa fa-check"></i><b>6.4</b> <em>Date</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.2</b> Testes sobre tipos de dados</a></li>
-<li class="chapter" data-level="5.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.3</b> Conversão entre tipos de dados</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>7</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="8" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>8</b> Conversão entre tipos de dados</a></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
@@ -183,28 +182,122 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="para-saber-mais-sobre-o-r" class="section level2">
-<h2><span class="header-section-number">1.10</span> Para saber mais sobre o R</h2>
-<p><a href="http://cran.r-project.org/manuals.html"><strong>Documentação oficial</strong></a> - <a href="https://cran.r-project.org/other-docs.html">Manuais do R traduzidos</a></p>
-<p><a href="http://www.r-project.org/doc/bib/R-books.html"><strong>Lista de Livros relacionados ao R</strong></a></p>
-<ul>
-<li><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r">Livros gratuitos</a> (em inglês)</li>
-</ul>
-<p><strong>Fóruns:</strong></p>
-<ul>
-<li><p>lista Brasileira de discussão do programa R: <a href="https://listas.inf.ufpr.br/cgi-bin/mailman/listinfo/r-br"><strong>R-br</strong></a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/tagged/r">stackoverflow</a> <br/></p></li>
-</ul>
-
+<div id="logical" class="section level2">
+<h2><span class="header-section-number">6.3</span> <em>logical</em></h2>
+<p><code>logical</code> (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, <strong>TRUE</strong> (verdadeiro) ou <strong>FALSE</strong> (falso).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># variável lógica</span>
+<span class="er">&gt;</span><span class="st"> </span>vl &lt;-<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
+<p>Então em operações aritméticas envolvendo dados lógicos eles serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>vl <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="dv">0</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="dv">5</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="dv">2</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="op">-</span><span class="dv">1</span></code></pre></div>
+<p>Assim como as outras classes de dados existem funções para verificar a classe de dados lógicos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(vl)
+[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.logical</span>(vl)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+T
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="kw">class</span>(T)
+[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
+T &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">class</span>(T)
+[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
+<p>Valores lógicos resultam da comparação de números ou caracteres.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="co"># 4 é idêntico a 3?</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2i2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2i2
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2d2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="co"># operador: diferente de</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2d2
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> &quot;abc&quot;</span> <span class="op">==</span><span class="st"> &quot;defg&quot;</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> &quot;abc&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;defg&quot;</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;abc&quot;</span>) <span class="op">&lt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;defg&quot;</span>)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p><a name="tab_oper_log"></a></p>
+<table>
+<caption><span id="tab:chunck14">Table 6.1: </span>Tabela 1. Operadores Lógicos</caption>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="center">menor que</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="center">menor ou igual a</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="center">maior que</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;=</td>
+<td align="center">maior ou igual</td>
+</tr>
+<tr class="odd">
+<td align="center">==</td>
+<td align="center">idêntico</td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="center">diferente</td>
+</tr>
+<tr class="odd">
+<td align="center">!x</td>
+<td align="center">não é x (negação)</td>
+</tr>
+<tr class="even">
+<td align="center">x | y</td>
+<td align="center">x ou y</td>
+</tr>
+<tr class="odd">
+<td align="center">x &amp; y</td>
+<td align="center">x e y</td>
+</tr>
+<tr class="even">
+<td align="center">isTRUE(x)</td>
+<td align="center">teste se x é verdadeiro</td>
+</tr>
+<tr class="odd">
+<td align="center">%in%</td>
+<td align="center">está contido em</td>
+</tr>
+</tbody>
+</table>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-nao-e-perfeito.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="character.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="date.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -234,7 +327,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/05-tipos-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

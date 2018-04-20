@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="r-nao-e-perfeito.html">
-<link rel="next" href="install.html">
+<link rel="prev" href="tipos-de-dados.html">
+<link rel="next" href="character.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -152,16 +152,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>4.3.3</b> Nomeando variáveis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>5.1</b> Classes de dados</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>5.1.1</b> <em>numeric</em></a></li>
-<li class="chapter" data-level="5.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>5.1.2</b> <em>character</em></a></li>
-<li class="chapter" data-level="5.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>5.1.3</b> <em>logical</em></a></li>
-<li class="chapter" data-level="5.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>5.1.4</b> <em>Date</em></a></li>
+<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a></li>
+<li class="chapter" data-level="6" data-path="tipos-de-dados.html"><a href="tipos-de-dados.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="numeric.html"><a href="numeric.html"><i class="fa fa-check"></i><b>6.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="6.2" data-path="character.html"><a href="character.html"><i class="fa fa-check"></i><b>6.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="6.3" data-path="logical.html"><a href="logical.html"><i class="fa fa-check"></i><b>6.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.4" data-path="date.html"><a href="date.html"><i class="fa fa-check"></i><b>6.4</b> <em>Date</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.2</b> Testes sobre tipos de dados</a></li>
-<li class="chapter" data-level="5.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.3</b> Conversão entre tipos de dados</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>7</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="8" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>8</b> Conversão entre tipos de dados</a></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
@@ -183,28 +182,50 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="para-saber-mais-sobre-o-r" class="section level2">
-<h2><span class="header-section-number">1.10</span> Para saber mais sobre o R</h2>
-<p><a href="http://cran.r-project.org/manuals.html"><strong>Documentação oficial</strong></a> - <a href="https://cran.r-project.org/other-docs.html">Manuais do R traduzidos</a></p>
-<p><a href="http://www.r-project.org/doc/bib/R-books.html"><strong>Lista de Livros relacionados ao R</strong></a></p>
-<ul>
-<li><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r">Livros gratuitos</a> (em inglês)</li>
-</ul>
-<p><strong>Fóruns:</strong></p>
-<ul>
-<li><p>lista Brasileira de discussão do programa R: <a href="https://listas.inf.ufpr.br/cgi-bin/mailman/listinfo/r-br"><strong>R-br</strong></a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/tagged/r">stackoverflow</a> <br/></p></li>
-</ul>
-
+<div id="numeric" class="section level2">
+<h2><span class="header-section-number">6.1</span> <em>numeric</em></h2>
+<p>É a classe de objeto mais usada. Essa classe é similar a <em>float</em> ou <em>double</em> em outras linguagens. Ela trata de inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função <code>is.numeric()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(x)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(pi)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>Outro tipo é o <code>integer</code> (inteiro), ou seja não há parte decimal. Para definir um objeto como inteiro é necessário acrescentar ao valor numérico um <code>L</code>. Analogamente, uma forma de verificação se o objeto é inteiro é através função <code>is.integer()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>i &lt;-<span class="st"> </span>3L
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.integer</span>(i)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.integer</span>(pi)
+[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
+<p>Mesmo com o objeto <code>i</code> sendo inteiro, ele também passa na verificação <code>is.numeric()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(i)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>O R converte inteiros para numéricos quando necessário. Vamos usar a função <code>typeof()</code> para determinar o tipo de dado e as conversões que o R faz. Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>## integer * numeric
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(<span class="fl">4.5</span>)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>(prod_i &lt;-<span class="st"> </span>5L <span class="op">*</span><span class="st"> </span><span class="fl">4.5</span>)
+[<span class="dv">1</span>] <span class="fl">22.5</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(prod_i)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>## integer/integer
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(2L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L<span class="op">/</span>2L)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># número complexo</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span>2i)
+[<span class="dv">1</span>] <span class="st">&quot;complex&quot;</span></code></pre></div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-nao-e-perfeito.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="character.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -234,7 +255,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/05-tipos-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

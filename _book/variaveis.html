@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.7.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+
+<meta name="date" content="2018-04-20">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="calculadora.html">
+<link rel="next" href="datatype.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programacao-computacional.html"><a href="programacao-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>1.5</b> R</a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="por-que-um-meteorologista-usaria-o-r.html"><a href="por-que-um-meteorologista-usaria-o-r.html"><i class="fa fa-check"></i><b>1.8</b> Por que um meteorologista usaria o R?</a></li>
+<li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o-r.html"><a href="instalando-o-r.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <code class='sourceCode bash'><span class="ex">R</span></code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o-r.html"><a href="instalando-o-r.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o-r.html"><a href="instalando-o-r.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="diretorio-para-instalacao-de-pacotes.html"><a href="diretorio-para-instalacao-de-pacotes.html"><i class="fa fa-check"></i><b>2.2</b> Diretório para instalação de pacotes</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>2.3</b> Rstudio no Ubuntu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>4</b> Operações básicas</a><ul>
+<li class="chapter" data-level="4.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>4.1</b> Convenção</a></li>
+<li class="chapter" data-level="4.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>4.2</b> Calculado<code class='sourceCode bash'><span class="ex">R</span></code>a</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmetica-basica"><i class="fa fa-check"></i><b>4.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="calculadora.html"><a href="calculadora.html#constantes"><i class="fa fa-check"></i><b>4.2.2</b> Constantes</a></li>
+<li class="chapter" data-level="4.2.3" data-path="calculadora.html"><a href="calculadora.html#funcoes-matematicas-internas"><i class="fa fa-check"></i><b>4.2.3</b> Funções matemáticas internas</a></li>
+<li class="chapter" data-level="4.2.4" data-path="calculadora.html"><a href="calculadora.html#valores-numericos-especiais"><i class="fa fa-check"></i><b>4.2.4</b> Valores numéricos especiais</a></li>
+<li class="chapter" data-level="4.2.5" data-path="calculadora.html"><a href="calculadora.html#notacao-cientifica-e-numero-de-digitos"><i class="fa fa-check"></i><b>4.2.5</b> Notação científica e número de dígitos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>4.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="variaveis.html"><a href="variaveis.html#formas-de-atribuicao"><i class="fa fa-check"></i><b>4.3.1</b> Formas de atribuição</a></li>
+<li class="chapter" data-level="4.3.2" data-path="variaveis.html"><a href="variaveis.html#removendo-variaveis"><i class="fa fa-check"></i><b>4.3.2</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="4.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>4.3.3</b> Nomeando variáveis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>5</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>5.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>5.1.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="5.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>5.1.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="5.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>5.1.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="5.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>5.1.4</b> <em>Date</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="5.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>5.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="variaveis" class="section level2">
+<h2><span class="header-section-number">4.3</span> Variáveis</h2>
+<div id="formas-de-atribuicao" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Formas de atribuição</h3>
+<div id="variavel-recebe-valor" class="section level4">
+<h4><span class="header-section-number">4.3.1.1</span> Variável recebe valor</h4>
+<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo &quot;expressão&quot; significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador <code>&lt;-</code>, esta combinação é chamada &quot;atribuição&quot;. O resultado da &quot;atribuição&quot; é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados.</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>variavel &lt;- valor</code>
+</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="dv">1013</span>
+<span class="co"># para mostrar a variável digite o nome da variável</span>
+p
+<span class="co">#&gt; [1] 1013</span>
+<span class="co"># ou use a função print()</span>
+<span class="kw">print</span>(p)
+<span class="co">#&gt; [1] 1013</span></code></pre></div>
+<p>O R diferencia letras maiúsculas de minúsculas. Portanto <code>p</code> e <code>P</code> são variáveis diferentes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p
+<span class="co">#&gt; [1] 1013</span>
+P
+<span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;P&#39; not found</span></code></pre></div>
+<p>Como criamos apenas a variável <code>p</code>, <code>P</code> não foi encontrada.</p>
+<p>A variável <code>p</code> pode ser utilizado para criar outras variáveis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_pa &lt;-<span class="st"> </span>p <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+<span class="co"># pressão em Pascal</span>
+p_pa
+<span class="co">#&gt; [1] 101300</span></code></pre></div>
+<p>A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span><span class="op">/</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.6</span> -&gt;<span class="st"> </span>y1
+ y1
+<span class="co">#&gt; [1] 2.933333</span>
+<span class="dv">7</span><span class="op">/</span>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.6</span>) -&gt;<span class="st"> </span>y2
+ y2
+<span class="co">#&gt; [1] 1.944444</span></code></pre></div>
+<p>Os espaços em torno do símbolo de atribuição (<code>&lt;-</code>) não são obrigatórios mas eles ajudam na legibilidade do código.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+x <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span>
+<span class="co"># atribuição ou menor que?</span>
+x&lt;-<span class="dv">1</span> </code></pre></div>
+<p>Vamos criar uma variável chamada <code>ndias3</code> que recebe o nº de dias no mês de Março e <code>ndias4</code> que recebe o nº de dias no mês de Abril.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nd3 &lt;-<span class="st"> </span><span class="dv">31</span>
+nd4 &lt;-<span class="st"> </span><span class="dv">30</span></code></pre></div>
+<p>O total de dias nos meses de março e abril será armazenado na variável <code>totdias</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totd &lt;-<span class="st"> </span>nd3 <span class="op">+</span><span class="st"> </span>nd4
+totd
+<span class="co">#&gt; [1] 61</span></code></pre></div>
+<p>A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># número de dias em cada mês</span>
+jan &lt;-<span class="st"> </span>mar &lt;-<span class="st"> </span>mai &lt;-<span class="st"> </span>jul &lt;-<span class="st"> </span>ago &lt;-<span class="st"> </span>out &lt;-<span class="st"> </span>dez &lt;-<span class="st"> </span><span class="dv">31</span>
+abr &lt;-<span class="st"> </span>jun &lt;-<span class="st"> </span>set &lt;-<span class="st"> </span>nov &lt;-<span class="st"> </span><span class="dv">30</span>
+fev &lt;-<span class="st"> </span><span class="dv">28</span>
+<span class="co"># verificação</span>
+jan; jul
+<span class="co">#&gt; [1] 31</span>
+<span class="co">#&gt; [1] 31</span>
+jun; set
+<span class="co">#&gt; [1] 30</span>
+<span class="co">#&gt; [1] 30</span>
+fev
+<span class="co">#&gt; [1] 28</span></code></pre></div>
+<p>Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ao invés de </span>
+<span class="co"># tar &lt;- 20</span>
+<span class="co"># tar</span>
+<span class="co"># é mais prático</span>
+(tar &lt;-<span class="st"> </span><span class="dv">20</span>) 
+<span class="co">#&gt; [1] 20</span></code></pre></div>
+<p>Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a <a href="https://en.wikipedia.org/wiki/Tetens_equation">equação de Tetens</a>, podemos fazer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(es &lt;-<span class="st"> </span><span class="fl">0.611</span> <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>((<span class="fl">17.269</span> <span class="op">*</span><span class="st"> </span>tar)<span class="op">/</span>(tar <span class="op">+</span><span class="st"> </span><span class="fl">237.3</span>)))
+<span class="co">#&gt; [1] 2.338865</span></code></pre></div>
+<p>Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função <code>ls()</code><a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> para verificar as variáveis existentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;abr&quot;      &quot;ago&quot;      &quot;dez&quot;      &quot;es&quot;       &quot;fev&quot;      &quot;jan&quot;     </span>
+<span class="co">#&gt;  [7] &quot;jul&quot;      &quot;jun&quot;      &quot;mai&quot;      &quot;mar&quot;      &quot;nd3&quot;      &quot;nd4&quot;     </span>
+<span class="co">#&gt; [13] &quot;nov&quot;      &quot;oper_nas&quot; &quot;out&quot;      &quot;p&quot;        &quot;pcks&quot;     &quot;p_pa&quot;    </span>
+<span class="co">#&gt; [19] &quot;rblue&quot;    &quot;set&quot;      &quot;tar&quot;      &quot;totd&quot;     &quot;y1&quot;       &quot;y2&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totd &lt;-<span class="st"> </span>jan<span class="op">*</span><span class="dv">7</span>; totd &lt;-<span class="st"> </span>totd <span class="op">+</span><span class="st"> </span>fev; totd &lt;-<span class="st"> </span>totd <span class="op">+</span><span class="st"> </span><span class="dv">4</span><span class="op">*</span>abr
+totd
+<span class="co">#&gt; [1] 365</span></code></pre></div>
+</div>
+<div id="atribuicao-com-a-funcao-assign" class="section level4">
+<h4><span class="header-section-number">4.3.1.2</span> Atribuição com a função <code>assign()</code></h4>
+<p>Outra forma de atribuição é através da função <code>assign()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">es
+<span class="co">#&gt; [1] 2.338865</span>
+<span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;es_hpa&quot;</span>, <span class="dt">value =</span> es<span class="op">/</span><span class="dv">10</span>)
+es_hpa
+<span class="co">#&gt; [1] 0.2338865</span>
+<span class="co"># usando função assign sem nome dos parâmetros</span>
+<span class="kw">assign</span>(<span class="st">&quot;u&quot;</span>, <span class="fl">2.5</span>)
+u
+<span class="co">#&gt; [1] 2.5</span></code></pre></div>
+<p>Um exemplo mais elaborado de uso da função <code>assign()</code> para criar várias variáveis pode ser visto <a href="https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd">aqui</a>.</p>
+</div>
+</div>
+<div id="removendo-variaveis" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Removendo variáveis</h3>
+<p>Para remover variáveis usa-se a função <code>rm()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de variáveis existentes</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;abr&quot;      &quot;ago&quot;      &quot;dez&quot;      &quot;es&quot;       &quot;es_hpa&quot;   &quot;fev&quot;     </span>
+<span class="co">#&gt;  [7] &quot;jan&quot;      &quot;jul&quot;      &quot;jun&quot;      &quot;mai&quot;      &quot;mar&quot;      &quot;nd3&quot;     </span>
+<span class="co">#&gt; [13] &quot;nd4&quot;      &quot;nov&quot;      &quot;oper_nas&quot; &quot;out&quot;      &quot;p&quot;        &quot;pcks&quot;    </span>
+<span class="co">#&gt; [19] &quot;p_pa&quot;     &quot;rblue&quot;    &quot;set&quot;      &quot;tar&quot;      &quot;totd&quot;     &quot;u&quot;       </span>
+<span class="co">#&gt; [25] &quot;y1&quot;       &quot;y2&quot;</span></code></pre></div>
+<p>Vamos remover a variável <code>u</code> criada previamente e ver a lista de objetos no espaço de trabalho.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(u)
+<span class="co"># lista de variáveis existentes, sem u</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;abr&quot;      &quot;ago&quot;      &quot;dez&quot;      &quot;es&quot;       &quot;es_hpa&quot;   &quot;fev&quot;     </span>
+<span class="co">#&gt;  [7] &quot;jan&quot;      &quot;jul&quot;      &quot;jun&quot;      &quot;mai&quot;      &quot;mar&quot;      &quot;nd3&quot;     </span>
+<span class="co">#&gt; [13] &quot;nd4&quot;      &quot;nov&quot;      &quot;oper_nas&quot; &quot;out&quot;      &quot;p&quot;        &quot;pcks&quot;    </span>
+<span class="co">#&gt; [19] &quot;p_pa&quot;     &quot;rblue&quot;    &quot;set&quot;      &quot;tar&quot;      &quot;totd&quot;     &quot;y1&quot;      </span>
+<span class="co">#&gt; [25] &quot;y2&quot;</span></code></pre></div>
+<p>Podemos remover mais de uma variável ao mesmo tempo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(es_hpa, es, tar, y1, y2)
+<span class="co"># lista de variáveis existentes, sem es_hpa, es, tar, y1, y2</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;abr&quot;      &quot;ago&quot;      &quot;dez&quot;      &quot;fev&quot;      &quot;jan&quot;      &quot;jul&quot;     </span>
+<span class="co">#&gt;  [7] &quot;jun&quot;      &quot;mai&quot;      &quot;mar&quot;      &quot;nd3&quot;      &quot;nd4&quot;      &quot;nov&quot;     </span>
+<span class="co">#&gt; [13] &quot;oper_nas&quot; &quot;out&quot;      &quot;p&quot;        &quot;pcks&quot;     &quot;p_pa&quot;     &quot;rblue&quot;   </span>
+<span class="co">#&gt; [19] &quot;set&quot;      &quot;totd&quot;</span></code></pre></div>
+<p>Para remover todas variáveis do espaço de trabalho (use com cautela):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando tudo</span>
+<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
+<span class="kw">ls</span>()
+<span class="co">#&gt; character(0)</span></code></pre></div>
+</div>
+<div id="nomeando-variaveis" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Nomeando variáveis</h3>
+<p>É preciso ter cuidado ao nomear variáveis no R porque existem algumas regras:</p>
+<ul>
+<li>não iniciar com um número e não conter espaços</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">1oAno &lt;-<span class="st"> </span><span class="dv">1990</span>
+raizDe10 &lt;-<span class="st"> </span><span class="kw">srt</span>(<span class="dv">2</span>)
+variavel teste &lt;-<span class="st"> </span><span class="dv">67</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nomes alternativos para as variaveis</span>
+ano1 &lt;-<span class="st"> </span><span class="dv">1990</span>
+variavel_teste &lt;-<span class="st"> </span><span class="dv">67</span>
+variavel.teste &lt;-<span class="st"> </span><span class="dv">68</span></code></pre></div>
+<ul>
+<li><p>não conter símbolos especiais:</p>
+<pre><code>^, !, $, @, +, -, /, ou *</code></pre></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dia<span class="op">-</span><span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span>
+<span class="co">#&gt; Error in dia - 1 &lt;- 2: object &#39;dia&#39; not found</span>
+<span class="co"># alternativa</span>
+dia_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<ul>
+<li><p>evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número π):</p>
+<pre><code>c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
+
+FALSE  Inf  NA  NaN  NULL TRUE 
+
+break  else  for  function  if  in  next  repeat  while</code></pre></li>
+<li><p>variáveis com acento são permitidas mas não recomendadas.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">verão &lt;-<span class="st"> &quot;DJF&quot;</span>
+verão
+<span class="co">#&gt; [1] &quot;DJF&quot;</span></code></pre></div>
+<p>Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção <a href="http://style.tidyverse.org/syntax.html"><strong>Sintaxe</strong></a> do <a href="http://style.tidyverse.org/">Guia de estilo tidyverse (ou universo arrumado)</a>.</p>
+
+</div>
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Essa lista de variáveis também é mostrada no painel <em>Environment</em> do RStudio (canto direito superior, aba <em>Environment</em>).<a href="variaveis.html#fnref9">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="calculadora.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datatype.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/04-operacoes-basicas.Rmd",
+"text": "Edit"
+},
+"download": ["ADAR.pdf", "ADAR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
