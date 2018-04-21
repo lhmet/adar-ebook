@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analise-de-dados-meteorologicos.html">
-<link rel="next" href="etapas-para-abordagem-de-um-problema.html">
+<link rel="prev" href="testes-sobre-tipos-de-dados.html">
+<link rel="next" href="referencias.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -184,20 +184,63 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ciencia-de-dados" class="section level2">
-<h2><span class="header-section-number">1.2</span> Ciência de dados</h2>
-</style>
-<div class="midcenter" style="margin-left:50px; margin-top:50px;">
-<p><img src="images/datascience.png" height="400px" width="500px" /></p>
+<div id="conversao-entre-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">6.3</span> Conversão entre tipos de dados</h2>
+<p>Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções <code>is.*()</code> possui uma função <code>as.*()</code> correspondente de conversão para aquele tipo de dado.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># de character para numeric</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="st">&quot;12.34&quot;</span>) 
+[<span class="dv">1</span>] <span class="fl">12.34</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># ou</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as</span>(<span class="st">&quot;12.34&quot;</span>, <span class="st">&quot;numeric&quot;</span>)
+[<span class="dv">1</span>] <span class="fl">12.34</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># de factor para character</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.character</span>(charf)
+[<span class="dv">1</span>] <span class="st">&quot;Vai chover hoje?&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># character para factor</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.factor</span>(<span class="st">&quot;a&quot;</span>)
+[<span class="dv">1</span>] a
+Levels<span class="op">:</span><span class="st"> </span>a
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># de double para integer</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(x)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(<span class="kw">as.integer</span>(x))
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">as.integer</span>(x) <span class="op">==</span><span class="st"> </span>51L
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">as.integer</span>(<span class="st">&quot;12.34&quot;</span>)
+[<span class="dv">1</span>] <span class="dv">12</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># arredondamento</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.integer</span>(<span class="fl">12.34</span>)
+[<span class="dv">1</span>] <span class="dv">12</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># lógico para inteiro</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.integer</span>(<span class="ot">TRUE</span>)
+[<span class="dv">1</span>] <span class="dv">1</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># numérico para lógico</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.logical</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>)
+[<span class="dv">1</span>] <span class="ot">FALSE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># character para numérico?</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="st">&quot;a&quot;</span>)
+Warning<span class="op">:</span><span class="st"> </span>NAs introduced by coercion
+[<span class="dv">1</span>] <span class="ot">NA</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># de character para date</span>
+<span class="er">&gt;</span><span class="st"> </span>dt_char &lt;-<span class="st"> &quot;2016-03-17&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>dt &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)
+<span class="op">&gt;</span><span class="st"> </span>dt
+[<span class="dv">1</span>] <span class="st">&quot;2016-03-17&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># de character para date-time</span>
+<span class="er">&gt;</span><span class="st"> </span>data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>data_hora
+[<span class="dv">1</span>] <span class="st">&quot;2016-03-17 15:30:00 UTC&quot;</span></code></pre></div>
+
 </div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="analise-de-dados-meteorologicos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="etapas-para-abordagem-de-um-problema.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="testes-sobre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -227,7 +270,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

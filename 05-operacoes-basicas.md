@@ -360,7 +360,7 @@ Quando usamos a mesma variável numa sequência de atribuições o seu valor é 
 ls()
 #>  [1] "abr"      "ago"      "dez"      "es"       "fev"      "jan"     
 #>  [7] "jul"      "jun"      "mai"      "mar"      "nd3"      "nd4"     
-#> [13] "nov"      "oper_nas" "out"      "p"        "pcks"     "p_pa"    
+#> [13] "nov"      "oper_nas" "out"      "p"        "p_pa"     "pcks"    
 #> [19] "rblue"    "set"      "tar"      "totd"     "y1"       "y2"
 ```
 
@@ -404,8 +404,8 @@ Para remover variáveis usa-se a função `rm()`.
 ls()
 #>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
 #>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
-#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "pcks"    
-#> [19] "p_pa"     "rblue"    "set"      "tar"      "totd"     "u"       
+#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "p_pa"    
+#> [19] "pcks"     "rblue"    "set"      "tar"      "totd"     "u"       
 #> [25] "y1"       "y2"
 ```
 
@@ -418,8 +418,8 @@ rm(u)
 ls()
 #>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
 #>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
-#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "pcks"    
-#> [19] "p_pa"     "rblue"    "set"      "tar"      "totd"     "y1"      
+#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "p_pa"    
+#> [19] "pcks"     "rblue"    "set"      "tar"      "totd"     "y1"      
 #> [25] "y2"
 ```
 
@@ -432,7 +432,7 @@ rm(es_hpa, es, tar, y1, y2)
 ls()
 #>  [1] "abr"      "ago"      "dez"      "fev"      "jan"      "jul"     
 #>  [7] "jun"      "mai"      "mar"      "nd3"      "nd4"      "nov"     
-#> [13] "oper_nas" "out"      "p"        "pcks"     "p_pa"     "rblue"   
+#> [13] "oper_nas" "out"      "p"        "p_pa"     "pcks"     "rblue"   
 #> [19] "set"      "totd"
 ```
 

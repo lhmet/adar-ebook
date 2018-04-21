@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+
+<meta name="date" content="2018-04-21">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="datatype.html">
+<link rel="next" href="testes-sobre-tipos-de-dados.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programacao-computacional.html"><a href="programacao-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>1.5</b> R</a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="por-que-um-meteorologista-usaria-o-r.html"><a href="por-que-um-meteorologista-usaria-o-r.html"><i class="fa fa-check"></i><b>1.8</b> Por que um meteorologista usaria o R?</a></li>
+<li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o-r.html"><a href="instalando-o-r.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <code class='sourceCode bash'><span class="ex">R</span></code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o-r.html"><a href="instalando-o-r.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o-r.html"><a href="instalando-o-r.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="diretorio-para-instalacao-de-pacotes.html"><a href="diretorio-para-instalacao-de-pacotes.html"><i class="fa fa-check"></i><b>2.2</b> Diretório para instalação de pacotes</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>2.3</b> Rstudio no Ubuntu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculado<code class='sourceCode bash'><span class="ex">R</span></code>a</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmetica-basica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#constantes"><i class="fa fa-check"></i><b>5.2.2</b> Constantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funcoes-matematicas-internas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas internas</a></li>
+<li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#valores-numericos-especiais"><i class="fa fa-check"></i><b>5.2.4</b> Valores numéricos especiais</a></li>
+<li class="chapter" data-level="5.2.5" data-path="calculadora.html"><a href="calculadora.html#notacao-cientifica-e-numero-de-digitos"><i class="fa fa-check"></i><b>5.2.5</b> Notação científica e número de dígitos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variaveis.html"><a href="variaveis.html#formas-de-atribuicao"><i class="fa fa-check"></i><b>5.3.1</b> Formas de atribuição</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variaveis.html"><a href="variaveis.html#removendo-variaveis"><i class="fa fa-check"></i><b>5.3.2</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>5.3.3</b> Nomeando variáveis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="classes-de-dados" class="section level2">
+<h2><span class="header-section-number">6.1</span> Classes de dados</h2>
+<p>Existem vários classes de dados no R. As mais utilizadas são:</p>
+<ul>
+<li><p><code>numeric</code> (números)</p></li>
+<li><p><code>character</code> (sequência de caracteres)</p></li>
+<li><p><code>logical</code> (TRUE/FALSE)</p></li>
+<li><p><code>Date</code> (datas)</p></li>
+<li><p><code>POSIXct</code> (datas e horários)</p></li>
+</ul>
+<p>A classe dos dados de um objeto é verificada com a função <code>class()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>x &lt;-<span class="st"> </span><span class="dv">51</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(x)
+[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
+<div id="numeric" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> <em>numeric</em></h3>
+<p>É a classe de objeto mais usada. Essa classe é similar a <em>float</em> ou <em>double</em> em outras linguagens. Ela trata de inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função <code>is.numeric()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(x)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(pi)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>Outro tipo é o <code>integer</code> (inteiro), ou seja não há parte decimal. Para definir um objeto como inteiro é necessário acrescentar ao valor numérico um <code>L</code>. Analogamente, uma forma de verificação se o objeto é inteiro é através função <code>is.integer()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>i &lt;-<span class="st"> </span>3L
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.integer</span>(i)
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.integer</span>(pi)
+[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
+<p>Mesmo com o objeto <code>i</code> sendo inteiro, ele também passa na verificação <code>is.numeric()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.numeric</span>(i)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>O R converte inteiros para numéricos quando necessário. Vamos usar a função <code>typeof()</code> para determinar o tipo de dado e as conversões que o R faz. Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>## integer * numeric
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(<span class="fl">4.5</span>)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>(prod_i &lt;-<span class="st"> </span>5L <span class="op">*</span><span class="st"> </span><span class="fl">4.5</span>)
+[<span class="dv">1</span>] <span class="fl">22.5</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(prod_i)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>## integer/integer
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(2L)
+[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(5L<span class="op">/</span>2L)
+[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># número complexo</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">typeof</span>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span>2i)
+[<span class="dv">1</span>] <span class="st">&quot;complex&quot;</span></code></pre></div>
+</div>
+<div id="character" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> <em>character</em></h3>
+<p>O tipo de dado <em>character</em> (<em>string</em>) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função <code>character()</code> e <code>factor()</code>. Embora pareçam similares eles são tratados de forma diferente.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>(char &lt;-<span class="st"> &quot;Vai chover hoje?&quot;</span>)
+[<span class="dv">1</span>] <span class="st">&quot;Vai chover hoje?&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span>charf &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;Vai chover hoje?&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>charf
+[<span class="dv">1</span>] Vai chover hoje?
+Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">levels</span>(charf)
+[<span class="dv">1</span>] <span class="st">&quot;Vai chover hoje?&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">ordered</span>(charf)
+[<span class="dv">1</span>] Vai chover hoje?
+Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?</code></pre></div>
+<p><code>char</code> contém as palavras &quot;Vai chover hoje?&quot;, enquanto, <code>charf</code> tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (<em>levels</em>) de <code>charf</code>. Nós veremos esse tipos de dado futuramente em vetores.</p>
+<blockquote>
+<p><strong>Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferentes no R.</strong></p>
+</blockquote>
+<p>Para encontrar o tamanho de um <code>character</code> usamos a função <code>nchar()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">nchar</span>(char)
+[<span class="dv">1</span>] <span class="dv">16</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;abc&quot;</span>)
+[<span class="dv">1</span>] <span class="dv">3</span></code></pre></div>
+<p>Esta função não funcionará para um objeto do tipo <code>factor</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">nchar</span>(charf)
+Error <span class="cf">in</span> <span class="kw">nchar</span>(charf)<span class="op">:</span><span class="st"> &#39;nchar()&#39;</span> requires a character vector</code></pre></div>
+</div>
+<div id="logical" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> <em>logical</em></h3>
+<p><code>logical</code> (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, <strong>TRUE</strong> (verdadeiro) ou <strong>FALSE</strong> (falso).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># variável lógica</span>
+<span class="er">&gt;</span><span class="st"> </span>vl &lt;-<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
+<p>Então em operações aritméticas envolvendo dados lógicos eles serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>vl <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="dv">0</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="dv">5</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="dv">2</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="op">-</span><span class="dv">1</span></code></pre></div>
+<p>Assim como as outras classes de dados existem funções para verificar a classe de dados lógicos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(vl)
+[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.logical</span>(vl)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+T
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="kw">class</span>(T)
+[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
+T &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">class</span>(T)
+[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
+<p>Valores lógicos resultam da comparação de números ou caracteres.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="co"># 4 é idêntico a 3?</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2i2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2i2
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2d2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="co"># operador: diferente de</span>
+<span class="op">&gt;</span><span class="st"> </span>teste2d2
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span><span class="dv">4</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> &quot;abc&quot;</span> <span class="op">==</span><span class="st"> &quot;defg&quot;</span>
+[<span class="dv">1</span>] <span class="ot">FALSE</span>
+<span class="op">&gt;</span><span class="st"> &quot;abc&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;defg&quot;</span>
+[<span class="dv">1</span>] <span class="ot">TRUE</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;abc&quot;</span>) <span class="op">&lt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;defg&quot;</span>)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p><a name="tab_oper_log"></a></p>
+<table>
+<caption><span id="tab:chunck14">Table 6.1: </span>Tabela 1. Operadores Lógicos</caption>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="center">menor que</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="center">menor ou igual a</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="center">maior que</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;=</td>
+<td align="center">maior ou igual</td>
+</tr>
+<tr class="odd">
+<td align="center">==</td>
+<td align="center">idêntico</td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="center">diferente</td>
+</tr>
+<tr class="odd">
+<td align="center">!x</td>
+<td align="center">não é x (negação)</td>
+</tr>
+<tr class="even">
+<td align="center">x | y</td>
+<td align="center">x ou y</td>
+</tr>
+<tr class="odd">
+<td align="center">x &amp; y</td>
+<td align="center">x e y</td>
+</tr>
+<tr class="even">
+<td align="center">isTRUE(x)</td>
+<td align="center">teste se x é verdadeiro</td>
+</tr>
+<tr class="odd">
+<td align="center">%in%</td>
+<td align="center">está contido em</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="date" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> <em>Date</em></h3>
+<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.</p>
+<p>As mais úteis são:</p>
+<ul>
+<li><p><code>Date</code></p></li>
+<li><p><code>POSIXct</code></p></li>
+</ul>
+<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (Date) ou segundos (POSIXct) decorridos desde 1 de Janeiro de 1970.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>data1
+[<span class="dv">1</span>] <span class="st">&quot;2012-06-28&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(data1)
+[<span class="dv">1</span>] <span class="st">&quot;Date&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">as.numeric</span>(data1)
+[<span class="dv">1</span>] <span class="dv">15519</span>
+<span class="op">&gt;</span><span class="st"> </span>data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>data2
+[<span class="dv">1</span>] <span class="st">&quot;2012-06-28 17:42:00 UTC&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(data2)
+[<span class="dv">1</span>] <span class="st">&quot;POSIXct&quot;</span> <span class="st">&quot;POSIXt&quot;</span> 
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">as.numeric</span>(data2)
+[<span class="dv">1</span>] <span class="dv">1340905320</span></code></pre></div>
+<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através dos pacotes <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente no curso.</p>
+<p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(data1)
+[<span class="dv">1</span>] <span class="st">&quot;Date&quot;</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))
+[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datatype.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="testes-sobre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
+"text": "Edit"
+},
+"download": ["ADAR.pdf", "ADAR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
