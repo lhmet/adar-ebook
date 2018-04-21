@@ -54,12 +54,15 @@ O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas a
 
 A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando[^2] :
 
-    $ lsb_release --codename | cut -f2
-   
 
+
+```
+$ lsb_release --codename | cut -f2
+```
 ```
 trusty
 ```
+
 
 [^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
 
@@ -184,19 +187,16 @@ Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org
 
     $ arch
 
-
 ```
 x86_64
 ```
+Se retornar **x86_64** sua máquina é 64-bit.
 
     $ lsb_release --release | cut -f2
-
 
 ```
 14.04
 ```
-
-Se retornar **x86_64** sua máquina é 64-bit.
 
 Com essa informação e versão do sistema operacional, siga os seguintes passos:
 

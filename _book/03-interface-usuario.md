@@ -184,9 +184,9 @@ x <- 1:100
 x
 ```
 
-Este conjunto de linhas de código, quando inseridos em um arquivo texto[^6] formam um primeiro *script* <code class='sourceCode bash'><span class='ex'>R</span></code>. Este *script* pode ser executado pelo <code class='sourceCode bash'><span class='ex'>R</span></code> através da função `source()`, usando como argumento o caminho para o local do *script*. 
+Este conjunto de linhas de código, quando inseridos em um arquivo texto[^7] formam um primeiro *script* <code class='sourceCode bash'><span class='ex'>R</span></code>. Este *script* pode ser executado pelo <code class='sourceCode bash'><span class='ex'>R</span></code> através da função `source()`, usando como argumento o caminho para o local do *script*. 
 
-[^6]: Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: [gedit](https://help.gnome.org/users/gedit/stable/index.html.pt_BR) no SO Linux, ou [Notepad](https://pt.wikipedia.org/wiki/Bloco_de_Notas) no SO Windows).
+[^7]: Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: [gedit](https://help.gnome.org/users/gedit/stable/index.html.pt_BR) no SO Linux, ou [Notepad](https://pt.wikipedia.org/wiki/Bloco_de_Notas) no SO Windows).
 
 
 ```r
@@ -216,9 +216,9 @@ $ R CMD BATCH /home/usuario/adar/script1.R
 
 O comando acima, produzirá dois arquivos de saída: 
  
-1. `script1.Rout`[^7] criado por *default* quando o `arqsaida` não é especificado, e;
+1. `script1.Rout`[^8] criado por *default* quando o `arqsaida` não é especificado, e;
 
-[^7]: Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
+[^8]: Você pode notar que este arquivo tem o mesmo nome do `arqentrada`, exceto que a sua extensão foi alterada para `.Rout`.
 
 2. arquivo \"plot-script1.pdf\".
 
