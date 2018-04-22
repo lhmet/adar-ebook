@@ -24,7 +24,7 @@ A partir deste capítulo, os códigos a serem avaliadas no <code class='sourceCo
 No trecho de código acima,  a primeira linha contém o código a ser copiado pelo leitor para execução em seu computador. A segunda linha é a saída do código avaliado pelo R.
 
 
-## Calculado<code class='sourceCode bash'><span class='ex'>R</span></code>a
+## Calculadora
 
 O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
 

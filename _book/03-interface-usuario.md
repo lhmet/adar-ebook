@@ -157,10 +157,7 @@ O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comandos do R.</p>
-</div>
+
 
 ### Primeiro *script* {#primeiro-script}
 

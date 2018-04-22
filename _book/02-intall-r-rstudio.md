@@ -31,22 +31,27 @@ O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [bin�
 
 ### Windows 
 
-A forma de instalar o <img src="images/logo_r.png" width="20"> no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)).
-Depois clicar em *Download <img src="images/logo_r.png" width="20"> for Windows* e  *install <img src="images/logo_r.png" width="20"> for the first time*. Quando este tutorial foi escrito a última versão foi a [R 3.4.4](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe).
+O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)) e pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
 
-A instalação do <img src="images/logo_r.png" width="20"> para o Windows, a partir do executável acima, incluirá na instalação uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* após a intalação do <img src="images/logo_r.png" width="20">, na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.
+Abra o executável e siga instruções de instalação do R mantendo todas as opções padrões.
+
+No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.
 
 <div class="figure">
 <img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
 <p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
-Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado pois as novas versões incluem aperfeiçoamentos e a correção de *bugs*.
+
+#### Atualização do <img src="images/logo_r.png" width="20"> no Windows
+
+Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-3.4.4.html).
+
 
 As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.
 
 
-Para atualizar o R no Windows, ao invés de baixar o executável da nova versão,  você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
+Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
 
 ### Linux 
 
@@ -59,7 +64,7 @@ Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubu
 sudo apt-get install r-base
 ```
 
-Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como manter o R sempre atualizado no SO Linux, nas distribuições Ubuntu.
+Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como instalar o <img src="images/logo_r.png" width="20"> de forma que seja atualizado automaticamente pelo sistema.
 
 #### R sempre atualizado
 
@@ -73,7 +78,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
  
-O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço do [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo de sua região à lista de repositórios do Linux. No exemplo deste livro, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ##### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
@@ -164,7 +169,7 @@ A partir desse momento já começamos uma sessão no <img src="images/logo_r.png
 ```
 
 <div class="figure" style="text-align: center">
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números."  />
 <p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
@@ -242,7 +247,7 @@ Para instalar um pacote de um repositório do GitHub usa-se a função `install_
 
 Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
 
-A função install package from GitHub, the name for the repo must be specified. For example, to install the package ArgParser from the book author’s repo:
+A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo autor deste livro, usa-se:
 
 
 ```r
@@ -258,7 +263,7 @@ Para um repositório do R-forge, por exemplo o repositório do pacote [raster](h
 
 
 ```r
-install.packages("raster", repos="http://R-Forge.R-project.org")
+install.packages("raster", repos = "http://R-Forge.R-project.org")
 ```
 
 

@@ -21,7 +21,7 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 
 
-<img src="images/TB1.jpg" width="70%" style="display: block; margin: auto;" />
+
 
 
 
@@ -49,6 +49,8 @@ O texto é organizado em 5 capítulos:
 - \@ref(install) Instalação do <img src="images/logo_r.png" width="20"> e Rstudio
 
 - \@ref(iu) Interface do Usuário
+
+- \@ref(rstudio) Rstudio
 
 - \@ref(operbasic) Operações Básicas
 
