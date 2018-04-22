@@ -2,31 +2,35 @@
 
 
 
-O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento (IDE) para o R. Essa ferramenta potencializará:
+O RStudio *Desktop* é um ambiente integrado de desenvolvimento (IDE) para o <img src="images/logo_r.png" width="20">. Portanto, o RStudio depende da instalação prévia do <img src="images/logo_r.png" width="20">. Ele funciona como uma interface gráfica do usuário (GUI), mas com muito mais potencialidades.
 
-- a interação com o R e a produção de gráficos
+O RStudio é uma ferramente que potencializará sua interação com o <img src="images/logo_r.png" width="20">:
 
-- a organização de seu código na forma de projetos
+- na produção de gráficos
 
-- a reprodutibilidade de sua pesquisa 
+- na organização de seu código na forma de projetos
 
-- a manutenção e criação de seus próprios pacotes do R
+- na reprodutibilidade de seu trabalho ou pesquisa 
 
-- a criação e compartilhamento de seus relatórios
+- na manutenção e criação de seus próprios pacotes do R
 
-- o compartilhamento de seu código e a colaboração com outros
+- na criação e compartilhamento de seus relatórios
 
+- no compartilhamento de seu código e a colaboração com outros
 
+Nessa seção você terá uma visão geral do RStudio *Desktop*.
 
+## Visão geral do RStudio
 
-Ao abrir o RStudio você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
+Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em 
+você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
 
 <div class="figure">
 <img src="images/Rstudio_panels.png" alt="Rstudio"  />
 <p class="caption">(\#fig:rstudio-fig)Rstudio</p>
 </div>
 
-O RStudio possui 4 painés principais:
+O RStudio possui 4 painéis principais:
 
   1. Editor para scripts e visualização de dados
 
@@ -41,7 +45,7 @@ O RStudio possui 4 painés principais:
      - refazer `<Ctrl+Shift+Z>`
      - referência para teclas de atalho `<Alt+Shift+K>`
      - abrir script com `<Ctrl+Click>`
-     - econtrar e substituir `Ctrl+F`
+     - encontrar e substituir `Ctrl+F`
 
 
 2. Console do R
@@ -59,27 +63,24 @@ O RStudio possui 4 painés principais:
 
 
 
-Configuração de texto e painés em:
+Configuração de texto e painéis em:
 
 * Menus
-    * Tools > global options > Appearance
+    * Tools > global Options > Appearance
         * mostrar linhas, alterar realce da sintaxe
     * Session
     * Plots
 
-<br/>
+
 
 
 Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
 
+
+<!--html_preserve--><iframe class="vimeo-embed" src="https://player.vimeo.com/video/97378167" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe><!--/html_preserve-->
+
+
 **Folha de referência do RStudio**
-
-
-
-
-
-
-
 
 <div class="figure" style="text-align: center">
 <img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="100%" />

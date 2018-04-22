@@ -4,18 +4,18 @@
 
 
 
-Na maior parte do tempo você provavelmente usará o <code class='sourceCode bash'><span class='ex'>R</span></code> no **modo interativo**: rodando comandos e vendo os resultados.
+Na maior parte do tempo você provavelmente usará o <img src="images/logo_r.png" width="20"> no **modo interativo**: rodando comandos e vendo os resultados.
  
 Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise com um código bem extenso e que precisa ser  repetida com dados atualizados semanalmente. Nessa situação, recomenda-se a criação de um script, ou seja, um arquivo texto, com a extensão `.R`, contendo o código de sua análise.
 
 Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o Prompt de comando (`cmd.exe`) do SO Windows.
 
-Nesta seção apresenta-se ao leitor estes dois modos de execução do <code class='sourceCode bash'><span class='ex'>R</span></code>.
+Nesta seção apresenta-se ao leitor estes dois modos de execução do <img src="images/logo_r.png" width="20">.
 
 
-## <code class='sourceCode bash'><span class='ex'>R</span></code> no modo interativo
+## <img src="images/logo_r.png" width="20"> no modo interativo
 
-No Linux o <code class='sourceCode bash'><span class='ex'>R</span></code> pode ser aberto simplesmente digitando em um terminal a letra `R`. 
+No Linux o <img src="images/logo_r.png" width="20"> pode ser aberto simplesmente digitando em um terminal a letra `R`. 
 
 
 ```bash
@@ -44,9 +44,9 @@ Type 'q()' to quit R.
 > 
 ```
 
-A janela com a linha de comando do <code class='sourceCode bash'><span class='ex'>R</span></code> apresenta o *prompt* do <code class='sourceCode bash'><span class='ex'>R</span></code> (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o <code class='sourceCode bash'><span class='ex'>R</span></code> interpreta o comando e retorna o resultado. 
+A janela com a linha de comando do <img src="images/logo_r.png" width="20"> apresenta o *prompt* do <img src="images/logo_r.png" width="20"> (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o <img src="images/logo_r.png" width="20"> interpreta o comando e retorna o resultado. 
 
-Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do <code class='sourceCode bash'><span class='ex'>R</span></code>. Portanto, a linha de comando é a mais importante ferramenta do <code class='sourceCode bash'><span class='ex'>R</span></code>, pois todas expressões são avaliadas através dela. 
+Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do <img src="images/logo_r.png" width="20">. Portanto, a linha de comando é a mais importante ferramenta do <img src="images/logo_r.png" width="20">, pois todas expressões são avaliadas através dela. 
 
 
 ```r
@@ -54,7 +54,7 @@ Os comandos digitados na linha de comando são chamados de expressões. Esse é 
 [1] 100
 ```
 
-A expressão é avaliada pelo <code class='sourceCode bash'><span class='ex'>R</span></code>, o resultado é mostrado, mas o seu valor é perdido.
+A expressão é avaliada pelo <img src="images/logo_r.png" width="20">, o resultado é mostrado, mas o seu valor é perdido.
 
 O número entre colchetes que aparece como resultado da operação ("[1]" no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.
 
@@ -71,7 +71,7 @@ O número entre colchetes que aparece como resultado da operação ("[1]" no cas
 
 O elemento `[18]` da sequência de 100 até 1 é o número `83`.
 
-Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o <code class='sourceCode bash'><span class='ex'>R</span></code> mostra um sinal de `+`.
+Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o <img src="images/logo_r.png" width="20"> mostra um sinal de `+`.
 
 
 ```r
@@ -112,7 +112,7 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 ### Navegação entre as expressões já avaliadas
 
-Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <code class='sourceCode bash'><span class='ex'>R</span></code>. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
+Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
 
 Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
 
@@ -134,7 +134,7 @@ Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + 
 
 ### Comentários
 
-No <code class='sourceCode bash'><span class='ex'>R</span></code>, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo <code class='sourceCode bash'><span class='ex'>R</span></code>. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <code class='sourceCode bash'><span class='ex'>R</span></code>.
+No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
 
 
 ```r
@@ -149,7 +149,7 @@ No <code class='sourceCode bash'><span class='ex'>R</span></code>, a cerquilha `
 
 ### Auto preenchimento de funções
 
-O <code class='sourceCode bash'><span class='ex'>R</span></code> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla `<tab>`. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.
+O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla `<tab>`. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.
 
 
 ```r
@@ -164,7 +164,7 @@ O <code class='sourceCode bash'><span class='ex'>R</span></code> inclui o preenc
 
 ### Primeiro *script* {#primeiro-script}
 
-O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <code class='sourceCode bash'><span class='ex'>R</span></code> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
+O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <img src="images/logo_r.png" width="20"> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
 
 
 ```r
@@ -187,7 +187,7 @@ x <- 1:100
 x
 ```
 
-Este conjunto de linhas de código, quando inseridos em um arquivo texto[^7] formam um primeiro *script* <code class='sourceCode bash'><span class='ex'>R</span></code>. Este *script* pode ser executado pelo <code class='sourceCode bash'><span class='ex'>R</span></code> através da função `source()`, usando como argumento o caminho para o local do *script*. 
+Este conjunto de linhas de código, quando inseridos em um arquivo texto[^7] formam um primeiro *script* <img src="images/logo_r.png" width="20">. Este *script* pode ser executado pelo <img src="images/logo_r.png" width="20"> através da função `source()`, usando como argumento o caminho para o local do *script*. 
 
 [^7]: Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: [gedit](https://help.gnome.org/users/gedit/stable/index.html.pt_BR) no SO Linux, ou [Notepad](https://pt.wikipedia.org/wiki/Bloco_de_Notas) no SO Windows).
 
@@ -200,10 +200,10 @@ Este conjunto de linhas de código, quando inseridos em um arquivo texto[^7] for
 Este *script* produzirá como saída o arquivo `/home/usuario/adar/plot-script1.pdf`. Você pode visualizar o arquivo para conferir o gráficos de pontos gerado.
 
 
-## <code class='sourceCode bash'><span class='ex'>R</span></code> no modo de processamento em lote
+## <img src="images/logo_r.png" width="20"> no modo de processamento em lote
 
 
-Para rodar um *script* no modo de processamento em lote do <code class='sourceCode bash'><span class='ex'>R</span></code> através do seguinte comando no terminal Linux:
+Para rodar um *script* no modo de processamento em lote do <img src="images/logo_r.png" width="20"> através do seguinte comando no terminal Linux:
 
 ```
 $ R CMD BATCH opcoes arqentrada arqsaida
@@ -231,7 +231,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180421.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180422.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 
