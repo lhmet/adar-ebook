@@ -338,9 +338,6 @@ Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria
 > # de character para numeric
 > as.numeric("12.34") 
 [1] 12.34
-> # ou
-> as("12.34", "numeric")
-[1] 12.34
 > # de factor para character
 > as.character(charf)
 [1] "Vai chover hoje?"
