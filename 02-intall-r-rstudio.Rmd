@@ -12,25 +12,46 @@ opts_chunk$set(cache = FALSE,
                fig.path = "images/", 
                #comment = "#>",
                collapse = TRUE)
-rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+rblue <- '<img src="images/logo_r.png" width="20">'
+minirstudio <- '<img src="images/logo_rstudio.png" width="80">'
 ```
 
-A interação do usuário com o `r rblue` é por meio da linha de comando. Essa interação pode ser facilitada com o uso do [RStudio](http://www.rstudio.com/).
+A interação do usuário com o `r rblue` é por meio da linha de comando. Essa interação pode ser facilitada com o uso do software RStudio *Desktop*.
 
-A seguir descreve-se como instalar o `r rblue` no Windows e no Linux Ubuntu. A forma de instalação do `r rblue` no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
+A seguir descreve-se como:
+
+- instalar o `r rblue` no Windows e no Linux Ubuntu
+
+- manter o `r rblue` sempre atualizado no Linux Ubuntu 
+
+- configurar um diretório para armazenar os pacotes do R instalados
+
+- instalar o Rstudio *Desktop*
+
+Neste livro, o maior foco na instalação do `r rblue` é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) que são oficialmente reconhecidas. 
+
+A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação, sem as instruções detalhadas de instalação para este SO.
+
+
+```{block, note-text-climate-system, type='rmdtip'}
+Ao instalar R e RStudio recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante o uso do software, basta buscar na internet por esta mensagem que a chance de encontrar uma solução para o problema será muito maior.
+```
 
 ## Instalando o `r rblue`
 
-O `r rblue` pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do `r rblue` a partir dos binários
+O `r rblue` pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do `r rblue` a partir dos arquivos binários.
+
+
 
 ### Windows 
 
 A forma de instalar o `r rblue` no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do `r rblue`** ([CRAN](https://cran.r-project.org/)).
 Depois clicar em *Download `r rblue` for Windows* e  *install `r rblue` for the first time*. Quando este tutorial foi escrito a última versão foi a [R 3.4.4](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe).
 
-A instalação do `r rblue` para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
+A instalação do `r rblue` para o Windows, a partir do executável acima, incluirá na instalação uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* após a intalação do `r rblue`, na área de trabalho com o símbolo do `r rblue`.
 
-```{r , comment="",highlight=TRUE, fig.width=18, fig.height=18, fig.cap="Interface gráfica do usuário no R para Windows.",fig.fullwidth = TRUE, echo = FALSE}
+```{r r-gui, comment="", highlight=TRUE, out.width="100%", fig.cap="Interface gráfica do usuário no R para Windows.", echo = FALSE}
 knitr::include_graphics("images/rgui-windows.png")
 ```
 
@@ -45,7 +66,7 @@ Há várias formas de instalar o `r rblue` no Ubuntu, mas geralmente a versão c
 sudo apt-get install r-base
 ```
 
-Entretanto, os pacotes do `r rblue` recém lançados são compilados para última versão do R. Então você pode ter restrições de uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados.
+Entretanto, os pacotes do `r rblue` recém lançados são compilados para última versão do `r rblue`. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como manter o R sempre atualizado no SO Linux, nas distribuições Ubuntu.
 
 #### R sempre atualizado
 
@@ -165,7 +186,9 @@ Para informar ao `r rblue` onde procurar os pacotes instalados, você precisa cr
     $ R_LIBS=`echo $HOME/.R/libs/`
     $ echo $R_LIBS >> `echo $HOME/.Renviron`
 
-Esse caminho fica então visível ao `r rblue`, o que pode ser verificado executando a função `.libPaths()` no console do `r rblue`. Abra o R:
+Esse caminho fica então visível ao `r rblue`, o que pode ser verificado executando a função `.libPaths()` na linha de comando do `r rblue`. 
+
+Abra o `r rblue`:
 
     $ R
 
@@ -179,9 +202,11 @@ o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. I
 
 [^5]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
 
-## Rstudio no Ubuntu
+## RStudio no Ubuntu {#install-rstudio}
 
-O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o `r rblue`. O RStudio para Desktop pode ser baixado gratuitamente e é multiplataforma.
+`r minirstudio` é uma empresa que desenvolve ferramentas gratuitas para o `r rblue` e [produtos pagos](https://www.rstudio.com/products/) para empresas.
+
+Uma de suas ferramentas gratuitas é o software RStudio *Desktop* que consiste em um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o `r rblue`, consequentemente, também é multiplataforma.
 
 Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org/wiki/Ambiente_de_desktop)*, você precisa saber se seu SO é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:
 
@@ -198,25 +223,25 @@ Se retornar **x86_64** sua máquina é 64-bit.
 14.04
 ```
 
-Com essa informação e versão do sistema operacional, siga os seguintes passos:
+Com essas informações, siga os seguintes passos:
 
-  1. acesse [RStudio](http://www.rstudio.com/)
-  2. clique em *Download RStudio*
-  3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
+  1. acesse [RStudio](https://www.rstudio.com/products/rstudio/download/)
+  2. clique em *Download* (Figura \@ref(fig:rstudio-choose))
 
-```{r rstudio-choose, echo = FALSE,  fig.align='center', fig.width=12}
+
+```{r rstudio-choose, echo = FALSE,  fig.align='center', out.width="100%", fig.cap="Opção para baixar o RStudio *Desktop*."}
 knitr::include_graphics('images/rstudio-choose.png')
 ```
 
-  5. Selecione sua plataforma
+  3. Clique na sua plataforma escolhida de acordo com seu SO, arquitetura e versão da distribuição (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
   
-```{r, rstudio-plat, echo = FALSE, fig.align='center', fig.width=12}
+```{r, rstudio-plat, echo = FALSE, fig.align='center', out.width="100%", fig.cap="Escolha da plataforma em que será o usada o RStudio *Desktop*."}
 knitr::include_graphics('images/rstudio-plataform-options.png')
 ```
   
-clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
 
-  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^6] com os seguintes comandos:
+  4. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu *Desktop* não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^6] com os seguintes comandos:
+
 
 [^6]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 

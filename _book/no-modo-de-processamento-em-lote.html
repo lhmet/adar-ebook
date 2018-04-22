@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="classes-de-dados.html">
-<link rel="next" href="conversao-entre-tipos-de-dados.html">
+<link rel="prev" href="no-modo-interativo.html">
+<link rel="next" href="rstudio.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -186,51 +186,40 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">typeof</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>vl; <span class="kw">typeof</span>(vl)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>data1; <span class="kw">typeof</span>(data1)
-[<span class="dv">1</span>] <span class="st">&quot;2012-06-28&quot;</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">is.numeric</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co">#  num.real?</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(5L)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>charf; <span class="kw">is.factor</span>(charf)
-[<span class="dv">1</span>] Vai chover hoje?
-Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>i; <span class="kw">is.integer</span>(i)
-[<span class="dv">1</span>] <span class="dv">3</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.function</span>(sqrt)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.finite</span>(i)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.nan</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.na</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
+<div id="no-modo-de-processamento-em-lote" class="section level2">
+<h2><span class="header-section-number">3.2</span> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</h2>
+<p>Para rodar um <em>script</em> no modo de processamento em lote do <img src="images/logo_r.png" width="20"> através do seguinte comando no terminal Linux:</p>
+<pre><code>$ R CMD BATCH opcoes arqentrada arqsaida</code></pre>
+<p>Onde: <code>arqentrada</code>é o nome do script (arquivo com a extensão <code>.R</code>) a ser executado; <code>arqsaida</code> é o arquivo (com a extensão <code>.Rout</code>) com as saídas dos comandos executados no R; <code>opcoes</code> é a lista de opções que controlam a execução.</p>
+<p>Vamos rodar como exemplo, o <code>script1.R</code> da seção <a href="no-modo-interativo.html#primeiro-script">3.1.5</a>.</p>
+<pre><code>$ R CMD BATCH /home/usuario/adar/script1.R</code></pre>
+<p>O comando acima, produzirá dois arquivos de saída:</p>
+<ol style="list-style-type: decimal">
+<li><code>script1.Rout</code><a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a> criado por <em>default</em> quando o <code>arqsaida</code> não é especificado, e;</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>arquivo &quot;plot-script1.pdf&quot;.</li>
+</ol>
+<p>Você pode especificar o nome do <code>arqsaida</code> como desejar. No exemplo abaixo, mostra-se como salvar o arquivo de saída incluindo a data em que ele foi gerado, <code>script1-saida-adatadehoje.log</code>.</p>
+<pre><code>$ R CMD BATCH script1.R script1-saida-`date &quot;+%Y%m%d&quot;`.log</code></pre>
+<p>Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (<code>.Rout</code>), que será nomeado <code>script1-saida-20180421.Rout</code>.</p>
+<p>Para mais opções do comando <code>R CMD BATCH</code> digite no terminal do Linux <code>R --help</code>.</p>
+
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>Você pode notar que este arquivo tem o mesmo nome do <code>arqentrada</code>, exceto que a sua extensão foi alterada para <code>.Rout</code>.<a href="no-modo-de-processamento-em-lote.html#fnref8">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversao-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="no-modo-interativo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -260,7 +249,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/03-interface-usuario.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

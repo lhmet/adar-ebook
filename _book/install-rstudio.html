@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="classes-de-dados.html">
-<link rel="next" href="conversao-entre-tipos-de-dados.html">
+<link rel="prev" href="diretorio-para-instalacao-de-pacotes.html">
+<link rel="next" href="iu.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -186,51 +186,61 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">typeof</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>vl; <span class="kw">typeof</span>(vl)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>data1; <span class="kw">typeof</span>(data1)
-[<span class="dv">1</span>] <span class="st">&quot;2012-06-28&quot;</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">is.numeric</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co">#  num.real?</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(5L)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>charf; <span class="kw">is.factor</span>(charf)
-[<span class="dv">1</span>] Vai chover hoje?
-Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>i; <span class="kw">is.integer</span>(i)
-[<span class="dv">1</span>] <span class="dv">3</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.function</span>(sqrt)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.finite</span>(i)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.nan</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.na</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
+<div id="install-rstudio" class="section level2">
+<h2><span class="header-section-number">2.3</span> RStudio no Ubuntu</h2>
+<p><img src="images/logo_rstudio.png" width="80"> é uma empresa que desenvolve ferramentas gratuitas para o <img src="images/logo_r.png" width="20"> e <a href="https://www.rstudio.com/products/">produtos pagos</a> para empresas.</p>
+<p>Uma de suas ferramentas gratuitas é o software RStudio <em>Desktop</em> que consiste em um ambiente integrado de desenvolvimento (<a href="http://en.wikipedia.org/wiki/Integrated_development_environment">IDE</a>) construído especificamente para o <img src="images/logo_r.png" width="20">, consequentemente, também é multiplataforma.</p>
+<p>Para instalação da versão do RStudio para <em><a href="https://pt.wikipedia.org/wiki/Ambiente_de_desktop">Desktop</a></em>, você precisa saber se seu SO é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:</p>
+<pre><code>$ arch</code></pre>
+<pre><code>x86_64</code></pre>
+<p>Se retornar <strong>x86_64</strong> sua máquina é 64-bit.</p>
+<pre><code>$ lsb_release --release | cut -f2</code></pre>
+<pre><code>14.04</code></pre>
+<p>Com essas informações, siga os seguintes passos:</p>
+<ol style="list-style-type: decimal">
+<li>acesse <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a></li>
+<li>clique em <em>Download</em> (Figura <a href="install-rstudio.html#fig:rstudio-choose">2.3</a>)</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-choose"></span>
+<img src="images/rstudio-choose.png" alt="Opção para baixar o RStudio *Desktop*." width="100%" />
+<p class="caption">
+Figure 2.3: Opção para baixar o RStudio <em>Desktop</em>.
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Clique na sua plataforma escolhida de acordo com seu SO, arquitetura e versão da distribuição (Figura <a href="install-rstudio.html#fig:rstudio-plat">2.4</a>), no exemplo deste livro <em>RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)</em></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-plat"></span>
+<img src="images/rstudio-plataform-options.png" alt="Escolha da plataforma em que será o usada o RStudio *Desktop*." width="100%" />
+<p class="caption">
+Figure 2.4: Escolha da plataforma em que será o usada o RStudio <em>Desktop</em>.
+</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com <em>Ubuntu Software Center</em> e então clicar em <code>instalar</code>. Se na versão de seu <em>Desktop</em> não há esta opção ao clicar com botão direito sobre o arquivo, instale via <strong>terminal</strong><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> com os seguintes comandos:</li>
+</ol>
+<pre><code>$ cd /local/do/arquivo/baixado
+$ sudo dpkg -i arquivoBaixado.deb
+$ sudo apt-get install -f</code></pre>
+<p>Abra o RStudio digitando no terminal:</p>
+<pre><code>$ rstudio &amp;</code></pre>
+<p>Agora você está pronto para começar a programar em <img src="images/logo_r.png" width="20"> aproveitando as facilidades que o <a href="http://www.rstudio.com/">RStudio</a> oferece.</p>
+
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>digite ‘Ctrl+Alt+t’ para abrir um terminal no Linux Ubuntu<a href="install-rstudio.html#fnref6">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversao-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="diretorio-para-instalacao-de-pacotes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="iu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -260,7 +270,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/02-intall-r-rstudio.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

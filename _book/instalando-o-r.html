@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-04-20">
+<meta name="date" content="2018-04-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,7 +125,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.1.2" data-path="instalando-o-r.html"><a href="instalando-o-r.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="diretorio-para-instalacao-de-pacotes.html"><a href="diretorio-para-instalacao-de-pacotes.html"><i class="fa fa-check"></i><b>2.2</b> Diretório para instalação de pacotes</a></li>
-<li class="chapter" data-level="2.3" data-path="rstudio-no-ubuntu.html"><a href="rstudio-no-ubuntu.html"><i class="fa fa-check"></i><b>2.3</b> Rstudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> Rstudio no Ubuntu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo interativo</a><ul>
@@ -137,7 +137,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <code class='sourceCode bash'><span class="ex">R</span></code> no modo de processamento em lote</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visao-geral-do-rstudio.html"><a href="visao-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
 <li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculado<code class='sourceCode bash'><span class="ex">R</span></code>a</a><ul>
@@ -190,9 +192,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="windows" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Windows</h3>
 <p>A forma de instalar o <code class='sourceCode bash'><span class="ex">R</span></code> no Windows é baixar o binário executável da <strong>Rede Abrangente de Arquivos do <code class='sourceCode bash'><span class="ex">R</span></code></strong> (<a href="https://cran.r-project.org/">CRAN</a>). Depois clicar em <em>Download <code class='sourceCode bash'><span class="ex">R</span></code> for Windows</em> e <em>install <code class='sourceCode bash'><span class="ex">R</span></code> for the first time</em>. Quando este tutorial foi escrito a última versão foi a <a href="https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe">R 3.4.4</a>.</p>
-<p>A instalação do <code class='sourceCode bash'><span class="ex">R</span></code> para Windows a partir do executável acima incluirá na instalação uma GUI chamada <code>RGui.exe</code>, mostrada abaixo.</p>
-<div class="figure"><span id="fig:unnamed-chunk-1"></span>
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="521" />
+<p>A instalação do <code class='sourceCode bash'><span class="ex">R</span></code> para o Windows, a partir do executável acima, incluirá na instalação uma Interface Gráfica do Usuário (GUI) acessível pelo executável <code>RGui.exe</code> (Figura <a href="instalando-o-r.html#fig:r-gui">2.1</a>). Um atalho para esse executável é gerado por <em>default</em> após a intalação do <code class='sourceCode bash'><span class="ex">R</span></code>, na área de trabalho com o símbolo do <code class='sourceCode bash'><span class="ex">R</span></code>.</p>
+<div class="figure"><span id="fig:r-gui"></span>
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
 <p class="caption">
 Figure 2.1: Interface gráfica do usuário no R para Windows.
 </p>
@@ -204,7 +206,7 @@ Figure 2.1: Interface gráfica do usuário no R para Windows.
 <h4><span class="header-section-number">2.1.2.1</span> Ubuntu</h4>
 <p>Há várias formas de instalar o <code class='sourceCode bash'><span class="ex">R</span></code> no Ubuntu, mas geralmente a versão compilada no repositório <em>default</em> do Ubuntu não é a última. Se isso não for problema para você então basta executar:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sudo apt<span class="op">-</span>get install r<span class="op">-</span>base</code></pre></div>
-<p>Entretanto, os pacotes do <code class='sourceCode bash'><span class="ex">R</span></code> recém lançados são compilados para última versão do R. Então você pode ter restrições de uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados.</p>
+<p>Entretanto, os pacotes do <code class='sourceCode bash'><span class="ex">R</span></code> recém lançados são compilados para última versão do <code class='sourceCode bash'><span class="ex">R</span></code>. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como manter o R sempre atualizado no SO Linux, nas distribuições Ubuntu.</p>
 </div>
 <div id="r-sempre-atualizado" class="section level4">
 <h4><span class="header-section-number">2.1.2.2</span> R sempre atualizado</h4>

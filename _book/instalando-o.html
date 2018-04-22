@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="classes-de-dados.html">
-<link rel="next" href="conversao-entre-tipos-de-dados.html">
+<link rel="prev" href="install.html">
+<link rel="next" href="diretorio-para-instalacao-de-pacotes.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -186,51 +186,109 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">typeof</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>vl; <span class="kw">typeof</span>(vl)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>data1; <span class="kw">typeof</span>(data1)
-[<span class="dv">1</span>] <span class="st">&quot;2012-06-28&quot;</span>
-[<span class="dv">1</span>] <span class="st">&quot;double&quot;</span>
-<span class="op">&gt;</span><span class="st"> </span>x; <span class="kw">is.numeric</span>(x)
-[<span class="dv">1</span>] <span class="dv">51</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co">#  num.real?</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.double</span>(5L)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>charf; <span class="kw">is.factor</span>(charf)
-[<span class="dv">1</span>] Vai chover hoje?
-Levels<span class="op">:</span><span class="st"> </span>Vai chover hoje?
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span>i; <span class="kw">is.integer</span>(i)
-[<span class="dv">1</span>] <span class="dv">3</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.function</span>(sqrt)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.finite</span>(i)
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.nan</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.na</span>(x)
-[<span class="dv">1</span>] <span class="ot">FALSE</span></code></pre></div>
+<div id="instalando-o" class="section level2">
+<h2><span class="header-section-number">2.1</span> Instalando o <img src="images/logo_r.png" width="20"></h2>
+<p>O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos <a href="https://cran.r-project.org/bin/">binários pré-compilados</a> ou do <a href="https://cran.r-project.org/sources.html">código fonte</a>. Aqui, descreve-se a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.</p>
+<div id="windows" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Windows</h3>
+<p>A forma de instalar o <img src="images/logo_r.png" width="20"> no Windows é baixar o binário executável da <strong>Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20"></strong> (<a href="https://cran.r-project.org/">CRAN</a>). Depois clicar em <em>Download <img src="images/logo_r.png" width="20"> for Windows</em> e <em>install <img src="images/logo_r.png" width="20"> for the first time</em>. Quando este tutorial foi escrito a última versão foi a <a href="https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe">R 3.4.4</a>.</p>
+<p>A instalação do <img src="images/logo_r.png" width="20"> para o Windows, a partir do executável acima, incluirá na instalação uma Interface Gráfica do Usuário (GUI) acessível pelo executável <code>RGui.exe</code> (Figura <a href="instalando-o.html#fig:r-gui">2.1</a>). Um atalho para esse executável é gerado por <em>default</em> após a intalação do <img src="images/logo_r.png" width="20">, na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.</p>
+<div class="figure"><span id="fig:r-gui"></span>
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
+<p class="caption">
+Figure 2.1: Interface gráfica do usuário no R para Windows.
+</p>
+</div>
+</div>
+<div id="linux" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Linux</h3>
+<div id="ubuntu" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Ubuntu</h4>
+<p>Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu, mas geralmente a versão compilada no repositório <em>default</em> do Ubuntu não é a última. Se isso não for problema para você então basta executar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sudo apt<span class="op">-</span>get install r<span class="op">-</span>base</code></pre></div>
+<p>Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como manter o R sempre atualizado no SO Linux, nas distribuições Ubuntu.</p>
+</div>
+<div id="r-sempre-atualizado" class="section level4">
+<h4><span class="header-section-number">2.1.2.2</span> R sempre atualizado</h4>
+<p>Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios <a href="https://en.wikipedia.org/wiki/Sudo">sudo</a>. Caso não tenha, consulte o administrador do sistema.</p>
+<p>Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. As versões de Suporte de longo prazo (LTS) mais recentes são:</p>
+<ul>
+<li>14.04 (abril de 2014, <em>codename</em> <code>trusty</code>)</li>
+<li>16.04 (abril de 2016, <em>codename</em> <code>xenial</code>)</li>
+</ul>
+<p>O <a href="http://www.r-project.org/">R</a> é distribuído na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o <a href="http://cran.r-project.org/mirrors.html">repósitório do R</a> mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<a href="http://cran-r.c3sl.ufpr.br/" class="uri">http://cran-r.c3sl.ufpr.br/</a>).</p>
+<div id="incluindo-repositorio-do-na-lista-de-repositorios-do-ubuntu" class="section level5">
+<h5><span class="header-section-number">2.1.2.2.1</span> Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu</h5>
+<p>A lista de repositórios do sistema é armazenada no arquivo <code>/etc/apt/sources.list</code>. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> :</p>
+<pre><code>$ lsb_release --codename | cut -f2</code></pre>
+<pre><code>trusty</code></pre>
+<p>Precisamos incluir no arquivo <code>sources.list</code> o espelho do repositório do R mais próximo. Veja a lista de espelhos de repositórios do <img src="images/logo_r.png" width="20"> <a href="https://cran.r-project.org/mirrors.html">aqui</a>. Assim o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.</p>
+<p>O endereço do repositório da UFPR será inserido na última linha do arquivo <code>sources.list</code> usando alguns comandos linux. Essa tarefa requer privilégios de <a href="https://pt.wikipedia.org/wiki/Superusu%C3%A1rio">superusuário</a>. Vamos trocar do seu usuário para o superusuário.</p>
+<pre><code>$ sudo su</code></pre>
+<p>Vamos definir no terminal uma variável com o endereço do repositório (da UFPR nesse caso) e o nome de versão do Ubuntu.</p>
+<pre><code># repos=&quot;deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/&quot;</code></pre>
+<p>Note que a variável <code>repos</code> é uma sequência de caracteres com as seguintes informações:</p>
+<pre><code>deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/</code></pre>
+<p>O valor da variável <code>repos</code> é mostrado pelo comando: <code>echo $repos</code>. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.</p>
+<p>Para acrescentar essa informação no final do arquivo <code>sources.list</code> digite no terminal linux:</p>
+<pre><code># echo $repos &gt;&gt; /etc/apt/sources.list</code></pre>
+<p>Feito isso, você pode retornar a sessão de usuário comum, usando o comando abaixo:</p>
+<pre><code># exit</code></pre>
+</div>
+<div id="apt-protegido" class="section level5">
+<h5><span class="header-section-number">2.1.2.2.2</span> <a href="https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt">APT protegido</a></h5>
+<p>Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na <a href="http://cran.r-project.org">CRAN</a> são assinados com uma chave pública<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Para adicionar essa chave ao seu sistema digite os seguintes comandos:</p>
+<pre><code>$ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9</code></pre>
+<p>e então use essa informação como entrada no <code>apt-key</code> com</p>
+<pre><code>$ gpg -a --export E084DAB9 | sudo apt-key add -
+  </code></pre>
+<p>Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:</p>
+<pre><code>$ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+$ gpg -a --export E084DAB9 | sudo apt-key add -</code></pre>
+</div>
+<div id="atualizacao-da-lista-de-repositorios-do-ubuntu-e-instalacao-do" class="section level5">
+<h5><span class="header-section-number">2.1.2.2.3</span> Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20"></h5>
+<p>Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):</p>
+<pre><code>$ sudo apt-get update</code></pre>
+<p>Agora, pode instalar o binário do R:</p>
+<pre><code>$ sudo apt-get install r-base</code></pre>
+</div>
+<div id="testando-o" class="section level5">
+<h5><span class="header-section-number">2.1.2.2.4</span> Testando o <img src="images/logo_r.png" width="20"></h5>
+<p>Para iniciar o <img src="images/logo_r.png" width="20"> no Ubuntu, digite <code>R</code> no cursor do terminal:</p>
+<pre><code>$ R</code></pre>
+<p>A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+ [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Chunck4"></span>
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
+<p class="caption">
+Figure 2.2: Gráfico da sequência de 10 números.
+</p>
+</div>
+<p>Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com o código a seguir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">q</span>(<span class="dt">save =</span> <span class="st">&quot;no&quot;</span>)</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Clique <a href="http://releases.ubuntu.com">aqui</a> para saber mais sobre as versões do Ubuntu.<a href="instalando-o.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso, digite no terminal Linux <code>sudo apt-get install lsb-release</code>.<a href="instalando-o.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a> é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.<a href="instalando-o.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja <a href="http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html">aqui</a>.<a href="instalando-o.html#fnref4">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversao-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="install.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diretorio-para-instalacao-de-pacotes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -260,7 +318,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/02-intall-r-rstudio.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],
