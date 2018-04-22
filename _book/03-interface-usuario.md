@@ -157,7 +157,10 @@ O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de
 ```
 
 
-
+<div class="figure" style="text-align: center">
+<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comandos do R.</p>
+</div>
 
 ### Primeiro *script* {#primeiro-script}
 
@@ -228,7 +231,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180421.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180422.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 

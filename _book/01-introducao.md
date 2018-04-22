@@ -63,13 +63,7 @@ Breve intro.
 <img src="images/errando_aprende.png" height="50px" width="550px" />
 </div>
 
-## R 
-
-</style>
-<div class="midcenter" style="margin-left:30px; margin-top:10px;">
-<img src="images/Rlogo.svg" height="200px" width="250px" />
-</div>
-
+## <img src="images/logo_r.png" width="20"> 
 
 * [R](https://www.r-project.org/) é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.
 

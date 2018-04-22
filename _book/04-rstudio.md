@@ -26,7 +26,7 @@ Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), a
 você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
 
 <div class="figure">
-<img src="images/Rstudio_panels.png" alt="Rstudio" width="1920" />
+<img src="images/Rstudio_panels.png" alt="Rstudio" width="960" />
 <p class="caption">(\#fig:rstudio-fig)Rstudio</p>
 </div>
 

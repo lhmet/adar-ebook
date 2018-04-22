@@ -20,7 +20,7 @@ A instalação no SO Windows é igual a instalação de qualquer outro *software
 
 
 <div class="rmdtip">
-<p>Ao instalar R e RStudio recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante o uso do software, basta buscar na internet por esta mensagem que a chance de encontrar uma solução para o problema será muito maior.</p>
+<p>Ao instalar R e RStudio recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante o uso do software, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.</p>
 </div>
 
 ## Instalando o <img src="images/logo_r.png" width="20">
@@ -41,6 +41,12 @@ A instalação do <img src="images/logo_r.png" width="20"> para o Windows, a par
 <p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
+Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado pois as novas versões incluem aperfeiçoamentos e a correção de *bugs*.
+
+As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.
+
+
+Para atualizar o R no Windows, ao invés de baixar o executável da nova versão,  você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
 
 ### Linux 
 
@@ -158,7 +164,7 @@ A partir desse momento já começamos uma sessão no <img src="images/logo_r.png
 ```
 
 <div class="figure" style="text-align: center">
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números."  />
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
 <p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
@@ -169,8 +175,7 @@ Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados
 > q(save = "no")
 ```
 
-
-## Diretório para instalação de pacotes
+#### Diretório para instalação de pacotes
 
 Uma boa prática é definir um diretório para armazenamento dos pacotes utilizados. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
 
@@ -192,13 +197,82 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
-[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
+[1] "/home/pqgfapergs1/.R/libs"     "/usr/local/lib/R/site-library"
+[3] "/usr/lib/R/site-library"       "/usr/lib/R/library"           
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os seguintes diretórios serão usados.
 
 [^5]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
+
+## Pacotes do R {#install-pck}
+
+### Da internet
+
+#### CRAN
+
+A forma mais fácil de instalar uma pacote do R é através da função `install.packages("nome_do_pacote")`.
+
+Por *default* o pacote informado é instalado a partir da ([CRAN](https://cran.r-project.org/))
+
+Por exemplo, para instalar o pacote **devtools**:
+
+
+```r
+install.packages("devtools")
+```
+
+A função automaticamente resolverá as dependências do pacote, de forma que qualquer pacote dependente também será instalado. 
+
+Para ter acesso as funções disponibilizadas com o pacote você precisa carregar o pacote:
+
+
+```r
+library(devtools)
+```
+
+
+Para desinstalar um pacote você pode usar a função `remove.packages("nome_do_pacote")`.
+
+#### GitHub e R-forge
+
+Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibilizam seus pacotes em plataormas como o [GitHub](https://github.com/) e [R-forge](https://r-forge.r-project.org/). As vezes um pacote pode  estar em ambos CRAN e GitHub (ou R-forge), mas a última versão - a de desenvolvimento - é somente disponibilizada no GitHub (ou R-forge). 
+
+Para instalar um pacote de um repositório do GitHub usa-se a função `install_github()` do pacote **devtools**. Portanto, o pacote **devtools** precisa ser instalado primeiro. 
+
+Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
+
+A função install package from GitHub, the name for the repo must be specified. For example, to install the package ArgParser from the book author’s repo:
+
+
+```r
+# install.packages("devtools")
+# carrega o pacote devtools
+library(devtools)
+# instala o pacote inmetr do repositório 
+# https://github.com/lhmet/inmetr 
+install_github("lhmet/inmetr")
+```
+
+Para um repositório do R-forge, por exemplo o repositório do pacote [raster](https://r-forge.r-project.org/projects/raster/), usa-se:
+
+
+```r
+install.packages("raster", repos="http://R-Forge.R-project.org")
+```
+
+
+#### Arquivo fonte local
+
+Códigos fonte de pacotes do R são armazenados como arquivos com a extensão `.tar.gz`. Binários compilados são armazenados com a extensão `.zip`. Exemplo de arquivos como estes podem ser baixados manualmente da CRAN (veja a seção Downloads em https://cran.r-project.org/web/packages/ggplot2/index.html), GitHub ou R-forge.
+
+Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito  com a função `install.packages()`, especifincando o argumento `repos = NULL` e o argumento `pkgs` com o caminho do arquivo. Por exemplo:
+
+
+```r
+install.packages("ggplot2_2.1.0.tar.gz", repos=NULL)
+```
+
 
 ## RStudio no Ubuntu {#install-rstudio}
 
@@ -232,7 +306,7 @@ Com essas informações, siga os seguintes passos:
 <p class="caption">(\#fig:rstudio-choose)Opção para baixar o RStudio *Desktop*.</p>
 </div>
 
-  3. Clique na sua plataforma escolhida de acordo com seu SO, arquitetura e versão da distribuição (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
+  3. Clique na sua plataforma (de acordo com seu SO, arquitetura e versão da distribuição) (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
   
 <div class="figure" style="text-align: center">
 <img src="images/rstudio-plataform-options.png" alt="Escolha da plataforma em que será o usada o RStudio *Desktop*." width="100%" />
