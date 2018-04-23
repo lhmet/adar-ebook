@@ -24,9 +24,10 @@ Nessa seção você terá uma visão geral do RStudio *Desktop*.
 
 Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em *File > New File > R script* você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
 
-\begin{figure}
-\includegraphics[width=26.67in]{images/Rstudio_panels} \caption{Rstudio}(\#fig:rstudio-fig)
-\end{figure}
+<div class="figure">
+<img src="images/Rstudio_panels.png" alt="Rstudio" width="960" />
+<p class="caption">(\#fig:rstudio-fig)Rstudio</p>
+</div>
 
 O RStudio possui 4 painéis principais:
 
@@ -80,14 +81,10 @@ Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RS
 
 **Folha de referência do RStudio**
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/print-screen-folha-ref-rstudio} 
-
-}
-
-\caption{Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf}(\#fig:cheat-sheet)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="100%" />
+<p class="caption">(\#fig:cheat-sheet)Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf</p>
+</div>
 
 
 

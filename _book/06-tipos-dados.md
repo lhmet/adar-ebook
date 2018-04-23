@@ -226,38 +226,22 @@ Valores lógicos resultam da comparação de números ou caracteres.
 
 <a name="tab_oper_log"></a>
 
-\begin{table}
 
-\caption{(\#tab:chunck14)Tabela 1. Operadores Lógicos}
-\centering
-\begin{tabular}[t]{c|c}
-\hline
-Operador & Descrição\\
-\hline
-< & menor que\\
-\hline
-<= & menor ou igual a\\
-\hline
-> & maior que\\
-\hline
->= & maior ou igual\\
-\hline
-== & idêntico\\
-\hline
-!= & diferente\\
-\hline
-!x & não é x (negação)\\
-\hline
-x | y & x ou y\\
-\hline
-x \& y & x e y\\
-\hline
-isTRUE(x) & teste se x é verdadeiro\\
-\hline
-\%in\% & está contido em\\
-\hline
-\end{tabular}
-\end{table}
+Table: (\#tab:chunck14)Tabela 1. Operadores Lógicos
+
+ Operador            Descrição        
+-----------  -------------------------
+     <               menor que        
+    <=           menor ou igual a     
+     >               maior que        
+    >=            maior ou igual      
+    ==               idêntico         
+    !=               diferente        
+    !x           não é x (negação)    
+   x | y              x ou y          
+   x & y               x e y          
+ isTRUE(x)    teste se x é verdadeiro 
+   %in%           está contido em     
 
 
 

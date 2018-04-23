@@ -19,13 +19,9 @@ Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width=
 A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação, sem as instruções detalhadas de instalação para este SO.
 
 
-\begin{rmdtip}
-Ao instalar R e RStudio recomenda-se optar por instalar na língua
-inglesa. Assim quando surgir uma mensagem de erro durante o uso do
-software, basta usá-la numa pesquisa na internet para solucionar o
-problema. As chances de resolver o problema serão muito maiores se sua
-pesquisa for realizada em inglês.
-\end{rmdtip}
+<div class="rmdtip">
+<p>Ao instalar R e RStudio recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante o uso do software, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.</p>
+</div>
 
 ## Instalando o <img src="images/logo_r.png" width="20">
 
@@ -41,9 +37,10 @@ Abra o executável e siga instruções de instalação do R mantendo todas as op
 
 No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/rgui-windows} \caption{Interface gráfica do usuário no R para Windows.}(\#fig:r-gui)
-\end{figure}
+<div class="figure">
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
+<p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
+</div>
 
 
 #### Atualização do <img src="images/logo_r.png" width="20"> no Windows
@@ -171,14 +168,10 @@ A partir desse momento já começamos uma sessão no <img src="images/logo_r.png
 > plot(1:10)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics{images/Chunck4-1} 
-
-}
-
-\caption{Gráfico da sequência de 10 números.}(\#fig:Chunck4)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
+<p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
+</div>
 
 Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com o código a seguir:
 
@@ -313,25 +306,17 @@ Com essas informações, siga os seguintes passos:
   2. clique em *Download* (Figura \@ref(fig:rstudio-choose))
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/rstudio-choose} 
-
-}
-
-\caption{Opção para baixar o RStudio *Desktop*.}(\#fig:rstudio-choose)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/rstudio-choose.png" alt="Opção para baixar o RStudio *Desktop*." width="100%" />
+<p class="caption">(\#fig:rstudio-choose)Opção para baixar o RStudio *Desktop*.</p>
+</div>
 
   3. Clique na sua plataforma (de acordo com seu SO, arquitetura e versão da distribuição) (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
   
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/rstudio-plataform-options} 
-
-}
-
-\caption{Escolha da plataforma em que será o usada o RStudio *Desktop*.}(\#fig:rstudio-plat)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/rstudio-plataform-options.png" alt="Escolha da plataforma em que será o usada o RStudio *Desktop*." width="100%" />
+<p class="caption">(\#fig:rstudio-plat)Escolha da plataforma em que será o usada o RStudio *Desktop*.</p>
+</div>
   
 
   4. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu *Desktop* não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^6] com os seguintes comandos:

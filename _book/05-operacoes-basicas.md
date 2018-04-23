@@ -55,12 +55,9 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 ```
 
 
-\begin{rmdwarning}
-Note que no R, o separador decimal é o ponto ".", ao invés da vírgula
-"," usada na notação brasileira. As vírgulas tem a finalidade de separar
-os argumentos nas chamadas de funções, tal como em
-\texttt{log(x\ =\ 10,\ base\ =\ 10)}.
-\end{rmdwarning}
+<div class="rmdwarning">
+<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
+</div>
 
  
 
@@ -194,24 +191,15 @@ A demonstração das diferentes formas de se obter essas constantes especiais é
 
 Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela 1). 
 
-\begin{table}
 
-\caption{(\#tab:chunk19)Tabela 1. Operações com NA.}
-\centering
-\begin{tabular}[t]{c|c}
-\hline
-operação & resultado\\
-\hline
-NA + 5 & NA\\
-\hline
-sqrt(NA) & NA\\
-\hline
-NA\textasciicircum{}2 & NA\\
-\hline
-NA/NaN & NA\\
-\hline
-\end{tabular}
-\end{table}
+Table: (\#tab:chunk19)Tabela 1. Operações com NA.
+
+ operação    resultado 
+----------  -----------
+  NA + 5        NA     
+ sqrt(NA)       NA     
+   NA^2         NA     
+  NA/NaN        NA     
 
 
 ### Notação científica e número de dígitos
@@ -516,11 +504,9 @@ verão
 #> [1] "DJF"
 ```
 
-\begin{rmdtip}
-Há limitações de interpretação do R para caracteres latinos como cedilha
-e acentos. Por isso não recomenda-se o uso destes caracteres para nomear
-variáveis.
-\end{rmdtip}
+<div class="rmdtip">
+<p>Há limitações de interpretação do R para caracteres latinos como cedilha e acentos. Por isso não recomenda-se o uso destes caracteres para nomear variáveis.</p>
+</div>
 
 Uma boa prática de programação é dar nomes informativos às variáveis para maior legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
 
