@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+
+<meta name="date" content="2018-04-23">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="conversao-entre-tipos-de-dados.html">
+<link rel="next" href="visao-geral-das-estruturas-de-dados.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programacao-computacional.html"><a href="programacao-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="por-que-um-meteorologista-usaria-o-r.html"><a href="por-que-um-meteorologista-usaria-o-r.html"><i class="fa fa-check"></i><b>1.8</b> Por que um meteorologista usaria o R?</a></li>
+<li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="no-modo-de-processamento-em-lote.html"><a href="no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visao-geral-do-rstudio.html"><a href="visao-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmetica-basica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#constantes"><i class="fa fa-check"></i><b>5.2.2</b> Constantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funcoes-matematicas-internas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas internas</a></li>
+<li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#valores-numericos-especiais"><i class="fa fa-check"></i><b>5.2.4</b> Valores numéricos especiais</a></li>
+<li class="chapter" data-level="5.2.5" data-path="calculadora.html"><a href="calculadora.html#notacao-cientifica-e-numero-de-digitos"><i class="fa fa-check"></i><b>5.2.5</b> Notação científica e número de dígitos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variaveis.html"><a href="variaveis.html#formas-de-atribuicao"><i class="fa fa-check"></i><b>5.3.1</b> Formas de atribuição</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variaveis.html"><a href="variaveis.html#removendo-variaveis"><i class="fa fa-check"></i><b>5.3.2</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>5.3.3</b> Nomeando variáveis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="visao-geral-das-estruturas-de-dados.html"><a href="visao-geral-das-estruturas-de-dados.html"><i class="fa fa-check"></i><b>7.1</b> Visão geral das Estruturas de dados</a></li>
+<li class="chapter" data-level="7.2" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.2</b> Vetor</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vetor.html"><a href="vetor.html#vetores-atomicos"><i class="fa fa-check"></i><b>7.2.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vetor.html"><a href="vetor.html#operacoes-com-vetores"><i class="fa fa-check"></i><b>7.2.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.2.3" data-path="vetor.html"><a href="vetor.html#sequencias"><i class="fa fa-check"></i><b>7.2.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.2.4" data-path="vetor.html"><a href="vetor.html#indexacao-de-vetores"><i class="fa fa-check"></i><b>7.2.4</b> <a href="#indexvetores">Indexação de vetores</a></a></li>
+<li class="chapter" data-level="7.2.5" data-path="vetor.html"><a href="vetor.html#substituicao-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.2.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.2.6" data-path="vetor.html"><a href="vetor.html#criacao-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.2.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.2.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.2.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.2.8" data-path="vetor.html"><a href="vetor.html#diferenca-entre-na-e-null"><i class="fa fa-check"></i><b>7.2.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.3</b> Matrix</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="matrix.html"><a href="matrix.html#criacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.3.2" data-path="matrix.html"><a href="matrix.html#nomes-das-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.3" data-path="matrix.html"><a href="matrix.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.3.4" data-path="matrix.html"><a href="matrix.html#numero-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.5" data-path="matrix.html"><a href="matrix.html#acrescentando-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.3.5</b> Acrescentando linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.3.6" data-path="matrix.html"><a href="matrix.html#operacoes-matriciais"><i class="fa fa-check"></i><b>7.3.6</b> Operações matriciais</a></li>
+<li class="chapter" data-level="7.3.7" data-path="matrix.html"><a href="matrix.html#conversao-de-matrix-para-vector"><i class="fa fa-check"></i><b>7.3.7</b> Conversão de <code>matrix</code> para <code>vector</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>7.4</b> Array</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="array.html"><a href="array.html#criacao-1"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="array.html"><a href="array.html#indexacao"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>7.5</b> List</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="list.html"><a href="list.html#criacao-2"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="list.html"><a href="list.html#indexacao-1"><i class="fa fa-check"></i><b>7.5.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.5.3" data-path="list.html"><a href="list.html#conversao-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.5.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.5.4" data-path="list.html"><a href="list.html#conversao-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.5.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>7.6</b> <em>Data frame</em></a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-frame.html"><a href="data-frame.html#criacao-3"><i class="fa fa-check"></i><b>7.6.1</b> Criação</a></li>
+<li class="chapter" data-level="7.6.2" data-path="data-frame.html"><a href="data-frame.html#atributos-de-um-data-frame"><i class="fa fa-check"></i><b>7.6.2</b> Atributos de um <em>data frame</em></a></li>
+<li class="chapter" data-level="7.6.3" data-path="data-frame.html"><a href="data-frame.html#acesso-as-variaveis-de-um-data-frame"><i class="fa fa-check"></i><b>7.6.3</b> Acesso as variáveis de um <em>data frame</em></a></li>
+<li class="chapter" data-level="7.6.4" data-path="data-frame.html"><a href="data-frame.html#indexacao-selecao-e-alteracao"><i class="fa fa-check"></i><b>7.6.4</b> Indexação, seleção e alteração</a></li>
+<li class="chapter" data-level="7.6.5" data-path="data-frame.html"><a href="data-frame.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.6.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.6.6" data-path="data-frame.html"><a href="data-frame.html#teste-e-coercao"><i class="fa fa-check"></i><b>7.6.6</b> Teste e Coerção</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estrutura-dados" class="section level1">
+<h1><span class="header-section-number">7</span> Estrutura de dados</h1>
+<p>Nesta seção vamos:</p>
+<ul>
+<li>ver como os dados podem ser estruturados no R</li>
+<li>conhecer os atributos dessas estruturas</li>
+<li>criar e manipular essas estruturas</li>
+</ul> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="conversao-entre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visao-geral-das-estruturas-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/07-estrutura-dados.Rmd",
+"text": "Edit"
+},
+"download": ["ADAR.pdf", "ADAR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
