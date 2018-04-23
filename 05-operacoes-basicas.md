@@ -24,7 +24,7 @@ A partir deste capítulo, os códigos a serem avaliadas no <code class='sourceCo
 No trecho de código acima,  a primeira linha contém o código a ser copiado pelo leitor para execução em seu computador. A segunda linha é a saída do código avaliado pelo R.
 
 
-## Calculado<code class='sourceCode bash'><span class='ex'>R</span></code>a
+## Calculadora
 
 O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
 
@@ -49,12 +49,17 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 #> [1] 0
 2001 %% 2
 #> [1] 1
-# operador de divisão inteira
+# o inteiro do quociente 
 11 %/% 2
 #> [1] 5
 ```
 
-Note no R, o separador decimal é o ponto (\".\"). 
+
+<div class="rmdwarning">
+<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
+</div>
+
+ 
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
 
@@ -63,11 +68,11 @@ Conheça mais operadores aritméticos, digitando na linha de comando:
 ?"Arithmetic"
 ```
 
-A janela que se abrirá mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R.
+A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do <code class='sourceCode bash'><span class='ex'>R</span></code>.
 
 ### Constantes
 
-O R possui algumas constantes pré-definidas, como o a constante pi (π).
+O R possui algumas constantes pré-definidas, como o a constante pi ($\pi$).
 
 
 ```r
@@ -75,7 +80,7 @@ pi
 #> [1] 3.141593
 ```
 
-O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
+O R também tem vetores de caracteres pré-definidos, são eles:
 
 
 ```r
@@ -481,7 +486,7 @@ dia-1 <- 2
 dia_1 <- 2
 ```
 
-* evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número π):
+* evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número $\pi$):
 
         c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
 
@@ -498,7 +503,23 @@ verão <- "DJF"
 verão
 #> [1] "DJF"
 ```
-   
-Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
+
+<div class="rmdtip">
+<p>Há limitações de interpretação do R para caracteres latinos como cedilha e acentos. Por isso não recomenda-se o uso destes caracteres para nomear variáveis.</p>
+</div>
+
+Uma boa prática de programação é dar nomes informativos às variáveis para maior legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
+
+Apesar do ganho de legibilidade do código com a aplicação das regras de formatação de código do *tidyverse* é difícil de lembrar de todas elas. 
+
+Mas este não é mais um problema, pois o pacote [styler](http://styler.r-lib.org/) fornece funções para estilizar o seu código padrão *tidyverse*. 
 
 
+```r
+install.packages("styler")
+library(styler)
+```
+
+As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
+
+![](images/styler_0.1.gif)

@@ -22,8 +22,7 @@ Nessa seção você terá uma visão geral do RStudio *Desktop*.
 
 ## Visão geral do RStudio
 
-Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em 
-você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
+Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em *File > New File > R script* você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
 
 <div class="figure">
 <img src="images/Rstudio_panels.png" alt="Rstudio"  />

@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-04-22">
+<meta name="date" content="2018-04-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -144,7 +144,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
 <li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
-<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculado<code class='sourceCode bash'><span class="ex">R</span></code>a</a><ul>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmetica-basica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#constantes"><i class="fa fa-check"></i><b>5.2.2</b> Constantes</a></li>
 <li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funcoes-matematicas-internas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas internas</a></li>
@@ -208,7 +208,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibilizam seus pacotes em plataormas como o <a href="https://github.com/">GitHub</a> e <a href="https://r-forge.r-project.org/">R-forge</a>. As vezes um pacote pode estar em ambos CRAN e GitHub (ou R-forge), mas a última versão - a de desenvolvimento - é somente disponibilizada no GitHub (ou R-forge).</p>
 <p>Para instalar um pacote de um repositório do GitHub usa-se a função <code>install_github()</code> do pacote <strong>devtools</strong>. Portanto, o pacote <strong>devtools</strong> precisa ser instalado primeiro.</p>
 <p>Antes de instalar o pacote <strong>devtools</strong>, usuários Windows precisam instalar o programa <a href="https://cran.r-project.org/bin/windows/Rtools/index.html">Rtools</a>.</p>
-<p>A função install package from GitHub, the name for the repo must be specified. For example, to install the package ArgParser from the book author’s repo:</p>
+<p>A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote <code>inmetr</code> do repositório mantido pelo autor deste livro, usa-se:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;devtools&quot;)</span>
 <span class="co"># carrega o pacote devtools</span>
 <span class="kw">library</span>(devtools)
@@ -216,7 +216,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co"># https://github.com/lhmet/inmetr </span>
 <span class="kw">install_github</span>(<span class="st">&quot;lhmet/inmetr&quot;</span>)</code></pre></div>
 <p>Para um repositório do R-forge, por exemplo o repositório do pacote <a href="https://r-forge.r-project.org/projects/raster/">raster</a>, usa-se:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;raster&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;raster&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</code></pre></div>
 </div>
 <div id="arquivo-fonte-local" class="section level4">
 <h4><span class="header-section-number">2.2.1.3</span> Arquivo fonte local</h4>
@@ -273,6 +273,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
