@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Análise de Dados Ambientais com R</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
+  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  
+
+<meta name="author" content="Jônatan Tatsch">
+
+<meta name="date" content="2018-04-23">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="matrix.html">
+<link rel="next" href="list.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programacao-computacional.html"><a href="programacao-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="por-que-um-meteorologista-usaria-o-r.html"><a href="por-que-um-meteorologista-usaria-o-r.html"><i class="fa fa-check"></i><b>1.8</b> Por que um meteorologista usaria o R?</a></li>
+<li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegacao-entre-as-expressoes-ja-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funcoes"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="no-modo-de-processamento-em-lote.html"><a href="no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visao-geral-do-rstudio.html"><a href="visao-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmetica-basica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#constantes"><i class="fa fa-check"></i><b>5.2.2</b> Constantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funcoes-matematicas-internas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas internas</a></li>
+<li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#valores-numericos-especiais"><i class="fa fa-check"></i><b>5.2.4</b> Valores numéricos especiais</a></li>
+<li class="chapter" data-level="5.2.5" data-path="calculadora.html"><a href="calculadora.html#notacao-cientifica-e-numero-de-digitos"><i class="fa fa-check"></i><b>5.2.5</b> Notação científica e número de dígitos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variaveis.html"><a href="variaveis.html#formas-de-atribuicao"><i class="fa fa-check"></i><b>5.3.1</b> Formas de atribuição</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variaveis.html"><a href="variaveis.html#removendo-variaveis"><i class="fa fa-check"></i><b>5.3.2</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>5.3.3</b> Nomeando variáveis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="visao-geral-das-estruturas-de-dados.html"><a href="visao-geral-das-estruturas-de-dados.html"><i class="fa fa-check"></i><b>7.1</b> Visão geral das Estruturas de dados</a></li>
+<li class="chapter" data-level="7.2" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.2</b> Vetor</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vetor.html"><a href="vetor.html#vetores-atomicos"><i class="fa fa-check"></i><b>7.2.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vetor.html"><a href="vetor.html#operacoes-com-vetores"><i class="fa fa-check"></i><b>7.2.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.2.3" data-path="vetor.html"><a href="vetor.html#sequencias"><i class="fa fa-check"></i><b>7.2.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.2.4" data-path="vetor.html"><a href="vetor.html#indexacao-de-vetores"><i class="fa fa-check"></i><b>7.2.4</b> <a href="#indexvetores">Indexação de vetores</a></a></li>
+<li class="chapter" data-level="7.2.5" data-path="vetor.html"><a href="vetor.html#substituicao-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.2.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.2.6" data-path="vetor.html"><a href="vetor.html#criacao-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.2.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.2.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.2.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.2.8" data-path="vetor.html"><a href="vetor.html#diferenca-entre-na-e-null"><i class="fa fa-check"></i><b>7.2.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.3</b> Matrix</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="matrix.html"><a href="matrix.html#criacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.3.2" data-path="matrix.html"><a href="matrix.html#nomes-das-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.3" data-path="matrix.html"><a href="matrix.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.3.4" data-path="matrix.html"><a href="matrix.html#numero-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.5" data-path="matrix.html"><a href="matrix.html#acrescentando-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.3.5</b> Acrescentando linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.3.6" data-path="matrix.html"><a href="matrix.html#operacoes-matriciais"><i class="fa fa-check"></i><b>7.3.6</b> Operações matriciais</a></li>
+<li class="chapter" data-level="7.3.7" data-path="matrix.html"><a href="matrix.html#conversao-de-matrix-para-vector"><i class="fa fa-check"></i><b>7.3.7</b> Conversão de <code>matrix</code> para <code>vector</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>7.4</b> Array</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="array.html"><a href="array.html#criacao-1"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="array.html"><a href="array.html#indexacao"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>7.5</b> List</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="list.html"><a href="list.html#criacao-2"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="list.html"><a href="list.html#indexacao-1"><i class="fa fa-check"></i><b>7.5.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.5.3" data-path="list.html"><a href="list.html#conversao-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.5.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.5.4" data-path="list.html"><a href="list.html#conversao-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.5.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>7.6</b> <em>Data frame</em></a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-frame.html"><a href="data-frame.html#criacao-3"><i class="fa fa-check"></i><b>7.6.1</b> Criação</a></li>
+<li class="chapter" data-level="7.6.2" data-path="data-frame.html"><a href="data-frame.html#atributos-de-um-data-frame"><i class="fa fa-check"></i><b>7.6.2</b> Atributos de um <em>data frame</em></a></li>
+<li class="chapter" data-level="7.6.3" data-path="data-frame.html"><a href="data-frame.html#acesso-as-variaveis-de-um-data-frame"><i class="fa fa-check"></i><b>7.6.3</b> Acesso as variáveis de um <em>data frame</em></a></li>
+<li class="chapter" data-level="7.6.4" data-path="data-frame.html"><a href="data-frame.html#indexacao-selecao-e-alteracao"><i class="fa fa-check"></i><b>7.6.4</b> Indexação, seleção e alteração</a></li>
+<li class="chapter" data-level="7.6.5" data-path="data-frame.html"><a href="data-frame.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.6.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.6.6" data-path="data-frame.html"><a href="data-frame.html#teste-e-coercao"><i class="fa fa-check"></i><b>7.6.6</b> Teste e Coerção</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="array" class="section level2">
+<h2><span class="header-section-number">7.4</span> Array</h2>
+<p><em>Arrays</em> são multidimensionais. As matrizes são um caso particular de <em>arrays</em> com 2 dimensões: linhas e colunas. Mas podemos ter dados com <em>n</em> dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa <em>array</em> possui 3 dimensões:</p>
+<ul>
+<li><p>latitude (linha)</p></li>
+<li><p>longitude (coluna)</p></li>
+<li><p>tempo (camadas)</p></li>
+</ul>
+<div id="criacao-1" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Criação</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+<span class="co"># atribuindo novas dimensões a v 1a dim: 3 linhas, 2a dim: 2 colunas, 3a</span>
+<span class="co"># dim: 2</span>
+<span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+v
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    1    3</span>
+<span class="co">#&gt; [2,]    2    4</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    5    7</span>
+<span class="co">#&gt; [2,]    6    8</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    9   11</span>
+<span class="co">#&gt; [2,]   10   12</span>
+<span class="co"># ou</span>
+a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> v, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>))
+<span class="kw">dim</span>(a)
+<span class="co">#&gt; [1] 3 2 2</span>
+<span class="kw">length</span>(a)
+<span class="co">#&gt; [1] 12</span>
+<span class="kw">class</span>(a)
+<span class="co">#&gt; [1] &quot;array&quot;</span>
+<span class="kw">mode</span>(a)
+<span class="co">#&gt; [1] &quot;numeric&quot;</span>
+<span class="co"># exemplo de inicialização de uma array</span>
+<span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>))
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    0    0    0    0</span>
+<span class="co">#&gt; [2,]    0    0    0    0</span>
+<span class="co">#&gt; [3,]    0    0    0    0</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    0    0    0    0</span>
+<span class="co">#&gt; [2,]    0    0    0    0</span>
+<span class="co">#&gt; [3,]    0    0    0    0</span></code></pre></div>
+</div>
+<div id="indexacao" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Indexação</h3>
+<p>Suponha os campos espaciais médios mensais de temperatura dados pelo vetor <code>tempVals</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempVals &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="fl">22.34</span>, <span class="fl">19.8</span>, <span class="fl">22.22</span>, <span class="fl">19.27</span>, <span class="fl">19.53</span>, <span class="fl">19.81</span>, <span class="fl">21.18</span>, <span class="fl">24.44</span>, <span class="fl">23.91</span>,
+  <span class="fl">21.97</span>, <span class="fl">21.14</span>, <span class="fl">24.54</span>, <span class="fl">23.46</span>, <span class="fl">16.2</span>, <span class="fl">19.93</span>, <span class="fl">20.54</span>, <span class="fl">19.71</span>, <span class="fl">24.94</span>,
+  <span class="fl">18.71</span>, <span class="fl">21.8</span>, <span class="fl">19.52</span>, <span class="fl">23.44</span>, <span class="fl">19.64</span>, <span class="fl">15.88</span>, <span class="fl">21.83</span>, <span class="fl">19.16</span>, <span class="fl">18.66</span>,
+  <span class="fl">18.82</span>, <span class="fl">22.73</span>, <span class="fl">19.34</span>, <span class="fl">18.89</span>, <span class="fl">16.7</span>, <span class="fl">21.41</span>, <span class="fl">21.88</span>, <span class="fl">14.95</span>, <span class="fl">18.54</span>,
+  <span class="fl">23.17</span>, <span class="fl">17.67</span>, <span class="fl">21.91</span>, <span class="fl">19.93</span>, <span class="fl">19.76</span>, <span class="fl">24.32</span>, <span class="fl">21.97</span>, <span class="fl">19.65</span>, <span class="fl">21.29</span>,
+  <span class="fl">23.24</span>, <span class="fl">22.59</span>, <span class="fl">24.51</span>, <span class="fl">22.47</span>, <span class="fl">20.34</span>, <span class="fl">19.82</span>, <span class="fl">20.87</span>, <span class="fl">18.46</span>, <span class="fl">19.87</span>,
+  <span class="fl">21.79</span>, <span class="fl">21.94</span>, <span class="fl">18.72</span>, <span class="fl">20.17</span>, <span class="fl">17.82</span>, <span class="fl">16.17</span>
+)
+<span class="co"># array de temperaturas</span>
+atemp &lt;-<span class="st"> </span><span class="kw">array</span>(tempVals, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>))
+atemp
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
+<span class="co">#&gt; [1,] 22.34 19.53 23.91 23.46 19.71</span>
+<span class="co">#&gt; [2,] 19.80 19.81 21.97 16.20 24.94</span>
+<span class="co">#&gt; [3,] 22.22 21.18 21.14 19.93 18.71</span>
+<span class="co">#&gt; [4,] 19.27 24.44 24.54 20.54 21.80</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
+<span class="co">#&gt; [1,] 19.52 21.83 22.73 21.41 23.17</span>
+<span class="co">#&gt; [2,] 23.44 19.16 19.34 21.88 17.67</span>
+<span class="co">#&gt; [3,] 19.64 18.66 18.89 14.95 21.91</span>
+<span class="co">#&gt; [4,] 15.88 18.82 16.70 18.54 19.93</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
+<span class="co">#&gt; [1,] 19.76 21.29 22.47 18.46 18.72</span>
+<span class="co">#&gt; [2,] 24.32 23.24 20.34 19.87 20.17</span>
+<span class="co">#&gt; [3,] 21.97 22.59 19.82 21.79 17.82</span>
+<span class="co">#&gt; [4,] 19.65 24.51 20.87 21.94 16.17</span>
+<span class="kw">colnames</span>(atemp) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">45</span><span class="op">:-</span><span class="dv">41</span>
+<span class="kw">rownames</span>(atemp) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">19</span><span class="op">:-</span><span class="dv">22</span>
+atemp
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
+<span class="co">#&gt; -19 22.34 19.53 23.91 23.46 19.71</span>
+<span class="co">#&gt; -20 19.80 19.81 21.97 16.20 24.94</span>
+<span class="co">#&gt; -21 22.22 21.18 21.14 19.93 18.71</span>
+<span class="co">#&gt; -22 19.27 24.44 24.54 20.54 21.80</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
+<span class="co">#&gt; -19 19.52 21.83 22.73 21.41 23.17</span>
+<span class="co">#&gt; -20 23.44 19.16 19.34 21.88 17.67</span>
+<span class="co">#&gt; -21 19.64 18.66 18.89 14.95 21.91</span>
+<span class="co">#&gt; -22 15.88 18.82 16.70 18.54 19.93</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
+<span class="co">#&gt; -19 19.76 21.29 22.47 18.46 18.72</span>
+<span class="co">#&gt; -20 24.32 23.24 20.34 19.87 20.17</span>
+<span class="co">#&gt; -21 21.97 22.59 19.82 21.79 17.82</span>
+<span class="co">#&gt; -22 19.65 24.51 20.87 21.94 16.17</span></code></pre></div>
+<p>Podemos usar as mesmos procedimentos de indexação de uma <code>matrix</code> para seleção de partes de uma <code>array</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
+atemp[<span class="dv">1</span>, <span class="dv">1</span>, ]
+<span class="co">#&gt; [1] 22.34 19.52 19.76</span>
+atemp[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]
+<span class="co">#&gt; [1] 22.34 19.52 19.76</span>
+<span class="co"># para 1a faixa de latitude (-19),</span>
+<span class="co"># os valores de temp das longitudes em todos tempos</span>
+atemp[<span class="dv">1</span>, , ]
+<span class="co">#&gt;      [,1]  [,2]  [,3]</span>
+<span class="co">#&gt; -45 22.34 19.52 19.76</span>
+<span class="co">#&gt; -44 19.53 21.83 21.29</span>
+<span class="co">#&gt; -43 23.91 22.73 22.47</span>
+<span class="co">#&gt; -42 23.46 21.41 18.46</span>
+<span class="co">#&gt; -41 19.71 23.17 18.72</span>
+<span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos</span>
+atemp[, <span class="dv">2</span>, ]
+<span class="co">#&gt;      [,1]  [,2]  [,3]</span>
+<span class="co">#&gt; -19 19.53 21.83 21.29</span>
+<span class="co">#&gt; -20 19.81 19.16 23.24</span>
+<span class="co">#&gt; -21 21.18 18.66 22.59</span>
+<span class="co">#&gt; -22 24.44 18.82 24.51</span>
+<span class="co"># média meridional</span>
+<span class="kw">colMeans</span>(atemp[, <span class="dv">2</span>, ])
+<span class="co">#&gt; [1] 21.2400 19.6175 22.9075</span>
+<span class="co"># subdominio &quot;espacial&quot;</span>
+atemp[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -44   -43</span>
+<span class="co">#&gt; -21 21.18 21.14</span>
+<span class="co">#&gt; -22 24.44 24.54</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -44   -43</span>
+<span class="co">#&gt; -21 18.66 18.89</span>
+<span class="co">#&gt; -22 18.82 16.70</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       -44   -43</span>
+<span class="co">#&gt; -21 22.59 19.82</span>
+<span class="co">#&gt; -22 24.51 20.87</span>
+<span class="co"># sem a 1a linha, sem a 5a coluna e sem o primeiro e 3o mes</span>
+atemp[ <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]
+<span class="co">#&gt;       -45   -44   -43   -42</span>
+<span class="co">#&gt; -20 23.44 19.16 19.34 21.88</span>
+<span class="co">#&gt; -21 19.64 18.66 18.89 14.95</span>
+<span class="co">#&gt; -22 15.88 18.82 16.70 18.54</span>
+<span class="co"># média espacial do 1o mês</span>
+<span class="kw">mean</span>(atemp[, , <span class="dv">1</span>])
+<span class="co">#&gt; [1] 21.272</span>
+<span class="co"># média espacial do segundo mês</span>
+<span class="kw">mean</span>(atemp[, , <span class="dv">2</span>])
+<span class="co">#&gt; [1] 19.7035</span>
+<span class="co"># demanchando uma array (conversão para vetor)</span>
+<span class="kw">c</span>(atemp)
+<span class="co">#&gt;  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14</span>
+<span class="co">#&gt; [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44</span>
+<span class="co">#&gt; [23] 19.64 15.88 21.83 19.16 18.66 18.82 22.73 19.34 18.89 16.70 21.41</span>
+<span class="co">#&gt; [34] 21.88 14.95 18.54 23.17 17.67 21.91 19.93 19.76 24.32 21.97 19.65</span>
+<span class="co">#&gt; [45] 21.29 23.24 22.59 24.51 22.47 20.34 19.82 20.87 18.46 19.87 21.79</span>
+<span class="co">#&gt; [56] 21.94 18.72 20.17 17.82 16.17</span>
+<span class="kw">c</span>(atemp[, , <span class="dv">1</span>])
+<span class="co">#&gt;  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14</span>
+<span class="co">#&gt; [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80</span>
+<span class="co"># para entender a forma como a matriz é convertida para vetor</span>
+matref &lt;-<span class="st"> </span><span class="kw">cbind</span>(
+  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">20</span>),
+  <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">6</span>),
+  <span class="dt">valores =</span> <span class="kw">c</span>(atemp),
+  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(atemp))[<span class="dv">3</span>])
+)
+matref
+<span class="co">#&gt;        mes elemat valores elearr</span>
+<span class="co">#&gt;   [1,]   1      1   22.34      1</span>
+<span class="co">#&gt;   [2,]   1      2   19.80      2</span>
+<span class="co">#&gt;   [3,]   1      3   22.22      3</span>
+<span class="co">#&gt;   [4,]   1      4   19.27      4</span>
+<span class="co">#&gt;   [5,]   1      5   19.53      5</span>
+<span class="co">#&gt;   [6,]   1      6   19.81      6</span>
+<span class="co">#&gt;   [7,]   1      7   21.18      7</span>
+<span class="co">#&gt;   [8,]   1      8   24.44      8</span>
+<span class="co">#&gt;   [9,]   1      9   23.91      9</span>
+<span class="co">#&gt;  [10,]   1     10   21.97     10</span>
+<span class="co">#&gt;  [11,]   1     11   21.14     11</span>
+<span class="co">#&gt;  [12,]   1     12   24.54     12</span>
+<span class="co">#&gt;  [13,]   1     13   23.46     13</span>
+<span class="co">#&gt;  [14,]   1     14   16.20     14</span>
+<span class="co">#&gt;  [15,]   1     15   19.93     15</span>
+<span class="co">#&gt;  [16,]   1     16   20.54     16</span>
+<span class="co">#&gt;  [17,]   1     17   19.71     17</span>
+<span class="co">#&gt;  [18,]   1     18   24.94     18</span>
+<span class="co">#&gt;  [19,]   1     19   18.71     19</span>
+<span class="co">#&gt;  [20,]   1     20   21.80     20</span>
+<span class="co">#&gt;  [21,]   2      1   19.52     21</span>
+<span class="co">#&gt;  [22,]   2      2   23.44     22</span>
+<span class="co">#&gt;  [23,]   2      3   19.64     23</span>
+<span class="co">#&gt;  [24,]   2      4   15.88     24</span>
+<span class="co">#&gt;  [25,]   2      5   21.83     25</span>
+<span class="co">#&gt;  [26,]   2      6   19.16     26</span>
+<span class="co">#&gt;  [27,]   2      7   18.66     27</span>
+<span class="co">#&gt;  [28,]   2      8   18.82     28</span>
+<span class="co">#&gt;  [29,]   2      9   22.73     29</span>
+<span class="co">#&gt;  [30,]   2     10   19.34     30</span>
+<span class="co">#&gt;  [31,]   2     11   18.89     31</span>
+<span class="co">#&gt;  [32,]   2     12   16.70     32</span>
+<span class="co">#&gt;  [33,]   2     13   21.41     33</span>
+<span class="co">#&gt;  [34,]   2     14   21.88     34</span>
+<span class="co">#&gt;  [35,]   2     15   14.95     35</span>
+<span class="co">#&gt;  [36,]   2     16   18.54     36</span>
+<span class="co">#&gt;  [37,]   2     17   23.17     37</span>
+<span class="co">#&gt;  [38,]   2     18   17.67     38</span>
+<span class="co">#&gt;  [39,]   2     19   21.91     39</span>
+<span class="co">#&gt;  [40,]   2     20   19.93     40</span>
+<span class="co">#&gt;  [41,]   3      1   19.76     41</span>
+<span class="co">#&gt;  [42,]   3      2   24.32     42</span>
+<span class="co">#&gt;  [43,]   3      3   21.97     43</span>
+<span class="co">#&gt;  [44,]   3      4   19.65     44</span>
+<span class="co">#&gt;  [45,]   3      5   21.29     45</span>
+<span class="co">#&gt;  [46,]   3      6   23.24     46</span>
+<span class="co">#&gt;  [47,]   3      7   22.59     47</span>
+<span class="co">#&gt;  [48,]   3      8   24.51     48</span>
+<span class="co">#&gt;  [49,]   3      9   22.47     49</span>
+<span class="co">#&gt;  [50,]   3     10   20.34     50</span>
+<span class="co">#&gt;  [51,]   3     11   19.82     51</span>
+<span class="co">#&gt;  [52,]   3     12   20.87     52</span>
+<span class="co">#&gt;  [53,]   3     13   18.46     53</span>
+<span class="co">#&gt;  [54,]   3     14   19.87     54</span>
+<span class="co">#&gt;  [55,]   3     15   21.79     55</span>
+<span class="co">#&gt;  [56,]   3     16   21.94     56</span>
+<span class="co">#&gt;  [57,]   3     17   18.72     57</span>
+<span class="co">#&gt;  [58,]   3     18   20.17     58</span>
+<span class="co">#&gt;  [59,]   3     19   17.82     59</span>
+<span class="co">#&gt;  [60,]   3     20   16.17     60</span>
+<span class="co">#&gt;  [61,]   1      1   22.34      1</span>
+<span class="co">#&gt;  [62,]   1      2   19.80      2</span>
+<span class="co">#&gt;  [63,]   1      3   22.22      3</span>
+<span class="co">#&gt;  [64,]   1      4   19.27      4</span>
+<span class="co">#&gt;  [65,]   1      5   19.53      5</span>
+<span class="co">#&gt;  [66,]   1      6   19.81      6</span>
+<span class="co">#&gt;  [67,]   1      7   21.18      7</span>
+<span class="co">#&gt;  [68,]   1      8   24.44      8</span>
+<span class="co">#&gt;  [69,]   1      9   23.91      9</span>
+<span class="co">#&gt;  [70,]   1     10   21.97     10</span>
+<span class="co">#&gt;  [71,]   1     11   21.14     11</span>
+<span class="co">#&gt;  [72,]   1     12   24.54     12</span>
+<span class="co">#&gt;  [73,]   1     13   23.46     13</span>
+<span class="co">#&gt;  [74,]   1     14   16.20     14</span>
+<span class="co">#&gt;  [75,]   1     15   19.93     15</span>
+<span class="co">#&gt;  [76,]   1     16   20.54     16</span>
+<span class="co">#&gt;  [77,]   1     17   19.71     17</span>
+<span class="co">#&gt;  [78,]   1     18   24.94     18</span>
+<span class="co">#&gt;  [79,]   1     19   18.71     19</span>
+<span class="co">#&gt;  [80,]   1     20   21.80     20</span>
+<span class="co">#&gt;  [81,]   2      1   19.52     21</span>
+<span class="co">#&gt;  [82,]   2      2   23.44     22</span>
+<span class="co">#&gt;  [83,]   2      3   19.64     23</span>
+<span class="co">#&gt;  [84,]   2      4   15.88     24</span>
+<span class="co">#&gt;  [85,]   2      5   21.83     25</span>
+<span class="co">#&gt;  [86,]   2      6   19.16     26</span>
+<span class="co">#&gt;  [87,]   2      7   18.66     27</span>
+<span class="co">#&gt;  [88,]   2      8   18.82     28</span>
+<span class="co">#&gt;  [89,]   2      9   22.73     29</span>
+<span class="co">#&gt;  [90,]   2     10   19.34     30</span>
+<span class="co">#&gt;  [91,]   2     11   18.89     31</span>
+<span class="co">#&gt;  [92,]   2     12   16.70     32</span>
+<span class="co">#&gt;  [93,]   2     13   21.41     33</span>
+<span class="co">#&gt;  [94,]   2     14   21.88     34</span>
+<span class="co">#&gt;  [95,]   2     15   14.95     35</span>
+<span class="co">#&gt;  [96,]   2     16   18.54     36</span>
+<span class="co">#&gt;  [97,]   2     17   23.17     37</span>
+<span class="co">#&gt;  [98,]   2     18   17.67     38</span>
+<span class="co">#&gt;  [99,]   2     19   21.91     39</span>
+<span class="co">#&gt; [100,]   2     20   19.93     40</span>
+<span class="co">#&gt; [101,]   3      1   19.76     41</span>
+<span class="co">#&gt; [102,]   3      2   24.32     42</span>
+<span class="co">#&gt; [103,]   3      3   21.97     43</span>
+<span class="co">#&gt; [104,]   3      4   19.65     44</span>
+<span class="co">#&gt; [105,]   3      5   21.29     45</span>
+<span class="co">#&gt; [106,]   3      6   23.24     46</span>
+<span class="co">#&gt; [107,]   3      7   22.59     47</span>
+<span class="co">#&gt; [108,]   3      8   24.51     48</span>
+<span class="co">#&gt; [109,]   3      9   22.47     49</span>
+<span class="co">#&gt; [110,]   3     10   20.34     50</span>
+<span class="co">#&gt; [111,]   3     11   19.82     51</span>
+<span class="co">#&gt; [112,]   3     12   20.87     52</span>
+<span class="co">#&gt; [113,]   3     13   18.46     53</span>
+<span class="co">#&gt; [114,]   3     14   19.87     54</span>
+<span class="co">#&gt; [115,]   3     15   21.79     55</span>
+<span class="co">#&gt; [116,]   3     16   21.94     56</span>
+<span class="co">#&gt; [117,]   3     17   18.72     57</span>
+<span class="co">#&gt; [118,]   3     18   20.17     58</span>
+<span class="co">#&gt; [119,]   3     19   17.82     59</span>
+<span class="co">#&gt; [120,]   3     20   16.17     60</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="list.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lhmet/adar-ebook/edit/master/07-estrutura-dados.Rmd",
+"text": "Edit"
+},
+"download": ["ADAR.pdf", "ADAR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
