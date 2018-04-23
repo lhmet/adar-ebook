@@ -1,7 +1,7 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 author: "Jônatan Tatsch"
-date: "2018-04-22"
+date: "2018-04-23"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -30,7 +30,7 @@ Este material é uma composição das notas de aula da disciplina
 
 O livro é designado para quem não tem experiência em programação, ou qualquer um com interesse em aprender o <img src="images/logo_r.png" width="20"> para manipular dados ambientais. O objetivo é prover uma material para ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional <img src="images/logo_r.png" width="20">. Estes procedimentos são potencializados com o uso do software RStudio, uma interface de desenvolvimento integrado (IDE) para o <img src="images/logo_r.png" width="20">.
 
-Neste livro o leitor aprenderá a sintaxe básica da linguagem <img src="images/logo_r.png" width="20"> [@R-base], a importação e exportação de dados, a criação de gráficos, funções, a padronização e organização de conjunto de dados; e finalmente, a confecção de relatórios dinâmicos e reproduzíveis.
+Neste livro o leitor aprenderá a sintaxe básica da linguagem <img src="images/logo_r.png" width="20"> [@R-base], a importação e exportação de dados, a criação de gráficos, funções, a padronização e organização de conjunto de dados ambientais; e finalmente, a confecção de relatórios dinâmicos e reproduzíveis.
 
 O material do livro inclui o uso de dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia, sensoriamento remoto) em exemplos práticos e em exercícios, para estimular a prática da programação. 
 
@@ -38,7 +38,7 @@ O texto é intercalado com trechos de códigos que podem ser reproduzidos e os r
 
 Após a introdução ao <img src="images/logo_r.png" width="20"> apresenta-se as capacidades específicas do <img src="images/logo_r.png" width="20"> para manipulação de dados. Baseado na experiência do autor são empregados os pacotes mais adequados para cada finalidade, como **dplyr** e **tidyr** para o processamento de dados e o **ggplot2** para visualização de dados.
 
-A intenção do livro é que após a leitura, o leitor tenha o conhecimento suficiente para desenvolver códigos que automatizem tarefas repetitivas, assim reduzindo o tempo na etapa de preparação de dados. Esta programação mais efetiva permitirá focar mais na análise de dados e na comunicação dos resultados, seja ela na forma de documentos acadêmicos, ou relatórios técnicos em empresas públicas e privadas.
+A intenção do livro é que após a leitura, o leitor tenha o conhecimento suficiente para desenvolver códigos que automatizem tarefas repetitivas, assim reduzindo o tempo gasto na etapa de preparação de dados. Esta programação mais efetiva permitirá focar mais na análise de dados e na comunicação dos resultados, seja ela na forma de documentos acadêmicos, ou relatórios técnicos em empresas públicas e privadas.
 
 O texto está em formato [html](https://pt.wikipedia.org/wiki/HTML) para tirar o melhor proveito de recursos de multimídia, da capacidade de busca de texto e links para websites. 
 

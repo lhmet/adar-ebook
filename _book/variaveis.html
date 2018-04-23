@@ -25,8 +25,13 @@
 
 <meta name="author" content="Jônatan Tatsch">
 
-<meta name="date" content="2018-04-22">
+<meta name="date" content="2018-04-23">
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -340,7 +345,7 @@ variavel.teste &lt;-<span class="st"> </span><span class="dv">68</span></code></
 <span class="co"># alternativa</span>
 dia_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span></code></pre></div>
 <ul>
-<li><p>evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número π):</p>
+<li><p>evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número <span class="math inline">\(\pi\)</span>):</p>
 <pre><code>c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
 
 FALSE  Inf  NA  NaN  NULL TRUE 
@@ -351,7 +356,21 @@ break  else  for  function  if  in  next  repeat  while</code></pre></li>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">verão &lt;-<span class="st"> &quot;DJF&quot;</span>
 verão
 <span class="co">#&gt; [1] &quot;DJF&quot;</span></code></pre></div>
-<p>Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção <a href="http://style.tidyverse.org/syntax.html"><strong>Sintaxe</strong></a> do <a href="http://style.tidyverse.org/">Guia de estilo tidyverse (ou universo arrumado)</a>.</p>
+<div class="rmdtip">
+<p>
+Há limitações de interpretação do R para caracteres latinos como cedilha e acentos. Por isso não recomenda-se o uso destes caracteres para nomear variáveis.
+</p>
+</div>
+<p>Uma boa prática de programação é dar nomes informativos às variáveis para maior legibilidade do código. Uma boa referência para isso é a seção <a href="http://style.tidyverse.org/syntax.html"><strong>Sintaxe</strong></a> do <a href="http://style.tidyverse.org/">Guia de estilo tidyverse (ou universo arrumado)</a>.</p>
+<p>Apesar do ganho de legibilidade do código com a aplicação das regras de formatação de código do <em>tidyverse</em> é difícil de lembrar de todas elas.</p>
+<p>Mas este não é mais um problema, pois o pacote <a href="http://styler.r-lib.org/">styler</a> fornece funções para estilizar o seu código padrão <em>tidyverse</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;styler&quot;</span>)
+<span class="kw">library</span>(styler)</code></pre></div>
+<p>As funções são acessíveis Através do menu <em>Addins</em> do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.</p>
+<div class="figure">
+<img src="images/styler_0.1.gif" />
+
+</div>
 
 </div>
 </div>
@@ -406,6 +425,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

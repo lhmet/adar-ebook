@@ -25,8 +25,13 @@
 
 <meta name="author" content="Jônatan Tatsch">
 
-<meta name="date" content="2018-04-22">
+<meta name="date" content="2018-04-23">
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -205,7 +210,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ol>
 <p>Você pode especificar o nome do <code>arqsaida</code> como desejar. No exemplo abaixo, mostra-se como salvar o arquivo de saída incluindo a data em que ele foi gerado, <code>script1-saida-adatadehoje.log</code>.</p>
 <pre><code>$ R CMD BATCH script1.R script1-saida-`date &quot;+%Y%m%d&quot;`.log</code></pre>
-<p>Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (<code>.Rout</code>), que será nomeado <code>script1-saida-20180422.Rout</code>.</p>
+<p>Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (<code>.Rout</code>), que será nomeado <code>script1-saida-20180423.Rout</code>.</p>
 <p>Para mais opções do comando <code>R CMD BATCH</code> digite no terminal do Linux <code>R --help</code>.</p>
 
 </div>
@@ -260,6 +265,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

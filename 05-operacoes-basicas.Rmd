@@ -11,7 +11,7 @@ Nesta seção veremos:
 
 ```{r setup, include = FALSE}
 rm(list = ls())
-pcks <- c("knitr", "emo")
+pcks <- c("knitr", "emo", "styler")
 easypackages::libraries(pcks)
 opts_chunk$set(cache = FALSE, 
                fig.path = "images/", 
@@ -49,11 +49,17 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 # operador artimético para se determinar o resto de uma divisao
 10 %% 2
 2001 %% 2
-# operador de divisão inteira
+# o inteiro do quociente 
 11 %/% 2
 ```
 
-Note no R, o separador decimal é o ponto (\".\"). 
+
+```{block, note-virgulas, type='rmdwarning'}
+Note que no R, o separador decimal é o ponto \".\", ao invés da vírgula \",\" usada na notação brasileira.
+As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em `log(x = 10, base = 10)`.
+```
+
+ 
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
 
@@ -61,17 +67,17 @@ Conheça mais operadores aritméticos, digitando na linha de comando:
 ?"Arithmetic"
 ```
 
-A janela que se abrirá mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R.
+A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do `r rblue`.
 
 ### Constantes
 
-O R possui algumas constantes pré-definidas, como o a constante pi (π).
+O R possui algumas constantes pré-definidas, como o a constante pi ($\pi$).
 
 ```{r chunk13}
 pi
 ```
 
-O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
+O R também tem vetores de caracteres pré-definidos, são eles:
 
 ```{r chunk14}
 LETTERS
@@ -371,7 +377,7 @@ dia-1 <- 2
 dia_1 <- 2
 ```
 
-* evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número π):
+* evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número $\pi$):
 
         c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
 
@@ -386,7 +392,22 @@ dia_1 <- 2
 verão <- "DJF"
 verão
 ```
-   
-Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
 
+```{block, note-caracteres-latinos, type='rmdtip'}
+Há limitações de interpretação do R para caracteres latinos como cedilha e acentos. Por isso não recomenda-se o uso destes caracteres para nomear variáveis.
+```
 
+Uma boa prática de programação é dar nomes informativos às variáveis para maior legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
+
+Apesar do ganho de legibilidade do código com a aplicação das regras de formatação de código do *tidyverse* é difícil de lembrar de todas elas. 
+
+Mas este não é mais um problema, pois o pacote [styler](http://styler.r-lib.org/) fornece funções para estilizar o seu código padrão *tidyverse*. 
+
+```{r styler, eval = FALSE}
+install.packages("styler")
+library(styler)
+```
+
+As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
+
+![](images/styler_0.1.gif)
