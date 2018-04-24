@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-04-23">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -282,7 +282,7 @@ lst
 <p>Os índices em colchetes duplos <code>[[]]</code> identificam o elemento ou a componente da lista. Os índices em colchete simples <code>[]</code> indicam qual sub-elemento da lista está sendo mostrado. Por exemplo <code>1.1</code> é o primeiro sub-elemento do segundo elemento da lista <code>lst</code>. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.</p>
 <div class="rmdtip">
 <p>
-Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados. Como por exemplo a saída da função <code>rle()</code>.
+Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados. Como por exemplo a saída das funções <code>rle()</code>.
 </p>
 </div>
 <p>Para verificar se uma lista é aninhada usamos a função <code>is.recursive()</code>.</p>
@@ -629,16 +629,43 @@ dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="
 </div>
 <div id="lista-de-condimentos" class="section level4">
 <h4><span class="header-section-number">7.5.2.3</span> Lista de condimentos</h4>
-<p>É fácil de confundir quando usar <code>]</code> e <code>]]</code>. O exemplo abaixo ajuda lembrar da diferença entre eles.</p>
-<p><code>x</code> é um frasco de pimenta</p>
-<p><img src="images/pepper.jpg" width="200" /></p>
-<p><code>x[1]</code> é o frasco de pimenta com apenas 1 pacote de pimenta:</p>
-<p><img src="images/pepper-1.jpg" width="200" /></p>
-<p><code>x[2]</code> seria a mesma coisa, mas com o segundo pacote. <code>x[1:2]</code> seria o frasco de pimenta com 2 pacotes de pimenta.</p>
-<p><code>x[[1]]</code> é …</p>
-<p><img src="images/pepper-2.jpg" width="200" /></p>
-<p>Se quiséssemos o conteúdo do pacote seria <code>x[[1]][[1]]</code></p>
-<p><img src="images/pepper-3.jpg" width="200" /></p>
+<p>É fácil de confundir quando usar <code>]</code> e <code>]]</code>. A tabela abaixo ajuda lembrar da diferença entre eles.</p>
+<table>
+<colgroup>
+<col width="42%" />
+<col width="24%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">descrição</th>
+<th align="center">código</th>
+<th align="center">resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">frasco de pimenta</td>
+<td align="center">frasco</td>
+<td align="center"><img src="images/pepper.jpg" /></td>
+</tr>
+<tr class="even">
+<td align="center">frasco de pimenta com apenas 1 pacote de pimenta</td>
+<td align="center">frasco[1]</td>
+<td align="center"><img src="images/pepper-1.jpg" /></td>
+</tr>
+<tr class="odd">
+<td align="center">1 pacote de pimenta</td>
+<td align="center">frasco[[1]]</td>
+<td align="center"><img src="images/pepper-2.jpg" /></td>
+</tr>
+<tr class="even">
+<td align="center">conteúdo de um pacote de pimenta</td>
+<td align="center">frasco[[1]][[1]]</td>
+<td align="center"><img src="images/pepper-3.jpg" /></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level3">
