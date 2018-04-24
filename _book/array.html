@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,13 +24,8 @@
 
 <meta name="author" content="Jônatan Tatsch">
 
-<meta name="date" content="2018-04-23">
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
+<meta name="date" content="2018-04-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,7 +34,6 @@ MathJax.Hub.Config({
   
 <link rel="prev" href="matrix.html">
 <link rel="next" href="list.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -101,6 +94,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -244,314 +238,252 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul>
 <div id="criacao-1" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Criação</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
-<span class="co"># atribuindo novas dimensões a v 1a dim: 3 linhas, 2a dim: 2 colunas, 3a</span>
-<span class="co"># dim: 2</span>
-<span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)
-v
+<p>Suponha os campos espaciais médios mensais de temperatura dados pelo vetor <code>temp_vetor</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+temp_vetor
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12</span>
+<span class="co"># ou</span>
+temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))
+temp_array
 <span class="co">#&gt; , , 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    1    3</span>
-<span class="co">#&gt; [2,]    2    4</span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    4    7   10</span>
+<span class="co">#&gt; [2,]    2    5    8   11</span>
+<span class="co">#&gt; [3,]    3    6    9   12</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 2</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    5    7</span>
-<span class="co">#&gt; [2,]    6    8</span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    4    7   10</span>
+<span class="co">#&gt; [2,]    2    5    8   11</span>
+<span class="co">#&gt; [3,]    3    6    9   12</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    9   11</span>
-<span class="co">#&gt; [2,]   10   12</span>
-<span class="co"># ou</span>
-a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> v, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>))
-<span class="kw">dim</span>(a)
-<span class="co">#&gt; [1] 3 2 2</span>
-<span class="kw">length</span>(a)
-<span class="co">#&gt; [1] 12</span>
-<span class="kw">class</span>(a)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    4    7   10</span>
+<span class="co">#&gt; [2,]    2    5    8   11</span>
+<span class="co">#&gt; [3,]    3    6    9   12</span>
+<span class="kw">dim</span>(temp_array)
+<span class="co">#&gt; [1] 3 4 3</span>
+<span class="kw">length</span>(temp_array)
+<span class="co">#&gt; [1] 36</span>
+<span class="kw">class</span>(temp_array)
 <span class="co">#&gt; [1] &quot;array&quot;</span>
-<span class="kw">mode</span>(a)
-<span class="co">#&gt; [1] &quot;numeric&quot;</span>
-<span class="co"># exemplo de inicialização de uma array</span>
-<span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>))
-<span class="co">#&gt; , , 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]    0    0    0    0</span>
-<span class="co">#&gt; [2,]    0    0    0    0</span>
-<span class="co">#&gt; [3,]    0    0    0    0</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]    0    0    0    0</span>
-<span class="co">#&gt; [2,]    0    0    0    0</span>
-<span class="co">#&gt; [3,]    0    0    0    0</span></code></pre></div>
+<span class="kw">mode</span>(temp_array)
+<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
 </div>
 <div id="indexacao" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Indexação</h3>
-<p>Suponha os campos espaciais médios mensais de temperatura dados pelo vetor <code>tempVals</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempVals &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="fl">22.34</span>, <span class="fl">19.8</span>, <span class="fl">22.22</span>, <span class="fl">19.27</span>, <span class="fl">19.53</span>, <span class="fl">19.81</span>, <span class="fl">21.18</span>, <span class="fl">24.44</span>, <span class="fl">23.91</span>,
-  <span class="fl">21.97</span>, <span class="fl">21.14</span>, <span class="fl">24.54</span>, <span class="fl">23.46</span>, <span class="fl">16.2</span>, <span class="fl">19.93</span>, <span class="fl">20.54</span>, <span class="fl">19.71</span>, <span class="fl">24.94</span>,
-  <span class="fl">18.71</span>, <span class="fl">21.8</span>, <span class="fl">19.52</span>, <span class="fl">23.44</span>, <span class="fl">19.64</span>, <span class="fl">15.88</span>, <span class="fl">21.83</span>, <span class="fl">19.16</span>, <span class="fl">18.66</span>,
-  <span class="fl">18.82</span>, <span class="fl">22.73</span>, <span class="fl">19.34</span>, <span class="fl">18.89</span>, <span class="fl">16.7</span>, <span class="fl">21.41</span>, <span class="fl">21.88</span>, <span class="fl">14.95</span>, <span class="fl">18.54</span>,
-  <span class="fl">23.17</span>, <span class="fl">17.67</span>, <span class="fl">21.91</span>, <span class="fl">19.93</span>, <span class="fl">19.76</span>, <span class="fl">24.32</span>, <span class="fl">21.97</span>, <span class="fl">19.65</span>, <span class="fl">21.29</span>,
-  <span class="fl">23.24</span>, <span class="fl">22.59</span>, <span class="fl">24.51</span>, <span class="fl">22.47</span>, <span class="fl">20.34</span>, <span class="fl">19.82</span>, <span class="fl">20.87</span>, <span class="fl">18.46</span>, <span class="fl">19.87</span>,
-  <span class="fl">21.79</span>, <span class="fl">21.94</span>, <span class="fl">18.72</span>, <span class="fl">20.17</span>, <span class="fl">17.82</span>, <span class="fl">16.17</span>
-)
-<span class="co"># array de temperaturas</span>
-atemp &lt;-<span class="st"> </span><span class="kw">array</span>(tempVals, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>))
-atemp
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">45</span><span class="op">:-</span><span class="dv">42</span>
+<span class="kw">rownames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">19</span><span class="op">:-</span><span class="dv">21</span>
+temp_array
 <span class="co">#&gt; , , 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
-<span class="co">#&gt; [1,] 22.34 19.53 23.91 23.46 19.71</span>
-<span class="co">#&gt; [2,] 19.80 19.81 21.97 16.20 24.94</span>
-<span class="co">#&gt; [3,] 22.22 21.18 21.14 19.93 18.71</span>
-<span class="co">#&gt; [4,] 19.27 24.44 24.54 20.54 21.80</span>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19   1   4   7  10</span>
+<span class="co">#&gt; -20   2   5   8  11</span>
+<span class="co">#&gt; -21   3   6   9  12</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 2</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
-<span class="co">#&gt; [1,] 19.52 21.83 22.73 21.41 23.17</span>
-<span class="co">#&gt; [2,] 23.44 19.16 19.34 21.88 17.67</span>
-<span class="co">#&gt; [3,] 19.64 18.66 18.89 14.95 21.91</span>
-<span class="co">#&gt; [4,] 15.88 18.82 16.70 18.54 19.93</span>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19   1   4   7  10</span>
+<span class="co">#&gt; -20   2   5   8  11</span>
+<span class="co">#&gt; -21   3   6   9  12</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]</span>
-<span class="co">#&gt; [1,] 19.76 21.29 22.47 18.46 18.72</span>
-<span class="co">#&gt; [2,] 24.32 23.24 20.34 19.87 20.17</span>
-<span class="co">#&gt; [3,] 21.97 22.59 19.82 21.79 17.82</span>
-<span class="co">#&gt; [4,] 19.65 24.51 20.87 21.94 16.17</span>
-<span class="kw">colnames</span>(atemp) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">45</span><span class="op">:-</span><span class="dv">41</span>
-<span class="kw">rownames</span>(atemp) &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">19</span><span class="op">:-</span><span class="dv">22</span>
-atemp
-<span class="co">#&gt; , , 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
-<span class="co">#&gt; -19 22.34 19.53 23.91 23.46 19.71</span>
-<span class="co">#&gt; -20 19.80 19.81 21.97 16.20 24.94</span>
-<span class="co">#&gt; -21 22.22 21.18 21.14 19.93 18.71</span>
-<span class="co">#&gt; -22 19.27 24.44 24.54 20.54 21.80</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
-<span class="co">#&gt; -19 19.52 21.83 22.73 21.41 23.17</span>
-<span class="co">#&gt; -20 23.44 19.16 19.34 21.88 17.67</span>
-<span class="co">#&gt; -21 19.64 18.66 18.89 14.95 21.91</span>
-<span class="co">#&gt; -22 15.88 18.82 16.70 18.54 19.93</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;       -45   -44   -43   -42   -41</span>
-<span class="co">#&gt; -19 19.76 21.29 22.47 18.46 18.72</span>
-<span class="co">#&gt; -20 24.32 23.24 20.34 19.87 20.17</span>
-<span class="co">#&gt; -21 21.97 22.59 19.82 21.79 17.82</span>
-<span class="co">#&gt; -22 19.65 24.51 20.87 21.94 16.17</span></code></pre></div>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19   1   4   7  10</span>
+<span class="co">#&gt; -20   2   5   8  11</span>
+<span class="co">#&gt; -21   3   6   9  12</span></code></pre></div>
 <p>Podemos usar as mesmos procedimentos de indexação de uma <code>matrix</code> para seleção de partes de uma <code>array</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
-atemp[<span class="dv">1</span>, <span class="dv">1</span>, ]
-<span class="co">#&gt; [1] 22.34 19.52 19.76</span>
-atemp[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]
-<span class="co">#&gt; [1] 22.34 19.52 19.76</span>
+temp_array[<span class="dv">1</span>, <span class="dv">1</span>, ]
+<span class="co">#&gt; [1] 1 1 1</span>
+temp_array[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]
+<span class="co">#&gt; [1] 1 1 1</span>
 <span class="co"># para 1a faixa de latitude (-19),</span>
 <span class="co"># os valores de temp das longitudes em todos tempos</span>
-atemp[<span class="dv">1</span>, , ]
-<span class="co">#&gt;      [,1]  [,2]  [,3]</span>
-<span class="co">#&gt; -45 22.34 19.52 19.76</span>
-<span class="co">#&gt; -44 19.53 21.83 21.29</span>
-<span class="co">#&gt; -43 23.91 22.73 22.47</span>
-<span class="co">#&gt; -42 23.46 21.41 18.46</span>
-<span class="co">#&gt; -41 19.71 23.17 18.72</span>
+temp_array[<span class="dv">1</span>, , ]
+<span class="co">#&gt;     [,1] [,2] [,3]</span>
+<span class="co">#&gt; -45    1    1    1</span>
+<span class="co">#&gt; -44    4    4    4</span>
+<span class="co">#&gt; -43    7    7    7</span>
+<span class="co">#&gt; -42   10   10   10</span>
 <span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos</span>
-atemp[, <span class="dv">2</span>, ]
-<span class="co">#&gt;      [,1]  [,2]  [,3]</span>
-<span class="co">#&gt; -19 19.53 21.83 21.29</span>
-<span class="co">#&gt; -20 19.81 19.16 23.24</span>
-<span class="co">#&gt; -21 21.18 18.66 22.59</span>
-<span class="co">#&gt; -22 24.44 18.82 24.51</span>
+temp_array[, <span class="dv">2</span>, ]
+<span class="co">#&gt;     [,1] [,2] [,3]</span>
+<span class="co">#&gt; -19    4    4    4</span>
+<span class="co">#&gt; -20    5    5    5</span>
+<span class="co">#&gt; -21    6    6    6</span>
 <span class="co"># média meridional</span>
-<span class="kw">colMeans</span>(atemp[, <span class="dv">2</span>, ])
-<span class="co">#&gt; [1] 21.2400 19.6175 22.9075</span>
+<span class="kw">colMeans</span>(temp_array[, <span class="dv">2</span>, ])
+<span class="co">#&gt; [1] 5 5 5</span>
 <span class="co"># subdominio &quot;espacial&quot;</span>
-atemp[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]
+temp_array[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]
 <span class="co">#&gt; , , 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       -44   -43</span>
-<span class="co">#&gt; -21 21.18 21.14</span>
-<span class="co">#&gt; -22 24.44 24.54</span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20   5   8</span>
+<span class="co">#&gt; -21   6   9</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 2</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       -44   -43</span>
-<span class="co">#&gt; -21 18.66 18.89</span>
-<span class="co">#&gt; -22 18.82 16.70</span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20   5   8</span>
+<span class="co">#&gt; -21   6   9</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; , , 3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;       -44   -43</span>
-<span class="co">#&gt; -21 22.59 19.82</span>
-<span class="co">#&gt; -22 24.51 20.87</span>
-<span class="co"># sem a 1a linha, sem a 5a coluna e sem o primeiro e 3o mes</span>
-atemp[ <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]
-<span class="co">#&gt;       -45   -44   -43   -42</span>
-<span class="co">#&gt; -20 23.44 19.16 19.34 21.88</span>
-<span class="co">#&gt; -21 19.64 18.66 18.89 14.95</span>
-<span class="co">#&gt; -22 15.88 18.82 16.70 18.54</span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20   5   8</span>
+<span class="co">#&gt; -21   6   9</span>
 <span class="co"># média espacial do 1o mês</span>
-<span class="kw">mean</span>(atemp[, , <span class="dv">1</span>])
-<span class="co">#&gt; [1] 21.272</span>
+<span class="kw">mean</span>(temp_array[, , <span class="dv">1</span>])
+<span class="co">#&gt; [1] 6.5</span>
 <span class="co"># média espacial do segundo mês</span>
-<span class="kw">mean</span>(atemp[, , <span class="dv">2</span>])
-<span class="co">#&gt; [1] 19.7035</span>
+<span class="kw">mean</span>(temp_array[, , <span class="dv">2</span>])
+<span class="co">#&gt; [1] 6.5</span>
 <span class="co"># demanchando uma array (conversão para vetor)</span>
-<span class="kw">c</span>(atemp)
-<span class="co">#&gt;  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14</span>
-<span class="co">#&gt; [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44</span>
-<span class="co">#&gt; [23] 19.64 15.88 21.83 19.16 18.66 18.82 22.73 19.34 18.89 16.70 21.41</span>
-<span class="co">#&gt; [34] 21.88 14.95 18.54 23.17 17.67 21.91 19.93 19.76 24.32 21.97 19.65</span>
-<span class="co">#&gt; [45] 21.29 23.24 22.59 24.51 22.47 20.34 19.82 20.87 18.46 19.87 21.79</span>
-<span class="co">#&gt; [56] 21.94 18.72 20.17 17.82 16.17</span>
-<span class="kw">c</span>(atemp[, , <span class="dv">1</span>])
-<span class="co">#&gt;  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14</span>
-<span class="co">#&gt; [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80</span>
+<span class="kw">c</span>(temp_array)
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12  1  2  3  4  5  6  7  8  9 10 11</span>
+<span class="co">#&gt; [24] 12  1  2  3  4  5  6  7  8  9 10 11 12</span>
+<span class="kw">c</span>(temp_array[, , <span class="dv">1</span>])
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12</span>
 <span class="co"># para entender a forma como a matriz é convertida para vetor</span>
-matref &lt;-<span class="st"> </span><span class="kw">cbind</span>(
+mat_temp &lt;-<span class="st"> </span><span class="kw">cbind</span>(
   <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">20</span>),
   <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">6</span>),
-  <span class="dt">valores =</span> <span class="kw">c</span>(atemp),
-  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(atemp))[<span class="dv">3</span>])
+  <span class="dt">valores =</span> <span class="kw">c</span>(temp_array),
+  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(temp_array))[<span class="dv">3</span>])
 )
-matref
+<span class="co">#&gt; Warning in cbind(mes = rep(1:3, each = 20), elemat = rep(1:20, times =</span>
+<span class="co">#&gt; 6), : number of rows of result is not a multiple of vector length (arg 3)</span>
+mat_temp
 <span class="co">#&gt;        mes elemat valores elearr</span>
-<span class="co">#&gt;   [1,]   1      1   22.34      1</span>
-<span class="co">#&gt;   [2,]   1      2   19.80      2</span>
-<span class="co">#&gt;   [3,]   1      3   22.22      3</span>
-<span class="co">#&gt;   [4,]   1      4   19.27      4</span>
-<span class="co">#&gt;   [5,]   1      5   19.53      5</span>
-<span class="co">#&gt;   [6,]   1      6   19.81      6</span>
-<span class="co">#&gt;   [7,]   1      7   21.18      7</span>
-<span class="co">#&gt;   [8,]   1      8   24.44      8</span>
-<span class="co">#&gt;   [9,]   1      9   23.91      9</span>
-<span class="co">#&gt;  [10,]   1     10   21.97     10</span>
-<span class="co">#&gt;  [11,]   1     11   21.14     11</span>
-<span class="co">#&gt;  [12,]   1     12   24.54     12</span>
-<span class="co">#&gt;  [13,]   1     13   23.46     13</span>
-<span class="co">#&gt;  [14,]   1     14   16.20     14</span>
-<span class="co">#&gt;  [15,]   1     15   19.93     15</span>
-<span class="co">#&gt;  [16,]   1     16   20.54     16</span>
-<span class="co">#&gt;  [17,]   1     17   19.71     17</span>
-<span class="co">#&gt;  [18,]   1     18   24.94     18</span>
-<span class="co">#&gt;  [19,]   1     19   18.71     19</span>
-<span class="co">#&gt;  [20,]   1     20   21.80     20</span>
-<span class="co">#&gt;  [21,]   2      1   19.52     21</span>
-<span class="co">#&gt;  [22,]   2      2   23.44     22</span>
-<span class="co">#&gt;  [23,]   2      3   19.64     23</span>
-<span class="co">#&gt;  [24,]   2      4   15.88     24</span>
-<span class="co">#&gt;  [25,]   2      5   21.83     25</span>
-<span class="co">#&gt;  [26,]   2      6   19.16     26</span>
-<span class="co">#&gt;  [27,]   2      7   18.66     27</span>
-<span class="co">#&gt;  [28,]   2      8   18.82     28</span>
-<span class="co">#&gt;  [29,]   2      9   22.73     29</span>
-<span class="co">#&gt;  [30,]   2     10   19.34     30</span>
-<span class="co">#&gt;  [31,]   2     11   18.89     31</span>
-<span class="co">#&gt;  [32,]   2     12   16.70     32</span>
-<span class="co">#&gt;  [33,]   2     13   21.41     33</span>
-<span class="co">#&gt;  [34,]   2     14   21.88     34</span>
-<span class="co">#&gt;  [35,]   2     15   14.95     35</span>
-<span class="co">#&gt;  [36,]   2     16   18.54     36</span>
-<span class="co">#&gt;  [37,]   2     17   23.17     37</span>
-<span class="co">#&gt;  [38,]   2     18   17.67     38</span>
-<span class="co">#&gt;  [39,]   2     19   21.91     39</span>
-<span class="co">#&gt;  [40,]   2     20   19.93     40</span>
-<span class="co">#&gt;  [41,]   3      1   19.76     41</span>
-<span class="co">#&gt;  [42,]   3      2   24.32     42</span>
-<span class="co">#&gt;  [43,]   3      3   21.97     43</span>
-<span class="co">#&gt;  [44,]   3      4   19.65     44</span>
-<span class="co">#&gt;  [45,]   3      5   21.29     45</span>
-<span class="co">#&gt;  [46,]   3      6   23.24     46</span>
-<span class="co">#&gt;  [47,]   3      7   22.59     47</span>
-<span class="co">#&gt;  [48,]   3      8   24.51     48</span>
-<span class="co">#&gt;  [49,]   3      9   22.47     49</span>
-<span class="co">#&gt;  [50,]   3     10   20.34     50</span>
-<span class="co">#&gt;  [51,]   3     11   19.82     51</span>
-<span class="co">#&gt;  [52,]   3     12   20.87     52</span>
-<span class="co">#&gt;  [53,]   3     13   18.46     53</span>
-<span class="co">#&gt;  [54,]   3     14   19.87     54</span>
-<span class="co">#&gt;  [55,]   3     15   21.79     55</span>
-<span class="co">#&gt;  [56,]   3     16   21.94     56</span>
-<span class="co">#&gt;  [57,]   3     17   18.72     57</span>
-<span class="co">#&gt;  [58,]   3     18   20.17     58</span>
-<span class="co">#&gt;  [59,]   3     19   17.82     59</span>
-<span class="co">#&gt;  [60,]   3     20   16.17     60</span>
-<span class="co">#&gt;  [61,]   1      1   22.34      1</span>
-<span class="co">#&gt;  [62,]   1      2   19.80      2</span>
-<span class="co">#&gt;  [63,]   1      3   22.22      3</span>
-<span class="co">#&gt;  [64,]   1      4   19.27      4</span>
-<span class="co">#&gt;  [65,]   1      5   19.53      5</span>
-<span class="co">#&gt;  [66,]   1      6   19.81      6</span>
-<span class="co">#&gt;  [67,]   1      7   21.18      7</span>
-<span class="co">#&gt;  [68,]   1      8   24.44      8</span>
-<span class="co">#&gt;  [69,]   1      9   23.91      9</span>
-<span class="co">#&gt;  [70,]   1     10   21.97     10</span>
-<span class="co">#&gt;  [71,]   1     11   21.14     11</span>
-<span class="co">#&gt;  [72,]   1     12   24.54     12</span>
-<span class="co">#&gt;  [73,]   1     13   23.46     13</span>
-<span class="co">#&gt;  [74,]   1     14   16.20     14</span>
-<span class="co">#&gt;  [75,]   1     15   19.93     15</span>
-<span class="co">#&gt;  [76,]   1     16   20.54     16</span>
-<span class="co">#&gt;  [77,]   1     17   19.71     17</span>
-<span class="co">#&gt;  [78,]   1     18   24.94     18</span>
-<span class="co">#&gt;  [79,]   1     19   18.71     19</span>
-<span class="co">#&gt;  [80,]   1     20   21.80     20</span>
-<span class="co">#&gt;  [81,]   2      1   19.52     21</span>
-<span class="co">#&gt;  [82,]   2      2   23.44     22</span>
-<span class="co">#&gt;  [83,]   2      3   19.64     23</span>
-<span class="co">#&gt;  [84,]   2      4   15.88     24</span>
-<span class="co">#&gt;  [85,]   2      5   21.83     25</span>
-<span class="co">#&gt;  [86,]   2      6   19.16     26</span>
-<span class="co">#&gt;  [87,]   2      7   18.66     27</span>
-<span class="co">#&gt;  [88,]   2      8   18.82     28</span>
-<span class="co">#&gt;  [89,]   2      9   22.73     29</span>
-<span class="co">#&gt;  [90,]   2     10   19.34     30</span>
-<span class="co">#&gt;  [91,]   2     11   18.89     31</span>
-<span class="co">#&gt;  [92,]   2     12   16.70     32</span>
-<span class="co">#&gt;  [93,]   2     13   21.41     33</span>
-<span class="co">#&gt;  [94,]   2     14   21.88     34</span>
-<span class="co">#&gt;  [95,]   2     15   14.95     35</span>
-<span class="co">#&gt;  [96,]   2     16   18.54     36</span>
-<span class="co">#&gt;  [97,]   2     17   23.17     37</span>
-<span class="co">#&gt;  [98,]   2     18   17.67     38</span>
-<span class="co">#&gt;  [99,]   2     19   21.91     39</span>
-<span class="co">#&gt; [100,]   2     20   19.93     40</span>
-<span class="co">#&gt; [101,]   3      1   19.76     41</span>
-<span class="co">#&gt; [102,]   3      2   24.32     42</span>
-<span class="co">#&gt; [103,]   3      3   21.97     43</span>
-<span class="co">#&gt; [104,]   3      4   19.65     44</span>
-<span class="co">#&gt; [105,]   3      5   21.29     45</span>
-<span class="co">#&gt; [106,]   3      6   23.24     46</span>
-<span class="co">#&gt; [107,]   3      7   22.59     47</span>
-<span class="co">#&gt; [108,]   3      8   24.51     48</span>
-<span class="co">#&gt; [109,]   3      9   22.47     49</span>
-<span class="co">#&gt; [110,]   3     10   20.34     50</span>
-<span class="co">#&gt; [111,]   3     11   19.82     51</span>
-<span class="co">#&gt; [112,]   3     12   20.87     52</span>
-<span class="co">#&gt; [113,]   3     13   18.46     53</span>
-<span class="co">#&gt; [114,]   3     14   19.87     54</span>
-<span class="co">#&gt; [115,]   3     15   21.79     55</span>
-<span class="co">#&gt; [116,]   3     16   21.94     56</span>
-<span class="co">#&gt; [117,]   3     17   18.72     57</span>
-<span class="co">#&gt; [118,]   3     18   20.17     58</span>
-<span class="co">#&gt; [119,]   3     19   17.82     59</span>
-<span class="co">#&gt; [120,]   3     20   16.17     60</span></code></pre></div>
+<span class="co">#&gt;   [1,]   1      1       1      1</span>
+<span class="co">#&gt;   [2,]   1      2       2      2</span>
+<span class="co">#&gt;   [3,]   1      3       3      3</span>
+<span class="co">#&gt;   [4,]   1      4       4      4</span>
+<span class="co">#&gt;   [5,]   1      5       5      5</span>
+<span class="co">#&gt;   [6,]   1      6       6      6</span>
+<span class="co">#&gt;   [7,]   1      7       7      7</span>
+<span class="co">#&gt;   [8,]   1      8       8      8</span>
+<span class="co">#&gt;   [9,]   1      9       9      9</span>
+<span class="co">#&gt;  [10,]   1     10      10     10</span>
+<span class="co">#&gt;  [11,]   1     11      11     11</span>
+<span class="co">#&gt;  [12,]   1     12      12     12</span>
+<span class="co">#&gt;  [13,]   1     13       1     13</span>
+<span class="co">#&gt;  [14,]   1     14       2     14</span>
+<span class="co">#&gt;  [15,]   1     15       3     15</span>
+<span class="co">#&gt;  [16,]   1     16       4     16</span>
+<span class="co">#&gt;  [17,]   1     17       5     17</span>
+<span class="co">#&gt;  [18,]   1     18       6     18</span>
+<span class="co">#&gt;  [19,]   1     19       7     19</span>
+<span class="co">#&gt;  [20,]   1     20       8     20</span>
+<span class="co">#&gt;  [21,]   2      1       9     21</span>
+<span class="co">#&gt;  [22,]   2      2      10     22</span>
+<span class="co">#&gt;  [23,]   2      3      11     23</span>
+<span class="co">#&gt;  [24,]   2      4      12     24</span>
+<span class="co">#&gt;  [25,]   2      5       1     25</span>
+<span class="co">#&gt;  [26,]   2      6       2     26</span>
+<span class="co">#&gt;  [27,]   2      7       3     27</span>
+<span class="co">#&gt;  [28,]   2      8       4     28</span>
+<span class="co">#&gt;  [29,]   2      9       5     29</span>
+<span class="co">#&gt;  [30,]   2     10       6     30</span>
+<span class="co">#&gt;  [31,]   2     11       7     31</span>
+<span class="co">#&gt;  [32,]   2     12       8     32</span>
+<span class="co">#&gt;  [33,]   2     13       9     33</span>
+<span class="co">#&gt;  [34,]   2     14      10     34</span>
+<span class="co">#&gt;  [35,]   2     15      11     35</span>
+<span class="co">#&gt;  [36,]   2     16      12     36</span>
+<span class="co">#&gt;  [37,]   2     17       1      1</span>
+<span class="co">#&gt;  [38,]   2     18       2      2</span>
+<span class="co">#&gt;  [39,]   2     19       3      3</span>
+<span class="co">#&gt;  [40,]   2     20       4      4</span>
+<span class="co">#&gt;  [41,]   3      1       5      5</span>
+<span class="co">#&gt;  [42,]   3      2       6      6</span>
+<span class="co">#&gt;  [43,]   3      3       7      7</span>
+<span class="co">#&gt;  [44,]   3      4       8      8</span>
+<span class="co">#&gt;  [45,]   3      5       9      9</span>
+<span class="co">#&gt;  [46,]   3      6      10     10</span>
+<span class="co">#&gt;  [47,]   3      7      11     11</span>
+<span class="co">#&gt;  [48,]   3      8      12     12</span>
+<span class="co">#&gt;  [49,]   3      9       1     13</span>
+<span class="co">#&gt;  [50,]   3     10       2     14</span>
+<span class="co">#&gt;  [51,]   3     11       3     15</span>
+<span class="co">#&gt;  [52,]   3     12       4     16</span>
+<span class="co">#&gt;  [53,]   3     13       5     17</span>
+<span class="co">#&gt;  [54,]   3     14       6     18</span>
+<span class="co">#&gt;  [55,]   3     15       7     19</span>
+<span class="co">#&gt;  [56,]   3     16       8     20</span>
+<span class="co">#&gt;  [57,]   3     17       9     21</span>
+<span class="co">#&gt;  [58,]   3     18      10     22</span>
+<span class="co">#&gt;  [59,]   3     19      11     23</span>
+<span class="co">#&gt;  [60,]   3     20      12     24</span>
+<span class="co">#&gt;  [61,]   1      1       1     25</span>
+<span class="co">#&gt;  [62,]   1      2       2     26</span>
+<span class="co">#&gt;  [63,]   1      3       3     27</span>
+<span class="co">#&gt;  [64,]   1      4       4     28</span>
+<span class="co">#&gt;  [65,]   1      5       5     29</span>
+<span class="co">#&gt;  [66,]   1      6       6     30</span>
+<span class="co">#&gt;  [67,]   1      7       7     31</span>
+<span class="co">#&gt;  [68,]   1      8       8     32</span>
+<span class="co">#&gt;  [69,]   1      9       9     33</span>
+<span class="co">#&gt;  [70,]   1     10      10     34</span>
+<span class="co">#&gt;  [71,]   1     11      11     35</span>
+<span class="co">#&gt;  [72,]   1     12      12     36</span>
+<span class="co">#&gt;  [73,]   1     13       1      1</span>
+<span class="co">#&gt;  [74,]   1     14       2      2</span>
+<span class="co">#&gt;  [75,]   1     15       3      3</span>
+<span class="co">#&gt;  [76,]   1     16       4      4</span>
+<span class="co">#&gt;  [77,]   1     17       5      5</span>
+<span class="co">#&gt;  [78,]   1     18       6      6</span>
+<span class="co">#&gt;  [79,]   1     19       7      7</span>
+<span class="co">#&gt;  [80,]   1     20       8      8</span>
+<span class="co">#&gt;  [81,]   2      1       9      9</span>
+<span class="co">#&gt;  [82,]   2      2      10     10</span>
+<span class="co">#&gt;  [83,]   2      3      11     11</span>
+<span class="co">#&gt;  [84,]   2      4      12     12</span>
+<span class="co">#&gt;  [85,]   2      5       1     13</span>
+<span class="co">#&gt;  [86,]   2      6       2     14</span>
+<span class="co">#&gt;  [87,]   2      7       3     15</span>
+<span class="co">#&gt;  [88,]   2      8       4     16</span>
+<span class="co">#&gt;  [89,]   2      9       5     17</span>
+<span class="co">#&gt;  [90,]   2     10       6     18</span>
+<span class="co">#&gt;  [91,]   2     11       7     19</span>
+<span class="co">#&gt;  [92,]   2     12       8     20</span>
+<span class="co">#&gt;  [93,]   2     13       9     21</span>
+<span class="co">#&gt;  [94,]   2     14      10     22</span>
+<span class="co">#&gt;  [95,]   2     15      11     23</span>
+<span class="co">#&gt;  [96,]   2     16      12     24</span>
+<span class="co">#&gt;  [97,]   2     17       1     25</span>
+<span class="co">#&gt;  [98,]   2     18       2     26</span>
+<span class="co">#&gt;  [99,]   2     19       3     27</span>
+<span class="co">#&gt; [100,]   2     20       4     28</span>
+<span class="co">#&gt; [101,]   3      1       5     29</span>
+<span class="co">#&gt; [102,]   3      2       6     30</span>
+<span class="co">#&gt; [103,]   3      3       7     31</span>
+<span class="co">#&gt; [104,]   3      4       8     32</span>
+<span class="co">#&gt; [105,]   3      5       9     33</span>
+<span class="co">#&gt; [106,]   3      6      10     34</span>
+<span class="co">#&gt; [107,]   3      7      11     35</span>
+<span class="co">#&gt; [108,]   3      8      12     36</span>
+<span class="co">#&gt; [109,]   3      9       1      1</span>
+<span class="co">#&gt; [110,]   3     10       2      2</span>
+<span class="co">#&gt; [111,]   3     11       3      3</span>
+<span class="co">#&gt; [112,]   3     12       4      4</span>
+<span class="co">#&gt; [113,]   3     13       5      5</span>
+<span class="co">#&gt; [114,]   3     14       6      6</span>
+<span class="co">#&gt; [115,]   3     15       7      7</span>
+<span class="co">#&gt; [116,]   3     16       8      8</span>
+<span class="co">#&gt; [117,]   3     17       9      9</span>
+<span class="co">#&gt; [118,]   3     18      10     10</span>
+<span class="co">#&gt; [119,]   3     19      11     11</span>
+<span class="co">#&gt; [120,]   3     20      12     12</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -560,8 +492,9 @@ matref
         </div>
       </div>
 <a href="matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="list.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="list.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -570,16 +503,18 @@ matref
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -603,9 +538,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

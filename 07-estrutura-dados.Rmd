@@ -1129,7 +1129,7 @@ diag(mel)
 
 Operações algébricas, incluindo a multiplicação `*`, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial (Figura \@ref(fig:fig-multiplicacao-mat)) usamos o operador (`%*%`).
 
-```{r fig-multiplicacao-mat, fig.cap="Multiplicação matricial.", echo = FALSE, out.width="100%"}
+```{r fig-multiplicacao-mat, fig.cap="Multiplicação matricial.", echo = FALSE, out.width="50%", fig.align='center'}
 knitr::include_graphics("images/multilicacaoMatricial.png")
 ```
 
@@ -1259,42 +1259,28 @@ cbind(
 
 ### Criação 
 
+Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `temp_vetor`. 
+
 ```{r Chunk211, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-v <- 1:12
-# atribuindo novas dimensões a v
-# 1a dim: 3 linhas, 2a dim: 2 colunas, 3a dim: 2
-dim(v) <- c(2, 2, 3)
-v
+temp_vetor <- 1:12
+temp_vetor
 # ou
-a <- array(data = v, dim = c(3, 2, 2))
-dim(a)
-length(a)
-class(a)
-mode(a)
-# exemplo de inicialização de uma array
-array(data = 0, dim = c(3, 4, 2))
+temp_array <- array(data = temp_vetor, dim = c(3, 4, 3))
+temp_array
+dim(temp_array)
+length(temp_array)
+class(temp_array)
+mode(temp_array)
 ```
 
 ### Indexação
 
-Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `tempVals`. 
+
 
 ```{r Chun221, message=FALSE  , echo=TRUE, eval=TRUE}
-tempVals <- c(
-  22.34, 19.8, 22.22, 19.27, 19.53, 19.81, 21.18, 24.44, 23.91,
-  21.97, 21.14, 24.54, 23.46, 16.2, 19.93, 20.54, 19.71, 24.94,
-  18.71, 21.8, 19.52, 23.44, 19.64, 15.88, 21.83, 19.16, 18.66,
-  18.82, 22.73, 19.34, 18.89, 16.7, 21.41, 21.88, 14.95, 18.54,
-  23.17, 17.67, 21.91, 19.93, 19.76, 24.32, 21.97, 19.65, 21.29,
-  23.24, 22.59, 24.51, 22.47, 20.34, 19.82, 20.87, 18.46, 19.87,
-  21.79, 21.94, 18.72, 20.17, 17.82, 16.17
-)
-# array de temperaturas
-atemp <- array(tempVals, dim = c(4, 5, 3))
-atemp
-colnames(atemp) <- -45:-41
-rownames(atemp) <- -19:-22
-atemp
+colnames(temp_array) <- -45:-42
+rownames(temp_array) <- -19:-21
+temp_array
 ```
 
 
@@ -1302,34 +1288,32 @@ Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleç�
 
 ```{r Chun221a, message=FALSE  , echo=TRUE, eval=TRUE}
 # serie temporal do 1º ponto
-atemp[1, 1, ]
-atemp["-19", "-45", ]
+temp_array[1, 1, ]
+temp_array["-19", "-45", ]
 # para 1a faixa de latitude (-19),
 # os valores de temp das longitudes em todos tempos
-atemp[1, , ]
+temp_array[1, , ]
 # para 2a faixa de longitude (-44), todas longitudes e tempos
-atemp[, 2, ]
+temp_array[, 2, ]
 # média meridional
-colMeans(atemp[, 2, ])
+colMeans(temp_array[, 2, ])
 # subdominio "espacial"
-atemp[3:4, 2:3, ]
-# sem a 1a linha, sem a 5a coluna e sem o primeiro e 3o mes
-atemp[ -1, -5, -c(1, 3)]
+temp_array[2:3, 2:3, ]
 # média espacial do 1o mês
-mean(atemp[, , 1])
+mean(temp_array[, , 1])
 # média espacial do segundo mês
-mean(atemp[, , 2])
+mean(temp_array[, , 2])
 # demanchando uma array (conversão para vetor)
-c(atemp)
-c(atemp[, , 1])
+c(temp_array)
+c(temp_array[, , 1])
 # para entender a forma como a matriz é convertida para vetor
-matref <- cbind(
+mat_temp <- cbind(
   mes = rep(1:3, each = 20),
   elemat = rep(1:20, times = 6),
-  valores = c(atemp),
-  elearr = 1:(cumprod(dim(atemp))[3])
+  valores = c(temp_array),
+  elearr = 1:(cumprod(dim(temp_array))[3])
 )
-matref
+mat_temp
 ```
 
 ## List
@@ -1364,7 +1348,7 @@ names(lst) <- c("vetor_int", "vetor_num", "logico", "char", "lista")
 Os índices em colchetes duplos `[[]]` identificam o elemento ou a componente da lista. Os índices em colchete simples `[]` indicam qual sub-elemento da lista está sendo mostrado. Por exemplo `1.1` é o primeiro sub-elemento do segundo elemento da lista `lst`. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.
 
 ```{block, note-virgulas, type='rmdtip'}
-Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados. Como por exemplo a saída da função `rle()`.
+Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados. Como por exemplo a saída das funções `rle()`.
 ```
 
 
@@ -1495,36 +1479,27 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 
 #### Lista de condimentos 
 
-É fácil de confundir quando usar `]` e `]]`. O exemplo abaixo ajuda lembrar da diferença entre eles.
+É fácil de confundir quando usar `]` e `]]`. A tabela abaixo ajuda lembrar da diferença entre eles.
 
-`x` é um frasco de pimenta
-
-```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
-knitr::include_graphics("images/pepper.jpg")
+```{r, echo = FALSE}
+df <- data.frame(
+  descrição = c(
+    "frasco de pimenta",
+    "frasco de pimenta com apenas 1 pacote de pimenta",
+    "1 pacote de pimenta",
+    "conteúdo de um pacote de pimenta"
+  ),
+  código = c("frasco", "frasco[1]", "frasco[[1]]", "frasco[[1]][[1]]"),
+  resultado = c(
+    pandoc.image.return("images/pepper.jpg"),
+    pandoc.image.return("images/pepper-1.jpg"),
+    pandoc.image.return("images/pepper-2.jpg"),
+    pandoc.image.return("images/pepper-3.jpg")
+  ),
+  stringsAsFactors = FALSE
+)
+pander::pander(df)
 ```
-
-`x[1]` é o frasco de pimenta com apenas 1 pacote de pimenta:
-
-```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
-knitr::include_graphics("images/pepper-1.jpg")
-```
-
-`x[2]` seria a mesma coisa, mas com o segundo pacote. 
-`x[1:2]` seria o frasco de pimenta com 2 pacotes de pimenta.
-
-
-`x[[1]]` é ...
-
-```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
-knitr::include_graphics("images/pepper-2.jpg")
-```
-
-Se quiséssemos o conteúdo do pacote seria `x[[1]][[1]]`
-
-```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
-knitr::include_graphics("images/pepper-3.jpg")
-```
-
 
 ### Conversão de lista para vetor e vice-versa.
 
