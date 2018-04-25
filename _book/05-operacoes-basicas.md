@@ -523,3 +523,146 @@ library(styler)
 As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
 
 ![](images/styler_0.1.gif)
+
+## Exercícios
+
+1. Execute as seguintes expressões no R mostrando os resultados obtidos.
+
+
+```r
+1 + 1
+100:130
+5 - +1
+3 % 5
+2 * 3
+4 - 1
+6 / (4 - 1)
+```
+
+- - - 
+
+2. Utilize uma expressão para cada item. 
+     a. Escolha um número e some 3 a ele.
+     b. Multiplique o resultado por 2.
+     c. Subtraia 10 da resposta.
+     d. Divida o que foi obtido por 4.
+
+- - - 
+
+3. Calcule $\sqrt{16}$, ${16^{0.5}}^{3}$, ${(16^{0.5})}^{3}$ e $4^{\frac{3}{2}}$.
+
+- - - 
+
+4. Teste as expressões `log10(1000)`, `log(1000)`, `exp(log(1000))`. Depois teste a expressão `log2(64)`. Verifique se você entendeu as diferentes funções logarítmicas.
+
+- - - 
+
+5. Defina as variáveis abaixo tomando cuidados ao nomear as variáveis, conforme visto em sala de aula. Mostre os valores para as seguintes constantes:
+
+
+    a. Velocidade da luz: $\nu = 2.998 \times 10^{8} \left[m \, s^{-1}\right]$ 
+
+    b. Carga elementar ou eletrônica: $e = 1.602 \times 10^{-19} \left[C\right]$
+
+    c. Permissividade do vácuo: $\epsilon_{0} = 8.85 \times 10^{-12} \left[C^{2} \, N^{-1} \, m^{2}\right]$
+    
+    d. Constante de Planck: $h=6.626 \times 10^{-34} \left[J \, s\right]$
+    
+    e. Constante de Stefan Boltzman: $\sigma = 5.67 \times 10^{-8} \left[W \, m^{-2} \, K^{-4}\right]$    
+    f. Constante solar: $S_{0} = 1380 \left[W \, m^{-2}\right]$
+
+
+    g. Constante de Avogadro: $N_{A} = 6.022 \times 10^{23} \left[mol^{-1}\right]$
+
+    h. Constante dos gases para o ar seco: $R_{d} = 287.04 \left[J \, K^{-1} \, kg^{-1}\right]$
+    
+    i. Constante dos gases ideais para o vapor: $R_{w} = 461.5 \left[J \, K^{-1} \, kg^{-1}\right]$
+
+    j. Densidade do ar seco para CNTP (à 0 ° C em 1000 mb): $\rho=1.2754 \left[kg \, m^{-3}\right]$
+
+    k. Pressão média ao nível médio do mar para atmosfera padrão: $P_{0}=1013.25 \left[mb\right]$
+    
+    l. Temperatura ao nível médio do mar para atmosfera padrão: $T_{0}=288.15 \left[K\right]$
+    
+    m. Calor latente de vaporização ou condensação (à 0 °C): $\lambda_{v} =  2.501 \times 10^{6}\left[J \, kg^{-1}\right]$
+    
+    n. Calor latente de fusão (à 0 °C): $\lambda_{f} =  0.334 \times 10^{6}\left[J \, kg^{-1}\right]$
+    
+    o. Massa molecular da água: $M_w = 18.016 \left[g \, mol^{-1}\right]$
+    
+    p. Peso molecular do ar: $M_{ar} = 28.96 \left[g \, mol^{-1}\right]$
+
+    q. Raio da terra: $r = 6.37 \times 10^{6} \left[m\right]$
+    
+    r. Velocidade angular da Terra: $\Omega=7.29 \times 10^{-5} \left[rad \, s^{-1}\right]$
+
+
+- - - 
+
+6. (a) Como você pode fazer para que a constante `pi` seja mostrada com 20 dígitos? (b) Como voltar a trabalhar a com 7 dígitos novamente? c. Mostre o número neperiano com 7 dígitos.
+
+- - - 
+
+7. Determine a temperatura de búlbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
+
+$$
+\begin{aligned} 
+T_{w}=T\cdot atan\left [ 0.151977\cdot \left ( UR+8.313659 \right )^{1/2} \right ]+ \\
+atan\left (T+UR \right )-\\
+atan\left ( UR-1.676331 \right )+\\
+0.00391838\left ( UR \right )^{3/2}\cdot atan\left ( 0.023101\cdot UR \right )-\\
+4.686035
+\end{aligned} 
+$$
+
+- - - 
+
+8. Determine os valores de umidade do solo:
+
+ - no potencial hídrico de 10kPa ($\theta_{10kPa}$)
+ - na capacidade de campo ($\theta_{33kPa}$)
+ - no ponto de murcha permanente ($\theta_{1500kPa}$)
+ 
+    utilizando o conjunto de equações de pedotransferência abaixo ([Tomasela et al. 2003](https://dl.sciencesocieties.org/publications/sssaj/abstracts/67/4/1085)):
+
+<img src="images/conj-eqs-tomasella2003.png" width="88%" style="display: block; margin: auto;" />
+
+ - Considere $SI = 16.29$ (%), $CL =  49.25$ (%), $Db = 1.25$ ($g \, cm^{-3}$), $Me = 25$ (%), onde
+$SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é a densidade do solo e $Me$ é a umidade equivalente em %.
+
+
+- - - 
+
+9. Arredonde para 2 casas decimais os resultados da questão 8. Dica ver `?round`.
+
+- - - 
+
+10. Instale a **última versão do R** no (seu) computador usado para resolução desta lista. Crie um *script* chamado `solucao-q10-NomeDoAluno.R` contendo os códigos gerados para solução das questões 7 e 8. Faça as seguintes alterações no código do *script*:
+
+ - no código da questão 8, utilize a temperatura do ar ($T$) de 30°C e Umidade relativa ($UR$) de 30% para calcular $Tw$.
+
+ - no código da questão 9, considere $SI = 13$ (%), $CL =  37$ (%), $Db = 1.3$ ($g \, cm^{-3}$), $Me = 21$ (%) para recalcular  $\theta_{10kPa}$, $\theta_{33kPa}$ e $\theta_{1500kPa}$.
+
+- após os códigos usados para resolver as questões 8 e 9, adicione uma nova linha com a expressão `sessionInfo()`.
+
+ - Finalmente rode o *script* usando o R no modo não iterativo. Anexe o arquivo de saída `solucao-q10-NomeDoAluno.Rout` como resposta para este problema.
+
+- - - 
+
+
+<div class="rmdimportant">
+<p><strong>Instruções para entrega da resolução da lista de exercícios.</strong></p>
+<p>A resolução da lista deve conter um único arquivo compactado nomeado segundo o padrão <code>lista1-adar-NomedoAluno.zip</code>.</p>
+<p>O arquivo compactado deve incluir pelo menos 3 arquivos:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>solucao-q10-NomeDoAluno.R</code>: um <em>script</em> com os códigos usados para resolver a questão 10.</p></li>
+<li><p><code>solucao-q10-NomeDoAluno.Rout</code> um arquivo texto de saída gerado (automaticamente) pelo R quando usado no modo não iterativo (<em>Batch</em>). Também faz parte da resolução da questão 10.</p></li>
+<li><p><code>lista1-adar-NomedoAluno.Rmd</code>: arquivo <strong>Rmarkdown</strong> gerado no RStudio (<code>File &gt; New File &gt; R Notebook</code>) e editado de forma que contenha o texto e o código (<em>chuncks</em>) necessários para resolução das questões 1 a 9.</p></li>
+</ol>
+<p>Sempre procure criar variáveis par resolução das questões. Utilize nomes contextualizados e intuitivos. Siga as boas práticas recomendadas no material e em laboratório para nomear as variáveis.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>(Opcional) <code>lista1-adar-NomedoAluno.html</code> arquivo html gerado pelo RStudio (botão knit na aba do painel do editor) a partir do arquivo <code>lista1-adar-NomedoAluno.Rmd</code>.</li>
+</ol>
+</div>
+
+
