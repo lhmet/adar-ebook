@@ -129,36 +129,36 @@ Para ver a lista completa de funções trigonométricas:
 
 ### Valores numéricos especiais
 
-Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como:
-
-```{r chunk18, message=FALSE}
-2/0
--12/0
-exp(-Inf)
-log(0)
-0/Inf
-(0:3)^Inf
-log(-0.5)
-sqrt(-1)
-0/0 
-Inf-Inf
-Inf/Inf
-mean(c(NA, NA), na.rm = TRUE)
-```
-
-`NaN` é a abreviação para *Not a Number*. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
+Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela 1). 
+```{r tab-num-esp, echo = FALSE, warning=FALSE}
+oper <- c("2/0", "-12/0", "log(0)", "(c(-3, 3))^Inf", "0*Inf", "log(-0.5)", "sqrt(-1)", "0/0", "Inf-Inf", "mean(c(NA, NA), na.rm = TRUE)")
+res <- as.character(c(2/0, -12/0, log(0), paste0((c(-3, 3))^Inf, collapse = ", "), 0*Inf, log(-0.5), sqrt(-1), 0/0, Inf-Inf, mean(c(NA, NA), na.rm = TRUE)))
+esp_num_df <- tibble::data_frame(`operação` = oper, resultado = res)
+kable(esp_num_df, caption = "Exemlos de operações que resultam em NaN ou $\\pm\\infty$ .", align = "c")
+```
 
-```{r chunk19, echo=FALSE}
+Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.
+
+```{r chunk18, message=FALSE}
+exp(-Inf)
+(0:1)^Inf
+0/Inf
+(c(-1, 1)*Inf)^0
+0^0
+```
+
+Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+
+```{r tab-nas, echo=FALSE}
 oper_nas <- data.frame(
     operação = c("NA + 5", "sqrt(NA)", "NA^2", "NA/NaN"),
     resultado = c(NA + 5, sqrt(NA), NA ^ 2, NA / NaN)
   )
 #tibble::as_tibble(oper_nas)
-kable(oper_nas, align = "c", caption = "Tabela 1. Operações com NA.")
+kable(oper_nas, align = "c", caption = "Operações com NA.")
 ```
 
 
@@ -262,8 +262,10 @@ jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
 abr <- jun <- set <- nov <- 30
 fev <- 28
 # verificação
-jan; jul
-jun; set
+jan
+jul
+jun
+set
 fev
 ```
 
