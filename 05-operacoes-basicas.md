@@ -153,46 +153,46 @@ Para ver a lista completa de funções trigonométricas:
 
 ### Valores numéricos especiais
 
-Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como:
-
-
-```r
-2/0
-#> [1] Inf
--12/0
-#> [1] -Inf
-exp(-Inf)
-#> [1] 0
-log(0)
-#> [1] -Inf
-0/Inf
-#> [1] 0
-(0:3)^Inf
-#> [1]   0   1 Inf Inf
-log(-0.5)
-#> Warning in log(-0.5): NaNs produced
-#> [1] NaN
-sqrt(-1)
-#> Warning in sqrt(-1): NaNs produced
-#> [1] NaN
-0/0 
-#> [1] NaN
-Inf-Inf
-#> [1] NaN
-Inf/Inf
-#> [1] NaN
-mean(c(NA, NA), na.rm = TRUE)
-#> [1] NaN
-```
-
-`NaN` é a abreviação para *Not a Number*. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
+Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela 1). 
+
+Table: (\#tab:tab-num-esp)Exemlos de operações que resultam em NaN ou $\pm\infty$ .
+
+           operação               resultado 
+-------------------------------  -----------
+              2/0                    Inf    
+             -12/0                  -Inf    
+            log(0)                  -Inf    
+        (c(-3, 3))^Inf            NaN, Inf  
+             0*Inf                   NaN    
+           log(-0.5)                 NaN    
+           sqrt(-1)                  NaN    
+              0/0                    NaN    
+            Inf-Inf                  NaN    
+ mean(c(NA, NA), na.rm = TRUE)       NaN    
+
+Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.
 
 
-Table: (\#tab:chunk19)Tabela 1. Operações com NA.
+```r
+exp(-Inf)
+#> [1] 0
+(0:1)^Inf
+#> [1] 0 1
+0/Inf
+#> [1] 0
+(c(-1, 1)*Inf)^0
+#> [1] 1 1
+0^0
+#> [1] 1
+```
+
+Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+
+
+Table: (\#tab:tab-nas)Operações com NA.
 
  operação    resultado 
 ----------  -----------
@@ -328,11 +328,13 @@ jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
 abr <- jun <- set <- nov <- 30
 fev <- 28
 # verificação
-jan; jul
+jan
 #> [1] 31
+jul
 #> [1] 31
-jun; set
+jun
 #> [1] 30
+set
 #> [1] 30
 fev
 #> [1] 28
@@ -363,10 +365,12 @@ Quando usamos a mesma variável numa sequência de atribuições o seu valor é 
 
 ```r
 ls()
-#>  [1] "abr"      "ago"      "dez"      "es"       "fev"      "jan"     
-#>  [7] "jul"      "jun"      "mai"      "mar"      "nd3"      "nd4"     
-#> [13] "nov"      "oper_nas" "out"      "p"        "p_pa"     "pcks"    
-#> [19] "rblue"    "set"      "tar"      "totd"     "y1"       "y2"
+#>  [1] "abr"        "ago"        "dez"        "es"         "esp_num_df"
+#>  [6] "fev"        "jan"        "jul"        "jun"        "mai"       
+#> [11] "mar"        "nd3"        "nd4"        "nov"        "oper"      
+#> [16] "oper_nas"   "out"        "p"          "p_pa"       "pcks"      
+#> [21] "rblue"      "res"        "set"        "tar"        "totd"      
+#> [26] "y1"         "y2"
 ```
 
 [^9]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
@@ -407,11 +411,12 @@ Para remover variáveis usa-se a função `rm()`.
 ```r
 # lista de variáveis existentes
 ls()
-#>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
-#>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
-#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "p_pa"    
-#> [19] "pcks"     "rblue"    "set"      "tar"      "totd"     "u"       
-#> [25] "y1"       "y2"
+#>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
+#>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
+#> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
+#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [26] "totd"       "u"          "y1"         "y2"
 ```
 
 Vamos remover a variável `u` criada previamente e ver a lista de objetos no espaço de trabalho.
@@ -421,11 +426,12 @@ Vamos remover a variável `u` criada previamente e ver a lista de objetos no esp
 rm(u)
 # lista de variáveis existentes, sem u
 ls()
-#>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
-#>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
-#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "p_pa"    
-#> [19] "pcks"     "rblue"    "set"      "tar"      "totd"     "y1"      
-#> [25] "y2"
+#>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
+#>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
+#> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
+#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [26] "totd"       "y1"         "y2"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
@@ -435,10 +441,11 @@ Podemos remover mais de uma variável ao mesmo tempo.
 rm(es_hpa, es, tar, y1, y2)
 # lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
 ls()
-#>  [1] "abr"      "ago"      "dez"      "fev"      "jan"      "jul"     
-#>  [7] "jun"      "mai"      "mar"      "nd3"      "nd4"      "nov"     
-#> [13] "oper_nas" "out"      "p"        "p_pa"     "pcks"     "rblue"   
-#> [19] "set"      "totd"
+#>  [1] "abr"        "ago"        "dez"        "esp_num_df" "fev"       
+#>  [6] "jan"        "jul"        "jun"        "mai"        "mar"       
+#> [11] "nd3"        "nd4"        "nov"        "oper"       "oper_nas"  
+#> [16] "out"        "p"          "p_pa"       "pcks"       "rblue"     
+#> [21] "res"        "set"        "totd"
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):

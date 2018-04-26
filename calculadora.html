@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-04-25">
+<meta name="date" content="2018-04-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -317,38 +317,73 @@ month.name
 </div>
 <div id="valores-numericos-especiais" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> Valores numéricos especiais</h3>
-<p>Um caso particular sobre operação aritméticas no R, são os valores numéricos <code>Inf</code>e <code>NaN</code> que resultam de operações como:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">/</span><span class="dv">0</span>
-<span class="co">#&gt; [1] Inf</span>
-<span class="op">-</span><span class="dv">12</span><span class="op">/</span><span class="dv">0</span>
-<span class="co">#&gt; [1] -Inf</span>
-<span class="kw">exp</span>(<span class="op">-</span><span class="ot">Inf</span>)
+<p>Um caso particular sobre operação aritméticas no R, são os valores numéricos <code>Inf</code>(Infinito) e <code>NaN</code> que resultam de operações como as mostradas na Tabela <a href="calculadora.html#tab:tab-num-esp">5.1</a>. <code>NaN</code> é a abreviação para valor indefinido (do termo em inglês <em>Not a Number</em>). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.</p>
+<p>A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.</p>
+<table>
+<caption><span id="tab:tab-num-esp">Table 5.1: </span>Exemlos de operações que resultam em NaN ou <span class="math inline">\(\pm\infty\)</span> .</caption>
+<thead>
+<tr class="header">
+<th align="center">operação</th>
+<th align="center">resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2/0</td>
+<td align="center">Inf</td>
+</tr>
+<tr class="even">
+<td align="center">-12/0</td>
+<td align="center">-Inf</td>
+</tr>
+<tr class="odd">
+<td align="center">log(0)</td>
+<td align="center">-Inf</td>
+</tr>
+<tr class="even">
+<td align="center">(c(-3, 3))^Inf</td>
+<td align="center">NaN, Inf</td>
+</tr>
+<tr class="odd">
+<td align="center">0*Inf</td>
+<td align="center">NaN</td>
+</tr>
+<tr class="even">
+<td align="center">log(-0.5)</td>
+<td align="center">NaN</td>
+</tr>
+<tr class="odd">
+<td align="center">sqrt(-1)</td>
+<td align="center">NaN</td>
+</tr>
+<tr class="even">
+<td align="center">0/0</td>
+<td align="center">NaN</td>
+</tr>
+<tr class="odd">
+<td align="center">Inf-Inf</td>
+<td align="center">NaN</td>
+</tr>
+<tr class="even">
+<td align="center">mean(c(NA, NA), na.rm = TRUE)</td>
+<td align="center">NaN</td>
+</tr>
+</tbody>
+</table>
+<p>Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="ot">Inf</span>)
 <span class="co">#&gt; [1] 0</span>
-<span class="kw">log</span>(<span class="dv">0</span>)
-<span class="co">#&gt; [1] -Inf</span>
+(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>)<span class="op">^</span><span class="ot">Inf</span>
+<span class="co">#&gt; [1] 0 1</span>
 <span class="dv">0</span><span class="op">/</span><span class="ot">Inf</span>
 <span class="co">#&gt; [1] 0</span>
-(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)<span class="op">^</span><span class="ot">Inf</span>
-<span class="co">#&gt; [1]   0   1 Inf Inf</span>
-<span class="kw">log</span>(<span class="op">-</span><span class="fl">0.5</span>)
-<span class="co">#&gt; Warning in log(-0.5): NaNs produced</span>
-<span class="co">#&gt; [1] NaN</span>
-<span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">1</span>)
-<span class="co">#&gt; Warning in sqrt(-1): NaNs produced</span>
-<span class="co">#&gt; [1] NaN</span>
-<span class="dv">0</span><span class="op">/</span><span class="dv">0</span> 
-<span class="co">#&gt; [1] NaN</span>
-<span class="ot">Inf</span><span class="op">-</span><span class="ot">Inf</span>
-<span class="co">#&gt; [1] NaN</span>
-<span class="ot">Inf</span><span class="op">/</span><span class="ot">Inf</span>
-<span class="co">#&gt; [1] NaN</span>
-<span class="kw">mean</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] NaN</span></code></pre></div>
-<p><code>NaN</code> é a abreviação para <em>Not a Number</em>. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.</p>
-<p>A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.</p>
-<p>Outra constante especial do R é o <code>NA</code> (<em>Not Available</em>) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo <code>NA</code> resultará em <code>NA</code> (Tabela 1).</p>
+(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span><span class="ot">Inf</span>)<span class="op">^</span><span class="dv">0</span>
+<span class="co">#&gt; [1] 1 1</span>
+<span class="dv">0</span><span class="op">^</span><span class="dv">0</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
+<p>Outra constante especial do R é o <code>NA</code> (<em>Not Available</em>) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo <code>NA</code> resultará em <code>NA</code> (Tabela <a href="calculadora.html#tab:tab-nas">5.2</a>).</p>
 <table>
-<caption><span id="tab:chunk19">Table 5.1: </span>Tabela 1. Operações com NA.</caption>
+<caption><span id="tab:tab-nas">Table 5.2: </span>Operações com NA.</caption>
 <thead>
 <tr class="header">
 <th align="center">operação</th>
