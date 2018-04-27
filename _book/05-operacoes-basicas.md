@@ -666,7 +666,7 @@ $SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é
 <li><p><code>solucao-q10-NomeDoAluno.Rout</code> um arquivo texto de saída gerado (automaticamente) pelo R quando usado no modo não iterativo (<em>Batch</em>). Também faz parte da resolução da questão 10.</p></li>
 <li><p><code>lista1-adar-NomedoAluno.Rmd</code>: arquivo <strong>Rmarkdown</strong> gerado no RStudio (<code>File &gt; New File &gt; R Notebook</code>) e editado de forma que contenha o texto e o código (<em>chuncks</em>) necessários para resolução das questões 1 a 9.</p></li>
 </ol>
-<p>Sempre procure criar variáveis par resolução das questões. Utilize nomes contextualizados e intuitivos. Siga as boas práticas recomendadas no material e em laboratório para nomear as variáveis.</p>
+<p>Sempre procure criar variáveis para cada etapa da resolução das questões. Utilize nomes contextualizados e intuitivos. Siga as boas práticas recomendadas no material para nomear as variáveis.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>(Opcional) <code>lista1-adar-NomedoAluno.html</code> arquivo html gerado pelo RStudio (botão knit na aba do painel do editor) a partir do arquivo <code>lista1-adar-NomedoAluno.Rmd</code>.</li>
 </ol>
