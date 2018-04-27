@@ -1,7 +1,7 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 author: "Jônatan Tatsch"
-date: "2018-04-25"
+date: "2018-04-27"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -42,7 +42,7 @@ A intenção do livro é que após a leitura, o leitor tenha o conhecimento sufi
 
 O texto está em formato [html](https://pt.wikipedia.org/wiki/HTML) para tirar o melhor proveito de recursos de multimídia, da capacidade de busca de texto e links para websites. 
 
-O texto é organizado em 5 capítulos:
+O texto é organizado em 7 capítulos:
 
 - \@ref(intro) Introdução
 
@@ -55,6 +55,8 @@ O texto é organizado em 5 capítulos:
 - \@ref(operbasic) Operações Básicas
 
 - \@ref(datatype) Tipos de dados
+
+- \@ref(estrutura-dados) Estruturas de dados
 
 
 
