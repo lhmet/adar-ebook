@@ -1,19 +1,21 @@
 # Operações básicas {#operbasic}
 
+
+
+
 Nesta seção veremos:
 
-- operações aritméticas básicas com R
+- operações aritméticas básicas com <img src="images/logo_r.png" width="20">
 - a atribuição de valores a uma variável
-- o uso de funções matemáticas internas do R
-- valores numéricos especiais do R
+- o uso de funções matemáticas internas do <img src="images/logo_r.png" width="20">
+- valores numéricos especiais do <img src="images/logo_r.png" width="20">
 - os cuidados ao nomear variáveis
-
 
 
 
 ## Convenção
 
-A partir deste capítulo, os códigos a serem avaliadas no <code class='sourceCode bash'><span class='ex'>R</span></code> terão o prompt do <code class='sourceCode bash'><span class='ex'>R</span></code> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <code class='sourceCode bash'><span class='ex'>R</span></code>. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <code class='sourceCode bash'><span class='ex'>R</span></code> em seu computador. Por exemplo:
+A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o prompt do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
 
 
 ```r
@@ -26,11 +28,11 @@ No trecho de código acima,  a primeira linha contém o código a ser copiado pe
 
 ## Calculadora
 
-O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
+O <img src="images/logo_r.png" width="20"> é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o <img src="images/logo_r.png" width="20">, essa uma forma de familiarizar-se com a linha de comandos.
 
 ### Aritmética básica
 
-Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do R.
+Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do <img src="images/logo_r.png" width="20">.
 
 
 ```r
@@ -56,7 +58,7 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 
 
 <div class="rmdwarning">
-<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
+<p>Note que no <code>r rblue</code>, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
 </div>
 
  
@@ -68,7 +70,7 @@ Conheça mais operadores aritméticos, digitando na linha de comando:
 ?"Arithmetic"
 ```
 
-A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do <code class='sourceCode bash'><span class='ex'>R</span></code>.
+A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do <img src="images/logo_r.png" width="20">.
 
 ### Constantes
 
@@ -80,7 +82,7 @@ pi
 #> [1] 3.141593
 ```
 
-O R também tem vetores de caracteres pré-definidos, são eles:
+O <img src="images/logo_r.png" width="20"> também tem vetores de caracteres pré-definidos, são eles:
 
 
 ```r
@@ -118,7 +120,7 @@ aeiou
 
 ### Funções matemáticas internas
 
-Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no R é:
+Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
 
@@ -142,7 +144,7 @@ factorial(4)
 #> [1] 24
 ```
 
-No R você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
+No <img src="images/logo_r.png" width="20"> você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
 
 Para ver a lista completa de funções trigonométricas:
 
@@ -153,12 +155,12 @@ Para ver a lista completa de funções trigonométricas:
 
 ### Valores numéricos especiais
 
-Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
+Um caso particular sobre operação aritméticas no <img src="images/logo_r.png" width="20">, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
 
-Table: (\#tab:tab-num-esp)Exemlos de operações que resultam em NaN ou $\pm\infty$ .
+Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
 
            operação               resultado 
 -------------------------------  -----------
@@ -189,7 +191,7 @@ exp(-Inf)
 #> [1] 1
 ```
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+Outra constante especial do <img src="images/logo_r.png" width="20"> é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
 
 
 Table: (\#tab:tab-nas)Operações com NA.
@@ -204,7 +206,7 @@ Table: (\#tab:tab-nas)Operações com NA.
 
 ### Notação científica e número de dígitos
 
-Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
+Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No <img src="images/logo_r.png" width="20"> há diferentes formas de representar números com expoentes:
 
 
 ```r
@@ -216,7 +218,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 #> [1] 1200000
 ```
 
-Os resultados dos cálculos no R são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
+Os resultados dos cálculos no <img src="images/logo_r.png" width="20"> são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 
 ```r
@@ -529,7 +531,11 @@ library(styler)
 
 As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
 
-![](images/styler_0.1.gif)
+
+![](images/styler_0.1.gif)<!-- -->
+
+
+
 
 ## Exercícios
 

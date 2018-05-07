@@ -24,7 +24,8 @@ opts_chunk$set(prompt = FALSE,
                fig.path = "images/", 
                comment = "#>",
                collapse = TRUE)
-rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+rblue <- '<img src="images/logo_r.png" width="20">'
 ```
 
 
@@ -129,7 +130,7 @@ Esta função não funcionará para um objeto do tipo `factor`.
 nchar(charf)
 ```       
 
-### *logical*
+### *logical* {#logico}
    
 `logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). 
 
@@ -181,15 +182,19 @@ teste2d2
 nchar("abc") < nchar("defg")
 ```
 
-<a name="tab_oper_log"></a>
 
-```{r chunck14, echo = FALSE}
-oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
-desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico","diferente","não é x (negação)","x ou y","x e y","teste se x é verdadeiro", "está contido em") 
-operadores_logicos <- data.frame(Operador = oper, 
-                                 Descrição = desc, 
-                                 stringsAsFactors = FALSE)
-kable(operadores_logicos, caption = "Tabela 1. Operadores Lógicos", align = "c")
+A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos disponíveis no `r rblue`.
+
+```{r oper-logic, echo = FALSE, warning=FALSE}
+#<a name="tab-oper-logic"></a>
+oper <- c("<", "<=", ">", ">=", "==", "!=", "!x", "x | y", "x & y", "isTRUE(x)", "%in%")
+desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico", "diferente", "não é x (negação)", "x ou y", "x e y", "teste se x é verdadeiro", "está contido em")
+oper_logic <- data.frame(
+  Operador = oper,
+  Descrição = desc,
+  stringsAsFactors = FALSE
+)
+kable(oper_logic, caption = "Operadores Lógicos", align = "c")
 ```
 
 

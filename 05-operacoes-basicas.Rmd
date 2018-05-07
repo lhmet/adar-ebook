@@ -1,14 +1,5 @@
 # Operações básicas {#operbasic}
 
-Nesta seção veremos:
-
-- operações aritméticas básicas com R
-- a atribuição de valores a uma variável
-- o uso de funções matemáticas internas do R
-- valores numéricos especiais do R
-- os cuidados ao nomear variáveis
-
-
 ```{r setup, include = FALSE}
 rm(list = ls())
 pcks <- c("knitr", "emo", "styler")
@@ -17,8 +8,20 @@ opts_chunk$set(cache = FALSE,
                fig.path = "images/", 
                comment = "#>",
                collapse = TRUE)
-rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+rblue <- '<img src="images/logo_r.png" width="20">'
 ```
+
+
+Nesta seção veremos:
+
+- operações aritméticas básicas com `r rblue`
+- a atribuição de valores a uma variável
+- o uso de funções matemáticas internas do `r rblue`
+- valores numéricos especiais do `r rblue`
+- os cuidados ao nomear variáveis
+
+
 
 ## Convenção
 
@@ -33,11 +36,11 @@ No trecho de código acima,  a primeira linha contém o código a ser copiado pe
 
 ## Calculadora
 
-O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
+O `r rblue` é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o `r rblue`, essa uma forma de familiarizar-se com a linha de comandos.
 
 ### Aritmética básica
 
-Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do R.
+Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do `r rblue`.
 
 ```{r chunk1}
 10 + 2 + 4
@@ -55,7 +58,7 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 
 
 ```{block, note-virgulas, type='rmdwarning'}
-Note que no R, o separador decimal é o ponto \".\", ao invés da vírgula \",\" usada na notação brasileira.
+Note que no `r rblue`, o separador decimal é o ponto \".\", ao invés da vírgula \",\" usada na notação brasileira.
 As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em `log(x = 10, base = 10)`.
 ```
 
@@ -77,7 +80,7 @@ O R possui algumas constantes pré-definidas, como o a constante pi ($\pi$).
 pi
 ```
 
-O R também tem vetores de caracteres pré-definidos, são eles:
+O `r rblue` também tem vetores de caracteres pré-definidos, são eles:
 
 ```{r chunk14}
 LETTERS
@@ -101,7 +104,7 @@ aeiou
 
 ### Funções matemáticas internas
 
-Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no R é:
+Existem diversas funções internas do `r rblue` que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no `r rblue` é:
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
 
@@ -119,7 +122,7 @@ exp(1)
 factorial(4)
 ```
 
-No R você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
+No `r rblue` você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
 
 Para ver a lista completa de funções trigonométricas:
 ```{r chunk17, render.args = list(help = list(sections = "usage")), eval = FALSE}
@@ -129,7 +132,7 @@ Para ver a lista completa de funções trigonométricas:
 
 ### Valores numéricos especiais
 
-Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
+Um caso particular sobre operação aritméticas no `r rblue`, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
@@ -137,7 +140,7 @@ A demonstração das diferentes formas de se obter essas constantes especiais é
 oper <- c("2/0", "-12/0", "log(0)", "(c(-3, 3))^Inf", "0*Inf", "log(-0.5)", "sqrt(-1)", "0/0", "Inf-Inf", "mean(c(NA, NA), na.rm = TRUE)")
 res <- as.character(c(2/0, -12/0, log(0), paste0((c(-3, 3))^Inf, collapse = ", "), 0*Inf, log(-0.5), sqrt(-1), 0/0, Inf-Inf, mean(c(NA, NA), na.rm = TRUE)))
 esp_num_df <- tibble::data_frame(`operação` = oper, resultado = res)
-kable(esp_num_df, caption = "Exemlos de operações que resultam em NaN ou $\\pm\\infty$ .", align = "c")
+kable(esp_num_df, caption = "Exemplos de operações que resultam em NaN ou $\\pm\\infty$ .", align = "c")
 ```
 
 Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.
@@ -150,7 +153,7 @@ exp(-Inf)
 0^0
 ```
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+Outra constante especial do `r rblue` é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
 
 ```{r tab-nas, echo=FALSE}
 oper_nas <- data.frame(
@@ -164,7 +167,7 @@ kable(oper_nas, align = "c", caption = "Operações com NA.")
 
 ### Notação científica e número de dígitos
 
-Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
+Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No `r rblue` há diferentes formas de representar números com expoentes:
 
 ```{r chunk20}
 1.2e-6
@@ -172,7 +175,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 1.2E6; 1.2*10^6  
 ```
 
-Os resultados dos cálculos no R são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
+Os resultados dos cálculos no `r rblue` são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 ```{r chunk21}
 # opção de dígitos padrão
@@ -412,7 +415,14 @@ library(styler)
 
 As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
 
-![](images/styler_0.1.gif)
+
+```{r, echo=FALSE}
+#![](images/styler_0.1.gif)
+knitr::include_graphics("images/styler_0.1.gif")
+```
+
+
+
 
 ## Exercícios
 

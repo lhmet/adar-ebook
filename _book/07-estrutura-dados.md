@@ -15,13 +15,13 @@ Nesta seção vamos:
 - conhecer os atributos dessas estruturas
 - criar e manipular essas estruturas
 
-##  Visão geral das Estruturas de dados
+##  Visão geral
 
 Existem diferentes formas de armazenar dados no R. Algumas vezes os dados precisam ser armazenados de forma mais complexa do que por exemplo vetores. 
 
 O R possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dados)). As mais utilizadas são:
 
-- *data frame* (tabela de dados)
+- *dataframe* (tabela de dados)
 
 - *matrix* (matriz)
 
@@ -330,16 +330,18 @@ x < y
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
-Entre os operadores lógicos vistos na [tabela 1 do tópico 4](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log) alguns deles não foram vistos. Vamos então usar o operador `%in%` para verificar se um vetor está contido parcial ou totalmente em outro vetor.
+
+
+Entre os operadores lógicos vistos (Tabela \@ref(tab:oper-logic)) alguns deles não foram aplicados em exemplos. Vamos então usar o operador `%in%` para verificar se um vetor está contido parcial ou totalmente em outro vetor.
 
 
 ```r
 # operador está contido em
 2:4 %in% x
-[1] TRUE TRUE TRUE
+#> [1] TRUE TRUE TRUE
 # 2:4 são elementos de x?
 is.element(2:4, x)
-[1] TRUE TRUE TRUE
+#> [1] TRUE TRUE TRUE
 ```
 
 A função `nchar()` também funciona sobre cada elemento do vetor. Esse é mais um exemplo de função vetorizada do R.
@@ -2079,7 +2081,7 @@ plot(
   col = rep(1:3, each = ncol(temp_mat)), # cores dos pontos
   cex = rep(seq(1, 2, by = 0.5), each = ncol(temp_mat)), # aumenta tamanho dos pontos
   las = 1, # orientação dos labels dos eixos perpendiculares ao eixo
-  ylab = expression(Tar~(degree~C)), # label da variável y
+  ylab = expression(Tar ~ (degree ~ C)), # label da variável y
   xlab = "meses", # label da variavel x
   main = "Temperatura mensal (1990-1992)" # título
 ) # end plot
@@ -2420,7 +2422,7 @@ Dentro da lista o conjunto de objetos são ordenados e cada elemento pode conter
 
 ### Criação
 
-As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de *data frames*, sub-listas, matrizes e vetores.
+As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de *dataframes*, sub-listas, matrizes e vetores.
 
 Listas podem ser criadas com a função `list()`. A especificação do conteúdo de uma lista é muito similar a da função `c()` vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função `list()`.
 
@@ -2488,7 +2490,7 @@ Vamos ver um exemplo onde criamos uma lista com informações de duas estações
 ```r
 # matriz de dados meteorológicos da estação de Santa Maria
 dados_sm <- cbind(
-  tar = c(31, 35, 21, 23, 33, 17 ),
+  tar = c(31, 35, 21, 23, 33, 17),
   prec = c(300, 200, 150, 120, 210, 110)
 )
 dados_sm
@@ -2500,9 +2502,11 @@ dados_sm
 #> [5,]  33  210
 #> [6,]  17  110
 # lista com informações da estação de santa maria
-sm_l <- list(c(-45, -23), 
-             "Santa Maria", 
-             dados_sm)
+sm_l <- list(
+  c(-45, -23),
+  "Santa Maria",
+  dados_sm
+)
 sm_l
 #> [[1]]
 #> [1] -45 -23
@@ -2646,7 +2650,7 @@ length(dados_l)
 #> [1] 2
 ```
 
-Para resumir a estrutura de uma lista (ou *data frame*) podemos usar a função `str()`:
+Para resumir a estrutura de uma lista (ou *dataframe*) podemos usar a função `str()`:
 
 
 ```r
@@ -3012,13 +3016,13 @@ sm_df
 ```
 
 
-## *Data frame*
+## Dataframe
 
-Um *data frame* é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
+Um dataframe é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
 
-A estrutura de um *data frame*, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do *data frame* é possibilidade de armazenar dados de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêna. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
+A estrutura de um *dataframe* é retangular como a de uma matriz. Mas tem a vantagem de armazenar vetores de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogênea. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
 
-Cada linha do *data frame* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
+Cada linha do *dataframe* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
 
 ### Criação
 
@@ -3027,13 +3031,17 @@ Uma das formas mais simples de se criar um *dataframe* é através da função `
 
 ```r
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32))  
-dados.df
-#>         dates      cidade tar
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32)
+)
+dados
+#>         datas      cidade tar
 #> 1  2013-01-01 Santa Maria  31
 #> 2  2013-01-02 Santa Maria  35
 #> 3  2013-01-03 Santa Maria  21
@@ -3049,51 +3057,55 @@ dados.df
 #> 13 2013-01-13 Santa Maria  22
 #> 14 2013-01-14 Santa Maria  29
 #> 15 2013-01-15 Santa Maria  32
-class(dados.df)
+class(dados)
 #> [1] "data.frame"
-is.data.frame(dados.df)
+is.data.frame(dados)
 #> [1] TRUE
 ```
 
-Para um diagnóstico rápido das variáveis de um `data frame` usamos a função `str()`: 
+Para um diagnóstico rápido das variáveis de um `dataframe` usamos a função `str()`: 
 
 
 ```r
 # descrição geral do conjunto de dados
-str(dados.df)
+str(dados)
 #> 'data.frame':	15 obs. of  3 variables:
-#>  $ dates : Factor w/ 15 levels "2013-01-01","2013-01-02",..: 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ datas : Factor w/ 15 levels "2013-01-01","2013-01-02",..: 1 2 3 4 5 6 7 8 9 10 ...
 #>  $ cidade: Factor w/ 1 level "Santa Maria": 1 1 1 1 1 1 1 1 1 1 ...
 #>  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
 ```
 
 A saída da função `str()`indica que há duas variáveis da classe `factor`.
-Em um *data frame* vetores do tipo `character` são automaticamente convertidos em `factor`. Este comportamento *default* pode ser modificado configurando o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *data frame* `dados.df` sem a conversão de `character` para `factor`.
+Em um *dataframe* vetores do tipo `character` são automaticamente convertidos em `factor`. Este é o comportamento *default* da função `data.frame()`. Para que essa conversão não seja feita você deve definir o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *dataframe* `dados` sem a conversão de `character` para `factor`.
 
 
 
 ```r
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
-                       stringsAsFactors = FALSE)  
-str(dados.df)
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
+  stringsAsFactors = FALSE
+)
+str(dados)
 #> 'data.frame':	15 obs. of  3 variables:
-#>  $ dates : chr  "2013-01-01" "2013-01-02" "2013-01-03" "2013-01-04" ...
+#>  $ datas : chr  "2013-01-01" "2013-01-02" "2013-01-03" "2013-01-04" ...
 #>  $ cidade: chr  "Santa Maria" "Santa Maria" "Santa Maria" "Santa Maria" ...
 #>  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
 ```
 
-A função `summary()` fornece um resumo estatísticos dos valores das variáveis de um *data frame*.
+A função `summary()` fornece um resumo estatístico das variáveis (colunas) de um *dataframe*.
 
 
 ```r
 # resumo estatístico dos dados
-summary(dados.df)
-#>     dates              cidade               tar      
+summary(dados)
+#>     datas              cidade               tar      
 #>  Length:15          Length:15          Min.   :15.0  
 #>  Class :character   Class :character   1st Qu.:19.5  
 #>  Mode  :character   Mode  :character   Median :27.0  
@@ -3102,32 +3114,45 @@ summary(dados.df)
 #>                                        Max.   :35.0
 ```
 
-### Atributos de um *data frame*
+### Atributos de um *dataframe*
 
-*data frame* é uma estrutura de dados avançada e possui diversos atributos. 
+*dataframe* é uma estrutura de dados avançada e possui diversos atributos. 
 
 
 ```r
 # atributos
-length(dados.df)
-#> [1] 3
+attributes(dados)
+#> $names
+#> [1] "datas"  "cidade" "tar"   
+#> 
+#> $row.names
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+#> 
+#> $class
+#> [1] "data.frame"
+# atributos armazenados em uma lista
+str(attributes(dados))
+#> List of 3
+#>  $ names    : chr [1:3] "datas" "cidade" "tar"
+#>  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ class    : chr "data.frame"
 # número de colunas
-ncol(dados.df)
+ncol(dados)
 #> [1] 3
 # número de linhas
-nrow(dados.df)
+nrow(dados)
 #> [1] 15
 # dimensões
-dim(dados.df)
+dim(dados)
 #> [1] 15  3
 # nomes podem ser atribuídos as linhas e as colunas
-rownames(dados.df)
+rownames(dados)
 #>  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
 #> [15] "15"
-# novos nomes para as linhas de dados.df
-rownames(dados.df) <- paste0("linha", rownames(dados.df))
-dados.df
-#>              dates      cidade tar
+# novos nomes para as linhas de dados
+rownames(dados) <- paste0("linha", rownames(dados))
+dados
+#>              datas      cidade tar
 #> linha1  2013-01-01 Santa Maria  31
 #> linha2  2013-01-02 Santa Maria  35
 #> linha3  2013-01-03 Santa Maria  21
@@ -3144,9 +3169,9 @@ dados.df
 #> linha14 2013-01-14 Santa Maria  29
 #> linha15 2013-01-15 Santa Maria  32
 # removendo nomes das linhas
-rownames(dados.df) <- NULL
-dados.df
-#>         dates      cidade tar
+rownames(dados) <- NULL
+dados
+#>         datas      cidade tar
 #> 1  2013-01-01 Santa Maria  31
 #> 2  2013-01-02 Santa Maria  35
 #> 3  2013-01-03 Santa Maria  21
@@ -3162,51 +3187,36 @@ dados.df
 #> 13 2013-01-13 Santa Maria  22
 #> 14 2013-01-14 Santa Maria  29
 #> 15 2013-01-15 Santa Maria  32
-# mesmo que names(dados.df)
-colnames(dados.df)
-#> [1] "dates"  "cidade" "tar"
-dimnames(dados.df)
-#> [[1]]
-#>  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
-#> [15] "15"
-#> 
-#> [[2]]
-#> [1] "dates"  "cidade" "tar"
-attributes(dados.df)
-#> $names
-#> [1] "dates"  "cidade" "tar"   
-#> 
-#> $row.names
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-#> 
-#> $class
-#> [1] "data.frame"
-class(attributes(dados.df))
-#> [1] "list"
+# mesmo que names(dados)
+colnames(dados)
+#> [1] "datas"  "cidade" "tar"
+# ou simplesmente
+names(dados)
+#> [1] "datas"  "cidade" "tar"
 ```
 
-### Acesso as variáveis de um *data frame* 
+### Acesso as variáveis de um *dataframe* 
 
-Existem várias formas de acessar as variáveis de um *data frame*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
+Existem várias formas de acessar as variáveis de um *dataframe*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
 
 ```r
 # variáveis do dataframe
-names(dados.df)
-#> [1] "dates"  "cidade" "tar"
+names(dados)
+#> [1] "datas"  "cidade" "tar"
 # acessando os dados de temperatura
-dados.df[, 3]
+dados[, 3]
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
 # ou
-dados.df[, "tar"]
+dados[, "tar"]
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
 # ou
-dados.df$tar
+dados$tar
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-is.vector(dados.df$tar)
+is.vector(dados$tar)
 #> [1] TRUE
 # note a diferença no resultado da extração
-dados.df["tar"]
+dados["tar"]
 #>    tar
 #> 1   31
 #> 2   35
@@ -3223,63 +3233,68 @@ dados.df["tar"]
 #> 13  22
 #> 14  29
 #> 15  32
-class(dados.df["tar"])
+class(dados["tar"])
 #> [1] "data.frame"
-dados.df[["tar"]]
+dados[["tar"]]
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-class(dados.df[["tar"]])
+class(dados[["tar"]])
 #> [1] "numeric"
-dados.df[, "tar"]
+dados[, "tar"]
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-class(dados.df[, "tar"])
+class(dados[, "tar"])
 #> [1] "numeric"
 ```
 
-Portanto *data frames* tem as mesmas propriedades que matrizes (são retangulares)e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
+Portanto *dataframes* tem estrutura retangular similar a das matrizes e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
 
 #### Função `with()`
 
-O acesso as variáveis de um *data frame* também é possível com a função `with(data, expr)`.
+O acesso as variáveis de um *dataframe* também é possível com a função `with(data, expr)`.
 
 
 ```r
-# acesso a variáveis de um data frame
-with(data = dados.df, expr = tar)
+# acesso a variáveis de um dataframe
+with(data = dados, expr = tar)
 #>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-tar_k <- with(data = dados.df, expr = tar + 273.15)
-tar_k
+tarK <- with(data = dados, expr = tar + 273.15)
+tarK
 #>  [1] 304.15 308.15 294.15 296.15 306.15 290.15 291.15 289.15 307.15 300.15
 #> [11] 288.15 301.15 295.15 302.15 305.15
-with(data = dados.df, expr = plot(tar + 273.15))
+# gráfico de uma variável usando with()
+with(data = dados, 
+     # parâmetro expr geralmente não é mostrado
+       plot(tar + 273.15, type = "o")
+     )
 ```
 
 <img src="images/Chunk5310-1.png" width="672" />
 
-O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *data frame* de entrada.
+O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *dataframe* de entrada.
 
-#### Edição manual de um *data frame*
-
-É possível também editar os dados manualmente.
+Quando houver uma expressão com mais de uma linha você agrupa o código usando chaves `{}`.
 
 
 ```r
-# editar dados
-fix(dados.df)
-# inicializando um dataframe
-x <- data.frame()
-# digitando so dados
-fix(x)
+with(dados, 
+     {
+       dates <- as.Date(datas)
+       plot(dates, tar)
+     }
+)
 ```
 
-### Indexação, seleção e alteração 
+<img src="images/unnamed-chunk-5-1.png" width="672" />
 
-Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *data frames*.
+
+### Indexação, seleção e substituição 
+
+Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *dataframes*.
 
 
 ```r
-# todos dados exceto o primeiro e último registro
-dados.df[-c(1, nrow(dados.df)), ]
-#>         dates      cidade tar
+# exclui a primeiro e a última observação para todas variáveis
+dados[-c(1, nrow(dados)), ]
+#>         datas      cidade tar
 #> 2  2013-01-02 Santa Maria  35
 #> 3  2013-01-03 Santa Maria  21
 #> 4  2013-01-04 Santa Maria  23
@@ -3294,15 +3309,15 @@ dados.df[-c(1, nrow(dados.df)), ]
 #> 13 2013-01-13 Santa Maria  22
 #> 14 2013-01-14 Santa Maria  29
 # temperatura dos primeiros 5 dias
-dados.df[1:5, 3]
+dados[1:5, 3]
 #> [1] 31 35 21 23 33
 # temperatura no dia 2013-01-09
-dados.df[dados.df$dates == "2013-01-09", "tar"]
+dados[dados$datas == "2013-01-09", "tar"]
 #> [1] 34
 # acrescentar uma nova variavel
-dados.df$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
-dados.df
-#>         dates      cidade tar prec
+dados$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
+dados
+#>         datas      cidade tar prec
 #> 1  2013-01-01 Santa Maria  31    0
 #> 2  2013-01-02 Santa Maria  35    0
 #> 3  2013-01-03 Santa Maria  21    0
@@ -3320,24 +3335,24 @@ dados.df
 #> 15 2013-01-15 Santa Maria  32    0
 ```
 
-Uma função específica para gerar subconjunto de dados em *data frames* é a `subset()`. 
+Uma função específica para gerar subconjunto de dados em *dataframes* é a `subset()`. 
 
 
 ```r
 # subconjunto baseado em condição lógica
-ss1 <- subset(dados.df, dates == "2013-01-09", select = "tar")
+ss1 <- subset(dados, datas == "2013-01-09", select = "tar")
 ss1
 #>   tar
 #> 9  34
 # subconjunto baseado em condição lógica
-ss2 <- subset(dados.df, tar > 26 & prec > 0)
+ss2 <- subset(dados, tar > 26 & prec > 0)
 ss2
-#>         dates      cidade tar prec
+#>         datas      cidade tar prec
 #> 14 2013-01-14 Santa Maria  29    2
 # subconjunto baseado em condição lógica
-ss3 <- subset(dados.df, tar > 26 | prec > 0)
+ss3 <- subset(dados, tar > 26 | prec > 0)
 ss3
-#>         dates      cidade tar prec
+#>         datas      cidade tar prec
 #> 1  2013-01-01 Santa Maria  31    0
 #> 2  2013-01-02 Santa Maria  35    0
 #> 5  2013-01-05 Santa Maria  33    0
@@ -3351,20 +3366,22 @@ ss3
 #> 14 2013-01-14 Santa Maria  29    2
 #> 15 2013-01-15 Santa Maria  32    0
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"), 
-              select = -cidade)
+ss4 <- subset(dados,
+  datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
-#>         dates tar prec
+#>         datas tar prec
 #> 9  2013-01-09  34    0
 #> 13 2013-01-13  22    0
 #> 15 2013-01-15  32    0
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              ! dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
-              select = -cidade)
+ss4 <- subset(dados,
+  !datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
-#>         dates tar prec
+#>         datas tar prec
 #> 1  2013-01-01  31    0
 #> 2  2013-01-02  35    0
 #> 3  2013-01-03  21    0
@@ -3379,24 +3396,43 @@ ss4
 #> 14 2013-01-14  29    2
 ```
 
-Uma função específica para alteração, remoção e inclusão de variáveis em um *dataframe* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *dataframe*.
+Uma função específica para alteração, remoção e inclusão de variáveis em um *dataframe* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável (ao mesmo tempo) de um *dataframe*.
 
 
 ```r
 # mudança do dataframe, alteração de várias variáveis
-dados.df <- transform(dados.df,
-                      cidade = ifelse(1:nrow(dados.df) > 8, "Sao Sepe", cidade),
-                      dates = c(dates[1:8], dates[1:7]),
-                      anomalias = ifelse(cidade == "Santa Maria", 
-                                         tar-mean(tar[cidade == "Santa Maria"]), 
-                                         tar-mean(tar[cidade == "Sao Sepe"]))
-            )
-# alterar so uma variavel
-dados.df$anomalias.norm = ifelse(dados.df$cidade == "Santa Maria", 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Santa Maria"]), 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Sao Sepe"]) )
-dados.df
-#>         dates      cidade tar prec anomalias anomalias.norm
+dados <- transform(dados,
+  cidade = ifelse(1:nrow(dados) > 8, "Sao Sepe", cidade),
+  datas = c(datas[1:8], datas[1:7]),
+  anomalias = ifelse(cidade == "Santa Maria",
+    tar - mean(tar[cidade == "Santa Maria"]),
+    tar - mean(tar[cidade == "Sao Sepe"])
+  )
+)
+dados
+#>         datas      cidade tar prec anomalias
+#> 1  2013-01-01 Santa Maria  31    0       5.6
+#> 2  2013-01-02 Santa Maria  35    0       9.6
+#> 3  2013-01-03 Santa Maria  21    0      -4.4
+#> 4  2013-01-04 Santa Maria  23    0      -2.4
+#> 5  2013-01-05 Santa Maria  33    0       7.6
+#> 6  2013-01-06 Santa Maria  17   10      -8.4
+#> 7  2013-01-07 Santa Maria  18   18      -7.4
+#> 8  2013-01-08 Santa Maria  16    4      -9.4
+#> 9  2013-01-01    Sao Sepe  34    0       8.6
+#> 10 2013-01-02    Sao Sepe  27    0       1.6
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4
+#> 12 2013-01-04    Sao Sepe  28    0       2.6
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4
+#> 14 2013-01-06    Sao Sepe  29    2       3.6
+#> 15 2013-01-07    Sao Sepe  32    0       6.6
+# alterar só uma variavel, anomalia normalizada
+dados$anomalias.norm <- ifelse(dados$cidade == "Santa Maria",
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Santa Maria"]),
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Sao Sepe"])
+)
+dados
+#>         datas      cidade tar prec anomalias anomalias.norm
 #> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167
 #> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143
 #> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274
@@ -3418,11 +3454,13 @@ dados.df
 
 
 ```r
-coords.df <- data.frame(lon = c(rep(-45, 8), rep(-45.1, 7)),  # longitudes
-                        lat = c(rep(-23, 8), rep(-23.1, 7)))  # latitudes
-d <- cbind(dados.df, coords.df)
+coords_df <- data.frame(
+  lon = c(rep(-45, 8), rep(-45.1, 7)), # longitudes
+  lat = c(rep(-23, 8), rep(-23.1, 7))
+) # latitudes
+d <- cbind(dados, coords_df)
 d
-#>         dates      cidade tar prec anomalias anomalias.norm   lon   lat
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
 #> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
 #> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
 #> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
@@ -3439,9 +3477,9 @@ d
 #> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
 #> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
 # usando a própria função data.frame()
-d2 <- data.frame(dados.df, coords.df, stringsAsFactors = FALSE)
+d2 <- data.frame(dados, coords_df, stringsAsFactors = FALSE)
 d2
-#>         dates      cidade tar prec anomalias anomalias.norm   lon   lat
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
 #> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
 #> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
 #> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
@@ -3457,21 +3495,23 @@ d2
 #> 13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
 #> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
 #> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
-# verificando se os dois data frames são idênticos
+# verificando se os dois dataframes são idênticos
 identical(d, d2)
 #> [1] TRUE
 # dados de Caçapava
-cacapava <- data.frame(dates = "2013-01-01", 
-                       cidade = "Cacapava", 
-                       tar = 19,
-                       prec= 0,
-                       anomalias = NA, 
-                       anomalias.norm = NA,
-                       lon = -45.1,
-                       lat = -23.2)
+cacapava <- data.frame(
+  datas = "2013-01-01",
+  cidade = "Cacapava",
+  tar = 19,
+  prec = 0,
+  anomalias = NA,
+  anomalias.norm = NA,
+  lon = -45.1,
+  lat = -23.2
+)
 d <- rbind(d, cacapava)
 d
-#>         dates      cidade tar prec anomalias anomalias.norm   lon   lat
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
 #> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
 #> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
 #> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
@@ -3492,16 +3532,16 @@ d
 
 ### Teste e Coerção
 
-Podemos converter um objeto para *data frame* com `as.data.frame()`:
+Podemos converter um objeto para *dataframe* com `as.data.frame()`:
 
-+ Um vetor é transformado em um *data frame* de uma coluna;
++ Um vetor é transformado em um *dataframe* de uma coluna;
 
 + Uma lista terá uma coluna para elemento, se os elementos não forem de mesmo tamanho haverá um erro;
-+ Uma matriz cria um *data frame* com mesma estrutura de uma matriz;
++ Uma matriz cria um *dataframe* com mesma estrutura de uma matriz;
 
 
 ```r
-# convertendo lista para data frame
+# convertendo lista para dataframe
 sm_l
 #> $cidade
 #> [1] "Santa Maria"
@@ -3521,13 +3561,21 @@ sm_l
 #> $lat
 #> [1] -23
 sm_l_df <- as.data.frame(sm_l)
-# convertendo array para data frame
+sm_l_df
+#>        cidade dados.tar dados.prec lon lat
+#> 1 Santa Maria        31        300 -45 -23
+#> 2 Santa Maria        35        200 -45 -23
+#> 3 Santa Maria        21        150 -45 -23
+#> 4 Santa Maria        23        120 -45 -23
+#> 5 Santa Maria        33        210 -45 -23
+#> 6 Santa Maria        17        110 -45 -23
+# convertendo array para dataframe
 v
 #> [1]  5 12 13
 v_df <- as.data.frame(v)
-# convertendo vetor para data frame
+# convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
-# convertendo matrix para data frame
+# convertendo matrix para dataframe
 mat_ex
 #>      [,1] [,2] [,3]
 #> [1,]    1    5    6
@@ -3536,12 +3584,16 @@ mat_ex
 mat_ex_df <- as.data.frame(mat_ex)
 names(mat_ex_df)
 #> [1] "V1" "V2" "V3"
+mat_ex_df
+#>   V1 V2 V3
+#> 1  1  5  6
+#> 2 -7 -9  6
+#> 3  3  2  1
 # testes
 is.data.frame(mat_ex_df)
 #> [1] TRUE
 class(v_df)
 #> [1] "data.frame"
-mode(v_df)
-#> [1] "list"
 ```
+
 

@@ -7,8 +7,8 @@ output:
 
 ```{r setup, include = FALSE}
 rm(list = ls())
-pcks <- c("knitr", "emo", "pander")#, "htmlTable")
-#pcks <- c("knitr", "emo")
+pcks <- c("knitr", "emo", "pander") # , "htmlTable")
+# pcks <- c("knitr", "emo")
 easypackages::libraries(pcks)
 opts_chunk$set(
   prompt = FALSE,
@@ -17,7 +17,8 @@ opts_chunk$set(
   comment = "#>",
   collapse = TRUE
 )
-rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+# rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+rblue <- '<img src="images/logo_r.png" width="20">'
 ```
 
 
@@ -28,13 +29,13 @@ Nesta seção vamos:
 - conhecer os atributos dessas estruturas
 - criar e manipular essas estruturas
 
-##  Visão geral das Estruturas de dados
+##  Visão geral
 
 Existem diferentes formas de armazenar dados no R. Algumas vezes os dados precisam ser armazenados de forma mais complexa do que por exemplo vetores. 
 
 O R possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dados)). As mais utilizadas são:
 
-- *data frame* (tabela de dados)
+- *dataframe* (tabela de dados)
 
 - *matrix* (matriz)
 
@@ -43,7 +44,7 @@ O R possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dados)). As 
 - *array* e *vector* (vetor)
 
 ```{r fig-estrut-dados, echo = FALSE, out.width="100%", fig.cap="Principais estruturas de dados no R."}
-knitr::include_graphics('images/dataStructuresR.png')
+knitr::include_graphics("images/dataStructuresR.png")
 ```
 
 
@@ -225,7 +226,7 @@ Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos di
 
 ```{r chunk79, message=FALSE  , tidy=TRUE}
 v1 <- c(3, 5, 88, 90)
-v2 <- c(2, 1)  
+v2 <- c(2, 1)
 v1 + v2
 ```
 
@@ -233,7 +234,7 @@ Se o vetor mais longo não é múltiplo do mais curto, o R imprime um aviso.
 
 ```{r chunk710, message=FALSE  , tidy=TRUE}
 v1 <- c(3, 5, 88, 90)
-v2 <- c(2, 1, 3)  
+v2 <- c(2, 1, 3)
 v1 + v2
 ```
 
@@ -262,9 +263,11 @@ x > y
 x < y
 ```
 
-Entre os operadores lógicos vistos na [tabela 1 do tópico 4](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log) alguns deles não foram vistos. Vamos então usar o operador `%in%` para verificar se um vetor está contido parcial ou totalmente em outro vetor.
 
-```{r ,comment="" ,}
+
+Entre os operadores lógicos vistos (Tabela \@ref(tab:oper-logic)) alguns deles não foram aplicados em exemplos. Vamos então usar o operador `%in%` para verificar se um vetor está contido parcial ou totalmente em outro vetor.
+
+```{r }
 # operador está contido em
 2:4 %in% x
 # 2:4 são elementos de x?
@@ -1135,9 +1138,9 @@ knitr::include_graphics("images/multilicacaoMatricial.png")
 
 ```{r Chunk1611  , tidy=TRUE, echo=TRUE, eval=TRUE, error=TRUE}
 # multiplicação de duas matrizes
-A <- matrix(c(2,1,4,3,0,5),ncol=2)
+A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
 A
-B <- matrix(c(3,2,1,4), ncol = 2)
+B <- matrix(c(3, 2, 1, 4), ncol = 2)
 B
 A * B # erro pela diferença nas dims entre as matrizes
 prodMat <- A %*% B
@@ -1158,7 +1161,7 @@ m + m
 
 ```{r Chunk1631, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
 u <- 1:3
-v <- c(5, 12, 13) 
+v <- c(5, 12, 13)
 u * v
 # produto escalar = u.v = 1*5 + 2*12 + 3*13
 crossprod(u, v)
@@ -1234,7 +1237,7 @@ plot(
   col = rep(1:3, each = ncol(temp_mat)), # cores dos pontos
   cex = rep(seq(1, 2, by = 0.5), each = ncol(temp_mat)), # aumenta tamanho dos pontos
   las = 1, # orientação dos labels dos eixos perpendiculares ao eixo
-  ylab = expression(Tar~(degree~C)), # label da variável y
+  ylab = expression(Tar ~ (degree ~ C)), # label da variável y
   xlab = "meses", # label da variavel x
   main = "Temperatura mensal (1990-1992)" # título
 ) # end plot
@@ -1328,7 +1331,7 @@ Dentro da lista o conjunto de objetos são ordenados e cada elemento pode conter
 
 ### Criação
 
-As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de *data frames*, sub-listas, matrizes e vetores.
+As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de *dataframes*, sub-listas, matrizes e vetores.
 
 Listas podem ser criadas com a função `list()`. A especificação do conteúdo de uma lista é muito similar a da função `c()` vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função `list()`.
 
@@ -1364,14 +1367,16 @@ Vamos ver um exemplo onde criamos uma lista com informações de duas estações
 ```{r Chunk412, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # matriz de dados meteorológicos da estação de Santa Maria
 dados_sm <- cbind(
-  tar = c(31, 35, 21, 23, 33, 17 ),
+  tar = c(31, 35, 21, 23, 33, 17),
   prec = c(300, 200, 150, 120, 210, 110)
 )
 dados_sm
 # lista com informações da estação de santa maria
-sm_l <- list(c(-45, -23), 
-             "Santa Maria", 
-             dados_sm)
+sm_l <- list(
+  c(-45, -23),
+  "Santa Maria",
+  dados_sm
+)
 sm_l
 # adicionar nomes aos elementos
 names(sm_l) <- c("coords", "cidade", "dados")
@@ -1406,7 +1411,7 @@ dados_l
 length(dados_l)
 ```
 
-Para resumir a estrutura de uma lista (ou *data frame*) podemos usar a função `str()`:
+Para resumir a estrutura de uma lista (ou *dataframe*) podemos usar a função `str()`:
 
 ```{r Chunk414, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 str(dados_l)
@@ -1534,13 +1539,13 @@ sm_df
 ```
 
 
-## *Data frame*
+## Dataframe
 
-Um *data frame* é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
+Um dataframe é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
 
-A estrutura de um *data frame*, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do *data frame* é possibilidade de armazenar dados de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêna. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
+A estrutura de um *dataframe* é retangular como a de uma matriz. Mas tem a vantagem de armazenar vetores de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogênea. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
 
-Cada linha do *data frame* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
+Cada linha do *dataframe* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
 
 ### Criação
 
@@ -1548,233 +1553,256 @@ Uma das formas mais simples de se criar um *dataframe* é através da função `
 
 ```{r Chunk510, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32))  
-dados.df
-class(dados.df)
-is.data.frame(dados.df)
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32)
+)
+dados
+class(dados)
+is.data.frame(dados)
 ```
 
-Para um diagnóstico rápido das variáveis de um `data frame` usamos a função `str()`: 
+Para um diagnóstico rápido das variáveis de um `dataframe` usamos a função `str()`: 
 
 ```{r Chunk511, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
 # descrição geral do conjunto de dados
-str(dados.df)
+str(dados)
 ```
 
 A saída da função `str()`indica que há duas variáveis da classe `factor`.
-Em um *data frame* vetores do tipo `character` são automaticamente convertidos em `factor`. Este comportamento *default* pode ser modificado configurando o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *data frame* `dados.df` sem a conversão de `character` para `factor`.
+Em um *dataframe* vetores do tipo `character` são automaticamente convertidos em `factor`. Este é o comportamento *default* da função `data.frame()`. Para que essa conversão não seja feita você deve definir o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *dataframe* `dados` sem a conversão de `character` para `factor`.
 
 
 ```{r Chunk512, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
-                       stringsAsFactors = FALSE)  
-str(dados.df)
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
+  stringsAsFactors = FALSE
+)
+str(dados)
 ```
 
-A função `summary()` fornece um resumo estatísticos dos valores das variáveis de um *data frame*.
+A função `summary()` fornece um resumo estatístico das variáveis (colunas) de um *dataframe*.
 
 ```{r Chunk513, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # resumo estatístico dos dados
-summary(dados.df)
+summary(dados)
 ```
 
-### Atributos de um *data frame*
+### Atributos de um *dataframe*
 
-*data frame* é uma estrutura de dados avançada e possui diversos atributos. 
+*dataframe* é uma estrutura de dados avançada e possui diversos atributos. 
 
 ```{r Chunk520, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
 # atributos
-length(dados.df)
+attributes(dados)
+# atributos armazenados em uma lista
+str(attributes(dados))
 # número de colunas
-ncol(dados.df)
+ncol(dados)
 # número de linhas
-nrow(dados.df)
+nrow(dados)
 # dimensões
-dim(dados.df)
+dim(dados)
 # nomes podem ser atribuídos as linhas e as colunas
-rownames(dados.df)
-# novos nomes para as linhas de dados.df
-rownames(dados.df) <- paste0("linha", rownames(dados.df))
-dados.df
+rownames(dados)
+# novos nomes para as linhas de dados
+rownames(dados) <- paste0("linha", rownames(dados))
+dados
 # removendo nomes das linhas
-rownames(dados.df) <- NULL
-dados.df
-# mesmo que names(dados.df)
-colnames(dados.df)
-dimnames(dados.df)
-attributes(dados.df)
-class(attributes(dados.df))
+rownames(dados) <- NULL
+dados
+# mesmo que names(dados)
+colnames(dados)
+# ou simplesmente
+names(dados)
 ```
 
-### Acesso as variáveis de um *data frame* 
+### Acesso as variáveis de um *dataframe* 
 
-Existem várias formas de acessar as variáveis de um *data frame*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
+Existem várias formas de acessar as variáveis de um *dataframe*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
 ```{r Chunk530, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE, error =TRUE}
 # variáveis do dataframe
-names(dados.df)
+names(dados)
 # acessando os dados de temperatura
-dados.df[, 3]
+dados[, 3]
 # ou
-dados.df[, "tar"]
+dados[, "tar"]
 # ou
-dados.df$tar
-is.vector(dados.df$tar)
+dados$tar
+is.vector(dados$tar)
 # note a diferença no resultado da extração
-dados.df["tar"]
-class(dados.df["tar"])
-dados.df[["tar"]]
-class(dados.df[["tar"]])
-dados.df[, "tar"]
-class(dados.df[, "tar"])
+dados["tar"]
+class(dados["tar"])
+dados[["tar"]]
+class(dados[["tar"]])
+dados[, "tar"]
+class(dados[, "tar"])
 ```
 
-Portanto *data frames* tem as mesmas propriedades que matrizes (são retangulares)e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
+Portanto *dataframes* tem estrutura retangular similar a das matrizes e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
 
 #### Função `with()`
 
-O acesso as variáveis de um *data frame* também é possível com a função `with(data, expr)`.
+O acesso as variáveis de um *dataframe* também é possível com a função `with(data, expr)`.
 
 ```{r Chunk5310, message=FALSE  , echo=TRUE, eval=TRUE}
-# acesso a variáveis de um data frame
-with(data = dados.df, expr = tar)
-tar_k <- with(data = dados.df, expr = tar + 273.15)
-tar_k
-with(data = dados.df, expr = plot(tar + 273.15))
+# acesso a variáveis de um dataframe
+with(data = dados, expr = tar)
+tarK <- with(data = dados, expr = tar + 273.15)
+tarK
+# gráfico de uma variável usando with()
+with(data = dados, 
+     # parâmetro expr geralmente não é mostrado
+       plot(tar + 273.15, type = "o")
+     )
 ```
 
-O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *data frame* de entrada.
+O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *dataframe* de entrada.
 
-#### Edição manual de um *data frame*
+Quando houver uma expressão com mais de uma linha você agrupa o código usando chaves `{}`.
 
-É possível também editar os dados manualmente.
-
-```{r Chunk5320, message=FALSE  , tidy=TRUE, echo=TRUE, eval=FALSE}
-# editar dados
-fix(dados.df)
-# inicializando um dataframe
-x <- data.frame()
-# digitando so dados
-fix(x)
+```{r}
+with(dados, 
+     {
+       dates <- as.Date(datas)
+       plot(dates, tar)
+     }
+)
 ```
 
-### Indexação, seleção e alteração 
 
-Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *data frames*.
+### Indexação, seleção e substituição 
+
+Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *dataframes*.
 
 ```{r Chunk540, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-# todos dados exceto o primeiro e último registro
-dados.df[-c(1, nrow(dados.df)), ]
+# exclui a primeiro e a última observação para todas variáveis
+dados[-c(1, nrow(dados)), ]
 # temperatura dos primeiros 5 dias
-dados.df[1:5, 3]
+dados[1:5, 3]
 # temperatura no dia 2013-01-09
-dados.df[dados.df$dates == "2013-01-09", "tar"]
+dados[dados$datas == "2013-01-09", "tar"]
 # acrescentar uma nova variavel
-dados.df$prec <- c(rep(0,5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
-dados.df
+dados$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
+dados
 ```
 
-Uma função específica para gerar subconjunto de dados em *data frames* é a `subset()`. 
+Uma função específica para gerar subconjunto de dados em *dataframes* é a `subset()`. 
 
 ```{r Chunk541, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # subconjunto baseado em condição lógica
-ss1 <- subset(dados.df, dates == "2013-01-09", select = "tar")
+ss1 <- subset(dados, datas == "2013-01-09", select = "tar")
 ss1
 # subconjunto baseado em condição lógica
-ss2 <- subset(dados.df, tar > 26 & prec > 0)
+ss2 <- subset(dados, tar > 26 & prec > 0)
 ss2
 # subconjunto baseado em condição lógica
-ss3 <- subset(dados.df, tar > 26 | prec > 0)
+ss3 <- subset(dados, tar > 26 | prec > 0)
 ss3
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"), 
-              select = -cidade)
+ss4 <- subset(dados,
+  datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              ! dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
-              select = -cidade)
+ss4 <- subset(dados,
+  !datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
 ```
 
-Uma função específica para alteração, remoção e inclusão de variáveis em um *dataframe* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *dataframe*.
+Uma função específica para alteração, remoção e inclusão de variáveis em um *dataframe* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável (ao mesmo tempo) de um *dataframe*.
 
 ```{r Chunk542, message=FALSE  , tidy=FALSE, echo=TRUE, eval=TRUE}
 # mudança do dataframe, alteração de várias variáveis
-dados.df <- transform(dados.df,
-                      cidade = ifelse(1:nrow(dados.df) > 8, "Sao Sepe", cidade),
-                      dates = c(dates[1:8], dates[1:7]),
-                      anomalias = ifelse(cidade == "Santa Maria", 
-                                         tar-mean(tar[cidade == "Santa Maria"]), 
-                                         tar-mean(tar[cidade == "Sao Sepe"]))
-            )
-# alterar so uma variavel
-dados.df$anomalias.norm = ifelse(dados.df$cidade == "Santa Maria", 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Santa Maria"]), 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Sao Sepe"]) )
-dados.df
+dados <- transform(dados,
+  cidade = ifelse(1:nrow(dados) > 8, "Sao Sepe", cidade),
+  datas = c(datas[1:8], datas[1:7]),
+  anomalias = ifelse(cidade == "Santa Maria",
+    tar - mean(tar[cidade == "Santa Maria"]),
+    tar - mean(tar[cidade == "Sao Sepe"])
+  )
+)
+dados
+# alterar só uma variavel, anomalia normalizada
+dados$anomalias.norm <- ifelse(dados$cidade == "Santa Maria",
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Santa Maria"]),
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Sao Sepe"])
+)
+dados
 ```
 
 ### Combinando *dataframes*
 
 ```{r Chunk550, message=FALSE  , echo=TRUE, eval=TRUE}
-coords.df <- data.frame(lon = c(rep(-45, 8), rep(-45.1, 7)),  # longitudes
-                        lat = c(rep(-23, 8), rep(-23.1, 7)))  # latitudes
-d <- cbind(dados.df, coords.df)
+coords_df <- data.frame(
+  lon = c(rep(-45, 8), rep(-45.1, 7)), # longitudes
+  lat = c(rep(-23, 8), rep(-23.1, 7))
+) # latitudes
+d <- cbind(dados, coords_df)
 d
 # usando a própria função data.frame()
-d2 <- data.frame(dados.df, coords.df, stringsAsFactors = FALSE)
+d2 <- data.frame(dados, coords_df, stringsAsFactors = FALSE)
 d2
-# verificando se os dois data frames são idênticos
+# verificando se os dois dataframes são idênticos
 identical(d, d2)
 # dados de Caçapava
-cacapava <- data.frame(dates = "2013-01-01", 
-                       cidade = "Cacapava", 
-                       tar = 19,
-                       prec= 0,
-                       anomalias = NA, 
-                       anomalias.norm = NA,
-                       lon = -45.1,
-                       lat = -23.2)
+cacapava <- data.frame(
+  datas = "2013-01-01",
+  cidade = "Cacapava",
+  tar = 19,
+  prec = 0,
+  anomalias = NA,
+  anomalias.norm = NA,
+  lon = -45.1,
+  lat = -23.2
+)
 d <- rbind(d, cacapava)
 d
 ```
 
 ### Teste e Coerção
 
-Podemos converter um objeto para *data frame* com `as.data.frame()`:
+Podemos converter um objeto para *dataframe* com `as.data.frame()`:
 
-+ Um vetor é transformado em um *data frame* de uma coluna;
++ Um vetor é transformado em um *dataframe* de uma coluna;
 
 + Uma lista terá uma coluna para elemento, se os elementos não forem de mesmo tamanho haverá um erro;
-+ Uma matriz cria um *data frame* com mesma estrutura de uma matriz;
++ Uma matriz cria um *dataframe* com mesma estrutura de uma matriz;
 
 ```{r Chunk551, message=FALSE  , echo=TRUE, eval=TRUE}
-# convertendo lista para data frame
+# convertendo lista para dataframe
 sm_l
 sm_l_df <- as.data.frame(sm_l)
-# convertendo array para data frame
+sm_l_df
+# convertendo array para dataframe
 v
 v_df <- as.data.frame(v)
-# convertendo vetor para data frame
+# convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
-# convertendo matrix para data frame
+# convertendo matrix para dataframe
 mat_ex
 mat_ex_df <- as.data.frame(mat_ex)
 names(mat_ex_df)
+mat_ex_df
 # testes
 is.data.frame(mat_ex_df)
 class(v_df)
-mode(v_df)
 ```
+
 
