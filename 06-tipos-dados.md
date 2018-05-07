@@ -146,7 +146,7 @@ nchar(charf)
 #> Error in nchar(charf): 'nchar()' requires a character vector
 ```
 
-### *logical*
+### *logical* {#logico}
    
 `logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). 
 
@@ -223,10 +223,11 @@ nchar("abc") < nchar("defg")
 #> [1] TRUE
 ```
 
-<a name="tab_oper_log"></a>
+
+A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos disponíveis no <img src="images/logo_r.png" width="20">.
 
 
-Table: (\#tab:chunck14)Tabela 1. Operadores Lógicos
+Table: (\#tab:oper-logic)Operadores Lógicos
 
  Operador            Descrição        
 -----------  -------------------------
