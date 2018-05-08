@@ -7,8 +7,8 @@ output:
 
 ```{r setup, include = FALSE}
 rm(list = ls())
-pcks <- c("knitr", "emo", "pander") # , "htmlTable")
-# pcks <- c("knitr", "emo")
+pcks <- c("knitr", "emo", "pander",
+          "knitr", "pander", "htmlTable") 
 easypackages::libraries(pcks)
 opts_chunk$set(
   prompt = FALSE,
@@ -21,13 +21,13 @@ opts_chunk$set(
 rblue <- '<img src="images/logo_r.png" width="20">'
 ```
 
+O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade veremos como importar dados de arquivos texto, binários e de outros softwares para o R. Nesta seção vamos:
 
+- ver como **importar dados no R**[^10] 
+- conhecer os formatos mais comuns de dados reconhecidos pelo R
+- ler arquivos de dados meteorológicos de fontes brasileiras
 
-Nesta seção vamos:
-
-- ver como os dados podem ser estruturados no R 
-- conhecer os atributos dessas estruturas
-- criar e manipular essas estruturas
+[^10]: Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
 
 ##  Visão geral
 
@@ -855,42 +855,11 @@ length(b)
 
  
 
-## Matrix
+## Matriz
 
-Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extensão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
+Vetores são dados unidimensionais. Vetores multidimensionais são denominados arranjos (tradução do termo em inglês *array*). As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
 ### Criação de matrizes 
-
-#### Função `dim()`
-
-Podemos converter um vetor atômico em uma *array* de `n` dimensões através do atributo dimensão: `dim()`. Para fazer isso, definimos o atributo `dim`( de dimensão) com um vetor numérico de tamanho `n`. 
-O R reorganizará os elementos do vetor de acordo com as dimensões.
-
-```{r Chunk111, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-v <- vetor <- 1:12
-length(v)
-attributes(v)
-typeof(v)
-# conversão de vetor para matriz
-dim(v) <- c(3, 4) # 1a dimensão: linhas , 2a dimensão: colunas
-# v é vector?
-is.vector(v)
-# v é matrix?
-is.matrix(v)
-# classe de vetor
-class(v)
-attributes(v)
-v
-# invertendo as dimensões
-dim(v) <- c(4, 3)
-v
-```
-
-O R usa o primeiro elemento de `dim()` para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.
-
-Note como os valores de `v` foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.
-
-Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função `matrix()` ou `array()`. Elas fazem a mesma coisa que a `dim()` porém com argumentos mais versáteis para estruturar uma `matrix`.
 
 #### Função `matrix()` 
 
@@ -912,27 +881,6 @@ mat <- matrix(vetor, nrow = 3, ncol = 4)
 mat
 # não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
-mat
-```
-
-A matriz `mat` poderia ser criada especificando os valores de cada elemento :
-
-```{r Chunk1123, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-# criando a matriz gerada com dim
-mat <- matrix(nrow = 3, ncol = 4)
-mat
-mat[1, 1] <- 1
-mat[2, 1] <- 2
-mat[3, 1] <- 3
-mat[1, 2] <- 4
-mat[2, 2] <- 5
-mat[3, 2] <- 6
-mat[1, 3] <- 7
-mat[2, 3] <- 8
-mat[3, 3] <- 9
-mat[1, 4] <- 10
-mat[2, 4] <- 11
-mat[3, 4] <- 12
 mat
 ```
 
@@ -1055,15 +1003,6 @@ M[c(1, 3), c(1, 12)] <- matrix(c(21, 22, 23, 24), ncol = 2)
 M
 ```
 
-Partes de uma matriz podem ser substituídas ou alteradas.
-
-```{r Chunk135, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-mx <- matrix(nrow = 3, ncol = 3)
-my <- matrix(c(4, 5, 2, 3), nrow = 2)
-my
-mx[2:3, 2:3] <- my
-mx
-```
 
 ### Número de linhas e colunas de uma matriz
 
@@ -1081,29 +1020,6 @@ Existem funções específicas para saber a coluna e a linha de cada elemento de
 col(temp_mat)
 # linhas de cada elemento da matriz
 row(temp_mat)
-# elementos de matriz
-m <- matrix(1:16, nrow = 4, byrow = TRUE)
-m
-# nós veremos mais sobre a função paste futuramente
-elementos <- paste("m", row(m), col(m), sep = "")
-mel <- matrix(elementos, ncol = 4)
-mel
-# qual colunas de M são idênticas a 1
-col(m) == 1
-# seleciona na M colunas idênticas a 1
-mel[col(m) == 1]
-# qual colunas de M são idênticas a 1 ou 3?
-col(m) == 1 | col(m) == 3
-# Usando operadores relacionais
-row(m) == 1
-col(m) == 3
-row(m) == 1 | col(m) == 3
-# seleciona valores de M posicionados na linha 1 OU na coluna 6
-mel[row(m) == 1 | col(m) == 4]
-m[row(m) == 1 | col(m) == 4]
-# seleciona valores de M posicionados na linha 1 E na coluna 6
-mel[row(m) == 4 & col(m) == 4]
-m[row(m) == 4 & col(m) == 4]
 ```
 
 ### Acrescentando linhas e colunas a uma matriz
@@ -1116,101 +1032,24 @@ rbind(1:10, 11, 21:25)
 cbind(10:6, 5:4, 0)
 ```
 
-### Operações matriciais 
+### Matriz transposta e diagonal
 
 A primeira entre as diversas funções de álgebra matricial no R é a transposta `t()`.
 ```{r Chunk161, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
 temp_mat
 t(temp_mat)
-mel
-t(mel)
-# diagonal de mel
-diag(mel)
+# diagonal 
+diag(temp_mat)
 ```
 
-#### Multiplicação matricial
-
-Operações algébricas, incluindo a multiplicação `*`, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial (Figura \@ref(fig:fig-multiplicacao-mat)) usamos o operador (`%*%`).
-
-```{r fig-multiplicacao-mat, fig.cap="Multiplicação matricial.", echo = FALSE, out.width="50%", fig.align='center'}
-knitr::include_graphics("images/multilicacaoMatricial.png")
-```
-
-```{r Chunk1611  , tidy=TRUE, echo=TRUE, eval=TRUE, error=TRUE}
-# multiplicação de duas matrizes
-A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
-A
-B <- matrix(c(3, 2, 1, 4), ncol = 2)
-B
-A * B # erro pela diferença nas dims entre as matrizes
-prodMat <- A %*% B
-prodMat
-# multiplicação de uma matriz por um escalar
-m
-m * 2
-```
-
-#### Adição matricial
-
-```{r Chunk1621, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-m
-m + m
-```
-
-#### Produto escalar
-
-```{r Chunk1631, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-u <- 1:3
-v <- c(5, 12, 13)
-u * v
-# produto escalar = u.v = 1*5 + 2*12 + 3*13
-crossprod(u, v)
-```
-
-#### Determinante
-
-```{r Chunk1641, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-# matriz exemplo
-mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
-det(mat_ex)
-```
-
-#### Solução de sistemas lineares
-x1 + x2 = 2
-
--x1 + x2 = 4
-
- Qual os  valores de x1 e x2?
-```{r Chunk1651, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-# matrizes do sistema linear
-coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
-y <- c(2, 4)
-x <- solve(coefs, y)
-x
-```
+Operações matriciais adicionais são apresentadas no Apêndice \@ref(oper-mat).
 
 
-### Conversão de `matrix` para `vector`
+### Conversão de matriz para vetor
 
 Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: `temp_mat`) no início da seção ela foi baseada em um vetor (`vtemp`). Como fazemos para voltar aquele vetor original a partir da matriz?
 
-```{r Chunk171, message=FALSE  , echo=TRUE, eval=TRUE}
-# desmanchando matrizes
-mel
-# note as diferenças
-mel[1, 1]
-mel[1]
-# resulta em uma submatriz
-mel[1:4, 1:4]
-# resulta em um vetor
-mel[1:4]
-# submatriz da temp_mat
-temp_mat[1:3, 1:3]
-# vetor gerado de 3 elementos de mat
-temp_mat[1:3]
-# número de elementos na matriz
-nel <- nrow(temp_mat) * ncol(temp_mat)
-nel
+```{r Chunk171}
 temp_mat[1:nrow(temp_mat) * ncol(temp_mat) ]
 # vetor de temperaturas
 vtemp <- temp_mat[1:(ncol(temp_mat) * nrow(temp_mat))]
@@ -1250,44 +1089,55 @@ cbind(
 ```
 
 
-## Array
 
-*Arrays* são multidimensionais. As matrizes são um caso particular de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: 
+## Arranjo 
 
-- latitude (linha)
+Arranjo é uma estrutura de dados multidimensional. A matriz é um caso particular de arranjo com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. 
 
-- longitude (coluna) 
 
-- tempo (camadas)
+Por exemplo, imagine o campo espacial representado por uma grade de espaçamento horizontal regular de uma variável meteorológica. Nessa situação podemos usar uma matriz com valores de temperatura, onde as colunas representam as longitudes e as linhas as latitudes dos pontos da grade. Em um dados tempo, a matriz da variável com valores de temperatura do ar, por exemplo, representa o estado térmico espacial daquele momento. Então podemos dizer que esse arranjo possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).
 
 ### Criação 
 
-Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `temp_vetor`. 
+Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor `temp_vetor` abaixo. 
 
-```{r Chunk211, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
-temp_vetor <- 1:12
-temp_vetor
-# ou
+```{r, include = FALSE}
+set.seed(1); dput(round(rnorm(3*4*3, mean = 19, sd = 4)))
+```
+
+
+```{r Chunk211}
+temp_vetor <- c(
+  18, 24, 19, 23, 19, 27, 24, 18, 13, 20, 25, 19, 18, 22, 17,
+  9, 17, 22, 13, 19, 29, 18, 19, 18, 11, 18, 19, 17, 13, 17, 26,
+  21, 22, 20, 14, 17
+)
+```
+
+O vetor `temp_vetor` pode ser convertido em um arranjo dos campos espaciais usando a função `array()`, com o argumento `dim` especificando as dimensões.
+
+```{r}
 temp_array <- array(data = temp_vetor, dim = c(3, 4, 3))
 temp_array
 dim(temp_array)
-length(temp_array)
 class(temp_array)
-mode(temp_array)
+```
+
+O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.
+
+```{r Chun221, message=FALSE  , echo=TRUE, eval=TRUE}
+colnames(temp_array) <- -(45:42)
+rownames(temp_array) <- -(19:21)
+# nomes das dimensões
+dimnames(temp_array)
+# nomes para camadas
+dimnames(temp_array)[[3]] <- c("Jan", "Fev", "Mar")
+temp_array
 ```
 
 ### Indexação
 
-
-
-```{r Chun221, message=FALSE  , echo=TRUE, eval=TRUE}
-colnames(temp_array) <- -45:-42
-rownames(temp_array) <- -19:-21
-temp_array
-```
-
-
-Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleção de partes de uma `array`.
+Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices `A[linha, coluna, camada]`.
 
 ```{r Chun221a, message=FALSE  , echo=TRUE, eval=TRUE}
 # serie temporal do 1º ponto
@@ -1305,8 +1155,8 @@ temp_array[2:3, 2:3, ]
 # média espacial do 1o mês
 mean(temp_array[, , 1])
 # média espacial do segundo mês
-mean(temp_array[, , 2])
-# demanchando uma array (conversão para vetor)
+mean(temp_array[, , "Jan"])
+# demanchando o arranjo (conversão para vetor)
 c(temp_array)
 c(temp_array[, , 1])
 # para entender a forma como a matriz é convertida para vetor
@@ -1319,7 +1169,7 @@ mat_temp <- cbind(
 mat_temp
 ```
 
-## List
+## Lista
 
 Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os **vetores atômicos**, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:
 
@@ -1796,12 +1646,12 @@ v_df <- as.data.frame(v)
 # convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
 # convertendo matrix para dataframe
-mat_ex
-mat_ex_df <- as.data.frame(mat_ex)
-names(mat_ex_df)
-mat_ex_df
+mat
+mat_df <- as.data.frame(mat)
+names(mat_df)
+mat_df
 # testes
-is.data.frame(mat_ex_df)
+is.data.frame(mat_df)
 class(v_df)
 ```
 

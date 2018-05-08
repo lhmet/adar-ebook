@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,21 +24,15 @@
 
 <meta name="author" content="Jônatan Tatsch">
 
-<meta name="date" content="2018-04-23">
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
+<meta name="date" content="2018-05-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="acrescentando-linhas-e-colunas-a-uma-matriz.html">
-<link rel="next" href="conversao-de-matrix-para-vector.html">
+<link rel="prev" href="atribuicao-por-indexacao.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -103,6 +96,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <body>
 
 
+
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
     <div class="book-summary">
@@ -113,7 +107,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="part"><span><b>I Introdução</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Motivação</a><ul>
 <li class="chapter" data-level="1.1" data-path="analise-de-dados-meteorologicos.html"><a href="analise-de-dados-meteorologicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
 <li class="chapter" data-level="1.2" data-path="ciencia-de-dados.html"><a href="ciencia-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
 <li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
@@ -125,6 +120,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.9" data-path="r-nao-e-perfeito.html"><a href="r-nao-e-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
+<li class="part"><span><b>II Configuração</b></span></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
 <li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
 <li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
@@ -135,6 +131,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
 </ul></li>
+<li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
 <li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
@@ -148,6 +145,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visao-geral-do-rstudio.html"><a href="visao-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
 </ul></li>
+<li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
 <li class="chapter" data-level="5.1" data-path="convencao.html"><a href="convencao.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
@@ -162,93 +160,74 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="5.3.2" data-path="variaveis.html"><a href="variaveis.html#removendo-variaveis"><i class="fa fa-check"></i><b>5.3.2</b> Removendo variáveis</a></li>
 <li class="chapter" data-level="5.3.3" data-path="variaveis.html"><a href="variaveis.html#nomeando-variaveis"><i class="fa fa-check"></i><b>5.3.3</b> Nomeando variáveis</a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="exercicios.html"><a href="exercicios.html"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
 <li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
-<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logical"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
 <li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a></li>
-<li class="chapter" data-level="8" data-path="objetivos.html"><a href="objetivos.html"><i class="fa fa-check"></i><b>8</b> Objetivos</a></li>
-<li class="chapter" data-level="9" data-path="estruturas-de-dados.html"><a href="estruturas-de-dados.html"><i class="fa fa-check"></i><b>9</b> Estruturas de dados</a></li>
-<li class="chapter" data-level="10" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>10</b> Vetor</a><ul>
-<li class="chapter" data-level="10.1" data-path="vetores-atomicos.html"><a href="vetores-atomicos.html"><i class="fa fa-check"></i><b>10.1</b> Vetores atômicos</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="vetores-atomicos.html"><a href="vetores-atomicos.html#propriedades"><i class="fa fa-check"></i><b>10.1.1</b> Propriedades</a></li>
-<li class="chapter" data-level="10.1.2" data-path="vetores-atomicos.html"><a href="vetores-atomicos.html#criacao"><i class="fa fa-check"></i><b>10.1.2</b> Criação</a></li>
-<li class="chapter" data-level="10.1.3" data-path="vetores-atomicos.html"><a href="vetores-atomicos.html#coercao-de-vetores"><i class="fa fa-check"></i><b>10.1.3</b> Coerção de vetores</a></li>
-<li class="chapter" data-level="10.1.4" data-path="vetores-atomicos.html"><a href="vetores-atomicos.html#nomeando-vetores"><i class="fa fa-check"></i><b>10.1.4</b> Nomeando vetores</a></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="visao-geral.html"><a href="visao-geral.html"><i class="fa fa-check"></i><b>7.1</b> Visão geral</a></li>
+<li class="chapter" data-level="7.2" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.2</b> Vetor</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vetor.html"><a href="vetor.html#vetores-atomicos"><i class="fa fa-check"></i><b>7.2.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vetor.html"><a href="vetor.html#operacoes-com-vetores"><i class="fa fa-check"></i><b>7.2.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.2.3" data-path="vetor.html"><a href="vetor.html#sequencias"><i class="fa fa-check"></i><b>7.2.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.2.4" data-path="vetor.html"><a href="vetor.html#index-vetores"><i class="fa fa-check"></i><b>7.2.4</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="7.2.5" data-path="vetor.html"><a href="vetor.html#substituicao-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.2.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.2.6" data-path="vetor.html"><a href="vetor.html#criacao-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.2.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.2.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.2.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.2.8" data-path="vetor.html"><a href="vetor.html#diferenca-entre-na-e-null"><i class="fa fa-check"></i><b>7.2.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="operacoes-com-vetores.html"><a href="operacoes-com-vetores.html"><i class="fa fa-check"></i><b>10.2</b> Operações com vetores</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="operacoes-com-vetores.html"><a href="operacoes-com-vetores.html#operadores-any-e-all"><i class="fa fa-check"></i><b>10.2.1</b> Operadores <code>any</code> e <code>all</code></a></li>
+<li class="chapter" data-level="7.3" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>7.3</b> Matriz</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="matriz.html"><a href="matriz.html#criacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.3.2" data-path="matriz.html"><a href="matriz.html#nomes-das-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.3" data-path="matriz.html"><a href="matriz.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.3.4" data-path="matriz.html"><a href="matriz.html#numero-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.5" data-path="matriz.html"><a href="matriz.html#acrescentando-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.3.5</b> Acrescentando linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.3.6" data-path="matriz.html"><a href="matriz.html#matriz-transposta-e-diagonal"><i class="fa fa-check"></i><b>7.3.6</b> Matriz transposta e diagonal</a></li>
+<li class="chapter" data-level="7.3.7" data-path="matriz.html"><a href="matriz.html#conversao-de-matriz-para-vetor"><i class="fa fa-check"></i><b>7.3.7</b> Conversão de matriz para vetor</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="sequencias.html"><a href="sequencias.html"><i class="fa fa-check"></i><b>10.3</b> Sequências</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="sequencias.html"><a href="sequencias.html#sequencias-de-numeros-inteiros"><i class="fa fa-check"></i><b>10.3.1</b> Sequências de números inteiros</a></li>
-<li class="chapter" data-level="10.3.2" data-path="sequencias.html"><a href="sequencias.html#sequencias-de-numeros-nao-inteiros"><i class="fa fa-check"></i><b>10.3.2</b> Sequências de números não inteiros</a></li>
-<li class="chapter" data-level="10.3.3" data-path="sequencias.html"><a href="sequencias.html#sequencias-de-numeros-repetidos"><i class="fa fa-check"></i><b>10.3.3</b> Sequências de números repetidos</a></li>
+<li class="chapter" data-level="7.4" data-path="arranjo.html"><a href="arranjo.html"><i class="fa fa-check"></i><b>7.4</b> Arranjo</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="arranjo.html"><a href="arranjo.html#criacao-1"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="arranjo.html"><a href="arranjo.html#indexacao"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="indexacao-de-vetores.html"><a href="indexacao-de-vetores.html"><i class="fa fa-check"></i><b>10.4</b> <a href="#indexvetores">Indexação de vetores</a></a><ul>
-<li class="chapter" data-level="10.4.1" data-path="indexacao-de-vetores.html"><a href="indexacao-de-vetores.html#indexacao-por-vetores-inteiros"><i class="fa fa-check"></i><b>10.4.1</b> Indexação por vetores inteiros</a></li>
-<li class="chapter" data-level="10.4.2" data-path="indexacao-de-vetores.html"><a href="indexacao-de-vetores.html#indexacao-por-nomes"><i class="fa fa-check"></i><b>10.4.2</b> Indexação por nomes</a></li>
-<li class="chapter" data-level="10.4.3" data-path="indexacao-de-vetores.html"><a href="indexacao-de-vetores.html#indexacao-por-vetores-logicos"><i class="fa fa-check"></i><b>10.4.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="10.4.4" data-path="indexacao-de-vetores.html"><a href="indexacao-de-vetores.html#indexacao-com-multiplas-condicoes"><i class="fa fa-check"></i><b>10.4.4</b> Indexação com múltiplas condições</a></li>
+<li class="chapter" data-level="7.5" data-path="lista.html"><a href="lista.html"><i class="fa fa-check"></i><b>7.5</b> Lista</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="lista.html"><a href="lista.html#criacao-2"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="lista.html"><a href="lista.html#indexacao-1"><i class="fa fa-check"></i><b>7.5.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.5.3" data-path="lista.html"><a href="lista.html#conversao-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.5.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.5.4" data-path="lista.html"><a href="lista.html#conversao-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.5.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="substituicao-de-elementos-de-um-vetor.html"><a href="substituicao-de-elementos-de-um-vetor.html"><i class="fa fa-check"></i><b>10.5</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="10.6" data-path="criacao-de-vetores-com-vector.html"><a href="criacao-de-vetores-com-vector.html"><i class="fa fa-check"></i><b>10.6</b> Criação de vetores com <code>vector</code></a></li>
-<li class="chapter" data-level="10.7" data-path="vetores-nulos-e-elementos-faltantes.html"><a href="vetores-nulos-e-elementos-faltantes.html"><i class="fa fa-check"></i><b>10.7</b> Vetores nulos e elementos faltantes</a></li>
-<li class="chapter" data-level="10.8" data-path="diferenca-entre-na-e-null.html"><a href="diferenca-entre-na-e-null.html"><i class="fa fa-check"></i><b>10.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+<li class="chapter" data-level="7.6" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>7.6</b> Dataframe</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="dataframe.html"><a href="dataframe.html#criacao-3"><i class="fa fa-check"></i><b>7.6.1</b> Criação</a></li>
+<li class="chapter" data-level="7.6.2" data-path="dataframe.html"><a href="dataframe.html#atributos-de-um-dataframe"><i class="fa fa-check"></i><b>7.6.2</b> Atributos de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.6.3" data-path="dataframe.html"><a href="dataframe.html#acesso-as-variaveis-de-um-dataframe"><i class="fa fa-check"></i><b>7.6.3</b> Acesso as variáveis de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.6.4" data-path="dataframe.html"><a href="dataframe.html#indexacao-selecao-e-substituicao"><i class="fa fa-check"></i><b>7.6.4</b> Indexação, seleção e substituição</a></li>
+<li class="chapter" data-level="7.6.5" data-path="dataframe.html"><a href="dataframe.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.6.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.6.6" data-path="dataframe.html"><a href="dataframe.html#teste-e-coercao"><i class="fa fa-check"></i><b>7.6.6</b> Teste e Coerção</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>11</b> Matrix</a><ul>
-<li class="chapter" data-level="11.1" data-path="criacao-de-matrizes.html"><a href="criacao-de-matrizes.html"><i class="fa fa-check"></i><b>11.1</b> Criação de matrizes</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="criacao-de-matrizes.html"><a href="criacao-de-matrizes.html#funcao-dim"><i class="fa fa-check"></i><b>11.1.1</b> Função <code>dim()</code></a></li>
-<li class="chapter" data-level="11.1.2" data-path="criacao-de-matrizes.html"><a href="criacao-de-matrizes.html#funcao-matrix"><i class="fa fa-check"></i><b>11.1.2</b> Função <code>matrix()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="nomes-das-linhas-e-colunas-de-uma-matriz.html"><a href="nomes-das-linhas-e-colunas-de-uma-matriz.html"><i class="fa fa-check"></i><b>11.2</b> Nomes das linhas e colunas de uma matriz</a></li>
-<li class="chapter" data-level="11.3" data-path="indexacao-de-matrizes.html"><a href="indexacao-de-matrizes.html"><i class="fa fa-check"></i><b>11.3</b> Indexação de matrizes</a></li>
-<li class="chapter" data-level="11.4" data-path="numero-de-linhas-e-colunas-de-uma-matriz.html"><a href="numero-de-linhas-e-colunas-de-uma-matriz.html"><i class="fa fa-check"></i><b>11.4</b> Número de linhas e colunas de uma matriz</a></li>
-<li class="chapter" data-level="11.5" data-path="acrescentando-linhas-e-colunas-a-uma-matriz.html"><a href="acrescentando-linhas-e-colunas-a-uma-matriz.html"><i class="fa fa-check"></i><b>11.5</b> Acrescentando linhas e colunas a uma matriz</a></li>
-<li class="chapter" data-level="11.6" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html"><i class="fa fa-check"></i><b>11.6</b> Operações matriciais</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#multiplicacao-matricial"><i class="fa fa-check"></i><b>11.6.1</b> Multiplicação matricial</a></li>
-<li class="chapter" data-level="11.6.2" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#adicao-matricial"><i class="fa fa-check"></i><b>11.6.2</b> Adição matricial</a></li>
-<li class="chapter" data-level="11.6.3" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>11.6.3</b> Produto escalar</a></li>
-<li class="chapter" data-level="11.6.4" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#determinante"><i class="fa fa-check"></i><b>11.6.4</b> Determinante</a></li>
-<li class="chapter" data-level="11.6.5" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#solucao-de-sistemas-lineares"><i class="fa fa-check"></i><b>11.6.5</b> Solução de sistemas lineares</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="conversao-de-matrix-para-vector.html"><a href="conversao-de-matrix-para-vector.html"><i class="fa fa-check"></i><b>11.7</b> Conversão de <code>matrix</code> para <code>vector</code></a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>12</b> Array</a><ul>
-<li class="chapter" data-level="12.1" data-path="criacao-1.html"><a href="criacao-1.html"><i class="fa fa-check"></i><b>12.1</b> Criação</a></li>
-<li class="chapter" data-level="12.2" data-path="indexacao.html"><a href="indexacao.html"><i class="fa fa-check"></i><b>12.2</b> Indexação</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>13</b> List</a><ul>
-<li class="chapter" data-level="13.1" data-path="criacao-2.html"><a href="criacao-2.html"><i class="fa fa-check"></i><b>13.1</b> Criação</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="criacao-2.html"><a href="criacao-2.html#list-1"><i class="fa fa-check"></i><b>13.1.1</b> <code>list()</code></a></li>
-<li class="chapter" data-level="13.1.2" data-path="criacao-2.html"><a href="criacao-2.html#vector"><i class="fa fa-check"></i><b>13.1.2</b> <code>vector()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="indexacao-1.html"><a href="indexacao-1.html"><i class="fa fa-check"></i><b>13.2</b> Indexação</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="indexacao-1.html"><a href="indexacao-1.html#operador"><i class="fa fa-check"></i><b>13.2.1</b> Operador <code>[</code></a></li>
-<li class="chapter" data-level="13.2.2" data-path="indexacao-1.html"><a href="indexacao-1.html#operador-e"><i class="fa fa-check"></i><b>13.2.2</b> Operador <code>[[</code> e <code>$</code></a></li>
-<li class="chapter" data-level="13.2.3" data-path="indexacao-1.html"><a href="indexacao-1.html#lista-de-condimentos"><i class="fa fa-check"></i><b>13.2.3</b> Lista de condimentos</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="conversao-de-lista-para-vetor-e-vice-versa-.html"><a href="conversao-de-lista-para-vetor-e-vice-versa-.html"><i class="fa fa-check"></i><b>13.3</b> Conversão de lista para vetor e vice-versa.</a></li>
-<li class="chapter" data-level="13.4" data-path="conversao-de-list-para-data-frame.html"><a href="conversao-de-list-para-data-frame.html"><i class="fa fa-check"></i><b>13.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>14</b> <em>Data frame</em></a><ul>
-<li class="chapter" data-level="14.1" data-path="criacao-3.html"><a href="criacao-3.html"><i class="fa fa-check"></i><b>14.1</b> Criação</a></li>
-<li class="chapter" data-level="14.2" data-path="atributos-de-um-data-frame.html"><a href="atributos-de-um-data-frame.html"><i class="fa fa-check"></i><b>14.2</b> Atributos de um <em>data frame</em></a></li>
-<li class="chapter" data-level="14.3" data-path="acesso-as-variaveis-de-um-data-frame.html"><a href="acesso-as-variaveis-de-um-data-frame.html"><i class="fa fa-check"></i><b>14.3</b> Acesso as variáveis de um <em>data frame</em></a><ul>
-<li class="chapter" data-level="14.3.1" data-path="acesso-as-variaveis-de-um-data-frame.html"><a href="acesso-as-variaveis-de-um-data-frame.html#funcao-with"><i class="fa fa-check"></i><b>14.3.1</b> Função <code>with()</code></a></li>
-<li class="chapter" data-level="14.3.2" data-path="acesso-as-variaveis-de-um-data-frame.html"><a href="acesso-as-variaveis-de-um-data-frame.html#edicao-manual-de-um-data-frame"><i class="fa fa-check"></i><b>14.3.2</b> Edição manual de um <em>data frame</em></a></li>
-</ul></li>
-<li class="chapter" data-level="14.4" data-path="indexacao-selecao-e-alteracao.html"><a href="indexacao-selecao-e-alteracao.html"><i class="fa fa-check"></i><b>14.4</b> Indexação, seleção e alteração</a></li>
-<li class="chapter" data-level="14.5" data-path="combinando-data-frames.html"><a href="combinando-data-frames.html"><i class="fa fa-check"></i><b>14.5</b> Combinando <em>data frames</em></a></li>
-<li class="chapter" data-level="14.6" data-path="teste-e-coercao.html"><a href="teste-e-coercao.html"><i class="fa fa-check"></i><b>14.6</b> Teste e Coerção</a></li>
+<li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
+<li class="chapter" data-level="8.1" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.1</b> Diretório de trabalho</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
+<li class="chapter" data-level="A.1" data-path="funcao-dim.html"><a href="funcao-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="A.2" data-path="atribuicao-por-indexacao.html"><a href="atribuicao-por-indexacao.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="A.3" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#multiplicacao-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="A.3.2" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#adicao-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="A.3.3" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="A.3.4" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
+<li class="chapter" data-level="A.3.5" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#solucao-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Published with bookdown</a></li>
 
@@ -269,142 +248,135 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="operacoes-matriciais" class="section level2 tabset">
-<h2><span class="header-section-number">11.6</span> Operações matriciais</h2>
-<p>A primeira entre as diversas funções de álgebra matricial no R é a transposta <code>t()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat
-          Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
-ano1990 <span class="fl">25.00</span> <span class="fl">23.20</span> <span class="fl">22.50</span> <span class="fl">21.00</span> <span class="fl">19.00</span> <span class="fl">17.60</span> <span class="fl">18.00</span> <span class="fl">19.70</span> <span class="fl">21.30</span> <span class="fl">22.00</span> <span class="fl">24.00</span>
-ano1991 <span class="fl">24.89</span> <span class="fl">24.07</span> <span class="fl">23.56</span> <span class="fl">23.11</span> <span class="fl">18.29</span> <span class="fl">18.22</span> <span class="fl">16.72</span> <span class="fl">19.37</span> <span class="fl">20.08</span> <span class="fl">21.45</span> <span class="fl">26.61</span>
-ano1992 <span class="fl">23.20</span> <span class="fl">26.61</span> <span class="fl">18.00</span> <span class="fl">23.11</span> <span class="fl">26.80</span> <span class="fl">21.30</span> <span class="fl">18.22</span> <span class="fl">21.45</span> <span class="fl">19.70</span> <span class="fl">22.50</span> <span class="fl">24.07</span>
-          Dez
-ano1990 <span class="fl">26.80</span>
-ano1991 <span class="fl">25.99</span>
-ano1992 <span class="fl">20.08</span>
-<span class="kw">t</span>(temp_mat)
-    ano1990 ano1991 ano1992
-Jan    <span class="fl">25.0</span>   <span class="fl">24.89</span>   <span class="fl">23.20</span>
-Fev    <span class="fl">23.2</span>   <span class="fl">24.07</span>   <span class="fl">26.61</span>
-Mar    <span class="fl">22.5</span>   <span class="fl">23.56</span>   <span class="fl">18.00</span>
-Abr    <span class="fl">21.0</span>   <span class="fl">23.11</span>   <span class="fl">23.11</span>
-Mai    <span class="fl">19.0</span>   <span class="fl">18.29</span>   <span class="fl">26.80</span>
-Jun    <span class="fl">17.6</span>   <span class="fl">18.22</span>   <span class="fl">21.30</span>
-Jul    <span class="fl">18.0</span>   <span class="fl">16.72</span>   <span class="fl">18.22</span>
-Ago    <span class="fl">19.7</span>   <span class="fl">19.37</span>   <span class="fl">21.45</span>
-Set    <span class="fl">21.3</span>   <span class="fl">20.08</span>   <span class="fl">19.70</span>
-Out    <span class="fl">22.0</span>   <span class="fl">21.45</span>   <span class="fl">22.50</span>
-Nov    <span class="fl">24.0</span>   <span class="fl">26.61</span>   <span class="fl">24.07</span>
-Dez    <span class="fl">26.8</span>   <span class="fl">25.99</span>   <span class="fl">20.08</span>
-mel
-     [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]  [,<span class="dv">4</span>] 
-[<span class="dv">1</span>,] <span class="st">&quot;m11&quot;</span> <span class="st">&quot;m12&quot;</span> <span class="st">&quot;m13&quot;</span> <span class="st">&quot;m14&quot;</span>
-[<span class="dv">2</span>,] <span class="st">&quot;m21&quot;</span> <span class="st">&quot;m22&quot;</span> <span class="st">&quot;m23&quot;</span> <span class="st">&quot;m24&quot;</span>
-[<span class="dv">3</span>,] <span class="st">&quot;m31&quot;</span> <span class="st">&quot;m32&quot;</span> <span class="st">&quot;m33&quot;</span> <span class="st">&quot;m34&quot;</span>
-[<span class="dv">4</span>,] <span class="st">&quot;m41&quot;</span> <span class="st">&quot;m42&quot;</span> <span class="st">&quot;m43&quot;</span> <span class="st">&quot;m44&quot;</span>
-<span class="kw">t</span>(mel)
-     [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]  [,<span class="dv">4</span>] 
-[<span class="dv">1</span>,] <span class="st">&quot;m11&quot;</span> <span class="st">&quot;m21&quot;</span> <span class="st">&quot;m31&quot;</span> <span class="st">&quot;m41&quot;</span>
-[<span class="dv">2</span>,] <span class="st">&quot;m12&quot;</span> <span class="st">&quot;m22&quot;</span> <span class="st">&quot;m32&quot;</span> <span class="st">&quot;m42&quot;</span>
-[<span class="dv">3</span>,] <span class="st">&quot;m13&quot;</span> <span class="st">&quot;m23&quot;</span> <span class="st">&quot;m33&quot;</span> <span class="st">&quot;m43&quot;</span>
-[<span class="dv">4</span>,] <span class="st">&quot;m14&quot;</span> <span class="st">&quot;m24&quot;</span> <span class="st">&quot;m34&quot;</span> <span class="st">&quot;m44&quot;</span>
-<span class="co"># diagonal de mel</span>
-<span class="kw">diag</span>(mel)
-[<span class="dv">1</span>] <span class="st">&quot;m11&quot;</span> <span class="st">&quot;m22&quot;</span> <span class="st">&quot;m33&quot;</span> <span class="st">&quot;m44&quot;</span></code></pre></div>
+<div id="operacoes-matriciais" class="section level2">
+<h2><span class="header-section-number">A.3</span> Operações matriciais</h2>
 <div id="multiplicacao-matricial" class="section level3">
-<h3><span class="header-section-number">11.6.1</span> Multiplicação matricial</h3>
-<p>Operações algébricas, incluindo a multiplicação <code>*</code>, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial usamos o operador (<code>%*%</code>).</p>
-<div class="figure">
-<img src="images/multilicacaoMatricial.png" title="Figura 1" />
-
+<h3><span class="header-section-number">A.3.1</span> Multiplicação matricial</h3>
+<p>Operações algébricas, incluindo a multiplicação <code>*</code>, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial (Figura <a href="operacoes-matriciais.html#fig:fig-multiplicacao-mat">A.1</a>) usamos o operador (<code>%*%</code>).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-multiplicacao-mat"></span>
+<img src="images/multilicacaoMatricial.png" alt="Multiplicação matricial." width="50%" />
+<p class="caption">
+Figure A.1: Multiplicação matricial.
+</p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multiplicação de duas matrizes</span>
 A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
 A
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>]
-[<span class="dv">1</span>,]    <span class="dv">2</span>    <span class="dv">3</span>
-[<span class="dv">2</span>,]    <span class="dv">1</span>    <span class="dv">0</span>
-[<span class="dv">3</span>,]    <span class="dv">4</span>    <span class="dv">5</span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    2    3</span>
+<span class="co">#&gt; [2,]    1    0</span>
+<span class="co">#&gt; [3,]    4    5</span>
 B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
 B
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>]
-[<span class="dv">1</span>,]    <span class="dv">3</span>    <span class="dv">1</span>
-[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>
-A <span class="op">*</span><span class="st"> </span>B
-Error <span class="cf">in</span> A <span class="op">*</span><span class="st"> </span>B<span class="op">:</span><span class="st"> </span>non<span class="op">-</span>conformable arrays
-prodMat &lt;-<span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>B
-prodMat
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>]
-[<span class="dv">1</span>,]   <span class="dv">12</span>   <span class="dv">14</span>
-[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">1</span>
-[<span class="dv">3</span>,]   <span class="dv">22</span>   <span class="dv">24</span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    3    1</span>
+<span class="co">#&gt; [2,]    2    4</span>
+A <span class="op">*</span><span class="st"> </span>B <span class="co"># erro pela diferença nas dims entre as matrizes</span>
+<span class="co">#&gt; Error in A * B: non-conformable arrays</span>
+prod_mat &lt;-<span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>B
+prod_mat
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]   12   14</span>
+<span class="co">#&gt; [2,]    3    1</span>
+<span class="co">#&gt; [3,]   22   24</span>
 <span class="co"># multiplicação de uma matriz por um escalar</span>
+m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 m
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>]
-[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">3</span>    <span class="dv">4</span>
-[<span class="dv">2</span>,]    <span class="dv">5</span>    <span class="dv">6</span>    <span class="dv">7</span>    <span class="dv">8</span>
-[<span class="dv">3</span>,]    <span class="dv">9</span>   <span class="dv">10</span>   <span class="dv">11</span>   <span class="dv">12</span>
-[<span class="dv">4</span>,]   <span class="dv">13</span>   <span class="dv">14</span>   <span class="dv">15</span>   <span class="dv">16</span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    2    3    4</span>
+<span class="co">#&gt; [2,]    5    6    7    8</span>
+<span class="co">#&gt; [3,]    9   10   11   12</span>
+<span class="co">#&gt; [4,]   13   14   15   16</span>
 m <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>]
-[<span class="dv">1</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span>    <span class="dv">8</span>
-[<span class="dv">2</span>,]   <span class="dv">10</span>   <span class="dv">12</span>   <span class="dv">14</span>   <span class="dv">16</span>
-[<span class="dv">3</span>,]   <span class="dv">18</span>   <span class="dv">20</span>   <span class="dv">22</span>   <span class="dv">24</span>
-[<span class="dv">4</span>,]   <span class="dv">26</span>   <span class="dv">28</span>   <span class="dv">30</span>   <span class="dv">32</span></code></pre></div>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    2    4    6    8</span>
+<span class="co">#&gt; [2,]   10   12   14   16</span>
+<span class="co">#&gt; [3,]   18   20   22   24</span>
+<span class="co">#&gt; [4,]   26   28   30   32</span></code></pre></div>
 </div>
 <div id="adicao-matricial" class="section level3">
-<h3><span class="header-section-number">11.6.2</span> Adição matricial</h3>
+<h3><span class="header-section-number">A.3.2</span> Adição matricial</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>]
-[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">3</span>    <span class="dv">4</span>
-[<span class="dv">2</span>,]    <span class="dv">5</span>    <span class="dv">6</span>    <span class="dv">7</span>    <span class="dv">8</span>
-[<span class="dv">3</span>,]    <span class="dv">9</span>   <span class="dv">10</span>   <span class="dv">11</span>   <span class="dv">12</span>
-[<span class="dv">4</span>,]   <span class="dv">13</span>   <span class="dv">14</span>   <span class="dv">15</span>   <span class="dv">16</span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    2    3    4</span>
+<span class="co">#&gt; [2,]    5    6    7    8</span>
+<span class="co">#&gt; [3,]    9   10   11   12</span>
+<span class="co">#&gt; [4,]   13   14   15   16</span>
 m <span class="op">+</span><span class="st"> </span>m
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>]
-[<span class="dv">1</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span>    <span class="dv">8</span>
-[<span class="dv">2</span>,]   <span class="dv">10</span>   <span class="dv">12</span>   <span class="dv">14</span>   <span class="dv">16</span>
-[<span class="dv">3</span>,]   <span class="dv">18</span>   <span class="dv">20</span>   <span class="dv">22</span>   <span class="dv">24</span>
-[<span class="dv">4</span>,]   <span class="dv">26</span>   <span class="dv">28</span>   <span class="dv">30</span>   <span class="dv">32</span></code></pre></div>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    2    4    6    8</span>
+<span class="co">#&gt; [2,]   10   12   14   16</span>
+<span class="co">#&gt; [3,]   18   20   22   24</span>
+<span class="co">#&gt; [4,]   26   28   30   32</span></code></pre></div>
 </div>
 <div id="produto-escalar" class="section level3">
-<h3><span class="header-section-number">11.6.3</span> Produto escalar</h3>
+<h3><span class="header-section-number">A.3.3</span> Produto escalar</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
 v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>)
 u <span class="op">*</span><span class="st"> </span>v
-[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">24</span> <span class="dv">39</span>
+<span class="co">#&gt; [1]  5 24 39</span>
 <span class="co"># produto escalar = u.v = 1*5 + 2*12 + 3*13</span>
 <span class="kw">crossprod</span>(u, v)
-     [,<span class="dv">1</span>]
-[<span class="dv">1</span>,]   <span class="dv">68</span></code></pre></div>
+<span class="co">#&gt;      [,1]</span>
+<span class="co">#&gt; [1,]   68</span></code></pre></div>
 </div>
 <div id="determinante" class="section level3">
-<h3><span class="header-section-number">11.6.4</span> Determinante</h3>
+<h3><span class="header-section-number">A.3.4</span> Determinante</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matriz exemplo</span>
 mat_ex &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">3</span>)
 <span class="kw">det</span>(mat_ex)
-[<span class="dv">1</span>] <span class="dv">182</span></code></pre></div>
+<span class="co">#&gt; [1] 182</span></code></pre></div>
 </div>
 <div id="solucao-de-sistemas-lineares" class="section level3">
-<h3><span class="header-section-number">11.6.5</span> Solução de sistemas lineares</h3>
-<p>x1 + x2 = 2</p>
-<p>-x1 + x2 = 4</p>
-<p>Qual os valores de x1 e x2?</p>
+<h3><span class="header-section-number">A.3.5</span> Solução de sistemas lineares</h3>
+<p><span class="math display">\[
+\left\{\begin{matrix}
+x_1 + x_2 = 2
+\\ 
+-x_1 + x_2 = 4
+\end{matrix}\right.
+\]</span></p>
+<p>Qual os valores de <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matrizes do sistema linear</span>
 coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)
 x &lt;-<span class="st"> </span><span class="kw">solve</span>(coefs, y)
 x
-[<span class="dv">1</span>] <span class="op">-</span><span class="dv">1</span>  <span class="dv">3</span></code></pre></div>
+<span class="co">#&gt; [1] -1  3</span></code></pre></div>
+
+<div id="refs" class="references">
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
 </div>
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="acrescentando-linhas-e-colunas-a-uma-matriz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversao-de-matrix-para-vector.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="atribuicao-por-indexacao.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -413,16 +385,18 @@ x
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -430,7 +404,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/07-estrutura-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/AppendixA.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],
@@ -446,9 +420,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

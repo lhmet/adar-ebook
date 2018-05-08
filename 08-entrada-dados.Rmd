@@ -1,0 +1,54 @@
+---
+output:
+  html_document: default
+---
+
+# Entrada e saída de dados {#io}
+
+```{r setup, include = FALSE}
+rm(list = ls())
+pcks <- c("knitr", "emo", "pander",
+          "knitr", "pander", "htmlTable") 
+easypackages::libraries(pcks)
+opts_chunk$set(
+  prompt = FALSE,
+  cache = FALSE,
+  fig.path = "images/",
+  comment = "#>",
+  collapse = TRUE
+)
+# rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
+rblue <- '<img src="images/logo_r.png" width="20">'
+```
+
+O R é capacidade de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar dados nos formatos mais comuns em aplicações ambientais, como: 
+
+- importar dados tabulares aramzenados em arquivos texto (ASCII)
+- dados em formatos binários 
+- arquivos de dados meteorológicos de agências brasileiras
+
+Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
+
+
+## Diretório de trabalho
+
+O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.
+
+Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*working directory*, `wd`). Esse local é a primeiro diretório onde o R irá salvar ou ler um arquivo de dados, se o caminho completo até o arquivo não for especificado. Para saber qual é o diretório de trabalho usamos a função `getwd()`. Para alterar o `wd` usamos `setwd()`. Para listar o conteúdo de um diretório usamos a função `dir()`.
+
+```{r Chunk810, message=TRUE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+# variável do tipo character com nome do diretório
+(wd <- getwd())
+class(wd)
+# altere o caminho para "/home/lci"
+setwd(file.path("/home", Sys.getenv()[["LOGNAME"]]))
+getwd()
+# volta para o wd
+setwd(wd)
+getwd()
+```
+
+Para saber o diretório de instalação do R, usamos `R.home()`. O local de instalação dos pacotes é obtido via `.libPaths()`.
+
+
+
