@@ -1,8 +1,10 @@
-# Introdução {#intro}
+# (PART) Introdução {-}
+
+# Motivação {#intro}
 
 
 
-Breve intro.
+![](http://www.textfiles.com/underconstruction/HeHeartlandPark2601underconstructionbar9.gif)
 
 
 ## Análise de dados meteorológicos

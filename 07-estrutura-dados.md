@@ -7,13 +7,13 @@ output:
 
 
 
+O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade veremos como importar dados de arquivos texto, binários e de outros softwares para o R. Nesta seção vamos:
 
+- ver como **importar dados no R**[^10] 
+- conhecer os formatos mais comuns de dados reconhecidos pelo R
+- ler arquivos de dados meteorológicos de fontes brasileiras
 
-Nesta seção vamos:
-
-- ver como os dados podem ser estruturados no R 
-- conhecer os atributos dessas estruturas
-- criar e manipular essas estruturas
+[^10]: Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
 
 ##  Visão geral
 
@@ -360,9 +360,9 @@ nchar(y)
 
 ```r
 vetor <- c(0, 1, -1, -2, 3, 5, -5)
-all(vetor < 0) # todas as posições são maiores que 0 ?
+all(vetor < 0)  # todas as posições são maiores que 0 ?
 #> [1] FALSE
-any(vetor > 0) # alguma posição é maior que 0?
+any(vetor > 0)  # alguma posição é maior que 0?
 #> [1] TRUE
 ```
 
@@ -712,11 +712,8 @@ Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de 
 
 
 ```r
-vetor_l <- c(
-  TRUE, FALSE, FALSE, TRUE,
-  TRUE, FALSE, TRUE, FALSE,
-  TRUE, FALSE, FALSE, TRUE
-)
+vetor_l <- c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, 
+    FALSE, TRUE)
 meses[vetor_l]
 #> [1] "Jan" "Abr" "Mai" "Jul" "Set" "Dez"
 ```
@@ -832,8 +829,8 @@ b <- c(2, 1, 0, 1)
 # forma normal verifica cada elemento de a e cada elemento de b
 a == 1 & b == 1
 #> [1] FALSE  TRUE FALSE  TRUE
-# forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b
-# retornando somente um resultado
+# forma dupla verifica somente o primeiro elemento de a e o primeiro
+# elemento de b retornando somente um resultado
 a == 1 && b == 1
 #> [1] FALSE
 ```
@@ -1018,7 +1015,7 @@ v
 #> [1]   3 100  NA  NA   6
 # adicionando elementos de vetores
 x <- c(88, 5, 12, 13)
-x <- c(x[1:3], 168, x[4]) # insere 168 antes do 13
+x <- c(x[1:3], 168, x[4])  # insere 168 antes do 13
 x
 #> [1]  88   5  12 168  13
 # outra opção
@@ -1027,9 +1024,9 @@ class(k)
 #> [1] "logical"
 # vetor k existe?
 ls()
-#>  [1] "a"             "a_sn"          "above80"       "an"           
-#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
-#>  [9] "below100"      "chuva"         "cond"          "cte"          
+#>  [1] "a"             "above80"       "an"            "anos"         
+#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
+#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "frac_d30mn"    "horas"         "k"             "meses"        
 #> [21] "months"        "new_temp"      "night_below20" "old_temp"     
@@ -1041,8 +1038,8 @@ ls()
 #> [45] "seco01"        "sel"           "sel_prec"      "sel_temp"     
 #> [49] "seqn"          "si_dec"        "snum_b"        "tar_hor"      
 #> [53] "temp"          "temp_dez"      "temp_djf"      "temp_djf_med" 
-#> [57] "temp_jan"      "v"             "v_123"         "v_123a"       
-#> [61] "v_123b"        "v1"            "v2"            "v3"           
+#> [57] "temp_jan"      "v"             "v1"            "v_123"        
+#> [61] "v_123a"        "v_123b"        "v2"            "v3"           
 #> [65] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [69] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [73] "z"
@@ -1077,7 +1074,8 @@ temp[]
 temp <- 0
 temp
 #> [1] 0
-# vamos redefinir temp e comparar o anterior com o obtido com o próximo comando
+# vamos redefinir temp e comparar o anterior com o obtido com o próximo
+# comando
 temp <- temp_orig
 temp[1:length(temp)] <- 0
 temp
@@ -1171,9 +1169,9 @@ O `NULL` é um tipo de dado especial do R.
 ```r
 # v1 existe ?
 ls()
-#>  [1] "a"             "a_sn"          "above80"       "an"           
-#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
-#>  [9] "below100"      "chuva"         "cond"          "cte"          
+#>  [1] "a"             "above80"       "an"            "anos"         
+#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
+#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "faltante"      "frac_d30mn"    "horas"         "k"            
 #> [21] "meses"         "months"        "new_temp"      "night_below20"
@@ -1186,8 +1184,8 @@ ls()
 #> [49] "sel_prec"      "sel_temp"      "seqn"          "si_dec"       
 #> [53] "snum_b"        "tar_hor"       "temp"          "temp_dez"     
 #> [57] "temp_djf"      "temp_djf_med"  "temp_jan"      "temp_orig"    
-#> [61] "umvetor"       "v"             "v_123"         "v_123a"       
-#> [65] "v_123b"        "v1"            "v2"            "v3"           
+#> [61] "umvetor"       "v"             "v1"            "v_123"        
+#> [65] "v_123a"        "v_123b"        "v2"            "v3"           
 #> [69] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [73] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [77] "z"
@@ -1196,9 +1194,9 @@ exists("v1")
 # vamos anular todo v1
 v1 <- NULL
 ls()
-#>  [1] "a"             "a_sn"          "above80"       "an"           
-#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
-#>  [9] "below100"      "chuva"         "cond"          "cte"          
+#>  [1] "a"             "above80"       "an"            "anos"         
+#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
+#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "faltante"      "frac_d30mn"    "horas"         "k"            
 #> [21] "meses"         "months"        "new_temp"      "night_below20"
@@ -1211,8 +1209,8 @@ ls()
 #> [49] "sel_prec"      "sel_temp"      "seqn"          "si_dec"       
 #> [53] "snum_b"        "tar_hor"       "temp"          "temp_dez"     
 #> [57] "temp_djf"      "temp_djf_med"  "temp_jan"      "temp_orig"    
-#> [61] "umvetor"       "v"             "v_123"         "v_123a"       
-#> [65] "v_123b"        "v1"            "v2"            "v3"           
+#> [61] "umvetor"       "v"             "v1"            "v_123"        
+#> [65] "v_123a"        "v_123b"        "v2"            "v3"           
 #> [69] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [73] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [77] "z"
@@ -1265,60 +1263,11 @@ length(b)
 
  
 
-## Matrix
+## Matriz
 
-Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extensão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
+Vetores são dados unidimensionais. Vetores multidimensionais são denominados arranjos (tradução do termo em inglês *array*). As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
 ### Criação de matrizes 
-
-#### Função `dim()`
-
-Podemos converter um vetor atômico em uma *array* de `n` dimensões através do atributo dimensão: `dim()`. Para fazer isso, definimos o atributo `dim`( de dimensão) com um vetor numérico de tamanho `n`. 
-O R reorganizará os elementos do vetor de acordo com as dimensões.
-
-
-```r
-v <- vetor <- 1:12
-length(v)
-#> [1] 12
-attributes(v)
-#> NULL
-typeof(v)
-#> [1] "integer"
-# conversão de vetor para matriz
-dim(v) <- c(3, 4) # 1a dimensão: linhas , 2a dimensão: colunas
-# v é vector?
-is.vector(v)
-#> [1] FALSE
-# v é matrix?
-is.matrix(v)
-#> [1] TRUE
-# classe de vetor
-class(v)
-#> [1] "matrix"
-attributes(v)
-#> $dim
-#> [1] 3 4
-v
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
-# invertendo as dimensões
-dim(v) <- c(4, 3)
-v
-#>      [,1] [,2] [,3]
-#> [1,]    1    5    9
-#> [2,]    2    6   10
-#> [3,]    3    7   11
-#> [4,]    4    8   12
-```
-
-O R usa o primeiro elemento de `dim()` para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.
-
-Note como os valores de `v` foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.
-
-Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função `matrix()` ou `array()`. Elas fazem a mesma coisa que a `dim()` porém com argumentos mais versáteis para estruturar uma `matrix`.
 
 #### Função `matrix()` 
 
@@ -1329,21 +1278,16 @@ Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento 
 
 ```r
 # atribuindo novas dimensões ao vetor
-m <- matrix(vetor) # matriz de uma coluna
+m <- matrix(vetor)  # matriz de uma coluna
 m
-#>       [,1]
-#>  [1,]    1
-#>  [2,]    2
-#>  [3,]    3
-#>  [4,]    4
-#>  [5,]    5
-#>  [6,]    6
-#>  [7,]    7
-#>  [8,]    8
-#>  [9,]    9
-#> [10,]   10
-#> [11,]   11
-#> [12,]   12
+#>      [,1]
+#> [1,]    0
+#> [2,]    1
+#> [3,]   -1
+#> [4,]   -2
+#> [5,]    3
+#> [6,]    5
+#> [7,]   -5
 ```
 
 Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `vetor` podemos fazer da seguinte forma:
@@ -1352,48 +1296,22 @@ Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `ve
 ```r
 # criando a matriz gerada com dim
 mat <- matrix(vetor, nrow = 3, ncol = 4)
+#> Warning in matrix(vetor, nrow = 3, ncol = 4): data length [7] is not a sub-
+#> multiple or multiple of the number of rows [3]
 mat
 #>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
+#> [1,]    0   -2   -5   -1
+#> [2,]    1    3    0   -2
+#> [3,]   -1    5    1    3
 # não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
+#> Warning in matrix(vetor, nrow = 3): data length [7] is not a sub-multiple
+#> or multiple of the number of rows [3]
 mat
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
-```
-
-A matriz `mat` poderia ser criada especificando os valores de cada elemento :
-
-
-```r
-# criando a matriz gerada com dim
-mat <- matrix(nrow = 3, ncol = 4)
-mat
-#>      [,1] [,2] [,3] [,4]
-#> [1,]   NA   NA   NA   NA
-#> [2,]   NA   NA   NA   NA
-#> [3,]   NA   NA   NA   NA
-mat[1, 1] <- 1
-mat[2, 1] <- 2
-mat[3, 1] <- 3
-mat[1, 2] <- 4
-mat[2, 2] <- 5
-mat[3, 2] <- 6
-mat[1, 3] <- 7
-mat[2, 3] <- 8
-mat[3, 3] <- 9
-mat[1, 4] <- 10
-mat[2, 4] <- 11
-mat[3, 4] <- 12
-mat
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
+#>      [,1] [,2] [,3]
+#> [1,]    0   -2   -5
+#> [2,]    1    3    0
+#> [3,]   -1    5    1
 ```
 
 No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento **`byrow = TRUE`** da função `matrix()`:
@@ -1401,11 +1319,12 @@ No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas
 
 ```r
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
+#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): data length [7] is not a
+#> sub-multiple or multiple of the number of rows [2]
 mat
 #>      [,1] [,2] [,3] [,4]
-#> [1,]    1    2    3    4
-#> [2,]    5    6    7    8
-#> [3,]    9   10   11   12
+#> [1,]    0    1   -1   -2
+#> [2,]    3    5   -5    0
 ```
 
 ### Nomes das linhas e colunas de uma matriz
@@ -1416,20 +1335,13 @@ Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construi
 
 ```r
 # temperatura do ar média mensal do ano de 1990
-temp90 <- c(
-  25.00, 23.20, 22.50, 21.00, 19.00, 17.60,
-  18.00, 19.70, 21.30, 22.00, 24.00, 26.80
-)
+temp90 <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
 # temperatura do ar média mensal do ano de 1991
-temp91 <- c(
-  24.89, 24.07, 23.56, 23.11, 18.29, 18.22,
-  16.72, 19.37, 20.08, 21.45, 26.61, 25.99
-)
+temp91 <- c(24.89, 24.07, 23.56, 23.11, 18.29, 18.22, 16.72, 19.37, 20.08, 21.45, 
+    26.61, 25.99)
 # temperatura do ar média mensal do ano de 1992
-temp92 <- c(
-  23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22,
-  21.45, 19.7, 22.5, 24.07, 20.08
-)
+temp92 <- c(23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22, 21.45, 19.7, 22.5, 24.07, 
+    20.08)
 # vetor com as temperaturas dos 3 anos
 vtemp <- c(temp90, temp91, temp92)
 vtemp
@@ -1458,11 +1370,8 @@ Atribuindo nomes às linhas (`rownames()`) e colunas (`colnames()`) da matriz cr
 ```r
 # atribuindo nomes as colunas e linhas da temp_mat
 rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
-colnames(temp_mat) <- c(
-  "Jan", "Fev", "Mar", "Abr", "Mai",
-  "Jun", "Jul", "Ago", "Set", "Out",
-  "Nov", "Dez"
-)
+colnames(temp_mat) <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", 
+    "Set", "Out", "Nov", "Dez")
 temp_mat
 #>           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 #> ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
@@ -1480,7 +1389,7 @@ Como acessamos o valor de temperatura de maio de 1991 na matriz `temp_mat`?
 
 
 ```r
-temp_mat # matriz de temperaturas com nomes
+temp_mat  # matriz de temperaturas com nomes
 #>           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 #> ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 #> ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -1489,7 +1398,7 @@ temp_mat # matriz de temperaturas com nomes
 #> ano1990 26.80
 #> ano1991 25.99
 #> ano1992 20.08
-temp_matO # matriz de temperaturas sem nomes
+temp_matO  # matriz de temperaturas sem nomes
 #>       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 #> [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 #> [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -1524,7 +1433,7 @@ temp_mat[, "Jan"]
 #> ano1990 ano1991 ano1992 
 #>   25.00   24.89   23.20
 # só as temperaturas de 1990 e 1993
-temp_mat[ -2, ]
+temp_mat[-2, ]
 #>          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez
 #> ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80
 #> ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08
@@ -1545,7 +1454,7 @@ temp_mat[, ncol(temp_mat):1]
 #> ano1991 24.89
 #> ano1992 23.20
 # invertendo ordem das colunas e das linhas
-temp_mat[ 3:1, 12:1]
+temp_mat[3:1, 12:1]
 #>           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 #> ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
 #> ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07
@@ -1555,19 +1464,19 @@ temp_mat[ 3:1, 12:1]
 #> ano1991 24.89
 #> ano1990 25.00
 # invertendo ordem das colunas e das linhas
-temp_mat[ c(2, 1, 3), c(6:1, 12, 10:8)]
+temp_mat[c(2, 1, 3), c(6:1, 12, 10:8)]
 #>           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago
 #> ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37
 #> ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70
 #> ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45
 # só as temperaturas dos invernos
-temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago") ]
+temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago")]
 #>           Jun   Jul   Ago
 #> ano1990 17.60 18.00 19.70
 #> ano1991 18.22 16.72 19.37
 #> ano1992 21.30 18.22 21.45
 # exceto as temperaturas dos invernos
-temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago")) ]
+temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago"))]
 #>           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez
 #> ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80
 #> ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99
@@ -1649,23 +1558,6 @@ M
 #> ano1992 24.00
 ```
 
-Partes de uma matriz podem ser substituídas ou alteradas.
-
-
-```r
-mx <- matrix(nrow = 3, ncol = 3)
-my <- matrix(c(4, 5, 2, 3), nrow = 2)
-my
-#>      [,1] [,2]
-#> [1,]    4    2
-#> [2,]    5    3
-mx[2:3, 2:3] <- my
-mx
-#>      [,1] [,2] [,3]
-#> [1,]   NA   NA   NA
-#> [2,]   NA    4    2
-#> [3,]   NA    5    3
-```
 
 ### Número de linhas e colunas de uma matriz
 
@@ -1704,69 +1596,6 @@ row(temp_mat)
 #> [1,]    1    1    1    1    1    1    1    1    1     1     1     1
 #> [2,]    2    2    2    2    2    2    2    2    2     2     2     2
 #> [3,]    3    3    3    3    3    3    3    3    3     3     3     3
-# elementos de matriz
-m <- matrix(1:16, nrow = 4, byrow = TRUE)
-m
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    2    3    4
-#> [2,]    5    6    7    8
-#> [3,]    9   10   11   12
-#> [4,]   13   14   15   16
-# nós veremos mais sobre a função paste futuramente
-elementos <- paste("m", row(m), col(m), sep = "")
-mel <- matrix(elementos, ncol = 4)
-mel
-#>      [,1]  [,2]  [,3]  [,4] 
-#> [1,] "m11" "m12" "m13" "m14"
-#> [2,] "m21" "m22" "m23" "m24"
-#> [3,] "m31" "m32" "m33" "m34"
-#> [4,] "m41" "m42" "m43" "m44"
-# qual colunas de M são idênticas a 1
-col(m) == 1
-#>      [,1]  [,2]  [,3]  [,4]
-#> [1,] TRUE FALSE FALSE FALSE
-#> [2,] TRUE FALSE FALSE FALSE
-#> [3,] TRUE FALSE FALSE FALSE
-#> [4,] TRUE FALSE FALSE FALSE
-# seleciona na M colunas idênticas a 1
-mel[col(m) == 1]
-#> [1] "m11" "m21" "m31" "m41"
-# qual colunas de M são idênticas a 1 ou 3?
-col(m) == 1 | col(m) == 3
-#>      [,1]  [,2] [,3]  [,4]
-#> [1,] TRUE FALSE TRUE FALSE
-#> [2,] TRUE FALSE TRUE FALSE
-#> [3,] TRUE FALSE TRUE FALSE
-#> [4,] TRUE FALSE TRUE FALSE
-# Usando operadores relacionais
-row(m) == 1
-#>       [,1]  [,2]  [,3]  [,4]
-#> [1,]  TRUE  TRUE  TRUE  TRUE
-#> [2,] FALSE FALSE FALSE FALSE
-#> [3,] FALSE FALSE FALSE FALSE
-#> [4,] FALSE FALSE FALSE FALSE
-col(m) == 3
-#>       [,1]  [,2] [,3]  [,4]
-#> [1,] FALSE FALSE TRUE FALSE
-#> [2,] FALSE FALSE TRUE FALSE
-#> [3,] FALSE FALSE TRUE FALSE
-#> [4,] FALSE FALSE TRUE FALSE
-row(m) == 1 | col(m) == 3
-#>       [,1]  [,2] [,3]  [,4]
-#> [1,]  TRUE  TRUE TRUE  TRUE
-#> [2,] FALSE FALSE TRUE FALSE
-#> [3,] FALSE FALSE TRUE FALSE
-#> [4,] FALSE FALSE TRUE FALSE
-# seleciona valores de M posicionados na linha 1 OU na coluna 6
-mel[row(m) == 1 | col(m) == 4]
-#> [1] "m11" "m12" "m13" "m14" "m24" "m34" "m44"
-m[row(m) == 1 | col(m) == 4]
-#> [1]  1  2  3  4  8 12 16
-# seleciona valores de M posicionados na linha 1 E na coluna 6
-mel[row(m) == 4 & col(m) == 4]
-#> [1] "m44"
-m[row(m) == 4 & col(m) == 4]
-#> [1] 16
 ```
 
 ### Acrescentando linhas e colunas a uma matriz
@@ -1813,7 +1642,7 @@ cbind(10:6, 5:4, 0)
 #> [5,]    6    5    0
 ```
 
-### Operações matriciais 
+### Matriz transposta e diagonal
 
 A primeira entre as diversas funções de álgebra matricial no R é a transposta `t()`.
 
@@ -1841,169 +1670,20 @@ t(temp_mat)
 #> Out    22.0   21.45   22.50
 #> Nov    24.0   26.61   24.07
 #> Dez    26.8   25.99   20.08
-mel
-#>      [,1]  [,2]  [,3]  [,4] 
-#> [1,] "m11" "m12" "m13" "m14"
-#> [2,] "m21" "m22" "m23" "m24"
-#> [3,] "m31" "m32" "m33" "m34"
-#> [4,] "m41" "m42" "m43" "m44"
-t(mel)
-#>      [,1]  [,2]  [,3]  [,4] 
-#> [1,] "m11" "m21" "m31" "m41"
-#> [2,] "m12" "m22" "m32" "m42"
-#> [3,] "m13" "m23" "m33" "m43"
-#> [4,] "m14" "m24" "m34" "m44"
-# diagonal de mel
-diag(mel)
-#> [1] "m11" "m22" "m33" "m44"
+# diagonal
+diag(temp_mat)
+#> [1] 25.00 24.07 18.00
 ```
 
-#### Multiplicação matricial
-
-Operações algébricas, incluindo a multiplicação `*`, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial (Figura \@ref(fig:fig-multiplicacao-mat)) usamos o operador (`%*%`).
-
-<div class="figure" style="text-align: center">
-<img src="images/multilicacaoMatricial.png" alt="Multiplicação matricial." width="50%" />
-<p class="caption">(\#fig:fig-multiplicacao-mat)Multiplicação matricial.</p>
-</div>
+Operações matriciais adicionais são apresentadas no Apêndice \@ref(oper-mat).
 
 
-```r
-# multiplicação de duas matrizes
-A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
-A
-#>      [,1] [,2]
-#> [1,]    2    3
-#> [2,]    1    0
-#> [3,]    4    5
-B <- matrix(c(3, 2, 1, 4), ncol = 2)
-B
-#>      [,1] [,2]
-#> [1,]    3    1
-#> [2,]    2    4
-A * B # erro pela diferença nas dims entre as matrizes
-#> Error in A * B: non-conformable arrays
-prodMat <- A %*% B
-prodMat
-#>      [,1] [,2]
-#> [1,]   12   14
-#> [2,]    3    1
-#> [3,]   22   24
-# multiplicação de uma matriz por um escalar
-m
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    2    3    4
-#> [2,]    5    6    7    8
-#> [3,]    9   10   11   12
-#> [4,]   13   14   15   16
-m * 2
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    2    4    6    8
-#> [2,]   10   12   14   16
-#> [3,]   18   20   22   24
-#> [4,]   26   28   30   32
-```
-
-#### Adição matricial
-
-
-```r
-m
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    2    3    4
-#> [2,]    5    6    7    8
-#> [3,]    9   10   11   12
-#> [4,]   13   14   15   16
-m + m
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    2    4    6    8
-#> [2,]   10   12   14   16
-#> [3,]   18   20   22   24
-#> [4,]   26   28   30   32
-```
-
-#### Produto escalar
-
-
-```r
-u <- 1:3
-v <- c(5, 12, 13)
-u * v
-#> [1]  5 24 39
-# produto escalar = u.v = 1*5 + 2*12 + 3*13
-crossprod(u, v)
-#>      [,1]
-#> [1,]   68
-```
-
-#### Determinante
-
-
-```r
-# matriz exemplo
-mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
-det(mat_ex)
-#> [1] 182
-```
-
-#### Solução de sistemas lineares
-x1 + x2 = 2
-
--x1 + x2 = 4
-
- Qual os  valores de x1 e x2?
-
-```r
-# matrizes do sistema linear
-coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
-y <- c(2, 4)
-x <- solve(coefs, y)
-x
-#> [1] -1  3
-```
-
-
-### Conversão de `matrix` para `vector`
+### Conversão de matriz para vetor
 
 Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: `temp_mat`) no início da seção ela foi baseada em um vetor (`vtemp`). Como fazemos para voltar aquele vetor original a partir da matriz?
 
 
 ```r
-# desmanchando matrizes
-mel
-#>      [,1]  [,2]  [,3]  [,4] 
-#> [1,] "m11" "m12" "m13" "m14"
-#> [2,] "m21" "m22" "m23" "m24"
-#> [3,] "m31" "m32" "m33" "m34"
-#> [4,] "m41" "m42" "m43" "m44"
-# note as diferenças
-mel[1, 1]
-#> [1] "m11"
-mel[1]
-#> [1] "m11"
-# resulta em uma submatriz
-mel[1:4, 1:4]
-#>      [,1]  [,2]  [,3]  [,4] 
-#> [1,] "m11" "m12" "m13" "m14"
-#> [2,] "m21" "m22" "m23" "m24"
-#> [3,] "m31" "m32" "m33" "m34"
-#> [4,] "m41" "m42" "m43" "m44"
-# resulta em um vetor
-mel[1:4]
-#> [1] "m11" "m21" "m31" "m41"
-# submatriz da temp_mat
-temp_mat[1:3, 1:3]
-#>           Jan   Fev   Mar
-#> ano1990 25.00 23.20 22.50
-#> ano1991 24.89 24.07 23.56
-#> ano1992 23.20 26.61 18.00
-# vetor gerado de 3 elementos de mat
-temp_mat[1:3]
-#> [1] 25.00 24.89 23.20
-# número de elementos na matriz
-nel <- nrow(temp_mat) * ncol(temp_mat)
-nel
-#> [1] 36
 temp_mat[1:nrow(temp_mat) * ncol(temp_mat) ]
 #> [1] 23.11 21.45 20.08
 # vetor de temperaturas
@@ -2148,147 +1828,165 @@ cbind(
 ```
 
 
-## Array
 
-*Arrays* são multidimensionais. As matrizes são um caso particular de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: 
+## Arranjo 
 
-- latitude (linha)
+Arranjo é uma estrutura de dados multidimensional. A matriz é um caso particular de arranjo com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. 
 
-- longitude (coluna) 
 
-- tempo (camadas)
+Por exemplo, imagine o campo espacial representado por uma grade de espaçamento horizontal regular de uma variável meteorológica. Nessa situação podemos usar uma matriz com valores de temperatura, onde as colunas representam as longitudes e as linhas as latitudes dos pontos da grade. Em um dados tempo, a matriz da variável com valores de temperatura do ar, por exemplo, representa o estado térmico espacial daquele momento. Então podemos dizer que esse arranjo possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).
 
 ### Criação 
 
-Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `temp_vetor`. 
+Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor `temp_vetor` abaixo. 
+
+
+
 
 
 ```r
-temp_vetor <- 1:12
-temp_vetor
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12
-# ou
+temp_vetor <- c(
+  18, 24, 19, 23, 19, 27, 24, 18, 13, 20, 25, 19, 18, 22, 17,
+  9, 17, 22, 13, 19, 29, 18, 19, 18, 11, 18, 19, 17, 13, 17, 26,
+  21, 22, 20, 14, 17
+)
+```
+
+O vetor `temp_vetor` pode ser convertido em um arranjo dos campos espaciais usando a função `array()`, com o argumento `dim` especificando as dimensões.
+
+
+```r
 temp_array <- array(data = temp_vetor, dim = c(3, 4, 3))
 temp_array
 #> , , 1
 #> 
 #>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
+#> [1,]   18   23   24   20
+#> [2,]   24   19   18   25
+#> [3,]   19   27   13   19
 #> 
 #> , , 2
 #> 
 #>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
+#> [1,]   18    9   13   18
+#> [2,]   22   17   19   19
+#> [3,]   17   22   29   18
 #> 
 #> , , 3
 #> 
 #>      [,1] [,2] [,3] [,4]
-#> [1,]    1    4    7   10
-#> [2,]    2    5    8   11
-#> [3,]    3    6    9   12
+#> [1,]   11   17   26   20
+#> [2,]   18   13   21   14
+#> [3,]   19   17   22   17
 dim(temp_array)
 #> [1] 3 4 3
-length(temp_array)
-#> [1] 36
 class(temp_array)
 #> [1] "array"
-mode(temp_array)
-#> [1] "numeric"
+```
+
+O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.
+
+
+```r
+colnames(temp_array) <- -(45:42)
+rownames(temp_array) <- -(19:21)
+# nomes das dimensões
+dimnames(temp_array)
+#> [[1]]
+#> [1] "-19" "-20" "-21"
+#> 
+#> [[2]]
+#> [1] "-45" "-44" "-43" "-42"
+#> 
+#> [[3]]
+#> NULL
+# nomes para camadas
+dimnames(temp_array)[[3]] <- c("Jan", "Fev", "Mar")
+temp_array
+#> , , Jan
+#> 
+#>     -45 -44 -43 -42
+#> -19  18  23  24  20
+#> -20  24  19  18  25
+#> -21  19  27  13  19
+#> 
+#> , , Fev
+#> 
+#>     -45 -44 -43 -42
+#> -19  18   9  13  18
+#> -20  22  17  19  19
+#> -21  17  22  29  18
+#> 
+#> , , Mar
+#> 
+#>     -45 -44 -43 -42
+#> -19  11  17  26  20
+#> -20  18  13  21  14
+#> -21  19  17  22  17
 ```
 
 ### Indexação
 
-
-
-
-```r
-colnames(temp_array) <- -45:-42
-rownames(temp_array) <- -19:-21
-temp_array
-#> , , 1
-#> 
-#>     -45 -44 -43 -42
-#> -19   1   4   7  10
-#> -20   2   5   8  11
-#> -21   3   6   9  12
-#> 
-#> , , 2
-#> 
-#>     -45 -44 -43 -42
-#> -19   1   4   7  10
-#> -20   2   5   8  11
-#> -21   3   6   9  12
-#> 
-#> , , 3
-#> 
-#>     -45 -44 -43 -42
-#> -19   1   4   7  10
-#> -20   2   5   8  11
-#> -21   3   6   9  12
-```
-
-
-Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleção de partes de uma `array`.
+Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices `A[linha, coluna, camada]`.
 
 
 ```r
 # serie temporal do 1º ponto
 temp_array[1, 1, ]
-#> [1] 1 1 1
+#> Jan Fev Mar 
+#>  18  18  11
 temp_array["-19", "-45", ]
-#> [1] 1 1 1
+#> Jan Fev Mar 
+#>  18  18  11
 # para 1a faixa de latitude (-19),
 # os valores de temp das longitudes em todos tempos
 temp_array[1, , ]
-#>     [,1] [,2] [,3]
-#> -45    1    1    1
-#> -44    4    4    4
-#> -43    7    7    7
-#> -42   10   10   10
+#>     Jan Fev Mar
+#> -45  18  18  11
+#> -44  23   9  17
+#> -43  24  13  26
+#> -42  20  18  20
 # para 2a faixa de longitude (-44), todas longitudes e tempos
 temp_array[, 2, ]
-#>     [,1] [,2] [,3]
-#> -19    4    4    4
-#> -20    5    5    5
-#> -21    6    6    6
+#>     Jan Fev Mar
+#> -19  23   9  17
+#> -20  19  17  13
+#> -21  27  22  17
 # média meridional
 colMeans(temp_array[, 2, ])
-#> [1] 5 5 5
+#>     Jan     Fev     Mar 
+#> 23.0000 16.0000 15.6667
 # subdominio "espacial"
 temp_array[2:3, 2:3, ]
-#> , , 1
+#> , , Jan
 #> 
 #>     -44 -43
-#> -20   5   8
-#> -21   6   9
+#> -20  19  18
+#> -21  27  13
 #> 
-#> , , 2
-#> 
-#>     -44 -43
-#> -20   5   8
-#> -21   6   9
-#> 
-#> , , 3
+#> , , Fev
 #> 
 #>     -44 -43
-#> -20   5   8
-#> -21   6   9
+#> -20  17  19
+#> -21  22  29
+#> 
+#> , , Mar
+#> 
+#>     -44 -43
+#> -20  13  21
+#> -21  17  22
 # média espacial do 1o mês
 mean(temp_array[, , 1])
-#> [1] 6.5
+#> [1] 20.75
 # média espacial do segundo mês
-mean(temp_array[, , 2])
-#> [1] 6.5
-# demanchando uma array (conversão para vetor)
+mean(temp_array[, , "Jan"])
+#> [1] 20.75
+# demanchando o arranjo (conversão para vetor)
 c(temp_array)
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12  1  2  3  4  5  6  7  8  9 10 11
-#> [24] 12  1  2  3  4  5  6  7  8  9 10 11 12
+#>  [1] 18 24 19 23 19 27 24 18 13 20 25 19 18 22 17  9 17 22 13 19 29 18 19
+#> [24] 18 11 18 19 17 13 17 26 21 22 20 14 17
 c(temp_array[, , 1])
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12
+#>  [1] 18 24 19 23 19 27 24 18 13 20 25 19
 # para entender a forma como a matriz é convertida para vetor
 mat_temp <- cbind(
   mes = rep(1:3, each = 20),
@@ -2300,129 +1998,129 @@ mat_temp <- cbind(
 #> 6), : number of rows of result is not a multiple of vector length (arg 3)
 mat_temp
 #>        mes elemat valores elearr
-#>   [1,]   1      1       1      1
-#>   [2,]   1      2       2      2
-#>   [3,]   1      3       3      3
-#>   [4,]   1      4       4      4
-#>   [5,]   1      5       5      5
-#>   [6,]   1      6       6      6
-#>   [7,]   1      7       7      7
-#>   [8,]   1      8       8      8
-#>   [9,]   1      9       9      9
-#>  [10,]   1     10      10     10
-#>  [11,]   1     11      11     11
-#>  [12,]   1     12      12     12
-#>  [13,]   1     13       1     13
-#>  [14,]   1     14       2     14
-#>  [15,]   1     15       3     15
-#>  [16,]   1     16       4     16
-#>  [17,]   1     17       5     17
-#>  [18,]   1     18       6     18
-#>  [19,]   1     19       7     19
-#>  [20,]   1     20       8     20
-#>  [21,]   2      1       9     21
-#>  [22,]   2      2      10     22
-#>  [23,]   2      3      11     23
-#>  [24,]   2      4      12     24
-#>  [25,]   2      5       1     25
-#>  [26,]   2      6       2     26
-#>  [27,]   2      7       3     27
-#>  [28,]   2      8       4     28
-#>  [29,]   2      9       5     29
-#>  [30,]   2     10       6     30
-#>  [31,]   2     11       7     31
-#>  [32,]   2     12       8     32
-#>  [33,]   2     13       9     33
-#>  [34,]   2     14      10     34
-#>  [35,]   2     15      11     35
-#>  [36,]   2     16      12     36
-#>  [37,]   2     17       1      1
-#>  [38,]   2     18       2      2
-#>  [39,]   2     19       3      3
-#>  [40,]   2     20       4      4
-#>  [41,]   3      1       5      5
-#>  [42,]   3      2       6      6
-#>  [43,]   3      3       7      7
-#>  [44,]   3      4       8      8
-#>  [45,]   3      5       9      9
-#>  [46,]   3      6      10     10
-#>  [47,]   3      7      11     11
-#>  [48,]   3      8      12     12
-#>  [49,]   3      9       1     13
-#>  [50,]   3     10       2     14
-#>  [51,]   3     11       3     15
-#>  [52,]   3     12       4     16
-#>  [53,]   3     13       5     17
-#>  [54,]   3     14       6     18
-#>  [55,]   3     15       7     19
-#>  [56,]   3     16       8     20
-#>  [57,]   3     17       9     21
-#>  [58,]   3     18      10     22
-#>  [59,]   3     19      11     23
-#>  [60,]   3     20      12     24
-#>  [61,]   1      1       1     25
-#>  [62,]   1      2       2     26
-#>  [63,]   1      3       3     27
-#>  [64,]   1      4       4     28
-#>  [65,]   1      5       5     29
-#>  [66,]   1      6       6     30
-#>  [67,]   1      7       7     31
-#>  [68,]   1      8       8     32
-#>  [69,]   1      9       9     33
-#>  [70,]   1     10      10     34
-#>  [71,]   1     11      11     35
-#>  [72,]   1     12      12     36
-#>  [73,]   1     13       1      1
-#>  [74,]   1     14       2      2
-#>  [75,]   1     15       3      3
-#>  [76,]   1     16       4      4
-#>  [77,]   1     17       5      5
-#>  [78,]   1     18       6      6
-#>  [79,]   1     19       7      7
-#>  [80,]   1     20       8      8
-#>  [81,]   2      1       9      9
-#>  [82,]   2      2      10     10
-#>  [83,]   2      3      11     11
-#>  [84,]   2      4      12     12
-#>  [85,]   2      5       1     13
-#>  [86,]   2      6       2     14
-#>  [87,]   2      7       3     15
-#>  [88,]   2      8       4     16
-#>  [89,]   2      9       5     17
-#>  [90,]   2     10       6     18
-#>  [91,]   2     11       7     19
-#>  [92,]   2     12       8     20
-#>  [93,]   2     13       9     21
-#>  [94,]   2     14      10     22
-#>  [95,]   2     15      11     23
-#>  [96,]   2     16      12     24
-#>  [97,]   2     17       1     25
-#>  [98,]   2     18       2     26
-#>  [99,]   2     19       3     27
-#> [100,]   2     20       4     28
-#> [101,]   3      1       5     29
-#> [102,]   3      2       6     30
-#> [103,]   3      3       7     31
-#> [104,]   3      4       8     32
-#> [105,]   3      5       9     33
-#> [106,]   3      6      10     34
-#> [107,]   3      7      11     35
-#> [108,]   3      8      12     36
-#> [109,]   3      9       1      1
-#> [110,]   3     10       2      2
-#> [111,]   3     11       3      3
-#> [112,]   3     12       4      4
-#> [113,]   3     13       5      5
-#> [114,]   3     14       6      6
-#> [115,]   3     15       7      7
-#> [116,]   3     16       8      8
-#> [117,]   3     17       9      9
-#> [118,]   3     18      10     10
-#> [119,]   3     19      11     11
-#> [120,]   3     20      12     12
+#>   [1,]   1      1      18      1
+#>   [2,]   1      2      24      2
+#>   [3,]   1      3      19      3
+#>   [4,]   1      4      23      4
+#>   [5,]   1      5      19      5
+#>   [6,]   1      6      27      6
+#>   [7,]   1      7      24      7
+#>   [8,]   1      8      18      8
+#>   [9,]   1      9      13      9
+#>  [10,]   1     10      20     10
+#>  [11,]   1     11      25     11
+#>  [12,]   1     12      19     12
+#>  [13,]   1     13      18     13
+#>  [14,]   1     14      22     14
+#>  [15,]   1     15      17     15
+#>  [16,]   1     16       9     16
+#>  [17,]   1     17      17     17
+#>  [18,]   1     18      22     18
+#>  [19,]   1     19      13     19
+#>  [20,]   1     20      19     20
+#>  [21,]   2      1      29     21
+#>  [22,]   2      2      18     22
+#>  [23,]   2      3      19     23
+#>  [24,]   2      4      18     24
+#>  [25,]   2      5      11     25
+#>  [26,]   2      6      18     26
+#>  [27,]   2      7      19     27
+#>  [28,]   2      8      17     28
+#>  [29,]   2      9      13     29
+#>  [30,]   2     10      17     30
+#>  [31,]   2     11      26     31
+#>  [32,]   2     12      21     32
+#>  [33,]   2     13      22     33
+#>  [34,]   2     14      20     34
+#>  [35,]   2     15      14     35
+#>  [36,]   2     16      17     36
+#>  [37,]   2     17      18      1
+#>  [38,]   2     18      24      2
+#>  [39,]   2     19      19      3
+#>  [40,]   2     20      23      4
+#>  [41,]   3      1      19      5
+#>  [42,]   3      2      27      6
+#>  [43,]   3      3      24      7
+#>  [44,]   3      4      18      8
+#>  [45,]   3      5      13      9
+#>  [46,]   3      6      20     10
+#>  [47,]   3      7      25     11
+#>  [48,]   3      8      19     12
+#>  [49,]   3      9      18     13
+#>  [50,]   3     10      22     14
+#>  [51,]   3     11      17     15
+#>  [52,]   3     12       9     16
+#>  [53,]   3     13      17     17
+#>  [54,]   3     14      22     18
+#>  [55,]   3     15      13     19
+#>  [56,]   3     16      19     20
+#>  [57,]   3     17      29     21
+#>  [58,]   3     18      18     22
+#>  [59,]   3     19      19     23
+#>  [60,]   3     20      18     24
+#>  [61,]   1      1      11     25
+#>  [62,]   1      2      18     26
+#>  [63,]   1      3      19     27
+#>  [64,]   1      4      17     28
+#>  [65,]   1      5      13     29
+#>  [66,]   1      6      17     30
+#>  [67,]   1      7      26     31
+#>  [68,]   1      8      21     32
+#>  [69,]   1      9      22     33
+#>  [70,]   1     10      20     34
+#>  [71,]   1     11      14     35
+#>  [72,]   1     12      17     36
+#>  [73,]   1     13      18      1
+#>  [74,]   1     14      24      2
+#>  [75,]   1     15      19      3
+#>  [76,]   1     16      23      4
+#>  [77,]   1     17      19      5
+#>  [78,]   1     18      27      6
+#>  [79,]   1     19      24      7
+#>  [80,]   1     20      18      8
+#>  [81,]   2      1      13      9
+#>  [82,]   2      2      20     10
+#>  [83,]   2      3      25     11
+#>  [84,]   2      4      19     12
+#>  [85,]   2      5      18     13
+#>  [86,]   2      6      22     14
+#>  [87,]   2      7      17     15
+#>  [88,]   2      8       9     16
+#>  [89,]   2      9      17     17
+#>  [90,]   2     10      22     18
+#>  [91,]   2     11      13     19
+#>  [92,]   2     12      19     20
+#>  [93,]   2     13      29     21
+#>  [94,]   2     14      18     22
+#>  [95,]   2     15      19     23
+#>  [96,]   2     16      18     24
+#>  [97,]   2     17      11     25
+#>  [98,]   2     18      18     26
+#>  [99,]   2     19      19     27
+#> [100,]   2     20      17     28
+#> [101,]   3      1      13     29
+#> [102,]   3      2      17     30
+#> [103,]   3      3      26     31
+#> [104,]   3      4      21     32
+#> [105,]   3      5      22     33
+#> [106,]   3      6      20     34
+#> [107,]   3      7      14     35
+#> [108,]   3      8      17     36
+#> [109,]   3      9      18      1
+#> [110,]   3     10      24      2
+#> [111,]   3     11      19      3
+#> [112,]   3     12      23      4
+#> [113,]   3     13      19      5
+#> [114,]   3     14      27      6
+#> [115,]   3     15      24      7
+#> [116,]   3     16      18      8
+#> [117,]   3     17      13      9
+#> [118,]   3     18      20     10
+#> [119,]   3     19      25     11
+#> [120,]   3     20      19     12
 ```
 
-## List
+## Lista
 
 Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os **vetores atômicos**, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:
 
@@ -3137,17 +2835,17 @@ attributes(dados)
 #> $names
 #> [1] "datas"  "cidade" "tar"   
 #> 
-#> $class
-#> [1] "data.frame"
-#> 
 #> $row.names
 #>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+#> 
+#> $class
+#> [1] "data.frame"
 # atributos armazenados em uma lista
 str(attributes(dados))
 #> List of 3
 #>  $ names    : chr [1:3] "datas" "cidade" "tar"
-#>  $ class    : chr "data.frame"
 #>  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ class    : chr "data.frame"
 # número de colunas
 ncol(dados)
 #> [1] 3
@@ -3295,7 +2993,7 @@ with(dados,
 )
 ```
 
-<img src="images/unnamed-chunk-5-1.png" width="672" />
+<img src="images/unnamed-chunk-7-1.png" width="672" />
 
 
 ### Indexação, seleção e substituição 
@@ -3583,26 +3281,24 @@ sm_l_df
 #> 6 Santa Maria        17        110 -45 -23
 # convertendo array para dataframe
 v
-#> [1]  5 12 13
+#> [1]   3 100  NA  NA   6
 v_df <- as.data.frame(v)
 # convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
 # convertendo matrix para dataframe
-mat_ex
-#>      [,1] [,2] [,3]
-#> [1,]    1    5    6
-#> [2,]   -7   -9    6
-#> [3,]    3    2    1
-mat_ex_df <- as.data.frame(mat_ex)
-names(mat_ex_df)
-#> [1] "V1" "V2" "V3"
-mat_ex_df
-#>   V1 V2 V3
-#> 1  1  5  6
-#> 2 -7 -9  6
-#> 3  3  2  1
+mat
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    0    1   -1   -2
+#> [2,]    3    5   -5    0
+mat_df <- as.data.frame(mat)
+names(mat_df)
+#> [1] "V1" "V2" "V3" "V4"
+mat_df
+#>   V1 V2 V3 V4
+#> 1  0  1 -1 -2
+#> 2  3  5 -5  0
 # testes
-is.data.frame(mat_ex_df)
+is.data.frame(mat_df)
 #> [1] TRUE
 class(v_df)
 #> [1] "data.frame"

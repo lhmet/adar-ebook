@@ -1,3 +1,5 @@
+# (PART) Interação {-}
+
 # Interface do Usuário {#iu}
 
 
@@ -80,7 +82,7 @@ Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma
 [1] 3628800
 ```
 
-Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a expressão não estiver completa o sinal de + se repetirá. Até que você digite o número que deseja subtrair de 4.
+Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a instrução não estiver completa o sinal de `+` se repetirá. Você pode cancelar a execução digitando `Ctrl + c` ou `Esc`. No código abaixo isso acontecerá até que você digite o número que deseja subtrair de 4, no caso de o número 3.
 
 
 ```r
@@ -89,6 +91,8 @@ Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a 
 +   3
 [1] 1
 ```
+
+
 
 ### Expressões em sequência {#expressInSeq}
 
@@ -231,7 +235,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180507.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180509.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 
