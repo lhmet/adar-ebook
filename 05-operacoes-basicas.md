@@ -60,7 +60,7 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 
 
 <div class="rmdwarning">
-<p>Note que no <code>r rblue</code>, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
+<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
 </div>
 
  

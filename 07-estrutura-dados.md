@@ -1327,7 +1327,7 @@ mat
 #> [2,]    3    5   -5    0
 ```
 
-### Nomes das linhas e colunas de uma matriz
+### Nomes das linhas e colunas de uma matriz {#nomes-lin-col-mat}
 
 Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara. 
 Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construir uma matriz com os meses ao longo das colunas e  os anos ao longo das linhas. 
@@ -1598,7 +1598,9 @@ row(temp_mat)
 #> [3,]    3    3    3    3    3    3    3    3    3     3     3     3
 ```
 
-### Acrescentando linhas e colunas a uma matriz
+### Adição de linhas e colunas a uma matriz
+
+Na construção de um vetor concatenaram-se valores com a função `c()`. A concatenação por linhas ou colunas em uma matriz pode ser feita com as funções `rbind()` e `cbind()`, respectivamente. No exemplo abaixo concatenam-se vetores de temperaturas mensais de 3 anos (ver seção \@ref(nomes-lin-col-mat)), primeiro por linhas e depois por colunas. 
 
 
 ```r
@@ -1625,22 +1627,10 @@ row(temp_mat)
 #> [10,]   22.0  21.45  22.50
 #> [11,]   24.0  26.61  24.07
 #> [12,]   26.8  25.99  20.08
-# recursão
-rbind(1:10, 11, 21:25)
-#>      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-#> [1,]    1    2    3    4    5    6    7    8    9    10
-#> [2,]   11   11   11   11   11   11   11   11   11    11
-#> [3,]   21   22   23   24   25   21   22   23   24    25
-cbind(10:6, 5:4, 0)
-#> Warning in cbind(10:6, 5:4, 0): number of rows of result is not a multiple
-#> of vector length (arg 2)
-#>      [,1] [,2] [,3]
-#> [1,]   10    5    0
-#> [2,]    9    4    0
-#> [3,]    8    5    0
-#> [4,]    7    4    0
-#> [5,]    6    5    0
 ```
+
+
+
 
 ### Matriz transposta e diagonal
 

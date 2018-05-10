@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-09">
+<meta name="date" content="2018-05-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -186,10 +186,10 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>7.3</b> Matriz</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="matriz.html"><a href="matriz.html#criacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.1</b> Criação de matrizes</a></li>
-<li class="chapter" data-level="7.3.2" data-path="matriz.html"><a href="matriz.html#nomes-das-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.3.2" data-path="matriz.html"><a href="matriz.html#nomes-lin-col-mat"><i class="fa fa-check"></i><b>7.3.2</b> Nomes das linhas e colunas de uma matriz</a></li>
 <li class="chapter" data-level="7.3.3" data-path="matriz.html"><a href="matriz.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>7.3.3</b> Indexação de matrizes</a></li>
 <li class="chapter" data-level="7.3.4" data-path="matriz.html"><a href="matriz.html#numero-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.3.4</b> Número de linhas e colunas de uma matriz</a></li>
-<li class="chapter" data-level="7.3.5" data-path="matriz.html"><a href="matriz.html#acrescentando-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.3.5</b> Acrescentando linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.3.5" data-path="matriz.html"><a href="matriz.html#adicao-de-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.3.5</b> Adição de linhas e colunas a uma matriz</a></li>
 <li class="chapter" data-level="7.3.6" data-path="matriz.html"><a href="matriz.html#matriz-transposta-e-diagonal"><i class="fa fa-check"></i><b>7.3.6</b> Matriz transposta e diagonal</a></li>
 <li class="chapter" data-level="7.3.7" data-path="matriz.html"><a href="matriz.html#conversao-de-matriz-para-vetor"><i class="fa fa-check"></i><b>7.3.7</b> Conversão de matriz para vetor</a></li>
 </ul></li>
@@ -251,7 +251,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="diretorio-de-trabalho" class="section level2">
 <h2><span class="header-section-number">8.1</span> Diretório de trabalho</h2>
 <p>O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.</p>
-<p>Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). Esse local é a primeiro diretório onde o R irá salvar ou ler um arquivo de dados, se o caminho completo até o arquivo não for especificado. Para saber qual é o diretório de trabalho usamos a função <code>getwd()</code>. Para alterar o <code>wd</code> usamos <code>setwd()</code>. Para listar o conteúdo de um diretório usamos a função <code>dir()</code>.</p>
+<p>Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). Para saber o diretório de trabalho da sua sessão do R use a função <code>getwd()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<pre><code>#&gt; [1] &quot;/home/hidrometeorologista&quot;</code></pre>
+<p>Este local é onde o R irá salvar ou ler seus arquivo de dados, caso você não seja especificado o caminho completo até o arquivo.</p>
+<p>Para alterar o seu <code>wd</code> há a função <code>setwd()</code>. Para listar o conteúdo de um diretório usamos a função <code>dir()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável do tipo character com nome do diretório</span>
 (wd &lt;-<span class="st"> </span><span class="kw">getwd</span>())
 <span class="co">#&gt; [1] &quot;/home/hidrometeorologista/Dropbox/github/my_reps/lhmet/adar-ebook&quot;</span>
