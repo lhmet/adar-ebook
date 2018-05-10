@@ -26,7 +26,7 @@ attributes(v)
 typeof(v)
 #> [1] "integer"
 # conversão de vetor para matriz
-dim(v) <- c(3, 4)  # 1a dimensão: linhas , 2a dimensão: colunas
+dim(v) <- c(3, 4) # 1a dimensão: linhas , 2a dimensão: colunas
 # v é vector?
 is.vector(v)
 #> [1] FALSE

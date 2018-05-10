@@ -13,48 +13,46 @@ O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma div
 - arquivos de dados meteorológicos de agências brasileiras
 - dados binários 
 
-Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
-
 
 ## Diretório de trabalho
 
-O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.
+O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.
 
-Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*working directory*, `wd`). Para saber o diretório de trabalho da sua sessão do R use a função `getwd()`.
+Quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (*working directory*, `wd`). Para saber o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20"> use a função `getwd()`.
 
 
 ```r
 getwd()
+# salvando em uma variável
+wd <- getwd()
 ```
 
+O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\Users\username\" no Windows.
 
-```
-#> [1] "/home/hidrometeorologista"
-```
-
-Este local é onde o R irá salvar ou ler seus arquivo de dados, caso você não seja especificado o caminho completo até o arquivo.
-
-
-Para alterar o seu `wd` há a função `setwd()`. Para listar o conteúdo de um diretório usamos a função `dir()`.
+Essa informação pode ser obtida do <img src="images/logo_r.png" width="20"> com a instrução abaixo:
 
 
 ```r
-# variável do tipo character com nome do diretório
-(wd <- getwd())
-#> [1] "/home/hidrometeorologista/Dropbox/github/my_reps/lhmet/adar-ebook"
-class(wd)
-#> [1] "character"
-# altere o caminho para "/home/lci"
-setwd(file.path("/home", Sys.getenv()[["LOGNAME"]]))
+Sys.getenv("HOME")
+```
+
+É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados,  quando você não especificar o caminho completo para o arquivo de saída.
+
+Para alterar seu `wd` você pode usar a função `setwd()`. 
+
+
+```r
+# define o wd em "/home/user"
+setwd(~/Documents)
 getwd()
-#> [1] "/home/hidrometeorologista"
-# volta para o wd
+# volta para o wd inicial
 setwd(wd)
 getwd()
-#> [1] "/home/hidrometeorologista/Dropbox/github/my_reps/lhmet/adar-ebook"
 ```
 
-Para saber o diretório de instalação do R, usamos `R.home()`. O local de instalação dos pacotes é obtido via `.libPaths()`.
+O conteúdo de um diretório pode ser listado com a função `dir()`.
 
+## Para saber mais
 
+Para uma descrição mais abrangente sobre importação e exportação de dados no <img src="images/logo_r.png" width="20"> consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e a documentação de ajuda das funções citadas naquele documento.
 

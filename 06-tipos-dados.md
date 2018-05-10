@@ -268,11 +268,11 @@ as.numeric(data1)
 #> [1] 15519
 data2 <- as.POSIXct("2012-06-28 17:42")
 data2
-#> [1] "2012-06-28 17:42:00 -03"
+#> [1] "2012-06-28 17:42:00 UTC"
 class(data2)
 #> [1] "POSIXct" "POSIXt"
 as.numeric(data2)
-#> [1] 1340916120
+#> [1] 1340905320
 ```
 
 A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriormente no curso.
@@ -375,7 +375,7 @@ dt
 # de character para date-time
 data_hora <- as.POSIXct("2016-03-17 15:30:00")
 data_hora
-#> [1] "2016-03-17 15:30:00 -03"
+#> [1] "2016-03-17 15:30:00 UTC"
 ```
 
 
