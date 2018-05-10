@@ -43,7 +43,7 @@ Para alterar seu `wd` você pode usar a função `setwd()`.
 
 ```r
 # define o wd em "/home/user"
-setwd(~/Documents)
+setwd("~/Documents")
 getwd()
 # volta para o wd inicial
 setwd(wd)
