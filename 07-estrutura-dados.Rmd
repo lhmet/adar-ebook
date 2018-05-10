@@ -891,7 +891,7 @@ mat <- matrix(vetor, ncol = 4, byrow = TRUE)
 mat
 ```
 
-### Nomes das linhas e colunas de uma matriz
+### Nomes das linhas e colunas de uma matriz {#nomes-lin-col-mat}
 
 Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara. 
 Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construir uma matriz com os meses ao longo das colunas e  os anos ao longo das linhas. 
@@ -1022,15 +1022,17 @@ col(temp_mat)
 row(temp_mat)
 ```
 
-### Acrescentando linhas e colunas a uma matriz
+### Adição de linhas e colunas a uma matriz
+
+Na construção de um vetor concatenaram-se valores com a função `c()`. A concatenação por linhas ou colunas em uma matriz pode ser feita com as funções `rbind()` e `cbind()`, respectivamente. No exemplo abaixo concatenam-se vetores de temperaturas mensais de 3 anos (ver seção \@ref(nomes-lin-col-mat)), primeiro por linhas e depois por colunas. 
 
 ```{r Chunk151, message=FALSE  , tidy=TRUE, echo=TRUE, eval=TRUE}
 (temp_mat_lin <- rbind(temp90, temp91, temp92))
 (temp_mat_col <- cbind(temp90, temp91, temp92))
-# recursão
-rbind(1:10, 11, 21:25)
-cbind(10:6, 5:4, 0)
 ```
+
+
+
 
 ### Matriz transposta e diagonal
 

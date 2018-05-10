@@ -7,11 +7,11 @@ output:
 
 
 
-O R é capacidade de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar dados nos formatos mais comuns em aplicações ambientais, como: 
+O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar dados nos formatos mais comuns em aplicações ambientais, como: 
 
 - importar dados tabulares aramzenados em arquivos texto (ASCII)
-- dados em formatos binários 
 - arquivos de dados meteorológicos de agências brasileiras
+- dados binários 
 
 Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
 
@@ -20,7 +20,22 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.
 
-Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*working directory*, `wd`). Esse local é a primeiro diretório onde o R irá salvar ou ler um arquivo de dados, se o caminho completo até o arquivo não for especificado. Para saber qual é o diretório de trabalho usamos a função `getwd()`. Para alterar o `wd` usamos `setwd()`. Para listar o conteúdo de um diretório usamos a função `dir()`.
+Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*working directory*, `wd`). Para saber o diretório de trabalho da sua sessão do R use a função `getwd()`.
+
+
+```r
+getwd()
+```
+
+
+```
+#> [1] "/home/hidrometeorologista"
+```
+
+Este local é onde o R irá salvar ou ler seus arquivo de dados, caso você não seja especificado o caminho completo até o arquivo.
+
+
+Para alterar o seu `wd` há a função `setwd()`. Para listar o conteúdo de um diretório usamos a função `dir()`.
 
 
 ```r
