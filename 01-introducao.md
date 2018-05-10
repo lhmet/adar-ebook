@@ -69,11 +69,10 @@
 
 * [R](https://www.r-project.org/) é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.
 
- 
 
 * Comunidade fantástica
 
-  - [Contribuidores](https://www.r-project.org/contributors.html) (R-core Team)
+  - [Contribuidores](https://www.r-project.org/contributors.html) ([@R-base])
 
   - milhares de pessoas usam o R diariamente e ajudam outras pessoas
 
