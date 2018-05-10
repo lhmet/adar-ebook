@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="io.html">
-<link rel="next" href="referencias.html">
+<link rel="next" href="para-saber-mais.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -214,6 +214,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.1</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.2" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.2</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -250,36 +251,31 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="diretorio-de-trabalho" class="section level2">
 <h2><span class="header-section-number">8.1</span> Diretório de trabalho</h2>
-<p>O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.</p>
-<p>Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). Para saber o diretório de trabalho da sua sessão do R use a função <code>getwd()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
-<pre><code>#&gt; [1] &quot;/home/hidrometeorologista&quot;</code></pre>
-<p>Este local é onde o R irá salvar ou ler seus arquivo de dados, caso você não seja especificado o caminho completo até o arquivo.</p>
-<p>Para alterar o seu <code>wd</code> há a função <code>setwd()</code>. Para listar o conteúdo de um diretório usamos a função <code>dir()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável do tipo character com nome do diretório</span>
-(wd &lt;-<span class="st"> </span><span class="kw">getwd</span>())
-<span class="co">#&gt; [1] &quot;/home/hidrometeorologista/Dropbox/github/my_reps/lhmet/adar-ebook&quot;</span>
-<span class="kw">class</span>(wd)
-<span class="co">#&gt; [1] &quot;character&quot;</span>
-<span class="co"># altere o caminho para &quot;/home/lci&quot;</span>
-<span class="kw">setwd</span>(<span class="kw">file.path</span>(<span class="st">&quot;/home&quot;</span>, <span class="kw">Sys.getenv</span>()[[<span class="st">&quot;LOGNAME&quot;</span>]]))
+<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.</p>
+<p>Quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). Para saber o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20"> use a função <code>getwd()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
+<span class="co"># salvando em uma variável</span>
+wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</code></pre></div>
+<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:&quot; no Windows.</p>
+<p>Essa informação pode ser obtida do <img src="images/logo_r.png" width="20"> com a instrução abaixo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</code></pre></div>
+<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
+<p>Para alterar seu <code>wd</code> você pode usar a função <code>setwd()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define o wd em &quot;/home/user&quot;</span>
+<span class="kw">setwd</span>(<span class="op">~</span><span class="er">/</span>Documents)
 <span class="kw">getwd</span>()
-<span class="co">#&gt; [1] &quot;/home/hidrometeorologista&quot;</span>
-<span class="co"># volta para o wd</span>
+<span class="co"># volta para o wd inicial</span>
 <span class="kw">setwd</span>(wd)
-<span class="kw">getwd</span>()
-<span class="co">#&gt; [1] &quot;/home/hidrometeorologista/Dropbox/github/my_reps/lhmet/adar-ebook&quot;</span></code></pre></div>
-<p>Para saber o diretório de instalação do R, usamos <code>R.home()</code>. O local de instalação dos pacotes é obtido via <code>.libPaths()</code>.</p>
-
+<span class="kw">getwd</span>()</code></pre></div>
+<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>.</p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="io.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="para-saber-mais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
