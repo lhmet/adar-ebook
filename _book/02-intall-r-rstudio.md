@@ -204,8 +204,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
-[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
+[1] "/home/pqgfapergs1/.R/libs"     "/usr/local/lib/R/site-library"
+[3] "/usr/lib/R/site-library"       "/usr/lib/R/library"           
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os seguintes diretórios serão usados.

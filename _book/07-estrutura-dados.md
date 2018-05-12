@@ -838,17 +838,17 @@ a == 1 && b == 1
 
 
 
-------------------------------------------------------------
- a   b   a==1    b==1    a == 1 & b == 1   a == 1 && b == 1 
---- --- ------- ------- ----------------- ------------------
- 1   2   TRUE    FALSE        FALSE             FALSE       
+----------------------------------------------------------
+ a   b   a==1   b==1   a == 1 & b == 1   a == 1 && b == 1 
+--- --- ------ ------ ----------------- ------------------
+ 1   2   TRUE  FALSE        FALSE             FALSE       
 
- 1   1   TRUE    TRUE         TRUE                          
+ 1   1   TRUE   TRUE        TRUE                          
 
- 0   0   FALSE   FALSE        FALSE                         
+ 0   0  FALSE  FALSE        FALSE                         
 
- 1   1   TRUE    TRUE         TRUE                          
-------------------------------------------------------------
+ 1   1   TRUE   TRUE        TRUE                          
+----------------------------------------------------------
 
 Table: Demostração da diferença entre & e &&.
 
@@ -2570,19 +2570,19 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 É fácil de confundir quando usar `]` e `]]`. A tabela abaixo ajuda lembrar da diferença entre eles.
 
 
-------------------------------------------------------------------------------
-           descrição                   código               resultado         
--------------------------------- ------------------ --------------------------
-       frasco de pimenta               frasco         ![](images/pepper.jpg)  
+------------------------------------------------------------------------
+          descrição                 código             resultado        
+------------------------------ ---------------- ------------------------
+      frasco de pimenta             frasco       ![](images/pepper.jpg) 
 
- frasco de pimenta com apenas 1      frasco[1]       ![](images/pepper-1.jpg) 
-       pacote de pimenta                                                      
+frasco de pimenta com apenas 1    frasco[1]     ![](images/pepper-1.jpg)
+      pacote de pimenta                                                 
 
-      1 pacote de pimenta           frasco[[1]]      ![](images/pepper-2.jpg) 
+     1 pacote de pimenta         frasco[[1]]    ![](images/pepper-2.jpg)
 
-    conteúdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
-            pimenta                                                           
-------------------------------------------------------------------------------
+   conteúdo de um pacote de    frasco[[1]][[1]] ![](images/pepper-3.jpg)
+           pimenta                                                      
+------------------------------------------------------------------------
 
 ### Conversão de lista para vetor e vice-versa.
 

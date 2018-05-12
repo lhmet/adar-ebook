@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
----
-
 # (APPENDIX) Appendix {-} 
 
 

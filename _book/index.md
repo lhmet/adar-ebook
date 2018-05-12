@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2018-05-10"
+date: "2018-05-12"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -55,6 +55,7 @@ O texto é organizado em 7 capítulos:
 
 - \@ref(estrutura-dados) Estruturas de dados
 
+- \@ref(io) Entrada de dados
 
 
 
