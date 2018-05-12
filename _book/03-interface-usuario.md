@@ -112,8 +112,6 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 [1] 1
 ```
 
-
-
 ### Navegação entre as expressões já avaliadas
 
 Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
