@@ -1,24 +1,19 @@
----
-output:
-  html_document: default
----
-
 # Entrada e saída de dados {#io}
 
 
 
 O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar dados nos formatos mais comuns em aplicações ambientais, como: 
 
-- importar dados tabulares aramzenados em arquivos texto (ASCII)
+- dados tabulares armazenados em arquivos texto ([ASCII](https://pt.wikipedia.org/wiki/ASCII))
 - arquivos de dados meteorológicos de agências brasileiras
-- dados binários 
-
+- dados binários e netCDF
+- dados espaciais em formato GIS
 
 ## Diretório de trabalho
 
 O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.
 
-Quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (*working directory*, `wd`). Para saber o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20"> use a função `getwd()`.
+Quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (*working directory*, `wd`). A função `getwd()` retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.
 
 
 ```r
@@ -27,9 +22,9 @@ getwd()
 wd <- getwd()
 ```
 
-O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\Users\username\" no Windows.
+O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\\Usuarios\\usuario\\" no Windows.
 
-Essa informação pode ser obtida do <img src="images/logo_r.png" width="20"> com a instrução abaixo:
+Você obtém essa informação com a instrução abaixo:
 
 
 ```r
@@ -51,6 +46,7 @@ getwd()
 ```
 
 O conteúdo de um diretório pode ser listado com a função `dir()`.
+
 
 ## Para saber mais
 
