@@ -62,7 +62,7 @@ O conteúdo de um diretório pode ser listado com a função `dir()`, ou se esti
 
 Dados armazenados em um arquivo texto (do tipo [ASCII](http://pt.wikipedia.org/wiki/ASCII])) podem ser facilmente importados no R.
 
-O formato mais comum de armazenar uma tabela de dados num arquivo texto é com os registros ao longo das linhas e as variáveis ao longo das colunas. Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula `,` , espaço `   ` , tab `  ` e etc.
+O formato mais comum de armazenar uma tabela de dados num arquivo texto é com os registros ao longo das linhas e as variáveis ao longo das colunas. Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc.
 
 **A função mais importante para leitura de dados de um arquivo texto é a `read.table()` que  armazena os dados no formato de uma dataframe**. Essa função possui diversos parâmetros para ajustar a importação de acordo com as peculiaridades do formato de dados do arquivo. O valor *default* do parâmetro `sep` é um ou mais caracteres de `espaço` e `tabs`. Devido as diversas opções de separadores existem outras funções essencialmente iguais a `read.table()` com a diferença no separador, por exemplo as funções: `read.csv(), read.csv2(), read.delim()` usam como o argumento separador `,`, `;` e `\t` . Para detalhes sobre essas funções o *help* de cada uma. Uma vez que essas funções aceitam qualquer argumento da `read.table()` elas são mais convenientes que usar a `read.table()` e configurar os argumentos apropriados manualmente.
 
