@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="io.html">
-<link rel="next" href="para-saber-mais.html">
+<link rel="next" href="arquivos-texto.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -164,10 +164,10 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
-<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
-<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
-<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeros"><i class="fa fa-check"></i><b>6.1.1</b> Números</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.2</b> Caractere</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> Lógico</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#datas-e-horarios"><i class="fa fa-check"></i><b>6.1.4</b> Datas e horários</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
@@ -214,7 +214,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.1</b> Diretório de trabalho</a></li>
-<li class="chapter" data-level="8.2" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.2</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.2</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-textos-de-bases-de-dados-hidrometeorologicos-brasileiras"><i class="fa fa-check"></i><b>8.2.1</b> Arquivos textos de bases de dados hidrometeorológicos brasileiras</a></li>
+<li class="chapter" data-level="8.2.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#bdmep-inmet"><i class="fa fa-check"></i><b>8.2.2</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
+<li class="chapter" data-level="8.2.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>8.2.3</b> Arquivos formatados com largura fixa</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.3</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -251,23 +256,48 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="diretorio-de-trabalho" class="section level2">
 <h2><span class="header-section-number">8.1</span> Diretório de trabalho</h2>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.</p>
-<p>Quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
-<span class="co"># salvando em uma variável</span>
-wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</code></pre></div>
+<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual.</p>
+<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
 <p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:\Usuarios\usuario\&quot; no Windows.</p>
 <p>Você obtém essa informação com a instrução abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</code></pre></div>
 <p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
-<p>Para alterar seu <code>wd</code> você pode usar a função <code>setwd()</code>.</p>
+<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode usar a função <code>setwd()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define o wd em &quot;/home/user&quot;</span>
 <span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)
 <span class="kw">getwd</span>()
 <span class="co"># volta para o wd inicial</span>
 <span class="kw">setwd</span>(wd)
 <span class="kw">getwd</span>()</code></pre></div>
-<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>.</p>
+<div class="rmdtip">
+<p>
+Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá entre as opções:
+</p>
+<ul>
+<li>
+<p>
+<em>Choose Directory</em>: permite você navegar até o diretório de interesse
+</p>
+</li>
+<li>
+<p>
+<em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
+</p>
+</li>
+<li>
+<p>
+<em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
+</p>
+</li>
+<li>
+<p>
+<em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
+</p>
+</li>
+</ul>
+</div>
+<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver usando o Rstudio você pode clicar na aba <em>Files</em> do painel de direito inferior e depois em <em>More &gt; Go To Working Directory</em>.</p>
 </div>
             </section>
 
@@ -275,7 +305,7 @@ wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</code></pre></d
         </div>
       </div>
 <a href="io.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="para-saber-mais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="arquivos-texto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

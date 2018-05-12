@@ -1,9 +1,3 @@
----
-output:
-  html_document: default
----
-
-
 # Tipos de dados {#datatype}
 
 
@@ -25,19 +19,7 @@ Nesta seção vamos:
 
 ## Classes de dados
 
-Existem vários classes de dados no R. As mais utilizadas são:
-
-* `numeric` (números)
-
-* `character` (sequência de caracteres)
-
-* `logical` (TRUE/FALSE)
-
-* `Date` (datas)
-
-* `POSIXct` (datas e horários) 
-
-A classe dos dados de um objeto é verificada com a função `class()`.
+Existem vários classes de dados no R. As mais utilizadas são mostradas na  \@ref(tab:classes-r). A classe de um objeto é obtida com a função `class()`.
 
 
 ```r
@@ -45,10 +27,25 @@ x <- 51
 class(x)
 #> [1] "numeric"
 ```
- 
-### *numeric*
 
-É a classe de objeto mais usada. Essa classe é similar a *float* ou *double* em outras linguagens. Ela trata de inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função `is.numeric()`.
+
+
+Table: (\#tab:classes-r)Principais classes de dados do R.
+
+ Classes de dados    Classes no R          exemplo       
+------------------  --------------  ---------------------
+     Números           numeric             2.5, 2        
+    Caracteres        character               a          
+     Lógicos           logical           TRUE, FALSE     
+      Datas              Date            2010-01-01      
+ Datas e horários       POSIX        2010-01-01 00:00:00 
+
+
+
+ 
+### Números
+
+É a classe de objeto mais usada. Essa classe é chamada *numeric* no <img src="images/logo_r.png" width="20"> e é similar a *float* ou *double* em outras linguagens. Ela trata de inteiros, decimais, positivos, negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função `is.numeric()`.
 
 
 ```r
@@ -104,9 +101,9 @@ typeof(3 + 2i)
 ```
 
 
-### *character*
+### Caractere
 
-O tipo de dado *character* (*string*) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função `character()` e `factor()`. Embora pareçam similares eles são tratados de forma diferente.
+O tipo de dado caractere (do termo em inglês *character* ou *string*) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
 
 
 ```r
@@ -146,31 +143,48 @@ nchar(charf)
 #> Error in nchar(charf): 'nchar()' requires a character vector
 ```
 
-### *logical* {#logico}
+### Lógico {#logico}
    
-`logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). 
+Valores lógicos (`logical` no <img src="images/logo_r.png" width="20">) são uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). O <img src="images/logo_r.png" width="20"> aceita as abreviaturas T e F para representar TRUE e FALSE,
 
 
 ```r
 # variável lógica
-vl <- FALSE
+vl <- c(FALSE, T, F, TRUE)
+vl
+#> [1] FALSE  TRUE FALSE  TRUE
 ```
 
-Então em operações aritméticas envolvendo dados lógicos eles serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
+ Entretanto, esta não é uma prática recomendável, conforme exemplo abaixo.
+
+
+```r
+TRUE
+#> [1] TRUE
+T
+#> [1] TRUE
+class(T)
+#> [1] "logical"
+T <- 10
+class(T)
+#> [1] "numeric"
+```
+
+Valores lógicos podem ser usados em operações aritméticas. Neste caso, serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
 
 
 ```r
 vl * 5
-#> [1] 0
-TRUE * 5
-#> [1] 5
+#> [1] 0 5 0 5
+TRUE * 4
+#> [1] 4
 TRUE + TRUE
 #> [1] 2
 FALSE - TRUE
 #> [1] -1
 ```
 
-Assim como as outras classes de dados existem funções para verificar a classe de dados lógicos.
+Assim como as outras classes de dados, existem funções para verificar a classe de dados lógicos.
 
 
 ```r
@@ -180,20 +194,6 @@ is.logical(vl)
 #> [1] TRUE
 ```
 
-O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.
-
-
-```r
-TRUE
-[1] TRUE
-T
-[1] TRUE
-class(T)
-[1] "logical"
-T <- 10
-class(T)
-[1] "numeric"
-```
 
 Valores lógicos resultam da comparação de números ou caracteres.
 
@@ -201,10 +201,10 @@ Valores lógicos resultam da comparação de números ou caracteres.
 ```r
 4 == 3 # 4 é idêntico a 3?
 #> [1] FALSE
-teste2i2 <- 2*2 == 2+2
+teste2i2 <- 2 * 2 == 2 + 2
 teste2i2
 #> [1] TRUE
-teste2d2 <- 2*2 != 2+2 # operador: diferente de
+teste2d2 <- 2 * 2 != 2 + 2 # operador: diferente de
 teste2d2
 #> [1] FALSE
 4 < 3
@@ -245,18 +245,17 @@ Table: (\#tab:oper-logic)Operadores Lógicos
 
 
 
-### *Date*
+### Datas e horários
 
-Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.
+Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:
 
-As mais úteis são:
-  
   * `Date`
   
   * `POSIXct`
   
 
-`Date` armazena apenas a data enquanto `POSIXct` armazena a data e o horário. Ambos dados são representados como o número de dias (Date) ou segundos (POSIXct) decorridos  desde 1 de Janeiro de 1970.
+`Date` armazena apenas a data enquanto `POSIXct` armazena a data e o horário. Ambos dados são representados como o número de dias (*Date*) ou segundos (*POSIXct*) decorridos  desde 1 de Janeiro de 1970.
+
 
 ```r
 data1 <- as.Date("2012-06-28")
@@ -297,7 +296,7 @@ x; typeof(x)
 #> [1] 51
 #> [1] "double"
 vl; typeof(vl)
-#> [1] FALSE
+#> [1] FALSE  TRUE FALSE  TRUE
 #> [1] "logical"
 data1; typeof(data1)
 #> [1] "2012-06-28"

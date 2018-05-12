@@ -164,10 +164,10 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeric"><i class="fa fa-check"></i><b>6.1.1</b> <em>numeric</em></a></li>
-<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#character"><i class="fa fa-check"></i><b>6.1.2</b> <em>character</em></a></li>
-<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> <em>logical</em></a></li>
-<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#date"><i class="fa fa-check"></i><b>6.1.4</b> <em>Date</em></a></li>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#numeros"><i class="fa fa-check"></i><b>6.1.1</b> Números</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.2</b> Caractere</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> Lógico</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#datas-e-horarios"><i class="fa fa-check"></i><b>6.1.4</b> Datas e horários</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversao-entre-tipos-de-dados.html"><a href="conversao-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
@@ -214,7 +214,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.1</b> Diretório de trabalho</a></li>
-<li class="chapter" data-level="8.2" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.2</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.2</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-textos-de-bases-de-dados-hidrometeorologicos-brasileiras"><i class="fa fa-check"></i><b>8.2.1</b> Arquivos textos de bases de dados hidrometeorológicos brasileiras</a></li>
+<li class="chapter" data-level="8.2.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#bdmep-inmet"><i class="fa fa-check"></i><b>8.2.2</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
+<li class="chapter" data-level="8.2.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>8.2.3</b> Arquivos formatados com largura fixa</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.3</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -251,21 +256,50 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="classes-de-dados" class="section level2">
 <h2><span class="header-section-number">6.1</span> Classes de dados</h2>
-<p>Existem vários classes de dados no R. As mais utilizadas são:</p>
-<ul>
-<li><p><code>numeric</code> (números)</p></li>
-<li><p><code>character</code> (sequência de caracteres)</p></li>
-<li><p><code>logical</code> (TRUE/FALSE)</p></li>
-<li><p><code>Date</code> (datas)</p></li>
-<li><p><code>POSIXct</code> (datas e horários)</p></li>
-</ul>
-<p>A classe dos dados de um objeto é verificada com a função <code>class()</code>.</p>
+<p>Existem vários classes de dados no R. As mais utilizadas são mostradas na <a href="classes-de-dados.html#tab:classes-r">6.1</a>. A classe de um objeto é obtida com a função <code>class()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">51</span>
 <span class="kw">class</span>(x)
 <span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
-<div id="numeric" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> <em>numeric</em></h3>
-<p>É a classe de objeto mais usada. Essa classe é similar a <em>float</em> ou <em>double</em> em outras linguagens. Ela trata de inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função <code>is.numeric()</code>.</p>
+<table>
+<caption><span id="tab:classes-r">Table 6.1: </span>Principais classes de dados do R.</caption>
+<thead>
+<tr class="header">
+<th align="center">Classes de dados</th>
+<th align="center">Classes no R</th>
+<th align="center">exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Números</td>
+<td align="center">numeric</td>
+<td align="center">2.5, 2</td>
+</tr>
+<tr class="even">
+<td align="center">Caracteres</td>
+<td align="center">character</td>
+<td align="center">a</td>
+</tr>
+<tr class="odd">
+<td align="center">Lógicos</td>
+<td align="center">logical</td>
+<td align="center">TRUE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">Datas</td>
+<td align="center">Date</td>
+<td align="center">2010-01-01</td>
+</tr>
+<tr class="odd">
+<td align="center">Datas e horários</td>
+<td align="center">POSIX</td>
+<td align="center">2010-01-01 00:00:00</td>
+</tr>
+</tbody>
+</table>
+<div id="numeros" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Números</h3>
+<p>É a classe de objeto mais usada. Essa classe é chamada <em>numeric</em> no <img src="images/logo_r.png" width="20"> e é similar a <em>float</em> ou <em>double</em> em outras linguagens. Ela trata de inteiros, decimais, positivos, negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função <code>is.numeric()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.numeric</span>(x)
 <span class="co">#&gt; [1] TRUE</span>
 <span class="kw">is.numeric</span>(pi)
@@ -300,9 +334,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="kw">typeof</span>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span>2i)
 <span class="co">#&gt; [1] &quot;complex&quot;</span></code></pre></div>
 </div>
-<div id="character" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> <em>character</em></h3>
-<p>O tipo de dado <em>character</em> (<em>string</em>) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função <code>character()</code> e <code>factor()</code>. Embora pareçam similares eles são tratados de forma diferente.</p>
+<div id="caractere" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Caractere</h3>
+<p>O tipo de dado caractere (do termo em inglês <em>character</em> ou <em>string</em>) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função <code>character()</code> e a <code>factor()</code>. Embora pareçam similares eles são tratados de forma diferente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(char &lt;-<span class="st"> &quot;Vai chover hoje?&quot;</span>)
 <span class="co">#&gt; [1] &quot;Vai chover hoje?&quot;</span>
 charf &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;Vai chover hoje?&quot;</span>)
@@ -328,41 +362,43 @@ charf
 <span class="co">#&gt; Error in nchar(charf): &#39;nchar()&#39; requires a character vector</span></code></pre></div>
 </div>
 <div id="logico" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> <em>logical</em></h3>
-<p><code>logical</code> (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, <strong>TRUE</strong> (verdadeiro) ou <strong>FALSE</strong> (falso).</p>
+<h3><span class="header-section-number">6.1.3</span> Lógico</h3>
+<p>Valores lógicos (<code>logical</code> no <img src="images/logo_r.png" width="20">) são uma forma de representar dados que podem assumir valores booleanos, isto é, <strong>TRUE</strong> (verdadeiro) ou <strong>FALSE</strong> (falso). O <img src="images/logo_r.png" width="20"> aceita as abreviaturas T e F para representar TRUE e FALSE,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável lógica</span>
-vl &lt;-<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
-<p>Então em operações aritméticas envolvendo dados lógicos eles serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).</p>
+vl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, T, F, <span class="ot">TRUE</span>)
+vl
+<span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span></code></pre></div>
+<p>Entretanto, esta não é uma prática recomendável, conforme exemplo abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span>
+<span class="co">#&gt; [1] TRUE</span>
+T
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">class</span>(T)
+<span class="co">#&gt; [1] &quot;logical&quot;</span>
+T &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">class</span>(T)
+<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
+<p>Valores lógicos podem ser usados em operações aritméticas. Neste caso, serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vl <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; [1] 0</span>
-<span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; [1] 5</span>
+<span class="co">#&gt; [1] 0 5 0 5</span>
+<span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
+<span class="co">#&gt; [1] 4</span>
 <span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span>
 <span class="co">#&gt; [1] 2</span>
 <span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span>
 <span class="co">#&gt; [1] -1</span></code></pre></div>
-<p>Assim como as outras classes de dados existem funções para verificar a classe de dados lógicos.</p>
+<p>Assim como as outras classes de dados, existem funções para verificar a classe de dados lógicos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vl)
 <span class="co">#&gt; [1] &quot;logical&quot;</span>
 <span class="kw">is.logical</span>(vl)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<p>O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-T
-[<span class="dv">1</span>] <span class="ot">TRUE</span>
-<span class="kw">class</span>(T)
-[<span class="dv">1</span>] <span class="st">&quot;logical&quot;</span>
-T &lt;-<span class="st"> </span><span class="dv">10</span>
-<span class="kw">class</span>(T)
-[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
 <p>Valores lógicos resultam da comparação de números ou caracteres.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="co"># 4 é idêntico a 3?</span>
 <span class="co">#&gt; [1] FALSE</span>
-teste2i2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span>
+teste2i2 &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
 teste2i2
 <span class="co">#&gt; [1] TRUE</span>
-teste2d2 &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="co"># operador: diferente de</span>
+teste2d2 &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># operador: diferente de</span>
 teste2d2
 <span class="co">#&gt; [1] FALSE</span>
 <span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>
@@ -379,9 +415,9 @@ teste2d2
 <span class="co">#&gt; [1] TRUE</span>
 <span class="kw">nchar</span>(<span class="st">&quot;abc&quot;</span>) <span class="op">&lt;</span><span class="st"> </span><span class="kw">nchar</span>(<span class="st">&quot;defg&quot;</span>)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<p>A Tabela <a href="classes-de-dados.html#tab:oper-logic">6.1</a> apresenta os principais operadores lógicos disponíveis no <img src="images/logo_r.png" width="20">.</p>
+<p>A Tabela <a href="classes-de-dados.html#tab:oper-logic">6.2</a> apresenta os principais operadores lógicos disponíveis no <img src="images/logo_r.png" width="20">.</p>
 <table>
-<caption><span id="tab:oper-logic">Table 6.1: </span>Operadores Lógicos</caption>
+<caption><span id="tab:oper-logic">Table 6.2: </span>Operadores Lógicos</caption>
 <thead>
 <tr class="header">
 <th align="center">Operador</th>
@@ -436,15 +472,14 @@ teste2d2
 </tbody>
 </table>
 </div>
-<div id="date" class="section level3">
-<h3><span class="header-section-number">6.1.4</span> <em>Date</em></h3>
-<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.</p>
-<p>As mais úteis são:</p>
+<div id="datas-e-horarios" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Datas e horários</h3>
+<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:</p>
 <ul>
 <li><p><code>Date</code></p></li>
 <li><p><code>POSIXct</code></p></li>
 </ul>
-<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (Date) ou segundos (POSIXct) decorridos desde 1 de Janeiro de 1970.</p>
+<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (<em>Date</em>) ou segundos (<em>POSIXct</em>) decorridos desde 1 de Janeiro de 1970.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)
 data1
 <span class="co">#&gt; [1] &quot;2012-06-28&quot;</span>
