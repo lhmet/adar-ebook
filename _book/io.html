@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-12">
+<meta name="date" content="2018-05-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="dataframe.html">
-<link rel="next" href="diretorio-de-trabalho.html">
+<link rel="next" href="pre-requisitos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -213,13 +213,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
-<li class="chapter" data-level="8.1" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.1</b> Diretório de trabalho</a></li>
-<li class="chapter" data-level="8.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.2</b> Arquivos texto</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-textos-de-bases-de-dados-hidrometeorologicos-brasileiras"><i class="fa fa-check"></i><b>8.2.1</b> Arquivos textos de bases de dados hidrometeorológicos brasileiras</a></li>
-<li class="chapter" data-level="8.2.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#bdmep-inmet"><i class="fa fa-check"></i><b>8.2.2</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
-<li class="chapter" data-level="8.2.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>8.2.3</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="8.1" data-path="pre-requisitos.html"><a href="pre-requisitos.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.3</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-textos-de-bases-de-dados-hidrometeorologicos-brasileiras"><i class="fa fa-check"></i><b>8.3.1</b> Arquivos textos de bases de dados hidrometeorológicos brasileiras</a></li>
+<li class="chapter" data-level="8.3.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#bdmep-inmet"><i class="fa fa-check"></i><b>8.3.2</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
+<li class="chapter" data-level="8.3.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>8.3.3</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.3</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.4" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.4</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -263,7 +264,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li>dados binários e netCDF</li>
 <li>dados espaciais em formato GIS</li>
 </ul>
-<p>Mas antes de lidar com arquivos, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p> 
+<p>Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. O pacote <strong>rio</strong> permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes <strong>readr</strong> e <strong>data.table</strong>.</p>
+<p>Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Entre os formatos binários, veremos funções nativas do R (<code>readRDS()</code>, <code>load()</code>) e funções de pacotes para importar arquivos no formato netCDF.</p> 
 </div>
             </section>
 
@@ -271,7 +273,7 @@ code > span. { color: #1f1c1b; } /* Normal */
         </div>
       </div>
 <a href="dataframe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="diretorio-de-trabalho.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pre-requisitos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
