@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="install.html">
-<link rel="next" href="install-pck.html">
+<link rel="prev" href="arquivos-texto.html">
+<link rel="next" href="para-saber-mais.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -217,10 +217,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
 <li class="chapter" data-level="8.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.3</b> Arquivos texto</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-textos-de-bases-de-dados-hidrometeorologicos-brasileiras"><i class="fa fa-check"></i><b>8.3.1</b> Arquivos textos de bases de dados hidrometeorológicos brasileiras</a></li>
-<li class="chapter" data-level="8.3.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#bdmep-inmet"><i class="fa fa-check"></i><b>8.3.2</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
-<li class="chapter" data-level="8.3.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>8.3.3</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.4</b> Para saber mais</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="fazendo-a-mesma-leitura-com-read-table.html"><a href="fazendo-a-mesma-leitura-com-read-table.html"><i class="fa fa-check"></i><b>9</b> Fazendo a mesma leitura com read.table</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="fazendo-a-mesma-leitura-com-read-table.html"><a href="fazendo-a-mesma-leitura-com-read-table.html#bdmep-inmet"><i class="fa fa-check"></i><b>9.0.1</b> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></a></li>
+<li class="chapter" data-level="9.0.2" data-path="fazendo-a-mesma-leitura-com-read-table.html"><a href="fazendo-a-mesma-leitura-com-read-table.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>9.0.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="9.1" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>9.1</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -255,133 +257,127 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instalando-o" class="section level2">
-<h2><span class="header-section-number">2.1</span> Instalando o <img src="images/logo_r.png" width="20"></h2>
-<p>O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos <a href="https://cran.r-project.org/bin/">binários pré-compilados</a> ou do <a href="https://cran.r-project.org/sources.html">código fonte</a>. Aqui, descreve-se a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.</p>
-<div id="windows" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Windows</h3>
-<p>O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na <strong>Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20"></strong> (<a href="https://cran.r-project.org/">CRAN</a>) e pode ser baixado <a href="http://cran.r-project.org/bin/windows/base/">aqui</a>.</p>
-<p>Abra o executável e siga instruções de instalação do R mantendo todas as opções padrões.</p>
-<p>No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável <code>RGui.exe</code> (Figura <a href="instalando-o.html#fig:r-gui">2.1</a>). Um atalho para esse executável é gerado por <em>default</em> na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.</p>
-<div class="figure"><span id="fig:r-gui"></span>
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
-<p class="caption">
-Figure 2.1: Interface gráfica do usuário no R para Windows.
-</p>
+<div id="fazendo-a-mesma-leitura-com-read.table" class="section level1">
+<h1><span class="header-section-number">9</span> Fazendo a mesma leitura com read.table</h1>
+<p>dprec2 &lt;- read.table(file = “data/CHUVAS.TXT”, skip = 15, head = T, stringsAsFactors = FALSE, fill = T, sep = “;”, dec = “,”) head(dprec2) ```</p>
+<div id="bdmep-inmet" class="section level3">
+<h3><span class="header-section-number">9.0.1</span> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> <span class="st">&quot;data/83004.txt&quot;</span>, 
+               <span class="dt">header =</span> <span class="ot">FALSE</span>, 
+               <span class="dt">skip =</span> <span class="dv">16</span>,
+               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>
+               )
+<span class="kw">head</span>(x)
+<span class="kw">str</span>(x)</code></pre></div>
+<p>Os dados lidos não incluíram a linha de cabeçalho com os nomes das variáveis. Nós pulamos essa linha porque o nome das variáveis está de acordo como número de colunas do arquivo. Então se tentarmos ler um arquivo de dados que contém linhas com número de registros diferentes ocorrerá um erro pois os dados não são tabulares.</p>
+<p>Outro aspecto nos dados lidos é que aparecem vários <code>&lt;NA&gt;</code>, que é o símbolo para dados do tipo <code>character</code> faltantes. A razão dos terem sido interpretados dessa forma deve-se a um caractere (<code>&lt;/pre&gt;</code>) encontrado na última linha do arquivo. Digite na linha de um terminal linux o comando:</p>
+<pre><code>tail data/83004.txt </code></pre>
+<p>para imprimir na tela apenas a parte final do arquivo. Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função <code>read.table(..., nrows = 5878)</code>, que ignoraria a última linha do arquivo e os dados seriam interpretados como <code>numeric</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span><span class="st">&quot;data/83004.txt&quot;</span>, 
+               <span class="dt">header =</span> <span class="ot">FALSE</span>, 
+               <span class="dt">skip =</span> <span class="dv">16</span>,
+               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+               <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,
+               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,
+               <span class="dt">nrows =</span> <span class="dv">5878</span>              
+)
+<span class="kw">head</span>(x1)
+<span class="kw">str</span>(x1)</code></pre></div>
+<p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo classe dos dados</span>
+<span class="co"># convertendo de character para numeric</span>
+x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)
+<span class="kw">str</span>(x)
+<span class="co"># razão dos avisos</span>
+<span class="kw">as.numeric</span>(<span class="st">&quot;NA&quot;</span>)</code></pre></div>
+<p>Mas e o nome das variáveis?</p>
+<p>Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo somente o nome das variaveis</span>
+vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span><span class="st">&quot;data/83004.txt&quot;</span>, 
+                    <span class="dt">header =</span> <span class="ot">FALSE</span>, 
+                    <span class="dt">skip =</span> <span class="dv">15</span>,
+                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+                    <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,
+                    <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,
+                    <span class="dt">nrows =</span> <span class="dv">1</span>)
+vnames
+<span class="co"># convertendo de dataframe para vetor</span>
+vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))
+<span class="co"># número de variáveis é diferente do número de colunas do arquivo</span>
+<span class="kw">length</span>(vnames) <span class="op">==</span><span class="st"> </span><span class="kw">ncol</span>(x)
+<span class="co"># corrigindo nomes das variaveis</span>
+<span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span>
+vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span>
+<span class="co"># acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e</span>
+<span class="co"># desloca os elementos orginais do vetor </span>
+vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span><span class="op">:</span><span class="kw">length</span>(vnames)])
+<span class="kw">length</span>(vnames)
+<span class="kw">ncol</span>(x)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span>vnames
+<span class="kw">head</span>(x)</code></pre></div>
+<p>Finalmente vamos escrever os dados do INMET corretamente organizados.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv2</span>(x,
+           <span class="dt">file =</span> <span class="st">&quot;data/83004_clean.txt&quot;</span>, 
+           <span class="dt">na =</span> <span class="st">&quot;-9999&quot;</span>,
+           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
-<div id="atualizacao-do-no-windows" class="section level4">
-<h4><span class="header-section-number">2.1.1.1</span> Atualização do <img src="images/logo_r.png" width="20"> no Windows</h4>
-<p>Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem <a href="https://cran.r-project.org/bin/windows/base/NEWS.R-3.5.0.html">aperfeiçoamentos e a correção de <em>bugs</em></a>.</p>
-<p>As novas versões do <img src="images/logo_r.png" width="20"> vem com os <a href="https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f">pacotes padrões do R</a>. Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.</p>
-<p>Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote <a href="https://cran.r-project.org/web/packages/installr/index.html"><strong>installr</strong></a>. A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção <a href="install-pck.html#install-pck">2.2</a>.</p>
-</div>
-</div>
-<div id="linux" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Linux</h3>
-<div id="ubuntu" class="section level4">
-<h4><span class="header-section-number">2.1.2.1</span> Ubuntu</h4>
-<p>Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu, mas geralmente a versão compilada no repositório <em>default</em> do Ubuntu não é a última. Se isso não for problema para você então basta executar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sudo apt<span class="op">-</span>get install r<span class="op">-</span>base</code></pre></div>
-<p>Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como instalar o <img src="images/logo_r.png" width="20"> de forma que seja atualizado automaticamente pelo sistema.</p>
-</div>
-<div id="r-sempre-atualizado" class="section level4">
-<h4><span class="header-section-number">2.1.2.2</span> R sempre atualizado</h4>
-<p>Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios <a href="https://en.wikipedia.org/wiki/Sudo">sudo</a>. Caso não tenha, consulte o administrador do sistema.</p>
-<p>Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. As versões de Suporte de longo prazo (LTS) mais recentes são:</p>
-<ul>
-<li>14.04 (abril de 2014, <em>codename</em> <code>trusty</code>)</li>
-<li>16.04 (abril de 2016, <em>codename</em> <code>xenial</code>)</li>
-</ul>
-<p>A versão mais atual é a R version 3.5.0 (2017-01-27). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço do <a href="http://cran.r-project.org/mirrors.html">repósitório do R</a> mais próximo de sua região à lista de repositórios do Linux. No exemplo deste livro, o repositório mais próximo é o da UFPR (<a href="http://cran-r.c3sl.ufpr.br/" class="uri">http://cran-r.c3sl.ufpr.br/</a>).</p>
-<div id="incluindo-repositorio-do-na-lista-de-repositorios-do-ubuntu" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.1</span> Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu</h5>
-<p>A lista de repositórios do sistema é armazenada no arquivo <code>/etc/apt/sources.list</code>. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> :</p>
-<pre><code>$ lsb_release --codename | cut -f2</code></pre>
-<pre><code>trusty</code></pre>
-<p>Precisamos incluir no arquivo <code>sources.list</code> o espelho do repositório do R mais próximo. Veja a lista de espelhos de repositórios do <img src="images/logo_r.png" width="20"> <a href="https://cran.r-project.org/mirrors.html">aqui</a>. Assim o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.</p>
-<p>O endereço do repositório da UFPR será inserido na última linha do arquivo <code>sources.list</code> usando alguns comandos linux. Essa tarefa requer privilégios de <a href="https://pt.wikipedia.org/wiki/Superusu%C3%A1rio">superusuário</a>. Vamos trocar do seu usuário para o superusuário.</p>
-<pre><code>$ sudo su</code></pre>
-<p>Vamos definir no terminal uma variável com o endereço do repositório (da UFPR nesse caso) e o nome de versão do Ubuntu.</p>
-<pre><code># repos=&quot;deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/&quot;</code></pre>
-<p>Note que a variável <code>repos</code> é uma sequência de caracteres com as seguintes informações:</p>
-<pre><code>deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/</code></pre>
-<p>O valor da variável <code>repos</code> é mostrado pelo comando: <code>echo $repos</code>. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.</p>
-<p>Para acrescentar essa informação no final do arquivo <code>sources.list</code> digite no terminal linux:</p>
-<pre><code># echo $repos &gt;&gt; /etc/apt/sources.list</code></pre>
-<p>Feito isso, você pode retornar a sessão de usuário comum, usando o comando abaixo:</p>
-<pre><code># exit</code></pre>
-</div>
-<div id="apt-protegido" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.2</span> <a href="https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt">APT protegido</a></h5>
-<p>Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na <a href="http://cran.r-project.org">CRAN</a> são assinados com uma chave pública<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Para adicionar essa chave ao seu sistema digite os seguintes comandos:</p>
-<pre><code>$ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9</code></pre>
-<p>e então use essa informação como entrada no <code>apt-key</code> com</p>
-<pre><code>$ gpg -a --export E084DAB9 | sudo apt-key add -
-  </code></pre>
-<p>Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:</p>
-<pre><code>$ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
-$ gpg -a --export E084DAB9 | sudo apt-key add -</code></pre>
-</div>
-<div id="atualizacao-da-lista-de-repositorios-do-ubuntu-e-instalacao-do" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.3</span> Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20"></h5>
-<p>Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):</p>
-<pre><code>$ sudo apt-get update</code></pre>
-<p>Agora, pode instalar o binário do R:</p>
-<pre><code>$ sudo apt-get install r-base</code></pre>
-</div>
-<div id="testando-o" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.4</span> Testando o <img src="images/logo_r.png" width="20"></h5>
-<p>Para iniciar o <img src="images/logo_r.png" width="20"> no Ubuntu, digite <code>R</code> no cursor do terminal:</p>
-<pre><code>$ R</code></pre>
-<p>A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
- [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Chunck4"></span>
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
-<p class="caption">
-Figure 2.2: Gráfico da sequência de 10 números.
-</p>
-</div>
-<p>Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com o código a seguir:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">q</span>(<span class="dt">save =</span> <span class="st">&quot;no&quot;</span>)</code></pre></div>
-</div>
-</div>
-<div id="diretorio-para-instalacao-de-pacotes" class="section level4">
-<h4><span class="header-section-number">2.1.2.3</span> Diretório para instalação de pacotes</h4>
-<p>Uma boa prática é definir um diretório para armazenamento dos pacotes utilizados. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o <code>/home/usuario/.R/libs</code>. O seu <code>home</code> ou <code>pasta pessoal</code> pode ser obtido com o comando <code>echo $HOME</code>. Para criar o diretório você pode digitar o comando abaixo:</p>
-<pre><code>$ mkdir -p `echo $HOME`/.R/libs/</code></pre>
-<p>Para informar ao <img src="images/logo_r.png" width="20"> onde procurar os pacotes instalados, você precisa criar um arquivo chamado <code>.Renviron</code>, no diretório <code>$HOME</code>, contendo a expressão <code>R_LIBS=/home/usuario/.R/libs/</code>. Você pode fazer isso em um terminal com os comandos:</p>
-<pre><code>$ R_LIBS=`echo $HOME/.R/libs/`
-$ echo $R_LIBS &gt;&gt; `echo $HOME/.Renviron`</code></pre>
-<p>Esse caminho fica então visível ao <img src="images/logo_r.png" width="20">, o que pode ser verificado executando a função <code>.libPaths()</code> na linha de comando do <img src="images/logo_r.png" width="20">.</p>
-<p>Abra o <img src="images/logo_r.png" width="20">:</p>
-<pre><code>$ R</code></pre>
-<p>e ao digitar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">.libPaths</span>()
-[<span class="dv">1</span>] <span class="st">&quot;/home/travis/R/Library&quot;</span>           <span class="st">&quot;/usr/local/lib/R/site-library&quot;</span>   
-[<span class="dv">3</span>] <span class="st">&quot;/home/travis/R-bin/lib/R/library&quot;</span></code></pre></div>
-<p>o seu diretório <code>/home/usuario/.R/libs</code><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os seguintes diretórios serão usados.</p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>Clique <a href="http://releases.ubuntu.com">aqui</a> para saber mais sobre as versões do Ubuntu.<a href="instalando-o.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso, digite no terminal Linux <code>sudo apt-get install lsb-release</code>.<a href="instalando-o.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a> é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.<a href="instalando-o.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja <a href="http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html">aqui</a>.<a href="instalando-o.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>Diretórios precedidos por “.” no Linux são diretórios ocultos. O diretório <code>/home/usuario/.R</code> é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse <em>View &gt; Show Hidden Files</em> (ou <em>Visualizar &gt; Mostrar arquivos ocultos</em>). No terminal utilize <code>ls -a</code> para listar os arquivos ocultos.<a href="instalando-o.html#fnref5">↩</a></p></li>
-</ol>
+<div id="arquivos-formatados-com-largura-fixa" class="section level3">
+<h3><span class="header-section-number">9.0.2</span> Arquivos formatados com largura fixa</h3>
+<p>Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados. Nesses casos usamos a função <code>read.fwf()</code>. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link para os dados do SOI</span>
+link &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre></div>
+<p>Abrindo o link dos dados no navegador para visualização do formato.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> link)</code></pre></div>
+<p>Leitura dos dados:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span>
+soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="dt">file =</span> <span class="st">&quot;data/SOI.txt&quot;</span>,                       <span class="co"># sem internet, usar esse arquivo</span>
+                <span class="dt">skip =</span> <span class="dv">4</span>,                               <span class="co"># pula 4 linhas</span>
+                <span class="dt">header =</span> <span class="ot">FALSE</span>,                             <span class="co"># sem cabeçalho</span>
+                <span class="dt">nrows =</span> <span class="dv">70</span>,                             <span class="co"># num. de linhas</span>
+                <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>,<span class="dv">12</span>)),                <span class="co"># largura dos campos das variáveis</span>
+                <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>,                  <span class="co"># string para dados faltantes</span>
+                <span class="dt">col.names =</span> <span class="kw">scan</span>(<span class="st">&quot;data/SOI.txt&quot;</span>,             <span class="co"># varredura do arquivo</span>
+                <span class="co">#col.names = scan(link,             # varredura do arquivo</span>
+                                 <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>,    <span class="co"># tipo dos dados a serem lidos</span>
+                                 <span class="dt">skip =</span> <span class="dv">3</span>,              <span class="co"># pula 3 linhas</span>
+                                 <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span>
+                )</code></pre></div>
+<p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
+soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="op">-</span><span class="dv">1</span>]))
+<span class="co"># criando um dataframe com valores de SOI, mes e ano</span>
+soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),
+                     <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),
+                     <span class="dt">soi =</span> soi_v)
+<span class="co"># escrevendo dados SOI em um arquivo CSV</span>
+<span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, 
+          <span class="dt">file =</span> <span class="st">&quot;data/SOI.csv&quot;</span>, 
+          <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, 
+          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura de dados com escolha interativa do arquivo</span>
+soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),
+                   <span class="co"># file.choose só é válido em sistema *unix</span>
+                   <span class="co"># no windows é choose.file()</span>
+                   <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
+<p>Clique duas vezes sobre o arquivo <code>SOI.csv</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/SOI.csv&quot;</span>,
+                   <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(soi.df)
+<span class="kw">str</span>(soi.df)</code></pre></div>
+<p>A função <code>read.fortran()</code> é uma função similar à <code>read.fwf()</code> e permite usar especificações de colunas no estilo <a href="http://en.wikipedia.org/wiki/Fortran">Fortran</a>.</p>
+</div> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="install.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install-pck.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="arquivos-texto.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="para-saber-mais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -411,7 +407,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/02-intall-r-rstudio.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/08-entrada-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

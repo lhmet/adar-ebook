@@ -9,9 +9,41 @@ O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma div
 - dados binários e netCDF
 - dados espaciais em formato GIS
 
-Mas antes de lidar com arquivos, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por *default*.
+Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. O pacote **rio** permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes **readr** e **data.table**. 
+
+Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Entre os formatos binários, veremos funções nativas do R (`readRDS()`, `load()`) e funções de pacotes para importar arquivos no formato netCDF.
+
+## Pré-requisitos
+
+Para reproduzir os códigos deste capítulo você precisará instalar seguintes pacotes:
+
+
+```r
+pacotes <- c("easypackages","rio", "readr", "feather") 
+```
+
+
+
+```r
+install.packages(
+   pacotes,
+   dependencies = TRUE
+)
+```
+
+O pacote **easypackages** fornece a função `libraries()` para carregar diversos pacotes de uma vez só.
+
+
+```r
+pacotes <- c("easypackages", "readr", "rio", "feather")
+library(easypackages)
+libraries(pacotes)
+```
+
 
 ## Diretório de trabalho
+
+Antes de lidar com arquivos, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por *default*.
 
 O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual. 
 
@@ -22,9 +54,7 @@ Importar ou exportar dados é mais fácil quando você não precisa digitar cami
 getwd()
 ```
 
-O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\\Usuarios\\usuario\\" no Windows.
-
-Você obtém essa informação com a instrução abaixo:
+O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\\Usuarios\\usuario\\" no Windows. Você obtém essa informação com a instrução abaixo:
 
 
 ```r
@@ -37,21 +67,22 @@ Ocasionalmente pode ser conveniente alterar seu `wd` e para isso você pode usar
 
 
 ```r
+wd <- getwd()
 # define o wd em "/home/user"
 setwd("~/Documents")
 getwd()
-# volta para o wd inicial
+# volta para o wd original
 setwd(wd)
 getwd()
 ```
 
 <div class="rmdtip">
-<p>Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá entre as opções:</p>
+<p>Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá as opções:</p>
 <ul>
-<li><p><em>Choose Directory</em>: permite você navegar até o diretório de interesse</p></li>
 <li><p><em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio</p></li>
 <li><p><em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos</p></li>
 <li><p><em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio</p></li>
+<li><p><em>Choose Directory</em>: permite você navegar até o diretório de interesse</p></li>
 </ul>
 </div>
 
@@ -62,9 +93,14 @@ O conteúdo de um diretório pode ser listado com a função `dir()`, ou se esti
 
 Dados armazenados em um arquivo texto (do tipo [ASCII](http://pt.wikipedia.org/wiki/ASCII])) podem ser facilmente importados no R.
 
-O formato mais comum de armazenar uma tabela de dados num arquivo texto é com os registros ao longo das linhas e as variáveis ao longo das colunas. Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc.
+O formato mais comum de armazenar dados é o retangular, ou seja, uma tabela de dados com as observações ao longo das linhas e as variáveis ao longo das colunas. 
+
+Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (`\n` no Linux ou `\r\n` no Windows).
+
+Existem diversas funções nativas do R para 
 
 **A função mais importante para leitura de dados de um arquivo texto é a `read.table()` que  armazena os dados no formato de uma dataframe**. Essa função possui diversos parâmetros para ajustar a importação de acordo com as peculiaridades do formato de dados do arquivo. O valor *default* do parâmetro `sep` é um ou mais caracteres de `espaço` e `tabs`. Devido as diversas opções de separadores existem outras funções essencialmente iguais a `read.table()` com a diferença no separador, por exemplo as funções: `read.csv(), read.csv2(), read.delim()` usam como o argumento separador `,`, `;` e `\t` . Para detalhes sobre essas funções o *help* de cada uma. Uma vez que essas funções aceitam qualquer argumento da `read.table()` elas são mais convenientes que usar a `read.table()` e configurar os argumentos apropriados manualmente.
+
 
 Alguns argumentos da função `read.table()` são:
 
@@ -93,14 +129,22 @@ Para arquivos de tamanho moderado a pequeno essa forma de especificar os argumen
 #### [hidroweb-ANA](http://hidroweb.ana.gov.br/)
 
 
+
+```r
+# arquivo de exemplo disponível no GitHub
+file_hidroweb <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT"
+```
+
+
+
 ```r
 # definindo interpretação de caracteres: caracteres não devem ser tratados como fatores
 options(stringsAsFactors = FALSE)
 # leitura de dados pluviométricos diários da ANA
-dprec <- read.csv2(file = "data/CHUVAS.TXT", 
+dprec <- read.csv2(file = file_hidroweb, 
                    skip = 15, 
-                   head = T, 
-                   fill = T)
+                   head = TRUE, 
+                   fill = TRUE)
 # primeiras linhas
 head(dprec)
 # últimas linhas

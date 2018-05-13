@@ -286,6 +286,8 @@ class(as.numeric(data1))
 #> [1] "numeric"
 ```
 
+
+
 ## Testes sobre tipos de dados
 
 Além função `typeof()`, a família `is.*()` também permite descobrir o tipo de dado, p.ex.: `is.numeric()`, `is.character()` e etc.
