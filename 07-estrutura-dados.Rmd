@@ -1692,7 +1692,7 @@ dds
 
 4. Escreva os códigos necessários para determinar:  
 
-`r paste("  ")`a. Na sequência de valores `r set.seed(2); paste0(paste( (nums <- sample(1:100, 10)) , collapse = ", "))` obtenha o vetor lógico indicando quais números são pares. Calcule o total de números ímpares.
+`r paste("  ")`a. o vetor lógico indicando quais números são pares na sequência de valores `r set.seed(2); paste0(paste( (nums <- sample(1:100, 10)) , collapse = ", "))`. Calcule o total de números ímpares.
 
 `r paste("  ")`b. Se um ano é bissexto. Verifique os resultados de seu código para os anos `r set.seed(2); paste( (anos <- sample(1890:2015, 10)) , collapse = ", ")`. Calcule o total de anos com 365 dias.
 
@@ -1704,6 +1704,49 @@ set.seed(2)
 #(b)
 (eh_biss <- anos %% 4 == 0)
 (n_biss <- sum(!eh_biss))
+```
+
+
+5. Quais códigos para gerar os seguintes dados:
+  a.
+```{r, eval=TRUE,echo=FALSE,comment=""}
+(tar0 <- c(-20, seq(0,40, by = 10)))
+```
+  b.
+```{r, eval=TRUE,echo=FALSE,comment=""}
+(seq(-1, 1, by = 1/4))
+```
+  c.
+```{r , eval=TRUE,echo=FALSE,comment=""}
+(seq(-pi, pi, length.out = 12))
+```
+  d.
+```{r , eval=TRUE,echo=FALSE,comment=""}
+rep(1:5, times = 5:1)
+```
+  e.
+```{r , eval=TRUE,echo=FALSE,comment=""}
+rep(c(1:5, 4:1), times = c(5:1, 2:5))
+``` 
+
+  f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
+  
+```{r, eval=TRUE,echo=FALSE,comment=""}
+vetor_f <- c(rep(rep(1:2, each = 2), times = 2),
+       rep(rep(3:4, each = 2), times = 2))
+(m <- matrix(vetor_f, byrow = TRUE, ncol = 4))
+```
+
+  g. Como a partir da matriz gerada na letra *f* você pode obter a matriz abaixo?
+  
+```{r, eval=TRUE,echo=FALSE,comment=""}
+(mat_g <- t(m))
+```
+
+  h. Qual o código para converter a matriz gerada na letra *g* no vetor abaixo?
+  
+```{r, eval=TRUE,echo=FALSE,comment=""}
+c(t(mat_g))
 ```
 
 
