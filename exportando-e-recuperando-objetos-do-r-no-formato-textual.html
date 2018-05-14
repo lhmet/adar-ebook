@@ -284,13 +284,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; structure(list(dates = structure(c(1L, 1L, 1L), .Label = &quot;2013-01-01&quot;, class = &quot;factor&quot;), </span>
 <span class="co">#&gt;     cidade = structure(c(2L, 3L, 1L), .Label = c(&quot;CV&quot;, &quot;SM&quot;, </span>
 <span class="co">#&gt;     &quot;SS&quot;), class = &quot;factor&quot;), temperatura = c(31L, 35L, 21L), </span>
-<span class="co">#&gt;     chuva = c(3L, 10L, 14L)), .Names = c(&quot;dates&quot;, &quot;cidade&quot;, &quot;temperatura&quot;, </span>
-<span class="co">#&gt; &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
+<span class="co">#&gt;     chuva = c(3L, 10L, 14L)), class = &quot;data.frame&quot;, row.names = c(NA, </span>
+<span class="co">#&gt; -3L))</span>
 <span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b1329e81a6&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpgmqQf6/file28c85961105c&quot;</span>
 (x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b164f4f2f0&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpgmqQf6/file28c849a468a4&quot;</span>
 <span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
 <span class="co"># recuperando x a partir do arquivo</span>
 y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
@@ -312,7 +312,7 @@ y
 <span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
 <span class="co"># salvando mais de um objeto em um arquivo</span>
 (xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b1de6d53e&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpgmqQf6/file28c81c387c52&quot;</span>
 <span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
 <span class="co"># vamos apagar x e y do espaco de trabalho</span>
 <span class="kw">rm</span>(x, y)
