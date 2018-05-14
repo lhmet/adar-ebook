@@ -833,17 +833,17 @@ a == 1 && b == 1
 
 
 
-----------------------------------------------------------
- a   b   a==1   b==1   a == 1 & b == 1   a == 1 && b == 1 
---- --- ------ ------ ----------------- ------------------
- 1   2   TRUE  FALSE        FALSE             FALSE       
+------------------------------------------------------------
+ a   b   a==1    b==1    a == 1 & b == 1   a == 1 && b == 1 
+--- --- ------- ------- ----------------- ------------------
+ 1   2   TRUE    FALSE        FALSE             FALSE       
 
- 1   1   TRUE   TRUE        TRUE                          
+ 1   1   TRUE    TRUE         TRUE                          
 
- 0   0  FALSE  FALSE        FALSE                         
+ 0   0   FALSE   FALSE        FALSE                         
 
- 1   1   TRUE   TRUE        TRUE                          
-----------------------------------------------------------
+ 1   1   TRUE    TRUE         TRUE                          
+------------------------------------------------------------
 
 Table: Demostração da diferença entre & e &&.
 
@@ -2565,19 +2565,19 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 É fácil de confundir quando usar `]` e `]]`. A tabela abaixo ajuda lembrar da diferença entre eles.
 
 
-------------------------------------------------------------------------
-          descrição                 código             resultado        
------------------------------- ---------------- ------------------------
-      frasco de pimenta             frasco       ![](images/pepper.jpg) 
+------------------------------------------------------------------------------
+           descrição                   código               resultado         
+-------------------------------- ------------------ --------------------------
+       frasco de pimenta               frasco         ![](images/pepper.jpg)  
 
-frasco de pimenta com apenas 1    frasco[1]     ![](images/pepper-1.jpg)
-      pacote de pimenta                                                 
+ frasco de pimenta com apenas 1      frasco[1]       ![](images/pepper-1.jpg) 
+       pacote de pimenta                                                      
 
-     1 pacote de pimenta         frasco[[1]]    ![](images/pepper-2.jpg)
+      1 pacote de pimenta           frasco[[1]]      ![](images/pepper-2.jpg) 
 
-   conteúdo de um pacote de    frasco[[1]][[1]] ![](images/pepper-3.jpg)
-           pimenta                                                      
-------------------------------------------------------------------------
+    conteúdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
+            pimenta                                                           
+------------------------------------------------------------------------------
 
 ### Conversão de lista para vetor e vice-versa.
 
@@ -3288,5 +3288,44 @@ is.data.frame(mat_df)
 class(v_df)
 #> [1] "data.frame"
 ```
+
+## Exercícios
+
+1. Crie um vetor com os valores de $e^{x}cos{x}$ para os valores de $x = (3, 3.1, 3.2, ..., 6$).
+
+
+- - - 
+
+
+2. Crie os seguintes vetores.
+    a. $(0.1^{3}0.2^{1}, 0.1^{6}0.2^{4}, ..., 0.1^{36}0.2^{34})$  
+    
+
+ 
+    b. $(2, \frac{2^{2}}{2}, \frac{2^{3}}{3}, ..., \frac{2^{25}}{25})$  
+    
+
+
+- - -
+
+3. Reproduza a criação do vetor dias da semana (`dds`) mostrado abaixo.
+
+
+```
+      Domingo Segunda-feira   Terça-feira  Quarta-feira  Quinta-feira 
+            1             2             3             4             5 
+  Sexta-feira        Sábado 
+            6             7 
+```
+
+- - -
+
+4. Escreva os códigos necessários para determinar:  
+
+  a. Na sequência de valores 19, 70, 57, 17, 91, 90, 13, 78, 44, 51 obtenha o vetor lógico indicando quais números são pares. Calcule o total de números ímpares.
+
+  b. Se um ano é bissexto. Verifique os resultados de seu código para os anos 1913, 1977, 1961, 1910, 2005, 2004, 1905, 1989, 1945, 1954. Calcule o total de anos com 365 dias.
+
+
 
 

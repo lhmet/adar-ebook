@@ -1652,4 +1652,58 @@ is.data.frame(mat_df)
 class(v_df)
 ```
 
+## Exercícios
+
+1. Crie um vetor com os valores de $e^{x}cos{x}$ para os valores de $x = (3, 3.1, 3.2, ..., 6$).
+```{r, include = FALSE}
+x <- seq(3, 6, by = 0.1)
+exp(x)*cos(x)
+#(exp(1)^x)*cos(x)
+```
+
+- - - 
+
+
+2. Crie os seguintes vetores.
+    a. $(0.1^{3}0.2^{1}, 0.1^{6}0.2^{4}, ..., 0.1^{36}0.2^{34})$  
+    
+```{r, include = FALSE}
+0.1^(seq(3, 36, by = 3))*(0.2^(seq(1, 34, by = 3)))
+```
+`r paste(" ")`
+    b. $(2, \frac{2^{2}}{2}, \frac{2^{3}}{3}, ..., \frac{2^{25}}{25})$  
+    
+```{r, include = FALSE}
+2^(1:25)/(1:25)
+#paste(2^(1:25), 1:25, sep = "/")
+```
+
+- - -
+
+3. Reproduza a criação do vetor dias da semana (`dds`) mostrado abaixo.
+
+```{r , message=FALSE, eval=TRUE, echo = FALSE, comment=""}
+dds <- 1:7
+names(dds) <- c("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado")
+dds
+```
+
+- - -
+
+4. Escreva os códigos necessários para determinar:  
+
+`r paste("  ")`a. Na sequência de valores `r set.seed(2); paste0(paste( (nums <- sample(1:100, 10)) , collapse = ", "))` obtenha o vetor lógico indicando quais números são pares. Calcule o total de números ímpares.
+
+`r paste("  ")`b. Se um ano é bissexto. Verifique os resultados de seu código para os anos `r set.seed(2); paste( (anos <- sample(1890:2015, 10)) , collapse = ", ")`. Calcule o total de anos com 365 dias.
+
+```{r, include = FALSE}
+set.seed(2)
+#(a)
+(eh_par <- nums %% 2 == 0)
+(n_pares <- sum(eh_par))
+#(b)
+(eh_biss <- anos %% 4 == 0)
+(n_biss <- sum(!eh_biss))
+```
+
 
