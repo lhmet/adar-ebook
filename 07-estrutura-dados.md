@@ -3334,10 +3334,68 @@ class(v_df)
 
 4. Escreva os códigos necessários para determinar:  
 
-  a. Na sequência de valores 19, 70, 57, 17, 91, 90, 13, 78, 44, 51 obtenha o vetor lógico indicando quais números são pares. Calcule o total de números ímpares.
+  a. o vetor lógico indicando quais números são pares na sequência de valores 19, 70, 57, 17, 91, 90, 13, 78, 44, 51. Calcule o total de números ímpares.
 
   b. Se um ano é bissexto. Verifique os resultados de seu código para os anos 1913, 1977, 1961, 1910, 2005, 2004, 1905, 1989, 1945, 1954. Calcule o total de anos com 365 dias.
 
 
+
+
+5. Quais códigos para gerar os seguintes dados:
+  a.
+
+```
+[1] -20   0  10  20  30  40
+```
+  b.
+
+```
+[1] -1.00 -0.75 -0.50 -0.25  0.00  0.25  0.50  0.75  1.00
+```
+  c.
+
+```
+ [1] -3.141593 -2.570394 -1.999195 -1.427997 -0.856798 -0.285599  0.285599
+ [8]  0.856798  1.427997  1.999195  2.570394  3.141593
+```
+  d.
+
+```
+ [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5
+```
+  e.
+
+```
+ [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1
+```
+
+  f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
+  
+
+```
+     [,1] [,2] [,3] [,4]
+[1,]    1    1    2    2
+[2,]    1    1    2    2
+[3,]    3    3    4    4
+[4,]    3    3    4    4
+```
+
+  g. Como a partir da matriz gerada na letra *f* você pode obter a matriz abaixo?
+  
+
+```
+     [,1] [,2] [,3] [,4]
+[1,]    1    1    3    3
+[2,]    1    1    3    3
+[3,]    2    2    4    4
+[4,]    2    2    4    4
+```
+
+  h. Qual o código para converter a matriz gerada na letra *g* no vetor abaixo?
+  
+
+```
+ [1] 1 1 3 3 1 1 3 3 2 2 4 4 2 2 4 4
+```
 
 

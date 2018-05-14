@@ -407,6 +407,12 @@ u
 
 Um exemplo mais elaborado de uso da função `assign()` para criar várias variáveis pode ser visto [aqui](https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd).
 
+
+<div class="rmdwarning">
+<p>Este método de atribuição é menos comum, por deixar o código menos legível que o método <code>variavel &lt;- valor</code>. Mas em alguns casos de programação avançada envolvendo ambientes (especificado como 3° argumento da <code>assign()</code>) ele pode ser útil.</p>
+</div>
+
+
 ### Removendo variáveis
 
 Para remover variáveis usa-se a função `rm()`.
