@@ -17,7 +17,7 @@ Nesta seção veremos:
 
 ## Convenção
 
-A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o prompt do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
+A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o *prompt* do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
 
 
 ```r
@@ -122,7 +122,7 @@ aeiou
 
 ### Funções matemáticas internas
 
-Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
+Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatoriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
 
@@ -618,7 +618,7 @@ As funções são acessíveis Através do menu *Addins* do RStudio e incluem as 
 
 - - - 
 
-7. Determine a temperatura de búlbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
+7. Determine a temperatura de bulbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
 
 $$
 \begin{aligned} 

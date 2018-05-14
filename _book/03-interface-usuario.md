@@ -10,7 +10,7 @@ Na maior parte do tempo você provavelmente usará o <img src="images/logo_r.png
  
 Eventualmente esse processo pode ser inconveniente. Por exemplo, no caso de uma análise com um código bem extenso e que precisa ser  repetida com dados atualizados semanalmente. Nessa situação, recomenda-se a criação de um script, ou seja, um arquivo texto, com a extensão `.R`, contendo o código de sua análise.
 
-Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o Prompt de comando (`cmd.exe`) do SO Windows.
+Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do termo em inglês *Batch Processing*) através de um terminal do SO Linux, ou via o *Prompt* de comando (`cmd.exe`) do SO Windows.
 
 Nesta seção apresenta-se ao leitor estes dois modos de execução do <img src="images/logo_r.png" width="20">.
 
@@ -114,7 +114,7 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 ### Navegação entre as expressões já avaliadas
 
-Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.
+Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.
 
 Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
 
@@ -136,7 +136,7 @@ Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + 
 
 ### Comentários
 
-No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
+No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
 
 
 ```r

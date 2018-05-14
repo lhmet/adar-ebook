@@ -14,9 +14,11 @@ A seguir descreve-se como:
 
 - configurar um diretório para armazenar os pacotes do R instalados
 
+- instalar pacotes do <img src="images/logo_r.png" width="20">
+
 - instalar o Rstudio *Desktop*
 
-Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) que são oficialmente reconhecidas. 
+Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
 
 A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação, sem as instruções detalhadas de instalação para este SO.
 
@@ -214,70 +216,88 @@ o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. I
 
 ## Pacotes do R {#install-pck}
 
+Um pacote do R é uma coleção de funções, dados e documentação que estende as capacidades básicas do R.
+
 ### Da internet
 
-#### CRAN
+#### CRAN {#install-cran}
 
 A forma mais fácil de instalar uma pacote do R é através da função `install.packages("nome_do_pacote")`.
 
 Por *default* o pacote informado é instalado a partir da ([CRAN](https://cran.r-project.org/))
 
-Por exemplo, para instalar o pacote **devtools**:
+A seguir você verá como instalar um pacote. Como exemplo instalaremos o pacote **remotes** que dispões de funções para instalar pacotes de repositórios remotos, como por exemplo do [GitHub](https://github.com/).
 
 
 ```r
-install.packages("devtools")
+install.packages("remotes")
 ```
 
-A função automaticamente resolverá as dependências do pacote, de forma que qualquer pacote dependente também será instalado. 
+
+
+
 
 Para ter acesso as funções disponibilizadas com o pacote você precisa carregar o pacote:
 
 
 ```r
-library(devtools)
+library(remotes)
 ```
 
+Apesar de precisar só instalar uma vez um pacote, você precisará carregá-lo a cada nova sessão.
 
 Para desinstalar um pacote você pode usar a função `remove.packages("nome_do_pacote")`.
 
-#### GitHub e R-forge
+#### GitHub e R-forge {#install-github}
 
-Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibilizam seus pacotes em plataormas como o [GitHub](https://github.com/) e [R-forge](https://r-forge.r-project.org/). As vezes um pacote pode  estar em ambos CRAN e GitHub (ou R-forge), mas a última versão - a de desenvolvimento - é somente disponibilizada no GitHub (ou R-forge). 
+Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibilizam seus pacotes em plataformas como o [GitHub](https://github.com/) e [R-forge](https://r-forge.r-project.org/). As vezes um pacote pode  estar em ambos CRAN e GitHub (ou R-forge), mas a última versão - a de desenvolvimento - é somente disponibilizada no GitHub (ou R-forge). 
 
-Para instalar um pacote de um repositório do GitHub usa-se a função `install_github()` do pacote **devtools**. Portanto, o pacote **devtools** precisa ser instalado primeiro. 
+Para instalar um pacote de um repositório do GitHub usa-se a função `install_github()` do pacote **remotes**. Portanto, o pacote **remotes** precisa ser sido instalado primeiro (ver seção \@ref(install-cran)). 
 
-Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
 
-A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo autor deste livro, usa-se:
+
+A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
 
 
 ```r
 # install.packages("devtools")
 # carrega o pacote devtools
-library(devtools)
+library(remotes)
 # instala o pacote inmetr do repositório 
 # https://github.com/lhmet/inmetr 
 install_github("lhmet/inmetr")
 ```
 
-Para um repositório do R-forge, por exemplo o repositório do pacote [raster](https://r-forge.r-project.org/projects/raster/), usa-se:
+
+<div class="rmdtip">
+<p>Você pode acessar uma função de um pacote instalado com a forma especial <code>pacote::funcao</code>. O trecho de código anterior poderia ser reduzido a:</p>
+<p><code>remotes::install_github(&quot;lhmet/inmetr&quot;)</code></p>
+<p>Essa forma deixa explícito que estamos usando a função <code>install_github()</code> do pacote <strong>remotes</strong>.</p>
+<p>As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto essa é a alternativa mais segura de avaliar funções afim de evitar conflitos.</p>
+</div>
+
+Para instalar um pacote num repositório do R-forge, por exemplo o repositório do pacote [raster](https://r-forge.r-project.org/projects/raster/), usa-se:
 
 
 ```r
-install.packages("raster", repos = "http://R-Forge.R-project.org")
+install.packages(
+  "raster",  
+  repos = "http://R-Forge.R-project.org",
+  dependencies = TRUE
+)
 ```
 
+Alguns pacotes as vezes dependem de outros pacotes e para lidar com essas dependências define-se o argumento `dependencies = TRUE` na função `install.packages()`, como no trecho de código anterior. A função automaticamente resolverá as dependências do pacote, de forma que qualquer pacote dependente também será instalado.
 
 #### Arquivo fonte local
 
 Códigos fonte de pacotes do R são armazenados como arquivos com a extensão `.tar.gz`. Binários compilados são armazenados com a extensão `.zip`. Exemplo de arquivos como estes podem ser baixados manualmente da CRAN (veja a seção Downloads em https://cran.r-project.org/web/packages/ggplot2/index.html), GitHub ou R-forge.
 
-Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito  com a função `install.packages()`, especifincando o argumento `repos = NULL` e o argumento `pkgs` com o caminho do arquivo. Por exemplo:
+Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito  com a função `install.packages()`, especificando o argumento `repos = NULL` e o argumento `pkgs` com o caminho do arquivo. Por exemplo:
 
 
 ```r
-install.packages("ggplot2_2.1.0.tar.gz", repos=NULL)
+install.packages("ggplot2_2.1.0.tar.gz", repos = NULL)
 ```
 
 

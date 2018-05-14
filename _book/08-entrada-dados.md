@@ -9,19 +9,18 @@ O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma div
 - dados binários e netCDF
 - dados espaciais em formato GIS
 
-Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. O pacote **rio** permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes **readr** e **data.table**. 
-
-Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Entre os formatos binários, veremos funções nativas do R (`readRDS()`, `load()`) e funções de pacotes para importar arquivos no formato netCDF.
+Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes **readr** e **data.table**. Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Entre os formatos binários, veremos funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
 
 ## Pré-requisitos
 
-Para reproduzir os códigos deste capítulo você precisará instalar seguintes pacotes:
+Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:
 
 
 ```r
 pacotes <- c("easypackages","rio", "readr", "feather") 
 ```
 
+Para instalá-los já com as dependências utilize a instrução abaixo:
 
 
 ```r
@@ -31,14 +30,24 @@ install.packages(
 )
 ```
 
-O pacote **easypackages** fornece a função `libraries()` para carregar diversos pacotes de uma vez só.
+Agora você pode carregar os pacotes.
 
 
 ```r
-pacotes <- c("easypackages", "readr", "rio", "feather")
-library(easypackages)
-libraries(pacotes)
+library("easypackages")
+library("rio")
+library("readr")
 ```
+
+
+<div class="rmdtip">
+<p>Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:</p>
+<p><code>library(easypackages)</code></p>
+<p><code>libraries(pacotes)</code></p>
+<p>ou simplesmente</p>
+<p><code>easypackages::libraries(pacotes)</code></p>
+</div>
+
 
 
 ## Diretório de trabalho
@@ -97,7 +106,36 @@ O formato mais comum de armazenar dados é o retangular, ou seja, uma tabela de 
 
 Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (`\n` no Linux ou `\r\n` no Windows).
 
-Existem diversas funções nativas do R para 
+
+## Arquivos binários 
+
+
+Existem diversas funções nativas do R para ler este formato de dados.
+
+versão completa da tabela na [vinheta do pacote **rio**](https://cran.r-project.org/web/packages/rio/vignettes/rio.html)
+
+| Formato | Extensão | Pacote de importação | Pacote de exportação | Instalado por *default* |
+| ------ | --------- | -------------- | -------------- | -------------------- |
+| Valores separados por vírgula | .csv | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) | Sim |
+| dados separados por tab | .tsv | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) | Sim |
+| Excel | .xls | [**readxl**](https://cran.r-project.org/package=readxl) |  | Sim |
+| Excel | .xlsx | [**readxl**](https://cran.r-project.org/package=readxl) | [**openxlsx**](https://cran.r-project.org/package=openxlsx) | Sim |
+| script R | .R | **base** | **base** | Sim |
+| objetos salvos no R | .RData, .rda | **base** | **base** | Sim |
+| objetos do R serializados | .rds | **base** | **base** | Sim |
+| dados Fortran | Sem extensão reconhecida | **utils** |  | Sim |
+| Formato de dados com largura fixa | .fwf | **utils** | **utils** | Sim |
+| dados separados por vírgula compactados com gzip | .csv.gz | **utils** | **utils** | Sim |
+| Feather R/Python interchange format | .feather | [**feather**](https://cran.r-project.org/package=feather) | [**feather**](https://cran.r-project.org/package=feather) | Não |
+| Armazenamento rápido (Fast Storage) | .fst | [**fst**](https://cran.r-project.org/package=fst) | [**fst**](https://cran.r-project.org/package=fst) | Não |
+| JSON | .json | [**jsonlite**](https://cran.r-project.org/package=jsonlite) | [**jsonlite**](https://cran.r-project.org/package=jsonlite) | Não |
+| Matlab | .mat | [**rmatio**](https://cran.r-project.org/package=rmatio) | [**rmatio**](https://cran.r-project.org/package=rmatio) | Não |
+| Planilha OpenDocument | .ods | [**readODS**](https://cran.r-project.org/package=readODS) | [**readODS**](https://cran.r-project.org/package=readODS) | Não |
+| tabelas HTML | .html | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
+| documentos XML | .xml | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
+| YAML | .yml | [**yaml**](https://cran.r-project.org/package=yaml) | [**yaml**](https://cran.r-project.org/package=yaml) | Não |
+| Área de transferência | *default* é tsv | [**clipr**](https://cran.r-project.org/package=clipr) | [**clipr**](https://cran.r-project.org/package=clipr) | Não |
+| [planilhas Google](https://www.google.com/sheets/about/) | como valores separados por vírgula |  |  |  |
 
 **A função mais importante para leitura de dados de um arquivo texto é a `read.table()` que  armazena os dados no formato de uma dataframe**. Essa função possui diversos parâmetros para ajustar a importação de acordo com as peculiaridades do formato de dados do arquivo. O valor *default* do parâmetro `sep` é um ou mais caracteres de `espaço` e `tabs`. Devido as diversas opções de separadores existem outras funções essencialmente iguais a `read.table()` com a diferença no separador, por exemplo as funções: `read.csv(), read.csv2(), read.delim()` usam como o argumento separador `,`, `;` e `\t` . Para detalhes sobre essas funções o *help* de cada uma. Uma vez que essas funções aceitam qualquer argumento da `read.table()` elas são mais convenientes que usar a `read.table()` e configurar os argumentos apropriados manualmente.
 
