@@ -72,7 +72,7 @@
 
 * Comunidade fantástica
 
-  - [Contribuidores](https://www.r-project.org/contributors.html) ([@R-base])
+  - [Contribuidores](https://www.r-project.org/contributors.html) (@R-base)
 
   - milhares de pessoas usam o R diariamente e ajudam outras pessoas
 

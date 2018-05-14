@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="testes-sobre-tipos-de-dados.html">
-<link rel="next" href="estrutura-dados.html">
+<link rel="prev" href="amostras-pequenas-de-dados.html">
+<link rel="next" href="dados-de-pacotes-do-r.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -269,60 +269,114 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conversao-entre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.3</span> Conversão entre tipos de dados</h2>
-<p>Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções <code>is.*()</code> possui uma função <code>as.*()</code> correspondente de conversão para aquele tipo de dado.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para numeric</span>
-<span class="kw">as.numeric</span>(<span class="st">&quot;12.34&quot;</span>) 
-<span class="co">#&gt; [1] 12.34</span>
-<span class="co"># de factor para character</span>
-<span class="kw">as.character</span>(charf)
-<span class="co">#&gt; [1] &quot;Vai chover hoje?&quot;</span>
-<span class="co"># character para factor</span>
-<span class="kw">as.factor</span>(<span class="st">&quot;a&quot;</span>)
-<span class="co">#&gt; [1] a</span>
-<span class="co">#&gt; Levels: a</span>
-<span class="co"># de double para integer</span>
-<span class="kw">typeof</span>(x)
-<span class="co">#&gt; [1] &quot;double&quot;</span>
-<span class="kw">typeof</span>(<span class="kw">as.integer</span>(x))
-<span class="co">#&gt; [1] &quot;integer&quot;</span>
-<span class="kw">as.integer</span>(x) <span class="op">==</span><span class="st"> </span>51L
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">as.integer</span>(<span class="st">&quot;12.34&quot;</span>)
-<span class="co">#&gt; [1] 12</span>
-<span class="co"># arredondamento</span>
-<span class="kw">as.integer</span>(<span class="fl">12.34</span>)
-<span class="co">#&gt; [1] 12</span>
-<span class="co"># lógico para inteiro</span>
-<span class="kw">as.integer</span>(<span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 1</span>
-<span class="co"># numérico para lógico</span>
-<span class="kw">as.logical</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>)
-<span class="co">#&gt; [1] FALSE  TRUE  TRUE</span>
-<span class="co"># character para numérico?</span>
-<span class="kw">as.numeric</span>(<span class="st">&quot;a&quot;</span>)
-<span class="co">#&gt; Warning: NAs introduced by coercion</span>
-<span class="co">#&gt; [1] NA</span>
-<span class="co"># de character para date</span>
-dt_char &lt;-<span class="st"> &quot;2016-03-17&quot;</span>
-dt &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)
-dt
-<span class="co">#&gt; [1] &quot;2016-03-17&quot;</span>
-<span class="co"># de character para date-time</span>
-data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)
-data_hora
-<span class="co">#&gt; [1] &quot;2016-03-17 15:30:00 -03&quot;</span></code></pre></div>
-
+<div id="exportando-e-recuperando-objetos-do-r-no-formato-textual" class="section level2">
+<h2><span class="header-section-number">B.2</span> Exportando e recuperando objetos do R no formato textual</h2>
+<div id="dput-dget-dump-e-source." class="section level3">
+<h3><span class="header-section-number">B.2.1</span> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</h3>
+<p>Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função <code>dput()</code> (que pode ser traduzido como &quot;despejar&quot;). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função <code>dget()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+<span class="co">#&gt;        dates cidade temperatura chuva</span>
+<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
+<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
+<span class="co">#&gt; 3 2013-01-01     CV          21    14</span>
+<span class="co"># representação textual do objeto x</span>
+<span class="kw">dput</span>(x)
+<span class="co">#&gt; structure(list(dates = structure(c(1L, 1L, 1L), .Label = &quot;2013-01-01&quot;, class = &quot;factor&quot;), </span>
+<span class="co">#&gt;     cidade = structure(c(2L, 3L, 1L), .Label = c(&quot;CV&quot;, &quot;SM&quot;, </span>
+<span class="co">#&gt;     &quot;SS&quot;), class = &quot;factor&quot;), temperatura = c(31L, 35L, 21L), </span>
+<span class="co">#&gt;     chuva = c(3L, 10L, 14L)), .Names = c(&quot;dates&quot;, &quot;cidade&quot;, &quot;temperatura&quot;, </span>
+<span class="co">#&gt; &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
+<span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
+(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
+<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b1329e81a6&quot;</span>
+(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
+<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b164f4f2f0&quot;</span>
+<span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
+<span class="co"># recuperando x a partir do arquivo</span>
+y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
+<span class="co"># alterar valores de y</span>
+y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)
+y
+<span class="co">#&gt;   temperatura     chuva</span>
+<span class="co">#&gt; 1    29.58579  1.585786</span>
+<span class="co">#&gt; 2    33.58579  8.585786</span>
+<span class="co">#&gt; 3    19.58579 12.585786</span>
+<span class="co"># verificar existência de x e y</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
+<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
+<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
+<span class="co">#&gt; [13] &quot;x&quot;            &quot;x_dest_file&quot;  &quot;y&quot;</span>
+<span class="co"># listando variáveis que começam com x ou y</span>
+<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)
+<span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
+<span class="co"># salvando mais de um objeto em um arquivo</span>
+(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
+<span class="co">#&gt; [1] &quot;/tmp/RtmpvO4OdB/file31b1de6d53e&quot;</span>
+<span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
+<span class="co"># vamos apagar x e y do espaco de trabalho</span>
+<span class="kw">rm</span>(x, y)
+<span class="co"># x e y não existem mais</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
+<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
+<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
+<span class="co">#&gt; [13] &quot;x_dest_file&quot;  &quot;xy_dest_file&quot;</span>
+<span class="co"># recuperando os objetos x e y salvos em xy.R</span>
+<span class="kw">source</span>(xy_dest_file)
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
+<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
+<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
+<span class="co">#&gt; [13] &quot;x&quot;            &quot;x_dest_file&quot;  &quot;xy_dest_file&quot; &quot;y&quot;</span>
+x
+<span class="co">#&gt;        dates cidade temperatura chuva</span>
+<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
+<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
+<span class="co">#&gt; 3 2013-01-01     CV          21    14</span>
+y
+<span class="co">#&gt;   temperatura     chuva</span>
+<span class="co">#&gt; 1    29.58579  1.585786</span>
+<span class="co">#&gt; 2    33.58579  8.585786</span>
+<span class="co">#&gt; 3    19.58579 12.585786</span></code></pre></div>
+<p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget(&quot;nomedoarquivo&quot;)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual de um data.frame</span>
+dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(
+  <span class="kw">list</span>(
+    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),
+    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),
+    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),
+    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)
+  ),
+  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),
+  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,
+  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)
+)
+dados3est
+<span class="co">#&gt;        dates cidade temperatura chuva</span>
+<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
+<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
+<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre></div>
+<p><strong>Vantagens:</strong></p>
+<ul>
+<li>armazena os <strong>dados e os metadados</strong></li>
+<li>recuperação rápida e fácil dos dados</li>
+</ul>
+<p><strong>Desvantagens:</strong></p>
+<ul>
+<li>armazenamento de dados nesse formato não é muito eficiente em termos de espaço em disco</li>
+<li>pouca legibilidade dos dados</li>
+</ul>
+<p>Esse procedimento é geralmente recomendado para fornecer pequenas amostras de dados (e-mails por exemplo)</p>
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="testes-sobre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estrutura-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="amostras-pequenas-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dados-de-pacotes-do-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -352,7 +406,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/06-tipos-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/AppendixB.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

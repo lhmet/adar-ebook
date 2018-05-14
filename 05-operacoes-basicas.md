@@ -17,7 +17,7 @@ Nesta seção veremos:
 
 ## Convenção
 
-A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o prompt do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
+A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o *prompt* do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
 
 
 ```r
@@ -122,7 +122,7 @@ aeiou
 
 ### Funções matemáticas internas
 
-Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
+Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatoriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
 
@@ -372,7 +372,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "esp_num_df"
 #>  [6] "fev"        "jan"        "jul"        "jun"        "mai"       
 #> [11] "mar"        "nd3"        "nd4"        "nov"        "oper"      
-#> [16] "oper_nas"   "out"        "p"          "p_pa"       "pcks"      
+#> [16] "oper_nas"   "out"        "p"          "pcks"       "p_pa"      
 #> [21] "rblue"      "res"        "set"        "tar"        "totd"      
 #> [26] "y1"         "y2"
 ```
@@ -418,8 +418,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
+#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "u"          "y1"         "y2"
 ```
 
@@ -433,8 +433,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
+#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "y1"         "y2"
 ```
 
@@ -448,7 +448,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "esp_num_df" "fev"       
 #>  [6] "jan"        "jul"        "jun"        "mai"        "mar"       
 #> [11] "nd3"        "nd4"        "nov"        "oper"       "oper_nas"  
-#> [16] "out"        "p"          "p_pa"       "pcks"       "rblue"     
+#> [16] "out"        "p"          "pcks"       "p_pa"       "rblue"     
 #> [21] "res"        "set"        "totd"
 ```
 
@@ -618,7 +618,7 @@ As funções são acessíveis Através do menu *Addins* do RStudio e incluem as 
 
 - - - 
 
-7. Determine a temperatura de búlbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
+7. Determine a temperatura de bulbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
 
 $$
 \begin{aligned} 
