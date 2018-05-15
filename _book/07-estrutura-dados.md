@@ -2,19 +2,10 @@
 
 
 
-O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade veremos como importar dados de arquivos texto, binários e de outros softwares para o R. Nesta seção vamos:
-
-- ver como **importar dados no R**[^10] 
-- conhecer os formatos mais comuns de dados reconhecidos pelo R
-- ler arquivos de dados meteorológicos de fontes brasileiras
-
-[^10]: Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
-
-##  Visão geral
 
 Existem diferentes formas de armazenar dados no R. Algumas vezes os dados precisam ser armazenados de forma mais complexa do que por exemplo vetores. 
 
-O R possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dados)). As mais utilizadas são:
+O <img src="images/logo_r.png" width="20"> possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dados)). Dentre elas as fundamentais que serão vistas neste capítulo são:
 
 - *dataframe* (tabela de dados)
 
@@ -3328,6 +3319,7 @@ class(v_df)
 
 
 
+- - -
 
 5. Quais códigos para gerar os seguintes dados:
   a.
@@ -3385,5 +3377,316 @@ class(v_df)
 ```
  [1] 1 1 3 3 1 1 3 3 2 2 4 4 2 2 4 4
 ```
+
+- - - 
+
+6. Como obter as seguintes sequências a partir dos vetores fornecidos usando a mesma solução para todos casos?
+
+
+
+   a. v3 = (10, 0.5, 8, 4)
+
+
+```
+[1] 1 2 3 4
+```
+
+
+
+  b. v2 = (10, 0.5)
+
+
+```
+[1] 1 2
+```
+
+
+  c. v1 = (10)
+
+
+
+```
+[1] 1
+```
+
+
+
+  d. v0 = ()
+
+
+
+```
+integer(0)
+```
+
+- - -
+
+7. (a) Calcule a soma cumulativa dos números 2, 3, 4, 5, 6. Dica: ver a função `cumsum()`. (b) Calcule a soma cumulativa destes números mas na ordem reversa. Dica: ver a função `rev()`.
+
+
+
+
+- - -
+
+8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012. 
+
+
+ hora    prec 
+------  ------
+  9      0.0  
+  10     0.0  
+  11     0.0  
+  12     0.0  
+  13     0.0  
+  14     0.0  
+  15     0.0  
+  16     21.4 
+  17     41.2 
+  18     2.6  
+  19     1.0  
+  20     0.4  
+  21     0.0  
+
+a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve seu resultado em um vetor chamado `prec_acum`. Interprete o resultado `c(NA, diff(prec_acum))`.
+
+
+
+b. Mostre o código para encontrar o horário de ocorrência da precipitação máxima?
+
+
+
+c. Mostre o código para obter a hora de início e fim do evento de  precipitação severa. Qual foi a duração do evento?
+
+
+
+d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
+
+
+
+
+- - -
+
+9. EXERCÍCIO RESOLVIDO. Considere o vetor `x` definido pelos números descritos abaixo. Mostre como  encontrar o primeiro número positivo localizado após o último número negativo. Por exemplo, seja o vetor `z` definido pelos valores (11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14). Os valores selecionados seriam 5 e 30.
+
+Um possível código para chegar a esse resultado seria:
+
+
+```r
+x <- c(11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14)
+#x1 <- ifelse(x > 0, 1, 0)
+# cópia de x
+x01 <- x 
+# substituo x positivo por 1 e x negativo por 0
+x01[x > 0] <- 1
+x01[!x > 0] <- 0
+res <- x[which(diff(x01) == 1) + 1]
+res
+#> [1]  5 30
+```
+
+- - -
+
+10. Mostre o código para resolver as seguintes tarefas. Considere o vetor `prec` com valores de precipitação diária indicado abaixo.
+
+
+
+
+```r
+prec <- c(0, 0, 0, 0.8, 0, 0.01, 0.75, 0, 
+0, 0, 0, 0.35, 0.08, 0, 0, 0, 0, 0.31, 0, 3.57, 12.17, 0, 0, 
+0, 0.04, 3.16, 0, 0.95, 0.79, 0, 0, 0, 0, 0, 3.51, 0, 0, 0.16, 
+0, 0, 8.16, 0.54, 4.39, 1.24, 0, 0, 0, 0, 0, 2.43, 0, 0, 0, 0, 
+0, 7.18, 0, 0, 0.26, 0, 0, 0.28, 0, 0, 0.09, 0.38, 0, 0, 0, 0, 
+0, 0, 0.51, 0, 0, 0, 0, 0, 0, 0.67, 0, 0, 0, 0, 0.15, 0, 0.82, 
+0, 0, 0, 0, 0, 0, 0, 0, 0.37, 0, 0.58, 4.95, 0, 0, 0, 0, 0, 7.68, 
+0, 0, 0.37, 0, 1.56, 0, 0, 0, 0.34, 0.48, 0, 4.21, 2.28, 4.3, 
+0, 3.38, 0, 0, 0, 0, 7.28, 0, 4.89, 3.91, 0, 0, 0, 0, 0, 0, 2.93, 
+0, 2.49, 0.77, 0, 2.9, 3.53, 0.83, 0, 0, 0, 0.94, 0.59, 0, 0, 
+0, 0, 0.04, 0, 0.65, 0, 0, 0, 6.23, 0.09, 0, 0.66, 0, 0, 0, 4.42, 
+0, 0, 0, 0.84, 0, 0, 0, 0, 0, 0.09, 0, 0, 0.08, 0, 0.66, 0, 0, 
+0, 0.06, 0, 0, 0, 3.28, 0, 0.8, 5.69, 0.8, 0)
+```
+
+  (a) Quantos dias ocorreram no intervalo 0 < prec < 0.25?
+  
+
+
+  (b) Substitua os valores de chuva registrados no intervalo 0 < prec < 0.25 por 0.
+  
+
+
+  (c) Crie um vetor denominado `prec01` indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro. 
+
+
+  (d) Qual a probalidade de chuva dessa série de precipitação diária?
+  
+
+
+  (e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
+
+
+
+
+
+  (f) Determine a duração de cada evento chuvoso (número de dias consecutivos).
+   
+> Dica: comece encontrando a posição do início do evento e depois a posição final do envento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.
+
+
+
+O resultado esperado é um vetor que identifique o evento e sua duração.
+
+
+```r
+duracao
+#>  evento1  evento2  evento3  evento4  evento5  evento6  evento7  evento8 
+#>        1        1        1        1        2        1        2        1 
+#>  evento9 evento10 evento11 evento12 evento13 evento14 evento15 evento16 
+#>        4        1        1        1        1        1        1        1 
+#> evento17 evento18 evento19 evento20 evento21 evento22 evento23 evento24 
+#>        1        1        2        1        1        1        2        3 
+#> evento25 evento26 evento27 evento28 evento29 evento30 evento31 evento32 
+#>        1        1        2        1        2        3        2        1 
+#> evento33 evento34 evento35 evento36 evento37 evento38 evento39 
+#>        1        1        1        1        1        1        3
+```
+
+- - -
+
+11. EXERCÍCIO RESOLVIDO. Dado o vetor `temp` mostrado abaixo.
+
+
+
+```
+c(NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L, 
+29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA, 
+NA, 19L)
+```
+
+   a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
+
+
+```r
+# vetor lógico de falhas
+eh_faltante <- is.na(temp)
+# soma cumulativa de falhas
+cums_gaps <- cumsum(eh_faltante)
+# calculando soma a partir do início da falha
+tamanho_falhas <- cums_gaps - cummax((!eh_faltante) * cums_gaps)
+tamanho_falhas
+ [1] 1 2 0 0 0 0 0 0 0 1 2 3 4 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 0
+```
+
+   b. Determine o tamanho da maior falha?
+
+
+```r
+max_falha <- max(tamanho_falhas)
+max_falha
+[1] 7
+```
+
+- - -
+
+12. Para os valores de velocidade ($V_h$) e a direção do vento ($\theta$) (na convenção meteorológica):
+
+
+
+$V_h$ = (10, 10, 10, 10, 14.142, 14.142, 14.142, 14.142, 0)
+
+$\theta$ = (270, 180, 360, 90, 225, 315, 135, 45, 0)
+
+   a. Determine as componentes zonal e meridional do vento.
+   
+   $$u = -V_{h} \cdot sin(\theta_{rad})$$
+   $$v = -V_{h} \cdot cos(\theta_{rad})$$
+
+
+
+   b. Faça os cálculos necessários para reconstruir $V_h$ e $\theta$ a partir de $u$ e $v$ determinados no item **a**. Por convenção, a direção do vento $\theta$ em condições calmas ($V_h$ < 0.5 m s^-1^) é assumida como 0°.
+
+$$V_{h} = \sqrt{(u^2 + v^2)}$$
+$$\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}$$
+$$
+\theta = \left\{\begin{matrix}
+\theta_{mat} + 360 & se & \theta_{mat} < 0 \\ 
+0 & se & u = 0,\:  v = 0
+\end{matrix}\right.
+$$
+
+
+
+
+Como resultado monte um dataframe com todas variáveis derivadas.
+
+
+   u     v       ws    wd   wd_uv  dir      
+----  ----  -------  ----  ------  ---------
+  10     0   10.000   270     270  Oeste    
+   0    10   10.000   180     180  Sul      
+   0   -10   10.000   360     360  Norte    
+ -10     0   10.000    90      90  Leste    
+  10    10   14.142   225     225  Sudoeste 
+  10   -10   14.142   315     315  Noroeste 
+ -10    10   14.142   135     135  Sudeste  
+ -10   -10   14.142    45      45  Nordeste 
+   0     0    0.000     0       0  Calmo    
+
+
+> Dica: ver figura abaixo.
+
+![](images/wind_components.png)
+
+
+- - -
+
+
+13. Para as séries de `prec_obs` e `prec_sim` calcule:
+
+- a proporção corretamente prevista $PC = \frac{wc+dc}{n}$ 
+- o índice de sucesso crítico $CSI=\frac{wc}{wc+wi+di}$. 
+
+Onde $wc$ e $dc$ são as previsões corretas de dias úmidos ($prec > 0.25$ mm dia^-1^) e secos respectivamente, $wi$ e $di$ são as previsões incorretas de dias úmidos e secos respectivamente. $n$ é o n° total de previsões.
+
+
+```r
+prec_obs <- c( 0,  0,  0, 0.5,  1,  6,  9, 0.2,   1, 0,    0, 0.25, 
+              10, 15,  8,   3,  0,  0,  0,   0,   0, 0, 0.25,    0, 
+               0,  0,  1,   5,  0, 20,  0,   0,   0, 0,    1,    1,
+               0,  2, 12,   1,  0,  0,  0,   0,   0, 0,    5,    5)
+prec_sim <- c( 0, 0.2,0.1,  0,  0,  3,  1,   1,   1, 1,    0,    3, 
+               0, 10,  4,   1,0.3,0.5,0.5, 0.5, 0.5, 0, 0.25, 0.25, 
+            0.25,  0,0.5,   3,  0,  5,  0,   0,   0, 0,  0.5,    0,
+            0.25, 0.2,  0, 0.2,  0,  0,  0,   0,   1, 2,    1,    0)
+```
+
+
+
+
+- - -
+
+14. Escreva o código para calcular o coeficiente de correlação de Pearson (`r`) entre os vetores `obs` e `prev`. 
+
+![](images/correlation-formula.gif)
+
+Confira seu resultado com a saída da função `cor(obs, prev)`. 
+
+
+```r
+obs <- c(-0.49, 0.27, -0.48, 0.8, -1, 0.1, -1.16, 
+         0.58, -1.6, -0.31, 0.45, -0.98, 0.19, 0.73,
+         -0.49, -0.04, -0.11, 0.46, 2.02, -1.05)
+prev <- c(NA, -0.49, 0.27, -0.48, 0.8, -1, 0.1, -1.16, 
+          0.58, -1.6, -0.31, 0.45, -0.98, 0.19, 0.73,
+          -0.49, -0.04, -0.11, 0.46, 2.02)
+```
+
+
+
+
+
+- - - 
+
+15. Construa uma função para converter valores de temperatura em K para °C e outra para converter ângulos de radianos para graus. Utilize dois exemplos para mostrar que suas funções funcionam corretamente.
 
 
