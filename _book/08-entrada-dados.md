@@ -9,7 +9,7 @@ O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma div
 - dados binários e netCDF
 - dados espaciais em formato GIS
 
-Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando mostruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da *web*.
+Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da *web*.
 
 Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto tem desvantagens e por isso veremos formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
 
