@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-15">
+<meta name="date" content="2018-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -434,6 +434,42 @@ code > span. { color: #1f1c1b; } /* Normal */
 </tr>
 </tbody>
 </table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+myDT &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>),
+                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))
+<span class="co"># Cria um data.table com vetores A, B, C</span>
+A &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+B &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
+C &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)
+DT &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">a =</span> A, <span class="dt">b =</span> B, <span class="dt">c =</span> C)
+DT
+<span class="co">#&gt;    a b  c</span>
+<span class="co">#&gt; 1: 1 a  6</span>
+<span class="co">#&gt; 2: 2 b  7</span>
+<span class="co">#&gt; 3: 3 c  8</span>
+<span class="co">#&gt; 4: 4 d  9</span>
+<span class="co">#&gt; 5: 5 e 10</span></code></pre></div>
+<div id="left">
+<p><strong><code>DT[ , nome_col]</code></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[ , b]
+<span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</span>
+<span class="kw">class</span>(DT[ , b])
+<span class="co">#&gt; [1] &quot;character&quot;</span>
+<span class="kw">is.vector</span>(DT[ , b])
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+</div>
+<div id="right">
+<p><strong><code>DT[ , .(nome_col)]</code></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[ , .(b)]
+<span class="co">#&gt;    b</span>
+<span class="co">#&gt; 1: a</span>
+<span class="co">#&gt; 2: b</span>
+<span class="co">#&gt; 3: c</span>
+<span class="co">#&gt; 4: d</span>
+<span class="co">#&gt; 5: e</span>
+<span class="kw">class</span>(DT[ , .(b)])
+<span class="co">#&gt; [1] &quot;data.table&quot; &quot;data.frame&quot;</span></code></pre></div>
+</div>
 </div>
             </section>
 

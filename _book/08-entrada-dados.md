@@ -2,6 +2,8 @@
 
 
 
+
+
 O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como: 
 
 - dados tabulares armazenados em arquivos texto ([ASCII](https://pt.wikipedia.org/wiki/ASCII))
@@ -149,7 +151,51 @@ versão completa da tabela na [vinheta do pacote **rio**](https://cran.r-project
 
 
 
+```r
+library(data.table)
+myDT <- data.table(x = c('a', 'b', 'c', 'd', 'e'),
+                   y = c(1, 2, 3, 4, 5))
+# Cria um data.table com vetores A, B, C
+A <- c(1, 2, 3, 4, 5)
+B <- c('a', 'b', 'c', 'd', 'e')
+C <- c(6, 7, 8, 9, 10)
+DT <- data.table(a = A, b = B, c = C)
+DT
+#>    a b  c
+#> 1: 1 a  6
+#> 2: 2 b  7
+#> 3: 3 c  8
+#> 4: 4 d  9
+#> 5: 5 e 10
+```
 
+<div id="left">
+**`DT[ , nome_col]`**
+
+```r
+DT[ , b]
+#> [1] "a" "b" "c" "d" "e"
+class(DT[ , b])
+#> [1] "character"
+is.vector(DT[ , b])
+#> [1] TRUE
+```
+</div>
+<div id="right">
+**`DT[ , .(nome_col)]`**
+
+```r
+DT[ , .(b)]
+#>    b
+#> 1: a
+#> 2: b
+#> 3: c
+#> 4: d
+#> 5: e
+class(DT[ , .(b)])
+#> [1] "data.table" "data.frame"
+```
+</div>
 
 
 ## Para saber mais
