@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-16">
+<meta name="date" content="2018-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -371,7 +371,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ol>
 <hr />
 <ol start="8" style="list-style-type: decimal">
-<li>Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012.</li>
+<li>Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS.</li>
 </ol>
 <table>
 <thead>
@@ -505,26 +505,43 @@ res
 <ol start="11" style="list-style-type: decimal">
 <li>EXERCÍCIO RESOLVIDO. Dado o vetor <code>temp</code> mostrado abaixo.</li>
 </ol>
-<pre><code>c(NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L, 
-29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA, 
-NA, 19L)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="ot">NA</span>, <span class="ot">NA</span>, 27L, 7L, 4L, 0L, 26L, 15L, 25L, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, 6L,
+  29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>,
+  <span class="ot">NA</span>, 19L
+)</code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico de falhas</span>
-eh_faltante &lt;-<span class="st"> </span><span class="kw">is.na</span>(temp)
+eh_falha &lt;-<span class="st"> </span><span class="kw">is.na</span>(temp)
 <span class="co"># soma cumulativa de falhas</span>
-cums_gaps &lt;-<span class="st"> </span><span class="kw">cumsum</span>(eh_faltante)
+acum_falhas &lt;-<span class="st"> </span><span class="kw">cumsum</span>(eh_falha)
 <span class="co"># calculando soma a partir do início da falha</span>
-tamanho_falhas &lt;-<span class="st"> </span>cums_gaps <span class="op">-</span><span class="st"> </span><span class="kw">cummax</span>((<span class="op">!</span>eh_faltante) <span class="op">*</span><span class="st"> </span>cums_gaps)
-tamanho_falhas
- [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">0</span></code></pre></div>
+seq_falhas &lt;-<span class="st"> </span>acum_falhas <span class="op">-</span><span class="st"> </span><span class="kw">cummax</span>((<span class="op">!</span>eh_falha) <span class="op">*</span><span class="st"> </span>acum_falhas)
+seq_falhas
+<span class="co">#&gt;  [1] 1 2 0 0 0 0 0 0 0 1 2 3 4 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 0</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
+<li>Como a partir do vetor resultante em <em>11.b</em> obter um vetor cujo os valores dentro das falhas indique a ordem de ocorrência da falha.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ordem_falhas &lt;-<span class="st"> </span><span class="kw">cumsum</span>(seq_falhas <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">as.integer</span>(eh_falha <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>))
+<span class="co">#&gt;  [1] 1 1 0 0 0 0 0 0 0 2 2 2 2 0 0 0 0 0 0 0 0 0 3 3 3 3 3 3 3 0</span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Qual o tamanho de cada falha.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_fim_falha &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">diff</span>(ordem_falhas)) <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+(tamanho_falhas &lt;-<span class="st"> </span>seq_falhas[pos_fim_falha])
+<span class="co">#&gt; [1] 2 4 7</span>
+<span class="co"># names(tamanho_falhas) &lt;- paste0(&quot;falha&quot;, unique(ordem_falhas[ordem_falhas &gt; 0]))</span>
+<span class="kw">names</span>(tamanho_falhas) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;falha&quot;</span>, <span class="kw">seq_along</span>(tamanho_falhas))
+tamanho_falhas
+<span class="co">#&gt; falha1 falha2 falha3 </span>
+<span class="co">#&gt;      2      4      7</span></code></pre></div>
+<ol start="4" style="list-style-type: lower-alpha">
 <li>Determine o tamanho da maior falha?</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">max_falha &lt;-<span class="st"> </span><span class="kw">max</span>(tamanho_falhas)
-max_falha
-[<span class="dv">1</span>] <span class="dv">7</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(max_falha &lt;-<span class="st"> </span><span class="kw">max</span>(tamanho_falhas))
+<span class="co">#&gt; [1] 7</span></code></pre></div>
 <hr />
 <ol start="12" style="list-style-type: decimal">
 <li>Para os valores de velocidade (<span class="math inline">\(V_h\)</span>) e a direção do vento (<span class="math inline">\(\theta\)</span>) (na convenção meteorológica):</li>
@@ -541,8 +558,7 @@ max_falha
 <p><span class="math display">\[V_{h} = \sqrt{(u^2 + v^2)}\]</span> <span class="math display">\[\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}\]</span> <span class="math display">\[
 \theta = \left\{\begin{matrix}
 \theta_{mat} + 360 &amp; se &amp; \theta_{mat} &lt; 0 \\ 
-0 &amp; se &amp; u = 0,\:  v = 0 \\
-0 &amp; se &amp; V_{h} &lt; 0.5
+0 &amp; se &amp; u = 0,\:  v = 0 \: \:  ou \: \:  V_{h} &lt; 0.5\\
 \end{matrix}\right.
 \]</span></p>
 <p>Como resultado monte um dataframe com todas variáveis derivadas.</p>
@@ -648,14 +664,18 @@ max_falha
 <li>o índice de sucesso crítico <span class="math inline">\(CSI=\frac{wc}{wc+wi+di}\)</span>.</li>
 </ul>
 <p>Onde <span class="math inline">\(wc\)</span> e <span class="math inline">\(dc\)</span> são as previsões corretas de dias úmidos (<span class="math inline">\(prec &gt; 0.25\)</span> mm dia<sup>-1</sup>) e secos respectivamente, <span class="math inline">\(wi\)</span> e <span class="math inline">\(di\)</span> são as previsões incorretas de dias úmidos e secos respectivamente. <span class="math inline">\(n\)</span> é o n° total de previsões.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_obs &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>, <span class="fl">0.5</span>,  <span class="dv">1</span>,  <span class="dv">6</span>,  <span class="dv">9</span>, <span class="fl">0.2</span>,   <span class="dv">1</span>, <span class="dv">0</span>,    <span class="dv">0</span>, <span class="fl">0.25</span>, 
-              <span class="dv">10</span>, <span class="dv">15</span>,  <span class="dv">8</span>,   <span class="dv">3</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>,    <span class="dv">0</span>, 
-               <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">1</span>,   <span class="dv">5</span>,  <span class="dv">0</span>, <span class="dv">20</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>, <span class="dv">0</span>,    <span class="dv">1</span>,    <span class="dv">1</span>,
-               <span class="dv">0</span>,  <span class="dv">2</span>, <span class="dv">12</span>,   <span class="dv">1</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>, <span class="dv">0</span>,    <span class="dv">5</span>,    <span class="dv">5</span>)
-prec_sim &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dv">0</span>, <span class="fl">0.2</span>,<span class="fl">0.1</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">3</span>,  <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>, <span class="dv">1</span>,    <span class="dv">0</span>,    <span class="dv">3</span>, 
-               <span class="dv">0</span>, <span class="dv">10</span>,  <span class="dv">4</span>,   <span class="dv">1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, 
-            <span class="fl">0.25</span>,  <span class="dv">0</span>,<span class="fl">0.5</span>,   <span class="dv">3</span>,  <span class="dv">0</span>,  <span class="dv">5</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>, <span class="dv">0</span>,  <span class="fl">0.5</span>,    <span class="dv">0</span>,
-            <span class="fl">0.25</span>, <span class="fl">0.2</span>,  <span class="dv">0</span>, <span class="fl">0.2</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">1</span>, <span class="dv">2</span>,    <span class="dv">1</span>,    <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_obs &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>,
+  <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>, <span class="dv">0</span>,
+  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,
+  <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>
+)
+prec_sim &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>,
+  <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>,
+  <span class="fl">0.25</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>,
+  <span class="fl">0.25</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>
+)</code></pre></div>
 <hr />
 <ol start="14" style="list-style-type: decimal">
 <li>Escreva o código para calcular o coeficiente de correlação de Pearson (<code>r</code>) entre os vetores <code>obs</code> e <code>prev</code>.</li>

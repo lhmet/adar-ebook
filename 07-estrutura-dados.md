@@ -3440,7 +3440,7 @@ integer(0)
 
 - - -
 
-8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012. 
+8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS. 
 
 
  hora    prec 
@@ -3574,10 +3574,12 @@ duracao
 
 
 
-```
-c(NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L, 
-29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA, 
-NA, 19L)
+```r
+temp <- c(
+  NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L,
+  29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA,
+  NA, 19L
+)
 ```
 
    a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
@@ -3585,22 +3587,45 @@ NA, 19L)
 
 ```r
 # vetor lógico de falhas
-eh_faltante <- is.na(temp)
+eh_falha <- is.na(temp)
 # soma cumulativa de falhas
-cums_gaps <- cumsum(eh_faltante)
+acum_falhas <- cumsum(eh_falha)
 # calculando soma a partir do início da falha
-tamanho_falhas <- cums_gaps - cummax((!eh_faltante) * cums_gaps)
-tamanho_falhas
- [1] 1 2 0 0 0 0 0 0 0 1 2 3 4 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 0
+seq_falhas <- acum_falhas - cummax((!eh_falha) * acum_falhas)
+seq_falhas
+#>  [1] 1 2 0 0 0 0 0 0 0 1 2 3 4 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 0
 ```
 
-   b. Determine o tamanho da maior falha?
+
+   b. Como a partir do vetor resultante em *11.b* obter um vetor cujo os valores
+dentro das falhas indique a ordem de ocorrência da falha.
 
 
 ```r
-max_falha <- max(tamanho_falhas)
-max_falha
-[1] 7
+(ordem_falhas <- cumsum(seq_falhas == 1) * as.integer(eh_falha > 0))
+#>  [1] 1 1 0 0 0 0 0 0 0 2 2 2 2 0 0 0 0 0 0 0 0 0 3 3 3 3 3 3 3 0
+```
+
+   c. Qual o tamanho de cada falha.
+   
+
+```r
+pos_fim_falha <- which(c(NA, diff(ordem_falhas)) < 0) - 1
+(tamanho_falhas <- seq_falhas[pos_fim_falha])
+#> [1] 2 4 7
+# names(tamanho_falhas) <- paste0("falha", unique(ordem_falhas[ordem_falhas > 0]))
+names(tamanho_falhas) <- paste0("falha", seq_along(tamanho_falhas))
+tamanho_falhas
+#> falha1 falha2 falha3 
+#>      2      4      7
+```
+
+   d. Determine o tamanho da maior falha?
+
+
+```r
+(max_falha <- max(tamanho_falhas))
+#> [1] 7
 ```
 
 - - -
@@ -3627,8 +3652,7 @@ $$\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}$$
 $$
 \theta = \left\{\begin{matrix}
 \theta_{mat} + 360 & se & \theta_{mat} < 0 \\ 
-0 & se & u = 0,\:  v = 0 \\
-0 & se & V_{h} < 0.5
+0 & se & u = 0,\:  v = 0 \: \:  ou \: \:  V_{h} < 0.5\\
 \end{matrix}\right.
 $$
 
@@ -3668,14 +3692,18 @@ Onde $wc$ e $dc$ são as previsões corretas de dias úmidos ($prec > 0.25$ mm d
 
 
 ```r
-prec_obs <- c( 0,  0,  0, 0.5,  1,  6,  9, 0.2,   1, 0,    0, 0.25, 
-              10, 15,  8,   3,  0,  0,  0,   0,   0, 0, 0.25,    0, 
-               0,  0,  1,   5,  0, 20,  0,   0,   0, 0,    1,    1,
-               0,  2, 12,   1,  0,  0,  0,   0,   0, 0,    5,    5)
-prec_sim <- c( 0, 0.2,0.1,  0,  0,  3,  1,   1,   1, 1,    0,    3, 
-               0, 10,  4,   1,0.3,0.5,0.5, 0.5, 0.5, 0, 0.25, 0.25, 
-            0.25,  0,0.5,   3,  0,  5,  0,   0,   0, 0,  0.5,    0,
-            0.25, 0.2,  0, 0.2,  0,  0,  0,   0,   1, 2,    1,    0)
+prec_obs <- c(
+  0, 0, 0, 0.5, 1, 6, 9, 0.2, 1, 0, 0, 0.25,
+  10, 15, 8, 3, 0, 0, 0, 0, 0, 0, 0.25, 0,
+  0, 0, 1, 5, 0, 20, 0, 0, 0, 0, 1, 1,
+  0, 2, 12, 1, 0, 0, 0, 0, 0, 0, 5, 5
+)
+prec_sim <- c(
+  0, 0.2, 0.1, 0, 0, 3, 1, 1, 1, 1, 0, 3,
+  0, 10, 4, 1, 0.3, 0.5, 0.5, 0.5, 0.5, 0, 0.25, 0.25,
+  0.25, 0, 0.5, 3, 0, 5, 0, 0, 0, 0, 0.5, 0,
+  0.25, 0.2, 0, 0.2, 0, 0, 0, 0, 1, 2, 1, 0
+)
 ```
 
 
