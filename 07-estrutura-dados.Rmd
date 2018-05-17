@@ -1805,41 +1805,41 @@ cumsum(rev(2:6))
 
 - - -
 
-8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012. 
+8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS. 
 
 ```{r, echo = FALSE}
 hora <- (12:24) - 3
-prec_20121203 <- c(0, 0, 0, 0, 0, 0, 0, 21.4, 41.2, 2.6, 1, 0.4, 0)
-evento <- data.frame(hora, prec = prec_20121203)
+prec_h <- c(0, 0, 0, 0, 0, 0, 0, 21.4, 41.2, 2.6, 1, 0.4, 0)
+evento <- data.frame(hora, prec = prec_h)
 knitr::kable(evento, align = "c", longtable = TRUE)
 ```
 
 a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve seu resultado em um vetor chamado `prec_acum`. Interprete o resultado `c(NA, diff(prec_acum))`.
 
 ```{r, include = FALSE}
-(prec_acum <- cumsum(prec_20121203))
+(prec_acum <- cumsum(prec_h))
 ```
 
 b. Mostre o código para encontrar o horário de ocorrência da precipitação máxima?
 
 ```{r, include = FALSE}
-hora[which.max(prec_20121203)]
+hora[which.max(prec_h)]
 ```
 
 c. Mostre o código para obter a hora de início e fim do evento de  precipitação severa. Qual foi a duração do evento?
 
 ```{r, include = FALSE}
-(inicio <- hora[prec_20121203 > 0][1])
-(fim <- hora[max(which(prec_20121203 > 0))])
+(inicio <- hora[prec_h > 0][1])
+(fim <- hora[max(which(prec_h > 0))])
 fim - inicio + 1
-sum(prec_20121203 > 0)
+sum(prec_h > 0)
 ```
 
 d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
 
 ```{r, include = FALSE}
-tot_evento <- sum(prec_20121203)
-perc_rel <- prec_20121203 / tot_evento * 100
+tot_evento <- sum(prec_h)
+perc_rel <- prec_h / tot_evento * 100
 perc_rel
 perc_rel_cum <- cumsum(perc_rel)
 perc_rel_cum[hora == 17]
@@ -1948,11 +1948,12 @@ prec_estado
   (d) Qual a probabilidade de chuva dessa série de precipitação diária?
   
 ```{r Chunk10d, echo=FALSE, eval=TRUE, results = FALSE}
-prob <- sum(prec01)/length(prec01)
+prob <- sum(prec01) / length(prec01)
 prob <- mean(prec01)
 # %
 prob_perc <- mean(prec01) * 100
-prob; prob_perc
+prob
+prob_perc
 ``` 
 
   (e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
@@ -2002,18 +2003,20 @@ prob12 + prob11 + prob00
 ```{r Chunk10e1, echo=FALSE, eval=TRUE, results='hide'}
 ## PARA MELHOR VISUALIZAÇÃO
 # data frame para visualização de casos de prec com 2 consecutivos
-conds_df <- with(choveu,
-                 data.frame(hoje, 
-                            amanha,
-                            cond00 = hoje == 0 & amanha == 0,
-                            cond11 = hoje == 1 & amanha == 1,
-                            cond01 = (hoje == 0 & amanha == 1),
-                            cond10 = (hoje == 1 & amanha == 0),
-                            cond12 = (hoje != amanha))
-                 )
+conds_df <- with(
+  choveu,
+  data.frame(hoje,
+    amanha,
+    cond00 = hoje == 0 & amanha == 0,
+    cond11 = hoje == 1 & amanha == 1,
+    cond01 = (hoje == 0 & amanha == 1),
+    cond10 = (hoje == 1 & amanha == 0),
+    cond12 = (hoje != amanha)
+  )
+)
 # dia que não permite comparação para as transições de estado
-#conds_df <- conds_df[complete.cases(conds_df), ]
-(probs <- colSums(conds_df)/nrow(conds_df))
+# conds_df <- conds_df[complete.cases(conds_df), ]
+(probs <- colSums(conds_df) / nrow(conds_df))
 # verificação das probabilidades
 (probs_sum <- sum(probs[-c(1:2, 7)]))
 ```
@@ -2026,10 +2029,10 @@ conds_df <- with(choveu,
 # posições iniciais do evento
 posi <- which(diff(c(0, prec01)) == 1)
 # posições finais do evento
-posf <- c(which(diff(c(prec01,0)) == -1))
+posf <- c(which(diff(c(prec01, 0)) == -1))
 # duracao de cada evento
-duracao <- posf-posi + 1
-#duracao
+duracao <- posf - posi + 1
+# duracao
 names(duracao) <- paste("evento", 1:length(duracao), sep = "")
 ```
 
@@ -2044,33 +2047,59 @@ duracao
 11. EXERCÍCIO RESOLVIDO. Dado o vetor `temp` mostrado abaixo.
 
 ```{r Chunk111, echo=FALSE, eval=TRUE}
-temp <- sample(0:30, 30); temp[2:4] <- NA; temp[10:15] <- NA; temp[23:29] <- NA
-#dput(temp)
-temp <- c(NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L, 
-29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA, 
-NA, 19L)
+temp <- sample(0:30, 30)
+temp[2:4] <- NA
+temp[10:15] <- NA
+temp[23:29] <- NA
+# dput(temp)
+temp <- c(
+  NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L,
+  29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA,
+  NA, 19L
+)
 ```
-```{r Chunk112, echo=FALSE, eval=TRUE, prompt=FALSE, comment=""}
-dput(temp)
+```{r Chunk112}
+temp <- c(
+  NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L,
+  29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA,
+  NA, 19L
+)
 ```
 
    a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
 
-```{r Chunk11a, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk11a}
 # vetor lógico de falhas
-eh_faltante <- is.na(temp)
+eh_falha <- is.na(temp)
 # soma cumulativa de falhas
-cums_gaps <- cumsum(eh_faltante)
+acum_falhas <- cumsum(eh_falha)
 # calculando soma a partir do início da falha
-tamanho_falhas <- cums_gaps - cummax((!eh_faltante) * cums_gaps)
+seq_falhas <- acum_falhas - cummax((!eh_falha) * acum_falhas)
+seq_falhas
+```
+
+
+   b. Como a partir do vetor resultante em *11.b* obter um vetor cujo os valores
+dentro das falhas indique a ordem de ocorrência da falha.
+
+```{r Chunk11c}
+(ordem_falhas <- cumsum(seq_falhas == 1) * as.integer(eh_falha > 0))
+```
+
+   c. Qual o tamanho de cada falha.
+   
+```{r}
+pos_fim_falha <- which(c(NA, diff(ordem_falhas)) < 0) - 1
+(tamanho_falhas <- seq_falhas[pos_fim_falha])
+# names(tamanho_falhas) <- paste0("falha", unique(ordem_falhas[ordem_falhas > 0]))
+names(tamanho_falhas) <- paste0("falha", seq_along(tamanho_falhas))
 tamanho_falhas
 ```
 
-   b. Determine o tamanho da maior falha?
+   d. Determine o tamanho da maior falha?
 
-```{r Chunk11b, message=FALSE, comment="",prompt=FALSE, include = TRUE}
-max_falha <- max(tamanho_falhas)
-max_falha
+```{r}
+(max_falha <- max(tamanho_falhas))
 ```
 
 - - -
@@ -2078,8 +2107,8 @@ max_falha
 12. Para os valores de velocidade ($V_h$) e a direção do vento ($\theta$) (na convenção meteorológica):
 
 ```{r Chunk12, include=FALSE}
-ws <- c( 10,  10,   10, 10, 14.142, 14.142, 14.142, 14.142, 0)
-wd <- c(270, 180,  360, 90,    225,    315,    135,     45, 0)
+ws <- c(10, 10, 10, 10, 14.142, 14.142, 14.142, 14.142, 0)
+wd <- c(270, 180, 360, 90, 225, 315, 135, 45, 0)
 ```
 
 $V_h$ = `r paste0("(", paste(ws , collapse = ", "), ")")`
@@ -2092,9 +2121,9 @@ $\theta$ = `r paste0("(", paste(wd , collapse = ", "), ")")`
    $$v = -V_{h} \cdot cos(\theta_{rad})$$
 
 ```{r Chunk12_a, echo=FALSE, eval=TRUE, results = FALSE}
-u <- round(-ws*sin(wd*pi/180), 3)
+u <- round(-ws * sin(wd * pi / 180), 3)
 u
-v <- round(-ws*cos(wd*pi/180), 3)
+v <- round(-ws * cos(wd * pi / 180), 3)
 v
 ```
 
@@ -2105,8 +2134,7 @@ $$\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}$$
 $$
 \theta = \left\{\begin{matrix}
 \theta_{mat} + 360 & se & \theta_{mat} < 0 \\ 
-0 & se & u = 0,\:  v = 0 \\
-0 & se & V_{h} < 0.5
+0 & se & u = 0,\:  v = 0 \: \:  ou \: \:  V_{h} < 0.5\\
 \end{matrix}\right.
 $$
 
@@ -2153,26 +2181,30 @@ knitr::kable(data.frame(u, v, ws,
 Onde $wc$ e $dc$ são as previsões corretas de dias úmidos ($prec > 0.25$ mm dia^-1^) e secos respectivamente, $wi$ e $di$ são as previsões incorretas de dias úmidos e secos respectivamente. $n$ é o n° total de previsões.
 
 ```{r , include=TRUE}
-prec_obs <- c( 0,  0,  0, 0.5,  1,  6,  9, 0.2,   1, 0,    0, 0.25, 
-              10, 15,  8,   3,  0,  0,  0,   0,   0, 0, 0.25,    0, 
-               0,  0,  1,   5,  0, 20,  0,   0,   0, 0,    1,    1,
-               0,  2, 12,   1,  0,  0,  0,   0,   0, 0,    5,    5)
-prec_sim <- c( 0, 0.2,0.1,  0,  0,  3,  1,   1,   1, 1,    0,    3, 
-               0, 10,  4,   1,0.3,0.5,0.5, 0.5, 0.5, 0, 0.25, 0.25, 
-            0.25,  0,0.5,   3,  0,  5,  0,   0,   0, 0,  0.5,    0,
-            0.25, 0.2,  0, 0.2,  0,  0,  0,   0,   1, 2,    1,    0)
+prec_obs <- c(
+  0, 0, 0, 0.5, 1, 6, 9, 0.2, 1, 0, 0, 0.25,
+  10, 15, 8, 3, 0, 0, 0, 0, 0, 0, 0.25, 0,
+  0, 0, 1, 5, 0, 20, 0, 0, 0, 0, 1, 1,
+  0, 2, 12, 1, 0, 0, 0, 0, 0, 0, 5, 5
+)
+prec_sim <- c(
+  0, 0.2, 0.1, 0, 0, 3, 1, 1, 1, 1, 0, 3,
+  0, 10, 4, 1, 0.3, 0.5, 0.5, 0.5, 0.5, 0, 0.25, 0.25,
+  0.25, 0, 0.5, 3, 0, 5, 0, 0, 0, 0, 0.5, 0,
+  0.25, 0.2, 0, 0.2, 0, 0, 0, 0, 1, 2, 1, 0
+)
 ```
 
 
 ```{r , include=FALSE}
 wc <- sum((prec_obs > 0.25) & (prec_sim > 0.25))
 dc <- sum((prec_obs <= 0.25) & (prec_sim <= 0.25))
-n  <- length(prec_obs)
+n <- length(prec_obs)
 wi <- sum((prec_obs <= 0.25) & (prec_sim > 0.25))
 di <- sum((prec_obs > 0.25) & (prec_sim <= 0.25))
-PC <- (wc + dc)/n
+PC <- (wc + dc) / n
 PC
-CSI <- wc/(wc+wi+di)
+CSI <- wc / (wc + wi + di)
 CSI
 ```
 
