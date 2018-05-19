@@ -6,15 +6,13 @@
 
 O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como: 
 
-- dados tabulares armazenados em arquivos texto ([ASCII](https://pt.wikipedia.org/wiki/ASCII))
-- arquivos de dados meteorológicos de agências brasileiras
+- dados retangulares armazenados em arquivos de texto puro
 - dados binários e netCDF
 - dados espaciais em formato GIS
 
 Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da *web*.
 
-Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto tem desvantagens e por isso veremos formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
-
+Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar uma diversidade de tipos de dados com muita facilidade. Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso veremos também formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
 
 
 ## Pré-requisitos
@@ -106,12 +104,30 @@ O conteúdo de um diretório pode ser listado com a função `dir()`, ou se esti
 
 ## Arquivos texto
 
-Dados armazenados em um arquivo texto (do tipo [ASCII](http://pt.wikipedia.org/wiki/ASCII])) podem ser facilmente importados no R.
+Dados armazenados em um arquivo de [texto puro ou simples](https://pt.wikipedia.org/wiki/Texto_simples) podem ser facilmente importados no R. 
 
-O formato mais comum de armazenar dados é o retangular, ou seja, uma tabela de dados com as observações ao longo das linhas e as variáveis ao longo das colunas. 
+Como o computador só armazena bits, o texto do arquivo que está na nossa linguagem escrita precisa ser convertido em [bits](https://pt.wikipedia.org/wiki/Bit). Essa conversão é feita por meio de um esquema codificação ou simplesmente codificação. Tradicionalmente a codificação mais usada era o [ASCII](http://pt.wikipedia.org/wiki/ASCII]) (Padrão Americano de Codificação para Intercâmbio de Informação) de 8 bits (ou 1 *byte*) que codifica um conjunto de 128 sinais (letras, números, sinais de pontuação e símbolos matemáticos) da língua Inglesa. Por exemplo a letra R corresponde a seguinte sequência 01010010.
 
-Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (`\n` no Linux ou `\r\n` no Windows).
+Da necessidade de representar caracteres de outras línguas surgiram [várias outras codificações](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings). O [ISO 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1) ou *Latin 1* é um exemplo de codificação de 8 bits que permite 256 sinais diferentes, usada nas Americas, Oeste da Europa, Oceania e grande parte da África. 
+Text is represented on computers by sequences of bytes;
+An encoding is used to map sequences of bytes to the written language it represents;
+The unicode standard is an effort to map written language to a single, standardized encoding;
+UTF-8 is the most common way of encoding unicode characters, but it is not the only way.
 
+
+O formato mais comum de armazenar dados é o retangular, ou seja, uma tabela de dados com as observações ao longo das linhas e as variáveis ao longo das colunas. As vezes as variáveis são referentes a locais diferentes em cada linha.
+
+Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (`\n` no Linux, `\r\n` no Windows).
+
+- - -
+
+https://leb-fmvz-usp.gitbooks.io/manipulacao-e-visualizacao-de-dados-no-r/content/04-arquivos.html
+
+Embora seja possível especificar a **codificação latin1** para reconhecer caracteres do português, é preferível evitar caracteres especiais nos bancos de dados.
+
+http://kunststube.net/encoding/
+
+https://integrada.minhabiblioteca.com.br/books/9788577808625/pageid/271
 
 ## Arquivos binários 
 
