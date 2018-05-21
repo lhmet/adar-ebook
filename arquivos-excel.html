@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="por-que-o-r.html">
-<link rel="next" href="por-que-um-meteorologista-usaria-o-r.html">
+<link rel="prev" href="arquivos-binarios.html">
+<link rel="next" href="para-saber-mais.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -277,21 +277,60 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pacotes-da-comunidade-do-r" class="section level2">
-<h2><span class="header-section-number">1.7</span> Pacotes da comunidade do R</h2>
-Evolução do nº de pacotes disponíveis no <a href="http://cran.r-project.org/mirrors.html">CRAN</a>
-</style>
-<div class="midcenter" style="margin-left:10px; margin-top:10px;">
-<p><img src="images/number-of-submitted-packages-to-CRAN.png" height="350px" width="400px" /></p>
-</div>
+<div id="arquivos-excel" class="section level2">
+<h2><span class="header-section-number">8.6</span> Arquivos Excel</h2>
+<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e <code>.xlsx</code>) é uma prática muito popular. Mas infelizmente ler dados Excel não é tão simples, apesar da variedade de pacotes disponíveis para tal tarefa. Há uma razoável variedade de pacotes para resolver esse problema: <a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>, <a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a> e <a href="https://readxl.tidyverse.org/">readxl</a> e outros. mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.</p>
+<p>Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel (<code>xls</code> ou <code>xlsx</code>).</p>
+<p>A solução mais usada é converter as planilhas Excel para <code>csv</code> usando algum programa.</p>
+<p>Mas caso isso não seja viável, você verá como usar o pacote <a href="https://readxl.tidyverse.org/">readxl</a> para leitura de arquivos Excel.</p>
+<p>Baixando arquivo exemplo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span>
+dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estações Normal Climatoógica 1981-2010.xls&quot;</span>)
+<span class="kw">download.file</span>(excel_file_url, dest_file_excel)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;readxl&quot;)</span>
+<span class="kw">library</span>(readxl)
+inmet_estacoes &lt;-<span class="st"> </span><span class="kw">read_excel</span>(
+  <span class="dt">path =</span> dest_file_excel,
+  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, 
+  <span class="dt">skip =</span> <span class="dv">3</span>)
+inmet_estacoes
+<span class="co">#&gt; # A tibble: 437 x 10</span>
+<span class="co">#&gt;       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude</span>
+<span class="co">#&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. </span>
+<span class="co">#&gt;  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. </span>
+<span class="co">#&gt;  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. </span>
+<span class="co">#&gt;  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. </span>
+<span class="co">#&gt;  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. </span>
+<span class="co">#&gt;  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5</span>
+<span class="co">#&gt;  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. </span>
+<span class="co">#&gt;  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. </span>
+<span class="co">#&gt;  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. </span>
+<span class="co">#&gt; 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1</span>
+<span class="co">#&gt; # ... with 427 more rows, and 3 more variables: `Inicio Operação` &lt;chr&gt;,</span>
+<span class="co">#&gt; #   `Fim Operação` &lt;dttm&gt;, Situação &lt;chr&gt;</span>
+<span class="kw">str</span>(inmet_estacoes)
+<span class="co">#&gt; Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    437 obs. of  10 variables:</span>
+<span class="co">#&gt;  $ Nº             : num  1 2 3 4 5 6 7 8 9 10 ...</span>
+<span class="co">#&gt;  $ Código         : num  82704 82915 82807 82989 82995 ...</span>
+<span class="co">#&gt;  $ Nome da Estação: chr  &quot;CRUZEIRO DO SUL&quot; &quot;RIO BRANCO&quot; &quot;TARAUACA&quot; &quot;AGUA BRANCA&quot; ...</span>
+<span class="co">#&gt;  $ UF             : chr  &quot;AC&quot; &quot;AC&quot; &quot;AC&quot; &quot;AL&quot; ...</span>
+<span class="co">#&gt;  $ Latitude       : num  -7.6 -9.95 -8.17 -9.28 -9.73 ...</span>
+<span class="co">#&gt;  $ Longitude      : num  -72.7 -67.9 -70.8 -37.9 -36.8 ...</span>
+<span class="co">#&gt;  $ Atitude        : num  170 160 190 605 247 ...</span>
+<span class="co">#&gt;  $ Inicio Operação: chr  &quot;10228&quot; &quot;10594&quot; &quot;24264&quot; &quot;10353&quot; ...</span>
+<span class="co">#&gt;  $ Fim Operação   : POSIXct, format: &quot;2016-02-01&quot; NA ...</span>
+<span class="co">#&gt;  $ Situação       : chr  &quot;Desativada&quot; NA NA NA ...</span>
+<span class="kw">class</span>(inmet_estacoes)
+<span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="por-que-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="por-que-um-meteorologista-usaria-o-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="arquivos-binarios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="para-saber-mais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -321,7 +360,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/08-entrada-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],
