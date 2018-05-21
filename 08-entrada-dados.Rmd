@@ -66,6 +66,11 @@ ou simplesmente
 `easypackages::libraries(pacotes)`
 ```
 
+Vamos instalar formatos adicionais do pacote rio.
+
+```{r, eval = FALSE}
+rio::install_formats()
+```
 
 
 ## Diretório de trabalho
@@ -118,44 +123,55 @@ Você pode configurar o diretório de trabalho pelo menu do Rstudio *Session > S
 
 O conteúdo de um diretório pode ser listado com a função `dir()`, ou se estiver usando o Rstudio você pode clicar na aba *Files* do painel de direito inferior e depois em *More > Go To Working Directory*.
 
+## Boas práticas para importação e exportação de dados
+
+Para uma importação e exportação eficiente de dados recomenda-se (Gillespie & Lovelace 2017):
+
+1. Mantenha o nome original dos arquivos locais baixados da internet ou copiados da fonte provedora. Isso o ajudará a rastrear a proveniência dos dados no futuro.
+
+2. Para um armazenamento eficinte utilize o formato binário nativo do R *.Rds* para importar (`readRDS()`) e exportar (`saveRDS()`) dados processados.
+
+3. Use funções equivalentes a read.table() dos pacotes **readr** ou **data.table** para importar arquivos de texto grandes.
+
+4. Use as funções `file.size()` e `object.size()` para saber o tamanho de arquivos e objetos no R e analisar como proceder se eles ficarem muito grandes.
 
 ## Arquivos texto
 
 Dados armazenados em um arquivo de [texto puro ou simples](https://pt.wikipedia.org/wiki/Texto_simples) podem ser facilmente importados no R. 
 
-Como o computador só armazena bits, o texto do arquivo que está na nossa linguagem escrita precisa ser convertido em [bits](https://pt.wikipedia.org/wiki/Bit). Essa conversão é feita por meio de um esquema codificação ou simplesmente codificação. Tradicionalmente a codificação mais usada era o [ASCII](http://pt.wikipedia.org/wiki/ASCII]) (Padrão Americano de Codificação para Intercâmbio de Informação) de 8 bits (ou 1 *byte*) que codifica um conjunto de 128 sinais (letras, números, sinais de pontuação e símbolos matemáticos) da língua Inglesa. Por exemplo a letra R corresponde a seguinte sequência `r pryr::bits("R")`.
-
-Da necessidade de representar caracteres de outras línguas surgiram [várias outras codificações](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings). O [ISO 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1) ou *Latin 1* é um exemplo de codificação de 8 bits que permite 256 sinais diferentes, usada nas Americas, Oeste da Europa, Oceania e grande parte da África. 
-Text is represented on computers by sequences of bytes;
-An encoding is used to map sequences of bytes to the written language it represents;
-The unicode standard is an effort to map written language to a single, standardized encoding;
-UTF-8 is the most common way of encoding unicode characters, but it is not the only way.
-
-
 O formato mais comum de armazenar dados é o retangular, ou seja, uma tabela de dados com as observações ao longo das linhas e as variáveis ao longo das colunas. As vezes as variáveis são referentes a locais diferentes em cada linha.
+
 
 Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (`\n` no Linux, `\r\n` no Windows).
 
-- - -
+Dados em arquivo texto podem conter caracteres latinos, como palavras com acentos no caso do Português. Para lidar com esta peculiaridade, as funções de importação de dados, possuem um argumento relacionado a codificação (*encoding*) dos caracteres. Arquivos texto em Português geralmente usam a codificação [ISO 8859-1](https://pt.wikipedia.org/wiki/ISO/IEC_8859-1) ou equivalente *Latin1*. Portanto, para importação com formatação correta de caracteres latinos a especificação com esta codificação deve ser explícita.
 
-https://leb-fmvz-usp.gitbooks.io/manipulacao-e-visualizacao-de-dados-no-r/content/04-arquivos.html
-
-Embora seja possível especificar a **codificação latin1** para reconhecer caracteres do português, é preferível evitar caracteres especiais nos bancos de dados.
-
-http://kunststube.net/encoding/
-
-https://integrada.minhabiblioteca.com.br/books/9788577808625/pageid/271
-
-## Arquivos binários 
-
-Arquivo texto favorecem a legibilidade humana dos dados mas tem limitada precisão numérica limitada. Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Por isso, vários softwares armazenam dados no formato binário.
+O R utiliza o alfabeto [Unicode](https://pt.wikipedia.org/wiki/Unicode) para identificação de caracteres. Para associação unívoca de cada caractere (de mais 1 milhão de caracteres do alfabeto Unicode) a uma sequência de bits, o R usa o esquema de codificação [UTF-8](https://pt.wikipedia.org/wiki/UTF-8). Assim, recomenda-se utilizar essa codificação de caracteres como padrão em seus códigos e na construção e aquisição de dados. No RStudio a especificação da codificação de caracteres pode ser feita através do menu: *Tools > Global Options > Code > Saving > Default Text Encoding*.
 
 
 
+```{r, include=FALSE}
+#ABOUT Encoding
+# Como o computador só armazena bits, o texto do arquivo que está na nossa linguagem escrita precisa ser convertido em [bits](https://pt.wikipedia.org/wiki/Bit). Essa conversão é feita por meio de um esquema codificação ou simplesmente codificação. Tradicionalmente a codificação mais usada era o [ASCII](http://pt.wikipedia.org/wiki/ASCII]) (Padrão Americano de Codificação para Intercâmbio de Informação) de 8 bits (ou 1 *byte*) que codifica um conjunto de 128 símbolos (letras, números, sinais de pontuação e símbolos matemáticos) da língua Inglesa. Por exemplo a letra R corresponde a seguinte sequência `r pryr::bits("R")`.
+# 
+# Da necessidade de representar caracteres de outras linguagens surgiram [várias outras codificações](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings). O [ISO 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1) ou *Latin1* é um exemplo de codificação de 8 bits que permite representar 256 símbolos diferentes, sendo usada nas Americas, Oeste da Europa, Oceania e grande parte da África. 
+# 
+# Com advento da internet, a troca de informação entre computadores de diferentes países exigiu a criação de um conjunto de caracteres (únicos) que suportasse todas as linguagens do mundo. Para isso foi criado o [Unicode](https://pt.wikipedia.org/wiki/Unicode). Cada caractere é referido ao seu ponto de código, o carácter "é" pode ser representado por "U+00E9". O U+ significa Unicode e os números são em hexadecimal.
+# 
+# O Unicode define dois métodos de mapeamento de códigos Unicode em esquemas de codificação: UTF (Formato de Transformação Unicode, do inglês *Unicode Transformation Format*) e UCS (Conjunto Universal de Caracteres, do inglês *Universal Character Set*). Os números associados aos nomes dos mapeamentos indicam o número de bits por código (no caso de UTF) ou o número de bytes por código (no caso de UCS). UTF-8 e UTF-16 são possivelmente as mais usadas.
+# 
+# https://leb-fmvz-usp.gitbooks.io/manipulacao-e-visualizacao-de-dados-no-r/content/04-arquivos.html
+# Embora seja possível especificar a **codificação latin1** para reconhecer caracteres do português, é preferível evitar caracteres especiais nos bancos de dados.
+# http://kunststube.net/encoding/
+# https://integrada.minhabiblioteca.com.br/books/9788577808625/pageid/271
 
-Existem diversas funções nativas do R para ler este formato de dados.
+```
 
-versão completa da tabela na [vinheta do pacote **rio**](https://cran.r-project.org/web/packages/rio/vignettes/rio.html)
+### **rio**
+
+O pacote [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no [Manual de Importação e Exportação do R](https://cran.r-project.org/doc/manuals/r-release/R-data.html). Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): `import()` e `export()`.
+Algumas opções de formatos que podem ser importados e exportados com o **rio** são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na [vinheta do pacote](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+
 
 | Formato | Extensão | Pacote de importação | Pacote de exportação | Instalado por *default* |
 | ------ | --------- | -------------- | -------------- | -------------------- |
@@ -163,12 +179,10 @@ versão completa da tabela na [vinheta do pacote **rio**](https://cran.r-project
 | dados separados por tab | .tsv | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) | Sim |
 | Excel | .xls | [**readxl**](https://cran.r-project.org/package=readxl) |  | Sim |
 | Excel | .xlsx | [**readxl**](https://cran.r-project.org/package=readxl) | [**openxlsx**](https://cran.r-project.org/package=openxlsx) | Sim |
-| script R | .R | **base** | **base** | Sim |
 | objetos salvos no R | .RData, .rda | **base** | **base** | Sim |
 | objetos do R serializados | .rds | **base** | **base** | Sim |
 | dados Fortran | Sem extensão reconhecida | **utils** |  | Sim |
 | Formato de dados com largura fixa | .fwf | **utils** | **utils** | Sim |
-| dados separados por vírgula compactados com gzip | .csv.gz | **utils** | **utils** | Sim |
 | Feather R/Python interchange format | .feather | [**feather**](https://cran.r-project.org/package=feather) | [**feather**](https://cran.r-project.org/package=feather) | Não |
 | Armazenamento rápido (Fast Storage) | .fst | [**fst**](https://cran.r-project.org/package=fst) | [**fst**](https://cran.r-project.org/package=fst) | Não |
 | JSON | .json | [**jsonlite**](https://cran.r-project.org/package=jsonlite) | [**jsonlite**](https://cran.r-project.org/package=jsonlite) | Não |
@@ -176,40 +190,235 @@ versão completa da tabela na [vinheta do pacote **rio**](https://cran.r-project
 | Planilha OpenDocument | .ods | [**readODS**](https://cran.r-project.org/package=readODS) | [**readODS**](https://cran.r-project.org/package=readODS) | Não |
 | tabelas HTML | .html | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
 | documentos XML | .xml | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
-| YAML | .yml | [**yaml**](https://cran.r-project.org/package=yaml) | [**yaml**](https://cran.r-project.org/package=yaml) | Não |
 | Área de transferência | *default* é tsv | [**clipr**](https://cran.r-project.org/package=clipr) | [**clipr**](https://cran.r-project.org/package=clipr) | Não |
 | [planilhas Google](https://www.google.com/sheets/about/) | como valores separados por vírgula |  |  |  |
 
 
+Vamos então baixar um arquivo texto de exemplo importá-lo com o pacote **rio**.
+
+```{r}
+# arquivo de exemplo disponível no GitHub
+hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT"
+#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads/CHUVAS.TXT"
+hidroweb_dest_file <- paste0(tempfile(), ".csv")
+download.file(
+  url = hidroweb_url_file, 
+  destfile = hidroweb_dest_file
+)
+hidroweb_dest_file
+```
 
 
 ```{r}
-library(data.table)
-myDT <- data.table(x = c('a', 'b', 'c', 'd', 'e'),
-                   y = c(1, 2, 3, 4, 5))
-# Cria um data.table com vetores A, B, C
-A <- c(1, 2, 3, 4, 5)
-B <- c('a', 'b', 'c', 'd', 'e')
-C <- c(6, 7, 8, 9, 10)
-DT <- data.table(a = A, b = B, c = C)
-DT
+# Importa o arquivo 
+dprec <- import(hidroweb_dest_file, 
+                # se fread = TRUE (default usa função fread do pacote data.table)
+                fread = FALSE,  
+                skip = 15,
+                header = TRUE,
+                sep = ";",
+                dec = ",",
+                na.strings = "")
+str(dprec)
+# exporta para arquivo texto separado por tab
+export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
 ```
 
-<div id="left">
-**`DT[ , nome_col]`**
-```{r}
-DT[ , b]
-class(DT[ , b])
-is.vector(DT[ , b])
+Na há necesida de especificar o argumento `format` das funções `import()` e `export()` pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo **rio** (ver tabela de formatos acima).
+
+#### Arquivos formatados com largura fixa
+
+Alguns arquivos texto com dados tabulares podem não conter separadores para economizar espaço de disco. Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados. 
+
+Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do [National Weather Service - Climate Prediction Center (NWS-CPC)](http://www.cpc.ncep.noaa.gov).
+
+```{r Chunk440}
+# link para os dados do SOI
+link <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
 ```
-</div>
-<div id="right">
-**`DT[ , .(nome_col)]`**
-```{r}
-DT[ , .(b)]
-class(DT[ , .(b)])
+
+Abrindo o link dos dados no navegador para visualização do formato.
+
+```{r Chunk441, eval=FALSE}
+browseURL(url = link)
 ```
-</div>
+
+Leitura dos dados: 
+
+```{r Chunk442, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+soi <- import(
+  file = link,
+  format = "fwf",
+  skip = 4, # pula 4 linhas
+  header = FALSE, # sem cabeçalho
+  nrows = 70, # num. de linhas
+  widths = c(4, rep(6, 12)), # largura dos campos das variáveis
+  na.strings = "-999.9", # string para dados faltantes
+  col.names = scan(link, # varredura do arquivo
+    # col.names = scan(link,             # varredura do arquivo
+    what = "character", # tipo dos dados a serem lidos
+    skip = 3, # pula 3 linhas
+    nmax = 13
+  ) # num. max de registros a serem lidos
+)
+str(soi)
+tail(soi)
+```
+
+
+Conforme o manual de ajuda da função `import()` do **rio**, no arquivo acima foi usada a função `read.fwf()` do R para ler os dados.
+
+Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
+
+```{r Chunk443}
+# converte a matriz de dados para um vetor (em sequencia cronológica)
+soi_v <- c(t(soi[, -1]))
+# criando um dataframe com valores de SOI, mes e ano
+soi_df <- data.frame(
+  ano = rep(soi$YEAR, each = 12),
+  mes = rep(1:12, length(soi[, 1])),
+  soi = soi_v
+)
+head(soi_df)
+# escrevendo dados SOI em um arquivo CSV
+export(soi_df,
+  file = "../output-adar/SOI.csv",
+  na = "-999.9"
+)
+```
+
+Vamos ler os dados reestruturados que foram salvos no formato [csv](http://en.wikipedia.org/wiki/Comma-separated_values) usando uma função que permite a escolha do arquivo de forma iterativa.
+
+```{r Chunk444, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
+# leitura de dados com escolha interativa do arquivo
+soi.df <- import(file.choose(),
+  # file.choose só é válido em sistema *unix
+  # no windows é choose.file()
+  header = TRUE,
+  na.strings = "-999.9"
+)
+```
+
+Navegue ate o diretoriodo arquivo e clique duas vezes sobre o arquivo `SOI.csv`.
+
+```{r Chunk445, echo=FALSE}
+soi.df <- import(
+  file = "../output-adar/SOI.csv",
+  header = T,
+  na.strings = "-999.9"
+)
+```
+
+```{r chunk446}
+head(soi.df)
+str(soi.df)
+```
+
+### Arquivos texto não estruturados
+
+Em alguns casos é necessário ler arquivos textos sem uma estrutura definida como no caso de arquivos delimitados. Se o arquivo não é bem estruturado é mais fácil ler cada linha de texto separadamente e depois decompor e manipular o conteúdo do texto. 
+A função `readLines()` é adequada para isso. Cada linha é tratada como um elemento de um vetor do tipo `character`.
+
+Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde estão as informações da estação meteorológica.
+
+Obtendo os dados
+
+```{r}
+# arquivo de exemplo disponível no GitHub
+bdmep_url_file <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt"
+# leitura do cabecalho do arquivo de dados de uma estação do inmet
+cab <- readLines(bdmep_url_file)
+head(cab)
+# somente linhas com coordenadas da estação
+cab[5:7]
+is.vector(cab[5:7])
+# arranjando em coluna
+cbind(cab[5:7])
+# selecionando somente os dados e o nome das variáveis
+cab[-c(1:15)][1:10]
+# escrevendo dados com writeLines
+writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
+# visualizando dados gerados sem cabeçalho usando função system
+# (específico para sistema *unix)
+system("head -11 ../output-adar/83004_limpo.txt", intern = TRUE)
+```
+
+A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
+
+
+
+## Arquivos binários 
+
+Arquivo texto favorecem a legibilidade humana dos dados mas tem limitada precisão numérica limitada. Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Por isso, vários softwares armazenam dados no formato binário.
+ 
+Após a leitura e o processamento de dados brutos você provavelmente os salvará para uso futuro. Este procedimento é recomendado para evitar de ter que repetir todo processamento novamente. Para dados que ocupam espaço significativo (por exemplo com mais de 1 milhão de linhas) é mais eficiente salvar os dados em um formato binário, uma vez que dessa forma os tempos de escrita e leitura dos dados é menor.
+
+
+### Formatos binários nativos do R
+
+#### Rdata 
+
+Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados pluviométricos lidos anteriormente (`dprec`) e selecionar as colunas de interesse. O dataframe será salvo em um arquivo binário do R com a extensão `.RData`.
+
+```{r Chunk6110, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+# primeiras linhas
+head(dprec[, 1:10])
+# selecionando somente dados diarios do dia 1 a 31 de cada ano
+chuva_df <- dprec[, c(3, 14:44)]
+# arquivo binario do R
+save(chuva_df, file = "../output-adar/chuva_df.RData")
+# verificando se arquivo foi salvo no diretório
+file.exists("../output-adar/chuva_df.RData")
+```
+
+Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo `chuva_df.RData`.
+
+```{r Chunk6111, error=TRUE}
+# apagando chuva_df do ambiente de trabalho
+rm(chuva_df)
+# verifica existência de objeto
+exists(chuva_df)
+# carregando chuva_df
+load(file = "../output-adar/chuva_df.RData")
+ls()
+# para carregar os dados e saber o nome com que foram salvos
+print(load(file = "../output-adar/chuva_df.RData"))
+head(chuva_df[, 1:10])
+```
+
+Um **vantagem desse formato** é que os objetos criados podem ser lidos pelo R independente do sistema operacional e da arquitetura do computador, tornando muito prático o acesso aos dados. 
+Cada vez que uma sessão do R é finalizada, uma janela surge perguntando se deseja salvar o espaço de trabalho (`save the workspace image`), que nada mais é do que um arquivo binário chamado `.RData` no diretório de trabalho. Assim quando iniciar a sessão se o arquivo `.RData` estiver no diretório de trabalho ele será automaticamente carregado tornando todos os objetos da última sessão disponíveis novamente. 
+Se você deseja salvar o espaço de trabalho em outro momento use a função `save.image()`.
+
+Quando desejamos salvar só uma parte dos dados uma opção é usar a função `rm()` (uma abreviação de **remove**) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função `save()`permite salvar *mais de um objeto* em um mesmo arquivo. 
+
+```{r Chunk6112, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
+ls()
+rm(cab, chuva_df)
+ls()
+# carrega e imprime na tela nome dos dados carregados
+print(load("../output-adar/dados_prec.RData"))
+ls()
+```
+
+
+#### RDS
+
+
+
+### NetCDF
+
+```bash
+sudo apt-get update 
+sudo apt-get upgrade --assume-yes
+
+## Install 3rd parties for NetCDF
+sudo apt-get install libnetcdf-dev libudunits2-dev
+
+## install 3rd parties needed for devtools + openssl git2r httr
+#sudo apt-get install libssl-dev
+```
 
 
 ## Para saber mais
