@@ -435,7 +435,7 @@ hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/RtmpNePXrC/file1cbe4477c8eb.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi8iHno/file280a77ab241b.csv&quot;</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
                 <span class="co"># se fread = TRUE (default usa função fread do pacote data.table)</span>
@@ -524,7 +524,9 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <span class="co">#&gt;  $ Chuva31Status       : int  1 0 1 0 1 0 1 1 0 1 ...</span>
 <span class="co">#&gt;  $ X                   : logi  NA NA NA NA NA NA ...</span>
 <span class="co"># exporta para arquivo texto separado por tab</span>
-<span class="kw">export</span>(dprec, <span class="dt">file =</span> <span class="st">&quot;../output-adar/dprec.tsv&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
+dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.tsv&quot;</span>)
+<span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)
+<span class="co">#export(dprec, file = &quot;../output-adar/dprec.tsv&quot;, na = &quot;-999&quot;)</span></code></pre></div>
 <p>Na há necesida de especificar o argumento <code>format</code> das funções <code>import()</code> e <code>export()</code> pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo <strong>rio</strong> (ver tabela de formatos acima).</p>
 <div id="arquivos-formatados-com-largura-fixa" class="section level4">
 <h4><span class="header-section-number">8.4.1.1</span> Arquivos formatados com largura fixa</h4>
@@ -592,8 +594,9 @@ soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
 <span class="co">#&gt; 5 1951   5 -1.1</span>
 <span class="co">#&gt; 6 1951   6  0.3</span>
 <span class="co"># escrevendo dados SOI em um arquivo CSV</span>
+soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.csv&quot;</span>)
 <span class="kw">export</span>(soi_df,
-  <span class="dt">file =</span> <span class="st">&quot;../output-adar/SOI.csv&quot;</span>,
+  <span class="dt">file =</span> soi_file,
   <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>
 )</code></pre></div>
 <p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
@@ -661,21 +664,9 @@ cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>
 <span class="co">#&gt;  [9] &quot;83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;&quot;                                                                                                                                                                                            </span>
 <span class="co">#&gt; [10] &quot;83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;&quot;</span>
 <span class="co"># escrevendo dados com writeLines</span>
-<span class="kw">writeLines</span>(<span class="dt">text =</span> cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)] , <span class="dt">con =</span> <span class="st">&quot;../output-adar/83004_limpo.txt&quot;</span>)
-<span class="co"># visualizando dados gerados sem cabeçalho usando função system</span>
-<span class="co"># (específico para sistema *unix)</span>
-<span class="kw">system</span>(<span class="st">&quot;head -11 ../output-adar/83004_limpo.txt&quot;</span>, <span class="dt">intern =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt;  [1] &quot;Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;&quot;</span>
-<span class="co">#&gt;  [2] &quot;83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;&quot;                                                                                                                                                                                                                              </span>
-<span class="co">#&gt;  [3] &quot;83004;01/01/1995;0000;;;;26.8;;;;;;;1.5;;1.6;22.04;86.75;2;&quot;                                                                                                                                                                                                            </span>
-<span class="co">#&gt;  [4] &quot;83004;01/01/1995;1200;21.2;22.5;20;;19.5;80;924.6;;32;4;;10;;;;;&quot;                                                                                                                                                                                                       </span>
-<span class="co">#&gt;  [5] &quot;83004;01/01/1995;1800;;25.2;21.5;;;73;922.9;;32;2;;10;;;;;&quot;                                                                                                                                                                                                             </span>
-<span class="co">#&gt;  [6] &quot;83004;02/01/1995;0000;;20.7;20.3;28.9;;97;924.2;;0;0;1.3;10;1.1;23.32;83;2.666667;&quot;                                                                                                                                                                                     </span>
-<span class="co">#&gt;  [7] &quot;83004;02/01/1995;1200;3.2;23.8;20.6;;19.9;76;924.7;;32;3;;10;;;;;&quot;                                                                                                                                                                                                      </span>
-<span class="co">#&gt;  [8] &quot;83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;&quot;                                                                                                                                                                                                             </span>
-<span class="co">#&gt;  [9] &quot;83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;&quot;                                                                                                                                                                                            </span>
-<span class="co">#&gt; [10] &quot;83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;&quot;                                                                                                                                                                                                         </span>
-<span class="co">#&gt; [11] &quot;83004;03/01/1995;1800;;23.4;22.6;;;94;922.1;;5;3;;10;;;;;&quot;</span></code></pre></div>
+file_83004_limpo &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.txt&quot;</span>)
+<span class="kw">writeLines</span>(<span class="dt">text =</span> cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)] , <span class="dt">con =</span> file_83004_limpo)
+<span class="co">#writeLines(text = cab[-c(1:15)] , con = &quot;../output-adar/83004_limpo.txt&quot;)</span></code></pre></div>
 <p>A função <code>writeLines()</code> escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.</p>
 </div>
 </div>

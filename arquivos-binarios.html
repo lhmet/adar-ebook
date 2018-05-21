@@ -304,9 +304,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co"># selecionando somente dados diarios do dia 1 a 31 de cada ano</span>
 chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span><span class="op">:</span><span class="dv">44</span>)]
 <span class="co"># arquivo binario do R</span>
-<span class="kw">save</span>(chuva_df, <span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
+file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.RData&quot;</span>)
+<span class="kw">save</span>(chuva_df, <span class="dt">file =</span> file_chuva_df)
+<span class="co">#save(chuva_df, file = &quot;../output-adar/chuva_df.RData&quot;)</span>
 <span class="co"># verificando se arquivo foi salvo no diretório</span>
-<span class="kw">file.exists</span>(<span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
+<span class="kw">file.exists</span>(file_chuva_df)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando chuva_df do ambiente de trabalho</span>
@@ -315,15 +317,16 @@ chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span c
 <span class="kw">exists</span>(chuva_df)
 <span class="co">#&gt; Error in exists(chuva_df): object &#39;chuva_df&#39; not found</span>
 <span class="co"># carregando chuva_df</span>
-<span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
+<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df)
 <span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
-<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
-<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
-<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;dprec_file&quot;         &quot;file_83004_limpo&quot;  </span>
+<span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
+<span class="co">#&gt; [10] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
+<span class="co">#&gt; [13] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
+<span class="co">#&gt; [16] &quot;soi_file&quot;           &quot;soi_v&quot;              &quot;soi.df&quot;</span>
 <span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
-<span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>))
+<span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))
 <span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
 <span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
 <span class="co">#&gt;         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07</span>
@@ -342,31 +345,82 @@ chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span c
 <span class="co">#&gt; 6     0.0       0</span></code></pre></div>
 <p>Um <strong>vantagem desse formato</strong> é que os objetos criados podem ser lidos pelo R independente do sistema operacional e da arquitetura do computador, tornando muito prático o acesso aos dados. Cada vez que uma sessão do R é finalizada, uma janela surge perguntando se deseja salvar o espaço de trabalho (<code>save the workspace image</code>), que nada mais é do que um arquivo binário chamado <code>.RData</code> no diretório de trabalho. Assim quando iniciar a sessão se o arquivo <code>.RData</code> estiver no diretório de trabalho ele será automaticamente carregado tornando todos os objetos da última sessão disponíveis novamente. Se você deseja salvar o espaço de trabalho em outro momento use a função <code>save.image()</code>.</p>
 <p>Quando desejamos salvar só uma parte dos dados uma opção é usar a função <code>rm()</code> (uma abreviação de <strong>remove</strong>) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função <code>save()</code>permite salvar <em>mais de um objeto</em> em um mesmo arquivo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> <span class="st">&quot;../output-adar/dados_prec.RData&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_dados_prec &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.Rdata&quot;</span>)
+<span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> file_dados_prec)
+<span class="co">#save(cab, chuva_df, file = &quot;../output-adar/dados_prec.RData&quot;)</span>
 <span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
-<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
-<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
-<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;dprec_file&quot;         &quot;file_83004_limpo&quot;  </span>
+<span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
+<span class="co">#&gt; [10] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
+<span class="co">#&gt; [13] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
+<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi_file&quot;           &quot;soi_v&quot;             </span>
+<span class="co">#&gt; [19] &quot;soi.df&quot;</span>
 <span class="kw">rm</span>(cab, chuva_df)
 <span class="kw">ls</span>()
-<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;dprec&quot;              &quot;hidroweb_dest_file&quot;</span>
-<span class="co">#&gt;  [4] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
-<span class="co">#&gt;  [7] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [10] &quot;soi_df&quot;             &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;dprec&quot;              &quot;dprec_file&quot;        </span>
+<span class="co">#&gt;  [4] &quot;file_83004_limpo&quot;   &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;   </span>
+<span class="co">#&gt;  [7] &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot;  &quot;link&quot;              </span>
+<span class="co">#&gt; [10] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
+<span class="co">#&gt; [13] &quot;soi&quot;                &quot;soi_df&quot;             &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [16] &quot;soi_v&quot;              &quot;soi.df&quot;</span>
 <span class="co"># carrega e imprime na tela nome dos dados carregados</span>
-<span class="kw">print</span>(<span class="kw">load</span>(<span class="st">&quot;../output-adar/dados_prec.RData&quot;</span>))
+<span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))
 <span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
 <span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
-<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
-<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
-<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span></code></pre></div>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;dprec_file&quot;         &quot;file_83004_limpo&quot;  </span>
+<span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
+<span class="co">#&gt; [10] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
+<span class="co">#&gt; [13] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
+<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi_file&quot;           &quot;soi_v&quot;             </span>
+<span class="co">#&gt; [19] &quot;soi.df&quot;</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
 <h4><span class="header-section-number">8.5.1.2</span> RDS</h4>
+<p>As funções <code>readRDS()</code> e <code>writeRDS()</code> são similares a <code>load()</code> e <code>save()</code>, respectivamente, exceto que elas lidam com <strong>um único objeto</strong>. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo. Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e salvá-lo no arquivo <code>chuva_df.rds</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># salvar dados em um arquivo rds</span>
+<span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt;         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07</span>
+<span class="co">#&gt; 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1</span>
+<span class="co">#&gt; 2 01/02/1934    15.5     3.5     0.0     0.0    11.9    66.3     1.0</span>
+<span class="co">#&gt; 3 01/03/1934     0.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
+<span class="co">#&gt; 4 01/04/1934    54.5     0.0     0.0     0.0     0.0    18.5     0.0</span>
+<span class="co">#&gt; 5 01/05/1934     0.0    19.0    26.7     0.0     3.2     4.2     0.0</span>
+<span class="co">#&gt; 6 01/06/1934     0.0     0.0    21.5    12.7     8.7     0.0     0.0</span>
+<span class="co">#&gt;   Chuva08 Chuva09</span>
+<span class="co">#&gt; 1     0.0       0</span>
+<span class="co">#&gt; 2    40.0       0</span>
+<span class="co">#&gt; 3     0.0      55</span>
+<span class="co">#&gt; 4    19.5       0</span>
+<span class="co">#&gt; 5     0.0       0</span>
+<span class="co">#&gt; 6     0.0       0</span>
+<span class="co"># alterando formato de datas da coluna Data</span>
+chuva_df<span class="op">$</span>Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="dt">x =</span> chuva_df<span class="op">$</span>Data, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)
+file_rds_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.RDS&quot;</span>)
+<span class="kw">saveRDS</span>(<span class="dt">object =</span> chuva_df, <span class="dt">file =</span> file_rds_chuva_df)
+<span class="kw">file.exists</span>(file_rds_chuva_df)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Após salvar o <em>dataframe</em> <code>chuva_df</code> vamos removê-lo do ambiente da sessão e recuperá-lo com a função <code>readRDS()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># removendo chuva_df do ambiente</span>
+<span class="kw">rm</span>(chuva_df)
+<span class="co"># recuperando dados do arquivo em uma variável com nome diferente do original</span>
+prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_chuva_df)
+<span class="kw">head</span>(prec_ana[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt;         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07</span>
+<span class="co">#&gt; 1 1934-01-01      NA      NA      NA      NA    10.5     3.0    11.1</span>
+<span class="co">#&gt; 2 1934-02-01    15.5     3.5     0.0     0.0    11.9    66.3     1.0</span>
+<span class="co">#&gt; 3 1934-03-01     0.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
+<span class="co">#&gt; 4 1934-04-01    54.5     0.0     0.0     0.0     0.0    18.5     0.0</span>
+<span class="co">#&gt; 5 1934-05-01     0.0    19.0    26.7     0.0     3.2     4.2     0.0</span>
+<span class="co">#&gt; 6 1934-06-01     0.0     0.0    21.5    12.7     8.7     0.0     0.0</span>
+<span class="co">#&gt;   Chuva08 Chuva09</span>
+<span class="co">#&gt; 1     0.0       0</span>
+<span class="co">#&gt; 2    40.0       0</span>
+<span class="co">#&gt; 3     0.0      55</span>
+<span class="co">#&gt; 4    19.5       0</span>
+<span class="co">#&gt; 5     0.0       0</span>
+<span class="co">#&gt; 6     0.0       0</span></code></pre></div>
 </div>
 </div>
 <div id="netcdf" class="section level3">

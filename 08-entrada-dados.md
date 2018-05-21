@@ -176,7 +176,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpNePXrC/file1cbe4477c8eb.csv"
+#> [1] "/tmp/Rtmpi8iHno/file280a77ab241b.csv"
 ```
 
 
@@ -270,7 +270,9 @@ str(dprec)
 #>  $ Chuva31Status       : int  1 0 1 0 1 0 1 1 0 1 ...
 #>  $ X                   : logi  NA NA NA NA NA NA ...
 # exporta para arquivo texto separado por tab
-export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
+dprec_file <- paste0(tempfile(), ".tsv")
+export(dprec, file = dprec_file, na = "-999")
+#export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
 ```
 
 Na há necesida de especificar o argumento `format` das funções `import()` e `export()` pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo **rio** (ver tabela de formatos acima).
@@ -362,8 +364,9 @@ head(soi_df)
 #> 5 1951   5 -1.1
 #> 6 1951   6  0.3
 # escrevendo dados SOI em um arquivo CSV
+soi_file <- paste0(tempfile(), ".csv")
 export(soi_df,
-  file = "../output-adar/SOI.csv",
+  file = soi_file,
   na = "-999.9"
 )
 ```
@@ -449,21 +452,9 @@ cab[-c(1:15)][1:10]
 #>  [9] "83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;"                                                                                                                                                                                            
 #> [10] "83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;"
 # escrevendo dados com writeLines
-writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
-# visualizando dados gerados sem cabeçalho usando função system
-# (específico para sistema *unix)
-system("head -11 ../output-adar/83004_limpo.txt", intern = TRUE)
-#>  [1] "Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;"
-#>  [2] "83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;"                                                                                                                                                                                                                              
-#>  [3] "83004;01/01/1995;0000;;;;26.8;;;;;;;1.5;;1.6;22.04;86.75;2;"                                                                                                                                                                                                            
-#>  [4] "83004;01/01/1995;1200;21.2;22.5;20;;19.5;80;924.6;;32;4;;10;;;;;"                                                                                                                                                                                                       
-#>  [5] "83004;01/01/1995;1800;;25.2;21.5;;;73;922.9;;32;2;;10;;;;;"                                                                                                                                                                                                             
-#>  [6] "83004;02/01/1995;0000;;20.7;20.3;28.9;;97;924.2;;0;0;1.3;10;1.1;23.32;83;2.666667;"                                                                                                                                                                                     
-#>  [7] "83004;02/01/1995;1200;3.2;23.8;20.6;;19.9;76;924.7;;32;3;;10;;;;;"                                                                                                                                                                                                      
-#>  [8] "83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;"                                                                                                                                                                                                             
-#>  [9] "83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;"                                                                                                                                                                                            
-#> [10] "83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;"                                                                                                                                                                                                         
-#> [11] "83004;03/01/1995;1800;;23.4;22.6;;;94;922.1;;5;3;;10;;;;;"
+file_83004_limpo <- paste0(tempfile(), ".txt")
+writeLines(text = cab[-c(1:15)] , con = file_83004_limpo)
+#writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
 ```
 
 A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
@@ -504,9 +495,11 @@ head(dprec[, 1:10])
 # selecionando somente dados diarios do dia 1 a 31 de cada ano
 chuva_df <- dprec[, c(3, 14:44)]
 # arquivo binario do R
-save(chuva_df, file = "../output-adar/chuva_df.RData")
+file_chuva_df <- paste0(tempfile(), ".RData")
+save(chuva_df, file = file_chuva_df)
+#save(chuva_df, file = "../output-adar/chuva_df.RData")
 # verificando se arquivo foi salvo no diretório
-file.exists("../output-adar/chuva_df.RData")
+file.exists(file_chuva_df)
 #> [1] TRUE
 ```
 
@@ -520,15 +513,16 @@ rm(chuva_df)
 exists(chuva_df)
 #> Error in exists(chuva_df): object 'chuva_df' not found
 # carregando chuva_df
-load(file = "../output-adar/chuva_df.RData")
+load(file = file_chuva_df)
 ls()
 #>  [1] "bdmep_url_file"     "cab"                "chuva_df"          
-#>  [4] "dprec"              "hidroweb_dest_file" "hidroweb_url_file" 
-#>  [7] "link"               "pacotes"            "pcks"              
-#> [10] "rblue"              "soi"                "soi_df"            
-#> [13] "soi.df"             "soi_v"
+#>  [4] "dprec"              "dprec_file"         "file_83004_limpo"  
+#>  [7] "file_chuva_df"      "hidroweb_dest_file" "hidroweb_url_file" 
+#> [10] "link"               "pacotes"            "pcks"              
+#> [13] "rblue"              "soi"                "soi_df"            
+#> [16] "soi_file"           "soi_v"              "soi.df"
 # para carregar os dados e saber o nome com que foram salvos
-print(load(file = "../output-adar/chuva_df.RData"))
+print(load(file = file_chuva_df))
 #> [1] "chuva_df"
 head(chuva_df[, 1:10])
 #>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
@@ -555,32 +549,94 @@ Quando desejamos salvar só uma parte dos dados uma opção é usar a função `
 
 
 ```r
-save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
+file_dados_prec <- paste0(tempfile(), ".Rdata")
+save(cab, chuva_df, file = file_dados_prec)
+#save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
 ls()
 #>  [1] "bdmep_url_file"     "cab"                "chuva_df"          
-#>  [4] "dprec"              "hidroweb_dest_file" "hidroweb_url_file" 
-#>  [7] "link"               "pacotes"            "pcks"              
-#> [10] "rblue"              "soi"                "soi_df"            
-#> [13] "soi.df"             "soi_v"
+#>  [4] "dprec"              "dprec_file"         "file_83004_limpo"  
+#>  [7] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
+#> [10] "hidroweb_url_file"  "link"               "pacotes"           
+#> [13] "pcks"               "rblue"              "soi"               
+#> [16] "soi_df"             "soi_file"           "soi_v"             
+#> [19] "soi.df"
 rm(cab, chuva_df)
 ls()
-#>  [1] "bdmep_url_file"     "dprec"              "hidroweb_dest_file"
-#>  [4] "hidroweb_url_file"  "link"               "pacotes"           
-#>  [7] "pcks"               "rblue"              "soi"               
-#> [10] "soi_df"             "soi.df"             "soi_v"
+#>  [1] "bdmep_url_file"     "dprec"              "dprec_file"        
+#>  [4] "file_83004_limpo"   "file_chuva_df"      "file_dados_prec"   
+#>  [7] "hidroweb_dest_file" "hidroweb_url_file"  "link"              
+#> [10] "pacotes"            "pcks"               "rblue"             
+#> [13] "soi"                "soi_df"             "soi_file"          
+#> [16] "soi_v"              "soi.df"
 # carrega e imprime na tela nome dos dados carregados
-print(load("../output-adar/dados_prec.RData"))
+print(load(file_dados_prec))
 #> [1] "cab"      "chuva_df"
 ls()
 #>  [1] "bdmep_url_file"     "cab"                "chuva_df"          
-#>  [4] "dprec"              "hidroweb_dest_file" "hidroweb_url_file" 
-#>  [7] "link"               "pacotes"            "pcks"              
-#> [10] "rblue"              "soi"                "soi_df"            
-#> [13] "soi.df"             "soi_v"
+#>  [4] "dprec"              "dprec_file"         "file_83004_limpo"  
+#>  [7] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
+#> [10] "hidroweb_url_file"  "link"               "pacotes"           
+#> [13] "pcks"               "rblue"              "soi"               
+#> [16] "soi_df"             "soi_file"           "soi_v"             
+#> [19] "soi.df"
 ```
 
 
 #### RDS
+
+As funções `readRDS()` e `writeRDS()` são similares a `load()` e `save()`, respectivamente, exceto que elas lidam com **um único objeto**. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo.
+Vamos alterar o formato da data do *dataframe* `chuva_df` e salvá-lo no arquivo `chuva_df.rds`.
+
+
+```r
+# salvar dados em um arquivo rds
+head(chuva_df[, 1:10])
+#>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
+#> 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1
+#> 2 01/02/1934    15.5     3.5     0.0     0.0    11.9    66.3     1.0
+#> 3 01/03/1934     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4 01/04/1934    54.5     0.0     0.0     0.0     0.0    18.5     0.0
+#> 5 01/05/1934     0.0    19.0    26.7     0.0     3.2     4.2     0.0
+#> 6 01/06/1934     0.0     0.0    21.5    12.7     8.7     0.0     0.0
+#>   Chuva08 Chuva09
+#> 1     0.0       0
+#> 2    40.0       0
+#> 3     0.0      55
+#> 4    19.5       0
+#> 5     0.0       0
+#> 6     0.0       0
+# alterando formato de datas da coluna Data
+chuva_df$Data <- as.Date(x = chuva_df$Data, format = "%d/%m/%Y")
+file_rds_chuva_df <- paste0(tempfile(), ".RDS")
+saveRDS(object = chuva_df, file = file_rds_chuva_df)
+file.exists(file_rds_chuva_df)
+#> [1] TRUE
+```
+
+Após salvar o *dataframe* `chuva_df` vamos removê-lo do ambiente da sessão e recuperá-lo com a função `readRDS()`.
+
+
+```r
+# removendo chuva_df do ambiente
+rm(chuva_df)
+# recuperando dados do arquivo em uma variável com nome diferente do original
+prec_ana <- readRDS(file_rds_chuva_df)
+head(prec_ana[, 1:10])
+#>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
+#> 1 1934-01-01      NA      NA      NA      NA    10.5     3.0    11.1
+#> 2 1934-02-01    15.5     3.5     0.0     0.0    11.9    66.3     1.0
+#> 3 1934-03-01     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4 1934-04-01    54.5     0.0     0.0     0.0     0.0    18.5     0.0
+#> 5 1934-05-01     0.0    19.0    26.7     0.0     3.2     4.2     0.0
+#> 6 1934-06-01     0.0     0.0    21.5    12.7     8.7     0.0     0.0
+#>   Chuva08 Chuva09
+#> 1     0.0       0
+#> 2    40.0       0
+#> 3     0.0      55
+#> 4    19.5       0
+#> 5     0.0       0
+#> 6     0.0       0
+```
 
 
 ### NetCDF
