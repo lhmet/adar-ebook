@@ -221,7 +221,9 @@ dprec <- import(hidroweb_dest_file,
                 na.strings = "")
 str(dprec)
 # exporta para arquivo texto separado por tab
-export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
+dprec_file <- paste0(tempfile(), ".tsv")
+export(dprec, file = dprec_file, na = "-999")
+#export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
 ```
 
 Na há necesida de especificar o argumento `format` das funções `import()` e `export()` pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo **rio** (ver tabela de formatos acima).
@@ -281,8 +283,9 @@ soi_df <- data.frame(
 )
 head(soi_df)
 # escrevendo dados SOI em um arquivo CSV
+soi_file <- paste0(tempfile(), ".csv")
 export(soi_df,
-  file = "../output-adar/SOI.csv",
+  file = soi_file,
   na = "-999.9"
 )
 ```
@@ -303,7 +306,7 @@ Navegue ate o diretoriodo arquivo e clique duas vezes sobre o arquivo `SOI.csv`.
 
 ```{r Chunk445, echo=FALSE}
 soi.df <- import(
-  file = "../output-adar/SOI.csv",
+  file = soi_file,
   header = T,
   na.strings = "-999.9"
 )
@@ -337,10 +340,9 @@ cbind(cab[5:7])
 # selecionando somente os dados e o nome das variáveis
 cab[-c(1:15)][1:10]
 # escrevendo dados com writeLines
-writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
-# visualizando dados gerados sem cabeçalho usando função system
-# (específico para sistema *unix)
-system("head -11 ../output-adar/83004_limpo.txt", intern = TRUE)
+file_83004_limpo <- paste0(tempfile(), ".txt")
+writeLines(text = cab[-c(1:15)] , con = file_83004_limpo)
+#writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
 ```
 
 A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
@@ -366,9 +368,11 @@ head(dprec[, 1:10])
 # selecionando somente dados diarios do dia 1 a 31 de cada ano
 chuva_df <- dprec[, c(3, 14:44)]
 # arquivo binario do R
-save(chuva_df, file = "../output-adar/chuva_df.RData")
+file_chuva_df <- paste0(tempfile(), ".RData")
+save(chuva_df, file = file_chuva_df)
+#save(chuva_df, file = "../output-adar/chuva_df.RData")
 # verificando se arquivo foi salvo no diretório
-file.exists("../output-adar/chuva_df.RData")
+file.exists(file_chuva_df)
 ```
 
 Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo `chuva_df.RData`.
@@ -379,10 +383,10 @@ rm(chuva_df)
 # verifica existência de objeto
 exists(chuva_df)
 # carregando chuva_df
-load(file = "../output-adar/chuva_df.RData")
+load(file = file_chuva_df)
 ls()
 # para carregar os dados e saber o nome com que foram salvos
-print(load(file = "../output-adar/chuva_df.RData"))
+print(load(file = file_chuva_df))
 head(chuva_df[, 1:10])
 ```
 
@@ -393,18 +397,42 @@ Se você deseja salvar o espaço de trabalho em outro momento use a função `sa
 Quando desejamos salvar só uma parte dos dados uma opção é usar a função `rm()` (uma abreviação de **remove**) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função `save()`permite salvar *mais de um objeto* em um mesmo arquivo. 
 
 ```{r Chunk6112, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
-save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
+file_dados_prec <- paste0(tempfile(), ".Rdata")
+save(cab, chuva_df, file = file_dados_prec)
+#save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
 ls()
 rm(cab, chuva_df)
 ls()
 # carrega e imprime na tela nome dos dados carregados
-print(load("../output-adar/dados_prec.RData"))
+print(load(file_dados_prec))
 ls()
 ```
 
 
 #### RDS
 
+As funções `readRDS()` e `writeRDS()` são similares a `load()` e `save()`, respectivamente, exceto que elas lidam com **um único objeto**. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo.
+Vamos alterar o formato da data do *dataframe* `chuva_df` e salvá-lo no arquivo `chuva_df.rds`.
+
+```{r Chunk6120}
+# salvar dados em um arquivo rds
+head(chuva_df[, 1:10])
+# alterando formato de datas da coluna Data
+chuva_df$Data <- as.Date(x = chuva_df$Data, format = "%d/%m/%Y")
+file_rds_chuva_df <- paste0(tempfile(), ".RDS")
+saveRDS(object = chuva_df, file = file_rds_chuva_df)
+file.exists(file_rds_chuva_df)
+```
+
+Após salvar o *dataframe* `chuva_df` vamos removê-lo do ambiente da sessão e recuperá-lo com a função `readRDS()`.
+
+```{r Chunk6121}
+# removendo chuva_df do ambiente
+rm(chuva_df)
+# recuperando dados do arquivo em uma variável com nome diferente do original
+prec_ana <- readRDS(file_rds_chuva_df)
+head(prec_ana[, 1:10])
+```
 
 
 ### NetCDF
