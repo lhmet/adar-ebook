@@ -21,7 +21,7 @@ Para reproduzir os códigos deste capítulo você precisará dos seguintes pacot
 
 
 ```r
-pacotes <- c("easypackages","rio", "readr", "feather") 
+pacotes <- c("easypackages","rio", "readr", "feather", "readxl") 
 ```
 
 Para instalá-los já com as dependências utilize a instrução abaixo:
@@ -176,7 +176,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpXqrMzI/file2490440a3b28.csv"
+#> [1] "/tmp/RtmpYtT5y6/file5f00242d4c07.csv"
 ```
 
 
@@ -639,18 +639,184 @@ head(prec_ana[, 1:10])
 ```
 
 
-### NetCDF
+### NetCDF (Network Common Data Form) 
+
+NetCDF é formato binário, auto-descritivo e independente do SO, para criar e distribuir *arrays* multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dos climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as [reanálises](http://en.wikipedia.org/wiki/Meteorological_reanalysis).
+
+As bibliotecas NetCDF são mantidas pelo [Unidata](http://www.unidata.ucar.edu/software/netcdf/). Dados no formato NetCDF são acessíveis no R pelos pacotes [ncdf](http://cran.r-project.org/web/packages/ncdf/index.html), [ncdf4](http://cran.r-project.org/web/packages/ncdf4/index.html) e [raster](http://cran.r-project.org/web/packages/raster/index.html). Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. O pacote `ncdf` é disponível para Linux e Mac OS X, mas suporta somente arquivo no formato NetCDF 3, enquanto o pacote `ncdf4` lê arquivos no formato NetCDF 3 e 4, porém é disponível apenas para sistemas Linux.
+
+
+#### Pré-requisitos
+
+Para utilizar os pacotes `ncdf*` é necessário instalar os pacotes linux mostrados abaixo.
 
 ```bash
 sudo apt-get update 
 sudo apt-get upgrade --assume-yes
-
-## Install 3rd parties for NetCDF
+## Install pacotes NetCDF
 sudo apt-get install libnetcdf-dev libudunits2-dev
-
 ## install 3rd parties needed for devtools + openssl git2r httr
 #sudo apt-get install libssl-dev
 ```
+
+#### Arquivo exemplo
+
+Os exemplos a seguir usam o pacote [ncdf4](https://cran.r-project.org/web/packages/ncdf4/index.html) para ler arquivo NetCDF com dados climáticos do *Climate Research Unit [CRU](http://www.cru.uea.ac.uk/data)*, consistindo de valores médios de longo prazo (1961-1990) da  temperatura do ar próximo à superfície  com resolução espacial de 0,5 º na área continental. As dimensões da *array* são: 720 (longitudes) x 360 (latitudes) x 12 (meses).
+
+
+
+```r
+dados_cru_url <- "https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1"
+dest_file_nc <- file.path(tempdir(), "cru10min30_tmp.nc")
+download.file(dados_cru_url, dest_file_nc)
+```
+
+Abrindo arquivo NetCDF e obtendo informações básicas.
+
+
+```r
+dest_file_nc
+file.exists(dest_file_nc)
+library(ncdf4); library(raster)
+# variável de interesse, tmp: temperatura do ar
+dname <- "tmp"  
+# abre o arquivo NetCDF
+ncin <- nc_open(dest_file_nc)
+print(ncin)
+# estrutura dos dados
+str(ncin)
+# classe
+class(ncin)
+# modo
+mode(ncin)
+```
+
+Agora, vamos ler as coordenadas de longitude e latitude. 
+
+
+```r
+lon <- ncvar_get(ncin, "lon")
+nlon <- dim(lon)
+head(lon)
+lat <- ncvar_get(ncin, "lat", verbose = FALSE)
+nlat <- dim(lat)
+head(lat)
+c(nlon, nlat)
+```
+
+Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
+
+
+```r
+tempo <- ncvar_get(ncin, "time")
+(tunits <- ncatt_get(ncin, "time", "units"))
+(nt <- dim(tempo))
+tmp.array <- ncvar_get(ncin, dname)
+# resumo da estrutura dos dados
+str(tmp.array)
+# nome longo da variável
+(dlname <- ncatt_get(ncin, dname, "long_name"))
+# unidades da variável
+(dunits <- ncatt_get(ncin, dname, "units"))
+# valor definido para valores faltantes
+(fillvalue <- ncatt_get(ncin, dname, "_FillValue"))
+# fechando arquivo
+nc_close(ncin)
+```
+
+As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), *arrays* bidimensionais (matrizes, campo espacial de um momento), ou *arrays* multidimensionais (campos espaciais de uma variável em diversos tempos).
+
+Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. 
+
+
+```r
+#library(chron)
+library(RColorBrewer)
+#library(lattice)
+library(fields)
+m <- 1
+# campo espacial do primeiro dia de dados
+tmp.slice <- tmp.array[, , m]
+str(tmp.slice)
+# outra função para visualizar dados com 3D
+image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
+```
+
+##### Forma fácil de importar NetCDF
+
+Via pacote **raster**.
+
+
+```r
+library(raster)
+b <- brick(dest_file_nc)
+b
+names(b) <- gsub("X", "Mes_", names(b))
+b
+plot(b, col = rev(brewer.pal(10, "RdBu")))
+```
+
+## Arquivos Excel
+
+O armazenamento de dados em formato Excel (arquivos com extensões `.xls` e `.xlsx`) é uma prática muito popular. Mas infelizmente ler dados Excel não é tão simples, apesar da variedade de pacotes disponíveis para tal tarefa. 
+Há uma razoável variedade de pacotes para resolver esse problema: [gdata](https://cran.r-project.org/web/packages/gdata/index.html), [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) e [readxl](https://readxl.tidyverse.org/) e outros. mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.
+
+Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel (`xls` ou `xlsx`).
+
+A solução mais usada é converter as planilhas Excel para `csv` usando algum programa.
+
+Mas caso isso não seja viável, você verá como usar o pacote [readxl](https://readxl.tidyverse.org/) para leitura de arquivos Excel. 
+
+Baixando arquivo exemplo.
+
+
+```r
+excel_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true"
+dest_file_excel <- file.path(tempdir(), "Estações Normal Climatoógica 1981-2010.xls")
+download.file(excel_file_url, dest_file_excel)
+```
+
+
+
+```r
+# install.packages("readxl")
+library(readxl)
+inmet_estacoes <- read_excel(
+  path = dest_file_excel,
+  col_names = TRUE, 
+  skip = 3)
+inmet_estacoes
+#> # A tibble: 437 x 10
+#>       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude
+#>    <dbl>  <dbl> <chr>               <chr>    <dbl>     <dbl>   <dbl>
+#>  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. 
+#>  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. 
+#>  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. 
+#>  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. 
+#>  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. 
+#>  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5
+#>  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. 
+#>  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. 
+#>  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. 
+#> 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1
+#> # ... with 427 more rows, and 3 more variables: `Inicio Operação` <chr>,
+#> #   `Fim Operação` <dttm>, Situação <chr>
+str(inmet_estacoes)
+#> Classes 'tbl_df', 'tbl' and 'data.frame':	437 obs. of  10 variables:
+#>  $ Nº             : num  1 2 3 4 5 6 7 8 9 10 ...
+#>  $ Código         : num  82704 82915 82807 82989 82995 ...
+#>  $ Nome da Estação: chr  "CRUZEIRO DO SUL" "RIO BRANCO" "TARAUACA" "AGUA BRANCA" ...
+#>  $ UF             : chr  "AC" "AC" "AC" "AL" ...
+#>  $ Latitude       : num  -7.6 -9.95 -8.17 -9.28 -9.73 ...
+#>  $ Longitude      : num  -72.7 -67.9 -70.8 -37.9 -36.8 ...
+#>  $ Atitude        : num  170 160 190 605 247 ...
+#>  $ Inicio Operação: chr  "10228" "10594" "24264" "10353" ...
+#>  $ Fim Operação   : POSIXct, format: "2016-02-01" NA ...
+#>  $ Situação       : chr  "Desativada" NA NA NA ...
+class(inmet_estacoes)
+#> [1] "tbl_df"     "tbl"        "data.frame"
+```
+
 
 
 ## Para saber mais
