@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-17">
+<meta name="date" content="2018-05-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -215,9 +215,16 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="pre-requisitos.html"><a href="pre-requisitos.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
-<li class="chapter" data-level="8.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.3</b> Arquivos texto</a></li>
-<li class="chapter" data-level="8.4" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos binários</a></li>
-<li class="chapter" data-level="8.5" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.5</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.3" data-path="boas-praticas-para-importacao-e-exportacao-de-dados.html"><a href="boas-praticas-para-importacao-e-exportacao-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
+<li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#formatos-binarios-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#netcdf"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.6</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -245,8 +252,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
 <li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
 <li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
-<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
+<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados-1"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -273,13 +280,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h1><span class="header-section-number">8</span> Entrada e saída de dados</h1>
 <p>O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como:</p>
 <ul>
-<li>dados tabulares armazenados em arquivos texto (<a href="https://pt.wikipedia.org/wiki/ASCII">ASCII</a>)</li>
-<li>arquivos de dados meteorológicos de agências brasileiras</li>
+<li>dados retangulares armazenados em arquivos de texto puro</li>
 <li>dados binários e netCDF</li>
 <li>dados espaciais em formato GIS</li>
 </ul>
 <p>Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da <em>web</em>.</p>
-<p>Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote <strong>rio</strong> que permite importar com facilidade uma diversidade de tipos de dados. Arquivos CSV serão tratados com os pacotes <strong>readr</strong> e <strong>data.table</strong>. Dados em formato texto tem desvantagens e por isso veremos formatos binários, entre eles, as funções nativas do R (<code>readRDS()</code>, <code>load()</code>) e funções de pacotes específicos para importar arquivos no formato netCDF.</p> 
+<p>Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote <strong>rio</strong> que permite importar uma diversidade de tipos de dados com muita facilidade. Arquivos texto com valores separados por vírgula (<em>CSV</em>) serão tratados com os pacotes <strong>readr</strong> e <strong>data.table</strong>. Dados em formato texto puro tem desvantagens e por isso veremos também formatos binários, entre eles, as funções nativas do R (<code>readRDS()</code>, <code>load()</code>) e funções de pacotes específicos para importar arquivos no formato netCDF.</p> 
 </div>
             </section>
 

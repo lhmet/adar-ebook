@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-17">
+<meta name="date" content="2018-05-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -215,9 +215,16 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="pre-requisitos.html"><a href="pre-requisitos.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
-<li class="chapter" data-level="8.3" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.3</b> Arquivos texto</a></li>
-<li class="chapter" data-level="8.4" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos binários</a></li>
-<li class="chapter" data-level="8.5" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.5</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.3" data-path="boas-praticas-para-importacao-e-exportacao-de-dados.html"><a href="boas-praticas-para-importacao-e-exportacao-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
+<li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#formatos-binarios-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#netcdf"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.6</b> Para saber mais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -245,8 +252,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
 <li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
 <li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
-<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
+<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados-1"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -270,205 +277,108 @@ code > span. { color: #1f1c1b; } /* Normal */
 
             <section class="normal" id="section-">
 <div id="arquivos-binarios" class="section level2">
-<h2><span class="header-section-number">8.4</span> Arquivos binários</h2>
+<h2><span class="header-section-number">8.5</span> Arquivos binários</h2>
 <p>Arquivo texto favorecem a legibilidade humana dos dados mas tem limitada precisão numérica limitada. Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Por isso, vários softwares armazenam dados no formato binário.</p>
-<p>Existem diversas funções nativas do R para ler este formato de dados.</p>
-<p>versão completa da tabela na <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vinheta do pacote <strong>rio</strong></a></p>
-<table style="width:94%;">
-<colgroup>
-<col width="9%" />
-<col width="13%" />
-<col width="20%" />
-<col width="20%" />
-<col width="29%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Formato</th>
-<th>Extensão</th>
-<th>Pacote de importação</th>
-<th>Pacote de exportação</th>
-<th>Instalado por <em>default</em></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Valores separados por vírgula</td>
-<td>.csv</td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td>Sim</td>
-</tr>
-<tr class="even">
-<td>dados separados por tab</td>
-<td>.tsv</td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td>Sim</td>
-</tr>
-<tr class="odd">
-<td>Excel</td>
-<td>.xls</td>
-<td><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
-<td></td>
-<td>Sim</td>
-</tr>
-<tr class="even">
-<td>Excel</td>
-<td>.xlsx</td>
-<td><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
-<td><a href="https://cran.r-project.org/package=openxlsx"><strong>openxlsx</strong></a></td>
-<td>Sim</td>
-</tr>
-<tr class="odd">
-<td>script R</td>
-<td>.R</td>
-<td><strong>base</strong></td>
-<td><strong>base</strong></td>
-<td>Sim</td>
-</tr>
-<tr class="even">
-<td>objetos salvos no R</td>
-<td>.RData, .rda</td>
-<td><strong>base</strong></td>
-<td><strong>base</strong></td>
-<td>Sim</td>
-</tr>
-<tr class="odd">
-<td>objetos do R serializados</td>
-<td>.rds</td>
-<td><strong>base</strong></td>
-<td><strong>base</strong></td>
-<td>Sim</td>
-</tr>
-<tr class="even">
-<td>dados Fortran</td>
-<td>Sem extensão reconhecida</td>
-<td><strong>utils</strong></td>
-<td></td>
-<td>Sim</td>
-</tr>
-<tr class="odd">
-<td>Formato de dados com largura fixa</td>
-<td>.fwf</td>
-<td><strong>utils</strong></td>
-<td><strong>utils</strong></td>
-<td>Sim</td>
-</tr>
-<tr class="even">
-<td>dados separados por vírgula compactados com gzip</td>
-<td>.csv.gz</td>
-<td><strong>utils</strong></td>
-<td><strong>utils</strong></td>
-<td>Sim</td>
-</tr>
-<tr class="odd">
-<td>Feather R/Python interchange format</td>
-<td>.feather</td>
-<td><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
-<td><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="even">
-<td>Armazenamento rápido (Fast Storage)</td>
-<td>.fst</td>
-<td><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
-<td><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="odd">
-<td>JSON</td>
-<td>.json</td>
-<td><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
-<td><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="even">
-<td>Matlab</td>
-<td>.mat</td>
-<td><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
-<td><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="odd">
-<td>Planilha OpenDocument</td>
-<td>.ods</td>
-<td><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
-<td><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="even">
-<td>tabelas HTML</td>
-<td>.html</td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="odd">
-<td>documentos XML</td>
-<td>.xml</td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="even">
-<td>YAML</td>
-<td>.yml</td>
-<td><a href="https://cran.r-project.org/package=yaml"><strong>yaml</strong></a></td>
-<td><a href="https://cran.r-project.org/package=yaml"><strong>yaml</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="odd">
-<td>Área de transferência</td>
-<td><em>default</em> é tsv</td>
-<td><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
-<td><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="even">
-<td><a href="https://www.google.com/sheets/about/">planilhas Google</a></td>
-<td>como valores separados por vírgula</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
-myDT &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>),
-                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))
-<span class="co"># Cria um data.table com vetores A, B, C</span>
-A &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
-B &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)
-C &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)
-DT &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">a =</span> A, <span class="dt">b =</span> B, <span class="dt">c =</span> C)
-DT
-<span class="co">#&gt;    a b  c</span>
-<span class="co">#&gt; 1: 1 a  6</span>
-<span class="co">#&gt; 2: 2 b  7</span>
-<span class="co">#&gt; 3: 3 c  8</span>
-<span class="co">#&gt; 4: 4 d  9</span>
-<span class="co">#&gt; 5: 5 e 10</span></code></pre></div>
-<div id="left">
-<p><strong><code>DT[ , nome_col]</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[ , b]
-<span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</span>
-<span class="kw">class</span>(DT[ , b])
-<span class="co">#&gt; [1] &quot;character&quot;</span>
-<span class="kw">is.vector</span>(DT[ , b])
+<p>Após a leitura e o processamento de dados brutos você provavelmente os salvará para uso futuro. Este procedimento é recomendado para evitar de ter que repetir todo processamento novamente. Para dados que ocupam espaço significativo (por exemplo com mais de 1 milhão de linhas) é mais eficiente salvar os dados em um formato binário, uma vez que dessa forma os tempos de escrita e leitura dos dados é menor.</p>
+<div id="formatos-binarios-nativos-do-r" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> Formatos binários nativos do R</h3>
+<div id="rdata" class="section level4">
+<h4><span class="header-section-number">8.5.1.1</span> Rdata</h4>
+<p>Para mostrar como usar as funções <code>save()</code> e <code>load()</code> vamos utilizar os dados pluviométricos lidos anteriormente (<code>dprec</code>) e selecionar as colunas de interesse. O dataframe será salvo em um arquivo binário do R com a extensão <code>.RData</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># primeiras linhas</span>
+<span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt;   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima</span>
+<span class="co">#&gt; 1          3054002                 1 01/01/1934                 1     NA</span>
+<span class="co">#&gt; 2          3054002                 1 01/02/1934                 1   66.3</span>
+<span class="co">#&gt; 3          3054002                 1 01/03/1934                 1   55.0</span>
+<span class="co">#&gt; 4          3054002                 1 01/04/1934                 1   54.5</span>
+<span class="co">#&gt; 5          3054002                 1 01/05/1934                 1   30.5</span>
+<span class="co">#&gt; 6          3054002                 1 01/06/1934                 1   42.5</span>
+<span class="co">#&gt;   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus</span>
+<span class="co">#&gt; 1    NA        NA             NA            0           0</span>
+<span class="co">#&gt; 2 174.7         6             10            1           1</span>
+<span class="co">#&gt; 3 160.7         9             10            1           1</span>
+<span class="co">#&gt; 4  98.4         1              4            1           1</span>
+<span class="co">#&gt; 5 119.4        29              8            1           1</span>
+<span class="co">#&gt; 6 191.6        13             11            1           1</span>
+<span class="co"># selecionando somente dados diarios do dia 1 a 31 de cada ano</span>
+chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span><span class="op">:</span><span class="dv">44</span>)]
+<span class="co"># arquivo binario do R</span>
+<span class="kw">save</span>(chuva_df, <span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
+<span class="co"># verificando se arquivo foi salvo no diretório</span>
+<span class="kw">file.exists</span>(<span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando chuva_df do ambiente de trabalho</span>
+<span class="kw">rm</span>(chuva_df)
+<span class="co"># verifica existência de objeto</span>
+<span class="kw">exists</span>(chuva_df)
+<span class="co">#&gt; Error in exists(chuva_df): object &#39;chuva_df&#39; not found</span>
+<span class="co"># carregando chuva_df</span>
+<span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>)
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
+<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
+<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
+<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
+<span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;../output-adar/chuva_df.RData&quot;</span>))
+<span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
+<span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt;         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07</span>
+<span class="co">#&gt; 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1</span>
+<span class="co">#&gt; 2 01/02/1934    15.5     3.5     0.0     0.0    11.9    66.3     1.0</span>
+<span class="co">#&gt; 3 01/03/1934     0.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
+<span class="co">#&gt; 4 01/04/1934    54.5     0.0     0.0     0.0     0.0    18.5     0.0</span>
+<span class="co">#&gt; 5 01/05/1934     0.0    19.0    26.7     0.0     3.2     4.2     0.0</span>
+<span class="co">#&gt; 6 01/06/1934     0.0     0.0    21.5    12.7     8.7     0.0     0.0</span>
+<span class="co">#&gt;   Chuva08 Chuva09</span>
+<span class="co">#&gt; 1     0.0       0</span>
+<span class="co">#&gt; 2    40.0       0</span>
+<span class="co">#&gt; 3     0.0      55</span>
+<span class="co">#&gt; 4    19.5       0</span>
+<span class="co">#&gt; 5     0.0       0</span>
+<span class="co">#&gt; 6     0.0       0</span></code></pre></div>
+<p>Um <strong>vantagem desse formato</strong> é que os objetos criados podem ser lidos pelo R independente do sistema operacional e da arquitetura do computador, tornando muito prático o acesso aos dados. Cada vez que uma sessão do R é finalizada, uma janela surge perguntando se deseja salvar o espaço de trabalho (<code>save the workspace image</code>), que nada mais é do que um arquivo binário chamado <code>.RData</code> no diretório de trabalho. Assim quando iniciar a sessão se o arquivo <code>.RData</code> estiver no diretório de trabalho ele será automaticamente carregado tornando todos os objetos da última sessão disponíveis novamente. Se você deseja salvar o espaço de trabalho em outro momento use a função <code>save.image()</code>.</p>
+<p>Quando desejamos salvar só uma parte dos dados uma opção é usar a função <code>rm()</code> (uma abreviação de <strong>remove</strong>) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função <code>save()</code>permite salvar <em>mais de um objeto</em> em um mesmo arquivo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> <span class="st">&quot;../output-adar/dados_prec.RData&quot;</span>)
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
+<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
+<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
+<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="kw">rm</span>(cab, chuva_df)
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;dprec&quot;              &quot;hidroweb_dest_file&quot;</span>
+<span class="co">#&gt;  [4] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
+<span class="co">#&gt;  [7] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
+<span class="co">#&gt; [10] &quot;soi_df&quot;             &quot;soi.df&quot;             &quot;soi_v&quot;</span>
+<span class="co"># carrega e imprime na tela nome dos dados carregados</span>
+<span class="kw">print</span>(<span class="kw">load</span>(<span class="st">&quot;../output-adar/dados_prec.RData&quot;</span>))
+<span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
+<span class="kw">ls</span>()
+<span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;cab&quot;                &quot;chuva_df&quot;          </span>
+<span class="co">#&gt;  [4] &quot;dprec&quot;              &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
+<span class="co">#&gt;  [7] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
+<span class="co">#&gt; [10] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
+<span class="co">#&gt; [13] &quot;soi.df&quot;             &quot;soi_v&quot;</span></code></pre></div>
 </div>
-<div id="right">
-<p><strong><code>DT[ , .(nome_col)]</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[ , .(b)]
-<span class="co">#&gt;    b</span>
-<span class="co">#&gt; 1: a</span>
-<span class="co">#&gt; 2: b</span>
-<span class="co">#&gt; 3: c</span>
-<span class="co">#&gt; 4: d</span>
-<span class="co">#&gt; 5: e</span>
-<span class="kw">class</span>(DT[ , .(b)])
-<span class="co">#&gt; [1] &quot;data.table&quot; &quot;data.frame&quot;</span></code></pre></div>
+<div id="rds" class="section level4">
+<h4><span class="header-section-number">8.5.1.2</span> RDS</h4>
+</div>
+</div>
+<div id="netcdf" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> NetCDF</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get update 
+<span class="fu">sudo</span> apt-get upgrade --assume-yes
+
+<span class="co">## Install 3rd parties for NetCDF</span>
+<span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev
+
+<span class="co">## install 3rd parties needed for devtools + openssl git2r httr</span>
+<span class="co">#sudo apt-get install libssl-dev</span></code></pre></div>
 </div>
 </div>
             </section>
