@@ -514,38 +514,3 @@ str(soi.df)
 A função `read.fortran()` é uma função similar à `read.fwf()` e permite usar especificações de colunas no estilo [Fortran](http://en.wikipedia.org/wiki/Fortran).
 
 
-### Arquivos texto não estruturados
-
-Em alguns casos é necessário ler arquivos textos sem uma estrutura definida como no caso de arquivos delimitados. Se o arquivo não é bem estruturado é mais fácil ler cada linha de texto separadamente e depois decompor e manipular o conteúdo do texto. 
-A função `readLines()` é adequada para isso. Cada linha é tratada como um elemento de um vetor do tipo `character`.
-
-Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde estão as informações da estação meteorológica.
-
-```{r Chunk450, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
-# leitura do cabecalho do arquivo de dados de uma estação do inmet
-cab <- readLines(bdmep_dest_file)
-head(cab)
-# somente linhas com coordenadas da estação
-cab[5:7]
-is.vector(cab[5:7])
-# arranjando em coluna
-cbind(cab[5:7])
-# selecionando somente os dados e o nome das variáveis
-cab[-c(1:15)][1:10]
-# escrevendo dados com writeLines
-bdmep_dest_file_limpo <- file.path(tempdir(), "83004_limpo.txt")
-writeLines(text = cab[-c(1:15)] , con = bdmep_dest_file_limpo)
-```
-A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
-
-Vamos abrir o arquivo gerado sem cabeçalho com:
-
-```{r, eval = FALSE}
-file.show(bdmep_dest_file_limpo)
-```
-
-
-
-
-
-
