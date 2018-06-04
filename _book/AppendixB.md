@@ -25,7 +25,7 @@ Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o u
 aq_url <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt"
 # arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpRDUvaW/file5f6f1b6498a8"
+#> [1] "/tmp/RtmpuONrxV/file726d62a939bd"
 download.file(aq_url, destfile = aq_dest_file)
 ```
 
@@ -247,9 +247,9 @@ dput(x)
 #> "chuva"), class = "data.frame", row.names = c(NA, -3L))
 # salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpRDUvaW/file5f6f296c4133"
+#> [1] "/tmp/RtmpuONrxV/file726d3d880573"
 (x_dest_file <- tempfile())
-#> [1] "/tmp/RtmpRDUvaW/file5f6f1c9916d5"
+#> [1] "/tmp/RtmpuONrxV/file726d6d787718"
 dput(x, file = x_dest_file)
 # recuperando x a partir do arquivo
 y <- dget(x_dest_file)
@@ -271,7 +271,7 @@ ls(pattern = "^[xy]")
 #> [1] "x"           "x_dest_file" "y"
 # salvando mais de um objeto em um arquivo
 (xy_dest_file <- tempfile())
-#> [1] "/tmp/RtmpRDUvaW/file5f6f4cd7b7ba"
+#> [1] "/tmp/RtmpuONrxV/file726d6b6ca65"
 dump(ls(pattern = "^[xy]"), file = xy_dest_file)
 # vamos apagar x e y do espaco de trabalho
 rm(x, y)
@@ -1155,65 +1155,5 @@ str(soi.df)
 ```
 
 A função `read.fortran()` é uma função similar à `read.fwf()` e permite usar especificações de colunas no estilo [Fortran](http://en.wikipedia.org/wiki/Fortran).
-
-
-### Arquivos texto não estruturados
-
-Em alguns casos é necessário ler arquivos textos sem uma estrutura definida como no caso de arquivos delimitados. Se o arquivo não é bem estruturado é mais fácil ler cada linha de texto separadamente e depois decompor e manipular o conteúdo do texto. 
-A função `readLines()` é adequada para isso. Cada linha é tratada como um elemento de um vetor do tipo `character`.
-
-Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde estão as informações da estação meteorológica.
-
-
-```r
-# leitura do cabecalho do arquivo de dados de uma estação do inmet
-cab <- readLines(bdmep_dest_file)
-head(cab)
-#> [1] "--------------------"                                 
-#> [2] "BDMEP - INMET"                                        
-#> [3] "--------------------"                                 
-#> [4] "Estação           : SAO PAULO  IAG  - SP (OMM: 83004)"
-#> [5] "Latitude  (graus) : -23.65"                           
-#> [6] "Longitude (graus) : -46.61"
-# somente linhas com coordenadas da estação
-cab[5:7]
-#> [1] "Latitude  (graus) : -23.65" "Longitude (graus) : -46.61"
-#> [3] "Altitude  (metros): 800.00"
-is.vector(cab[5:7])
-#> [1] TRUE
-# arranjando em coluna
-cbind(cab[5:7])
-#>      [,1]                        
-#> [1,] "Latitude  (graus) : -23.65"
-#> [2,] "Longitude (graus) : -46.61"
-#> [3,] "Altitude  (metros): 800.00"
-# selecionando somente os dados e o nome das variáveis
-cab[-c(1:15)][1:10]
-#>  [1] "Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;"
-#>  [2] "83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;"                                                                                                                                                                                                                              
-#>  [3] "83004;01/01/1995;0000;;;;26.8;;;;;;;1.5;;1.6;22.04;86.75;2;"                                                                                                                                                                                                            
-#>  [4] "83004;01/01/1995;1200;21.2;22.5;20;;19.5;80;924.6;;32;4;;10;;;;;"                                                                                                                                                                                                       
-#>  [5] "83004;01/01/1995;1800;;25.2;21.5;;;73;922.9;;32;2;;10;;;;;"                                                                                                                                                                                                             
-#>  [6] "83004;02/01/1995;0000;;20.7;20.3;28.9;;97;924.2;;0;0;1.3;10;1.1;23.32;83;2.666667;"                                                                                                                                                                                     
-#>  [7] "83004;02/01/1995;1200;3.2;23.8;20.6;;19.9;76;924.7;;32;3;;10;;;;;"                                                                                                                                                                                                      
-#>  [8] "83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;"                                                                                                                                                                                                             
-#>  [9] "83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;"                                                                                                                                                                                            
-#> [10] "83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;"
-# escrevendo dados com writeLines
-bdmep_dest_file_limpo <- file.path(tempdir(), "83004_limpo.txt")
-writeLines(text = cab[-c(1:15)] , con = bdmep_dest_file_limpo)
-```
-A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
-
-Vamos abrir o arquivo gerado sem cabeçalho com:
-
-
-```r
-file.show(bdmep_dest_file_limpo)
-```
-
-
-
-
 
 

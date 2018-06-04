@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-21">
+<meta name="date" content="2018-06-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,6 +227,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a></li>
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
 </ul></li>
+<li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="9" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.2" data-path="diretorio-de-trabalho-1.html"><a href="diretorio-de-trabalho-1.html"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
@@ -238,6 +243,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="A.3.3" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
 <li class="chapter" data-level="A.3.4" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
 <li class="chapter" data-level="A.3.5" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#solucao-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="A.3.6" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="funcoes-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funcoes-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
@@ -254,7 +260,6 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
 <li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
 <li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
-<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados-1"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -323,7 +328,7 @@ dados
 <span class="co">#&gt;  $ datas : Factor w/ 15 levels &quot;2013-01-01&quot;,&quot;2013-01-02&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...</span>
 <span class="co">#&gt;  $ cidade: Factor w/ 1 level &quot;Santa Maria&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span>
 <span class="co">#&gt;  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...</span></code></pre></div>
-<p>A saída da função <code>str()</code>indica que há duas variáveis da classe <code>factor</code>. Em um <em>dataframe</em> vetores do tipo <code>character</code> são automaticamente convertidos em <code>factor</code>. Este é o comportamento <em>default</em> da função <code>data.frame()</code>. Para que essa conversão não seja feita você deve definir o parâmetro <code>stringsAsFactors = FALSE</code> na função <code>data.frame()</code>. Vamos recriar o <em>dataframe</em> <code>dados</code> sem a conversão de <code>character</code> para <code>factor</code>.</p>
+<p>A saída da função <code>str()</code>indica que há duas variáveis da classe <code>factor</code>. Em um <em>dataframe</em> vetores do tipo <code>character</code> são automaticamente convertidos em <code>factor</code>. Este é o comportamento <em>default</em> da função <code>data.frame()</code>. Para desabilitar essa conversão você precisa definir o parâmetro <code>stringsAsFactors = FALSE</code> na função <code>data.frame()</code>. Vamos recriar o <em>dataframe</em> <code>dados</code> sem a conversão de <code>character</code> para <code>factor</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando um dataframe</span>
 dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">datas =</span> <span class="kw">c</span>(

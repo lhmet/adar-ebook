@@ -214,3 +214,9 @@ x
 #> [1] -1  3
 ```
 
+### Produto cartesiano
+
+O produto cartesiano de dois conjuntos A e B é representado por $A \times B$. O resultado é o conjunto de todos pares ordenados (a, b) tal que $a \belong b$.
+
+
+
