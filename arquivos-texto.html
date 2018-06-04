@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-05-21">
+<meta name="date" content="2018-06-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,6 +227,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a></li>
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
 </ul></li>
+<li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="9" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.2" data-path="diretorio-de-trabalho-1.html"><a href="diretorio-de-trabalho-1.html"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
@@ -238,6 +243,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="A.3.3" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
 <li class="chapter" data-level="A.3.4" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
 <li class="chapter" data-level="A.3.5" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#solucao-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="A.3.6" data-path="operacoes-matriciais.html"><a href="operacoes-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="funcoes-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funcoes-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
@@ -254,7 +260,6 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
 <li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
 <li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
-<li class="chapter" data-level="B.4.3" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-texto-nao-estruturados-1"><i class="fa fa-check"></i><b>B.4.3</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -286,7 +291,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>O R utiliza o alfabeto <a href="https://pt.wikipedia.org/wiki/Unicode">Unicode</a> para identificação de caracteres. Para associação unívoca de cada caractere (de mais 1 milhão de caracteres do alfabeto Unicode) a uma sequência de bits, o R usa o esquema de codificação <a href="https://pt.wikipedia.org/wiki/UTF-8">UTF-8</a>. Assim, recomenda-se utilizar essa codificação de caracteres como padrão em seus códigos e na construção e aquisição de dados. No RStudio a especificação da codificação de caracteres pode ser feita através do menu: <em>Tools &gt; Global Options &gt; Code &gt; Saving &gt; Default Text Encoding</em>.</p>
 <div id="rio" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> <strong>rio</strong></h3>
-<p>O pacote <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a> é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">Manual de Importação e Exportação do R</a>. Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): <code>import()</code> e <code>export()</code>. Algumas opções de formatos que podem ser importados e exportados com o <strong>rio</strong> são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vinheta do pacote</a>.</p>
+<p>O pacote <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a> <span class="citation">(<span class="citeproc-not-found" data-reference-id="rio"><strong>???</strong></span>)</span> é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">Manual de Importação e Exportação do R</a>. Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): <code>import()</code> e <code>export()</code>. Algumas opções de formatos que podem ser importados e exportados com o <strong>rio</strong> são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vinheta do pacote</a>.</p>
 <table style="width:94%;">
 <colgroup>
 <col width="9%" />
@@ -436,7 +441,7 @@ hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp3svcxo/file28ae2dfa6704.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpKXyRi5/file269b493424f1.csv&quot;</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
                 <span class="co"># se fread = TRUE (default usa função fread do pacote data.table)</span>

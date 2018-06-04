@@ -3,7 +3,6 @@
 
 
 
-
 O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como: 
 
 - dados retangulares armazenados em arquivos de texto puro
@@ -109,15 +108,12 @@ O conteúdo de um diretório pode ser listado com a função `dir()`, ou se esti
 
 ## Boas práticas para importação e exportação de dados
 
-Para uma importação e exportação eficiente de dados recomenda-se (Gillespie & Lovelace 2017):
+Para uma importação e exportação eficiente de dados recomenda-se [@Gillespie2017]:
 
-1. Mantenha o nome original dos arquivos locais baixados da internet ou copiados da fonte provedora. Isso o ajudará a rastrear a proveniência dos dados no futuro.
-
-2. Para um armazenamento eficinte utilize o formato binário nativo do R *.Rds* para importar (`readRDS()`) e exportar (`saveRDS()`) dados processados.
-
-3. Use funções equivalentes a read.table() dos pacotes **readr** ou **data.table** para importar arquivos de texto grandes.
-
-4. Use as funções `file.size()` e `object.size()` para saber o tamanho de arquivos e objetos no R e analisar como proceder se eles ficarem muito grandes.
+>1. Mantenha o nome original dos arquivos locais baixados da internet ou copiados da fonte provedora. Isso o ajudará a rastrear a proveniência dos dados no futuro.  
+2. Para um armazenamento eficinte utilize o formato binário nativo do R *.Rds* para importar (`readRDS()`) e exportar (`saveRDS()`) dados processados.  
+3. Use funções equivalentes a read.table() dos pacotes **readr** ou **data.table** para importar arquivos de texto grandes.  
+4. Use as funções `file.size()` e `object.size()` para saber o tamanho de arquivos e objetos no R e analisar como proceder se eles ficarem muito grandes.  
 
 ## Arquivos texto
 
@@ -138,7 +134,7 @@ O R utiliza o alfabeto [Unicode](https://pt.wikipedia.org/wiki/Unicode) para ide
 
 ### **rio**
 
-O pacote [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no [Manual de Importação e Exportação do R](https://cran.r-project.org/doc/manuals/r-release/R-data.html). Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): `import()` e `export()`.
+O pacote [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) [@rio] é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no [Manual de Importação e Exportação do R](https://cran.r-project.org/doc/manuals/r-release/R-data.html). Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): `import()` e `export()`.
 Algumas opções de formatos que podem ser importados e exportados com o **rio** são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na [vinheta do pacote](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
 
 
@@ -176,7 +172,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp3svcxo/file28ae2dfa6704.csv"
+#> [1] "/tmp/RtmpKXyRi5/file269b493424f1.csv"
 ```
 
 
