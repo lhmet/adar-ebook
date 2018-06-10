@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-04">
+<meta name="date" content="2018-06-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -228,9 +228,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
-<li class="chapter" data-level="9" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="diretorio-de-trabalho-1.html"><a href="diretorio-de-trabalho-1.html"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>9.1</b> Introdução</a></li>
+<li class="chapter" data-level="9.2" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.2</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.3" data-path="dados-arrumados.html"><a href="dados-arrumados.html"><i class="fa fa-check"></i><b>9.3</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.4" data-path="tibble-um-dataframe-aperfeicoado.html"><a href="tibble-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.4</b> <em>tibble</em>: um dataframe aperfeiçoado</a></li>
+<li class="chapter" data-level="9.5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>9.5</b> tidyr</a></li>
+<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9.6</b> dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -301,9 +305,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; -3L))</span>
 <span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpJhuM0f/file26db4b265190&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpxUzfIR/file26c769efdebe&quot;</span>
 (x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpJhuM0f/file26db8bf8cae&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpxUzfIR/file26c73064a08&quot;</span>
 <span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
 <span class="co"># recuperando x a partir do arquivo</span>
 y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
@@ -325,7 +329,7 @@ y
 <span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
 <span class="co"># salvando mais de um objeto em um arquivo</span>
 (xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpJhuM0f/file26db52f22b53&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpxUzfIR/file26c76917bcc8&quot;</span>
 <span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
 <span class="co"># vamos apagar x e y do espaco de trabalho</span>
 <span class="kw">rm</span>(x, y)

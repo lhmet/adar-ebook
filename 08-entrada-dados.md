@@ -172,7 +172,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpKXyRi5/file269b493424f1.csv"
+#> [1] "/tmp/RtmpMiNwzf/file26892ea18a7b.csv"
 ```
 
 
@@ -331,7 +331,7 @@ tail(soi)
 #> 65 2015 -1.4  0.4 -1.2 -0.1 -1.2 -0.9 -1.9 -2.4 -2.7 -2.8 -0.8 -0.9
 #> 66 2016 -3.6 -3.2 -0.1 -2.0  0.7  1.1  0.7  1.2  2.0 -0.4 -0.2  0.5
 #> 67 2017  0.3 -0.1  1.5 -0.3  0.4 -0.7  1.3  0.9  1.0  1.5  1.5 -0.2
-#> 68 2018  1.8 -0.8  2.4  0.8   NA   NA   NA   NA   NA   NA   NA   NA
+#> 68 2018  1.8 -0.8  2.4  0.8  0.6   NA   NA   NA   NA   NA   NA   NA
 #> 69 2019   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 #> 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 ```
