@@ -25,15 +25,15 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-04">
+<meta name="date" content="2018-06-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manip.html">
-<link rel="next" href="diretorio-de-trabalho-1.html">
+<link rel="prev" href="introducao.html">
+<link rel="next" href="dados-arrumados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -228,9 +228,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
-<li class="chapter" data-level="9" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="diretorio-de-trabalho-1.html"><a href="diretorio-de-trabalho-1.html"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>9.1</b> Introdução</a></li>
+<li class="chapter" data-level="9.2" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.2</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.3" data-path="dados-arrumados.html"><a href="dados-arrumados.html"><i class="fa fa-check"></i><b>9.3</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.4" data-path="tibble-um-dataframe-aperfeicoado.html"><a href="tibble-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.4</b> <em>tibble</em>: um dataframe aperfeiçoado</a></li>
+<li class="chapter" data-level="9.5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>9.5</b> tidyr</a></li>
+<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9.6</b> dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -283,45 +287,38 @@ code > span. { color: #1f1c1b; } /* Normal */
 
             <section class="normal" id="section-">
 <div id="pre-requisitos-2" class="section level2">
-<h2><span class="header-section-number">9.1</span> Pré-requisitos</h2>
-<p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;easypackages&quot;</span>,<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;feather&quot;</span>, <span class="st">&quot;readxl&quot;</span>) </code></pre></div>
+<h2><span class="header-section-number">9.2</span> Pré-requisitos</h2>
+<p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes, além daqueles usados nos capítulos anteriores:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;openair&quot;</span>)</code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(
    pacotes,
    <span class="dt">dependencies =</span> <span class="ot">TRUE</span>
 )</code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</code></pre></div>
-<div class="rmdtip">
-<p>
-Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
-</p>
-<p>
-<code>library(easypackages)</code>
-</p>
-<p>
-<code>libraries(pacotes)</code>
-</p>
-<p>
-ou simplesmente
-</p>
-<p>
-<code>easypackages::libraries(pacotes)</code>
-</p>
-</div>
-<p>Vamos instalar formatos adicionais do pacote rio.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rio<span class="op">::</span><span class="kw">install_formats</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)
+<span class="co">#&gt; Loading required package: tidyverse</span>
+<span class="co">#&gt; + ggplot2 2.2.1        Date: 2018-06-10</span>
+<span class="co">#&gt; + tibble  1.4.2           R: 3.4.4</span>
+<span class="co">#&gt; + tidyr   0.8.0          OS: Ubuntu 14.04.5 LTS</span>
+<span class="co">#&gt; + readr   1.1.1         GUI: X11</span>
+<span class="co">#&gt; + purrr   0.2.4      Locale: en_US.UTF-8</span>
+<span class="co">#&gt; + dplyr   0.7.4          TZ: America/Sao_Paulo</span>
+<span class="co">#&gt; + stringr 1.3.1      </span>
+<span class="co">#&gt; + forcats 0.2.0</span>
+<span class="co">#&gt; ── Conflicts ────────────────────────────────────────────────────</span>
+<span class="co">#&gt; * filter(),  from dplyr, masks stats::filter()</span>
+<span class="co">#&gt; * lag(),     from dplyr, masks stats::lag()</span>
+<span class="co">#&gt; Loading required package: openair</span>
+<span class="co">#&gt; All packages loaded successfully</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manip.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="diretorio-de-trabalho-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introducao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dados-arrumados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

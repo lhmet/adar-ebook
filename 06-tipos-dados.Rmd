@@ -1,7 +1,7 @@
 # Tipos de dados {#datatype}
 
 
-Nesta seção vamos:
+Neste capítulo vamos:
 
 - conhecer os tipos de dados mais usados no R
 - descobrir qual é o tipo de dado de uma variável

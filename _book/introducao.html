@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="matriz.html">
-<link rel="next" href="lista.html">
+<link rel="prev" href="data-wrangle.html">
+<link rel="next" href="pre-requisitos-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -286,281 +286,21 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="arranjo" class="section level2">
-<h2><span class="header-section-number">7.3</span> Arranjo</h2>
-<p>Arranjo é uma estrutura de dados multidimensional. A matriz é um caso particular de arranjo com 2 dimensões: linhas e colunas. Mas podemos ter dados com <em>n</em> dimensões.</p>
-<p>Por exemplo, imagine o campo espacial representado por uma grade de espaçamento horizontal regular de uma variável meteorológica. Nessa situação podemos usar uma matriz com valores de temperatura, onde as colunas representam as longitudes e as linhas as latitudes dos pontos da grade. Em um dados tempo, a matriz da variável com valores de temperatura do ar, por exemplo, representa o estado térmico espacial daquele momento. Então podemos dizer que esse arranjo possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).</p>
-<div id="criacao-1" class="section level3">
-<h3><span class="header-section-number">7.3.1</span> Criação</h3>
-<p>Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor <code>temp_vetor</code> abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">27</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">17</span>,
-  <span class="dv">9</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">29</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">26</span>,
-  <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span>
-)</code></pre></div>
-<p>O vetor <code>temp_vetor</code> pode ser convertido em um arranjo dos campos espaciais usando a função <code>array()</code>, com o argumento <code>dim</code> especificando as dimensões.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))
-temp_array
-<span class="co">#&gt; , , 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]   18   23   24   20</span>
-<span class="co">#&gt; [2,]   24   19   18   25</span>
-<span class="co">#&gt; [3,]   19   27   13   19</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]   18    9   13   18</span>
-<span class="co">#&gt; [2,]   22   17   19   19</span>
-<span class="co">#&gt; [3,]   17   22   29   18</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]   11   17   26   20</span>
-<span class="co">#&gt; [2,]   18   13   21   14</span>
-<span class="co">#&gt; [3,]   19   17   22   17</span>
-<span class="kw">dim</span>(temp_array)
-<span class="co">#&gt; [1] 3 4 3</span>
-<span class="kw">class</span>(temp_array)
-<span class="co">#&gt; [1] &quot;array&quot;</span></code></pre></div>
-<p>O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">45</span><span class="op">:</span><span class="dv">42</span>)
-<span class="kw">rownames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">19</span><span class="op">:</span><span class="dv">21</span>)
-<span class="co"># nomes das dimensões</span>
-<span class="kw">dimnames</span>(temp_array)
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] &quot;-19&quot; &quot;-20&quot; &quot;-21&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] &quot;-45&quot; &quot;-44&quot; &quot;-43&quot; &quot;-42&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; NULL</span>
-<span class="co"># nomes para camadas</span>
-<span class="kw">dimnames</span>(temp_array)[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
-temp_array
-<span class="co">#&gt; , , Jan</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -45 -44 -43 -42</span>
-<span class="co">#&gt; -19  18  23  24  20</span>
-<span class="co">#&gt; -20  24  19  18  25</span>
-<span class="co">#&gt; -21  19  27  13  19</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , Fev</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -45 -44 -43 -42</span>
-<span class="co">#&gt; -19  18   9  13  18</span>
-<span class="co">#&gt; -20  22  17  19  19</span>
-<span class="co">#&gt; -21  17  22  29  18</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , Mar</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -45 -44 -43 -42</span>
-<span class="co">#&gt; -19  11  17  26  20</span>
-<span class="co">#&gt; -20  18  13  21  14</span>
-<span class="co">#&gt; -21  19  17  22  17</span></code></pre></div>
-</div>
-<div id="indexacao" class="section level3">
-<h3><span class="header-section-number">7.3.2</span> Indexação</h3>
-<p>Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices <code>A[linha, coluna, camada]</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
-temp_array[<span class="dv">1</span>, <span class="dv">1</span>, ]
-<span class="co">#&gt; Jan Fev Mar </span>
-<span class="co">#&gt;  18  18  11</span>
-temp_array[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]
-<span class="co">#&gt; Jan Fev Mar </span>
-<span class="co">#&gt;  18  18  11</span>
-<span class="co"># para 1a faixa de latitude (-19),</span>
-<span class="co"># os valores de temp das longitudes em todos tempos</span>
-temp_array[<span class="dv">1</span>, , ]
-<span class="co">#&gt;     Jan Fev Mar</span>
-<span class="co">#&gt; -45  18  18  11</span>
-<span class="co">#&gt; -44  23   9  17</span>
-<span class="co">#&gt; -43  24  13  26</span>
-<span class="co">#&gt; -42  20  18  20</span>
-<span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos</span>
-temp_array[, <span class="dv">2</span>, ]
-<span class="co">#&gt;     Jan Fev Mar</span>
-<span class="co">#&gt; -19  23   9  17</span>
-<span class="co">#&gt; -20  19  17  13</span>
-<span class="co">#&gt; -21  27  22  17</span>
-<span class="co"># média meridional</span>
-<span class="kw">colMeans</span>(temp_array[, <span class="dv">2</span>, ])
-<span class="co">#&gt;     Jan     Fev     Mar </span>
-<span class="co">#&gt; 23.0000 16.0000 15.6667</span>
-<span class="co"># subdominio &quot;espacial&quot;</span>
-temp_array[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]
-<span class="co">#&gt; , , Jan</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -44 -43</span>
-<span class="co">#&gt; -20  19  18</span>
-<span class="co">#&gt; -21  27  13</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , Fev</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -44 -43</span>
-<span class="co">#&gt; -20  17  19</span>
-<span class="co">#&gt; -21  22  29</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; , , Mar</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     -44 -43</span>
-<span class="co">#&gt; -20  13  21</span>
-<span class="co">#&gt; -21  17  22</span>
-<span class="co"># média espacial do 1o mês</span>
-<span class="kw">mean</span>(temp_array[, , <span class="dv">1</span>])
-<span class="co">#&gt; [1] 20.75</span>
-<span class="co"># média espacial do segundo mês</span>
-<span class="kw">mean</span>(temp_array[, , <span class="st">&quot;Jan&quot;</span>])
-<span class="co">#&gt; [1] 20.75</span>
-<span class="co"># demanchando o arranjo (conversão para vetor)</span>
-<span class="kw">c</span>(temp_array)
-<span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19 18 22 17  9 17 22 13 19 29 18 19</span>
-<span class="co">#&gt; [24] 18 11 18 19 17 13 17 26 21 22 20 14 17</span>
-<span class="kw">c</span>(temp_array[, , <span class="dv">1</span>])
-<span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19</span>
-<span class="co"># para entender a forma como a matriz é convertida para vetor</span>
-mat_temp &lt;-<span class="st"> </span><span class="kw">cbind</span>(
-  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">20</span>),
-  <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">6</span>),
-  <span class="dt">valores =</span> <span class="kw">c</span>(temp_array),
-  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(temp_array))[<span class="dv">3</span>])
-)
-<span class="co">#&gt; Warning in cbind(mes = rep(1:3, each = 20), elemat = rep(1:20, times =</span>
-<span class="co">#&gt; 6), : number of rows of result is not a multiple of vector length (arg 3)</span>
-mat_temp
-<span class="co">#&gt;        mes elemat valores elearr</span>
-<span class="co">#&gt;   [1,]   1      1      18      1</span>
-<span class="co">#&gt;   [2,]   1      2      24      2</span>
-<span class="co">#&gt;   [3,]   1      3      19      3</span>
-<span class="co">#&gt;   [4,]   1      4      23      4</span>
-<span class="co">#&gt;   [5,]   1      5      19      5</span>
-<span class="co">#&gt;   [6,]   1      6      27      6</span>
-<span class="co">#&gt;   [7,]   1      7      24      7</span>
-<span class="co">#&gt;   [8,]   1      8      18      8</span>
-<span class="co">#&gt;   [9,]   1      9      13      9</span>
-<span class="co">#&gt;  [10,]   1     10      20     10</span>
-<span class="co">#&gt;  [11,]   1     11      25     11</span>
-<span class="co">#&gt;  [12,]   1     12      19     12</span>
-<span class="co">#&gt;  [13,]   1     13      18     13</span>
-<span class="co">#&gt;  [14,]   1     14      22     14</span>
-<span class="co">#&gt;  [15,]   1     15      17     15</span>
-<span class="co">#&gt;  [16,]   1     16       9     16</span>
-<span class="co">#&gt;  [17,]   1     17      17     17</span>
-<span class="co">#&gt;  [18,]   1     18      22     18</span>
-<span class="co">#&gt;  [19,]   1     19      13     19</span>
-<span class="co">#&gt;  [20,]   1     20      19     20</span>
-<span class="co">#&gt;  [21,]   2      1      29     21</span>
-<span class="co">#&gt;  [22,]   2      2      18     22</span>
-<span class="co">#&gt;  [23,]   2      3      19     23</span>
-<span class="co">#&gt;  [24,]   2      4      18     24</span>
-<span class="co">#&gt;  [25,]   2      5      11     25</span>
-<span class="co">#&gt;  [26,]   2      6      18     26</span>
-<span class="co">#&gt;  [27,]   2      7      19     27</span>
-<span class="co">#&gt;  [28,]   2      8      17     28</span>
-<span class="co">#&gt;  [29,]   2      9      13     29</span>
-<span class="co">#&gt;  [30,]   2     10      17     30</span>
-<span class="co">#&gt;  [31,]   2     11      26     31</span>
-<span class="co">#&gt;  [32,]   2     12      21     32</span>
-<span class="co">#&gt;  [33,]   2     13      22     33</span>
-<span class="co">#&gt;  [34,]   2     14      20     34</span>
-<span class="co">#&gt;  [35,]   2     15      14     35</span>
-<span class="co">#&gt;  [36,]   2     16      17     36</span>
-<span class="co">#&gt;  [37,]   2     17      18      1</span>
-<span class="co">#&gt;  [38,]   2     18      24      2</span>
-<span class="co">#&gt;  [39,]   2     19      19      3</span>
-<span class="co">#&gt;  [40,]   2     20      23      4</span>
-<span class="co">#&gt;  [41,]   3      1      19      5</span>
-<span class="co">#&gt;  [42,]   3      2      27      6</span>
-<span class="co">#&gt;  [43,]   3      3      24      7</span>
-<span class="co">#&gt;  [44,]   3      4      18      8</span>
-<span class="co">#&gt;  [45,]   3      5      13      9</span>
-<span class="co">#&gt;  [46,]   3      6      20     10</span>
-<span class="co">#&gt;  [47,]   3      7      25     11</span>
-<span class="co">#&gt;  [48,]   3      8      19     12</span>
-<span class="co">#&gt;  [49,]   3      9      18     13</span>
-<span class="co">#&gt;  [50,]   3     10      22     14</span>
-<span class="co">#&gt;  [51,]   3     11      17     15</span>
-<span class="co">#&gt;  [52,]   3     12       9     16</span>
-<span class="co">#&gt;  [53,]   3     13      17     17</span>
-<span class="co">#&gt;  [54,]   3     14      22     18</span>
-<span class="co">#&gt;  [55,]   3     15      13     19</span>
-<span class="co">#&gt;  [56,]   3     16      19     20</span>
-<span class="co">#&gt;  [57,]   3     17      29     21</span>
-<span class="co">#&gt;  [58,]   3     18      18     22</span>
-<span class="co">#&gt;  [59,]   3     19      19     23</span>
-<span class="co">#&gt;  [60,]   3     20      18     24</span>
-<span class="co">#&gt;  [61,]   1      1      11     25</span>
-<span class="co">#&gt;  [62,]   1      2      18     26</span>
-<span class="co">#&gt;  [63,]   1      3      19     27</span>
-<span class="co">#&gt;  [64,]   1      4      17     28</span>
-<span class="co">#&gt;  [65,]   1      5      13     29</span>
-<span class="co">#&gt;  [66,]   1      6      17     30</span>
-<span class="co">#&gt;  [67,]   1      7      26     31</span>
-<span class="co">#&gt;  [68,]   1      8      21     32</span>
-<span class="co">#&gt;  [69,]   1      9      22     33</span>
-<span class="co">#&gt;  [70,]   1     10      20     34</span>
-<span class="co">#&gt;  [71,]   1     11      14     35</span>
-<span class="co">#&gt;  [72,]   1     12      17     36</span>
-<span class="co">#&gt;  [73,]   1     13      18      1</span>
-<span class="co">#&gt;  [74,]   1     14      24      2</span>
-<span class="co">#&gt;  [75,]   1     15      19      3</span>
-<span class="co">#&gt;  [76,]   1     16      23      4</span>
-<span class="co">#&gt;  [77,]   1     17      19      5</span>
-<span class="co">#&gt;  [78,]   1     18      27      6</span>
-<span class="co">#&gt;  [79,]   1     19      24      7</span>
-<span class="co">#&gt;  [80,]   1     20      18      8</span>
-<span class="co">#&gt;  [81,]   2      1      13      9</span>
-<span class="co">#&gt;  [82,]   2      2      20     10</span>
-<span class="co">#&gt;  [83,]   2      3      25     11</span>
-<span class="co">#&gt;  [84,]   2      4      19     12</span>
-<span class="co">#&gt;  [85,]   2      5      18     13</span>
-<span class="co">#&gt;  [86,]   2      6      22     14</span>
-<span class="co">#&gt;  [87,]   2      7      17     15</span>
-<span class="co">#&gt;  [88,]   2      8       9     16</span>
-<span class="co">#&gt;  [89,]   2      9      17     17</span>
-<span class="co">#&gt;  [90,]   2     10      22     18</span>
-<span class="co">#&gt;  [91,]   2     11      13     19</span>
-<span class="co">#&gt;  [92,]   2     12      19     20</span>
-<span class="co">#&gt;  [93,]   2     13      29     21</span>
-<span class="co">#&gt;  [94,]   2     14      18     22</span>
-<span class="co">#&gt;  [95,]   2     15      19     23</span>
-<span class="co">#&gt;  [96,]   2     16      18     24</span>
-<span class="co">#&gt;  [97,]   2     17      11     25</span>
-<span class="co">#&gt;  [98,]   2     18      18     26</span>
-<span class="co">#&gt;  [99,]   2     19      19     27</span>
-<span class="co">#&gt; [100,]   2     20      17     28</span>
-<span class="co">#&gt; [101,]   3      1      13     29</span>
-<span class="co">#&gt; [102,]   3      2      17     30</span>
-<span class="co">#&gt; [103,]   3      3      26     31</span>
-<span class="co">#&gt; [104,]   3      4      21     32</span>
-<span class="co">#&gt; [105,]   3      5      22     33</span>
-<span class="co">#&gt; [106,]   3      6      20     34</span>
-<span class="co">#&gt; [107,]   3      7      14     35</span>
-<span class="co">#&gt; [108,]   3      8      17     36</span>
-<span class="co">#&gt; [109,]   3      9      18      1</span>
-<span class="co">#&gt; [110,]   3     10      24      2</span>
-<span class="co">#&gt; [111,]   3     11      19      3</span>
-<span class="co">#&gt; [112,]   3     12      23      4</span>
-<span class="co">#&gt; [113,]   3     13      19      5</span>
-<span class="co">#&gt; [114,]   3     14      27      6</span>
-<span class="co">#&gt; [115,]   3     15      24      7</span>
-<span class="co">#&gt; [116,]   3     16      18      8</span>
-<span class="co">#&gt; [117,]   3     17      13      9</span>
-<span class="co">#&gt; [118,]   3     18      20     10</span>
-<span class="co">#&gt; [119,]   3     19      25     11</span>
-<span class="co">#&gt; [120,]   3     20      19     12</span></code></pre></div>
-</div>
+<div id="introducao" class="section level2">
+<h2><span class="header-section-number">9.1</span> Introdução</h2>
+<p>Introdução a ferramentas modernas de processamento de dados:</p>
+<p>Caixa de ferramentas para manipulação de dados tabulares</p>
+<pre><code>- pacote **dplyr**
+
+- pacote **tidyr**</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="matriz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lista.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-wrangle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pre-requisitos-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -590,7 +330,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/07-estrutura-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/09-manipulacao-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

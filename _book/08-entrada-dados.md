@@ -172,7 +172,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp48Tcby/file71f0602668ea.csv"
+#> [1] "/tmp/RtmpAS3A3k/file6c8ef02941a.csv"
 ```
 
 
@@ -331,7 +331,7 @@ tail(soi)
 #> 65 2015 -1.4  0.4 -1.2 -0.1 -1.2 -0.9 -1.9 -2.4 -2.7 -2.8 -0.8 -0.9
 #> 66 2016 -3.6 -3.2 -0.1 -2.0  0.7  1.1  0.7  1.2  2.0 -0.4 -0.2  0.5
 #> 67 2017  0.3 -0.1  1.5 -0.3  0.4 -0.7  1.3  0.9  1.0  1.5  1.5 -0.2
-#> 68 2018  1.8 -0.8  2.4  0.8   NA   NA   NA   NA   NA   NA   NA   NA
+#> 68 2018  1.8 -0.8  2.4  0.8  0.6   NA   NA   NA   NA   NA   NA   NA
 #> 69 2019   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 #> 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 ```
@@ -785,16 +785,16 @@ inmet_estacoes
 #> # A tibble: 437 x 10
 #>       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude
 #>    <dbl>  <dbl> <chr>               <chr>    <dbl>     <dbl>   <dbl>
-#>  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. 
-#>  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. 
-#>  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. 
-#>  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. 
-#>  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. 
-#>  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5
-#>  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. 
-#>  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. 
-#>  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. 
-#> 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1
+#>  1  1.00  82704 CRUZEIRO DO SUL     AC       -7.60     -72.7   170  
+#>  2  2.00  82915 RIO BRANCO          AC       -9.95     -67.9   160  
+#>  3  3.00  82807 TARAUACA            AC       -8.17     -70.8   190  
+#>  4  4.00  82989 AGUA BRANCA         AL       -9.28     -37.9   605  
+#>  5  5.00  82995 ARAPIRACA           AL       -9.73     -36.8   247  
+#>  6  6.00  82994 MACEIO              AL       -9.67     -35.7    64.5
+#>  7  7.00  82991 MAJOR ISIDORO       AL       -9.55     -37.0   200  
+#>  8  8.00  82988 MATA GRANDE         AL       -9.12     -37.7   635  
+#>  9  9.00  82992 PALMEIRA DOS INDIOS AL       -9.45     -36.7   275  
+#> 10 10.0   82990 PAO DE ACUCAR       AL       -9.75     -37.4    19.1
 #> # ... with 427 more rows, and 3 more variables: `Inicio Operação` <chr>,
 #> #   `Fim Operação` <dttm>, Situação <chr>
 str(inmet_estacoes)

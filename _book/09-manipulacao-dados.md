@@ -1,31 +1,43 @@
 # (PART) Ferramentas modernas do R {-}
 
-asd
 
-# Manipulação de dados {#manip}
-
+# Processamento de dados {#data-wrangle}
 
 
 
-O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como: 
+Neste capítulo veremos:
 
-- dados retangulares armazenados em arquivos de texto puro
-- dados binários e netCDF
-- dados espaciais em formato GIS
+- como arrumar seus dados em uma estrutura conveniente para a análise e visualização de dados
 
-Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da *web*.
+- um *data frame* aperfeiçoado (ou *tibble*)
 
-Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar uma diversidade de tipos de dados com muita facilidade. Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso veremos também formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
+- como reestruturar os dados de uma forma versátil e fácil de entender
 
+- como manipular os dados com uma ferramenta intuitiva e padronizada
+
+Há diversas ferramentas para a execução dessas operações no R. As ferramentas nativas do R para 
+
+
+## Introdução
+
+Introdução a ferramentas modernas de processamento de dados:
+
+Caixa de ferramentas para manipulação de dados tabulares
+
+    - pacote **dplyr**
+  
+    - pacote **tidyr**
+    
 
 ## Pré-requisitos
 
-Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:
+Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes, além daqueles usados nos capítulos anteriores:
 
 
 ```r
-pacotes <- c("easypackages","rio", "readr", "feather", "readxl") 
+pacotes <- c("tidyverse", "openair")
 ```
+
 
 Para instalá-los já com as dependências utilize a instrução abaixo:
 
@@ -41,28 +53,37 @@ Agora você pode carregar os pacotes.
 
 
 ```r
-library("easypackages")
-library("rio")
-library("readr")
+easypackages::libraries(pacotes)
+#> Loading required package: tidyverse
+#> + ggplot2 2.2.1        Date: 2018-06-10
+#> + tibble  1.4.2           R: 3.4.4
+#> + tidyr   0.8.0          OS: Ubuntu 14.04.5 LTS
+#> + readr   1.1.1         GUI: X11
+#> + purrr   0.2.4      Locale: en_US.UTF-8
+#> + dplyr   0.7.4          TZ: America/Sao_Paulo
+#> + stringr 1.3.1      
+#> + forcats 0.2.0
+#> ── Conflicts ────────────────────────────────────────────────────
+#> * filter(),  from dplyr, masks stats::filter()
+#> * lag(),     from dplyr, masks stats::lag()
+#> Loading required package: openair
+#> All packages loaded successfully
 ```
 
 
-<div class="rmdtip">
-<p>Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:</p>
-<p><code>library(easypackages)</code></p>
-<p><code>libraries(pacotes)</code></p>
-<p>ou simplesmente</p>
-<p><code>easypackages::libraries(pacotes)</code></p>
-</div>
 
-Vamos instalar formatos adicionais do pacote rio.
+## Dados arrumados
 
+asd
 
-```r
-rio::install_formats()
-```
+## *tibble*: um dataframe aperfeiçoado
 
+asd
 
-## Diretório de trabalho
+## tidyr
+
+asd
+
+## dplyr
 
 asd

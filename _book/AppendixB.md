@@ -25,7 +25,7 @@ Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o u
 aq_url <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt"
 # arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpuONrxV/file726d62a939bd"
+#> [1] "/tmp/RtmpOwJwPt/file6d064b1fbd2d"
 download.file(aq_url, destfile = aq_dest_file)
 ```
 
@@ -247,9 +247,9 @@ dput(x)
 #> "chuva"), class = "data.frame", row.names = c(NA, -3L))
 # salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpuONrxV/file726d3d880573"
+#> [1] "/tmp/RtmpOwJwPt/file6d0656e2e286"
 (x_dest_file <- tempfile())
-#> [1] "/tmp/RtmpuONrxV/file726d6d787718"
+#> [1] "/tmp/RtmpOwJwPt/file6d0657f7de51"
 dput(x, file = x_dest_file)
 # recuperando x a partir do arquivo
 y <- dget(x_dest_file)
@@ -271,7 +271,7 @@ ls(pattern = "^[xy]")
 #> [1] "x"           "x_dest_file" "y"
 # salvando mais de um objeto em um arquivo
 (xy_dest_file <- tempfile())
-#> [1] "/tmp/RtmpuONrxV/file726d6b6ca65"
+#> [1] "/tmp/RtmpOwJwPt/file6d0656b090a3"
 dump(ls(pattern = "^[xy]"), file = xy_dest_file)
 # vamos apagar x e y do espaco de trabalho
 rm(x, y)
