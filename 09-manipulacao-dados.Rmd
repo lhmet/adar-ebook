@@ -30,6 +30,8 @@ Neste capítulo veremos:
 
 Existem diversas ferramentas da base do `r rblue` para a execução dessas operações. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não possuem uma capacidade de fluirem juntas no processamento de dados. 
 
+Muitas coisas no R que foram desenvolvidas e eram úteis há 20 anos, podem não ser a melhor forma de abordar um problema hoje. Mudanças nos códigos da base do R é uma tarefa complicado devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações estão ocorrendo na forma de pacotes.
+
 Suprindo a necessidade de uma abordagem efetiva e integrada para ciência de dados (Figura \@ref(fig:tidy-workflow)) um conjunto de pacotes foram desenvolvidos e denominado [*tidyverse*](https://www.tidyverse.org/).
 
 
@@ -59,15 +61,112 @@ Agora você pode carregar os pacotes.
 library(tidyverse)
 ```
 
+Dados climatológicos:
+
+```{r}
+library(rio)
+clima_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true"
+# dados de exemplo
+clima_rs <- rio:::import(clima_file_url, format = "RDS")
+clima_rs
+```
+
+Dados de estação meteorológicas:
+
+```{r}
+meteo_df <- data.frame(site = c(
+  "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
+  ),
+  ano  = c(2000:2001, 2000:2002, 2004, 2005, 2006),
+  prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100)
+  )
+meteo_df
+```
 
 
-## *tibbles*: um dataframe aperfeiçoado
 
-asd
+## *tibbles*: *data frames* aperfeiçoado
 
-## Pipe
+*Data frames* são unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** define uma nova classe de data frame para o R, o *tbl_df* ('*tibble diffs*'). Uma *tibble* é uma extensão da classe de dados *data.frame* da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*.
+
+Para criar um *tibble* nós usamos a função *tibble()*. Para ilustrar algumas vantagens do *tibble* vamos recriar o *data frame* `meteo_df` incluindo uma nova variável `int prec`(intensidade da precipitação):
+
+```{r}
+meteo_tbl <- tibble(site = c(
+  "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
+  ),
+  ano  = c(2000:2001, 2000:2002, 2004, 2005, 2006),
+  prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100),
+  `int prec` = prec/365
+  )
+meteo_tbl
+```
+
+No exemplo acima, as principais diferenças entre o tibble e o data frame ficam evidentes:
+
+- quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
+
+- vetores caracteres não são interpretados como *factors* quando incorparados em um *tibble*, em contraste, `data.frame()` faz a coerção de caracteres para *factors*, o que pode causar problemas nas etapas de processamento futuras.
+
+- o nome das variáveis nunca são modificados
+```{r}
+data.frame("nome esquisito" = 1)
+```
+
+- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
+
+- nunca adiciona nome às linhas (`row.names`)
+
+Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas depende do tamanho da janela.
+
+Outras diferenças do tibble podem ser consultada no página de ajuda da função `tibble()` (`?tibble`) e na vinheta do referido pacote (`vignette("tibble")`).
+
+A conversão de um `data.frame` para tibble pode ser feita simplesmente com a função `as_tibble()`:
+```{r}
+meteo_tbl_conv <- as_tibble(meteo_df)
+meteo_tbl_conv
+```
+
+As opções de controle *default* da impressão de *tibbles* na tela são controladas através da função de opções de configuração:
+
+```{r, eval=FALSE}
+options(
+  tibble.print_max = n, 
+  tibble.print_min = m)
+```
+
+Onde se o número de linhas do *tibble* for maior que `m` linhas, a impressão será somente até `n` linhas. 
+
+Você pode usar `options(dplyr.print_min = Inf)` se deseja que sempre sejam mostradas todas linhas de seus dados.
+
+Finalmente é bom lembrar da opção de visualização completa dos dados do RStudio através da função `View()`.
+
+## Operador Pipe `%>%`
 
 
+Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.
+
+Embora não requerido os pacotes tidyr e dplyr usam o operador pipe `%>%` que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código. 
+
+```{r , message=FALSE, comment="",eval = TRUE, prompt=FALSE}
+# exemplo simples para aplicar uma função 
+quadrado <- function(x) x^2
+a <- 1:4
+quadrado(a)
+a %>% quadrado
+```
+
+Este operador irá transmitir um valor, ou o resultado de uma expressão, para a próxima função/expressão  chamada. Por exemplo, uma função para filtrar os dados pode ser escrito como:
+
+```{r , message=FALSE, comment="",eval = TRUE, prompt=FALSE}
+# exemplo com um dataframe
+data(airquality)
+filter(airquality, Ozone == 23)
+# ou
+airquality %>% filter(Ozone == 23)
+```
+
+Ambas funções realizam a mesma tarefa e o benefício de usar  `%>%'não é evidente. Entretanto, quando desejamos realizar várias funções sua vantagem torna-se evidente. 
 
 ## Restruturação de dados
 
