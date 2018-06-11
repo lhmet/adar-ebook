@@ -172,7 +172,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpQwa2Zd/file6c3310ae189c.csv"
+#> [1] "/tmp/RtmpLottI2/file293dbaed13b.csv"
 ```
 
 
@@ -516,7 +516,7 @@ ls()
 #>  [7] "file_chuva_df"      "hidroweb_dest_file" "hidroweb_url_file" 
 #> [10] "link"               "pacotes"            "pcks"              
 #> [13] "rblue"              "soi"                "soi_df"            
-#> [16] "soi.df"             "soi_file"           "soi_v"
+#> [16] "soi_file"           "soi_v"              "soi.df"
 # para carregar os dados e saber o nome com que foram salvos
 print(load(file = file_chuva_df))
 #> [1] "chuva_df"
@@ -554,16 +554,16 @@ ls()
 #>  [7] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
 #> [10] "hidroweb_url_file"  "link"               "pacotes"           
 #> [13] "pcks"               "rblue"              "soi"               
-#> [16] "soi_df"             "soi.df"             "soi_file"          
-#> [19] "soi_v"
+#> [16] "soi_df"             "soi_file"           "soi_v"             
+#> [19] "soi.df"
 rm(cab, chuva_df)
 ls()
 #>  [1] "bdmep_url_file"     "dprec"              "dprec_file"        
 #>  [4] "file_83004_limpo"   "file_chuva_df"      "file_dados_prec"   
 #>  [7] "hidroweb_dest_file" "hidroweb_url_file"  "link"              
 #> [10] "pacotes"            "pcks"               "rblue"             
-#> [13] "soi"                "soi_df"             "soi.df"            
-#> [16] "soi_file"           "soi_v"
+#> [13] "soi"                "soi_df"             "soi_file"          
+#> [16] "soi_v"              "soi.df"
 # carrega e imprime na tela nome dos dados carregados
 print(load(file_dados_prec))
 #> [1] "cab"      "chuva_df"
@@ -573,8 +573,8 @@ ls()
 #>  [7] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
 #> [10] "hidroweb_url_file"  "link"               "pacotes"           
 #> [13] "pcks"               "rblue"              "soi"               
-#> [16] "soi_df"             "soi.df"             "soi_file"          
-#> [19] "soi_v"
+#> [16] "soi_df"             "soi_file"           "soi_v"             
+#> [19] "soi.df"
 ```
 
 
@@ -785,16 +785,16 @@ inmet_estacoes
 #> # A tibble: 437 x 10
 #>       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude
 #>    <dbl>  <dbl> <chr>               <chr>    <dbl>     <dbl>   <dbl>
-#>  1  1.00  82704 CRUZEIRO DO SUL     AC       -7.60     -72.7   170  
-#>  2  2.00  82915 RIO BRANCO          AC       -9.95     -67.9   160  
-#>  3  3.00  82807 TARAUACA            AC       -8.17     -70.8   190  
-#>  4  4.00  82989 AGUA BRANCA         AL       -9.28     -37.9   605  
-#>  5  5.00  82995 ARAPIRACA           AL       -9.73     -36.8   247  
-#>  6  6.00  82994 MACEIO              AL       -9.67     -35.7    64.5
-#>  7  7.00  82991 MAJOR ISIDORO       AL       -9.55     -37.0   200  
-#>  8  8.00  82988 MATA GRANDE         AL       -9.12     -37.7   635  
-#>  9  9.00  82992 PALMEIRA DOS INDIOS AL       -9.45     -36.7   275  
-#> 10 10.0   82990 PAO DE ACUCAR       AL       -9.75     -37.4    19.1
+#>  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. 
+#>  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. 
+#>  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. 
+#>  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. 
+#>  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. 
+#>  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5
+#>  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. 
+#>  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. 
+#>  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. 
+#> 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1
 #> # ... with 427 more rows, and 3 more variables: `Inicio Operação` <chr>,
 #> #   `Fim Operação` <dttm>, Situação <chr>
 str(inmet_estacoes)
