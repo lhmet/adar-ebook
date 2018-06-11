@@ -26,9 +26,12 @@ Suprindo a necessidade de uma abordagem efetiva e integrada para ciência de dad
 <p class="caption">(\#fig:tidy-workflow)Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.</p>
 </div>
 
-O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente de realizar as tarefas de processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e a sintaxe mais fácil de lembrar.
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes (Figura \@ref(fig:tidy-workflow)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente de realizar as tarefas de processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e a sintaxe mais fácil de lembrar.
 
-
+<div class="figure">
+<img src="images/tidyverse_components.png" alt="Coleção de pacotes do *tidyverse*." width="80%" />
+<p class="caption">(\#fig:tidyverse-components)Coleção de pacotes do *tidyverse*.</p>
+</div>
   
 
 ## Pré-requisitos
@@ -85,4 +88,10 @@ Gramática de manipulação de dados.
 
 ### dplyr
 
-asd
+* 5 verbos básicos: 
+
+  - `select()`
+  - `filter()`
+  - `arrange()`
+  - `mutate()`
+  - `group_by()` e `summarise()` 
