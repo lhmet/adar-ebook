@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="pre-requisitos-2.html">
-<link rel="next" href="operador-pipe.html">
+<link rel="next" href="restruturacao-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -231,14 +231,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
 <li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
-<li class="chapter" data-level="9.3" data-path="operador-pipe.html"><a href="operador-pipe.html"><i class="fa fa-check"></i><b>9.3</b> Operador Pipe <code>%&gt;%</code></a></li>
-<li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#dplyr"><i class="fa fa-check"></i><b>9.5.1</b> dplyr</a></li>
+<li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
+<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -305,14 +305,14 @@ meteo_tbl
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   site    ano  prec `int prec`</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001  2000. 1800.       4.93</span>
-<span class="co">#&gt; 2 A001  2001. 1400.       3.84</span>
-<span class="co">#&gt; 3 A002  2000. 1750.       4.79</span>
-<span class="co">#&gt; 4 A002  2001. 1470.       4.03</span>
-<span class="co">#&gt; 5 A002  2002. 1630.       4.47</span>
-<span class="co">#&gt; 6 A003  2004. 1300.       3.56</span>
-<span class="co">#&gt; 7 A803  2005. 1950.       5.34</span>
-<span class="co">#&gt; 8 A803  2006. 1100.       3.01</span></code></pre></div>
+<span class="co">#&gt; 1 A001   2000  1800       4.93</span>
+<span class="co">#&gt; 2 A001   2001  1400       3.84</span>
+<span class="co">#&gt; 3 A002   2000  1750       4.79</span>
+<span class="co">#&gt; 4 A002   2001  1470       4.03</span>
+<span class="co">#&gt; 5 A002   2002  1630       4.47</span>
+<span class="co">#&gt; 6 A003   2004  1300       3.56</span>
+<span class="co">#&gt; 7 A803   2005  1950       5.34</span>
+<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre></div>
 <p>No exemplo acima, as principais diferenças entre o tibble e o data frame ficam evidentes:</p>
 <ul>
 <li><p>quando impresso no console do R, o <em>tibble</em> mostra a classe de cada variável, enquanto objetos <em>data.frame</em> não.</p></li>
@@ -334,14 +334,14 @@ meteo_tbl_conv
 <span class="co">#&gt; # A tibble: 8 x 3</span>
 <span class="co">#&gt;   site    ano  prec</span>
 <span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001  2000. 1800.</span>
-<span class="co">#&gt; 2 A001  2001. 1400.</span>
-<span class="co">#&gt; 3 A002  2000. 1750.</span>
-<span class="co">#&gt; 4 A002  2001. 1470.</span>
-<span class="co">#&gt; 5 A002  2002. 1630.</span>
-<span class="co">#&gt; 6 A003  2004. 1300.</span>
-<span class="co">#&gt; 7 A803  2005. 1950.</span>
-<span class="co">#&gt; 8 A803  2006. 1100.</span></code></pre></div>
+<span class="co">#&gt; 1 A001   2000  1800</span>
+<span class="co">#&gt; 2 A001   2001  1400</span>
+<span class="co">#&gt; 3 A002   2000  1750</span>
+<span class="co">#&gt; 4 A002   2001  1470</span>
+<span class="co">#&gt; 5 A002   2002  1630</span>
+<span class="co">#&gt; 6 A003   2004  1300</span>
+<span class="co">#&gt; 7 A803   2005  1950</span>
+<span class="co">#&gt; 8 A803   2006  1100</span></code></pre></div>
 <p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> na tela são controladas através da função de opções de configuração:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
   <span class="dt">tibble.print_max =</span> n, 
@@ -356,7 +356,7 @@ meteo_tbl_conv
         </div>
       </div>
 <a href="pre-requisitos-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="operador-pipe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="restruturacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

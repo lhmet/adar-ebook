@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -231,14 +231,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
 <li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
-<li class="chapter" data-level="9.3" data-path="operador-pipe.html"><a href="operador-pipe.html"><i class="fa fa-check"></i><b>9.3</b> Operador Pipe <code>%&gt;%</code></a></li>
-<li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#dplyr"><i class="fa fa-check"></i><b>9.5.1</b> dplyr</a></li>
+<li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
+<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -300,7 +300,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Uma forma mais clara de se criar uma matriz é usando a função <code>matrix()</code>.</p>
 <p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># atribuindo novas dimensões ao vetor</span>
-m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span>
+m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor)  <span class="co"># matriz de uma coluna</span>
 m
 <span class="co">#&gt;      [,1]</span>
 <span class="co">#&gt; [1,]    0</span>
@@ -343,20 +343,13 @@ mat
 <h3><span class="header-section-number">7.2.2</span> Nomes das linhas e colunas de uma matriz</h3>
 <p>Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara. Vamos usar os vetores de temperatura mensal dos anos de <code>1990:1992</code>para construir uma matriz com os meses ao longo das colunas e os anos ao longo das linhas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal do ano de 1990</span>
-temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="fl">25.00</span>, <span class="fl">23.20</span>, <span class="fl">22.50</span>, <span class="fl">21.00</span>, <span class="fl">19.00</span>, <span class="fl">17.60</span>,
-  <span class="fl">18.00</span>, <span class="fl">19.70</span>, <span class="fl">21.30</span>, <span class="fl">22.00</span>, <span class="fl">24.00</span>, <span class="fl">26.80</span>
-)
+temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="fl">23.2</span>, <span class="fl">22.5</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="fl">17.6</span>, <span class="dv">18</span>, <span class="fl">19.7</span>, <span class="fl">21.3</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="fl">26.8</span>)
 <span class="co"># temperatura do ar média mensal do ano de 1991</span>
-temp91 &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="fl">24.89</span>, <span class="fl">24.07</span>, <span class="fl">23.56</span>, <span class="fl">23.11</span>, <span class="fl">18.29</span>, <span class="fl">18.22</span>,
-  <span class="fl">16.72</span>, <span class="fl">19.37</span>, <span class="fl">20.08</span>, <span class="fl">21.45</span>, <span class="fl">26.61</span>, <span class="fl">25.99</span>
-)
+temp91 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">24.89</span>, <span class="fl">24.07</span>, <span class="fl">23.56</span>, <span class="fl">23.11</span>, <span class="fl">18.29</span>, <span class="fl">18.22</span>, <span class="fl">16.72</span>, <span class="fl">19.37</span>, <span class="fl">20.08</span>, <span class="fl">21.45</span>, 
+    <span class="fl">26.61</span>, <span class="fl">25.99</span>)
 <span class="co"># temperatura do ar média mensal do ano de 1992</span>
-temp92 &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="fl">23.2</span>, <span class="fl">26.61</span>, <span class="dv">18</span>, <span class="fl">23.11</span>, <span class="fl">26.8</span>, <span class="fl">21.3</span>, <span class="fl">18.22</span>,
-  <span class="fl">21.45</span>, <span class="fl">19.7</span>, <span class="fl">22.5</span>, <span class="fl">24.07</span>, <span class="fl">20.08</span>
-)
+temp92 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">23.2</span>, <span class="fl">26.61</span>, <span class="dv">18</span>, <span class="fl">23.11</span>, <span class="fl">26.8</span>, <span class="fl">21.3</span>, <span class="fl">18.22</span>, <span class="fl">21.45</span>, <span class="fl">19.7</span>, <span class="fl">22.5</span>, <span class="fl">24.07</span>, 
+    <span class="fl">20.08</span>)
 <span class="co"># vetor com as temperaturas dos 3 anos</span>
 vtemp &lt;-<span class="st"> </span><span class="kw">c</span>(temp90, temp91, temp92)
 vtemp
@@ -380,11 +373,8 @@ temp_matO &lt;-<span class="st"> </span>temp_mat</code></pre></div>
 <p>Atribuindo nomes às linhas (<code>rownames()</code>) e colunas (<code>colnames()</code>) da matriz criada dos vetores de temperatura mensal (<code>temp_mat</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># atribuindo nomes as colunas e linhas da temp_mat</span>
 <span class="kw">rownames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ano1990&quot;</span>, <span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;ano1992&quot;</span>)
-<span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>,
-  <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>,
-  <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span>
-)
+<span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, 
+    <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span>)
 temp_mat
 <span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov</span>
 <span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00</span>
@@ -398,7 +388,7 @@ temp_mat
 <div id="indexacao-de-matrizes" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Indexação de matrizes</h3>
 <p>Como acessamos o valor de temperatura de maio de 1991 na matriz <code>temp_mat</code>?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat <span class="co"># matriz de temperaturas com nomes</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat  <span class="co"># matriz de temperaturas com nomes</span>
 <span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov</span>
 <span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00</span>
 <span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61</span>
@@ -407,7 +397,7 @@ temp_mat
 <span class="co">#&gt; ano1990 26.80</span>
 <span class="co">#&gt; ano1991 25.99</span>
 <span class="co">#&gt; ano1992 20.08</span>
-temp_matO <span class="co"># matriz de temperaturas sem nomes</span>
+temp_matO  <span class="co"># matriz de temperaturas sem nomes</span>
 <span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]</span>
 <span class="co">#&gt; [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00</span>
 <span class="co">#&gt; [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61</span>
@@ -435,7 +425,7 @@ temp_mat[, <span class="st">&quot;Jan&quot;</span>]
 <span class="co">#&gt; ano1990 ano1991 ano1992 </span>
 <span class="co">#&gt;   25.00   24.89   23.20</span>
 <span class="co"># só as temperaturas de 1990 e 1993</span>
-temp_mat[ <span class="op">-</span><span class="dv">2</span>, ]
+temp_mat[<span class="op">-</span><span class="dv">2</span>, ]
 <span class="co">#&gt;          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez</span>
 <span class="co">#&gt; ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80</span>
 <span class="co">#&gt; ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08</span>
@@ -456,7 +446,7 @@ temp_mat[, <span class="kw">ncol</span>(temp_mat)<span class="op">:</span><span 
 <span class="co">#&gt; ano1991 24.89</span>
 <span class="co">#&gt; ano1992 23.20</span>
 <span class="co"># invertendo ordem das colunas e das linhas</span>
-temp_mat[ <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">1</span>]
+temp_mat[<span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">1</span>]
 <span class="co">#&gt;           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev</span>
 <span class="co">#&gt; ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61</span>
 <span class="co">#&gt; ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07</span>
@@ -466,19 +456,19 @@ temp_mat[ <span class="dv">3</span><span class="op">:</span><span class="dv">1</
 <span class="co">#&gt; ano1991 24.89</span>
 <span class="co">#&gt; ano1990 25.00</span>
 <span class="co"># invertendo ordem das colunas e das linhas</span>
-temp_mat[ <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">8</span>)]
+temp_mat[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">8</span>)]
 <span class="co">#&gt;           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago</span>
 <span class="co">#&gt; ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37</span>
 <span class="co">#&gt; ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70</span>
 <span class="co">#&gt; ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45</span>
 <span class="co"># só as temperaturas dos invernos</span>
-temp_mat[, <span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>) ]
+temp_mat[, <span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)]
 <span class="co">#&gt;           Jun   Jul   Ago</span>
 <span class="co">#&gt; ano1990 17.60 18.00 19.70</span>
 <span class="co">#&gt; ano1991 18.22 16.72 19.37</span>
 <span class="co">#&gt; ano1992 21.30 18.22 21.45</span>
 <span class="co"># exceto as temperaturas dos invernos</span>
-temp_mat[, <span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)) ]
+temp_mat[, <span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>))]
 <span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez</span>
 <span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80</span>
 <span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99</span>
@@ -633,7 +623,7 @@ M
 <span class="co">#&gt; Out    22.0   21.45   22.50</span>
 <span class="co">#&gt; Nov    24.0   26.61   24.07</span>
 <span class="co">#&gt; Dez    26.8   25.99   20.08</span>
-<span class="co"># diagonal </span>
+<span class="co"># diagonal</span>
 <span class="kw">diag</span>(temp_mat)
 <span class="co">#&gt; [1] 25.00 24.07 18.00</span></code></pre></div>
 <p>Operações matriciais adicionais são apresentadas no Apêndice <a href="oper-mat.html#oper-mat">A</a>.</p>

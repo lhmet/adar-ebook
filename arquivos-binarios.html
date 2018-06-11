@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -231,14 +231,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
 <li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
-<li class="chapter" data-level="9.3" data-path="operador-pipe.html"><a href="operador-pipe.html"><i class="fa fa-check"></i><b>9.3</b> Operador Pipe <code>%&gt;%</code></a></li>
-<li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#dplyr"><i class="fa fa-check"></i><b>9.5.1</b> dplyr</a></li>
+<li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
+<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -338,7 +338,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
 <span class="co">#&gt; [10] &quot;link&quot;               &quot;pacotes&quot;            &quot;pcks&quot;              </span>
 <span class="co">#&gt; [13] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_df&quot;            </span>
-<span class="co">#&gt; [16] &quot;soi_file&quot;           &quot;soi_v&quot;              &quot;soi.df&quot;</span>
+<span class="co">#&gt; [16] &quot;soi.df&quot;             &quot;soi_file&quot;           &quot;soi_v&quot;</span>
 <span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))
 <span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
@@ -368,16 +368,16 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [10] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
 <span class="co">#&gt; [13] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi_file&quot;           &quot;soi_v&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi.df&quot;</span>
+<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [19] &quot;soi_v&quot;</span>
 <span class="kw">rm</span>(cab, chuva_df)
 <span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;bdmep_url_file&quot;     &quot;dprec&quot;              &quot;dprec_file&quot;        </span>
 <span class="co">#&gt;  [4] &quot;file_83004_limpo&quot;   &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;   </span>
 <span class="co">#&gt;  [7] &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot;  &quot;link&quot;              </span>
 <span class="co">#&gt; [10] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [13] &quot;soi&quot;                &quot;soi_df&quot;             &quot;soi_file&quot;          </span>
-<span class="co">#&gt; [16] &quot;soi_v&quot;              &quot;soi.df&quot;</span>
+<span class="co">#&gt; [13] &quot;soi&quot;                &quot;soi_df&quot;             &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [16] &quot;soi_file&quot;           &quot;soi_v&quot;</span>
 <span class="co"># carrega e imprime na tela nome dos dados carregados</span>
 <span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))
 <span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
@@ -387,8 +387,8 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [10] &quot;hidroweb_url_file&quot;  &quot;link&quot;               &quot;pacotes&quot;           </span>
 <span class="co">#&gt; [13] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi_file&quot;           &quot;soi_v&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi.df&quot;</span></code></pre></div>
+<span class="co">#&gt; [16] &quot;soi_df&quot;             &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [19] &quot;soi_v&quot;</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
 <h4><span class="header-section-number">8.5.1.2</span> RDS</h4>
