@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-10">
+<meta name="date" content="2018-06-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="para-saber-mais.html">
-<link rel="next" href="introducao.html">
+<link rel="next" href="pre-requisitos-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -229,12 +229,16 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>9.1</b> Introdução</a></li>
-<li class="chapter" data-level="9.2" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.2</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.3" data-path="dados-arrumados.html"><a href="dados-arrumados.html"><i class="fa fa-check"></i><b>9.3</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.4" data-path="tibble-um-dataframe-aperfeicoado.html"><a href="tibble-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.4</b> <em>tibble</em>: um dataframe aperfeiçoado</a></li>
-<li class="chapter" data-level="9.5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>9.5</b> tidyr</a></li>
-<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9.6</b> dplyr</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.2" data-path="tibbles-um-dataframe-aperfeicoado.html"><a href="tibbles-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: um dataframe aperfeiçoado</a></li>
+<li class="chapter" data-level="9.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9.3</b> Pipe</a></li>
+<li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#dplyr"><i class="fa fa-check"></i><b>9.5.1</b> dplyr</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -290,12 +294,32 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h1><span class="header-section-number">9</span> Processamento de dados</h1>
 <p>Neste capítulo veremos:</p>
 <ul>
+<li><p>um <em>data frame</em> aperfeiçoado, denominado <em>tibble</em></p></li>
 <li><p>como arrumar seus dados em uma estrutura conveniente para a análise e visualização de dados</p></li>
-<li><p>um <em>data frame</em> aperfeiçoado (ou <em>tibble</em>)</p></li>
 <li><p>como reestruturar os dados de uma forma versátil e fácil de entender</p></li>
 <li><p>como manipular os dados com uma ferramenta intuitiva e padronizada</p></li>
 </ul>
-<p>Há diversas ferramentas para a execução dessas operações no R. As ferramentas nativas do R para</p> 
+<p>Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para a execução dessas operações. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não possuem uma capacidade de fluirem juntas no processamento de dados.</p>
+<p>Suprindo a necessidade de uma abordagem efetiva e integrada para ciência de dados (Figura <a href="data-wrangle.html#fig:tidy-workflow">9.1</a>) um conjunto de pacotes foram desenvolvidos e denominado <a href="https://www.tidyverse.org/"><em>tidyverse</em></a>.</p>
+<div class="figure"><span id="fig:tidy-workflow"></span>
+<img src="images/workflowtidy.png" alt="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017." width="100%" />
+<p class="caption">
+Figure 9.1: Modelo de ferramentas empregadas em ciência de dados. Adaptado de <span class="citation">Wickham and Grolemund (<a href="#ref-Wickham2017">2017</a>)</span>.
+</p>
+</div>
+<p>O termo <em>tidyverse</em> pode ser traduzido como ‘universo arrumado’ e consiste em um pacote do R que agrupa pacotes que compartilham uma filosofia comun de <em>design</em>, gramática <span class="citation">(Wickham et al. <a href="#ref-Wickham-dplyr">2017</a>)</span> e estrutura de dados <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span>. Consequentemente, o <em>tidyverse</em> tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente de realizar as tarefas de processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e a sintaxe mais fácil de lembrar.</p> 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Wickham2017">
+<p>Wickham, H., and G. Grolemund. 2017. <em>R for Data Science</em>. O’Reilly Media. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
+</div>
+<div id="ref-Wickham-dplyr">
+<p>Wickham, H., R. Francois, L. Henry, and K. Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-Wickham2014">
+<p>Wickham, H. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
+</div>
 </div>
             </section>
 
@@ -303,7 +327,7 @@ code > span. { color: #1f1c1b; } /* Normal */
         </div>
       </div>
 <a href="para-saber-mais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introducao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pre-requisitos-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

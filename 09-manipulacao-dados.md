@@ -7,79 +7,79 @@
 
 Neste capítulo veremos:
 
-- como arrumar seus dados em uma estrutura conveniente para a análise e visualização de dados
+- um *data frame* aperfeiçoado, denominado *tibble*
 
-- um *data frame* aperfeiçoado (ou *tibble*)
+- como arrumar seus dados em uma estrutura conveniente para a análise e visualização de dados
 
 - como reestruturar os dados de uma forma versátil e fácil de entender
 
 - como manipular os dados com uma ferramenta intuitiva e padronizada
 
-Há diversas ferramentas para a execução dessas operações no R. As ferramentas nativas do R para 
+Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para a execução dessas operações. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não possuem uma capacidade de fluirem juntas no processamento de dados. 
+
+Suprindo a necessidade de uma abordagem efetiva e integrada para ciência de dados (Figura \@ref(fig:tidy-workflow)) um conjunto de pacotes foram desenvolvidos e denominado [*tidyverse*](https://www.tidyverse.org/).
 
 
-## Introdução
 
-Introdução a ferramentas modernas de processamento de dados:
+<div class="figure">
+<img src="images/workflowtidy.png" alt="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017." width="100%" />
+<p class="caption">(\#fig:tidy-workflow)Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.</p>
+</div>
 
-Caixa de ferramentas para manipulação de dados tabulares
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente de realizar as tarefas de processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e a sintaxe mais fácil de lembrar.
 
-    - pacote **dplyr**
+
   
-    - pacote **tidyr**
-    
 
 ## Pré-requisitos
 
-Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes, além daqueles usados nos capítulos anteriores:
+O pacote tidyverse torna fácil de instalar e carregar os pacotes do *tidyverse* em apenas um comando.
 
 
 ```r
-pacotes <- c("tidyverse", "openair")
-```
-
-
-Para instalá-los já com as dependências utilize a instrução abaixo:
-
-
-```r
-install.packages(
-   pacotes,
-   dependencies = TRUE
-)
+install.packages("tidyverse")
 ```
 
 Agora você pode carregar os pacotes.
 
 
 ```r
-easypackages::libraries(pacotes)
-#> Loading required package: tidyverse
-#> Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-#> logical.return = TRUE, : there is no package called 'tidyverse'
-#> Loading required package: openair
-#> Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-#> logical.return = TRUE, : there is no package called 'openair'
-#> 
-#> --------------------------------------------------
-#> The following packages did not load successfully:
-#> 
+library(tidyverse)
+#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 2.2.1     ✔ purrr   0.2.5
+#> ✔ tibble  1.4.2     ✔ dplyr   0.7.5
+#> ✔ tidyr   0.8.1     ✔ stringr 1.3.1
+#> ✔ readr   1.1.1     ✔ forcats 0.3.0
+#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 ```
 
 
 
-## Dados arrumados
+## *tibbles*: um dataframe aperfeiçoado
 
 asd
 
-## *tibble*: um dataframe aperfeiçoado
+## Pipe
+
+
+
+## Restruturação de dados
+
+
+### Dados arrumados
 
 asd
 
-## tidyr
+### tidyr
 
 asd
 
-## dplyr
+## Manipulação de dados
+
+Gramática de manipulação de dados.
+
+### dplyr
 
 asd
