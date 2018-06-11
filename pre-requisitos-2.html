@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="data-wrangle.html">
-<link rel="next" href="tibbles-um-dataframe-aperfeicoado.html">
+<link rel="next" href="tibbles-data-frames-aperfeicoado.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -230,8 +230,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="tibbles-um-dataframe-aperfeicoado.html"><a href="tibbles-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: um dataframe aperfeiçoado</a></li>
-<li class="chapter" data-level="9.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9.3</b> Pipe</a></li>
+<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.3" data-path="operador-pipe.html"><a href="operador-pipe.html"><i class="fa fa-check"></i><b>9.3</b> Operador Pipe <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
@@ -304,6 +304,53 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
 <span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre></div>
+<p>Dados climatológicos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rio)
+clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span>
+<span class="co"># dados de exemplo</span>
+clima_rs &lt;-<span class="st"> </span>rio<span class="op">:::</span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
+clima_rs
+<span class="co">#&gt;    codigo                 estacao uf   prec tmax</span>
+<span class="co">#&gt; 1   83931                Alegrete RS 1492.2 25.4</span>
+<span class="co">#&gt; 2   83980                    Bagé RS 1299.9 24.1</span>
+<span class="co">#&gt; 3   83941         Bento Gonçalves RS 1683.7 23.0</span>
+<span class="co">#&gt; 4   83919               Bom Jesus RS 1807.3 20.3</span>
+<span class="co">#&gt; 5   83963        Cachoeira do Sul RS 1477.1 25.1</span>
+<span class="co">#&gt; 6   83942           Caxias do Sul RS 1823.0 21.8</span>
+<span class="co">#&gt; 7   83912               Cruz Alta RS 1630.7 24.5</span>
+<span class="co">#&gt; 8   83964     Encruzilhada do Sul RS 1510.8 22.5</span>
+<span class="co">#&gt; 9   83915                 Guaporé RS 1758.7 24.7</span>
+<span class="co">#&gt; 10  83881                    Iraí RS 1806.7 27.1</span>
+<span class="co">#&gt; 11  83929                  Itaqui RS 1369.4 26.2</span>
+<span class="co">#&gt; 12  83916          Lagoa Vermelha RS 1691.1 23.0</span>
+<span class="co">#&gt; 13  83880    Palmeira das Missões RS 1747.8 24.0</span>
+<span class="co">#&gt; 14  83914             Passo Fundo RS 1803.1 23.6</span>
+<span class="co">#&gt; 15  83967            Porto Alegre RS 1320.2 24.8</span>
+<span class="co">#&gt; 16  83995              Rio Grande RS 1233.6 21.7</span>
+<span class="co">#&gt; 17  83936             Santa Maria RS 1616.8 24.9</span>
+<span class="co">#&gt; 18  83997 Santa Vitória do Palmar RS 1228.9 21.8</span>
+<span class="co">#&gt; 19  83957             São Gabriel RS 1313.9 25.0</span>
+<span class="co">#&gt; 20  83907        São Luiz Gonzaga RS 1770.9 26.1</span>
+<span class="co">#&gt; 21  83966                   Tapes RS 1349.8 23.8</span>
+<span class="co">#&gt; 22  83948                  Torres RS 1363.2 22.3</span>
+<span class="co">#&gt; 23  83927              Uruguaiana RS 1647.4 25.8</span></code></pre></div>
+<p>Dados de estação meteorológicas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">site =</span> <span class="kw">c</span>(
+  <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+  ),
+  <span class="dt">ano  =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
+  )
+meteo_df
+<span class="co">#&gt;   site  ano prec</span>
+<span class="co">#&gt; 1 A001 2000 1800</span>
+<span class="co">#&gt; 2 A001 2001 1400</span>
+<span class="co">#&gt; 3 A002 2000 1750</span>
+<span class="co">#&gt; 4 A002 2001 1470</span>
+<span class="co">#&gt; 5 A002 2002 1630</span>
+<span class="co">#&gt; 6 A003 2004 1300</span>
+<span class="co">#&gt; 7 A803 2005 1950</span>
+<span class="co">#&gt; 8 A803 2006 1100</span></code></pre></div>
 </div>
             </section>
 
@@ -311,7 +358,7 @@ code > span. { color: #1f1c1b; } /* Normal */
         </div>
       </div>
 <a href="data-wrangle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tibbles-um-dataframe-aperfeicoado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tibbles-data-frames-aperfeicoado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
