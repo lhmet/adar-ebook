@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-10">
+<meta name="date" content="2018-06-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -229,12 +229,16 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>9.1</b> Introdução</a></li>
-<li class="chapter" data-level="9.2" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.2</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.3" data-path="dados-arrumados.html"><a href="dados-arrumados.html"><i class="fa fa-check"></i><b>9.3</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.4" data-path="tibble-um-dataframe-aperfeicoado.html"><a href="tibble-um-dataframe-aperfeicoado.html"><i class="fa fa-check"></i><b>9.4</b> <em>tibble</em>: um dataframe aperfeiçoado</a></li>
-<li class="chapter" data-level="9.5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>9.5</b> tidyr</a></li>
-<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9.6</b> dplyr</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.3" data-path="operador-pipe.html"><a href="operador-pipe.html"><i class="fa fa-check"></i><b>9.3</b> Operador Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="9.4" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Restruturação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.4.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.4.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.4.2</b> tidyr</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#dplyr"><i class="fa fa-check"></i><b>9.5.1</b> dplyr</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -300,7 +304,7 @@ v1 &lt;-<span class="st"> </span><span class="kw">scan</span>()
 aq_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt&quot;</span>
 <span class="co"># arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpSEDQoB/file73e5238112ca&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpn0LAmV/file4e1250b46a65&quot;</span>
 <span class="kw">download.file</span>(aq_url, <span class="dt">destfile =</span> aq_dest_file)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(aq_dest_file)
