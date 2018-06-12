@@ -264,7 +264,10 @@ Então dados reais sempre precisarão ser arrumados. O primeiro passo é identif
 
 Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente você agora saberá como resolver isso com as principais funções do pacote **tidyr**: `gather()` e `spread()`.
 
-O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (aggregation, plotting, fitting statistical models), it is not the optimal structure for every case. As an example, community ecology analyses often start from a matrix of counts where rows and columns correspond to species and sites.
+
+
+
+
 
 ### tidyr
 
