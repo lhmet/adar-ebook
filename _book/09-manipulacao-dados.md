@@ -55,7 +55,7 @@ library(tidyverse)
 #> + tidyr   0.8.0          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
 #> + purrr   0.2.4      Locale: en_US.UTF-8
-#> + dplyr   0.7.4          TZ: UTC
+#> + dplyr   0.7.4          TZ: America/Sao_Paulo
 #> + stringr 1.3.1      
 #> + forcats 0.2.0
 #> ── Conflicts ────────────────────────────────────────────────────
@@ -267,7 +267,10 @@ Então dados reais sempre precisarão ser arrumados. O primeiro passo é identif
 
 Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente você agora saberá como resolver isso com as principais funções do pacote **tidyr**: `gather()` e `spread()`.
 
-O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (aggregation, plotting, fitting statistical models), it is not the optimal structure for every case. As an example, community ecology analyses often start from a matrix of counts where rows and columns correspond to species and sites.
+
+
+
+
 
 ### tidyr
 
