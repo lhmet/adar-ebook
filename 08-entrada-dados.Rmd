@@ -582,3 +582,23 @@ class(inmet_estacoes)
 
 Para uma descrição mais abrangente sobre importação e exportação de dados no `r rblue` consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e a documentação de ajuda das funções citadas naquele documento.
 
+## Exercícios
+
+1. a. Importe para o R os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt .
+
+```{r, eval = TRUE, include=FALSE}
+library(dplyr)
+library(rio)
+url_data <- "http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt"
+ind_mjo <- import(url_data, fread = TRUE)
+var_nomes <- scan(url_data, 
+                  what = "character",
+                  nlines = 2, 
+                  skip = 1, 
+                  n = 7, 
+                  sep = ",",
+                  comment.char = ".")
+```
+
+    b. Defina o nome das variáveis como: `r paste(c(var_nomes, "status"), collapse = ", ")`.
+

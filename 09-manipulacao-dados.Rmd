@@ -28,19 +28,20 @@ Neste capítulo veremos:
 
 - como manipular os dados com uma ferramenta intuitiva e padronizada
 
-Existem diversas ferramentas da base do `r rblue` para a execução dessas operações. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não possuem uma capacidade de fluirem juntas no processamento de dados. 
+Existem diversas ferramentas da base do `r rblue` para realizar as operações listadas acima. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. 
 
-Muitas coisas no R que foram desenvolvidas e eram úteis há 20 anos, podem não ser a melhor forma de abordar um problema hoje. Mudanças nos códigos da base do R é uma tarefa complicado devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações estão ocorrendo na forma de pacotes.
+Muitas coisas no R que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Mudar os códigos da base do R é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações no R estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes denominado [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
-Suprindo a necessidade de uma abordagem efetiva e integrada para ciência de dados (Figura \@ref(fig:tidy-workflow)) um conjunto de pacotes foram desenvolvidos e denominado [*tidyverse*](https://www.tidyverse.org/).
-
+```{r, include = FALSE}
+#A nossa capacidade tecnológica de coletar e armazenar uma quantidade massiva de dados digitalmente demanda ferramentas pragmáticas e acessíveis.
+```
 
 
 ```{r tidy-workflow, out.width="100%", fig.cap="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.", echo = FALSE}
 knitr::include_graphics("images/workflowtidy.png")
 ```
 
-O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes (Figura \@ref(fig:tidy-workflow)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente de realizar as tarefas de processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e a sintaxe mais fácil de lembrar.
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e com sintaxe mais fácil de lembrar.
 
 ```{r tidyverse-components, out.width="80%", fig.cap="Coleção de pacotes do *tidyverse*.", echo = FALSE}
 knitr::include_graphics("images/tidyverse_components.png")

@@ -172,7 +172,7 @@ download.file(
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpQwa2Zd/file6c3310ae189c.csv"
+#> [1] "/tmp/RtmpnF9VSL/file34927a46ece.csv"
 ```
 
 
@@ -785,16 +785,16 @@ inmet_estacoes
 #> # A tibble: 437 x 10
 #>       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude
 #>    <dbl>  <dbl> <chr>               <chr>    <dbl>     <dbl>   <dbl>
-#>  1  1.00  82704 CRUZEIRO DO SUL     AC       -7.60     -72.7   170  
-#>  2  2.00  82915 RIO BRANCO          AC       -9.95     -67.9   160  
-#>  3  3.00  82807 TARAUACA            AC       -8.17     -70.8   190  
-#>  4  4.00  82989 AGUA BRANCA         AL       -9.28     -37.9   605  
-#>  5  5.00  82995 ARAPIRACA           AL       -9.73     -36.8   247  
-#>  6  6.00  82994 MACEIO              AL       -9.67     -35.7    64.5
-#>  7  7.00  82991 MAJOR ISIDORO       AL       -9.55     -37.0   200  
-#>  8  8.00  82988 MATA GRANDE         AL       -9.12     -37.7   635  
-#>  9  9.00  82992 PALMEIRA DOS INDIOS AL       -9.45     -36.7   275  
-#> 10 10.0   82990 PAO DE ACUCAR       AL       -9.75     -37.4    19.1
+#>  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. 
+#>  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. 
+#>  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. 
+#>  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. 
+#>  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. 
+#>  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5
+#>  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. 
+#>  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. 
+#>  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. 
+#> 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1
 #> # ... with 427 more rows, and 3 more variables: `Inicio Operação` <chr>,
 #> #   `Fim Operação` <dttm>, Situação <chr>
 str(inmet_estacoes)
@@ -818,4 +818,12 @@ class(inmet_estacoes)
 ## Para saber mais
 
 Para uma descrição mais abrangente sobre importação e exportação de dados no <img src="images/logo_r.png" width="20"> consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e a documentação de ajuda das funções citadas naquele documento.
+
+## Exercícios
+
+1. a. Importe para o R os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt .
+
+
+
+    b. Defina o nome das variáveis como:  year,  month,  day,  RMM1,  RMM2,  phase,  amplitude, status.
 
