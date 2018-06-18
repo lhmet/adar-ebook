@@ -26,6 +26,7 @@ pacotes <- c(
   "readr",
   "feather",
   "readxl",
+  "writexl",
   "dplyr",
   "microbenchmark",
   "openxlsx"
@@ -40,7 +41,7 @@ install.packages(
    pacotes,
    dependencies = TRUE
 )
-remotes::install_github("ropensci/writexl")
+devtools::install_github("ropensci/writexl")
 ```
 
 Agora você pode carregar os pacotes.
@@ -207,15 +208,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmphnVk6J/file563f59223b62"
+#> [1] "/tmp/RtmpKWEYgN/file5a3032b8806a"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmphnVk6J/file563f59223b62.csv"
+#> [1] "/tmp/RtmpKWEYgN/file5a3032b8806a.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmphnVk6J/file563f59223b62.csv"
+#> [1] "/tmp/RtmpKWEYgN/file5a3032b8806a.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -260,9 +261,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmphnVk6J/file563f2899dbde"
+#> [1] "/tmp/RtmpKWEYgN/file5a3048b05318"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmphnVk6J/file563f2899dbde.tsv"
+#> [1] "/tmp/RtmpKWEYgN/file5a3048b05318.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -369,7 +370,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmphnVk6JSOI.csv"
+#> [1] "/tmp/RtmpKWEYgNSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -883,18 +884,18 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq      mean    median        uq       max
-#>   writexl  9.002557  9.335875  10.54346  9.627213  9.690607  15.06105
-#>  openxlsx 43.584516 43.735609 125.26875 48.823454 94.669457 395.53073
-#>  neval cld
-#>      5   a
-#>      5   a
+#>      expr       min        lq      mean    median       uq       max neval
+#>   writexl  8.713419  9.152431  12.80155  9.263164 13.13508  23.74365     5
+#>  openxlsx 43.624106 46.666519 132.76388 62.872162 84.25378 426.40282     5
+#>  cld
+#>    a
+#>    a
 ```
 
 
 
 
-A `writexl::write_xlsx()` no exemplo acima foi cerca de 12 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+A `writexl::write_xlsx()` no exemplo acima foi cerca de 10 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
