@@ -208,15 +208,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpN63CBj/file285025061eb9"
+#> [1] "/tmp/RtmpQ0aY5z/file27861a181a4a"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpN63CBj/file285025061eb9.csv"
+#> [1] "/tmp/RtmpQ0aY5z/file27861a181a4a.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpN63CBj/file285025061eb9.csv"
+#> [1] "/tmp/RtmpQ0aY5z/file27861a181a4a.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -261,9 +261,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpN63CBj/file28502025102c"
+#> [1] "/tmp/RtmpQ0aY5z/file278651b8a79a"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpN63CBj/file28502025102c.tsv"
+#> [1] "/tmp/RtmpQ0aY5z/file278651b8a79a.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -370,7 +370,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpN63CBjSOI.csv"
+#> [1] "/tmp/RtmpQ0aY5zSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -884,15 +884,15 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr      min       lq     mean   median       uq      max neval
-#>   writexl 10.29443 10.40207 10.69856 10.42701 10.51741 11.85190     5
-#>  openxlsx 49.36591 50.74486 59.64904 51.51547 52.03603 94.58295     5
+#>      expr      min       lq    mean   median       uq       max neval
+#>   writexl 17.56653 17.82148 18.1113 18.01532 18.43124  18.72194     5
+#>  openxlsx 90.28839 93.45994 97.3702 94.57299 95.30831 113.22137     5
 ```
 
 
 
 
-A `writexl::write_xlsx()` no exemplo acima foi cerca de 6 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+A `writexl::write_xlsx()` no exemplo acima foi cerca de 5 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares

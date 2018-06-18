@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -312,14 +312,14 @@ meteo_tbl
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   site    ano  prec `int prec`</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001  2000. 1800.       4.93</span>
-<span class="co">#&gt; 2 A001  2001. 1400.       3.84</span>
-<span class="co">#&gt; 3 A002  2000. 1750.       4.79</span>
-<span class="co">#&gt; 4 A002  2001. 1470.       4.03</span>
-<span class="co">#&gt; 5 A002  2002. 1630.       4.47</span>
-<span class="co">#&gt; 6 A003  2004. 1300.       3.56</span>
-<span class="co">#&gt; 7 A803  2005. 1950.       5.34</span>
-<span class="co">#&gt; 8 A803  2006. 1100.       3.01</span></code></pre></div>
+<span class="co">#&gt; 1 A001   2000  1800       4.93</span>
+<span class="co">#&gt; 2 A001   2001  1400       3.84</span>
+<span class="co">#&gt; 3 A002   2000  1750       4.79</span>
+<span class="co">#&gt; 4 A002   2001  1470       4.03</span>
+<span class="co">#&gt; 5 A002   2002  1630       4.47</span>
+<span class="co">#&gt; 6 A003   2004  1300       3.56</span>
+<span class="co">#&gt; 7 A803   2005  1950       5.34</span>
+<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre></div>
 <p>No exemplo acima, as principais diferenças entre o tibble e o data frame ficam evidentes:</p>
 <ul>
 <li><p>quando impresso no console do R, o <em>tibble</em> mostra a classe de cada variável, enquanto objetos <em>data.frame</em> não.</p></li>
@@ -341,14 +341,14 @@ meteo_tbl_conv
 <span class="co">#&gt; # A tibble: 8 x 3</span>
 <span class="co">#&gt;   site    ano  prec</span>
 <span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001  2000. 1800.</span>
-<span class="co">#&gt; 2 A001  2001. 1400.</span>
-<span class="co">#&gt; 3 A002  2000. 1750.</span>
-<span class="co">#&gt; 4 A002  2001. 1470.</span>
-<span class="co">#&gt; 5 A002  2002. 1630.</span>
-<span class="co">#&gt; 6 A003  2004. 1300.</span>
-<span class="co">#&gt; 7 A803  2005. 1950.</span>
-<span class="co">#&gt; 8 A803  2006. 1100.</span></code></pre></div>
+<span class="co">#&gt; 1 A001   2000  1800</span>
+<span class="co">#&gt; 2 A001   2001  1400</span>
+<span class="co">#&gt; 3 A002   2000  1750</span>
+<span class="co">#&gt; 4 A002   2001  1470</span>
+<span class="co">#&gt; 5 A002   2002  1630</span>
+<span class="co">#&gt; 6 A003   2004  1300</span>
+<span class="co">#&gt; 7 A803   2005  1950</span>
+<span class="co">#&gt; 8 A803   2006  1100</span></code></pre></div>
 <p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> na tela são controladas através da função de opções de configuração:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
   <span class="dt">tibble.print_max =</span> n, 

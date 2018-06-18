@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="data-wrangle.html">
-<link rel="next" href="tibbles-data-frames-aperfeicoado.html">
+<link rel="next" href="tibble-um-data-frame-aperfeicoado.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -235,11 +235,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -312,18 +315,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
 <span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre></div>
 <p>Outros pacotes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)
 easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre></div>
+<div id="dados" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Dados</h3>
 <p>Dados climatológicos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rio)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: &#39;rio&#39;</span>
-<span class="co">#&gt; The following object is masked from &#39;package:openair&#39;:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     import</span>
-clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span>
 <span class="co"># dados de exemplo</span>
-clima_rs &lt;-<span class="st"> </span>rio<span class="op">:::</span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
+clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
 clima_rs
 <span class="co">#&gt;    codigo                 estacao uf   prec tmax</span>
 <span class="co">#&gt; 1   83931                Alegrete RS 1492.2 25.4</span>
@@ -350,12 +349,13 @@ clima_rs
 <span class="co">#&gt; 22  83948                  Torres RS 1363.2 22.3</span>
 <span class="co">#&gt; 23  83927              Uruguaiana RS 1647.4 25.8</span></code></pre></div>
 <p>Dados de estação meteorológicas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">site =</span> <span class="kw">c</span>(
-  <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">site =</span> <span class="kw">c</span>(
+    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
   ),
-  <span class="dt">ano  =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
   <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
-  )
+)
 meteo_df
 <span class="co">#&gt;   site  ano prec</span>
 <span class="co">#&gt; 1 A001 2000 1800</span>
@@ -367,13 +367,14 @@ meteo_df
 <span class="co">#&gt; 7 A803 2005 1950</span>
 <span class="co">#&gt; 8 A803 2006 1100</span></code></pre></div>
 </div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="data-wrangle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tibbles-data-frames-aperfeicoado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tibble-um-data-frame-aperfeicoado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -235,11 +235,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -449,15 +452,15 @@ hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar
 <span class="co"># caminho de destino para o aquivo baixado</span>
 <span class="co"># alterando a extensão de TXT para csv</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBj/file285025061eb9&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5z/file27861a181a4a&quot;</span>
 (hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBj/file285025061eb9.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5z/file27861a181a4a.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBj/file285025061eb9.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5z/file27861a181a4a.csv&quot;</span></code></pre></div>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
@@ -489,9 +492,9 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBj/file28502025102c&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5z/file278651b8a79a&quot;</span>
 (dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBj/file28502025102c.tsv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5z/file278651b8a79a.tsv&quot;</span>
 <span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
 </div>
 <div id="arquivos-fwf" class="section level4">
@@ -567,7 +570,7 @@ nome_vars
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
 (soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpN63CBjSOI.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpQ0aY5zSOI.csv&quot;</span>
 <span class="co"># exportação com rio</span>
 <span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,
