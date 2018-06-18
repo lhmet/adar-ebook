@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-17">
+<meta name="date" content="2018-06-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -235,11 +235,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
-<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -374,13 +377,13 @@ arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 )
 tempos_escrita_xlsx
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr       min        lq      mean    median       uq       max neval</span>
-<span class="co">#&gt;   writexl  8.713419  9.152431  12.80155  9.263164 13.13508  23.74365     5</span>
-<span class="co">#&gt;  openxlsx 43.624106 46.666519 132.76388 62.872162 84.25378 426.40282     5</span>
-<span class="co">#&gt;  cld</span>
-<span class="co">#&gt;    a</span>
-<span class="co">#&gt;    a</span></code></pre></div>
-<p>A <code>writexl::write_xlsx()</code> no exemplo acima foi cerca de 10 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<span class="co">#&gt;      expr       min        lq      mean    median        uq       max</span>
+<span class="co">#&gt;   writexl  8.925986  9.096703  17.77574  9.513704  25.87211  35.47018</span>
+<span class="co">#&gt;  openxlsx 44.560889 44.697944 139.55065 49.947584 112.46975 446.07706</span>
+<span class="co">#&gt;  neval cld</span>
+<span class="co">#&gt;      5   a</span>
+<span class="co">#&gt;      5   a</span></code></pre></div>
+<p>A <code>writexl::write_xlsx()</code> no exemplo acima foi cerca de 8 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-nao-tabulares" class="section level3">
 <h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>
