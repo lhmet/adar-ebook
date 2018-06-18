@@ -233,7 +233,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180618.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20180617.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 

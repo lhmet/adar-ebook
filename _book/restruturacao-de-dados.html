@@ -25,14 +25,14 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tibble-um-data-frame-aperfeicoado.html">
+<link rel="prev" href="tibbles-data-frames-aperfeicoado.html">
 <link rel="next" href="manipulacao-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -235,14 +235,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
-<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="9.2" data-path="tibbles-data-frames-aperfeicoado.html"><a href="tibbles-data-frames-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibbles</em>: <em>data frames</em> aperfeiçoado</a></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
-<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -307,326 +304,328 @@ code > span. { color: #1f1c1b; } /* Normal */
 </blockquote>
 <div id="dados-arrumados" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Dados arrumados</h3>
-<p>O conceito &quot;dados arrumados&quot; foi estabelecido por <span class="citation">Wickham (<a href="#ref-Wickham2014">2014</a>)</span> e representa uma forma padronizada de conectar a estrutura de um conjunto de dados (formato) com a sua semântica (significado).</p>
-<p>Dados bem estruturados servem para:</p>
-<ul>
-<li><p>fornecer dados propícios para o processamento e análise de dados por softwares;</p></li>
-<li><p>revelar informações e facilitar a percepção de padrões</p></li>
-</ul>
-<p>Para rearranjar um conjunto de dados no &quot;formato arrumado&quot; você deve seguir as seguintes regras:</p>
+<p>O conceito ‘dados arrumados’ foi estabelecido por <span class="citation">Wickham (<a href="#ref-Wickham2014">2014</a>)</span> e representauma forma padronizada de conectar a estrutura de um conjunto de dados com (formato) com a sua semântica (significado).</p>
+<p>Dados bem estruturados servem para: - fornecer dados propícios para o processamento e análise de dados por softwares; - revelar informações e facilitar a percepção de padrões</p>
+<p>Para rearranjar um conjunto de dados no formato arrumado vocẽ deve seguir os seguintes critérios:</p>
 <ol style="list-style-type: decimal">
 <li><p>colocar seus dados em formato retangular</p></li>
 <li><p>cada variável corresponde a uma coluna</p></li>
 <li><p>cada observação corresponde a uma linha</p></li>
 <li><p>cada valor corresponde a uma célula</p></li>
-<li><p>cada tipo de unidade observacional deve compor uma tabela</p></li>
+<li><p>cada tipo de unidade observacional deve formar uma tabela</p></li>
 </ol>
 <div class="figure">
 <img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrura de dados padronizados" />
 <p class="caption">Estrura de dados padronizados</p>
 </div>
-<p>Um exemplo de dados no formato arrumado é o tibble <code>meteo_tbl</code> mostrado abaixo:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">site</th>
-<th align="center">ano</th>
-<th align="center">prec</th>
-<th align="center">intensidade</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">A001</td>
-<td align="center">2000</td>
-<td align="center">1800</td>
-<td align="center">4.931507</td>
-</tr>
-<tr class="even">
-<td align="center">A001</td>
-<td align="center">2001</td>
-<td align="center">1400</td>
-<td align="center">3.835616</td>
-</tr>
-<tr class="odd">
-<td align="center">A002</td>
-<td align="center">2000</td>
-<td align="center">1750</td>
-<td align="center">4.794520</td>
-</tr>
-<tr class="even">
-<td align="center">A002</td>
-<td align="center">2001</td>
-<td align="center">1470</td>
-<td align="center">4.027397</td>
-</tr>
-<tr class="odd">
-<td align="center">A002</td>
-<td align="center">2002</td>
-<td align="center">1630</td>
-<td align="center">4.465753</td>
-</tr>
-<tr class="even">
-<td align="center">A003</td>
-<td align="center">2004</td>
-<td align="center">1300</td>
-<td align="center">3.561644</td>
-</tr>
-<tr class="odd">
-<td align="center">A803</td>
-<td align="center">2005</td>
-<td align="center">1950</td>
-<td align="center">5.342466</td>
-</tr>
-<tr class="even">
-<td align="center">A803</td>
-<td align="center">2006</td>
-<td align="center">1100</td>
-<td align="center">3.013699</td>
-</tr>
-</tbody>
-</table>
-<p>Os dados acima tem duas variáveis: precipitação (<code>prec</code>) e intensidade da precipitação (<code>intensidade</code>). As unidades observacionais são as colunas <code>site</code> e <code>ano</code>. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.</p>
-<p>Uma <strong>variável</strong> contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma <strong>observação</strong> contém todos valores medidos na mesma unidade observacional ao longo dos atributos. Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e uma observação.</p>
-<p>Exemplo de diferentes <strong>tipos de unidades observacionais</strong> são a tabela com a séries temporais dos elementos meteorológicos (exemplo acima) e a tabela com os metadados das estações de superfície que contém atributos das estações meteorológicas (<code>site</code> no exemplo acima), tais como: longitude, latitude, altitude, nome, município, estado e etc.</p>
-<p>A estrutura de dados &quot;arrumados&quot; parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
+<p>Um exemplo de unidade observacional refere-se a tabela de dados meteorológicos de um conjunto de estações de superfície com medidas das variáveis meteorológicas ao longo do tempo. Outro tipo de unidade observacional refere-se aos metadados das estações de superfície que são armazenados em uma tabela separada contendo atributos que caracterizam o local de medida (localização, altitude, nome, município e etc.). Por isso essas tabelas são geralmente distribuídas separadamente.</p>
+<p>A estrutura de dados arrumados parece óbvia, mas nas ciências ambientais dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
 <ul>
 <li><p>as pessoas que projetam a coleta e o registro de dados nem sempre são aquelas que gastam tempo trabalhando sobre os dados.</p></li>
 <li><p>a organização dos dados buscar tornar o registro de dados o mais fácil possível</p></li>
 </ul>
-<p>Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns <span class="citation">(Wickham and Grolemund <a href="#ref-Wickham2017">2017</a>)</span>:</p>
+<p>Então dados reais sempre precisarão ser arrumados. O primeiro passo é identifica as variáveis e as observações. O passo seguinte é resolver os seguintes problemas comuns (<span class="citation">Wickham and Grolemund (<a href="#ref-Wickham2017">2017</a>)</span>):</p>
 <ul>
 <li><p>uma variável deve ser distribuída ao longo das colunas</p></li>
 <li><p>uma observação deve ser distribuída ao longo das linhas</p></li>
 </ul>
-<p>Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente, agora você saberá como resolver usando as principais funções do pacote <strong>tidyr</strong>: <code>gather()</code> e <code>spread()</code>.</p>
+<p>Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente você agora saberá como resolver isso com as principais funções do pacote <strong>tidyr</strong>: <code>gather()</code> e <code>spread()</code>.</p>
 </div>
 <div id="tidyr" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> tidyr</h3>
-<p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são:</p>
-<ul>
-<li><p>dados longos, são tabelas com maior extensão vertical ou no sentido das linhas;</p></li>
-<li><p>dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;</p></li>
-</ul>
-<p>Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.</p>
+<p>O pacote <strong>tidyr</strong> é a extensão do R que fornece um conjunto de funções designadas para reestruturar seus dados entre diferentes formatos. Os principais formatos são o de tabelas longas (na sentidoo vertical ou das linhas) e largas (no sentido horizontal ou das colunas).</p>
 <div id="formato-de-dados-longo" class="section level4">
 <h4><span class="header-section-number">9.3.2.1</span> Formato de dados longo</h4>
-<p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>meteo_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para reproduzir exatamente os dados de exemplo do formato &quot;arrumado&quot;.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
-  meteo_tbl,
-  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span>
-) 
-meteo_tbl
-<span class="co">#&gt; # A tibble: 8 x 4</span>
-<span class="co">#&gt;   site    ano  prec intensidade</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000  1800        4.93</span>
-<span class="co">#&gt; 2 A001   2001  1400        3.84</span>
-<span class="co">#&gt; 3 A002   2000  1750        4.79</span>
-<span class="co">#&gt; 4 A002   2001  1470        4.03</span>
-<span class="co">#&gt; 5 A002   2002  1630        4.47</span>
-<span class="co">#&gt; 6 A003   2004  1300        3.56</span>
-<span class="co">#&gt; 7 A803   2005  1950        5.34</span>
-<span class="co">#&gt; 8 A803   2006  1100        3.01</span></code></pre></div>
-<p>Agora, vamos usar a função <code>gather()</code> para reestruturar os dados <code>meteo_tbl</code> em uma nova tabela de dados que chamaremos <code>meteo_longo</code>.</p>
-<p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos duas novas colunas: <code>variavel</code> e <code>valor</code>. A coluna <code>variavel</code> reunirá o nome das variáveis <code>prec</code> e <code>intensidade</code>. A coluna <code>valor</code>reunirá os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_long &lt;-<span class="st"> </span><span class="kw">gather</span>(
+<p>Para exemplificar o formato longo vamos o converter os dados <code>meteo_tbl</code>, que já estão na estrutura de dados arrumados, para o formato longo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(meteo_tbl)
+<span class="co">#&gt; [1] 8 4</span>
+meteo_long &lt;-<span class="st"> </span><span class="kw">gather</span>(
   <span class="dt">data =</span> meteo_tbl,
-  <span class="dt">key =</span> variavel,
-  <span class="dt">value =</span> medida,
-  prec, intensidade
+  <span class="dt">key =</span> <span class="st">&quot;variavel&quot;</span>,
+  <span class="dt">value =</span> <span class="st">&quot;valor&quot;</span>,
+  <span class="op">-</span>(site<span class="op">:</span>ano)
 )
-meteo_long
-<span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;    site    ano variavel     medida</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
-<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
-<span class="co">#&gt; 10 A001   2001 intensidade    3.84</span>
-<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
-<span class="co">#&gt; 12 A002   2001 intensidade    4.03</span>
-<span class="co">#&gt; 13 A002   2002 intensidade    4.47</span>
-<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
-<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
-<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
-<p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
+<span class="kw">dim</span>(meteo_long)
+<span class="co">#&gt; [1] 16  4</span>
+<span class="kw">kable</span>(meteo_long)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">site</th>
+<th align="right">ano</th>
+<th align="left">variavel</th>
+<th align="right">valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A001</td>
+<td align="right">2000</td>
+<td align="left">prec</td>
+<td align="right">1800.000000</td>
+</tr>
+<tr class="even">
+<td align="left">A001</td>
+<td align="right">2001</td>
+<td align="left">prec</td>
+<td align="right">1400.000000</td>
+</tr>
+<tr class="odd">
+<td align="left">A002</td>
+<td align="right">2000</td>
+<td align="left">prec</td>
+<td align="right">1750.000000</td>
+</tr>
+<tr class="even">
+<td align="left">A002</td>
+<td align="right">2001</td>
+<td align="left">prec</td>
+<td align="right">1470.000000</td>
+</tr>
+<tr class="odd">
+<td align="left">A002</td>
+<td align="right">2002</td>
+<td align="left">prec</td>
+<td align="right">1630.000000</td>
+</tr>
+<tr class="even">
+<td align="left">A003</td>
+<td align="right">2004</td>
+<td align="left">prec</td>
+<td align="right">1300.000000</td>
+</tr>
+<tr class="odd">
+<td align="left">A803</td>
+<td align="right">2005</td>
+<td align="left">prec</td>
+<td align="right">1950.000000</td>
+</tr>
+<tr class="even">
+<td align="left">A803</td>
+<td align="right">2006</td>
+<td align="left">prec</td>
+<td align="right">1100.000000</td>
+</tr>
+<tr class="odd">
+<td align="left">A001</td>
+<td align="right">2000</td>
+<td align="left">int prec</td>
+<td align="right">4.931507</td>
+</tr>
+<tr class="even">
+<td align="left">A001</td>
+<td align="right">2001</td>
+<td align="left">int prec</td>
+<td align="right">3.835616</td>
+</tr>
+<tr class="odd">
+<td align="left">A002</td>
+<td align="right">2000</td>
+<td align="left">int prec</td>
+<td align="right">4.794520</td>
+</tr>
+<tr class="even">
+<td align="left">A002</td>
+<td align="right">2001</td>
+<td align="left">int prec</td>
+<td align="right">4.027397</td>
+</tr>
+<tr class="odd">
+<td align="left">A002</td>
+<td align="right">2002</td>
+<td align="left">int prec</td>
+<td align="right">4.465753</td>
+</tr>
+<tr class="even">
+<td align="left">A003</td>
+<td align="right">2004</td>
+<td align="left">int prec</td>
+<td align="right">3.561644</td>
+</tr>
+<tr class="odd">
+<td align="left">A803</td>
+<td align="right">2005</td>
+<td align="left">int prec</td>
+<td align="right">5.342466</td>
+</tr>
+<tr class="even">
+<td align="left">A803</td>
+<td align="right">2006</td>
+<td align="left">int prec</td>
+<td align="right">3.013699</td>
+</tr>
+</tbody>
+</table>
+<p>O código acima demostra três argumentos requeridos pela função <code>gather</code>:</p>
 <ul>
-<li><p><code>data = meteo_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
-<li><p><code>key = variavel</code>, nome que nós escolhemos para dar à nova coluna que reunirá os <strong>nomes das variáveis</strong> do <em>data frame</em> orginal.</p></li>
-<li><p><code>value = medida</code>, nome que nós escolhemos para dar à nova coluna que reunirá os <strong>valores das variáveis</strong> do <em>data frame</em> original.</p></li>
-<li><p><code>...</code>, lista com o nome das variáveis, no código acima corresponde à <code>prec, intensidade</code> que é uma funcionalidade para seleção de variáveis do pacote <code>dplyr</code> que significa a seleção das variáveis compreendidas entre a coluna <code>prec</code> e <code>intensidade</code></p></li>
+<li><code>data</code>, um <em>data frame</em> no qual os nomes das colunas tornar-se-ão valores nas linhas.</li>
+<li><p><code>key</code>, nome da variável categórica na qual os nomes das colunas no <em>data frame</em> original serão convertidas.</p></li>
+<li><p><code>value</code>, o nome da coluna que conterá os valores das células do <em>data frame</em> original.</p></li>
 </ul>
-<p>As demais colunas dos dados (<code>site</code> e <code>ano</code>) serão mantidas inalteradas e seus valores serão repetidos quando necessário.</p>
-<p>Como em outras funções do <em>tiverse</em> você perceberá que os argumentos <strong>não são especificados como caracteres</strong> e sim como nomes, como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>key</code> e <code>value</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
-<p>Se nós desejássemos que todas colunas do <em>data frame</em> fossem reunidas em uma nova coluna <code>atributo</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia ser feito simplesmente sem especificar <code>prec, intensidade</code> no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares (variável/observação) de valores dos dados originais com 4 colunas por 8 linhas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_longo &lt;-<span class="st"> </span><span class="kw">gather</span>(
-  meteo_tbl, 
-  <span class="dt">key =</span> atributo,
-  <span class="dt">value =</span> valor
-)
-meteo_longo
-<span class="co">#&gt; # A tibble: 32 x 2</span>
-<span class="co">#&gt;    atributo valor</span>
-<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt;  1 site     A001 </span>
-<span class="co">#&gt;  2 site     A001 </span>
-<span class="co">#&gt;  3 site     A002 </span>
-<span class="co">#&gt;  4 site     A002 </span>
-<span class="co">#&gt;  5 site     A002 </span>
-<span class="co">#&gt;  6 site     A003 </span>
-<span class="co">#&gt;  7 site     A803 </span>
-<span class="co">#&gt;  8 site     A803 </span>
-<span class="co">#&gt;  9 ano      2000 </span>
-<span class="co">#&gt; 10 ano      2001 </span>
-<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
-<p>Se não forem especificados nomes para os argumentos <code>key</code> e <code>value</code> na chamada da função gather, serão atribuídos os valores <em>default</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(meteo_tbl)
-<span class="co">#&gt; # A tibble: 32 x 2</span>
-<span class="co">#&gt;    key   value</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;</span>
-<span class="co">#&gt;  1 site  A001 </span>
-<span class="co">#&gt;  2 site  A001 </span>
-<span class="co">#&gt;  3 site  A002 </span>
-<span class="co">#&gt;  4 site  A002 </span>
-<span class="co">#&gt;  5 site  A002 </span>
-<span class="co">#&gt;  6 site  A003 </span>
-<span class="co">#&gt;  7 site  A803 </span>
-<span class="co">#&gt;  8 site  A803 </span>
-<span class="co">#&gt;  9 ano   2000 </span>
-<span class="co">#&gt; 10 ano   2001 </span>
-<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
+<p>Como em outras funções do <em>tiverse</em> note que os argumentos não são especificados como caracteres e como nomes das variáveis. O 2º e 3º argumentos podem ser especificados pelo usuário e não te relação com os dados existentes. O argumento adicional informado através da expressão <code>-(site:ano)</code> foi usado para remover as variáveis do processo de coleta das variáveis para distribuição nas linhas. Este procedimento assegura que os valores nestas colunas sejam as primeiras colunas na saída.</p>
+<p>Se não fosse usado o argumento <code>-(site:ano)</code> todas colunas seriam usadas no argumento <code>key</code> e os resultados simplismente conteria todos os pares de 32 pares de coluna/valor resulting dos dados de entrada com 4 colunas por 8 linhas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_longo &lt;-<span class="st"> </span><span class="kw">gather</span>(meteo_tbl)
+<span class="kw">kable</span>(meteo_longo)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">key</th>
+<th align="left">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">site</td>
+<td align="left">A001</td>
+</tr>
+<tr class="even">
+<td align="left">site</td>
+<td align="left">A001</td>
+</tr>
+<tr class="odd">
+<td align="left">site</td>
+<td align="left">A002</td>
+</tr>
+<tr class="even">
+<td align="left">site</td>
+<td align="left">A002</td>
+</tr>
+<tr class="odd">
+<td align="left">site</td>
+<td align="left">A002</td>
+</tr>
+<tr class="even">
+<td align="left">site</td>
+<td align="left">A003</td>
+</tr>
+<tr class="odd">
+<td align="left">site</td>
+<td align="left">A803</td>
+</tr>
+<tr class="even">
+<td align="left">site</td>
+<td align="left">A803</td>
+</tr>
+<tr class="odd">
+<td align="left">ano</td>
+<td align="left">2000</td>
+</tr>
+<tr class="even">
+<td align="left">ano</td>
+<td align="left">2001</td>
+</tr>
+<tr class="odd">
+<td align="left">ano</td>
+<td align="left">2000</td>
+</tr>
+<tr class="even">
+<td align="left">ano</td>
+<td align="left">2001</td>
+</tr>
+<tr class="odd">
+<td align="left">ano</td>
+<td align="left">2002</td>
+</tr>
+<tr class="even">
+<td align="left">ano</td>
+<td align="left">2004</td>
+</tr>
+<tr class="odd">
+<td align="left">ano</td>
+<td align="left">2005</td>
+</tr>
+<tr class="even">
+<td align="left">ano</td>
+<td align="left">2006</td>
+</tr>
+<tr class="odd">
+<td align="left">prec</td>
+<td align="left">1800</td>
+</tr>
+<tr class="even">
+<td align="left">prec</td>
+<td align="left">1400</td>
+</tr>
+<tr class="odd">
+<td align="left">prec</td>
+<td align="left">1750</td>
+</tr>
+<tr class="even">
+<td align="left">prec</td>
+<td align="left">1470</td>
+</tr>
+<tr class="odd">
+<td align="left">prec</td>
+<td align="left">1630</td>
+</tr>
+<tr class="even">
+<td align="left">prec</td>
+<td align="left">1300</td>
+</tr>
+<tr class="odd">
+<td align="left">prec</td>
+<td align="left">1950</td>
+</tr>
+<tr class="even">
+<td align="left">prec</td>
+<td align="left">1100</td>
+</tr>
+<tr class="odd">
+<td align="left">int prec</td>
+<td align="left">4.93150684931507</td>
+</tr>
+<tr class="even">
+<td align="left">int prec</td>
+<td align="left">3.83561643835616</td>
+</tr>
+<tr class="odd">
+<td align="left">int prec</td>
+<td align="left">4.79452054794521</td>
+</tr>
+<tr class="even">
+<td align="left">int prec</td>
+<td align="left">4.02739726027397</td>
+</tr>
+<tr class="odd">
+<td align="left">int prec</td>
+<td align="left">4.46575342465753</td>
+</tr>
+<tr class="even">
+<td align="left">int prec</td>
+<td align="left">3.56164383561644</td>
+</tr>
+<tr class="odd">
+<td align="left">int prec</td>
+<td align="left">5.34246575342466</td>
+</tr>
+<tr class="even">
+<td align="left">int prec</td>
+<td align="left">3.01369863013699</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="formato-de-dados-amplo" class="section level4">
-<h4><span class="header-section-number">9.3.2.2</span> Formato de dados amplo</h4>
-<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da <code>spread()</code>. Você verá que a função <code>spread()</code> é complementar à <code>gather()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_long
-<span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;    site    ano variavel     medida</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
-<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
-<span class="co">#&gt; 10 A001   2001 intensidade    3.84</span>
-<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
-<span class="co">#&gt; 12 A002   2001 intensidade    4.03</span>
-<span class="co">#&gt; 13 A002   2002 intensidade    4.47</span>
-<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
-<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
-<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
-<p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(
+<div id="formato-de-dados-largo" class="section level4">
+<h4><span class="header-section-number">9.3.2.2</span> Formato de dados largo</h4>
+<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato largo usando a função <code>spread()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_larg &lt;-<span class="st"> </span><span class="kw">spread</span>(
   <span class="dt">data =</span> meteo_long,
   <span class="dt">key =</span> variavel,
-  <span class="dt">value =</span> medida
-)
-meteo_amplo
+  <span class="dt">value =</span> valor
+  ) 
+meteo_larg
 <span class="co">#&gt; # A tibble: 8 x 4</span>
-<span class="co">#&gt;   site    ano intensidade  prec</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000        4.93  1800</span>
-<span class="co">#&gt; 2 A001   2001        3.84  1400</span>
-<span class="co">#&gt; 3 A002   2000        4.79  1750</span>
-<span class="co">#&gt; 4 A002   2001        4.03  1470</span>
-<span class="co">#&gt; 5 A002   2002        4.47  1630</span>
-<span class="co">#&gt; 6 A003   2004        3.56  1300</span>
-<span class="co">#&gt; 7 A803   2005        5.34  1950</span>
-<span class="co">#&gt; 8 A803   2006        3.01  1100</span></code></pre></div>
-<p>Esta operação foi usada para colocar os dados originais (<code>meteo_long</code>) no formato &quot;arrumado&quot; (meteo_ampo).</p>
+<span class="co">#&gt;   site    ano `int prec`  prec</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A001   2000       4.93  1800</span>
+<span class="co">#&gt; 2 A001   2001       3.84  1400</span>
+<span class="co">#&gt; 3 A002   2000       4.79  1750</span>
+<span class="co">#&gt; 4 A002   2001       4.03  1470</span>
+<span class="co">#&gt; 5 A002   2002       4.47  1630</span>
+<span class="co">#&gt; 6 A003   2004       3.56  1300</span>
+<span class="co">#&gt; 7 A803   2005       5.34  1950</span>
+<span class="co">#&gt; 8 A803   2006       3.01  1100</span></code></pre></div>
 </div>
-</div>
-<div id="outras-funcoes-do-tidyr" class="section level3">
-<h3><span class="header-section-number">9.3.3</span> Outras funções do <strong>tidyr</strong></h3>
-<p>Você pode unir duas colunas com um separador com a função <code>unite()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(meteo_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(meteo_long, 
-                       <span class="dt">col =</span> site_ano, 
-                       site, ano, 
-                       <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>))
-<span class="co">#&gt; # A tibble: 16 x 3</span>
-<span class="co">#&gt;    site_ano  variavel     medida</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001_2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001_2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002_2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002_2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002_2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003_2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803_2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803_2006 prec        1100   </span>
-<span class="co">#&gt;  9 A001_2000 intensidade    4.93</span>
-<span class="co">#&gt; 10 A001_2001 intensidade    3.84</span>
-<span class="co">#&gt; 11 A002_2000 intensidade    4.79</span>
-<span class="co">#&gt; 12 A002_2001 intensidade    4.03</span>
-<span class="co">#&gt; 13 A002_2002 intensidade    4.47</span>
-<span class="co">#&gt; 14 A003_2004 intensidade    3.56</span>
-<span class="co">#&gt; 15 A803_2005 intensidade    5.34</span>
-<span class="co">#&gt; 16 A803_2006 intensidade    3.01</span></code></pre></div>
-<p>Para separar colunas você pode usar a função recíproca:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(meteo_long_u, 
-         <span class="dt">col =</span> site_ano,
-         <span class="dt">sep =</span>  <span class="st">&quot;_&quot;</span>,
-         <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>))
-<span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;    site  ano   variavel     medida</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001  2000  prec        1800   </span>
-<span class="co">#&gt;  2 A001  2001  prec        1400   </span>
-<span class="co">#&gt;  3 A002  2000  prec        1750   </span>
-<span class="co">#&gt;  4 A002  2001  prec        1470   </span>
-<span class="co">#&gt;  5 A002  2002  prec        1630   </span>
-<span class="co">#&gt;  6 A003  2004  prec        1300   </span>
-<span class="co">#&gt;  7 A803  2005  prec        1950   </span>
-<span class="co">#&gt;  8 A803  2006  prec        1100   </span>
-<span class="co">#&gt;  9 A001  2000  intensidade    4.93</span>
-<span class="co">#&gt; 10 A001  2001  intensidade    3.84</span>
-<span class="co">#&gt; 11 A002  2000  intensidade    4.79</span>
-<span class="co">#&gt; 12 A002  2001  intensidade    4.03</span>
-<span class="co">#&gt; 13 A002  2002  intensidade    4.47</span>
-<span class="co">#&gt; 14 A003  2004  intensidade    3.56</span>
-<span class="co">#&gt; 15 A803  2005  intensidade    5.34</span>
-<span class="co">#&gt; 16 A803  2006  intensidade    3.01</span></code></pre></div>
-<p>Para completar unidades observacionais podemos utilizar a função <code>complete()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_df
-<span class="co">#&gt;   site  ano prec</span>
-<span class="co">#&gt; 1 A001 2000 1800</span>
-<span class="co">#&gt; 2 A001 2001 1400</span>
-<span class="co">#&gt; 3 A002 2000 1750</span>
-<span class="co">#&gt; 4 A002 2001 1470</span>
-<span class="co">#&gt; 5 A002 2002 1630</span>
-<span class="co">#&gt; 6 A003 2004 1300</span>
-<span class="co">#&gt; 7 A803 2005 1950</span>
-<span class="co">#&gt; 8 A803 2006 1100</span>
-meteo_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(
-  meteo_df,
-  site, ano
-)
-meteo_comp
-<span class="co">#&gt; # A tibble: 24 x 3</span>
-<span class="co">#&gt;    site    ano  prec</span>
-<span class="co">#&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000  1800</span>
-<span class="co">#&gt;  2 A001   2001  1400</span>
-<span class="co">#&gt;  3 A001   2002    NA</span>
-<span class="co">#&gt;  4 A001   2004    NA</span>
-<span class="co">#&gt;  5 A001   2005    NA</span>
-<span class="co">#&gt;  6 A001   2006    NA</span>
-<span class="co">#&gt;  7 A002   2000  1750</span>
-<span class="co">#&gt;  8 A002   2001  1470</span>
-<span class="co">#&gt;  9 A002   2002  1630</span>
-<span class="co">#&gt; 10 A002   2004    NA</span>
-<span class="co">#&gt; # ... with 14 more rows</span></code></pre></div>
 </div>
 </div>
 <h3>References</h3>
@@ -646,7 +645,7 @@ meteo_comp
           </div>
         </div>
       </div>
-<a href="tibble-um-data-frame-aperfeicoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tibbles-data-frames-aperfeicoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="manipulacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

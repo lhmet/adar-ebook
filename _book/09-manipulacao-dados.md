@@ -22,7 +22,7 @@ Neste capítulo veremos:
 
 Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. 
 
-Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Mudar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes denominado [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
+Muitas coisas no R que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Mudar os códigos da base do R é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações no R estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes denominado [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
 
 
@@ -32,7 +32,7 @@ Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvida
 <p class="caption">(\#fig:tidy-workflow)Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.</p>
 </div>
 
-O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do <img src="images/logo_r.png" width="20"> que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do <img src="images/logo_r.png" width="20">. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do <img src="images/logo_r.png" width="20">), legíveis e com sintaxe mais fácil de lembrar.
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do R que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do R. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do R), legíveis e com sintaxe mais fácil de lembrar.
 
 <div class="figure">
 <img src="images/tidyverse_components.png" alt="Coleção de pacotes do *tidyverse*." width="80%" />
@@ -54,7 +54,7 @@ Agora você pode carregar os pacotes.
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-06-18
+#> + ggplot2 2.2.1        Date: 2018-06-17
 #> + tibble  1.4.2           R: 3.4.4
 #> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
@@ -71,20 +71,24 @@ Outros pacotes:
 
 
 ```r
-pacotes <- c("openair", "lubridate", "scales", "rio")
+pacotes <- c("openair", "lubridate", "scales")
 easypackages::libraries(pacotes)
 ```
 
-
-### Dados  
 
 Dados climatológicos:
 
 
 ```r
+library(rio)
+#> 
+#> Attaching package: 'rio'
+#> The following object is masked from 'package:openair':
+#> 
+#>     import
 clima_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true"
 # dados de exemplo
-clima_rs <- import(clima_file_url, format = "RDS")
+clima_rs <- rio:::import(clima_file_url, format = "RDS")
 clima_rs
 #>    codigo                 estacao uf   prec tmax
 #> 1   83931                Alegrete RS 1492.2 25.4
@@ -116,13 +120,12 @@ Dados de estação meteorológicas:
 
 
 ```r
-meteo_df <- data.frame(
-  site = c(
-    "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
+meteo_df <- data.frame(site = c(
+  "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
   ),
-  ano = c(2000:2001, 2000:2002, 2004, 2005, 2006),
+  ano  = c(2000:2001, 2000:2002, 2004, 2005, 2006),
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100)
-)
+  )
 meteo_df
 #>   site  ano prec
 #> 1 A001 2000 1800
@@ -137,22 +140,21 @@ meteo_df
 
 
 
-## *tibble*: um *data frame* aperfeiçoado
+## *tibbles*: *data frames* aperfeiçoado
 
-*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** define uma nova classe de *data frame* para o R, o *tbl_df* ('*tibble diffs*'). Uma *tibble* é uma extensão da classe de dados *data.frame* da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*.
+*Data frames* são unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** define uma nova classe de data frame para o R, o *tbl_df* ('*tibble diffs*'). Uma *tibble* é uma extensão da classe de dados *data.frame* da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*.
 
 Para criar um *tibble* nós usamos a função *tibble()*. Para ilustrar algumas vantagens do *tibble* vamos recriar o *data frame* `meteo_df` incluindo uma nova variável `int prec`(intensidade da precipitação):
 
 
 ```r
-meteo_tbl <- tibble(
-  site = c(
-    "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
+meteo_tbl <- tibble(site = c(
+  "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
   ),
-  ano = c(2000:2001, 2000:2002, 2004, 2005, 2006),
+  ano  = c(2000:2001, 2000:2002, 2004, 2005, 2006),
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100),
-  "int prec" = prec / 365
-)
+  `int prec` = prec/365
+  )
 meteo_tbl
 #> # A tibble: 8 x 4
 #>   site    ano  prec `int prec`
@@ -167,7 +169,7 @@ meteo_tbl
 #> 8 A803   2006  1100       3.01
 ```
 
-No exemplo acima, as principais diferenças entre o *tibble* e o *data frame* ficam evidentes:
+No exemplo acima, as principais diferenças entre o tibble e o data frame ficam evidentes:
 
 - quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
 
@@ -175,23 +177,21 @@ No exemplo acima, as principais diferenças entre o *tibble* e o *data frame* fi
 
 - o nome das variáveis nunca são modificados
 
-
 ```r
-data.frame("temp. do ar" = 1)
-#>   temp..do.ar
-#> 1           1
+data.frame("nome esquisito" = 1)
+#>   nome.esquisito
+#> 1              1
 ```
 
 - permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
 
-- nunca adiciona nomes às linhas (`row.names`)
+- nunca adiciona nome às linhas (`row.names`)
 
 Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas depende do tamanho da janela.
 
-Outras diferenças do *tibble* podem ser consultada no página de ajuda da função `tibble()` (`?tibble`) e na vinheta do referido pacote (`vignette("tibble")`).
+Outras diferenças do tibble podem ser consultada no página de ajuda da função `tibble()` (`?tibble`) e na vinheta do referido pacote (`vignette("tibble")`).
 
-A conversão de um `data.frame` para *tibble* pode ser feita simplesmente com a função `as_tibble()`:
-
+A conversão de um `data.frame` para tibble pode ser feita simplesmente com a função `as_tibble()`:
 
 ```r
 meteo_tbl_conv <- as_tibble(meteo_df)
@@ -214,16 +214,15 @@ As opções de controle *default* da impressão de *tibbles* na tela são contro
 
 ```r
 options(
-  tibble.print_max = n,
-  tibble.print_min = m
-)
+  tibble.print_max = n, 
+  tibble.print_min = m)
 ```
 
-Se o número de linhas do *tibble* for maior que `m` linhas, a impressão será somente até `n` linhas. 
+Onde se o número de linhas do *tibble* for maior que `m` linhas, a impressão será somente até `n` linhas. 
 
 Você pode usar `options(dplyr.print_min = Inf)` se deseja que sempre sejam mostradas todas linhas de seus dados.
 
-Finalmente é bom recordar a visualização de dados no RStudio através da função `View()`.
+Finalmente é bom lembrar da opção de visualização completa dos dados do RStudio através da função `View()`.
 
 
 ## Restruturação de dados
@@ -233,15 +232,13 @@ Finalmente é bom recordar a visualização de dados no RStudio através da fun�
 
 ### Dados arrumados
 
-O conceito \"dados arrumados\" foi estabelecido por @Wickham2014 e representa uma forma padronizada de conectar a estrutura de um conjunto de dados (formato) com a sua semântica (significado). 
+O conceito 'dados arrumados' foi estabelecido por @Wickham2014 e representauma forma padronizada de conectar a estrutura de um conjunto de dados com (formato) com a sua semântica (significado). 
 
 Dados bem estruturados servem para:
-
 - fornecer dados propícios para o processamento e análise de dados por softwares;
-
 - revelar informações e facilitar a percepção de padrões
 
-Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir as seguintes regras:
+Para rearranjar um conjunto de dados no formato arrumado vocẽ deve seguir os seguintes critérios:
 
 1. colocar seus dados em formato retangular
 
@@ -251,43 +248,28 @@ Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir a
 
 4. cada valor corresponde a uma célula
 
-5. cada tipo de unidade observacional deve compor uma tabela
+5. cada tipo de unidade observacional deve formar uma tabela
 
 ![Estrura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
 
-Um exemplo de dados no formato arrumado é o tibble `meteo_tbl` mostrado abaixo:  
+Um exemplo de unidade observacional refere-se a tabela de dados meteorológicos de um conjunto de estações de superfície com medidas das variáveis meteorológicas ao longo do tempo. Outro tipo de unidade observacional refere-se aos metadados das estações de superfície que são armazenados em uma tabela separada contendo atributos que caracterizam o local de medida (localização, altitude, nome, município e etc.). Por isso essas tabelas são geralmente distribuídas separadamente.
 
- site    ano     prec    intensidade 
-------  ------  ------  -------------
- A001    2000    1800     4.931507   
- A001    2001    1400     3.835616   
- A002    2000    1750     4.794520   
- A002    2001    1470     4.027397   
- A002    2002    1630     4.465753   
- A003    2004    1300     3.561644   
- A803    2005    1950     5.342466   
- A803    2006    1100     3.013699   
 
-Os dados acima tem duas variáveis: precipitação (`prec`) e intensidade da precipitação (`intensidade`). As unidades observacionais são as colunas `site` e `ano`. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.
 
-Uma **variável** contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma **observação** contém todos valores medidos na mesma unidade observacional ao longo dos atributos.
-Cada **valor** (número ou caractere) pertence a uma variável e uma observação.
 
-Exemplo de diferentes **tipos de unidades observacionais** são a tabela com a séries temporais dos elementos meteorológicos (exemplo acima) e a tabela com os metadados das estações de superfície que contém atributos das estações meteorológicas (`site` no exemplo acima), tais como: longitude, latitude, altitude, nome, município, estado e etc.
-
-A estrutura de dados \"arrumados\" parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:
+A estrutura de dados arrumados parece óbvia, mas nas ciências ambientais dados neste formatos são raros de serem encontrados. As razões para isso incluem:
 
 - as pessoas que projetam a coleta e o registro de dados nem sempre são aquelas que gastam tempo trabalhando sobre os dados.
 
 - a organização dos dados buscar tornar o registro de dados o mais fácil possível
 
-Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
+Então dados reais sempre precisarão ser arrumados. O primeiro passo é identifica as variáveis e as observações. O passo seguinte é resolver os seguintes problemas comuns (@Wickham2017):
 
 - uma variável deve ser distribuída ao longo das colunas
 
 - uma observação deve ser distribuída ao longo das linhas
 
-Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente, agora você saberá como resolver usando as principais funções do pacote **tidyr**: `gather()` e `spread()`.
+Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente você agora saberá como resolver isso com as principais funções do pacote **tidyr**: `gather()` e `spread()`.
 
 
 
@@ -296,283 +278,126 @@ Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos probl
 
 ### tidyr
 
-O pacote **tidyr** é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são: 
-
-- dados longos, são tabelas com maior extensão vertical ou no sentido  das linhas;
-
-- dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;
-
-Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.
+O pacote **tidyr** é a extensão do R que fornece um conjunto de funções designadas para reestruturar seus dados entre diferentes formatos. Os principais formatos são o de tabelas longas (na sentidoo vertical ou das linhas) e largas (no sentido horizontal ou das colunas).
 
 #### Formato de dados longo
 
-Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `meteo_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para reproduzir exatamente os dados de exemplo do formato \"arrumado\".
+Para exemplificar o formato longo vamos o converter os dados `meteo_tbl`, que já estão na estrutura de dados arrumados, para o formato longo. 
 
 
 ```r
-meteo_tbl <- rename(
-  meteo_tbl,
-  "intensidade" = `int prec`
-) 
-meteo_tbl
-#> # A tibble: 8 x 4
-#>   site    ano  prec intensidade
-#>   <chr> <dbl> <dbl>       <dbl>
-#> 1 A001   2000  1800        4.93
-#> 2 A001   2001  1400        3.84
-#> 3 A002   2000  1750        4.79
-#> 4 A002   2001  1470        4.03
-#> 5 A002   2002  1630        4.47
-#> 6 A003   2004  1300        3.56
-#> 7 A803   2005  1950        5.34
-#> 8 A803   2006  1100        3.01
-```
-
-Agora, vamos usar a função `gather()` para reestruturar os dados `meteo_tbl` em uma nova tabela de dados que chamaremos `meteo_longo`. 
-
-Na nova tabela, manteremos as colunas `site`, `ano` e   teremos duas novas colunas: `variavel` e `valor`. A coluna `variavel` reunirá o nome das variáveis `prec` e `intensidade`. A coluna `valor`reunirá os valores das variáveis `prec` e `intensidade`. 
-
-
-```r
+dim(meteo_tbl)
+#> [1] 8 4
 meteo_long <- gather(
   data = meteo_tbl,
-  key = variavel,
-  value = medida,
-  prec, intensidade
+  key = "variavel",
+  value = "valor",
+  -(site:ano)
 )
-meteo_long
-#> # A tibble: 16 x 4
-#>    site    ano variavel     medida
-#>    <chr> <dbl> <chr>         <dbl>
-#>  1 A001   2000 prec        1800   
-#>  2 A001   2001 prec        1400   
-#>  3 A002   2000 prec        1750   
-#>  4 A002   2001 prec        1470   
-#>  5 A002   2002 prec        1630   
-#>  6 A003   2004 prec        1300   
-#>  7 A803   2005 prec        1950   
-#>  8 A803   2006 prec        1100   
-#>  9 A001   2000 intensidade    4.93
-#> 10 A001   2001 intensidade    3.84
-#> 11 A002   2000 intensidade    4.79
-#> 12 A002   2001 intensidade    4.03
-#> 13 A002   2002 intensidade    4.47
-#> 14 A003   2004 intensidade    3.56
-#> 15 A803   2005 intensidade    5.34
-#> 16 A803   2006 intensidade    3.01
-```
-
-O código acima demonstra os principais argumentos requeridos pela função `gather`:
-
-- `data = meteo_tbl`, o *data frame* ou *tibble* que será reestruturado;
-
-- `key = variavel`, nome que nós escolhemos para dar à nova coluna que reunirá os **nomes das variáveis** do *data frame* orginal.
-
-- `value = medida`, nome que nós escolhemos para dar à nova coluna que reunirá os **valores das variáveis** do *data frame* original.
-
-- `...`, lista com o nome das variáveis, no código acima corresponde à `prec, intensidade` que é uma funcionalidade para seleção de variáveis do pacote `dplyr` que significa a seleção das variáveis compreendidas entre a coluna `prec` e `intensidade` 
-
-As demais colunas dos dados (`site` e `ano`) serão mantidas inalteradas e seus valores serão repetidos quando necessário.
-
-Como em outras funções do *tiverse* você perceberá que os argumentos **não são especificados como caracteres** e sim como nomes, como aqueles usados quando definimos variáveis (p.ex.: `nome_var <- 10`). Os argumentos `key` e `value` podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.
-
-Se nós desejássemos que todas colunas do *data frame* fossem reunidas em uma nova coluna `atributo` e os seus valores em uma nova coluna `valor`, isso poderia ser feito simplesmente sem especificar `prec, intensidade` no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares (variável/observação) de valores dos dados originais com 4 colunas por 8 linhas:
-
-
-```r
-meteo_longo <- gather(
-  meteo_tbl, 
-  key = atributo,
-  value = valor
-)
-meteo_longo
-#> # A tibble: 32 x 2
-#>    atributo valor
-#>    <chr>    <chr>
-#>  1 site     A001 
-#>  2 site     A001 
-#>  3 site     A002 
-#>  4 site     A002 
-#>  5 site     A002 
-#>  6 site     A003 
-#>  7 site     A803 
-#>  8 site     A803 
-#>  9 ano      2000 
-#> 10 ano      2001 
-#> # ... with 22 more rows
-```
-
-Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função gather, serão atribuídos os valores *default*.
-
-
-```r
-gather(meteo_tbl)
-#> # A tibble: 32 x 2
-#>    key   value
-#>    <chr> <chr>
-#>  1 site  A001 
-#>  2 site  A001 
-#>  3 site  A002 
-#>  4 site  A002 
-#>  5 site  A002 
-#>  6 site  A003 
-#>  7 site  A803 
-#>  8 site  A803 
-#>  9 ano   2000 
-#> 10 ano   2001 
-#> # ... with 22 more rows
+dim(meteo_long)
+#> [1] 16  4
+kable(meteo_long)
 ```
 
 
-#### Formato de dados amplo
 
-Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da `spread()`. Você verá que a função `spread()` é complementar à `gather()`.
+site     ano  variavel          valor
+-----  -----  ---------  ------------
+A001    2000  prec        1800.000000
+A001    2001  prec        1400.000000
+A002    2000  prec        1750.000000
+A002    2001  prec        1470.000000
+A002    2002  prec        1630.000000
+A003    2004  prec        1300.000000
+A803    2005  prec        1950.000000
+A803    2006  prec        1100.000000
+A001    2000  int prec       4.931507
+A001    2001  int prec       3.835616
+A002    2000  int prec       4.794520
+A002    2001  int prec       4.027397
+A002    2002  int prec       4.465753
+A003    2004  int prec       3.561644
+A803    2005  int prec       5.342466
+A803    2006  int prec       3.013699
+
+O código acima demostra três argumentos requeridos pela função `gather`:
+
+- `data`, um *data frame* no qual os nomes das colunas tornar-se-ão valores nas linhas.
+- `key`, nome da variável categórica na qual os nomes das colunas no *data frame* original serão convertidas.
+
+- `value`, o nome da coluna que conterá os valores das células do *data frame* original.
+
+Como em outras funções do *tiverse* note que os argumentos não são especificados como caracteres e como nomes das variáveis. O 2º e 3º argumentos podem ser especificados pelo usuário e não te relação com os dados existentes. O argumento adicional informado através da expressão `-(site:ano)` foi usado para remover as variáveis do processo de coleta das variáveis para distribuição nas linhas. Este procedimento assegura que os valores nestas colunas sejam as primeiras colunas na saída.
+
+Se não fosse usado o argumento `-(site:ano)` todas colunas seriam usadas no argumento `key` e os resultados simplismente conteria todos os pares de  32 pares de coluna/valor resulting dos dados de entrada com 4 colunas por 8 linhas:
 
 
 ```r
-meteo_long
-#> # A tibble: 16 x 4
-#>    site    ano variavel     medida
-#>    <chr> <dbl> <chr>         <dbl>
-#>  1 A001   2000 prec        1800   
-#>  2 A001   2001 prec        1400   
-#>  3 A002   2000 prec        1750   
-#>  4 A002   2001 prec        1470   
-#>  5 A002   2002 prec        1630   
-#>  6 A003   2004 prec        1300   
-#>  7 A803   2005 prec        1950   
-#>  8 A803   2006 prec        1100   
-#>  9 A001   2000 intensidade    4.93
-#> 10 A001   2001 intensidade    3.84
-#> 11 A002   2000 intensidade    4.79
-#> 12 A002   2001 intensidade    4.03
-#> 13 A002   2002 intensidade    4.47
-#> 14 A003   2004 intensidade    3.56
-#> 15 A803   2005 intensidade    5.34
-#> 16 A803   2006 intensidade    3.01
+meteo_longo <- gather(meteo_tbl)
+kable(meteo_longo)
 ```
 
-Nosso objetivo é então gerar uma nova tabela de dados reestruturada de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
+
+
+key        value            
+---------  -----------------
+site       A001             
+site       A001             
+site       A002             
+site       A002             
+site       A002             
+site       A003             
+site       A803             
+site       A803             
+ano        2000             
+ano        2001             
+ano        2000             
+ano        2001             
+ano        2002             
+ano        2004             
+ano        2005             
+ano        2006             
+prec       1800             
+prec       1400             
+prec       1750             
+prec       1470             
+prec       1630             
+prec       1300             
+prec       1950             
+prec       1100             
+int prec   4.93150684931507 
+int prec   3.83561643835616 
+int prec   4.79452054794521 
+int prec   4.02739726027397 
+int prec   4.46575342465753 
+int prec   3.56164383561644 
+int prec   5.34246575342466 
+int prec   3.01369863013699 
+
+
+#### Formato de dados largo
+
+Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato largo usando a função `spread()`.
 
 
 ```r
-meteo_amplo <- spread(
+meteo_larg <- spread(
   data = meteo_long,
   key = variavel,
-  value = medida
-)
-meteo_amplo
+  value = valor
+  ) 
+meteo_larg
 #> # A tibble: 8 x 4
-#>   site    ano intensidade  prec
-#>   <chr> <dbl>       <dbl> <dbl>
-#> 1 A001   2000        4.93  1800
-#> 2 A001   2001        3.84  1400
-#> 3 A002   2000        4.79  1750
-#> 4 A002   2001        4.03  1470
-#> 5 A002   2002        4.47  1630
-#> 6 A003   2004        3.56  1300
-#> 7 A803   2005        5.34  1950
-#> 8 A803   2006        3.01  1100
-```
-
-Esta operação foi usada para colocar os dados originais (`meteo_long`) no formato \"arrumado\" (meteo_ampo).
-
-
-
-### Outras funções do **tidyr**
-
-Você pode unir duas colunas com um separador com a função `unite()`:
-
-
-```r
-(meteo_long_u <- unite(meteo_long, 
-                       col = site_ano, 
-                       site, ano, 
-                       sep = "_"))
-#> # A tibble: 16 x 3
-#>    site_ano  variavel     medida
-#>    <chr>     <chr>         <dbl>
-#>  1 A001_2000 prec        1800   
-#>  2 A001_2001 prec        1400   
-#>  3 A002_2000 prec        1750   
-#>  4 A002_2001 prec        1470   
-#>  5 A002_2002 prec        1630   
-#>  6 A003_2004 prec        1300   
-#>  7 A803_2005 prec        1950   
-#>  8 A803_2006 prec        1100   
-#>  9 A001_2000 intensidade    4.93
-#> 10 A001_2001 intensidade    3.84
-#> 11 A002_2000 intensidade    4.79
-#> 12 A002_2001 intensidade    4.03
-#> 13 A002_2002 intensidade    4.47
-#> 14 A003_2004 intensidade    3.56
-#> 15 A803_2005 intensidade    5.34
-#> 16 A803_2006 intensidade    3.01
-```
-
-Para separar colunas você pode usar a função recíproca:
-
-
-
-```r
-separate(meteo_long_u, 
-         col = site_ano,
-         sep =  "_",
-         into = c("site", "ano"))
-#> # A tibble: 16 x 4
-#>    site  ano   variavel     medida
-#>    <chr> <chr> <chr>         <dbl>
-#>  1 A001  2000  prec        1800   
-#>  2 A001  2001  prec        1400   
-#>  3 A002  2000  prec        1750   
-#>  4 A002  2001  prec        1470   
-#>  5 A002  2002  prec        1630   
-#>  6 A003  2004  prec        1300   
-#>  7 A803  2005  prec        1950   
-#>  8 A803  2006  prec        1100   
-#>  9 A001  2000  intensidade    4.93
-#> 10 A001  2001  intensidade    3.84
-#> 11 A002  2000  intensidade    4.79
-#> 12 A002  2001  intensidade    4.03
-#> 13 A002  2002  intensidade    4.47
-#> 14 A003  2004  intensidade    3.56
-#> 15 A803  2005  intensidade    5.34
-#> 16 A803  2006  intensidade    3.01
-```
-
-Para completar unidades observacionais podemos utilizar a função `complete()`:
-
-
-```r
-meteo_df
-#>   site  ano prec
-#> 1 A001 2000 1800
-#> 2 A001 2001 1400
-#> 3 A002 2000 1750
-#> 4 A002 2001 1470
-#> 5 A002 2002 1630
-#> 6 A003 2004 1300
-#> 7 A803 2005 1950
-#> 8 A803 2006 1100
-meteo_comp <- complete(
-  meteo_df,
-  site, ano
-)
-meteo_comp
-#> # A tibble: 24 x 3
-#>    site    ano  prec
-#>    <fct> <dbl> <dbl>
-#>  1 A001   2000  1800
-#>  2 A001   2001  1400
-#>  3 A001   2002    NA
-#>  4 A001   2004    NA
-#>  5 A001   2005    NA
-#>  6 A001   2006    NA
-#>  7 A002   2000  1750
-#>  8 A002   2001  1470
-#>  9 A002   2002  1630
-#> 10 A002   2004    NA
-#> # ... with 14 more rows
+#>   site    ano `int prec`  prec
+#>   <chr> <dbl>      <dbl> <dbl>
+#> 1 A001   2000       4.93  1800
+#> 2 A001   2001       3.84  1400
+#> 3 A002   2000       4.79  1750
+#> 4 A002   2001       4.03  1470
+#> 5 A002   2002       4.47  1630
+#> 6 A003   2004       3.56  1300
+#> 7 A803   2005       5.34  1950
+#> 8 A803   2006       3.01  1100
 ```
 
 
@@ -598,53 +423,41 @@ Embora não requerido os pacotes tidyr e dplyr usam o operador pipe `%>%` que qu
 
 
 ```r
-# exemplo simples para aplicar uma função
-quadrado <- function(x) x ^ 2
+# exemplo simples para aplicar uma função 
+quadrado <- function(x) x^2
 a <- 1:4
 quadrado(a)
-#> [1]  1  4  9 16
-a %>% quadrado()
-#> [1]  1  4  9 16
+[1]  1  4  9 16
+a %>% quadrado
+[1]  1  4  9 16
 ```
 
-Este operador irá transmitir um valor, ou o resultado de uma expressão, como primeiro argumento da próxima função/expressão chamada.
-
-
-```r
-c(1, 10, 100, 1000) %>%
-  cumsum() %>%
-  mean()
-#> [1] 308.5
-```
-
-
-Por exemplo, uma função para filtrar os dados pode ser escrito como:
+Este operador irá transmitir um valor, ou o resultado de uma expressão, para a próxima função/expressão  chamada. Por exemplo, uma função para filtrar os dados pode ser escrito como:
 
 
 ```r
 # exemplo com um dataframe
 data(airquality)
-subset(airquality, Ozone == 23)
-#>     Ozone Solar.R Wind Temp Month Day
-#> 7      23     299  8.6   65     5   7
-#> 28     23      13 12.0   67     5  28
-#> 44     23     148  8.0   82     6  13
-#> 110    23     115  7.4   76     8  18
-#> 131    23     220 10.3   78     9   8
-#> 145    23      14  9.2   71     9  22
+filter(airquality, Ozone == 23)
+  Ozone Solar.R Wind Temp Month Day
+1    23     299  8.6   65     5   7
+2    23      13 12.0   67     5  28
+3    23     148  8.0   82     6  13
+4    23     115  7.4   76     8  18
+5    23     220 10.3   78     9   8
+6    23      14  9.2   71     9  22
 # ou
-airquality %>% 
-  subset(Ozone == 23) %>%
-  `[[`(., "Wind") %>%
-  mean()
-#> [1] 9.25
+airquality %>% filter(Ozone == 23)
+  Ozone Solar.R Wind Temp Month Day
+1    23     299  8.6   65     5   7
+2    23      13 12.0   67     5  28
+3    23     148  8.0   82     6  13
+4    23     115  7.4   76     8  18
+5    23     220 10.3   78     9   8
+6    23      14  9.2   71     9  22
 ```
 
-Ambas funções realizam a mesma tarefa e o benefício de usar `%>%` fica mais evidente. 
-
-Dessa forma, quando precisamos aplicar várias funções o fluxograma das operações fica mais claro e o código mais legível. 
-
-Vamos utilizar o conjunto de dados `airquality` do R, para selecionar algumas variáveis, filtrar algum dados e obter a média da temperatura do ar:
+Ambas funções realizam a mesma tarefa e o benefício de usar `%>%' não é evidente. Entretanto, quando desejamos realizar várias funções sua vantagem torna-se evidente. Vamos utilizar o conjunto de dados `airquality` do R, para selecionar algumas variáveis, filtrar algum dados e obter a média da temperatura do ar:
 
 
 ```r
