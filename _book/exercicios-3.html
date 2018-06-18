@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="restruturacao-de-dados.html">
-<link rel="next" href="exercicios-3.html">
+<link rel="prev" href="manipulacao-de-dados.html">
+<link rel="next" href="exemplo-de-manipulacao-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -297,77 +297,26 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="manipulacao-de-dados" class="section level2">
-<h2><span class="header-section-number">9.4</span> Manipulação de dados</h2>
-<p>Gramática de manipulação de dados implementada no pacote <strong>dplyr</strong>.</p>
-<ul>
-<li><p>Os 5 verbos básicos são:</p></li>
-<li><code>select()</code>, para selecionar variáveis</li>
-<li><code>filter()</code>, para filtrar observações</li>
-<li><code>arrange()</code>, para ordenar variáveis</li>
-<li><code>mutate()</code>, para transformat variáveis</li>
-<li><p><code>group_by()</code> e <code>summarise()</code> , para agrupar observações e obter resumos estatísticos</p></li>
-</ul>
-<div id="operador-pipe" class="section level3">
-<h3><span class="header-section-number">9.4.1</span> Operador Pipe <code>%&gt;%</code></h3>
-<p>Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.</p>
-<p>Embora não requerido os pacotes tidyr e dplyr usam o operador pipe <code>%&gt;%</code> que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exemplo simples para aplicar uma função </span>
-quadrado &lt;-<span class="st"> </span><span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>
-a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
-<span class="kw">quadrado</span>(a)
-[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">4</span>  <span class="dv">9</span> <span class="dv">16</span>
-a <span class="op">%&gt;%</span><span class="st"> </span>quadrado
-[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">4</span>  <span class="dv">9</span> <span class="dv">16</span></code></pre></div>
-<p>Este operador irá transmitir um valor, ou o resultado de uma expressão, para a próxima função/expressão chamada. Por exemplo, uma função para filtrar os dados pode ser escrito como:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exemplo com um dataframe</span>
-<span class="kw">data</span>(airquality)
-<span class="kw">filter</span>(airquality, Ozone <span class="op">==</span><span class="st"> </span><span class="dv">23</span>)
-  Ozone Solar.R Wind Temp Month Day
-<span class="dv">1</span>    <span class="dv">23</span>     <span class="dv">299</span>  <span class="fl">8.6</span>   <span class="dv">65</span>     <span class="dv">5</span>   <span class="dv">7</span>
-<span class="dv">2</span>    <span class="dv">23</span>      <span class="dv">13</span> <span class="fl">12.0</span>   <span class="dv">67</span>     <span class="dv">5</span>  <span class="dv">28</span>
-<span class="dv">3</span>    <span class="dv">23</span>     <span class="dv">148</span>  <span class="fl">8.0</span>   <span class="dv">82</span>     <span class="dv">6</span>  <span class="dv">13</span>
-<span class="dv">4</span>    <span class="dv">23</span>     <span class="dv">115</span>  <span class="fl">7.4</span>   <span class="dv">76</span>     <span class="dv">8</span>  <span class="dv">18</span>
-<span class="dv">5</span>    <span class="dv">23</span>     <span class="dv">220</span> <span class="fl">10.3</span>   <span class="dv">78</span>     <span class="dv">9</span>   <span class="dv">8</span>
-<span class="dv">6</span>    <span class="dv">23</span>      <span class="dv">14</span>  <span class="fl">9.2</span>   <span class="dv">71</span>     <span class="dv">9</span>  <span class="dv">22</span>
-<span class="co"># ou</span>
-airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Ozone <span class="op">==</span><span class="st"> </span><span class="dv">23</span>)
-  Ozone Solar.R Wind Temp Month Day
-<span class="dv">1</span>    <span class="dv">23</span>     <span class="dv">299</span>  <span class="fl">8.6</span>   <span class="dv">65</span>     <span class="dv">5</span>   <span class="dv">7</span>
-<span class="dv">2</span>    <span class="dv">23</span>      <span class="dv">13</span> <span class="fl">12.0</span>   <span class="dv">67</span>     <span class="dv">5</span>  <span class="dv">28</span>
-<span class="dv">3</span>    <span class="dv">23</span>     <span class="dv">148</span>  <span class="fl">8.0</span>   <span class="dv">82</span>     <span class="dv">6</span>  <span class="dv">13</span>
-<span class="dv">4</span>    <span class="dv">23</span>     <span class="dv">115</span>  <span class="fl">7.4</span>   <span class="dv">76</span>     <span class="dv">8</span>  <span class="dv">18</span>
-<span class="dv">5</span>    <span class="dv">23</span>     <span class="dv">220</span> <span class="fl">10.3</span>   <span class="dv">78</span>     <span class="dv">9</span>   <span class="dv">8</span>
-<span class="dv">6</span>    <span class="dv">23</span>      <span class="dv">14</span>  <span class="fl">9.2</span>   <span class="dv">71</span>     <span class="dv">9</span>  <span class="dv">22</span></code></pre></div>
-<p>Ambas funções realizam a mesma tarefa e o benefício de usar <code>%&gt;%' não é evidente. Entretanto, quando desejamos realizar várias funções sua vantagem torna-se evidente. Vamos utilizar o conjunto de dados</code>airquality` do R, para selecionar algumas variáveis, filtrar algum dados e obter a média da temperatura do ar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># opção aninhada</span>
-res_anin &lt;-<span class="st"> </span><span class="kw">summarize</span>(<span class="kw">filter</span>(<span class="kw">select</span>(airquality, Ozone, Temp), Ozone <span class="op">&gt;</span><span class="st"> </span><span class="dv">23</span>), <span class="dt">tmed =</span> <span class="kw">mean</span>(Temp))
-res_anin
-<span class="co">#&gt;       tmed</span>
-<span class="co">#&gt; 1 82.72059</span>
-<span class="co"># opção por etapas</span>
-etapa1 &lt;-<span class="st"> </span><span class="kw">select</span>(airquality, Ozone, Temp)
-etapa2 &lt;-<span class="st"> </span><span class="kw">filter</span>(etapa1, Ozone <span class="op">&gt;</span><span class="st"> </span><span class="dv">23</span>)
-res_etapas &lt;-<span class="st"> </span><span class="kw">summarise</span>(etapa2, <span class="dt">tmed =</span> <span class="kw">mean</span>(Temp))
-
-<span class="co"># opção usando pipe</span>
-res_pipe &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Ozone, Temp) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(Ozone <span class="op">&gt;</span><span class="st"> </span><span class="dv">23</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tmed =</span> <span class="kw">mean</span>(Temp))
-res_pipe
-<span class="co">#&gt;       tmed</span>
-<span class="co">#&gt; 1 82.72059</span></code></pre></div>
-<p>Quando as suas tarefas aumentam o operador pipe <code>%&gt;%</code> torna-se mais útil e o seu código fica mais legível.</p>
-</div>
+<div id="exercicios-3" class="section level2">
+<h2><span class="header-section-number">9.5</span> Exercícios</h2>
+<p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
+soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="op">-</span><span class="dv">1</span>]))
+<span class="co"># criando um dataframe com valores de SOI, mes e ano</span>
+soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),
+  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[, <span class="dv">1</span>])),
+  <span class="dt">soi =</span> soi_v
+)
+<span class="kw">head</span>(soi_df)</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="restruturacao-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercicios-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="manipulacao-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exemplo-de-manipulacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

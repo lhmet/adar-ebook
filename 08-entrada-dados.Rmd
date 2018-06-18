@@ -32,7 +32,16 @@ Serão utilizados diversos pacotes para lidar com os diferentes formatos de dado
 Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:
 
 ```{r}
-pacotes <- c("easypackages","rio", "readr", "feather", "readxl") 
+pacotes <- c(
+  "easypackages",
+  "rio",
+  "readr",
+  "feather",
+  "readxl",
+  "dplyr",
+  "microbenchmark",
+  "openxlsx"
+)
 ```
 
 Para instalá-los já com as dependências utilize a instrução abaixo:
@@ -42,6 +51,7 @@ install.packages(
    pacotes,
    dependencies = TRUE
 )
+remotes::install_github("ropensci/writexl")
 ```
 
 Agora você pode carregar os pacotes.
@@ -50,6 +60,10 @@ Agora você pode carregar os pacotes.
 library("easypackages")
 library("rio")
 library("readr")
+library("writexl")
+library("dplyr")
+library("microbenchmark")
+library("openxlsx")
 ```
 
 
@@ -84,7 +98,7 @@ Importar ou exportar dados é mais fácil quando você não precisa digitar cami
 getwd()
 ```
 
-O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\\Usuarios\\usuario\\" no Windows. Você obtém essa informação com a instrução abaixo:
+O local *default* geralmente é o home do usuário \"/home/usuario\" no linux e \"C:\\Users\\usuario\\" no Windows. Você obtém essa informação com a instrução abaixo:
 
 ```{r, eval = FALSE}
 Sys.getenv("HOME")
@@ -165,13 +179,22 @@ O R utiliza o alfabeto [Unicode](https://pt.wikipedia.org/wiki/Unicode) para ide
 # 
 ```
 
-### **rio**
+### **rio** {#Rio}
 
-O pacote [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) [@rio] é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no [Manual de Importação e Exportação do R](https://cran.r-project.org/doc/manuals/r-release/R-data.html). Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): `import()` e `export()`.
-Algumas opções de formatos que podem ser importados e exportados com o **rio** são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na [vinheta do pacote](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+O pacote [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html), nas palavras do próprio autor do pacote é  \"um canivete suíço para entrada e saída de dados\" nos formatos mais frequentemente usados.
+
+A grande funcionalidade do **rio** é simplificar estes processos que podem confundir a cabeça de quem  está aprendendo R, devido a vastidão de opções disponíveis no `r rblue` (veja o [Manual de Importação e Exportação do R](https://cran.r-project.org/doc/manuals/r-release/R-data.htmlpara ter noção)).
+
+Esta facilidade deve-se as premissas feitas pelo **rio** sobre o formato do arquivo. Ao importar um arquivo o pacote descobre o formato (pela extensão) e então aplica a função apropriada para ler aquele formato.
+
+Desta forma, com o **rio**, você precisa saber duas funções para ler e escrever uma variedade de formatos de arquivos (Tabela \@ref(tab:rio-table)): `import()` e `export()`, respectivamente.
+
+Os formatos importados e exportados pelo **rio** são apresentados na Tabela \@ref(tab:rio-table). Para uma versão completa desta tabela confira a [vinheta do pacote](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
 
 
-| Formato | Extensão | Pacote de importação | Pacote de exportação | Instalado por *default* |
+```{r rio-table, echo=FALSE}
+tab_rio <- readLines(
+textConnection("| Formato | Extensão | Pacote de importação | Pacote de exportação | Instalado por *default* |
 | ------ | --------- | -------------- | -------------- | -------------------- |
 | Valores separados por vírgula | .csv | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) | Sim |
 | dados separados por tab | .tsv | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) | Sim |
@@ -188,17 +211,45 @@ Algumas opções de formatos que podem ser importados e exportados com o **rio**
 | Planilha OpenDocument | .ods | [**readODS**](https://cran.r-project.org/package=readODS) | [**readODS**](https://cran.r-project.org/package=readODS) | Não |
 | tabelas HTML | .html | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
 | documentos XML | .xml | [**xml2**](https://cran.r-project.org/package=xml2) | [**xml2**](https://cran.r-project.org/package=xml2) | Não |
-| Área de transferência | *default* é tsv | [**clipr**](https://cran.r-project.org/package=clipr) | [**clipr**](https://cran.r-project.org/package=clipr) | Não |
-| [planilhas Google](https://www.google.com/sheets/about/) | como valores separados por vírgula |  |  |  |
+| Área de transferência | *default* é tsv | [**clipr**](https://cran.r-project.org/package=clipr) | [**clipr**](https://cran.r-project.org/package=clipr) | Não |")
+) %>%
+  grep("^\\|", ., value = TRUE) %>%
+  grep("^\\| -", ., value = TRUE, invert = TRUE) %>%
+  gsub('\\"', "", .) %>%
+  read.delim(text =., sep = "|") 
+#tab_rio
+cols_exclud <- apply(tab_rio, 2, 
+                     function(coluna)
+                       all(is.na(coluna))
+                     )
+tab_rio <- select(tab_rio, which(!cols_exclud))
+#tab_rio
+knitr::kable(tab_rio,
+  longtable = TRUE, 
+  booktabs = TRUE,
+  caption = "Versão resumida da tabela com os formatos suportados pelo pacote **rio**.",
+  align = "c"
+)
+```
 
 
-Vamos então baixar um arquivo texto de exemplo importá-lo com o pacote **rio**.
+#### Como usar
+
+Vamos  baixar um arquivo de dados em formato texto para importá-lo com o pacote **rio**. Os dados são de precipitação diária e foram obtidos no sistema [hidroweb](http://www.snirh.gov.br/hidroweb/publico/medicoes_historicas_abas.jsf) da [Agência Nacional das Águas](http://www.ana.gov.br/).
+
+A extensão do arquivo é `.TXT` e não se encaixa em nenhuma das extensões esperadas pelo **rio**. Mas se você visualizar o arquivo no navegador (`browseURL(url="https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT")`) perceberá que os dados estão estruturados como CSV2, ou seja, com valores delimitados por \";\" e o separador decimal \",\". 
+
+Vamos então baixar o arquivo e salvá-lo em diretório temporário do computador.
 
 ```{r}
 # arquivo de exemplo disponível no GitHub
 hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT"
-#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads/CHUVAS.TXT"
-hidroweb_dest_file <- paste0(tempfile(), ".csv")
+# arquivo temporário, você pode substituir tempfile() 
+# por um caminho de seu computador, p.ex. "~/Downloads/CHUVAS.TXT"
+# caminho de destino para o aquivo baixado
+# alterando a extensão de TXT para csv
+(arq_temp <- tempfile())
+(hidroweb_dest_file <- paste0(arq_temp, ".csv"))
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
@@ -206,27 +257,38 @@ download.file(
 hidroweb_dest_file
 ```
 
+Agora podemos importar os dados de precipitação baixados.
 
 ```{r}
 # Importa o arquivo 
 dprec <- import(hidroweb_dest_file, 
                 # se fread = TRUE (default usa função fread do pacote data.table)
                 fread = FALSE,  
-                skip = 15,
-                header = TRUE,
-                sep = ";",
-                dec = ",",
-                na.strings = "")
-str(dprec)
-# exporta para arquivo texto separado por tab
-dprec_file <- paste0(tempfile(), ".tsv")
-export(dprec, file = dprec_file, na = "-999")
-#export(dprec, file = "../output-adar/dprec.tsv", na = "-999")
+                skip = 15, # pula linhas com metadados
+                header = TRUE, # com cabeçalho
+                sep = ";", # delimitador entre os valores
+                dec = ",", # separador decimal
+                na.strings = "") # rótulo para dados faltantes
+# primeiras 10 colunas e linhas dos dados
+head(dprec[, 1:10])
 ```
 
-Na há necesida de especificar o argumento `format` das funções `import()` e `export()` pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo **rio** (ver tabela de formatos acima).
+Para saber quais argumentos devem ser especificados na função `import()` você precisar ler a documentação de ajuda da função (`?import`), principalmente a sessão *Details*. Os argumentos usados no exemplo acima, estão implícitos no argumento da função `import()` representado pela reticência (`...`). Conforme descrito na sessão *Details*, o parâmetro `fread = FALSE` implica no uso da função `read.table()` da base do R (descrita no Apêndice \@ref(readtable)) para importar o arquivo; então a descrição dos argumentos especificados encontra-se na ajuda da função `read.table()`, facilmente acessada pelo *link* na ajuda da função `import`.
 
-#### Arquivos formatados com largura fixa
+
+Quando os nomes dos arquivos incluem uma extensão reconhecida pelo **rio** (Tabela \@ref(tab:rio-table)), não há necesidade de especificar o argumento `format` nas funções `import()` e `export()`. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do *site* é desconhecida (ex.: \".TXT\", \".dat\", etc). Nesta situação você deve especificar o formato do arquivo através do argumento `format` da `import()`.
+
+Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função `export()`. Vamos salvá-lo usando um formato diferente do original, como *tsv* (valores separados por *tab*), para explorar a funcionalidade do **rio**.
+
+```{r}
+# exporta para arquivo texto separado por tab
+(arq_temp <- tempfile())
+(dprec_file <- paste0(arq_temp, ".tsv"))
+export(dprec, file = dprec_file, na = "-999")
+```
+
+
+#### Arquivos formatados com largura fixa {#arquivos-fwf}
 
 Alguns arquivos texto com dados tabulares podem não conter separadores para economizar espaço de disco. Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados. 
 
@@ -234,63 +296,85 @@ Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) o
 
 ```{r Chunk440}
 # link para os dados do SOI
-link <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
+link_soi <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
 ```
 
-Abrindo o link dos dados no navegador para visualização do formato.
+Vamos visualizar os dados SOI no navegador para reconhecer o formato.
 
 ```{r Chunk441, eval=FALSE}
-browseURL(url = link)
+browseURL(url = link_soi)
 ```
 
-Leitura dos dados: 
+Ao inspecionar cuidadosamente os dados até o fim da página no navegador, percebe-se os seguintes aspectos sobre estes dados:
 
-```{r Chunk442, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+- temos duas tabelas de dados do SOI, uma de anomalias absolutas (da linha 4 até 74) e outra de anomalias normalizadas (da linha 79 à 148);
+
+- os valores da coluna `YEAR` ocupam 4 campos (ou espaços), ou seja, vão desde a 1ª até a 4 coluna; os valores da coluna `JAN` ocupam os campos da 5ª à 10ª coluna e este padrão é repetido para as colunas restantes.
+
+- dados faltantes são representados pelo rótulo `-999.9`
+
+- os dados incluem os nomes das variáveis (cabeçalho)
+
+- o cabeçalho ocupa um número de campos diferentes daqueles ocuppados pelos valores de SOI (note o sinal de menos que antecede os valores)
+
+Nosso interesse é na 1ª tabela de dados. Uma estratégia possível de importar estes dados é começar lendo o cabeçalho.
+
+```{r}
+nome_vars <- scan(
+    link_soi, # varredura do arquivo
+    what = "character", # tipo dos dados
+    skip = 3, # pula 3 linhas
+    nmax = 13 # num. max. de campos a serem lidos
+)
+nome_vars
+```
+
+A seguir, podemos usar o cabeçalho obtido acima, como argumento na `import()` através do argumento `col.names`. As informações da inspeção dos dados são utilizadas para definir os outros argumentos.
+
+```{r soi}
 soi <- import(
-  file = link,
-  format = "fwf",
+  file = link_soi,
+  format = "fwf", # formato de largura fixa
   skip = 4, # pula 4 linhas
   header = FALSE, # sem cabeçalho
   nrows = 70, # num. de linhas
   widths = c(4, rep(6, 12)), # largura dos campos das variáveis
   na.strings = "-999.9", # string para dados faltantes
-  col.names = scan(link, # varredura do arquivo
-    # col.names = scan(link,             # varredura do arquivo
-    what = "character", # tipo dos dados a serem lidos
-    skip = 3, # pula 3 linhas
-    nmax = 13
-  ) # num. max de registros a serem lidos
+  col.names = nome_vars
 )
 str(soi)
 tail(soi)
 ```
 
+A documentação de ajuda da função `import()` do **rio** nos diz que no arquivo acima foi usada a função `read.fwf()` do `r rblue` para ler os dados. Os argumentos usados foram:
 
-Conforme o manual de ajuda da função `import()` do **rio**, no arquivo acima foi usada a função `read.fwf()` do R para ler os dados.
+- `format = "fwf"` significa formato de largura fixa
+- `skip = 4` especifica que os dados iniciam após as 4 primeiras linhas do arquivo
+- `header = FALSE` especifica que estamos lendo diretamente os dados
+- `nrows = 70` é o número de linhas lidas desde o começo dos dados, isto é, `74 - 4`.
+- `widths = c(4, rep(6, 12))` especifica a largura dos campos das variáveis; 4 campos para 1ª coluna e 6 campos para as 12 colunas seguintes;
+- `na.strings = "-999.9"` indica o rótulo para os dados faltantes
+- `col.names = nome_vars` especifica o nome das variáveis que será usado no *data frame*.
 
-Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
 
-```{r Chunk443}
-# converte a matriz de dados para um vetor (em sequencia cronológica)
-soi_v <- c(t(soi[, -1]))
-# criando um dataframe com valores de SOI, mes e ano
-soi_df <- data.frame(
-  ano = rep(soi$YEAR, each = 12),
-  mes = rep(1:12, length(soi[, 1])),
-  soi = soi_v
-)
-head(soi_df)
-# escrevendo dados SOI em um arquivo CSV
-soi_file <- paste0(tempfile(), ".csv")
-export(soi_df,
+Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
+
+```{r}
+# nome para o arquivo CSV
+(soi_file <- paste0(tempdir(), "SOI.csv"))
+# exportação com rio
+export(soi,
   file = soi_file,
   na = "-999.9"
 )
+# verificar se o arquivo foi gerado
+file.exists(soi_file)
 ```
 
-Vamos ler os dados reestruturados que foram salvos no formato [csv](http://en.wikipedia.org/wiki/Comma-separated_values) usando uma função que permite a escolha do arquivo de forma iterativa.
 
-```{r Chunk444, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
+Vamos importar o arquivo `SOI.csv` através da função `file.choose()` (ou `choose.file()` no Windows) que permite selecionar o arquivo de forma iterativa.
+
+```{r Chunk444, eval=FALSE}
 # leitura de dados com escolha interativa do arquivo
 soi.df <- import(file.choose(),
   # file.choose só é válido em sistema *unix
@@ -300,19 +384,18 @@ soi.df <- import(file.choose(),
 )
 ```
 
-Navegue ate o diretoriodo arquivo e clique duas vezes sobre o arquivo `SOI.csv`.
+Navegue até o diretório do arquivo `SOI.csv` e clique duas vezes sobre o arquivo ele.
 
 ```{r Chunk445, echo=FALSE}
 soi.df <- import(
   file = soi_file,
-  header = T,
+  header = TRUE,
   na.strings = "-999.9"
 )
 ```
 
-```{r chunk446}
+```{r}
 head(soi.df)
-str(soi.df)
 ```
 
 ### Arquivos texto não estruturados
@@ -337,14 +420,21 @@ is.vector(cab[5:7])
 cbind(cab[5:7])
 # selecionando somente os dados e o nome das variáveis
 cab[-c(1:15)][1:10]
-# escrevendo dados com writeLines
-file_83004_limpo <- paste0(tempfile(), ".txt")
-writeLines(text = cab[-c(1:15)] , con = file_83004_limpo)
-#writeLines(text = cab[-c(1:15)] , con = "../output-adar/83004_limpo.txt")
 ```
 
-A função `writeLines()` escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.
+A função `writeLines()` escreve os elementos do vetor de caracteres em um arquivo texto. Essa é uma forma de escrever os dados mantendo a formatação original dos dados.
 
+```{r}
+# dados sem as linhas com metadados
+dados_limpos <- cab[-c(1:15)]
+# arquivo para salvar os dados limpos
+file_83004_limpo <- paste0(tempfile(), ".txt")
+# escrevendo dados limpos
+writeLines(
+  text =  dados_limpos, 
+  con = file_83004_limpo
+)
+```
 
 
 ## Arquivos binários 
@@ -546,41 +636,100 @@ plot(b, col = rev(brewer.pal(10, "RdBu")))
 
 ## Arquivos Excel
 
-O armazenamento de dados em formato Excel (arquivos com extensões `.xls` e `.xlsx`) é uma prática muito popular. Mas infelizmente ler dados Excel não é tão simples, apesar da variedade de pacotes disponíveis para tal tarefa. 
-Há uma razoável variedade de pacotes para resolver esse problema: [gdata](https://cran.r-project.org/web/packages/gdata/index.html), [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) e [readxl](https://readxl.tidyverse.org/) e outros. mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.
+O armazenamento de dados em formato Excel (arquivos com extensões `.xls` e `.xlsx`) é uma prática muito popular, principalmente em empresas privadas. Entretanto, arquivos em formato Excel tem problemas de interação com [sistemas de controle de versões](https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es). Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com arquivo texto é uma boa  opção. O formato CSV é facilmente importado no Excel e por isso é um formato texto amplamente utilizado. Uma solução é converter as planilhas Excel para `csv` usando algum programa.
 
-Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel (`xls` ou `xlsx`).
+Mas caso isso não seja viável, você verá as opções mais eficientes para processar arquivos Excel no R.
 
-A solução mais usada é converter as planilhas Excel para `csv` usando algum programa.
+Importar ou exportar dados neste formato para o R era trabalhoso devido a dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas nos últimos esta tarefa deixou de ser um obstáculo. 
 
-Mas caso isso não seja viável, você verá como usar o pacote [readxl](https://readxl.tidyverse.org/) para leitura de arquivos Excel. 
+Há uma variedade de pacotes para processar dados em Excel, entre eles estão: [gdata](https://cran.r-project.org/web/packages/gdata/index.html), 
+[XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html), [xlsx](https://cran.r-project.org/web/packages/xlsx/index.html), [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html), [readxl](https://readxl.tidyverse.org/), [writexl](https://github.com/ropensci/writexl) e [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html). 
 
-Baixando arquivo exemplo.
+
+Na seção \@ref(Rio) vimos que o pacote **rio** importa diversos formatos de arquivos, inclusive Excel (Tabela \@ref(tab:rio-table)). A função `import()` utiliza a função `read_excel()`do pacote **readr** para importar arquivos excel. A função `export()`, por outro lado, utiliza a função `write.xlsx()` do pacote **openxlsx**. 
+
+Além do uso do pacote **rio** para exportar arquivos `xlsx`, veremos também o pacote [writexl](https://github.com/ropensci/writexl) por ter uma exportação mais rápida que a usada no pacote **rio**.
+
+
+### Como usar
+
+Vamos baixar um arquivo `.xls` para usar com a função `import()` do pacote **rio**. 
 
 ```{r, message=FALSE, warning=FALSE}
 excel_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true"
-dest_file_excel <- file.path(tempdir(), "Estações Normal Climatoógica 1981-2010.xls")
+dest_file_excel <- file.path(tempdir(), "Estacoes-Normal-Climatologica-1981-2010.xls")
 download.file(excel_file_url, dest_file_excel)
 ```
 
+Agora podemos importar o arquivo baixado com o pacote **rio**.
 
 ```{r}
-# install.packages("readxl")
-library(readxl)
-inmet_estacoes <- read_excel(
-  path = dest_file_excel,
+inmet_estacoes <- import(
+  file = dest_file_excel,
   col_names = TRUE, 
   skip = 3)
-inmet_estacoes
-str(inmet_estacoes)
-class(inmet_estacoes)
+head(inmet_estacoes)
+```
+
+### Escrita de arquivos excel no formato `.xls`
+
+Vamos alterar os nomes das variáveis para minúsculo e escrever o *data frame* em novo arquivo `.xls`. 
+
+```{r}
+names(inmet_estacoes) <- tolower(names(inmet_estacoes))
+head(inmet_estacoes)
 ```
 
 
+Peraí! Mas o **rio** não suporta a opção de exportar arquivos no formato `.xls` (confira na Tabela \@ref(tab:rio-table)). Uma alternativa, caso você realmente precise escrever os dados no formato `xls`, é o pacote [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) que possui dependência da linguagem [PERL](https://www.perl.org/).
+
+
+```{r, eval = FALSE}
+library(WriteXLS)
+arq_xls_temp <- file.path(tempdir(), basename(dest_file_excel))
+WriteXLS(x = inmet_estacoes, ExcelFileName = arq_xls_temp)
+file.exists(arq_xls_temp)
+# conferindo
+head(
+  import(
+    file = arq_xls_temp,
+    col_names = TRUE
+  )
+)
+```
+
+
+### Escrita de arquivos excel no formato `.xlsx`
+
+O código abaixo faz uma comparação da eficiência na escrita dos dados `inmet_estacoes` formato `xlsx` entre as funções `writexl::write_xlsx` e `openxlsx::write.xlsx`.
+
+```{r}
+tempos_escrita_xlsx <- microbenchmark(
+  writexl = write_xlsx(inmet_estacoes, tempfile()),
+  openxlsx = write.xlsx(inmet_estacoes, tempfile()),
+  times = 5
+)
+tempos_escrita_xlsx
+```
+
+```{r, echo = FALSE}
+media <- summary(tempos_escrita_xlsx)["mean"]
+mais_rapido <- round(media$mean[2]/media$mean[1])
+#mais_rapido
+```
+
+
+A `writexl::write_xlsx()` no exemplo acima foi cerca de `r mais_rapido` vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+
+
+### Estrutura de dados não tabulares
+
+Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente de forma que sua estrutura pode não ser tabular, com mais de uma tabela por planilha, comentários em células vizinhas aos valores, células aninhadas, células formatadas e etc. Se você precisa arrumar dados nessas condições, vale a pena conferir os pacotes [tidyxl](https://cran.r-project.org/web/packages/tidyxl/index.html) e 
+[unpivotr](https://cran.r-project.org/web/packages/unpivotr/index.html).
 
 ## Para saber mais
 
-Para uma descrição mais abrangente sobre importação e exportação de dados no `r rblue` consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e a documentação de ajuda das funções citadas naquele documento.
+Para uma descrição mais abrangente sobre importação e exportação de dados no `r rblue` usando as funções da base do R, consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e a documentação de ajuda das funções citadas naquele documento.
 
 ## Exercícios
 
@@ -589,9 +738,9 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 ```{r, eval = TRUE, include=FALSE}
 library(dplyr)
 library(rio)
-url_data <- "http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt"
-ind_mjo <- import(url_data, fread = TRUE)
-var_nomes <- scan(url_data, 
+url_data_mjo <- "http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt"
+ind_mjo <- import(url_data_mjo, fread = TRUE)
+var_nomes <- scan(url_data_mjo, 
                   what = "character",
                   nlines = 2, 
                   skip = 1, 
@@ -601,4 +750,53 @@ var_nomes <- scan(url_data,
 ```
 
     b. Defina o nome das variáveis como: `r paste(c(var_nomes, "status"), collapse = ", ")`.
+
+```{r, include = FALSE}
+ind_mjo <- setNames(ind_mjo, c(var_nomes, "status"))
+head(ind_mjo)
+```
+
+    c. Escreva os dados importados em um arquivo excel nomeado `mjo.xlsx`.
+```{r, include = FALSE}
+xlsx_file <- file.path(tempdir(), "mjo.xlsx")
+writexl::write_xlsx(ind_mjo, xlsx_file)
+```
+    
+2. Importe as anomalias padronizadas dos dados do [SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela). Veja a seção \@ref(arquivos-fwf) para detalhes. 
+
+```{r, include = FALSE}
+link_soi <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
+nome_vars <- scan(
+    link_soi, # varredura do arquivo
+    what = "character", # tipo dos dados
+    skip = 3, # pula 3 linhas
+    nmax = 13 # num. max. de campos a serem lidos
+)
+nome_vars
+# anomalias padronizadas
+soi_pad <- import(
+  file = link_soi,
+  format = "fwf", # formato de largura fixa
+  skip = 74+4, # pula 4 linhas
+  header = FALSE, # sem cabeçalho
+  #nrows = 70, # num. de linhas
+  widths = c(4, rep(6, 12)), # largura dos campos das variáveis
+  na.strings = "-999.9", # string para dados faltantes
+  col.names = nome_vars
+)
+head(soi)
+tail(soi)
+```
+
+
+
+3. Importe no R o arquivo excel com a relação de estações meteorológicas convencionais do INMET usadas para construção das normais climatológicas do Brasil no período de 1981-2010, disponível neste [link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1981-2010/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls).
+
+```{r, include = FALSE}
+url_data_inmet <- "http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1981-2010/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls"
+estacoes_8110 <- import(url_data_inmet, 
+                        col_names = TRUE, 
+                        skip = 3)
+as_tibble(estacoes_8110)
+```
 

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # (PART) Ferramentas modernas do R {-}
 
 
@@ -153,7 +158,7 @@ Finalmente é bom lembrar da opção de visualização completa dos dados do RSt
 
 ## Restruturação de dados
 
-> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [(Dasu e Johnson 2003)](http://onlinelibrary.wiley.com/doi/10.1002/0471448354.ch4/summary).
+> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson].
 
 
 ### Dados arrumados
@@ -313,6 +318,23 @@ res_pipe
 ```
 
 Quando as suas tarefas aumentam o operador pipe `%>%` torna-se mais útil e o seu código fica mais legível.
+
+## Exercícios
+
+
+Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
+
+```{r , eval = FALSE}
+# converte a matriz de dados para um vetor (em sequencia cronológica)
+soi_v <- c(t(soi[, -1]))
+# criando um dataframe com valores de SOI, mes e ano
+soi_df <- data.frame(
+  ano = rep(soi$YEAR, each = 12),
+  mes = rep(1:12, length(soi[, 1])),
+  soi = soi_v
+)
+head(soi_df)
+```
 
 
 ## Exemplo de manipulação de dados 
