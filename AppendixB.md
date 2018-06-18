@@ -25,7 +25,7 @@ Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o u
 aq_url <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt"
 # arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpGjTwD3/file26c24a50fffd"
+#> [1] "/tmp/RtmpWCc5x7/file56ed44673dbc"
 download.file(aq_url, destfile = aq_dest_file)
 ```
 
@@ -243,13 +243,13 @@ dput(x)
 #> structure(list(dates = structure(c(1L, 1L, 1L), .Label = "2013-01-01", class = "factor"), 
 #>     cidade = structure(c(2L, 3L, 1L), .Label = c("CV", "SM", 
 #>     "SS"), class = "factor"), temperatura = c(31L, 35L, 21L), 
-#>     chuva = c(3L, 10L, 14L)), class = "data.frame", row.names = c(NA, 
-#> -3L))
+#>     chuva = c(3L, 10L, 14L)), .Names = c("dates", "cidade", "temperatura", 
+#> "chuva"), class = "data.frame", row.names = c(NA, -3L))
 # salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/RtmpGjTwD3/file26c2aad5255"
+#> [1] "/tmp/RtmpWCc5x7/file56ed5c8ee248"
 (x_dest_file <- tempfile())
-#> [1] "/tmp/RtmpGjTwD3/file26c2492347da"
+#> [1] "/tmp/RtmpWCc5x7/file56ed58de4d7b"
 dput(x, file = x_dest_file)
 # recuperando x a partir do arquivo
 y <- dget(x_dest_file)
@@ -271,7 +271,7 @@ ls(pattern = "^[xy]")
 #> [1] "x"           "x_dest_file" "y"
 # salvando mais de um objeto em um arquivo
 (xy_dest_file <- tempfile())
-#> [1] "/tmp/RtmpGjTwD3/file26c213761b5"
+#> [1] "/tmp/RtmpWCc5x7/file56ed310e6f32"
 dump(ls(pattern = "^[xy]"), file = xy_dest_file)
 # vamos apagar x e y do espaco de trabalho
 rm(x, y)
@@ -385,7 +385,7 @@ head(airquality, n = 10)
 ```
 
 
-## Arquivos de texto
+## Leitura de arquivos texto com funções da base do R {#readtable}
 
 A função nativa do <img src="images/logo_r.png" width="20"> mais usada para leitura de dados de um arquivo texto é a `read.table()`. Os dados lidos são armazenados em um dataframe. 
 

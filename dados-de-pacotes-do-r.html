@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-12">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html">
-<link rel="next" href="arquivos-de-texto.html">
+<link rel="next" href="readtable.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -217,15 +217,21 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
 <li class="chapter" data-level="8.3" data-path="boas-praticas-para-importacao-e-exportacao-de-dados.html"><a href="boas-praticas-para-importacao-e-exportacao-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
 <li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
 <li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
 <li class="chapter" data-level="8.5.1" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#formatos-binarios-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
 <li class="chapter" data-level="8.5.2" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercicios-2.html"><a href="exercicios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
@@ -238,7 +244,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
+<li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+<li class="chapter" data-level="9.6" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.6</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -265,9 +272,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
 </ul></li>
 <li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
-<li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -341,7 +348,7 @@ code > span. { color: #1f1c1b; } /* Normal */
         </div>
       </div>
 <a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="arquivos-de-texto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="readtable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-12">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -217,15 +217,21 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
 <li class="chapter" data-level="8.3" data-path="boas-praticas-para-importacao-e-exportacao-de-dados.html"><a href="boas-praticas-para-importacao-e-exportacao-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
 <li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
 <li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
 <li class="chapter" data-level="8.5.1" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#formatos-binarios-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
 <li class="chapter" data-level="8.5.2" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercicios-2.html"><a href="exercicios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
@@ -238,7 +244,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
+<li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+<li class="chapter" data-level="9.6" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.6</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -265,9 +272,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
 </ul></li>
 <li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
-<li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -292,50 +299,93 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="arquivos-excel" class="section level2">
 <h2><span class="header-section-number">8.6</span> Arquivos Excel</h2>
-<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e <code>.xlsx</code>) é uma prática muito popular. Mas infelizmente ler dados Excel não é tão simples, apesar da variedade de pacotes disponíveis para tal tarefa. Há uma razoável variedade de pacotes para resolver esse problema: <a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>, <a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a> e <a href="https://readxl.tidyverse.org/">readxl</a> e outros. mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.</p>
-<p>Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel (<code>xls</code> ou <code>xlsx</code>).</p>
-<p>A solução mais usada é converter as planilhas Excel para <code>csv</code> usando algum programa.</p>
-<p>Mas caso isso não seja viável, você verá como usar o pacote <a href="https://readxl.tidyverse.org/">readxl</a> para leitura de arquivos Excel.</p>
-<p>Baixando arquivo exemplo.</p>
+<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e <code>.xlsx</code>) é uma prática muito popular, principalmente em empresas privadas. Entretanto, arquivos em formato Excel tem problemas de interação com <a href="https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es">sistemas de controle de versões</a>. Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com arquivo texto é uma boa opção. O formato CSV é facilmente importado no Excel e por isso é um formato texto amplamente utilizado. Uma solução é converter as planilhas Excel para <code>csv</code> usando algum programa.</p>
+<p>Mas caso isso não seja viável, você verá as opções mais eficientes para processar arquivos Excel no R.</p>
+<p>Importar ou exportar dados neste formato para o R era trabalhoso devido a dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas nos últimos esta tarefa deixou de ser um obstáculo.</p>
+<p>Há uma variedade de pacotes para processar dados em Excel, entre eles estão: <a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>, <a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>, <a href="https://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a>, <a href="https://cran.r-project.org/web/packages/openxlsx/index.html">openxlsx</a>, <a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://github.com/ropensci/writexl">writexl</a> e <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>.</p>
+<p>Na seção <a href="arquivos-texto.html#Rio">8.4.1</a> vimos que o pacote <strong>rio</strong> importa diversos formatos de arquivos, inclusive Excel (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). A função <code>import()</code> utiliza a função <code>read_excel()</code>do pacote <strong>readr</strong> para importar arquivos excel. A função <code>export()</code>, por outro lado, utiliza a função <code>write.xlsx()</code> do pacote <strong>openxlsx</strong>.</p>
+<p>Além do uso do pacote <strong>rio</strong> para exportar arquivos <code>xlsx</code>, veremos também o pacote <a href="https://github.com/ropensci/writexl">writexl</a> por ter uma exportação mais rápida que a usada no pacote <strong>rio</strong>.</p>
+<div id="como-usar-1" class="section level3">
+<h3><span class="header-section-number">8.6.1</span> Como usar</h3>
+<p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote <strong>rio</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span>
-dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estações Normal Climatoógica 1981-2010.xls&quot;</span>)
+dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span>)
 <span class="kw">download.file</span>(excel_file_url, dest_file_excel)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;readxl&quot;)</span>
-<span class="kw">library</span>(readxl)
-inmet_estacoes &lt;-<span class="st"> </span><span class="kw">read_excel</span>(
-  <span class="dt">path =</span> dest_file_excel,
+<p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(
+  <span class="dt">file =</span> dest_file_excel,
   <span class="dt">col_names =</span> <span class="ot">TRUE</span>, 
   <span class="dt">skip =</span> <span class="dv">3</span>)
-inmet_estacoes
-<span class="co">#&gt; # A tibble: 437 x 10</span>
-<span class="co">#&gt;       Nº Código `Nome da Estação`   UF    Latitude Longitude Atitude</span>
-<span class="co">#&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1    1. 82704. CRUZEIRO DO SUL     AC       -7.60     -72.7   170. </span>
-<span class="co">#&gt;  2    2. 82915. RIO BRANCO          AC       -9.95     -67.9   160. </span>
-<span class="co">#&gt;  3    3. 82807. TARAUACA            AC       -8.17     -70.8   190. </span>
-<span class="co">#&gt;  4    4. 82989. AGUA BRANCA         AL       -9.28     -37.9   605. </span>
-<span class="co">#&gt;  5    5. 82995. ARAPIRACA           AL       -9.73     -36.8   247. </span>
-<span class="co">#&gt;  6    6. 82994. MACEIO              AL       -9.67     -35.7    64.5</span>
-<span class="co">#&gt;  7    7. 82991. MAJOR ISIDORO       AL       -9.55     -37.0   200. </span>
-<span class="co">#&gt;  8    8. 82988. MATA GRANDE         AL       -9.12     -37.7   635. </span>
-<span class="co">#&gt;  9    9. 82992. PALMEIRA DOS INDIOS AL       -9.45     -36.7   275. </span>
-<span class="co">#&gt; 10   10. 82990. PAO DE ACUCAR       AL       -9.75     -37.4    19.1</span>
-<span class="co">#&gt; # ... with 427 more rows, and 3 more variables: `Inicio Operação` &lt;chr&gt;,</span>
-<span class="co">#&gt; #   `Fim Operação` &lt;dttm&gt;, Situação &lt;chr&gt;</span>
-<span class="kw">str</span>(inmet_estacoes)
-<span class="co">#&gt; Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    437 obs. of  10 variables:</span>
-<span class="co">#&gt;  $ Nº             : num  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;  $ Código         : num  82704 82915 82807 82989 82995 ...</span>
-<span class="co">#&gt;  $ Nome da Estação: chr  &quot;CRUZEIRO DO SUL&quot; &quot;RIO BRANCO&quot; &quot;TARAUACA&quot; &quot;AGUA BRANCA&quot; ...</span>
-<span class="co">#&gt;  $ UF             : chr  &quot;AC&quot; &quot;AC&quot; &quot;AC&quot; &quot;AL&quot; ...</span>
-<span class="co">#&gt;  $ Latitude       : num  -7.6 -9.95 -8.17 -9.28 -9.73 ...</span>
-<span class="co">#&gt;  $ Longitude      : num  -72.7 -67.9 -70.8 -37.9 -36.8 ...</span>
-<span class="co">#&gt;  $ Atitude        : num  170 160 190 605 247 ...</span>
-<span class="co">#&gt;  $ Inicio Operação: chr  &quot;10228&quot; &quot;10594&quot; &quot;24264&quot; &quot;10353&quot; ...</span>
-<span class="co">#&gt;  $ Fim Operação   : POSIXct, format: &quot;2016-02-01&quot; NA ...</span>
-<span class="co">#&gt;  $ Situação       : chr  &quot;Desativada&quot; NA NA NA ...</span>
-<span class="kw">class</span>(inmet_estacoes)
-<span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></code></pre></div>
+<span class="kw">head</span>(inmet_estacoes)
+<span class="co">#&gt;   Nº Código Nome da Estação UF  Latitude Longitude Atitude Inicio Operação</span>
+<span class="co">#&gt; 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228</span>
+<span class="co">#&gt; 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594</span>
+<span class="co">#&gt; 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264</span>
+<span class="co">#&gt; 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353</span>
+<span class="co">#&gt; 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594</span>
+<span class="co">#&gt; 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289</span>
+<span class="co">#&gt;   Fim Operação   Situação</span>
+<span class="co">#&gt; 1   2016-02-01 Desativada</span>
+<span class="co">#&gt; 2         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 3         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 4         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 5         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 6         &lt;NA&gt;       &lt;NA&gt;</span></code></pre></div>
+</div>
+<div id="escrita-de-arquivos-excel-no-formato-.xls" class="section level3">
+<h3><span class="header-section-number">8.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
+<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em> em novo arquivo <code>.xls</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))
+<span class="kw">head</span>(inmet_estacoes)
+<span class="co">#&gt;   nº código nome da estação uf  latitude longitude atitude inicio operação</span>
+<span class="co">#&gt; 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228</span>
+<span class="co">#&gt; 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594</span>
+<span class="co">#&gt; 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264</span>
+<span class="co">#&gt; 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353</span>
+<span class="co">#&gt; 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594</span>
+<span class="co">#&gt; 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289</span>
+<span class="co">#&gt;   fim operação   situação</span>
+<span class="co">#&gt; 1   2016-02-01 Desativada</span>
+<span class="co">#&gt; 2         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 3         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 4         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 5         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="co">#&gt; 6         &lt;NA&gt;       &lt;NA&gt;</span></code></pre></div>
+<p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). Uma alternativa, caso você realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a> que possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(WriteXLS)
+arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))
+<span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)
+<span class="kw">file.exists</span>(arq_xls_temp)
+<span class="co"># conferindo</span>
+<span class="kw">head</span>(
+  <span class="kw">import</span>(
+    <span class="dt">file =</span> arq_xls_temp,
+    <span class="dt">col_names =</span> <span class="ot">TRUE</span>
+  )
+)</code></pre></div>
+</div>
+<div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
+<h3><span class="header-section-number">8.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
+<p>O código abaixo faz uma comparação da eficiência na escrita dos dados <code>inmet_estacoes</code> formato <code>xlsx</code> entre as funções <code>writexl::write_xlsx</code> e <code>openxlsx::write.xlsx</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(
+  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
+  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
+  <span class="dt">times =</span> <span class="dv">5</span>
+)
+tempos_escrita_xlsx
+<span class="co">#&gt; Unit: milliseconds</span>
+<span class="co">#&gt;      expr       min        lq      mean    median        uq       max</span>
+<span class="co">#&gt;   writexl  9.002557  9.335875  10.54346  9.627213  9.690607  15.06105</span>
+<span class="co">#&gt;  openxlsx 43.584516 43.735609 125.26875 48.823454 94.669457 395.53073</span>
+<span class="co">#&gt;  neval cld</span>
+<span class="co">#&gt;      5   a</span>
+<span class="co">#&gt;      5   a</span></code></pre></div>
+<p>A <code>writexl::write_xlsx()</code> no exemplo acima foi cerca de 12 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+</div>
+<div id="estrutura-de-dados-nao-tabulares" class="section level3">
+<h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>
+<p>Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente de forma que sua estrutura pode não ser tabular, com mais de uma tabela por planilha, comentários em células vizinhas aos valores, células aninhadas, células formatadas e etc. Se você precisa arrumar dados nessas condições, vale a pena conferir os pacotes <a href="https://cran.r-project.org/web/packages/tidyxl/index.html">tidyxl</a> e <a href="https://cran.r-project.org/web/packages/unpivotr/index.html">unpivotr</a>.</p>
+</div>
 </div>
             </section>
 

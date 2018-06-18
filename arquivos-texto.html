@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-12">
+<meta name="date" content="2018-06-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -217,15 +217,21 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="8.2" data-path="diretorio-de-trabalho.html"><a href="diretorio-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
 <li class="chapter" data-level="8.3" data-path="boas-praticas-para-importacao-e-exportacao-de-dados.html"><a href="boas-praticas-para-importacao-e-exportacao-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
 <li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
 <li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-nao-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
 <li class="chapter" data-level="8.5.1" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#formatos-binarios-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
 <li class="chapter" data-level="8.5.2" data-path="arquivos-binarios.html"><a href="arquivos-binarios.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
 <li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercicios-2.html"><a href="exercicios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
 </ul></li>
 <li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
@@ -238,7 +244,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.5</b> Exemplo de manipulação de dados</a></li>
+<li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+<li class="chapter" data-level="9.6" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.6</b> Exemplo de manipulação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -265,9 +272,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
 </ul></li>
 <li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
-<li class="chapter" data-level="B.4" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html"><i class="fa fa-check"></i><b>B.4</b> Arquivos de texto</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="arquivos-de-texto.html"><a href="arquivos-de-texto.html#arquivos-formatados-com-largura-fixa-1"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorologicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -297,274 +304,232 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula, espaço, tab e etc; as linhas são separadas por quebras de linha (<code>\n</code> no Linux, <code>\r\n</code> no Windows).</p>
 <p>Dados em arquivo texto podem conter caracteres latinos, como palavras com acentos no caso do Português. Para lidar com esta peculiaridade, as funções de importação de dados, possuem um argumento relacionado a codificação (<em>encoding</em>) dos caracteres. Arquivos texto em Português geralmente usam a codificação <a href="https://pt.wikipedia.org/wiki/ISO/IEC_8859-1">ISO 8859-1</a> ou equivalente <em>Latin1</em>. Portanto, para importação com formatação correta de caracteres latinos a especificação com esta codificação deve ser explícita.</p>
 <p>O R utiliza o alfabeto <a href="https://pt.wikipedia.org/wiki/Unicode">Unicode</a> para identificação de caracteres. Para associação unívoca de cada caractere (de mais 1 milhão de caracteres do alfabeto Unicode) a uma sequência de bits, o R usa o esquema de codificação <a href="https://pt.wikipedia.org/wiki/UTF-8">UTF-8</a>. Assim, recomenda-se utilizar essa codificação de caracteres como padrão em seus códigos e na construção e aquisição de dados. No RStudio a especificação da codificação de caracteres pode ser feita através do menu: <em>Tools &gt; Global Options &gt; Code &gt; Saving &gt; Default Text Encoding</em>.</p>
-<div id="rio" class="section level3">
+<div id="Rio" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> <strong>rio</strong></h3>
-<p>O pacote <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a> <span class="citation">(<span class="citeproc-not-found" data-reference-id="rio"><strong>???</strong></span>)</span> é um canivete suíço para leitura e escrita de dados nos formatos mais comuns. O pacote simplifica estes processos que são complexos para quem está iniciando no R, devido a vastidão de opções reportada no <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">Manual de Importação e Exportação do R</a>. Com ele você só precisa saber duas funções para importar uma variedade de formatos de arquivos (ver tabela abaixo): <code>import()</code> e <code>export()</code>. Algumas opções de formatos que podem ser importados e exportados com o <strong>rio</strong> são apresentados na tabela abaixo. Uma versão completa desta tabela está disponível na <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vinheta do pacote</a>.</p>
-<table style="width:94%;">
-<colgroup>
-<col width="9%" />
-<col width="13%" />
-<col width="20%" />
-<col width="20%" />
-<col width="29%" />
-</colgroup>
+<p>O pacote <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a>, nas palavras do próprio autor do pacote é &quot;um canivete suíço para entrada e saída de dados&quot; nos formatos mais frequentemente usados.</p>
+<p>A grande funcionalidade do <strong>rio</strong> é simplificar estes processos que podem confundir a cabeça de quem está aprendendo R, devido a vastidão de opções disponíveis no <img src="images/logo_r.png" width="20"> (veja o <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.htmlpara%20ter%20noção">Manual de Importação e Exportação do R</a>).</p>
+<p>Esta facilidade deve-se as premissas feitas pelo <strong>rio</strong> sobre o formato do arquivo. Ao importar um arquivo o pacote descobre o formato (pela extensão) e então aplica a função apropriada para ler aquele formato.</p>
+<p>Desta forma, com o <strong>rio</strong>, você precisa saber duas funções para ler e escrever uma variedade de formatos de arquivos (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>): <code>import()</code> e <code>export()</code>, respectivamente.</p>
+<p>Os formatos importados e exportados pelo <strong>rio</strong> são apresentados na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>. Para uma versão completa desta tabela confira a <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">vinheta do pacote</a>.</p>
+<table>
+<caption><span id="tab:rio-table">Table 8.1: </span>Versão resumida da tabela com os formatos suportados pelo pacote <strong>rio</strong>.</caption>
 <thead>
 <tr class="header">
-<th>Formato</th>
-<th>Extensão</th>
-<th>Pacote de importação</th>
-<th>Pacote de exportação</th>
-<th>Instalado por <em>default</em></th>
+<th align="center">Formato</th>
+<th align="center">Extensão</th>
+<th align="center">Pacote.de.importação</th>
+<th align="center">Pacote.de.exportação</th>
+<th align="center">Instalado.por..default.</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Valores separados por vírgula</td>
-<td>.csv</td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td>Sim</td>
+<td align="center">Valores separados por vírgula</td>
+<td align="center">.csv</td>
+<td align="center"><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="even">
-<td>dados separados por tab</td>
-<td>.tsv</td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
-<td>Sim</td>
+<td align="center">dados separados por tab</td>
+<td align="center">.tsv</td>
+<td align="center"><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=data.table"><strong>data.table</strong></a></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="odd">
-<td>Excel</td>
-<td>.xls</td>
-<td><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
-<td></td>
-<td>Sim</td>
+<td align="center">Excel</td>
+<td align="center">.xls</td>
+<td align="center"><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
+<td align="center"></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="even">
-<td>Excel</td>
-<td>.xlsx</td>
-<td><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
-<td><a href="https://cran.r-project.org/package=openxlsx"><strong>openxlsx</strong></a></td>
-<td>Sim</td>
+<td align="center">Excel</td>
+<td align="center">.xlsx</td>
+<td align="center"><a href="https://cran.r-project.org/package=readxl"><strong>readxl</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=openxlsx"><strong>openxlsx</strong></a></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="odd">
-<td>objetos salvos no R</td>
-<td>.RData, .rda</td>
-<td><strong>base</strong></td>
-<td><strong>base</strong></td>
-<td>Sim</td>
+<td align="center">objetos salvos no R</td>
+<td align="center">.RData, .rda</td>
+<td align="center"><strong>base</strong></td>
+<td align="center"><strong>base</strong></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="even">
-<td>objetos do R serializados</td>
-<td>.rds</td>
-<td><strong>base</strong></td>
-<td><strong>base</strong></td>
-<td>Sim</td>
+<td align="center">objetos do R serializados</td>
+<td align="center">.rds</td>
+<td align="center"><strong>base</strong></td>
+<td align="center"><strong>base</strong></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="odd">
-<td>dados Fortran</td>
-<td>Sem extensão reconhecida</td>
-<td><strong>utils</strong></td>
-<td></td>
-<td>Sim</td>
+<td align="center">dados Fortran</td>
+<td align="center">Sem extensão reconhecida</td>
+<td align="center"><strong>utils</strong></td>
+<td align="center"></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="even">
-<td>Formato de dados com largura fixa</td>
-<td>.fwf</td>
-<td><strong>utils</strong></td>
-<td><strong>utils</strong></td>
-<td>Sim</td>
+<td align="center">Formato de dados com largura fixa</td>
+<td align="center">.fwf</td>
+<td align="center"><strong>utils</strong></td>
+<td align="center"><strong>utils</strong></td>
+<td align="center">Sim</td>
 </tr>
 <tr class="odd">
-<td>Feather R/Python interchange format</td>
-<td>.feather</td>
-<td><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
-<td><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
-<td>Não</td>
+<td align="center">Feather R/Python interchange format</td>
+<td align="center">.feather</td>
+<td align="center"><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=feather"><strong>feather</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="even">
-<td>Armazenamento rápido (Fast Storage)</td>
-<td>.fst</td>
-<td><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
-<td><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
-<td>Não</td>
+<td align="center">Armazenamento rápido (Fast Storage)</td>
+<td align="center">.fst</td>
+<td align="center"><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=fst"><strong>fst</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="odd">
-<td>JSON</td>
-<td>.json</td>
-<td><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
-<td><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
-<td>Não</td>
+<td align="center">JSON</td>
+<td align="center">.json</td>
+<td align="center"><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=jsonlite"><strong>jsonlite</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="even">
-<td>Matlab</td>
-<td>.mat</td>
-<td><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
-<td><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
-<td>Não</td>
+<td align="center">Matlab</td>
+<td align="center">.mat</td>
+<td align="center"><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=rmatio"><strong>rmatio</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="odd">
-<td>Planilha OpenDocument</td>
-<td>.ods</td>
-<td><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
-<td><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
-<td>Não</td>
+<td align="center">Planilha OpenDocument</td>
+<td align="center">.ods</td>
+<td align="center"><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=readODS"><strong>readODS</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="even">
-<td>tabelas HTML</td>
-<td>.html</td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td>Não</td>
+<td align="center">tabelas HTML</td>
+<td align="center">.html</td>
+<td align="center"><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="odd">
-<td>documentos XML</td>
-<td>.xml</td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
-<td>Não</td>
+<td align="center">documentos XML</td>
+<td align="center">.xml</td>
+<td align="center"><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=xml2"><strong>xml2</strong></a></td>
+<td align="center">Não</td>
 </tr>
 <tr class="even">
-<td>Área de transferência</td>
-<td><em>default</em> é tsv</td>
-<td><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
-<td><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
-<td>Não</td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.google.com/sheets/about/">planilhas Google</a></td>
-<td>como valores separados por vírgula</td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">Área de transferência</td>
+<td align="center"><em>default</em> é tsv</td>
+<td align="center"><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=clipr"><strong>clipr</strong></a></td>
+<td align="center">Não</td>
 </tr>
 </tbody>
 </table>
-<p>Vamos então baixar um arquivo texto de exemplo importá-lo com o pacote <strong>rio</strong>.</p>
+<div id="como-usar" class="section level4">
+<h4><span class="header-section-number">8.4.1.1</span> Como usar</h4>
+<p>Vamos baixar um arquivo de dados em formato texto para importá-lo com o pacote <strong>rio</strong>. Os dados são de precipitação diária e foram obtidos no sistema <a href="http://www.snirh.gov.br/hidroweb/publico/medicoes_historicas_abas.jsf">hidroweb</a> da <a href="http://www.ana.gov.br/">Agência Nacional das Águas</a>.</p>
+<p>A extensão do arquivo é <code>.TXT</code> e não se encaixa em nenhuma das extensões esperadas pelo <strong>rio</strong>. Mas se você visualizar o arquivo no navegador (<code>browseURL(url=&quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;)</code>) perceberá que os dados estão estruturados como CSV2, ou seja, com valores delimitados por &quot;;&quot; e o separador decimal &quot;,&quot;.</p>
+<p>Vamos então baixar o arquivo e salvá-lo em diretório temporário do computador.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivo de exemplo disponível no GitHub</span>
 hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span>
-<span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span>
-hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.csv&quot;</span>)
+<span class="co"># arquivo temporário, você pode substituir tempfile() </span>
+<span class="co"># por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span>
+<span class="co"># caminho de destino para o aquivo baixado</span>
+<span class="co"># alterando a extensão de TXT para csv</span>
+(arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6J/file563f59223b62&quot;</span>
+(hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6J/file563f59223b62.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/Rtmpknheq5/file26841b554987.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6J/file563f59223b62.csv&quot;</span></code></pre></div>
+<p>Agora podemos importar os dados de precipitação baixados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
                 <span class="co"># se fread = TRUE (default usa função fread do pacote data.table)</span>
                 <span class="dt">fread =</span> <span class="ot">FALSE</span>,  
-                <span class="dt">skip =</span> <span class="dv">15</span>,
-                <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,
-                <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>,
-                <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>)
-<span class="kw">str</span>(dprec)
-<span class="co">#&gt; &#39;data.frame&#39;:    1284 obs. of  76 variables:</span>
-<span class="co">#&gt;  $ X..EstacaoCodigo    : int  3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 ...</span>
-<span class="co">#&gt;  $ NivelConsistencia   : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Data                : chr  &quot;01/01/1934&quot; &quot;01/02/1934&quot; &quot;01/03/1934&quot; &quot;01/04/1934&quot; ...</span>
-<span class="co">#&gt;  $ TipoMedicaoChuvas   : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Maxima              : num  NA 66.3 55 54.5 30.5 42.5 10.5 30.3 36.8 69.2 ...</span>
-<span class="co">#&gt;  $ Total               : num  NA 174.7 160.7 98.4 119.4 ...</span>
-<span class="co">#&gt;  $ DiaMaxima           : int  NA 6 9 1 29 13 6 30 19 5 ...</span>
-<span class="co">#&gt;  $ NumDiasDeChuva      : int  NA 10 10 4 8 11 7 8 4 7 ...</span>
-<span class="co">#&gt;  $ MaximaStatus        : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ TotalStatus         : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ NumDiasDeChuvaStatus: int  0 0 0 0 1 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ TotalAnual          : num  NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="co">#&gt;  $ TotalAnualStatus    : int  0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva01             : num  NA 15.5 0 54.5 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva02             : num  NA 3.5 0 0 19 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva03             : num  NA 0 0 0 26.7 21.5 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva04             : num  NA 0 0 0 0 12.7 0 0 0 20.8 ...</span>
-<span class="co">#&gt;  $ Chuva05             : num  10.5 11.9 0 0 3.2 8.7 0 27.5 0 69.2 ...</span>
-<span class="co">#&gt;  $ Chuva06             : num  3 66.3 0 18.5 4.2 0 10.5 0 5 6.1 ...</span>
-<span class="co">#&gt;  $ Chuva07             : num  11.1 1 0 0 0 0 4 2.9 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva08             : num  0 40 0 19.5 0 0 0 5.4 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva09             : num  0 0 55 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva10             : num  0 0 11.7 0 0 0 0 13.6 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva11             : num  0 0 5 0 0 27.3 0 0 34.5 0 ...</span>
-<span class="co">#&gt;  $ Chuva12             : num  0 1.1 0 0 0 37.5 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva13             : num  0 24.7 7.5 0 0 42.5 1.2 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva14             : num  0 0 9.5 0 0 0 0.7 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva15             : num  0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva16             : num  37.6 0 3 0 0 0 0 1.8 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva17             : num  0 0 1 0 0 0 0 17 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva18             : num  18.4 0 23 0 0 0 7.2 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva19             : num  12.5 0 0 0 0 0 0 0 36.8 0 ...</span>
-<span class="co">#&gt;  $ Chuva20             : num  0 0 0 0 0 0.7 0 0 17.7 0 ...</span>
-<span class="co">#&gt;  $ Chuva21             : num  0 0 0 0 20.5 3.2 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva22             : num  67.5 0 0 0 0 3 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva23             : num  12.3 0 0 0 0 0 0 0 0 14 ...</span>
-<span class="co">#&gt;  $ Chuva24             : num  0 8.2 0 0 0 33.5 0 0 0 40 ...</span>
-<span class="co">#&gt;  $ Chuva25             : num  0 2.5 0 5.9 1.3 0 0 0 0 1 ...</span>
-<span class="co">#&gt;  $ Chuva26             : num  0 0 0 0 0 0 1.1 0 0 5.4 ...</span>
-<span class="co">#&gt;  $ Chuva27             : num  0 0 0 0 0 0 5.9 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva28             : num  0 0 0 0 14 1 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva29             : num  0 NA 0 0 30.5 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva30             : num  0 NA 23.5 0 0 0 0 30.3 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva31             : num  0 NA 21.5 NA 0 NA 0 1.8 NA 0 ...</span>
-<span class="co">#&gt;  $ Chuva01Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva02Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva03Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva04Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva05Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva06Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva07Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva08Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva09Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva10Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva11Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva12Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva13Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva14Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva15Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva16Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva17Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva18Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva19Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva20Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva21Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva22Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva23Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva24Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva25Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva26Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva27Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva28Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva29Status       : int  1 0 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva30Status       : int  1 0 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva31Status       : int  1 0 1 0 1 0 1 1 0 1 ...</span>
-<span class="co">#&gt;  $ X                   : logi  NA NA NA NA NA NA ...</span>
-<span class="co"># exporta para arquivo texto separado por tab</span>
-dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.tsv&quot;</span>)
-<span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)
-<span class="co">#export(dprec, file = &quot;../output-adar/dprec.tsv&quot;, na = &quot;-999&quot;)</span></code></pre></div>
-<p>Na há necesida de especificar o argumento <code>format</code> das funções <code>import()</code> e <code>export()</code> pois o formato é inferido da extensão do arquivo (csv, no exemplo acima). Você deve especificar o formato somente quando o arquivo estiver salvo em uma extensão não reconhecida pelo <strong>rio</strong> (ver tabela de formatos acima).</p>
-<div id="arquivos-formatados-com-largura-fixa" class="section level4">
-<h4><span class="header-section-number">8.4.1.1</span> Arquivos formatados com largura fixa</h4>
+                <span class="dt">skip =</span> <span class="dv">15</span>, <span class="co"># pula linhas com metadados</span>
+                <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># com cabeçalho</span>
+                <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="co"># delimitador entre os valores</span>
+                <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="co"># separador decimal</span>
+                <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>) <span class="co"># rótulo para dados faltantes</span>
+<span class="co"># primeiras 10 colunas e linhas dos dados</span>
+<span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt;   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima</span>
+<span class="co">#&gt; 1          3054002                 1 01/01/1934                 1     NA</span>
+<span class="co">#&gt; 2          3054002                 1 01/02/1934                 1   66.3</span>
+<span class="co">#&gt; 3          3054002                 1 01/03/1934                 1   55.0</span>
+<span class="co">#&gt; 4          3054002                 1 01/04/1934                 1   54.5</span>
+<span class="co">#&gt; 5          3054002                 1 01/05/1934                 1   30.5</span>
+<span class="co">#&gt; 6          3054002                 1 01/06/1934                 1   42.5</span>
+<span class="co">#&gt;   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus</span>
+<span class="co">#&gt; 1    NA        NA             NA            0           0</span>
+<span class="co">#&gt; 2 174.7         6             10            1           1</span>
+<span class="co">#&gt; 3 160.7         9             10            1           1</span>
+<span class="co">#&gt; 4  98.4         1              4            1           1</span>
+<span class="co">#&gt; 5 119.4        29              8            1           1</span>
+<span class="co">#&gt; 6 191.6        13             11            1           1</span></code></pre></div>
+<p>Para saber quais argumentos devem ser especificados na função <code>import()</code> você precisar ler a documentação de ajuda da função (<code>?import</code>), principalmente a sessão <em>Details</em>. Os argumentos usados no exemplo acima, estão implícitos no argumento da função <code>import()</code> representado pela reticência (<code>...</code>). Conforme descrito na sessão <em>Details</em>, o parâmetro <code>fread = FALSE</code> implica no uso da função <code>read.table()</code> da base do R (descrita no Apêndice <a href="readtable.html#readtable">B.4</a>) para importar o arquivo; então a descrição dos argumentos especificados encontra-se na ajuda da função <code>read.table()</code>, facilmente acessada pelo <em>link</em> na ajuda da função <code>import</code>.</p>
+<p>Quando os nomes dos arquivos incluem uma extensão reconhecida pelo <strong>rio</strong> (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>), não há necesidade de especificar o argumento <code>format</code> nas funções <code>import()</code> e <code>export()</code>. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do <em>site</em> é desconhecida (ex.: &quot;.TXT&quot;, &quot;.dat&quot;, etc). Nesta situação você deve especificar o formato do arquivo através do argumento <code>format</code> da <code>import()</code>.</p>
+<p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
+(arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6J/file563f2899dbde&quot;</span>
+(dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6J/file563f2899dbde.tsv&quot;</span>
+<span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
+</div>
+<div id="arquivos-fwf" class="section level4">
+<h4><span class="header-section-number">8.4.1.2</span> Arquivos formatados com largura fixa</h4>
 <p>Alguns arquivos texto com dados tabulares podem não conter separadores para economizar espaço de disco. Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados.</p>
 <p>Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link para os dados do SOI</span>
-link &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre></div>
-<p>Abrindo o link dos dados no navegador para visualização do formato.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> link)</code></pre></div>
-<p>Leitura dos dados:</p>
+link_soi &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre></div>
+<p>Vamos visualizar os dados SOI no navegador para reconhecer o formato.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> link_soi)</code></pre></div>
+<p>Ao inspecionar cuidadosamente os dados até o fim da página no navegador, percebe-se os seguintes aspectos sobre estes dados:</p>
+<ul>
+<li><p>temos duas tabelas de dados do SOI, uma de anomalias absolutas (da linha 4 até 74) e outra de anomalias normalizadas (da linha 79 à 148);</p></li>
+<li><p>os valores da coluna <code>YEAR</code> ocupam 4 campos (ou espaços), ou seja, vão desde a 1ª até a 4 coluna; os valores da coluna <code>JAN</code> ocupam os campos da 5ª à 10ª coluna e este padrão é repetido para as colunas restantes.</p></li>
+<li><p>dados faltantes são representados pelo rótulo <code>-999.9</code></p></li>
+<li><p>os dados incluem os nomes das variáveis (cabeçalho)</p></li>
+<li><p>o cabeçalho ocupa um número de campos diferentes daqueles ocuppados pelos valores de SOI (note o sinal de menos que antecede os valores)</p></li>
+</ul>
+<p>Nosso interesse é na 1ª tabela de dados. Uma estratégia possível de importar estes dados é começar lendo o cabeçalho.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nome_vars &lt;-<span class="st"> </span><span class="kw">scan</span>(
+    link_soi, <span class="co"># varredura do arquivo</span>
+    <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>, <span class="co"># tipo dos dados</span>
+    <span class="dt">skip =</span> <span class="dv">3</span>, <span class="co"># pula 3 linhas</span>
+    <span class="dt">nmax =</span> <span class="dv">13</span> <span class="co"># num. max. de campos a serem lidos</span>
+)
+nome_vars
+<span class="co">#&gt;  [1] &quot;YEAR&quot; &quot;JAN&quot;  &quot;FEB&quot;  &quot;MAR&quot;  &quot;APR&quot;  &quot;MAY&quot;  &quot;JUN&quot;  &quot;JUL&quot;  &quot;AUG&quot;  &quot;SEP&quot; </span>
+<span class="co">#&gt; [11] &quot;OCT&quot;  &quot;NOV&quot;  &quot;DEC&quot;</span></code></pre></div>
+<p>A seguir, podemos usar o cabeçalho obtido acima, como argumento na <code>import()</code> através do argumento <code>col.names</code>. As informações da inspeção dos dados são utilizadas para definir os outros argumentos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi &lt;-<span class="st"> </span><span class="kw">import</span>(
-  <span class="dt">file =</span> link,
-  <span class="dt">format =</span> <span class="st">&quot;fwf&quot;</span>,
+  <span class="dt">file =</span> link_soi,
+  <span class="dt">format =</span> <span class="st">&quot;fwf&quot;</span>, <span class="co"># formato de largura fixa</span>
   <span class="dt">skip =</span> <span class="dv">4</span>, <span class="co"># pula 4 linhas</span>
   <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="co"># sem cabeçalho</span>
   <span class="dt">nrows =</span> <span class="dv">70</span>, <span class="co"># num. de linhas</span>
   <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>, <span class="dv">12</span>)), <span class="co"># largura dos campos das variáveis</span>
   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>, <span class="co"># string para dados faltantes</span>
-  <span class="dt">col.names =</span> <span class="kw">scan</span>(link, <span class="co"># varredura do arquivo</span>
-    <span class="co"># col.names = scan(link,             # varredura do arquivo</span>
-    <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>, <span class="co"># tipo dos dados a serem lidos</span>
-    <span class="dt">skip =</span> <span class="dv">3</span>, <span class="co"># pula 3 linhas</span>
-    <span class="dt">nmax =</span> <span class="dv">13</span>
-  ) <span class="co"># num. max de registros a serem lidos</span>
+  <span class="dt">col.names =</span> nome_vars
 )
 <span class="kw">str</span>(soi)
 <span class="co">#&gt; &#39;data.frame&#39;:    70 obs. of  13 variables:</span>
@@ -589,31 +554,29 @@ link &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&
 <span class="co">#&gt; 68 2018  1.8 -0.8  2.4  0.8  0.6   NA   NA   NA   NA   NA   NA   NA</span>
 <span class="co">#&gt; 69 2019   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA</span>
 <span class="co">#&gt; 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA</span></code></pre></div>
-<p>Conforme o manual de ajuda da função <code>import()</code> do <strong>rio</strong>, no arquivo acima foi usada a função <code>read.fwf()</code> do R para ler os dados.</p>
-<p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
-soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="op">-</span><span class="dv">1</span>]))
-<span class="co"># criando um dataframe com valores de SOI, mes e ano</span>
-soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),
-  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[, <span class="dv">1</span>])),
-  <span class="dt">soi =</span> soi_v
-)
-<span class="kw">head</span>(soi_df)
-<span class="co">#&gt;    ano mes  soi</span>
-<span class="co">#&gt; 1 1951   1  2.5</span>
-<span class="co">#&gt; 2 1951   2  1.5</span>
-<span class="co">#&gt; 3 1951   3 -0.2</span>
-<span class="co">#&gt; 4 1951   4 -0.5</span>
-<span class="co">#&gt; 5 1951   5 -1.1</span>
-<span class="co">#&gt; 6 1951   6  0.3</span>
-<span class="co"># escrevendo dados SOI em um arquivo CSV</span>
-soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.csv&quot;</span>)
-<span class="kw">export</span>(soi_df,
+<p>A documentação de ajuda da função <code>import()</code> do <strong>rio</strong> nos diz que no arquivo acima foi usada a função <code>read.fwf()</code> do <img src="images/logo_r.png" width="20"> para ler os dados. Os argumentos usados foram:</p>
+<ul>
+<li><code>format = &quot;fwf&quot;</code> significa formato de largura fixa</li>
+<li><code>skip = 4</code> especifica que os dados iniciam após as 4 primeiras linhas do arquivo</li>
+<li><code>header = FALSE</code> especifica que estamos lendo diretamente os dados</li>
+<li><code>nrows = 70</code> é o número de linhas lidas desde o começo dos dados, isto é, <code>74 - 4</code>.</li>
+<li><code>widths = c(4, rep(6, 12))</code> especifica a largura dos campos das variáveis; 4 campos para 1ª coluna e 6 campos para as 12 colunas seguintes;</li>
+<li><code>na.strings = &quot;-999.9&quot;</code> indica o rótulo para os dados faltantes</li>
+<li><code>col.names = nome_vars</code> especifica o nome das variáveis que será usado no <em>data frame</em>.</li>
+</ul>
+<p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
+(soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
+<span class="co">#&gt; [1] &quot;/tmp/RtmphnVk6JSOI.csv&quot;</span>
+<span class="co"># exportação com rio</span>
+<span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,
   <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>
-)</code></pre></div>
-<p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
+)
+<span class="co"># verificar se o arquivo foi gerado</span>
+<span class="kw">file.exists</span>(soi_file)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Vamos importar o arquivo <code>SOI.csv</code> através da função <code>file.choose()</code> (ou <code>choose.file()</code> no Windows) que permite selecionar o arquivo de forma iterativa.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura de dados com escolha interativa do arquivo</span>
 soi.df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="kw">file.choose</span>(),
   <span class="co"># file.choose só é válido em sistema *unix</span>
@@ -621,20 +584,15 @@ soi.df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
   <span class="dt">header =</span> <span class="ot">TRUE</span>,
   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>
 )</code></pre></div>
-<p>Navegue ate o diretoriodo arquivo e clique duas vezes sobre o arquivo <code>SOI.csv</code>.</p>
+<p>Navegue até o diretório do arquivo <code>SOI.csv</code> e clique duas vezes sobre o arquivo ele.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(soi.df)
-<span class="co">#&gt;    ano mes  soi</span>
-<span class="co">#&gt; 1 1951   1  2.5</span>
-<span class="co">#&gt; 2 1951   2  1.5</span>
-<span class="co">#&gt; 3 1951   3 -0.2</span>
-<span class="co">#&gt; 4 1951   4 -0.5</span>
-<span class="co">#&gt; 5 1951   5 -1.1</span>
-<span class="co">#&gt; 6 1951   6  0.3</span>
-<span class="kw">str</span>(soi.df)
-<span class="co">#&gt; &#39;data.frame&#39;:    840 obs. of  3 variables:</span>
-<span class="co">#&gt;  $ ano: int  1951 1951 1951 1951 1951 1951 1951 1951 1951 1951 ...</span>
-<span class="co">#&gt;  $ mes: int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;  $ soi: num  2.5 1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 ...</span></code></pre></div>
+<span class="co">#&gt;   YEAR  JAN  FEB  MAR  APR  MAY JUN  JUL  AUG  SEP  OCT  NOV  DEC</span>
+<span class="co">#&gt; 1 1951  2.5  1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 -1.3 -1.2</span>
+<span class="co">#&gt; 2 1952 -1.5 -1.0  0.9 -0.4  1.2 1.2  0.8  0.1 -0.4  0.6  0.0 -2.0</span>
+<span class="co">#&gt; 3 1953  0.5 -0.8 -0.3  0.3 -2.8 0.2  0.0 -2.0 -2.1  0.1 -0.5 -0.8</span>
+<span class="co">#&gt; 4 1954  1.1 -0.5  0.4  1.1  0.8 0.2  0.7  1.8  0.3  0.4  0.2  2.3</span>
+<span class="co">#&gt; 5 1955 -0.9  3.1  1.1 -0.2  1.7 2.2  2.6  2.4  2.2  2.5  2.0  1.6</span>
+<span class="co">#&gt; 6 1956  2.2  2.7  2.2  1.5  2.3 1.8  1.8  2.0  0.1  2.9  0.2  1.8</span></code></pre></div>
 </div>
 </div>
 <div id="arquivos-texto-nao-estruturados" class="section level3">
@@ -676,12 +634,17 @@ cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>
 <span class="co">#&gt;  [7] &quot;83004;02/01/1995;1200;3.2;23.8;20.6;;19.9;76;924.7;;32;3;;10;;;;;&quot;                                                                                                                                                                                                      </span>
 <span class="co">#&gt;  [8] &quot;83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;&quot;                                                                                                                                                                                                             </span>
 <span class="co">#&gt;  [9] &quot;83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;&quot;                                                                                                                                                                                            </span>
-<span class="co">#&gt; [10] &quot;83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;&quot;</span>
-<span class="co"># escrevendo dados com writeLines</span>
+<span class="co">#&gt; [10] &quot;83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;&quot;</span></code></pre></div>
+<p>A função <code>writeLines()</code> escreve os elementos do vetor de caracteres em um arquivo texto. Essa é uma forma de escrever os dados mantendo a formatação original dos dados.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dados sem as linhas com metadados</span>
+dados_limpos &lt;-<span class="st"> </span>cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)]
+<span class="co"># arquivo para salvar os dados limpos</span>
 file_83004_limpo &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.txt&quot;</span>)
-<span class="kw">writeLines</span>(<span class="dt">text =</span> cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)] , <span class="dt">con =</span> file_83004_limpo)
-<span class="co">#writeLines(text = cab[-c(1:15)] , con = &quot;../output-adar/83004_limpo.txt&quot;)</span></code></pre></div>
-<p>A função <code>writeLines()</code> escreve os elementos do vetor de caracteres um de cada vez em um arquivo texto.</p>
+<span class="co"># escrevendo dados limpos</span>
+<span class="kw">writeLines</span>(
+  <span class="dt">text =</span>  dados_limpos, 
+  <span class="dt">con =</span> file_83004_limpo
+)</code></pre></div>
 </div>
 </div>
             </section>
