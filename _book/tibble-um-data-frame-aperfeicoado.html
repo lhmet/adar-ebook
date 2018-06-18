@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="por-que-um-meteorologista-usaria-o-r.html">
-<link rel="next" href="para-saber-mais-sobre-o-r.html">
+<link rel="prev" href="pre-requisitos-2.html">
+<link rel="next" href="restruturacao-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -300,28 +300,75 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-nao-e-perfeito" class="section level2">
-<h2><span class="header-section-number">1.9</span> R não é perfeito!</h2>
+<div id="tibble-um-data-frame-aperfeicoado" class="section level2">
+<h2><span class="header-section-number">9.2</span> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</h2>
+<p><em>Data frames</em> são a unidade fundamental de armazenamento de dados retangulares no R. O pacote <strong>tibble</strong> define uma nova classe de <em>data frame</em> para o R, o <em>tbl_df</em> (‘<em>tibble diffs</em>’). Uma <em>tibble</em> é uma extensão da classe de dados <em>data.frame</em> da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>.</p>
+<p>Para criar um <em>tibble</em> nós usamos a função <em>tibble()</em>. Para ilustrar algumas vantagens do <em>tibble</em> vamos recriar o <em>data frame</em> <code>meteo_df</code> incluindo uma nova variável <code>int prec</code>(intensidade da precipitação):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">site =</span> <span class="kw">c</span>(
+    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+  ),
+  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>),
+  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="dv">365</span>
+)
+meteo_tbl
+<span class="co">#&gt; # A tibble: 8 x 4</span>
+<span class="co">#&gt;   site    ano  prec `int prec`</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A001   2000  1800       4.93</span>
+<span class="co">#&gt; 2 A001   2001  1400       3.84</span>
+<span class="co">#&gt; 3 A002   2000  1750       4.79</span>
+<span class="co">#&gt; 4 A002   2001  1470       4.03</span>
+<span class="co">#&gt; 5 A002   2002  1630       4.47</span>
+<span class="co">#&gt; 6 A003   2004  1300       3.56</span>
+<span class="co">#&gt; 7 A803   2005  1950       5.34</span>
+<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre></div>
+<p>No exemplo acima, as principais diferenças entre o <em>tibble</em> e o <em>data frame</em> ficam evidentes:</p>
 <ul>
-<li>Muitos códigos em R são escritos para resolver um problema;
-<ul>
-<li>foco nos resultados e não no processo</li>
-<li>usuários não são programadores</li>
-<li>códigos deselegantes, lentos e difíceis de entender</li>
-</ul></li>
-<li><p>Como o nosso idioma, há muitas exceções para serem lembradas</p></li>
-<li><p>R não é muito rápido e códigos mal escritos serão lentos</p></li>
-<li><p>São apenas ~20 anos de evolução</p></li>
-<li><p>Há muito o que melhorar</p></li>
+<li><p>quando impresso no console do R, o <em>tibble</em> mostra a classe de cada variável, enquanto objetos <em>data.frame</em> não.</p></li>
+<li><p>vetores caracteres não são interpretados como <em>factors</em> quando incorparados em um <em>tibble</em>, em contraste, <code>data.frame()</code> faz a coerção de caracteres para <em>factors</em>, o que pode causar problemas nas etapas de processamento futuras.</p></li>
+<li><p>o nome das variáveis nunca são modificados</p></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> </span><span class="dv">1</span>)
+<span class="co">#&gt;   temp..do.ar</span>
+<span class="co">#&gt; 1           1</span></code></pre></div>
+<ul>
+<li><p>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>.</p></li>
+<li><p>nunca adiciona nomes às linhas (<code>row.names</code>)</p></li>
+</ul>
+<p>Quando um <em>tibble</em> é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas depende do tamanho da janela.</p>
+<p>Outras diferenças do <em>tibble</em> podem ser consultada no página de ajuda da função <code>tibble()</code> (<code>?tibble</code>) e na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
+<p>A conversão de um <code>data.frame</code> para <em>tibble</em> pode ser feita simplesmente com a função <code>as_tibble()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl_conv &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(meteo_df)
+meteo_tbl_conv
+<span class="co">#&gt; # A tibble: 8 x 3</span>
+<span class="co">#&gt;   site    ano  prec</span>
+<span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A001   2000  1800</span>
+<span class="co">#&gt; 2 A001   2001  1400</span>
+<span class="co">#&gt; 3 A002   2000  1750</span>
+<span class="co">#&gt; 4 A002   2001  1470</span>
+<span class="co">#&gt; 5 A002   2002  1630</span>
+<span class="co">#&gt; 6 A003   2004  1300</span>
+<span class="co">#&gt; 7 A803   2005  1950</span>
+<span class="co">#&gt; 8 A803   2006  1100</span></code></pre></div>
+<p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> na tela são controladas através da função de opções de configuração:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
+  <span class="dt">tibble.print_max =</span> n,
+  <span class="dt">tibble.print_min =</span> m
+)</code></pre></div>
+<p>Se o número de linhas do <em>tibble</em> for maior que <code>m</code> linhas, a impressão será somente até <code>n</code> linhas.</p>
+<p>Você pode usar <code>options(dplyr.print_min = Inf)</code> se deseja que sempre sejam mostradas todas linhas de seus dados.</p>
+<p>Finalmente é bom recordar a visualização de dados no RStudio através da função <code>View()</code>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="por-que-um-meteorologista-usaria-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="para-saber-mais-sobre-o-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pre-requisitos-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="restruturacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -351,7 +398,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/09-manipulacao-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],
