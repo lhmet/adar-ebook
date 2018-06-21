@@ -642,7 +642,7 @@ Quando o dados gradeados possuem somente uma variável em um único tempo, como 
 
 Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a função `brick()` do pacote **raster**.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 brick_tar_cru <- brick(dest_file_nc)
 brick_tar_cru
 ```
@@ -653,7 +653,7 @@ Quando o arquivo NetCDF possui mais de uma variável é necessário definir o no
 
 Os nomes das camadas, são acessados e alterados com função `names()`, da mesma forma que em *data frames*.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 # substituindo a letra "X" dos nomes por "Mes_"
 names(brick_tar_cru) <- gsub("X", "Mes_", names(brick_tar_cru))
 names(brick_tar_cru)
@@ -661,13 +661,13 @@ names(brick_tar_cru)
 
 Um gráfico pode ser gerado através da funções `plot()`. Por default são mostrados no máximo 16 camadas de um `RasteBrick`.
 
-```{r, eval = TRUE, fig.width=11, fig.height=4.8}
+```{r, eval = FALSE, fig.width=11, fig.height=4.8}
 plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
 
 Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 df_tar_cru <- as.data.frame(
   x = brick_tar_cru,
   xy = TRUE, 

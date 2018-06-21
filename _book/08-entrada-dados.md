@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpGBeamk/file4b01abb4c97"
+#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpGBeamk/file4b01abb4c97.csv"
+#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpGBeamk/file4b01abb4c97.csv"
+#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpGBeamk/file4b03ff9b064"
+#> [1] "/tmp/RtmpS62mgL/file12b83d28520b"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpGBeamk/file4b03ff9b064.tsv"
+#> [1] "/tmp/RtmpS62mgL/file12b83d28520b.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpGBeamkSOI.csv"
+#> [1] "/tmp/RtmpS62mgLSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -710,7 +710,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmpGBeamk/cru10min30_tmp.nc"
+#> [1] "/tmp/RtmpS62mgL/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -788,17 +788,7 @@ Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a 
 
 ```r
 brick_tar_cru <- brick(dest_file_nc)
-#> Loading required namespace: ncdf4
 brick_tar_cru
-#> class       : RasterBrick 
-#> dimensions  : 360, 720, 259200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution  : 0.5, 0.5  (x, y)
-#> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /tmp/RtmpGBeamk/cru10min30_tmp.nc 
-#> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
-#> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
-#> varname     : tmp
 ```
 
 O resultado da importação de um `RasterBrick` mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF. 
@@ -812,9 +802,6 @@ Os nomes das camadas, são acessados e alterados com função `names()`, da mesm
 # substituindo a letra "X" dos nomes por "Mes_"
 names(brick_tar_cru) <- gsub("X", "Mes_", names(brick_tar_cru))
 names(brick_tar_cru)
-#>  [1] "Mes_1976.01.16" "Mes_1976.02.15" "Mes_1976.03.16" "Mes_1976.04.16"
-#>  [5] "Mes_1976.05.16" "Mes_1976.06.16" "Mes_1976.07.16" "Mes_1976.08.16"
-#>  [9] "Mes_1976.09.16" "Mes_1976.10.16" "Mes_1976.11.16" "Mes_1976.12.16"
 ```
 
 Um gráfico pode ser gerado através da funções `plot()`. Por default são mostrados no máximo 16 camadas de um `RasteBrick`.
@@ -823,8 +810,6 @@ Um gráfico pode ser gerado através da funções `plot()`. Por default são mos
 ```r
 plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
-
-<img src="images/unnamed-chunk-25-1.png" width="1056" />
 
 Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
 
@@ -837,50 +822,7 @@ df_tar_cru <- as.data.frame(
   #long = TRUE
 )
 str(df_tar_cru)
-#> 'data.frame':	62961 obs. of  14 variables:
-#>  $ x             : num  -74.8 -74.2 -73.8 -73.2 -43.8 ...
-#>  $ y             : num  83.2 83.2 83.2 83.2 83.2 ...
-#>  $ Mes_1976.01.16: num  -35.8 -35.4 -35.1 -34.6 -31.8 ...
-#>  $ Mes_1976.02.15: num  -37.9 -37.5 -37.1 -36.6 -33.3 ...
-#>  $ Mes_1976.03.16: num  -36.7 -36.3 -35.9 -35.5 -33.6 ...
-#>  $ Mes_1976.04.16: num  -28.1 -27.7 -27.4 -27.1 -24.3 ...
-#>  $ Mes_1976.05.16: num  -12.8 -12.7 -12.5 -12.3 -11.3 ...
-#>  $ Mes_1976.06.16: num  -0.9 -0.9 -0.9 -0.9 -2.3 ...
-#>  $ Mes_1976.07.16: num  3.3 3.3 3.3 3.2 1.2 ...
-#>  $ Mes_1976.08.16: num  1.4 1.4 1.4 1.4 -1.1 ...
-#>  $ Mes_1976.09.16: num  -7.9 -7.8 -7.7 -7.6 -12.9 ...
-#>  $ Mes_1976.10.16: num  -20.2 -19.9 -19.7 -19.4 -23.7 ...
-#>  $ Mes_1976.11.16: num  -29.7 -29.3 -28.9 -28.5 -28.1 ...
-#>  $ Mes_1976.12.16: num  -33.6 -33.3 -32.9 -32.5 -31 ...
 head(df_tar_cru)
-#>           x     y Mes_1976.01.16 Mes_1976.02.15 Mes_1976.03.16
-#> 9571 -74.75 83.25          -35.8          -37.9          -36.7
-#> 9572 -74.25 83.25          -35.4          -37.5          -36.3
-#> 9573 -73.75 83.25          -35.1          -37.1          -35.9
-#> 9574 -73.25 83.25          -34.6          -36.6          -35.5
-#> 9633 -43.75 83.25          -31.8          -33.3          -33.6
-#> 9634 -43.25 83.25          -32.1          -33.6          -33.8
-#>      Mes_1976.04.16 Mes_1976.05.16 Mes_1976.06.16 Mes_1976.07.16
-#> 9571          -28.1          -12.8           -0.9            3.3
-#> 9572          -27.7          -12.7           -0.9            3.3
-#> 9573          -27.4          -12.5           -0.9            3.3
-#> 9574          -27.1          -12.3           -0.9            3.2
-#> 9633          -24.3          -11.3           -2.3            1.2
-#> 9634          -24.6          -11.5           -2.5            0.9
-#>      Mes_1976.08.16 Mes_1976.09.16 Mes_1976.10.16 Mes_1976.11.16
-#> 9571            1.4           -7.9          -20.2          -29.7
-#> 9572            1.4           -7.8          -19.9          -29.3
-#> 9573            1.4           -7.7          -19.7          -28.9
-#> 9574            1.4           -7.6          -19.4          -28.5
-#> 9633           -1.1          -12.9          -23.7          -28.1
-#> 9634           -1.3          -13.2          -24.2          -28.5
-#>      Mes_1976.12.16
-#> 9571          -33.6
-#> 9572          -33.3
-#> 9573          -32.9
-#> 9574          -32.5
-#> 9633          -31.0
-#> 9634          -31.4
 ```
 
 Os argumentos usados na função `as.dataframe()` correspondem a:
@@ -1012,9 +954,9 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq       mean   median         uq      max
-#>   writexl  7.022821  7.206587   8.589294  7.40289   7.481271  13.8329
-#>  openxlsx 44.905056 46.249854 124.589030 59.89216 112.478485 359.4196
+#>      expr       min        lq       mean    median         uq      max
+#>   writexl  7.399395  7.892629   9.391514  8.134437   8.296814  15.2343
+#>  openxlsx 43.238119 51.000443 134.963923 70.163147 131.850840 378.5671
 #>  neval cld
 #>      5   a
 #>      5   a
@@ -1024,7 +966,7 @@ A função `microbenckmar::microbenckmark` usada acima toma os tempos das expres
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 15 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
