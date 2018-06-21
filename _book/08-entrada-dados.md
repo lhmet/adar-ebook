@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpS35SWw/file3a14140bee73"
+#> [1] "/tmp/RtmprgSCSe/file7fce3148551f"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpS35SWw/file3a14140bee73.csv"
+#> [1] "/tmp/RtmprgSCSe/file7fce3148551f.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpS35SWw/file3a14140bee73.csv"
+#> [1] "/tmp/RtmprgSCSe/file7fce3148551f.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpS35SWw/file3a1421c0605c"
+#> [1] "/tmp/RtmprgSCSe/file7fce68d26efb"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpS35SWw/file3a1421c0605c.tsv"
+#> [1] "/tmp/RtmprgSCSe/file7fce68d26efb.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpS35SWwSOI.csv"
+#> [1] "/tmp/RtmprgSCSeSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -710,7 +710,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmpS35SWw/cru10min30_tmp.nc"
+#> [1] "/tmp/RtmprgSCSe/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -954,9 +954,9 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq      mean    median        uq       max
-#>   writexl  6.974268  7.451812  12.15028  7.518782  18.02495  20.78158
-#>  openxlsx 40.363839 43.013356 132.75594 48.177956 166.46961 365.75493
+#>      expr      min        lq       mean    median         uq       max
+#>   writexl  7.00319  7.151363   8.474232  7.392889   7.434509  13.38921
+#>  openxlsx 42.05977 44.618499 116.348435 44.944015 101.478696 348.64120
 #>  neval cld
 #>      5   a
 #>      5   a
@@ -966,7 +966,7 @@ A função `microbenckmar::microbenckmark` usada acima toma os tempos das expres
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 11 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
