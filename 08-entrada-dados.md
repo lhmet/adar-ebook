@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7"
+#> [1] "/tmp/Rtmp54Jala/file30b1581dde53"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7.csv"
+#> [1] "/tmp/Rtmp54Jala/file30b1581dde53.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7.csv"
+#> [1] "/tmp/Rtmp54Jala/file30b1581dde53.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp5tdIF3/file2dd056d17a70"
+#> [1] "/tmp/Rtmp54Jala/file30b135189d89"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp5tdIF3/file2dd056d17a70.tsv"
+#> [1] "/tmp/Rtmp54Jala/file30b135189d89.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp5tdIF3SOI.csv"
+#> [1] "/tmp/Rtmp54JalaSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -710,7 +710,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp5tdIF3/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp54Jala/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -954,9 +954,9 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min       lq     mean   median       uq      max neval
-#>   writexl  9.785325 10.05461 10.55988 10.26473 10.89970 11.79506     5
-#>  openxlsx 45.724435 46.58747 58.91577 50.47930 56.64326 95.14440     5
+#>      expr      min      lq     mean   median       uq      max neval
+#>   writexl 10.58954 10.7012 11.52293 11.93280 12.03512 12.35601     5
+#>  openxlsx 48.70650 58.0790 65.40281 59.17173 61.26597 99.79084     5
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
