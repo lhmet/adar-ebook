@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -349,7 +349,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
 <span class="co">#&gt; [13] &quot;link_soi&quot;           &quot;nome_vars&quot;          &quot;pacotes&quot;           </span>
 <span class="co">#&gt; [16] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
 <span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))
 <span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
@@ -380,7 +380,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span>
 <span class="kw">rm</span>(cab, chuva_df)
 <span class="kw">ls</span>()
@@ -389,8 +389,8 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_83004_limpo&quot;   &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;   </span>
 <span class="co">#&gt; [10] &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;          </span>
 <span class="co">#&gt; [13] &quot;nome_vars&quot;          &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_file&quot;          </span>
-<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
 <span class="co"># carrega e imprime na tela nome dos dados carregados</span>
 <span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))
 <span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
@@ -401,7 +401,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
@@ -453,17 +453,14 @@ prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_
 </div>
 <div id="netcdf-network-common-data-form" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> NetCDF (Network Common Data Form)</h3>
-<p>NetCDF é formato binário, auto-descritivo e independente do SO, para criar e distribuir <em>arrays</em> multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dos climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as <a href="http://en.wikipedia.org/wiki/Meteorological_reanalysis">reanálises</a>.</p>
-<p>As bibliotecas NetCDF são mantidas pelo <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato NetCDF são acessíveis no R pelos pacotes <a href="http://cran.r-project.org/web/packages/ncdf/index.html">ncdf</a>, <a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a>. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. O pacote <code>ncdf</code> é disponível para Linux e Mac OS X, mas suporta somente arquivo no formato NetCDF 3, enquanto o pacote <code>ncdf4</code> lê arquivos no formato NetCDF 3 e 4, porém é disponível apenas para sistemas Linux.</p>
+<p>NetCDF é um formato binário, auto-descritivo e independente do SO criado para criar e distribuir arranjos multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dados climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as <a href="http://en.wikipedia.org/wiki/Meteorological_reanalysis">reanálises</a>.</p>
+<p>As bibliotecas NetCDF são mantidas pelo <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato NetCDF são acessíveis no R pelos pacotes <a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> <span class="citation">(Pierce <a href="#ref-Pierce2017">2017</a>)</span> e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a> <span class="citation">(Hijmans <a href="#ref-Hijmans2017">2017</a>)</span>. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF.</p>
+<p>O pacote <a href="https://cran.r-project.org/src/contrib/Archive/ncdf/">ncdf</a> foi um dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente para versão 3. O pacote que o substituiu foi o <a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> e suporta tanto arquivos no formato NetCDF 3 como 4. O pacote <strong>raster</strong> baseia-se no <strong>ncdf4</strong> para fornecer através da função <code>brick()</code> uma importação e exportação fácil de dados NetCDF com o R.</p>
 <div id="pre-requisitos-1" class="section level4">
 <h4><span class="header-section-number">8.5.2.1</span> Pré-requisitos</h4>
-<p>Para utilizar os pacotes <code>ncdf*</code> é necessário instalar os pacotes linux mostrados abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get update 
-<span class="fu">sudo</span> apt-get upgrade --assume-yes
-<span class="co">## Install pacotes NetCDF</span>
-<span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev
-<span class="co">## install 3rd parties needed for devtools + openssl git2r httr</span>
-<span class="co">#sudo apt-get install libssl-dev</span></code></pre></div>
+<p>Para utilizar o pacote <code>ncdf4</code> é necessário instalar os pacotes linux mostrados abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">## Install pacotes NetCDF</span>
+$ <span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev</code></pre></div>
 <p>Pacotes necessários:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ncdf4)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
@@ -478,7 +475,7 @@ dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_file_nc
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp54Jala/cru10min30_tmp.nc&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp1sFKGB/cru10min30_tmp.nc&quot;</span>
 <span class="kw">file.exists</span>(dest_file_nc)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável de interesse, tmp: temperatura do ar</span>
@@ -486,12 +483,52 @@ dname &lt;-<span class="st"> &quot;tmp&quot;</span>
 <span class="co"># abre o arquivo NetCDF</span>
 ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(dest_file_nc)
 <span class="kw">print</span>(ncin)
+<span class="co">#&gt; File /tmp/Rtmp1sFKGB/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      2 variables (excluding dimension variables):</span>
+<span class="co">#&gt;         float climatology_bounds[nv,time]   </span>
+<span class="co">#&gt;         float tmp[lon,lat,time]   </span>
+<span class="co">#&gt;             long_name: air_temperature</span>
+<span class="co">#&gt;             units: degC</span>
+<span class="co">#&gt;             _FillValue: -99</span>
+<span class="co">#&gt;             source: E:\Projects\cru\data\cru_cl_2.0\nc_files\cru10min_tmp.nc</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      4 dimensions:</span>
+<span class="co">#&gt;         lon  Size:720</span>
+<span class="co">#&gt;             standard_name: longitude</span>
+<span class="co">#&gt;             long_name: longitude</span>
+<span class="co">#&gt;             units: degrees_east</span>
+<span class="co">#&gt;             axis: X</span>
+<span class="co">#&gt;         lat  Size:360</span>
+<span class="co">#&gt;             standard_name: latitude</span>
+<span class="co">#&gt;             long_name: latitude</span>
+<span class="co">#&gt;             units: degrees_north</span>
+<span class="co">#&gt;             axis: Y</span>
+<span class="co">#&gt;         time  Size:12</span>
+<span class="co">#&gt;             standard_name: time</span>
+<span class="co">#&gt;             long_name: time</span>
+<span class="co">#&gt;             units: days since 1900-01-01 00:00:00.0 -0:00</span>
+<span class="co">#&gt;             axis: T</span>
+<span class="co">#&gt;             calendar: standard</span>
+<span class="co">#&gt;             climatology: climatology_bounds</span>
+<span class="co">#&gt;         nv  Size:2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     7 global attributes:</span>
+<span class="co">#&gt;         data: CRU CL 2.0 1961-1990 Monthly Averages</span>
+<span class="co">#&gt;         title: CRU CL 2.0 -- 10min grid sampled every 0.5 degree</span>
+<span class="co">#&gt;         institution: http://www.cru.uea.ac.uk/</span>
+<span class="co">#&gt;         source: http://www.cru.uea.ac.uk/~markn/cru05/cru05_intro.html</span>
+<span class="co">#&gt;         references: New et al. (2002) Climate Res 21:1-25</span>
+<span class="co">#&gt;         history: P.J. Bartlein, 19 Jun 2005</span>
+<span class="co">#&gt;         Conventions: CF-1.0</span>
 <span class="co"># estrutura dos dados</span>
-<span class="kw">str</span>(ncin)
+<span class="co">#str(ncin)</span>
 <span class="co"># classe</span>
 <span class="kw">class</span>(ncin)
+<span class="co">#&gt; [1] &quot;ncdf4&quot;</span>
 <span class="co"># modo</span>
-<span class="kw">mode</span>(ncin)</code></pre></div>
+<span class="kw">mode</span>(ncin)
+<span class="co">#&gt; [1] &quot;list&quot;</span></code></pre></div>
 <p>Agora, vamos ler as coordenadas de longitude e latitude.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lon &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(ncin, <span class="st">&quot;lon&quot;</span>)
 nlon &lt;-<span class="st"> </span><span class="kw">dim</span>(lon)
@@ -560,6 +597,15 @@ brick_tar_cru</code></pre></div>
 <p>Como exercício, rode novamente o trecho de código anterior, mudando os valores dos argumentos lógicos e observe as mudanças nas dimensões do <code>data frame</code> resultante.</p>
 </div>
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Pierce2017">
+<p>Pierce, David. 2017. <em>Ncdf4: Interface to Unidata netCDF (Version 4 or Earlier) Format Data Files</em>. <a href="https://CRAN.R-project.org/package=ncdf4" class="uri">https://CRAN.R-project.org/package=ncdf4</a>.</p>
+</div>
+<div id="ref-Hijmans2017">
+<p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster" class="uri">https://CRAN.R-project.org/package=raster</a>.</p>
 </div>
 </div>
             </section>

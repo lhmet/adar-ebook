@@ -372,7 +372,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "esp_num_df"
 #>  [6] "fev"        "jan"        "jul"        "jun"        "mai"       
 #> [11] "mar"        "nd3"        "nd4"        "nov"        "oper"      
-#> [16] "oper_nas"   "out"        "p"          "p_pa"       "pcks"      
+#> [16] "oper_nas"   "out"        "p"          "pcks"       "p_pa"      
 #> [21] "rblue"      "res"        "set"        "tar"        "totd"      
 #> [26] "y1"         "y2"
 ```
@@ -424,8 +424,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
+#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "u"          "y1"         "y2"
 ```
 
@@ -439,8 +439,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
+#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "y1"         "y2"
 ```
 
@@ -454,7 +454,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "esp_num_df" "fev"       
 #>  [6] "jan"        "jul"        "jun"        "mai"        "mar"       
 #> [11] "nd3"        "nd4"        "nov"        "oper"       "oper_nas"  
-#> [16] "out"        "p"          "p_pa"       "pcks"       "rblue"     
+#> [16] "out"        "p"          "pcks"       "p_pa"       "rblue"     
 #> [21] "res"        "set"        "totd"
 ```
 

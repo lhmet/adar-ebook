@@ -82,7 +82,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a R version 3.5.0 (2017-01-27). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço do [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo de sua região à lista de repositórios do Linux. No exemplo deste livro, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço do [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo de sua região à lista de repositórios do Linux. No exemplo deste livro, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ##### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
@@ -206,8 +206,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os seguintes diretórios serão usados.

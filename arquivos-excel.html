@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -378,11 +378,14 @@ arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 )
 tempos_escrita_xlsx
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr      min      lq     mean   median       uq      max neval</span>
-<span class="co">#&gt;   writexl 10.58954 10.7012 11.52293 11.93280 12.03512 12.35601     5</span>
-<span class="co">#&gt;  openxlsx 48.70650 58.0790 65.40281 59.17173 61.26597 99.79084     5</span></code></pre></div>
+<span class="co">#&gt;      expr       min        lq      mean    median       uq       max neval</span>
+<span class="co">#&gt;   writexl  7.315676  9.037293  10.01086  9.930251 10.27586  13.49521     5</span>
+<span class="co">#&gt;  openxlsx 49.792191 50.734062 122.19775 50.742319 81.24895 378.47123     5</span>
+<span class="co">#&gt;  cld</span>
+<span class="co">#&gt;    a</span>
+<span class="co">#&gt;    a</span></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
-<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 6 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 12 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-nao-tabulares" class="section level3">
 <h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>
