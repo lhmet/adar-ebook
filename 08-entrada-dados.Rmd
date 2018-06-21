@@ -897,7 +897,12 @@ tmin_nc_6190 <- import(url_data_inmet,
 str(tmin_nc_6190)
 ```
 
-4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. (a) Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. (b) Compare as dimensões do *data frame* com as dimensões do objeto importado. O número de linhas e de colunas do *data frame* correpondem a quais propriedades ou dimensões do objeto importado?
+4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. 
+
+    a. Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. 
+    
+    b. Compare as dimensões do *data frame* com as dimensões do objeto importado, o número de linhas e de colunas do *data frame* correspondem a quais propriedades ou dimensões do objeto importado?
+
 
 ```{r, eval = FALSE, include = FALSE}
 library(raster)
@@ -913,6 +918,7 @@ prec_df <- as.data.frame(
 #str(prec_df)
 ncol(prec_df); nrow(prec_df)
 ```
+
 
 
 
