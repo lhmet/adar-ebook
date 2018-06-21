@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp4QAp7U/file20652163961a"
+#> [1] "/tmp/Rtmp1sFKGB/file319e163636b6"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp4QAp7U/file20652163961a.csv"
+#> [1] "/tmp/Rtmp1sFKGB/file319e163636b6.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp4QAp7U/file20652163961a.csv"
+#> [1] "/tmp/Rtmp1sFKGB/file319e163636b6.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp4QAp7U/file206515e48f36"
+#> [1] "/tmp/Rtmp1sFKGB/file319e6df18b42"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp4QAp7U/file206515e48f36.tsv"
+#> [1] "/tmp/Rtmp1sFKGB/file319e6df18b42.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp4QAp7USOI.csv"
+#> [1] "/tmp/Rtmp1sFKGBSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -663,9 +663,10 @@ head(prec_ana[, 1:10])
 
 NetCDF é um formato binário, auto-descritivo e independente do SO criado para criar e distribuir arranjos multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dados climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as [reanálises](http://en.wikipedia.org/wiki/Meteorological_reanalysis).
 
-As bibliotecas NetCDF são mantidas pelo [Unidata](http://www.unidata.ucar.edu/software/netcdf/). Dados no formato NetCDF são acessíveis no R pelos pacotes [ncdf4](http://cran.r-project.org/web/packages/ncdf4/index.html) [\@ref(Pierce-2017)] e [raster](http://cran.r-project.org/web/packages/raster/index.html) [\@ref(Hijmans-2017)]. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. 
+As bibliotecas NetCDF são mantidas pelo [Unidata](http://www.unidata.ucar.edu/software/netcdf/). Dados no formato NetCDF são acessíveis no R pelos pacotes [ncdf4](http://cran.r-project.org/web/packages/ncdf4/index.html) [@Pierce2017] e [raster](http://cran.r-project.org/web/packages/raster/index.html) [@Hijmans2017]. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. 
 
 O pacote [ncdf](https://cran.r-project.org/src/contrib/Archive/ncdf/) foi um dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente para versão 3. O pacote que o substituiu foi o [ncdf4](https://cran.r-project.org/web/packages/ncdf4/index.html) e suporta tanto arquivos no formato NetCDF 3 como 4. O pacote **raster** baseia-se no **ncdf4** para fornecer através da função `brick()` uma importação e exportação fácil de dados NetCDF com o R.
+
 
 #### Pré-requisitos
 
@@ -707,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp4QAp7U/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp1sFKGB/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -719,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmp4QAp7U/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmp1sFKGB/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -758,258 +759,7 @@ print(ncin)
 #>         history: P.J. Bartlein, 19 Jun 2005
 #>         Conventions: CF-1.0
 # estrutura dos dados
-str(ncin)
-#> List of 14
-#>  $ filename   : chr "/tmp/Rtmp4QAp7U/cru10min30_tmp.nc"
-#>  $ writable   : logi FALSE
-#>  $ id         : int 65536
-#>  $ safemode   : logi FALSE
-#>  $ format     : chr "NC_FORMAT_CLASSIC"
-#>  $ is_GMT     : logi FALSE
-#>  $ groups     :List of 1
-#>   ..$ :List of 7
-#>   .. ..$ id   : int 65536
-#>   .. ..$ name : chr ""
-#>   .. ..$ ndims: int 4
-#>   .. ..$ nvars: int 5
-#>   .. ..$ natts: int 7
-#>   .. ..$ dimid: int [1:4(1d)] 0 1 2 3
-#>   .. ..$ fqgn : chr ""
-#>   .. ..- attr(*, "class")= chr "ncgroup4"
-#>  $ fqgn2Rindex:List of 1
-#>   ..$ : int 1
-#>  $ ndims      : num 4
-#>  $ natts      : num 7
-#>  $ dim        :List of 4
-#>   ..$ lon :List of 10
-#>   .. ..$ name         : chr "lon"
-#>   .. ..$ len          : int 720
-#>   .. ..$ unlim        : logi FALSE
-#>   .. ..$ group_index  : int 1
-#>   .. ..$ group_id     : int 65536
-#>   .. ..$ id           : int 0
-#>   .. ..$ dimvarid     :List of 5
-#>   .. .. ..$ id         : int 0
-#>   .. .. ..$ group_index: int 1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num -1
-#>   .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ units        : chr "degrees_east"
-#>   .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...
-#>   .. ..$ create_dimvar: logi TRUE
-#>   .. ..- attr(*, "class")= chr "ncdim4"
-#>   ..$ lat :List of 10
-#>   .. ..$ name         : chr "lat"
-#>   .. ..$ len          : int 360
-#>   .. ..$ unlim        : logi FALSE
-#>   .. ..$ group_index  : int 1
-#>   .. ..$ group_id     : int 65536
-#>   .. ..$ id           : int 1
-#>   .. ..$ dimvarid     :List of 5
-#>   .. .. ..$ id         : int 1
-#>   .. .. ..$ group_index: int 1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num -1
-#>   .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ units        : chr "degrees_north"
-#>   .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...
-#>   .. ..$ create_dimvar: logi TRUE
-#>   .. ..- attr(*, "class")= chr "ncdim4"
-#>   ..$ time:List of 11
-#>   .. ..$ name         : chr "time"
-#>   .. ..$ len          : int 12
-#>   .. ..$ unlim        : logi FALSE
-#>   .. ..$ group_index  : int 1
-#>   .. ..$ group_id     : int 65536
-#>   .. ..$ id           : int 2
-#>   .. ..$ dimvarid     :List of 5
-#>   .. .. ..$ id         : int 2
-#>   .. .. ..$ group_index: int 1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num -1
-#>   .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
-#>   .. ..$ calendar     : chr "standard"
-#>   .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
-#>   .. ..$ create_dimvar: logi TRUE
-#>   .. ..- attr(*, "class")= chr "ncdim4"
-#>   ..$ nv  :List of 10
-#>   .. ..$ name         : chr "nv"
-#>   .. ..$ len          : int 2
-#>   .. ..$ unlim        : logi FALSE
-#>   .. ..$ group_index  : int 1
-#>   .. ..$ group_id     : int 65536
-#>   .. ..$ id           : int 3
-#>   .. ..$ dimvarid     :List of 5
-#>   .. .. ..$ id         : int -1
-#>   .. .. ..$ group_index: int 1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num -1
-#>   .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ vals         : int [1:2] 1 2
-#>   .. ..$ units        : chr ""
-#>   .. ..$ create_dimvar: logi FALSE
-#>   .. ..- attr(*, "class")= chr "ncdim4"
-#>  $ unlimdimid : num -1
-#>  $ nvars      : num 2
-#>  $ var        :List of 2
-#>   ..$ climatology_bounds:List of 22
-#>   .. ..$ id                :List of 5
-#>   .. .. ..$ id         : num 3
-#>   .. .. ..$ group_index: num -1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num 1
-#>   .. .. ..$ isdimvar   : logi FALSE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ name              : chr "climatology_bounds"
-#>   .. ..$ ndims             : int 2
-#>   .. ..$ natts             : int 0
-#>   .. ..$ size              : int [1:2] 2 12
-#>   .. ..$ dimids            : int [1:2] 3 2
-#>   .. ..$ prec              : chr "float"
-#>   .. ..$ units             : chr ""
-#>   .. ..$ longname          : chr "climatology_bounds"
-#>   .. ..$ group_index       : int 1
-#>   .. ..$ chunksizes        : logi NA
-#>   .. ..$ storage           : num 1
-#>   .. ..$ shuffle           : logi FALSE
-#>   .. ..$ compression       : logi NA
-#>   .. ..$ dims              : list()
-#>   .. ..$ dim               :List of 2
-#>   .. .. ..$ :List of 10
-#>   .. .. .. ..$ name         : chr "nv"
-#>   .. .. .. ..$ len          : int 2
-#>   .. .. .. ..$ unlim        : logi FALSE
-#>   .. .. .. ..$ group_index  : int 1
-#>   .. .. .. ..$ group_id     : int 65536
-#>   .. .. .. ..$ id           : int 3
-#>   .. .. .. ..$ dimvarid     :List of 5
-#>   .. .. .. .. ..$ id         : int -1
-#>   .. .. .. .. ..$ group_index: int 1
-#>   .. .. .. .. ..$ group_id   : int 65536
-#>   .. .. .. .. ..$ list_index : num -1
-#>   .. .. .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. .. .. ..$ vals         : int [1:2] 1 2
-#>   .. .. .. ..$ units        : chr ""
-#>   .. .. .. ..$ create_dimvar: logi FALSE
-#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
-#>   .. .. ..$ :List of 11
-#>   .. .. .. ..$ name         : chr "time"
-#>   .. .. .. ..$ len          : int 12
-#>   .. .. .. ..$ unlim        : logi FALSE
-#>   .. .. .. ..$ group_index  : int 1
-#>   .. .. .. ..$ group_id     : int 65536
-#>   .. .. .. ..$ id           : int 2
-#>   .. .. .. ..$ dimvarid     :List of 5
-#>   .. .. .. .. ..$ id         : int 2
-#>   .. .. .. .. ..$ group_index: int 1
-#>   .. .. .. .. ..$ group_id   : int 65536
-#>   .. .. .. .. ..$ list_index : num -1
-#>   .. .. .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. .. .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
-#>   .. .. .. ..$ calendar     : chr "standard"
-#>   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
-#>   .. .. .. ..$ create_dimvar: logi TRUE
-#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
-#>   .. ..$ varsize           : int [1:2] 2 12
-#>   .. ..$ unlim             : logi FALSE
-#>   .. ..$ make_missing_value: logi FALSE
-#>   .. ..$ missval           : num 1e+30
-#>   .. ..$ hasAddOffset      : logi FALSE
-#>   .. ..$ hasScaleFact      : logi FALSE
-#>   .. ..- attr(*, "class")= chr "ncvar4"
-#>   ..$ tmp               :List of 22
-#>   .. ..$ id                :List of 5
-#>   .. .. ..$ id         : num 4
-#>   .. .. ..$ group_index: num -1
-#>   .. .. ..$ group_id   : int 65536
-#>   .. .. ..$ list_index : num 2
-#>   .. .. ..$ isdimvar   : logi FALSE
-#>   .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. ..$ name              : chr "tmp"
-#>   .. ..$ ndims             : int 3
-#>   .. ..$ natts             : int 4
-#>   .. ..$ size              : int [1:3] 720 360 12
-#>   .. ..$ dimids            : int [1:3] 0 1 2
-#>   .. ..$ prec              : chr "float"
-#>   .. ..$ units             : chr "degC"
-#>   .. ..$ longname          : chr "air_temperature"
-#>   .. ..$ group_index       : int 1
-#>   .. ..$ chunksizes        : logi NA
-#>   .. ..$ storage           : num 1
-#>   .. ..$ shuffle           : logi FALSE
-#>   .. ..$ compression       : logi NA
-#>   .. ..$ dims              : list()
-#>   .. ..$ dim               :List of 3
-#>   .. .. ..$ :List of 10
-#>   .. .. .. ..$ name         : chr "lon"
-#>   .. .. .. ..$ len          : int 720
-#>   .. .. .. ..$ unlim        : logi FALSE
-#>   .. .. .. ..$ group_index  : int 1
-#>   .. .. .. ..$ group_id     : int 65536
-#>   .. .. .. ..$ id           : int 0
-#>   .. .. .. ..$ dimvarid     :List of 5
-#>   .. .. .. .. ..$ id         : int 0
-#>   .. .. .. .. ..$ group_index: int 1
-#>   .. .. .. .. ..$ group_id   : int 65536
-#>   .. .. .. .. ..$ list_index : num -1
-#>   .. .. .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. .. .. ..$ units        : chr "degrees_east"
-#>   .. .. .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...
-#>   .. .. .. ..$ create_dimvar: logi TRUE
-#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
-#>   .. .. ..$ :List of 10
-#>   .. .. .. ..$ name         : chr "lat"
-#>   .. .. .. ..$ len          : int 360
-#>   .. .. .. ..$ unlim        : logi FALSE
-#>   .. .. .. ..$ group_index  : int 1
-#>   .. .. .. ..$ group_id     : int 65536
-#>   .. .. .. ..$ id           : int 1
-#>   .. .. .. ..$ dimvarid     :List of 5
-#>   .. .. .. .. ..$ id         : int 1
-#>   .. .. .. .. ..$ group_index: int 1
-#>   .. .. .. .. ..$ group_id   : int 65536
-#>   .. .. .. .. ..$ list_index : num -1
-#>   .. .. .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. .. .. ..$ units        : chr "degrees_north"
-#>   .. .. .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...
-#>   .. .. .. ..$ create_dimvar: logi TRUE
-#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
-#>   .. .. ..$ :List of 11
-#>   .. .. .. ..$ name         : chr "time"
-#>   .. .. .. ..$ len          : int 12
-#>   .. .. .. ..$ unlim        : logi FALSE
-#>   .. .. .. ..$ group_index  : int 1
-#>   .. .. .. ..$ group_id     : int 65536
-#>   .. .. .. ..$ id           : int 2
-#>   .. .. .. ..$ dimvarid     :List of 5
-#>   .. .. .. .. ..$ id         : int 2
-#>   .. .. .. .. ..$ group_index: int 1
-#>   .. .. .. .. ..$ group_id   : int 65536
-#>   .. .. .. .. ..$ list_index : num -1
-#>   .. .. .. .. ..$ isdimvar   : logi TRUE
-#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
-#>   .. .. .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
-#>   .. .. .. ..$ calendar     : chr "standard"
-#>   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
-#>   .. .. .. ..$ create_dimvar: logi TRUE
-#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
-#>   .. ..$ varsize           : int [1:3] 720 360 12
-#>   .. ..$ unlim             : logi FALSE
-#>   .. ..$ make_missing_value: logi TRUE
-#>   .. ..$ missval           : num -99
-#>   .. ..$ hasAddOffset      : logi FALSE
-#>   .. ..$ hasScaleFact      : logi FALSE
-#>   .. ..- attr(*, "class")= chr "ncvar4"
-#>  - attr(*, "class")= chr "ncdf4"
+#str(ncin)
 # classe
 class(ncin)
 #> [1] "ncdf4"
@@ -1242,19 +992,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq       mean    median        uq       max
-#>   writexl  7.276317  7.307177   8.660511  7.414992  7.506014  13.79806
-#>  openxlsx 43.308083 44.363366 115.173090 50.020898 91.918650 346.25445
-#>  neval cld
-#>      5   a
-#>      5   a
+#>      expr       min        lq      mean    median       uq       max neval
+#>   writexl  7.315676  9.037293  10.01086  9.930251 10.27586  13.49521     5
+#>  openxlsx 49.792191 50.734062 122.19775 50.742319 81.24895 378.47123     5
+#>  cld
+#>    a
+#>    a
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 13 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 12 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares

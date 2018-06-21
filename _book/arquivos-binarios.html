@@ -454,7 +454,7 @@ prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_
 <div id="netcdf-network-common-data-form" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> NetCDF (Network Common Data Form)</h3>
 <p>NetCDF é um formato binário, auto-descritivo e independente do SO criado para criar e distribuir arranjos multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dados climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as <a href="http://en.wikipedia.org/wiki/Meteorological_reanalysis">reanálises</a>.</p>
-<p>As bibliotecas NetCDF são mantidas pelo <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato NetCDF são acessíveis no R pelos pacotes <a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> [<a href="#Pierce-2017"><strong>??</strong></a>] e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a> [<a href="#Hijmans-2017"><strong>??</strong></a>]. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF.</p>
+<p>As bibliotecas NetCDF são mantidas pelo <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato NetCDF são acessíveis no R pelos pacotes <a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> <span class="citation">(Pierce <a href="#ref-Pierce2017">2017</a>)</span> e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a> <span class="citation">(Hijmans <a href="#ref-Hijmans2017">2017</a>)</span>. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF.</p>
 <p>O pacote <a href="https://cran.r-project.org/src/contrib/Archive/ncdf/">ncdf</a> foi um dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente para versão 3. O pacote que o substituiu foi o <a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> e suporta tanto arquivos no formato NetCDF 3 como 4. O pacote <strong>raster</strong> baseia-se no <strong>ncdf4</strong> para fornecer através da função <code>brick()</code> uma importação e exportação fácil de dados NetCDF com o R.</p>
 <div id="pre-requisitos-1" class="section level4">
 <h4><span class="header-section-number">8.5.2.1</span> Pré-requisitos</h4>
@@ -475,7 +475,7 @@ dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_file_nc
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp4QAp7U/cru10min30_tmp.nc&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp1sFKGB/cru10min30_tmp.nc&quot;</span>
 <span class="kw">file.exists</span>(dest_file_nc)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável de interesse, tmp: temperatura do ar</span>
@@ -483,7 +483,7 @@ dname &lt;-<span class="st"> &quot;tmp&quot;</span>
 <span class="co"># abre o arquivo NetCDF</span>
 ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(dest_file_nc)
 <span class="kw">print</span>(ncin)
-<span class="co">#&gt; File /tmp/Rtmp4QAp7U/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):</span>
+<span class="co">#&gt; File /tmp/Rtmp1sFKGB/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;      2 variables (excluding dimension variables):</span>
 <span class="co">#&gt;         float climatology_bounds[nv,time]   </span>
@@ -522,258 +522,7 @@ ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(dest_file_nc)
 <span class="co">#&gt;         history: P.J. Bartlein, 19 Jun 2005</span>
 <span class="co">#&gt;         Conventions: CF-1.0</span>
 <span class="co"># estrutura dos dados</span>
-<span class="kw">str</span>(ncin)
-<span class="co">#&gt; List of 14</span>
-<span class="co">#&gt;  $ filename   : chr &quot;/tmp/Rtmp4QAp7U/cru10min30_tmp.nc&quot;</span>
-<span class="co">#&gt;  $ writable   : logi FALSE</span>
-<span class="co">#&gt;  $ id         : int 65536</span>
-<span class="co">#&gt;  $ safemode   : logi FALSE</span>
-<span class="co">#&gt;  $ format     : chr &quot;NC_FORMAT_CLASSIC&quot;</span>
-<span class="co">#&gt;  $ is_GMT     : logi FALSE</span>
-<span class="co">#&gt;  $ groups     :List of 1</span>
-<span class="co">#&gt;   ..$ :List of 7</span>
-<span class="co">#&gt;   .. ..$ id   : int 65536</span>
-<span class="co">#&gt;   .. ..$ name : chr &quot;&quot;</span>
-<span class="co">#&gt;   .. ..$ ndims: int 4</span>
-<span class="co">#&gt;   .. ..$ nvars: int 5</span>
-<span class="co">#&gt;   .. ..$ natts: int 7</span>
-<span class="co">#&gt;   .. ..$ dimid: int [1:4(1d)] 0 1 2 3</span>
-<span class="co">#&gt;   .. ..$ fqgn : chr &quot;&quot;</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncgroup4&quot;</span>
-<span class="co">#&gt;  $ fqgn2Rindex:List of 1</span>
-<span class="co">#&gt;   ..$ : int 1</span>
-<span class="co">#&gt;  $ ndims      : num 4</span>
-<span class="co">#&gt;  $ natts      : num 7</span>
-<span class="co">#&gt;  $ dim        :List of 4</span>
-<span class="co">#&gt;   ..$ lon :List of 10</span>
-<span class="co">#&gt;   .. ..$ name         : chr &quot;lon&quot;</span>
-<span class="co">#&gt;   .. ..$ len          : int 720</span>
-<span class="co">#&gt;   .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. ..$ id           : int 0</span>
-<span class="co">#&gt;   .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : int 0</span>
-<span class="co">#&gt;   .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ units        : chr &quot;degrees_east&quot;</span>
-<span class="co">#&gt;   .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...</span>
-<span class="co">#&gt;   .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   ..$ lat :List of 10</span>
-<span class="co">#&gt;   .. ..$ name         : chr &quot;lat&quot;</span>
-<span class="co">#&gt;   .. ..$ len          : int 360</span>
-<span class="co">#&gt;   .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. ..$ id           : int 1</span>
-<span class="co">#&gt;   .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : int 1</span>
-<span class="co">#&gt;   .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ units        : chr &quot;degrees_north&quot;</span>
-<span class="co">#&gt;   .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...</span>
-<span class="co">#&gt;   .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   ..$ time:List of 11</span>
-<span class="co">#&gt;   .. ..$ name         : chr &quot;time&quot;</span>
-<span class="co">#&gt;   .. ..$ len          : int 12</span>
-<span class="co">#&gt;   .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. ..$ id           : int 2</span>
-<span class="co">#&gt;   .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : int 2</span>
-<span class="co">#&gt;   .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ units        : chr &quot;days since 1900-01-01 00:00:00.0 -0:00&quot;</span>
-<span class="co">#&gt;   .. ..$ calendar     : chr &quot;standard&quot;</span>
-<span class="co">#&gt;   .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...</span>
-<span class="co">#&gt;   .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   ..$ nv  :List of 10</span>
-<span class="co">#&gt;   .. ..$ name         : chr &quot;nv&quot;</span>
-<span class="co">#&gt;   .. ..$ len          : int 2</span>
-<span class="co">#&gt;   .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. ..$ id           : int 3</span>
-<span class="co">#&gt;   .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : int -1</span>
-<span class="co">#&gt;   .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ vals         : int [1:2] 1 2</span>
-<span class="co">#&gt;   .. ..$ units        : chr &quot;&quot;</span>
-<span class="co">#&gt;   .. ..$ create_dimvar: logi FALSE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;  $ unlimdimid : num -1</span>
-<span class="co">#&gt;  $ nvars      : num 2</span>
-<span class="co">#&gt;  $ var        :List of 2</span>
-<span class="co">#&gt;   ..$ climatology_bounds:List of 22</span>
-<span class="co">#&gt;   .. ..$ id                :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : num 3</span>
-<span class="co">#&gt;   .. .. ..$ group_index: num -1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num 1</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi FALSE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ name              : chr &quot;climatology_bounds&quot;</span>
-<span class="co">#&gt;   .. ..$ ndims             : int 2</span>
-<span class="co">#&gt;   .. ..$ natts             : int 0</span>
-<span class="co">#&gt;   .. ..$ size              : int [1:2] 2 12</span>
-<span class="co">#&gt;   .. ..$ dimids            : int [1:2] 3 2</span>
-<span class="co">#&gt;   .. ..$ prec              : chr &quot;float&quot;</span>
-<span class="co">#&gt;   .. ..$ units             : chr &quot;&quot;</span>
-<span class="co">#&gt;   .. ..$ longname          : chr &quot;climatology_bounds&quot;</span>
-<span class="co">#&gt;   .. ..$ group_index       : int 1</span>
-<span class="co">#&gt;   .. ..$ chunksizes        : logi NA</span>
-<span class="co">#&gt;   .. ..$ storage           : num 1</span>
-<span class="co">#&gt;   .. ..$ shuffle           : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ compression       : logi NA</span>
-<span class="co">#&gt;   .. ..$ dims              : list()</span>
-<span class="co">#&gt;   .. ..$ dim               :List of 2</span>
-<span class="co">#&gt;   .. .. ..$ :List of 10</span>
-<span class="co">#&gt;   .. .. .. ..$ name         : chr &quot;nv&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ len          : int 2</span>
-<span class="co">#&gt;   .. .. .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. .. .. ..$ id           : int 3</span>
-<span class="co">#&gt;   .. .. .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. .. .. ..$ id         : int -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ vals         : int [1:2] 1 2</span>
-<span class="co">#&gt;   .. .. .. ..$ units        : chr &quot;&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ create_dimvar: logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   .. .. ..$ :List of 11</span>
-<span class="co">#&gt;   .. .. .. ..$ name         : chr &quot;time&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ len          : int 12</span>
-<span class="co">#&gt;   .. .. .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. .. .. ..$ id           : int 2</span>
-<span class="co">#&gt;   .. .. .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. .. .. ..$ id         : int 2</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ units        : chr &quot;days since 1900-01-01 00:00:00.0 -0:00&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ calendar     : chr &quot;standard&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...</span>
-<span class="co">#&gt;   .. .. .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   .. ..$ varsize           : int [1:2] 2 12</span>
-<span class="co">#&gt;   .. ..$ unlim             : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ make_missing_value: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ missval           : num 1e+30</span>
-<span class="co">#&gt;   .. ..$ hasAddOffset      : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ hasScaleFact      : logi FALSE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncvar4&quot;</span>
-<span class="co">#&gt;   ..$ tmp               :List of 22</span>
-<span class="co">#&gt;   .. ..$ id                :List of 5</span>
-<span class="co">#&gt;   .. .. ..$ id         : num 4</span>
-<span class="co">#&gt;   .. .. ..$ group_index: num -1</span>
-<span class="co">#&gt;   .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. ..$ list_index : num 2</span>
-<span class="co">#&gt;   .. .. ..$ isdimvar   : logi FALSE</span>
-<span class="co">#&gt;   .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. ..$ name              : chr &quot;tmp&quot;</span>
-<span class="co">#&gt;   .. ..$ ndims             : int 3</span>
-<span class="co">#&gt;   .. ..$ natts             : int 4</span>
-<span class="co">#&gt;   .. ..$ size              : int [1:3] 720 360 12</span>
-<span class="co">#&gt;   .. ..$ dimids            : int [1:3] 0 1 2</span>
-<span class="co">#&gt;   .. ..$ prec              : chr &quot;float&quot;</span>
-<span class="co">#&gt;   .. ..$ units             : chr &quot;degC&quot;</span>
-<span class="co">#&gt;   .. ..$ longname          : chr &quot;air_temperature&quot;</span>
-<span class="co">#&gt;   .. ..$ group_index       : int 1</span>
-<span class="co">#&gt;   .. ..$ chunksizes        : logi NA</span>
-<span class="co">#&gt;   .. ..$ storage           : num 1</span>
-<span class="co">#&gt;   .. ..$ shuffle           : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ compression       : logi NA</span>
-<span class="co">#&gt;   .. ..$ dims              : list()</span>
-<span class="co">#&gt;   .. ..$ dim               :List of 3</span>
-<span class="co">#&gt;   .. .. ..$ :List of 10</span>
-<span class="co">#&gt;   .. .. .. ..$ name         : chr &quot;lon&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ len          : int 720</span>
-<span class="co">#&gt;   .. .. .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. .. .. ..$ id           : int 0</span>
-<span class="co">#&gt;   .. .. .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. .. .. ..$ id         : int 0</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ units        : chr &quot;degrees_east&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...</span>
-<span class="co">#&gt;   .. .. .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   .. .. ..$ :List of 10</span>
-<span class="co">#&gt;   .. .. .. ..$ name         : chr &quot;lat&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ len          : int 360</span>
-<span class="co">#&gt;   .. .. .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. .. .. ..$ id           : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. .. .. ..$ id         : int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ units        : chr &quot;degrees_north&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...</span>
-<span class="co">#&gt;   .. .. .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   .. .. ..$ :List of 11</span>
-<span class="co">#&gt;   .. .. .. ..$ name         : chr &quot;time&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ len          : int 12</span>
-<span class="co">#&gt;   .. .. .. ..$ unlim        : logi FALSE</span>
-<span class="co">#&gt;   .. .. .. ..$ group_index  : int 1</span>
-<span class="co">#&gt;   .. .. .. ..$ group_id     : int 65536</span>
-<span class="co">#&gt;   .. .. .. ..$ id           : int 2</span>
-<span class="co">#&gt;   .. .. .. ..$ dimvarid     :List of 5</span>
-<span class="co">#&gt;   .. .. .. .. ..$ id         : int 2</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_index: int 1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ group_id   : int 65536</span>
-<span class="co">#&gt;   .. .. .. .. ..$ list_index : num -1</span>
-<span class="co">#&gt;   .. .. .. .. ..$ isdimvar   : logi TRUE</span>
-<span class="co">#&gt;   .. .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncid4&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ units        : chr &quot;days since 1900-01-01 00:00:00.0 -0:00&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ calendar     : chr &quot;standard&quot;</span>
-<span class="co">#&gt;   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...</span>
-<span class="co">#&gt;   .. .. .. ..$ create_dimvar: logi TRUE</span>
-<span class="co">#&gt;   .. .. .. ..- attr(*, &quot;class&quot;)= chr &quot;ncdim4&quot;</span>
-<span class="co">#&gt;   .. ..$ varsize           : int [1:3] 720 360 12</span>
-<span class="co">#&gt;   .. ..$ unlim             : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ make_missing_value: logi TRUE</span>
-<span class="co">#&gt;   .. ..$ missval           : num -99</span>
-<span class="co">#&gt;   .. ..$ hasAddOffset      : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ hasScaleFact      : logi FALSE</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncvar4&quot;</span>
-<span class="co">#&gt;  - attr(*, &quot;class&quot;)= chr &quot;ncdf4&quot;</span>
+<span class="co">#str(ncin)</span>
 <span class="co"># classe</span>
 <span class="kw">class</span>(ncin)
 <span class="co">#&gt; [1] &quot;ncdf4&quot;</span>
@@ -848,6 +597,15 @@ brick_tar_cru</code></pre></div>
 <p>Como exercício, rode novamente o trecho de código anterior, mudando os valores dos argumentos lógicos e observe as mudanças nas dimensões do <code>data frame</code> resultante.</p>
 </div>
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Pierce2017">
+<p>Pierce, David. 2017. <em>Ncdf4: Interface to Unidata netCDF (Version 4 or Earlier) Format Data Files</em>. <a href="https://CRAN.R-project.org/package=ncdf4" class="uri">https://CRAN.R-project.org/package=ncdf4</a>.</p>
+</div>
+<div id="ref-Hijmans2017">
+<p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster" class="uri">https://CRAN.R-project.org/package=raster</a>.</p>
 </div>
 </div>
             </section>
