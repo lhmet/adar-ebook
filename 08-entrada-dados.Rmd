@@ -590,7 +590,7 @@ mode(ncin)
 
 Agora, vamos ler as coordenadas de longitude e latitude. 
 
-```{r Chunk632, eval = FALSE}
+```{r Chunk632, eval = TRUE}
 lon <- ncvar_get(ncin, "lon")
 nlon <- dim(lon)
 head(lon)
@@ -602,7 +602,7 @@ c(nlon, nlat)
 
 Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 tempo <- ncvar_get(ncin, "time")
 (tunits <- ncatt_get(ncin, "time", "units"))
 (nt <- dim(tempo))
@@ -623,7 +623,7 @@ As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longi
 
 Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. 
 
-```{r , eval=FALSE}
+```{r , eval=TRUE}
 m <- 1
 # campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
@@ -640,7 +640,7 @@ Quando o dados gradeados possuem somente uma variável em um único tempo, como 
 
 Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a função `brick()` do pacote **raster**.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 brick_tar_cru <- brick(dest_file_nc)
 brick_tar_cru
 ```
@@ -651,7 +651,7 @@ Quando o arquivo NetCDF possui mais de uma variável é necessário definir o no
 
 Os nomes das camadas, são acessados e alterados com função `names()`, da mesma forma que em *data frames*.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # substituindo a letra "X" dos nomes por "Mes_"
 names(brick_tar_cru) <- gsub("X", "Mes_", names(brick_tar_cru))
 names(brick_tar_cru)
@@ -659,13 +659,13 @@ names(brick_tar_cru)
 
 Um gráfico pode ser gerado através da funções `plot()`. Por default são mostrados no máximo 16 camadas de um `RasteBrick`.
 
-```{r, eval = FALSE, fig.width=11, fig.height=4.8}
+```{r, eval = TRUE, fig.width=11, fig.height=4.8}
 plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
 
 Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 df_tar_cru <- as.data.frame(
   x = brick_tar_cru,
   xy = TRUE, 
@@ -684,7 +684,7 @@ Os argumentos usados na função `as.dataframe()` correspondem a:
 
 - `na.rm` é um argumento opcional lógico, tal que se for `TRUE` remove linhas com valores `NA`. Isto é particularmente útil para grandes conjuntos de dados com muitos valores `NA`s e em regiões oceânicas, como no arquivo de exemplo, onde não há dados medidos. Note que se `na.rm = FALSE` (`TRUE`) o *data frame* resultante terá (poderá ter) um número de linhas igual ao (menor que o) número de células do `RasterBrick`.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 nrow(df_tar_cru) < ncell(brick_tar_cru)
 ```
 
