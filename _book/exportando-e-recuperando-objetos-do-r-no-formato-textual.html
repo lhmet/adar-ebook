@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
-<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
 <li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
 <li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
 </ul></li>
@@ -319,9 +319,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
 <span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpaRbuld/filef4d513e8ec6&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpPgi4hg/file6cf667f79ef3&quot;</span>
 (x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpaRbuld/filef4d57ac4683&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpPgi4hg/file6cf673351366&quot;</span>
 <span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
 <span class="co"># recuperando x a partir do arquivo</span>
 y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
@@ -343,7 +343,7 @@ y
 <span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
 <span class="co"># salvando mais de um objeto em um arquivo</span>
 (xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpaRbuld/filef4d3400ed45&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpPgi4hg/file6cf62b649533&quot;</span>
 <span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
 <span class="co"># vamos apagar x e y do espaco de trabalho</span>
 <span class="kw">rm</span>(x, y)

@@ -189,7 +189,7 @@ Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir a
 
 5. cada tipo de unidade observacional deve compor uma tabela
 
-![Estrura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
+![Estrutura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
 
 Um exemplo de dados no formato arrumado é o tibble `meteo_tbl` mostrado abaixo:  
 ```{r, echo = FALSE}
@@ -232,15 +232,17 @@ Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos probl
 
 ### tidyr
 
+
+
 O pacote **tidyr** é a extensão do `r rblue` que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são: 
 
-- dados longos, são tabelas com maior extensão vertical ou no sentido  das linhas;
+- dados longos, são tabelas com maior extensão vertical ou no sentido das linhas; geralmente contém variáveis ao longo das linhas;
 
 - dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;
 
-Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.
+Com os dados no formado \"arrumado\" você consegue fazer facilmente qualquer transformação na estrutura dos dados.
 
-#### Formato de dados longo
+#### Formato de dados longo {#formatos-dados}
 
 Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `meteo_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para reproduzir exatamente os dados de exemplo do formato \"arrumado\".
 

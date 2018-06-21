@@ -9,10 +9,11 @@ O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma div
 - dados binários e netCDF
 - dados espaciais em formato GIS
 
-Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importados arquivos locais, veremos também como baixar e importar dados da *web*.
+Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importar arquivos locais, veremos também como baixar e importar dados da *web*.
 
-Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Iremos começar com o pacote **rio** que permite importar uma diversidade de tipos de dados com muita facilidade. Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso veremos também formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
+Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Começaremos com o pacote **rio** que permite importar uma diversidade de tipos de dados com muita facilidade.
 
+Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso também veremos formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
 
 ## Pré-requisitos
 
@@ -41,7 +42,6 @@ install.packages(
    pacotes,
    dependencies = TRUE
 )
-devtools::install_github("ropensci/writexl")
 ```
 
 Agora você pode carregar os pacotes.
@@ -74,12 +74,14 @@ library("openxlsx")
 <p><code>easypackages::libraries(pacotes)</code></p>
 </div>
 
-Vamos instalar formatos adicionais do pacote rio.
+Para ter acesso a todos pacotes suportados pelo pacote **rio**, após sua instalação precisamos executar o comando abaixo.
 
 
 ```r
-rio::install_formats()
+install_formats()
 ```
+
+
 
 
 ## Diretório de trabalho
@@ -208,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp3Ncwbw/filee9921a8226"
+#> [1] "/tmp/RtmprXZoYd/file6bfa20a25a7f"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp3Ncwbw/filee9921a8226.csv"
+#> [1] "/tmp/RtmprXZoYd/file6bfa20a25a7f.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp3Ncwbw/filee9921a8226.csv"
+#> [1] "/tmp/RtmprXZoYd/file6bfa20a25a7f.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -261,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp3Ncwbw/filee991d0cd73"
+#> [1] "/tmp/RtmprXZoYd/file6bfa6c61d350"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp3Ncwbw/filee991d0cd73.tsv"
+#> [1] "/tmp/RtmprXZoYd/file6bfa6c61d350.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -370,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp3NcwbwSOI.csv"
+#> [1] "/tmp/RtmprXZoYdSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -677,6 +679,16 @@ sudo apt-get install libnetcdf-dev libudunits2-dev
 #sudo apt-get install libssl-dev
 ```
 
+Pacotes necessários:
+
+
+```r
+library(ncdf4)
+library(raster)
+library(RColorBrewer)
+library(fields)
+```
+
 #### Arquivo exemplo
 
 Os exemplos a seguir usam o pacote [ncdf4](https://cran.r-project.org/web/packages/ncdf4/index.html) para ler arquivo NetCDF com dados climáticos do *Climate Research Unit [CRU](http://www.cru.uea.ac.uk/data)*, consistindo de valores médios de longo prazo (1961-1990) da  temperatura do ar próximo à superfície  com resolução espacial de 0,5 º na área continental. As dimensões da *array* são: 720 (longitudes) x 360 (latitudes) x 12 (meses).
@@ -694,19 +706,312 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
+#> [1] "/tmp/RtmprXZoYd/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
-library(ncdf4); library(raster)
+#> [1] TRUE
+
 # variável de interesse, tmp: temperatura do ar
 dname <- "tmp"  
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
+#> File /tmp/RtmprXZoYd/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> 
+#>      2 variables (excluding dimension variables):
+#>         float climatology_bounds[nv,time]   
+#>         float tmp[lon,lat,time]   
+#>             long_name: air_temperature
+#>             units: degC
+#>             _FillValue: -99
+#>             source: E:\Projects\cru\data\cru_cl_2.0\nc_files\cru10min_tmp.nc
+#> 
+#>      4 dimensions:
+#>         lon  Size:720
+#>             standard_name: longitude
+#>             long_name: longitude
+#>             units: degrees_east
+#>             axis: X
+#>         lat  Size:360
+#>             standard_name: latitude
+#>             long_name: latitude
+#>             units: degrees_north
+#>             axis: Y
+#>         time  Size:12
+#>             standard_name: time
+#>             long_name: time
+#>             units: days since 1900-01-01 00:00:00.0 -0:00
+#>             axis: T
+#>             calendar: standard
+#>             climatology: climatology_bounds
+#>         nv  Size:2
+#> 
+#>     7 global attributes:
+#>         data: CRU CL 2.0 1961-1990 Monthly Averages
+#>         title: CRU CL 2.0 -- 10min grid sampled every 0.5 degree
+#>         institution: http://www.cru.uea.ac.uk/
+#>         source: http://www.cru.uea.ac.uk/~markn/cru05/cru05_intro.html
+#>         references: New et al. (2002) Climate Res 21:1-25
+#>         history: P.J. Bartlein, 19 Jun 2005
+#>         Conventions: CF-1.0
 # estrutura dos dados
 str(ncin)
+#> List of 14
+#>  $ filename   : chr "/tmp/RtmprXZoYd/cru10min30_tmp.nc"
+#>  $ writable   : logi FALSE
+#>  $ id         : int 65536
+#>  $ safemode   : logi FALSE
+#>  $ format     : chr "NC_FORMAT_CLASSIC"
+#>  $ is_GMT     : logi FALSE
+#>  $ groups     :List of 1
+#>   ..$ :List of 7
+#>   .. ..$ id   : int 65536
+#>   .. ..$ name : chr ""
+#>   .. ..$ ndims: int 4
+#>   .. ..$ nvars: int 5
+#>   .. ..$ natts: int 7
+#>   .. ..$ dimid: int [1:4(1d)] 0 1 2 3
+#>   .. ..$ fqgn : chr ""
+#>   .. ..- attr(*, "class")= chr "ncgroup4"
+#>  $ fqgn2Rindex:List of 1
+#>   ..$ : int 1
+#>  $ ndims      : num 4
+#>  $ natts      : num 7
+#>  $ dim        :List of 4
+#>   ..$ lon :List of 10
+#>   .. ..$ name         : chr "lon"
+#>   .. ..$ len          : int 720
+#>   .. ..$ unlim        : logi FALSE
+#>   .. ..$ group_index  : int 1
+#>   .. ..$ group_id     : int 65536
+#>   .. ..$ id           : int 0
+#>   .. ..$ dimvarid     :List of 5
+#>   .. .. ..$ id         : int 0
+#>   .. .. ..$ group_index: int 1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num -1
+#>   .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ units        : chr "degrees_east"
+#>   .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...
+#>   .. ..$ create_dimvar: logi TRUE
+#>   .. ..- attr(*, "class")= chr "ncdim4"
+#>   ..$ lat :List of 10
+#>   .. ..$ name         : chr "lat"
+#>   .. ..$ len          : int 360
+#>   .. ..$ unlim        : logi FALSE
+#>   .. ..$ group_index  : int 1
+#>   .. ..$ group_id     : int 65536
+#>   .. ..$ id           : int 1
+#>   .. ..$ dimvarid     :List of 5
+#>   .. .. ..$ id         : int 1
+#>   .. .. ..$ group_index: int 1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num -1
+#>   .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ units        : chr "degrees_north"
+#>   .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...
+#>   .. ..$ create_dimvar: logi TRUE
+#>   .. ..- attr(*, "class")= chr "ncdim4"
+#>   ..$ time:List of 11
+#>   .. ..$ name         : chr "time"
+#>   .. ..$ len          : int 12
+#>   .. ..$ unlim        : logi FALSE
+#>   .. ..$ group_index  : int 1
+#>   .. ..$ group_id     : int 65536
+#>   .. ..$ id           : int 2
+#>   .. ..$ dimvarid     :List of 5
+#>   .. .. ..$ id         : int 2
+#>   .. .. ..$ group_index: int 1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num -1
+#>   .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
+#>   .. ..$ calendar     : chr "standard"
+#>   .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
+#>   .. ..$ create_dimvar: logi TRUE
+#>   .. ..- attr(*, "class")= chr "ncdim4"
+#>   ..$ nv  :List of 10
+#>   .. ..$ name         : chr "nv"
+#>   .. ..$ len          : int 2
+#>   .. ..$ unlim        : logi FALSE
+#>   .. ..$ group_index  : int 1
+#>   .. ..$ group_id     : int 65536
+#>   .. ..$ id           : int 3
+#>   .. ..$ dimvarid     :List of 5
+#>   .. .. ..$ id         : int -1
+#>   .. .. ..$ group_index: int 1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num -1
+#>   .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ vals         : int [1:2] 1 2
+#>   .. ..$ units        : chr ""
+#>   .. ..$ create_dimvar: logi FALSE
+#>   .. ..- attr(*, "class")= chr "ncdim4"
+#>  $ unlimdimid : num -1
+#>  $ nvars      : num 2
+#>  $ var        :List of 2
+#>   ..$ climatology_bounds:List of 22
+#>   .. ..$ id                :List of 5
+#>   .. .. ..$ id         : num 3
+#>   .. .. ..$ group_index: num -1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num 1
+#>   .. .. ..$ isdimvar   : logi FALSE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ name              : chr "climatology_bounds"
+#>   .. ..$ ndims             : int 2
+#>   .. ..$ natts             : int 0
+#>   .. ..$ size              : int [1:2] 2 12
+#>   .. ..$ dimids            : int [1:2] 3 2
+#>   .. ..$ prec              : chr "float"
+#>   .. ..$ units             : chr ""
+#>   .. ..$ longname          : chr "climatology_bounds"
+#>   .. ..$ group_index       : int 1
+#>   .. ..$ chunksizes        : logi NA
+#>   .. ..$ storage           : num 1
+#>   .. ..$ shuffle           : logi FALSE
+#>   .. ..$ compression       : logi NA
+#>   .. ..$ dims              : list()
+#>   .. ..$ dim               :List of 2
+#>   .. .. ..$ :List of 10
+#>   .. .. .. ..$ name         : chr "nv"
+#>   .. .. .. ..$ len          : int 2
+#>   .. .. .. ..$ unlim        : logi FALSE
+#>   .. .. .. ..$ group_index  : int 1
+#>   .. .. .. ..$ group_id     : int 65536
+#>   .. .. .. ..$ id           : int 3
+#>   .. .. .. ..$ dimvarid     :List of 5
+#>   .. .. .. .. ..$ id         : int -1
+#>   .. .. .. .. ..$ group_index: int 1
+#>   .. .. .. .. ..$ group_id   : int 65536
+#>   .. .. .. .. ..$ list_index : num -1
+#>   .. .. .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. .. .. ..$ vals         : int [1:2] 1 2
+#>   .. .. .. ..$ units        : chr ""
+#>   .. .. .. ..$ create_dimvar: logi FALSE
+#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
+#>   .. .. ..$ :List of 11
+#>   .. .. .. ..$ name         : chr "time"
+#>   .. .. .. ..$ len          : int 12
+#>   .. .. .. ..$ unlim        : logi FALSE
+#>   .. .. .. ..$ group_index  : int 1
+#>   .. .. .. ..$ group_id     : int 65536
+#>   .. .. .. ..$ id           : int 2
+#>   .. .. .. ..$ dimvarid     :List of 5
+#>   .. .. .. .. ..$ id         : int 2
+#>   .. .. .. .. ..$ group_index: int 1
+#>   .. .. .. .. ..$ group_id   : int 65536
+#>   .. .. .. .. ..$ list_index : num -1
+#>   .. .. .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. .. .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
+#>   .. .. .. ..$ calendar     : chr "standard"
+#>   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
+#>   .. .. .. ..$ create_dimvar: logi TRUE
+#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
+#>   .. ..$ varsize           : int [1:2] 2 12
+#>   .. ..$ unlim             : logi FALSE
+#>   .. ..$ make_missing_value: logi FALSE
+#>   .. ..$ missval           : num 1e+30
+#>   .. ..$ hasAddOffset      : logi FALSE
+#>   .. ..$ hasScaleFact      : logi FALSE
+#>   .. ..- attr(*, "class")= chr "ncvar4"
+#>   ..$ tmp               :List of 22
+#>   .. ..$ id                :List of 5
+#>   .. .. ..$ id         : num 4
+#>   .. .. ..$ group_index: num -1
+#>   .. .. ..$ group_id   : int 65536
+#>   .. .. ..$ list_index : num 2
+#>   .. .. ..$ isdimvar   : logi FALSE
+#>   .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. ..$ name              : chr "tmp"
+#>   .. ..$ ndims             : int 3
+#>   .. ..$ natts             : int 4
+#>   .. ..$ size              : int [1:3] 720 360 12
+#>   .. ..$ dimids            : int [1:3] 0 1 2
+#>   .. ..$ prec              : chr "float"
+#>   .. ..$ units             : chr "degC"
+#>   .. ..$ longname          : chr "air_temperature"
+#>   .. ..$ group_index       : int 1
+#>   .. ..$ chunksizes        : logi NA
+#>   .. ..$ storage           : num 1
+#>   .. ..$ shuffle           : logi FALSE
+#>   .. ..$ compression       : logi NA
+#>   .. ..$ dims              : list()
+#>   .. ..$ dim               :List of 3
+#>   .. .. ..$ :List of 10
+#>   .. .. .. ..$ name         : chr "lon"
+#>   .. .. .. ..$ len          : int 720
+#>   .. .. .. ..$ unlim        : logi FALSE
+#>   .. .. .. ..$ group_index  : int 1
+#>   .. .. .. ..$ group_id     : int 65536
+#>   .. .. .. ..$ id           : int 0
+#>   .. .. .. ..$ dimvarid     :List of 5
+#>   .. .. .. .. ..$ id         : int 0
+#>   .. .. .. .. ..$ group_index: int 1
+#>   .. .. .. .. ..$ group_id   : int 65536
+#>   .. .. .. .. ..$ list_index : num -1
+#>   .. .. .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. .. .. ..$ units        : chr "degrees_east"
+#>   .. .. .. ..$ vals         : num [1:720(1d)] -180 -179 -179 -178 -178 ...
+#>   .. .. .. ..$ create_dimvar: logi TRUE
+#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
+#>   .. .. ..$ :List of 10
+#>   .. .. .. ..$ name         : chr "lat"
+#>   .. .. .. ..$ len          : int 360
+#>   .. .. .. ..$ unlim        : logi FALSE
+#>   .. .. .. ..$ group_index  : int 1
+#>   .. .. .. ..$ group_id     : int 65536
+#>   .. .. .. ..$ id           : int 1
+#>   .. .. .. ..$ dimvarid     :List of 5
+#>   .. .. .. .. ..$ id         : int 1
+#>   .. .. .. .. ..$ group_index: int 1
+#>   .. .. .. .. ..$ group_id   : int 65536
+#>   .. .. .. .. ..$ list_index : num -1
+#>   .. .. .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. .. .. ..$ units        : chr "degrees_north"
+#>   .. .. .. ..$ vals         : num [1:360(1d)] -89.8 -89.2 -88.8 -88.2 -87.8 ...
+#>   .. .. .. ..$ create_dimvar: logi TRUE
+#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
+#>   .. .. ..$ :List of 11
+#>   .. .. .. ..$ name         : chr "time"
+#>   .. .. .. ..$ len          : int 12
+#>   .. .. .. ..$ unlim        : logi FALSE
+#>   .. .. .. ..$ group_index  : int 1
+#>   .. .. .. ..$ group_id     : int 65536
+#>   .. .. .. ..$ id           : int 2
+#>   .. .. .. ..$ dimvarid     :List of 5
+#>   .. .. .. .. ..$ id         : int 2
+#>   .. .. .. .. ..$ group_index: int 1
+#>   .. .. .. .. ..$ group_id   : int 65536
+#>   .. .. .. .. ..$ list_index : num -1
+#>   .. .. .. .. ..$ isdimvar   : logi TRUE
+#>   .. .. .. .. ..- attr(*, "class")= chr "ncid4"
+#>   .. .. .. ..$ units        : chr "days since 1900-01-01 00:00:00.0 -0:00"
+#>   .. .. .. ..$ calendar     : chr "standard"
+#>   .. .. .. ..$ vals         : num [1:12(1d)] 27774 27804 27834 27864 27894 ...
+#>   .. .. .. ..$ create_dimvar: logi TRUE
+#>   .. .. .. ..- attr(*, "class")= chr "ncdim4"
+#>   .. ..$ varsize           : int [1:3] 720 360 12
+#>   .. ..$ unlim             : logi FALSE
+#>   .. ..$ make_missing_value: logi TRUE
+#>   .. ..$ missval           : num -99
+#>   .. ..$ hasAddOffset      : logi FALSE
+#>   .. ..$ hasScaleFact      : logi FALSE
+#>   .. ..- attr(*, "class")= chr "ncvar4"
+#>  - attr(*, "class")= chr "ncdf4"
 # classe
 class(ncin)
+#> [1] "ncdf4"
 # modo
 mode(ncin)
+#> [1] "list"
 ```
 
 Agora, vamos ler as coordenadas de longitude e latitude. 
@@ -716,10 +1021,13 @@ Agora, vamos ler as coordenadas de longitude e latitude.
 lon <- ncvar_get(ncin, "lon")
 nlon <- dim(lon)
 head(lon)
+#> [1] -179.75 -179.25 -178.75 -178.25 -177.75 -177.25
 lat <- ncvar_get(ncin, "lat", verbose = FALSE)
 nlat <- dim(lat)
 head(lat)
+#> [1] -89.75 -89.25 -88.75 -88.25 -87.75 -87.25
 c(nlon, nlat)
+#> [1] 720 360
 ```
 
 Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
@@ -728,16 +1036,38 @@ Vamos obter a variável temporal e seus atributos usando as funções `ncvarget(
 ```r
 tempo <- ncvar_get(ncin, "time")
 (tunits <- ncatt_get(ncin, "time", "units"))
+#> $hasatt
+#> [1] TRUE
+#> 
+#> $value
+#> [1] "days since 1900-01-01 00:00:00.0 -0:00"
 (nt <- dim(tempo))
+#> [1] 12
 tmp.array <- ncvar_get(ncin, dname)
 # resumo da estrutura dos dados
 str(tmp.array)
+#>  num [1:720, 1:360, 1:12] NA NA NA NA NA NA NA NA NA NA ...
 # nome longo da variável
 (dlname <- ncatt_get(ncin, dname, "long_name"))
+#> $hasatt
+#> [1] TRUE
+#> 
+#> $value
+#> [1] "air_temperature"
 # unidades da variável
 (dunits <- ncatt_get(ncin, dname, "units"))
+#> $hasatt
+#> [1] TRUE
+#> 
+#> $value
+#> [1] "degC"
 # valor definido para valores faltantes
 (fillvalue <- ncatt_get(ncin, dname, "_FillValue"))
+#> $hasatt
+#> [1] TRUE
+#> 
+#> $value
+#> [1] -99
 # fechando arquivo
 nc_close(ncin)
 ```
@@ -748,31 +1078,138 @@ Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe 
 
 
 ```r
-#library(chron)
-library(RColorBrewer)
-#library(lattice)
-library(fields)
 m <- 1
 # campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
 str(tmp.slice)
+#>  num [1:720, 1:360] NA NA NA NA NA NA NA NA NA NA ...
 # outra função para visualizar dados com 3D
 image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
 ```
 
+<img src="images/unnamed-chunk-20-1.png" width="672" />
+
 ##### Forma fácil de importar NetCDF
 
-Via pacote **raster**.
+O pacote [raste](https://cran.r-project.org/web/packages/raster/index.html) fornece uma função para fácil importação de arquivos NetCDF. Os dados importados são retornados no formato específico do pacote (classe de dados *RasterBrick*). Esta classe de dados, corresponde a uma estrutura de dados espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões. 
+
+Quando o dados gradeados possuem somente uma variável em um único tempo, como por exemplo a altitude do terreno (z), temos 2 dimensões espaciais *x* (longitude), *y* (latitude) e *z*. Neste caso, o dado é um [raster](https://docs.qgis.org/2.8/pt_BR/docs/gentle_gis_introduction/raster_data.html) e sua classe de dados é denominada `RasterLayer` no pacote **raster**, ou seja os dados possuem somente uma camada. Quando os dados possuem mais de uma camada, como no casos de campos espaciais de temperatura em diferentes meses (cada mês é uma camada) a classe de dados é denominada `Rasterbrick`. 
+
+Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a função `brick()` do pacote **raster**.
 
 
 ```r
-library(raster)
-b <- brick(dest_file_nc)
-b
-names(b) <- gsub("X", "Mes_", names(b))
-b
-plot(b, col = rev(brewer.pal(10, "RdBu")))
+brick_tar_cru <- brick(dest_file_nc)
+brick_tar_cru
+#> class       : RasterBrick 
+#> dimensions  : 360, 720, 259200, 12  (nrow, ncol, ncell, nlayers)
+#> resolution  : 0.5, 0.5  (x, y)
+#> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+#> data source : /tmp/RtmprXZoYd/cru10min30_tmp.nc 
+#> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
+#> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
+#> varname     : tmp
 ```
+
+O resultado da importação de um `RasterBrick` mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF. 
+
+Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome da variável de interesse através do argumento `varname`. No exemplo acima poderíamos ter chamado a função brick com `brick(dest_file_nc, varname = "tmp")`. Mas como há somente uma variável no arquivo NetCDF deste exemplo a especificação deste argumento é opcional.
+
+Os nomes das camadas, são acessados e alterados com função `names()`, da mesma forma que em *data frames*.
+
+
+```r
+# substituindo a letra "X" dos nomes por "Mes_"
+names(brick_tar_cru) <- gsub("X", "Mes_", names(brick_tar_cru))
+names(brick_tar_cru)
+#>  [1] "Mes_1976.01.16" "Mes_1976.02.15" "Mes_1976.03.16" "Mes_1976.04.16"
+#>  [5] "Mes_1976.05.16" "Mes_1976.06.16" "Mes_1976.07.16" "Mes_1976.08.16"
+#>  [9] "Mes_1976.09.16" "Mes_1976.10.16" "Mes_1976.11.16" "Mes_1976.12.16"
+```
+
+Um gráfico pode ser gerado através da funções `plot()`. Por default são mostrados no máximo 16 camadas de um `RasteBrick`.
+
+
+```r
+plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
+```
+
+<img src="images/unnamed-chunk-23-1.png" width="1056" />
+
+Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
+
+
+```r
+df_tar_cru <- as.data.frame(
+  x = brick_tar_cru,
+  xy = TRUE, 
+  na.rm = TRUE,
+  #long = TRUE
+)
+str(df_tar_cru)
+#> 'data.frame':	62961 obs. of  14 variables:
+#>  $ x             : num  -74.8 -74.2 -73.8 -73.2 -43.8 ...
+#>  $ y             : num  83.2 83.2 83.2 83.2 83.2 ...
+#>  $ Mes_1976.01.16: num  -35.8 -35.4 -35.1 -34.6 -31.8 ...
+#>  $ Mes_1976.02.15: num  -37.9 -37.5 -37.1 -36.6 -33.3 ...
+#>  $ Mes_1976.03.16: num  -36.7 -36.3 -35.9 -35.5 -33.6 ...
+#>  $ Mes_1976.04.16: num  -28.1 -27.7 -27.4 -27.1 -24.3 ...
+#>  $ Mes_1976.05.16: num  -12.8 -12.7 -12.5 -12.3 -11.3 ...
+#>  $ Mes_1976.06.16: num  -0.9 -0.9 -0.9 -0.9 -2.3 ...
+#>  $ Mes_1976.07.16: num  3.3 3.3 3.3 3.2 1.2 ...
+#>  $ Mes_1976.08.16: num  1.4 1.4 1.4 1.4 -1.1 ...
+#>  $ Mes_1976.09.16: num  -7.9 -7.8 -7.7 -7.6 -12.9 ...
+#>  $ Mes_1976.10.16: num  -20.2 -19.9 -19.7 -19.4 -23.7 ...
+#>  $ Mes_1976.11.16: num  -29.7 -29.3 -28.9 -28.5 -28.1 ...
+#>  $ Mes_1976.12.16: num  -33.6 -33.3 -32.9 -32.5 -31 ...
+head(df_tar_cru)
+#>           x     y Mes_1976.01.16 Mes_1976.02.15 Mes_1976.03.16
+#> 9571 -74.75 83.25          -35.8          -37.9          -36.7
+#> 9572 -74.25 83.25          -35.4          -37.5          -36.3
+#> 9573 -73.75 83.25          -35.1          -37.1          -35.9
+#> 9574 -73.25 83.25          -34.6          -36.6          -35.5
+#> 9633 -43.75 83.25          -31.8          -33.3          -33.6
+#> 9634 -43.25 83.25          -32.1          -33.6          -33.8
+#>      Mes_1976.04.16 Mes_1976.05.16 Mes_1976.06.16 Mes_1976.07.16
+#> 9571          -28.1          -12.8           -0.9            3.3
+#> 9572          -27.7          -12.7           -0.9            3.3
+#> 9573          -27.4          -12.5           -0.9            3.3
+#> 9574          -27.1          -12.3           -0.9            3.2
+#> 9633          -24.3          -11.3           -2.3            1.2
+#> 9634          -24.6          -11.5           -2.5            0.9
+#>      Mes_1976.08.16 Mes_1976.09.16 Mes_1976.10.16 Mes_1976.11.16
+#> 9571            1.4           -7.9          -20.2          -29.7
+#> 9572            1.4           -7.8          -19.9          -29.3
+#> 9573            1.4           -7.7          -19.7          -28.9
+#> 9574            1.4           -7.6          -19.4          -28.5
+#> 9633           -1.1          -12.9          -23.7          -28.1
+#> 9634           -1.3          -13.2          -24.2          -28.5
+#>      Mes_1976.12.16
+#> 9571          -33.6
+#> 9572          -33.3
+#> 9573          -32.9
+#> 9574          -32.5
+#> 9633          -31.0
+#> 9634          -31.4
+```
+
+Os argumentos usados na função `as.dataframe()` correspondem a:
+
+- `x` é o objeto Raster* (onde \* significa  `RasterBrick`, `RasterStack` ou `RasterLayer`)
+
+- `xy` é um argumento lógico, se `TRUE` (verdadeiro) inclui as coordenadas espaciais (longitude e altitude) das células do Raster como colunas no *data frame* de saída
+
+- `na.rm` é um argumento opcional lógico, tal que se for `TRUE` remove linhas com valores `NA`. Isto é particularmente útil para grandes conjuntos de dados com muitos valores `NA`s e em regiões oceânicas, como no arquivo de exemplo, onde não há dados medidos. Note que se `na.rm = FALSE` (`TRUE`) o *data frame* resultante terá (poderá ter) um número de linhas igual ao (menor que o) número de células do `RasterBrick`.
+
+
+```r
+nrow(df_tar_cru) < ncell(brick_tar_cru)
+```
+
+- `long` é um argumento opcional lógico. Se for `TRUE` (verdadeiro) os valores são reestruturados de um formato amplo para um formato longo (veja a seção \@ref(formatos-dados) para definição de dados no formato longo e amplo).
+
+Como exercício, rode novamente o trecho de código anterior, mudando os valores dos argumentos lógicos e observe as mudanças nas dimensões do `data frame` resultante.
 
 ## Arquivos Excel
 
@@ -827,7 +1264,7 @@ head(inmet_estacoes)
 #> 6         <NA>       <NA>
 ```
 
-### Escrita de arquivos excel no formato `.xls`
+### Escrita de arquivos excel no formato `.xls` {#export-xls}
 
 Vamos alterar os nomes das variáveis para minúsculo e escrever o *data frame* em novo arquivo `.xls`. 
 
@@ -852,7 +1289,7 @@ head(inmet_estacoes)
 ```
 
 
-Peraí! Mas o **rio** não suporta a opção de exportar arquivos no formato `.xls` (confira na Tabela \@ref(tab:rio-table)). Uma alternativa, caso você realmente precise escrever os dados no formato `xls`, é o pacote [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) que possui dependência da linguagem [PERL](https://www.perl.org/).
+Peraí! Mas o **rio** não suporta a opção de exportar arquivos no formato `.xls` (confira na Tabela \@ref(tab:rio-table)). Uma alternativa, caso você ainda realmente precise escrever os dados no formato `xls`, é o pacote [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html), no entanto ele possui dependência da linguagem [PERL](https://www.perl.org/).
 
 
 
@@ -873,7 +1310,9 @@ head(
 
 ### Escrita de arquivos excel no formato `.xlsx`
 
-O código abaixo faz uma comparação da eficiência na escrita dos dados `inmet_estacoes` formato `xlsx` entre as funções `writexl::write_xlsx` e `openxlsx::write.xlsx`.
+Se algum dia, você precisa entregar uma penca de arquivos em formato Excel, então valerá a pena saber qual das opções de escrita de arquivos `xlsx` é mais eficiente.
+
+No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados da seção \@ref(export-xls)m `inmet_estacoes`. As funções avaliadas são a `writexl::write_xlsx` e a `openxlsx::write.xlsx`.
 
 
 ```r
@@ -884,18 +1323,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq      mean    median        uq       max
-#>   writexl  8.925986  9.096703  17.77574  9.513704  25.87211  35.47018
-#>  openxlsx 44.560889 44.697944 139.55065 49.947584 112.46975 446.07706
-#>  neval cld
-#>      5   a
-#>      5   a
+#>      expr      min        lq      mean    median        uq      max neval
+#>   writexl  7.09682  7.297015  41.04622  7.625915  22.10344 161.1079     5
+#>  openxlsx 44.91718 46.425541 171.95524 47.471838 282.16327 438.7984     5
+#>  cld
+#>    a
+#>    a
 ```
 
+A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-A `writexl::write_xlsx()` no exemplo acima foi cerca de 8 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 4 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
@@ -909,24 +1349,51 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 ## Exercícios
 
-1. a. Importe para o R os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt .
+
+
+1. a. Importe da *web* diretamente para o <img src="images/logo_r.png" width="20"> os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt.
 
 
 
-    b. Defina o nome das variáveis como:  year,  month,  day,  RMM1,  RMM2,  phase,  amplitude, status.
+    b. Defina o nome das variáveis como:  year,  month,  day,  RMM1,  RMM2,  phase,  amplitude, status. Tente obter os nomes das variáveis do próprio link para os dados (Releia a seção \@ref(arquivos-fwf) e a seção \@ref(scan) para detalhes). Mostre os 10 primeiros valores da variável `RMM1`.
 
 
 
-    c. Escreva os dados importados em um arquivo excel nomeado `mjo.xlsx`.
+    c. Escreva os dados importados em um arquivo excel no **formato `xls`** e nomeado `mjo.xls`. Dê uma olhada na seção \@ref(export-xls).
+    
 
     
-2. Importe as anomalias padronizadas dos dados do [SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela). Veja a seção \@ref(arquivos-fwf) para detalhes. 
+    d. Importe no R o arquivo excel nomeado `mjo.xlsx` e mostre qual a classe dos dados importados.
+
+
+    e. Mostre as primeiras e as últimas 10 linhas dos dados.
+
+  
+    
+    f. Qual o código para mostrar quantas linhas e colunas possui a tabela de dados.
+
+
+    g. Interprete a saída da `glimpse()` do pacote **dplyr** aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
+
+
+
+
+2. Importe as anomalias padronizadas dos dados do [SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela ou a tabela mais abaixo na página do *link*). Veja a seção \@ref(arquivos-fwf) para detalhes. Mostre as últimas linhas dos dados importados.
 
 
 
 
 
-3. Importe no R o arquivo excel com a relação de estações meteorológicas convencionais do INMET usadas para construção das normais climatológicas do Brasil no período de 1981-2010, disponível neste [link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1981-2010/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls).
+3. Importe no R o arquivo excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste
+[link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.
+
+
+
+4. Faça download de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. (a) Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. (b) Compare as dimensões do *data frame* com as dimensões do objeto importado. O número de linhas e de colunas do *data frame* correpondem a quais propriedades ou dimensões do objeto importado?
+
+
+
+
 
 
 

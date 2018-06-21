@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
-<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
 <li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
 <li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
 </ul></li>
@@ -322,8 +322,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><p>cada tipo de unidade observacional deve compor uma tabela</p></li>
 </ol>
 <div class="figure">
-<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrura de dados padronizados" />
-<p class="caption">Estrura de dados padronizados</p>
+<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrutura de dados padronizados" />
+<p class="caption">Estrutura de dados padronizados</p>
 </div>
 <p>Um exemplo de dados no formato arrumado é o tibble <code>meteo_tbl</code> mostrado abaixo:</p>
 <table>
@@ -405,11 +405,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">9.3.2</span> tidyr</h3>
 <p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são:</p>
 <ul>
-<li><p>dados longos, são tabelas com maior extensão vertical ou no sentido das linhas;</p></li>
+<li><p>dados longos, são tabelas com maior extensão vertical ou no sentido das linhas; geralmente contém variáveis ao longo das linhas;</p></li>
 <li><p>dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;</p></li>
 </ul>
-<p>Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.</p>
-<div id="formato-de-dados-longo" class="section level4">
+<p>Com os dados no formado &quot;arrumado&quot; você consegue fazer facilmente qualquer transformação na estrutura dos dados.</p>
+<div id="formatos-dados" class="section level4">
 <h4><span class="header-section-number">9.3.2.1</span> Formato de dados longo</h4>
 <p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>meteo_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para reproduzir exatamente os dados de exemplo do formato &quot;arrumado&quot;.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
@@ -420,14 +420,14 @@ meteo_tbl
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   site    ano  prec intensidade</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000  1800        4.93</span>
-<span class="co">#&gt; 2 A001   2001  1400        3.84</span>
-<span class="co">#&gt; 3 A002   2000  1750        4.79</span>
-<span class="co">#&gt; 4 A002   2001  1470        4.03</span>
-<span class="co">#&gt; 5 A002   2002  1630        4.47</span>
-<span class="co">#&gt; 6 A003   2004  1300        3.56</span>
-<span class="co">#&gt; 7 A803   2005  1950        5.34</span>
-<span class="co">#&gt; 8 A803   2006  1100        3.01</span></code></pre></div>
+<span class="co">#&gt; 1 A001  2000. 1800.        4.93</span>
+<span class="co">#&gt; 2 A001  2001. 1400.        3.84</span>
+<span class="co">#&gt; 3 A002  2000. 1750.        4.79</span>
+<span class="co">#&gt; 4 A002  2001. 1470.        4.03</span>
+<span class="co">#&gt; 5 A002  2002. 1630.        4.47</span>
+<span class="co">#&gt; 6 A003  2004. 1300.        3.56</span>
+<span class="co">#&gt; 7 A803  2005. 1950.        5.34</span>
+<span class="co">#&gt; 8 A803  2006. 1100.        3.01</span></code></pre></div>
 <p>Agora, vamos usar a função <code>gather()</code> para reestruturar os dados <code>meteo_tbl</code> em uma nova tabela de dados que chamaremos <code>meteo_longo</code>.</p>
 <p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos duas novas colunas: <code>variavel</code> e <code>valor</code>. A coluna <code>variavel</code> reunirá o nome das variáveis <code>prec</code> e <code>intensidade</code>. A coluna <code>valor</code>reunirá os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_long &lt;-<span class="st"> </span><span class="kw">gather</span>(
@@ -440,22 +440,22 @@ meteo_long
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    site    ano variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
-<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
-<span class="co">#&gt; 10 A001   2001 intensidade    3.84</span>
-<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
-<span class="co">#&gt; 12 A002   2001 intensidade    4.03</span>
-<span class="co">#&gt; 13 A002   2002 intensidade    4.47</span>
-<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
-<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
-<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
+<span class="co">#&gt;  1 A001  2000. prec        1800.  </span>
+<span class="co">#&gt;  2 A001  2001. prec        1400.  </span>
+<span class="co">#&gt;  3 A002  2000. prec        1750.  </span>
+<span class="co">#&gt;  4 A002  2001. prec        1470.  </span>
+<span class="co">#&gt;  5 A002  2002. prec        1630.  </span>
+<span class="co">#&gt;  6 A003  2004. prec        1300.  </span>
+<span class="co">#&gt;  7 A803  2005. prec        1950.  </span>
+<span class="co">#&gt;  8 A803  2006. prec        1100.  </span>
+<span class="co">#&gt;  9 A001  2000. intensidade    4.93</span>
+<span class="co">#&gt; 10 A001  2001. intensidade    3.84</span>
+<span class="co">#&gt; 11 A002  2000. intensidade    4.79</span>
+<span class="co">#&gt; 12 A002  2001. intensidade    4.03</span>
+<span class="co">#&gt; 13 A002  2002. intensidade    4.47</span>
+<span class="co">#&gt; 14 A003  2004. intensidade    3.56</span>
+<span class="co">#&gt; 15 A803  2005. intensidade    5.34</span>
+<span class="co">#&gt; 16 A803  2006. intensidade    3.01</span></code></pre></div>
 <p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
 <ul>
 <li><p><code>data = meteo_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
@@ -510,22 +510,22 @@ meteo_longo
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    site    ano variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
-<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
-<span class="co">#&gt; 10 A001   2001 intensidade    3.84</span>
-<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
-<span class="co">#&gt; 12 A002   2001 intensidade    4.03</span>
-<span class="co">#&gt; 13 A002   2002 intensidade    4.47</span>
-<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
-<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
-<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
+<span class="co">#&gt;  1 A001  2000. prec        1800.  </span>
+<span class="co">#&gt;  2 A001  2001. prec        1400.  </span>
+<span class="co">#&gt;  3 A002  2000. prec        1750.  </span>
+<span class="co">#&gt;  4 A002  2001. prec        1470.  </span>
+<span class="co">#&gt;  5 A002  2002. prec        1630.  </span>
+<span class="co">#&gt;  6 A003  2004. prec        1300.  </span>
+<span class="co">#&gt;  7 A803  2005. prec        1950.  </span>
+<span class="co">#&gt;  8 A803  2006. prec        1100.  </span>
+<span class="co">#&gt;  9 A001  2000. intensidade    4.93</span>
+<span class="co">#&gt; 10 A001  2001. intensidade    3.84</span>
+<span class="co">#&gt; 11 A002  2000. intensidade    4.79</span>
+<span class="co">#&gt; 12 A002  2001. intensidade    4.03</span>
+<span class="co">#&gt; 13 A002  2002. intensidade    4.47</span>
+<span class="co">#&gt; 14 A003  2004. intensidade    3.56</span>
+<span class="co">#&gt; 15 A803  2005. intensidade    5.34</span>
+<span class="co">#&gt; 16 A803  2006. intensidade    3.01</span></code></pre></div>
 <p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(
   <span class="dt">data =</span> meteo_long,
@@ -536,14 +536,14 @@ meteo_amplo
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   site    ano intensidade  prec</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000        4.93  1800</span>
-<span class="co">#&gt; 2 A001   2001        3.84  1400</span>
-<span class="co">#&gt; 3 A002   2000        4.79  1750</span>
-<span class="co">#&gt; 4 A002   2001        4.03  1470</span>
-<span class="co">#&gt; 5 A002   2002        4.47  1630</span>
-<span class="co">#&gt; 6 A003   2004        3.56  1300</span>
-<span class="co">#&gt; 7 A803   2005        5.34  1950</span>
-<span class="co">#&gt; 8 A803   2006        3.01  1100</span></code></pre></div>
+<span class="co">#&gt; 1 A001  2000.        4.93 1800.</span>
+<span class="co">#&gt; 2 A001  2001.        3.84 1400.</span>
+<span class="co">#&gt; 3 A002  2000.        4.79 1750.</span>
+<span class="co">#&gt; 4 A002  2001.        4.03 1470.</span>
+<span class="co">#&gt; 5 A002  2002.        4.47 1630.</span>
+<span class="co">#&gt; 6 A003  2004.        3.56 1300.</span>
+<span class="co">#&gt; 7 A803  2005.        5.34 1950.</span>
+<span class="co">#&gt; 8 A803  2006.        3.01 1100.</span></code></pre></div>
 <p>Esta operação foi usada para colocar os dados originais (<code>meteo_long</code>) no formato &quot;arrumado&quot; (meteo_ampo).</p>
 </div>
 </div>
@@ -557,14 +557,14 @@ meteo_amplo
 <span class="co">#&gt; # A tibble: 16 x 3</span>
 <span class="co">#&gt;    site_ano  variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001_2000 prec        1800   </span>
-<span class="co">#&gt;  2 A001_2001 prec        1400   </span>
-<span class="co">#&gt;  3 A002_2000 prec        1750   </span>
-<span class="co">#&gt;  4 A002_2001 prec        1470   </span>
-<span class="co">#&gt;  5 A002_2002 prec        1630   </span>
-<span class="co">#&gt;  6 A003_2004 prec        1300   </span>
-<span class="co">#&gt;  7 A803_2005 prec        1950   </span>
-<span class="co">#&gt;  8 A803_2006 prec        1100   </span>
+<span class="co">#&gt;  1 A001_2000 prec        1800.  </span>
+<span class="co">#&gt;  2 A001_2001 prec        1400.  </span>
+<span class="co">#&gt;  3 A002_2000 prec        1750.  </span>
+<span class="co">#&gt;  4 A002_2001 prec        1470.  </span>
+<span class="co">#&gt;  5 A002_2002 prec        1630.  </span>
+<span class="co">#&gt;  6 A003_2004 prec        1300.  </span>
+<span class="co">#&gt;  7 A803_2005 prec        1950.  </span>
+<span class="co">#&gt;  8 A803_2006 prec        1100.  </span>
 <span class="co">#&gt;  9 A001_2000 intensidade    4.93</span>
 <span class="co">#&gt; 10 A001_2001 intensidade    3.84</span>
 <span class="co">#&gt; 11 A002_2000 intensidade    4.79</span>
@@ -581,14 +581,14 @@ meteo_amplo
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    site  ano   variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001  2000  prec        1800   </span>
-<span class="co">#&gt;  2 A001  2001  prec        1400   </span>
-<span class="co">#&gt;  3 A002  2000  prec        1750   </span>
-<span class="co">#&gt;  4 A002  2001  prec        1470   </span>
-<span class="co">#&gt;  5 A002  2002  prec        1630   </span>
-<span class="co">#&gt;  6 A003  2004  prec        1300   </span>
-<span class="co">#&gt;  7 A803  2005  prec        1950   </span>
-<span class="co">#&gt;  8 A803  2006  prec        1100   </span>
+<span class="co">#&gt;  1 A001  2000  prec        1800.  </span>
+<span class="co">#&gt;  2 A001  2001  prec        1400.  </span>
+<span class="co">#&gt;  3 A002  2000  prec        1750.  </span>
+<span class="co">#&gt;  4 A002  2001  prec        1470.  </span>
+<span class="co">#&gt;  5 A002  2002  prec        1630.  </span>
+<span class="co">#&gt;  6 A003  2004  prec        1300.  </span>
+<span class="co">#&gt;  7 A803  2005  prec        1950.  </span>
+<span class="co">#&gt;  8 A803  2006  prec        1100.  </span>
 <span class="co">#&gt;  9 A001  2000  intensidade    4.93</span>
 <span class="co">#&gt; 10 A001  2001  intensidade    3.84</span>
 <span class="co">#&gt; 11 A002  2000  intensidade    4.79</span>
@@ -616,16 +616,16 @@ meteo_comp
 <span class="co">#&gt; # A tibble: 24 x 3</span>
 <span class="co">#&gt;    site    ano  prec</span>
 <span class="co">#&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 A001   2000  1800</span>
-<span class="co">#&gt;  2 A001   2001  1400</span>
-<span class="co">#&gt;  3 A001   2002    NA</span>
-<span class="co">#&gt;  4 A001   2004    NA</span>
-<span class="co">#&gt;  5 A001   2005    NA</span>
-<span class="co">#&gt;  6 A001   2006    NA</span>
-<span class="co">#&gt;  7 A002   2000  1750</span>
-<span class="co">#&gt;  8 A002   2001  1470</span>
-<span class="co">#&gt;  9 A002   2002  1630</span>
-<span class="co">#&gt; 10 A002   2004    NA</span>
+<span class="co">#&gt;  1 A001  2000. 1800.</span>
+<span class="co">#&gt;  2 A001  2001. 1400.</span>
+<span class="co">#&gt;  3 A001  2002.   NA </span>
+<span class="co">#&gt;  4 A001  2004.   NA </span>
+<span class="co">#&gt;  5 A001  2005.   NA </span>
+<span class="co">#&gt;  6 A001  2006.   NA </span>
+<span class="co">#&gt;  7 A002  2000. 1750.</span>
+<span class="co">#&gt;  8 A002  2001. 1470.</span>
+<span class="co">#&gt;  9 A002  2002. 1630.</span>
+<span class="co">#&gt; 10 A002  2004.   NA </span>
 <span class="co">#&gt; # ... with 14 more rows</span></code></pre></div>
 </div>
 </div>
