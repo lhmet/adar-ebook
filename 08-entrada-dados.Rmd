@@ -548,8 +548,11 @@ sudo apt-get install libnetcdf-dev libudunits2-dev
 
 Pacotes necessários:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval = FALSE}
 library(ncdf4)
+```
+
+```{r, message=FALSE, warning=FALSE}
 library(raster)
 library(RColorBrewer)
 library(fields)
@@ -571,7 +574,9 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 ```{r, eval = TRUE}
 dest_file_nc
 file.exists(dest_file_nc)
+```
 
+```{r, eval = FALSE}
 # variável de interesse, tmp: temperatura do ar
 dname <- "tmp"  
 # abre o arquivo NetCDF
@@ -587,7 +592,7 @@ mode(ncin)
 
 Agora, vamos ler as coordenadas de longitude e latitude. 
 
-```{r Chunk632, eval = TRUE}
+```{r Chunk632, eval = FALSE}
 lon <- ncvar_get(ncin, "lon")
 nlon <- dim(lon)
 head(lon)
@@ -599,7 +604,7 @@ c(nlon, nlat)
 
 Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 tempo <- ncvar_get(ncin, "time")
 (tunits <- ncatt_get(ncin, "time", "units"))
 (nt <- dim(tempo))
@@ -620,7 +625,7 @@ As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longi
 
 Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. 
 
-```{r , eval=TRUE}
+```{r , eval=FALSE}
 m <- 1
 # campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
