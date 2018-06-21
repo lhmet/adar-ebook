@@ -528,22 +528,19 @@ head(prec_ana[, 1:10])
 
 ### NetCDF (Network Common Data Form) 
 
-NetCDF é formato binário, auto-descritivo e independente do SO, para criar e distribuir *arrays* multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dos climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as [reanálises](http://en.wikipedia.org/wiki/Meteorological_reanalysis).
+NetCDF é um formato binário, auto-descritivo e independente do SO criado para criar e distribuir arranjos multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dados climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as [reanálises](http://en.wikipedia.org/wiki/Meteorological_reanalysis).
 
-As bibliotecas NetCDF são mantidas pelo [Unidata](http://www.unidata.ucar.edu/software/netcdf/). Dados no formato NetCDF são acessíveis no R pelos pacotes [ncdf](http://cran.r-project.org/web/packages/ncdf/index.html), [ncdf4](http://cran.r-project.org/web/packages/ncdf4/index.html) e [raster](http://cran.r-project.org/web/packages/raster/index.html). Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. O pacote `ncdf` é disponível para Linux e Mac OS X, mas suporta somente arquivo no formato NetCDF 3, enquanto o pacote `ncdf4` lê arquivos no formato NetCDF 3 e 4, porém é disponível apenas para sistemas Linux.
+As bibliotecas NetCDF são mantidas pelo [Unidata](http://www.unidata.ucar.edu/software/netcdf/). Dados no formato NetCDF são acessíveis no R pelos pacotes [ncdf4](http://cran.r-project.org/web/packages/ncdf4/index.html) [\@ref(Pierce-2017)] e [raster](http://cran.r-project.org/web/packages/raster/index.html) [\@ref(Hijmans-2017)]. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF. 
 
+O pacote [ncdf](https://cran.r-project.org/src/contrib/Archive/ncdf/) foi um dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente para versão 3. O pacote que o substituiu foi o [ncdf4](https://cran.r-project.org/web/packages/ncdf4/index.html) e suporta tanto arquivos no formato NetCDF 3 como 4. O pacote **raster** baseia-se no **ncdf4** para fornecer através da função `brick()` uma importação e exportação fácil de dados NetCDF com o R.
 
 #### Pré-requisitos
 
-Para utilizar os pacotes `ncdf*` é necessário instalar os pacotes linux mostrados abaixo.
+Para utilizar o pacote `ncdf4` é necessário instalar os pacotes linux mostrados abaixo.
 
 ```bash
-sudo apt-get update 
-sudo apt-get upgrade --assume-yes
 ## Install pacotes NetCDF
-sudo apt-get install libnetcdf-dev libudunits2-dev
-## install 3rd parties needed for devtools + openssl git2r httr
-#sudo apt-get install libssl-dev
+$ sudo apt-get install libnetcdf-dev libudunits2-dev
 ```
 
 Pacotes necessários:
