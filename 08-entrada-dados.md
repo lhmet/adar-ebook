@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpmIgFBM/file32be6b6e744d"
+#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpmIgFBM/file32be6b6e744d.csv"
+#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpmIgFBM/file32be6b6e744d.csv"
+#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpmIgFBM/file32be42c44508"
+#> [1] "/tmp/Rtmp1KBtLM/file32587d2d162e"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpmIgFBM/file32be42c44508.tsv"
+#> [1] "/tmp/Rtmp1KBtLM/file32587d2d162e.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpmIgFBMSOI.csv"
+#> [1] "/tmp/Rtmp1KBtLMSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmpmIgFBM/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp1KBtLM/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/RtmpmIgFBM/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmp1KBtLM/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 
-#> data source : /tmp/RtmpmIgFBM/cru10min30_tmp.nc 
+#> data source : /tmp/Rtmp1KBtLM/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -1079,8 +1079,8 @@ tempos_escrita_xlsx <- microbenchmark(
 tempos_escrita_xlsx
 #> Unit: milliseconds
 #>      expr       min       lq     mean   median       uq      max neval
-#>   writexl  9.931932  9.93603 10.25397 10.05471 10.35381 10.99338     5
-#>  openxlsx 44.097973 44.48779 52.79082 46.11685 46.15731 83.09417     5
+#>   writexl  9.958039 10.01028 10.11780 10.05355 10.12162 10.44549     5
+#>  openxlsx 43.681054 44.09899 51.39075 44.43601 44.91916 79.81856     5
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
@@ -1141,7 +1141,13 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 
 
-4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. (a) Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. (b) Compare as dimensões do *data frame* com as dimensões do objeto importado. O número de linhas e de colunas do *data frame* correpondem a quais propriedades ou dimensões do objeto importado?
+4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. 
+
+    a. Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. 
+    
+    b. Compare as dimensões do *data frame* com as dimensões do objeto importado, o número de linhas e de colunas do *data frame* correspondem a quais propriedades ou dimensões do objeto importado?
+
+
 
 
 
