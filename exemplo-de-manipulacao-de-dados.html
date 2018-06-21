@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
-<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
 <li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
 <li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
 </ul></li>
@@ -795,13 +795,13 @@ tab_week
 <span class="co">#&gt; # A tibble: 7 x 5</span>
 <span class="co">#&gt;   dia   n_prec     N n_prec_perc n_all</span>
 <span class="co">#&gt;   &lt;ord&gt;  &lt;int&gt; &lt;int&gt;       &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Sun     1129 13163        14.4  1.22</span>
-<span class="co">#&gt; 2 Mon     1109 13154        14.2  1.20</span>
-<span class="co">#&gt; 3 Tue     1088 13183        13.9  1.18</span>
-<span class="co">#&gt; 4 Wed     1014 13215        13.0  1.10</span>
-<span class="co">#&gt; 5 Thu      980 13220        12.5  1.06</span>
-<span class="co">#&gt; 6 Fri     1170 13182        15.0  1.27</span>
-<span class="co">#&gt; 7 Sat     1325 13203        17.0  1.44</span></code></pre></div>
+<span class="co">#&gt; 1 Dom     1129 13163        14.4  1.22</span>
+<span class="co">#&gt; 2 Seg     1109 13154        14.2  1.20</span>
+<span class="co">#&gt; 3 Ter     1088 13183        13.9  1.18</span>
+<span class="co">#&gt; 4 Qua     1014 13215        13.0  1.10</span>
+<span class="co">#&gt; 5 Qui      980 13220        12.5  1.06</span>
+<span class="co">#&gt; 6 Sex     1170 13182        15.0  1.27</span>
+<span class="co">#&gt; 7 Sáb     1325 13203        17.0  1.44</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gráfico</span>
 g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(tab_week, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dia), <span class="dt">y =</span> n_prec_perc))
 g3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>

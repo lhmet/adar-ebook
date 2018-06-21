@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
-<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
 <li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
 <li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
 </ul></li>
@@ -349,7 +349,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
 <span class="co">#&gt; [13] &quot;link_soi&quot;           &quot;nome_vars&quot;          &quot;pacotes&quot;           </span>
 <span class="co">#&gt; [16] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
 <span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))
 <span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
@@ -380,7 +380,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span>
 <span class="kw">rm</span>(cab, chuva_df)
 <span class="kw">ls</span>()
@@ -389,8 +389,8 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_83004_limpo&quot;   &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;   </span>
 <span class="co">#&gt; [10] &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;          </span>
 <span class="co">#&gt; [13] &quot;nome_vars&quot;          &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_file&quot;          </span>
-<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
 <span class="co"># carrega e imprime na tela nome dos dados carregados</span>
 <span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))
 <span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
@@ -401,7 +401,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
@@ -464,6 +464,11 @@ prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_
 <span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev
 <span class="co">## install 3rd parties needed for devtools + openssl git2r httr</span>
 <span class="co">#sudo apt-get install libssl-dev</span></code></pre></div>
+<p>Pacotes necessários:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ncdf4)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
+<span class="kw">library</span>(RColorBrewer)
+<span class="kw">library</span>(fields)</code></pre></div>
 </div>
 <div id="arquivo-exemplo" class="section level4">
 <h4><span class="header-section-number">8.5.2.2</span> Arquivo exemplo</h4>
@@ -473,9 +478,10 @@ dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_file_nc
+<span class="co">#&gt; [1] &quot;/tmp/RtmpFP5nlK/cru10min30_tmp.nc&quot;</span>
 <span class="kw">file.exists</span>(dest_file_nc)
-<span class="kw">library</span>(ncdf4); <span class="kw">library</span>(raster)
-<span class="co"># variável de interesse, tmp: temperatura do ar</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável de interesse, tmp: temperatura do ar</span>
 dname &lt;-<span class="st"> &quot;tmp&quot;</span>  
 <span class="co"># abre o arquivo NetCDF</span>
 ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(dest_file_nc)
@@ -511,11 +517,7 @@ tmp.array &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(ncin, 
 <span class="kw">nc_close</span>(ncin)</code></pre></div>
 <p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), <em>arrays</em> bidimensionais (matrizes, campo espacial de um momento), ou <em>arrays</em> multidimensionais (campos espaciais de uma variável em diversos tempos).</p>
 <p>Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(chron)</span>
-<span class="kw">library</span>(RColorBrewer)
-<span class="co">#library(lattice)</span>
-<span class="kw">library</span>(fields)
-m &lt;-<span class="st"> </span><span class="dv">1</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">1</span>
 <span class="co"># campo espacial do primeiro dia de dados</span>
 tmp.slice &lt;-<span class="st"> </span>tmp.array[, , m]
 <span class="kw">str</span>(tmp.slice)
@@ -523,13 +525,96 @@ tmp.slice &lt;-<span class="st"> </span>tmp.array[, , m]
 <span class="kw">image.plot</span>(lon, lat, tmp.slice, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</code></pre></div>
 <div id="forma-facil-de-importar-netcdf" class="section level5">
 <h5><span class="header-section-number">8.5.2.2.1</span> Forma fácil de importar NetCDF</h5>
-<p>Via pacote <strong>raster</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
-b &lt;-<span class="st"> </span><span class="kw">brick</span>(dest_file_nc)
-b
-<span class="kw">names</span>(b) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mes_&quot;</span>, <span class="kw">names</span>(b))
-b
-<span class="kw">plot</span>(b, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</code></pre></div>
+<p>O pacote <a href="https://cran.r-project.org/web/packages/raster/index.html">raste</a> fornece uma função para fácil importação de arquivos NetCDF. Os dados importados são retornados no formato específico do pacote (classe de dados <em>RasterBrick</em>). Esta classe de dados, corresponde a uma estrutura de dados espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões.</p>
+<p>Quando o dados gradeados possuem somente uma variável em um único tempo, como por exemplo a altitude do terreno (z), temos 2 dimensões espaciais <em>x</em> (longitude), <em>y</em> (latitude) e <em>z</em>. Neste caso, o dado é um <a href="https://docs.qgis.org/2.8/pt_BR/docs/gentle_gis_introduction/raster_data.html">raster</a> e sua classe de dados é denominada <code>RasterLayer</code> no pacote <strong>raster</strong>, ou seja os dados possuem somente uma camada. Quando os dados possuem mais de uma camada, como no casos de campos espaciais de temperatura em diferentes meses (cada mês é uma camada) a classe de dados é denominada <code>Rasterbrick</code>.</p>
+<p>Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a função <code>brick()</code> do pacote <strong>raster</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">brick_tar_cru &lt;-<span class="st"> </span><span class="kw">brick</span>(dest_file_nc)
+<span class="co">#&gt; Loading required namespace: ncdf4</span>
+brick_tar_cru
+<span class="co">#&gt; class       : RasterBrick </span>
+<span class="co">#&gt; dimensions  : 360, 720, 259200, 12  (nrow, ncol, ncell, nlayers)</span>
+<span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span>
+<span class="co">#&gt; extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
+<span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="co">#&gt; data source : /tmp/RtmpFP5nlK/cru10min30_tmp.nc </span>
+<span class="co">#&gt; names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 </span>
+<span class="co">#&gt; Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 </span>
+<span class="co">#&gt; varname     : tmp</span></code></pre></div>
+<p>O resultado da importação de um <code>RasterBrick</code> mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF.</p>
+<p>Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome da variável de interesse através do argumento <code>varname</code>. No exemplo acima poderíamos ter chamado a função brick com <code>brick(dest_file_nc, varname = &quot;tmp&quot;)</code>. Mas como há somente uma variável no arquivo NetCDF deste exemplo a especificação deste argumento é opcional.</p>
+<p>Os nomes das camadas, são acessados e alterados com função <code>names()</code>, da mesma forma que em <em>data frames</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># substituindo a letra &quot;X&quot; dos nomes por &quot;Mes_&quot;</span>
+<span class="kw">names</span>(brick_tar_cru) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mes_&quot;</span>, <span class="kw">names</span>(brick_tar_cru))
+<span class="kw">names</span>(brick_tar_cru)
+<span class="co">#&gt;  [1] &quot;Mes_1976.01.16&quot; &quot;Mes_1976.02.15&quot; &quot;Mes_1976.03.16&quot; &quot;Mes_1976.04.16&quot;</span>
+<span class="co">#&gt;  [5] &quot;Mes_1976.05.16&quot; &quot;Mes_1976.06.16&quot; &quot;Mes_1976.07.16&quot; &quot;Mes_1976.08.16&quot;</span>
+<span class="co">#&gt;  [9] &quot;Mes_1976.09.16&quot; &quot;Mes_1976.10.16&quot; &quot;Mes_1976.11.16&quot; &quot;Mes_1976.12.16&quot;</span></code></pre></div>
+<p>Um gráfico pode ser gerado através da funções <code>plot()</code>. Por default são mostrados no máximo 16 camadas de um <code>RasteBrick</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(brick_tar_cru, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</code></pre></div>
+<p><img src="images/unnamed-chunk-25-1.png" width="1056" /></p>
+<p>Os dados em formato <code>RasterBrick</code>, RasterStack ou RasterLayer podem ser convertidos para classe <code>data.frame</code> pela função <code>as.data.frame()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_tar_cru &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(
+  <span class="dt">x =</span> brick_tar_cru,
+  <span class="dt">xy =</span> <span class="ot">TRUE</span>, 
+  <span class="dt">na.rm =</span> <span class="ot">TRUE</span>,
+  <span class="co">#long = TRUE</span>
+)
+<span class="kw">str</span>(df_tar_cru)
+<span class="co">#&gt; &#39;data.frame&#39;:    62961 obs. of  14 variables:</span>
+<span class="co">#&gt;  $ x             : num  -74.8 -74.2 -73.8 -73.2 -43.8 ...</span>
+<span class="co">#&gt;  $ y             : num  83.2 83.2 83.2 83.2 83.2 ...</span>
+<span class="co">#&gt;  $ Mes_1976.01.16: num  -35.8 -35.4 -35.1 -34.6 -31.8 ...</span>
+<span class="co">#&gt;  $ Mes_1976.02.15: num  -37.9 -37.5 -37.1 -36.6 -33.3 ...</span>
+<span class="co">#&gt;  $ Mes_1976.03.16: num  -36.7 -36.3 -35.9 -35.5 -33.6 ...</span>
+<span class="co">#&gt;  $ Mes_1976.04.16: num  -28.1 -27.7 -27.4 -27.1 -24.3 ...</span>
+<span class="co">#&gt;  $ Mes_1976.05.16: num  -12.8 -12.7 -12.5 -12.3 -11.3 ...</span>
+<span class="co">#&gt;  $ Mes_1976.06.16: num  -0.9 -0.9 -0.9 -0.9 -2.3 ...</span>
+<span class="co">#&gt;  $ Mes_1976.07.16: num  3.3 3.3 3.3 3.2 1.2 ...</span>
+<span class="co">#&gt;  $ Mes_1976.08.16: num  1.4 1.4 1.4 1.4 -1.1 ...</span>
+<span class="co">#&gt;  $ Mes_1976.09.16: num  -7.9 -7.8 -7.7 -7.6 -12.9 ...</span>
+<span class="co">#&gt;  $ Mes_1976.10.16: num  -20.2 -19.9 -19.7 -19.4 -23.7 ...</span>
+<span class="co">#&gt;  $ Mes_1976.11.16: num  -29.7 -29.3 -28.9 -28.5 -28.1 ...</span>
+<span class="co">#&gt;  $ Mes_1976.12.16: num  -33.6 -33.3 -32.9 -32.5 -31 ...</span>
+<span class="kw">head</span>(df_tar_cru)
+<span class="co">#&gt;           x     y Mes_1976.01.16 Mes_1976.02.15 Mes_1976.03.16</span>
+<span class="co">#&gt; 9571 -74.75 83.25          -35.8          -37.9          -36.7</span>
+<span class="co">#&gt; 9572 -74.25 83.25          -35.4          -37.5          -36.3</span>
+<span class="co">#&gt; 9573 -73.75 83.25          -35.1          -37.1          -35.9</span>
+<span class="co">#&gt; 9574 -73.25 83.25          -34.6          -36.6          -35.5</span>
+<span class="co">#&gt; 9633 -43.75 83.25          -31.8          -33.3          -33.6</span>
+<span class="co">#&gt; 9634 -43.25 83.25          -32.1          -33.6          -33.8</span>
+<span class="co">#&gt;      Mes_1976.04.16 Mes_1976.05.16 Mes_1976.06.16 Mes_1976.07.16</span>
+<span class="co">#&gt; 9571          -28.1          -12.8           -0.9            3.3</span>
+<span class="co">#&gt; 9572          -27.7          -12.7           -0.9            3.3</span>
+<span class="co">#&gt; 9573          -27.4          -12.5           -0.9            3.3</span>
+<span class="co">#&gt; 9574          -27.1          -12.3           -0.9            3.2</span>
+<span class="co">#&gt; 9633          -24.3          -11.3           -2.3            1.2</span>
+<span class="co">#&gt; 9634          -24.6          -11.5           -2.5            0.9</span>
+<span class="co">#&gt;      Mes_1976.08.16 Mes_1976.09.16 Mes_1976.10.16 Mes_1976.11.16</span>
+<span class="co">#&gt; 9571            1.4           -7.9          -20.2          -29.7</span>
+<span class="co">#&gt; 9572            1.4           -7.8          -19.9          -29.3</span>
+<span class="co">#&gt; 9573            1.4           -7.7          -19.7          -28.9</span>
+<span class="co">#&gt; 9574            1.4           -7.6          -19.4          -28.5</span>
+<span class="co">#&gt; 9633           -1.1          -12.9          -23.7          -28.1</span>
+<span class="co">#&gt; 9634           -1.3          -13.2          -24.2          -28.5</span>
+<span class="co">#&gt;      Mes_1976.12.16</span>
+<span class="co">#&gt; 9571          -33.6</span>
+<span class="co">#&gt; 9572          -33.3</span>
+<span class="co">#&gt; 9573          -32.9</span>
+<span class="co">#&gt; 9574          -32.5</span>
+<span class="co">#&gt; 9633          -31.0</span>
+<span class="co">#&gt; 9634          -31.4</span></code></pre></div>
+<p>Os argumentos usados na função <code>as.dataframe()</code> correspondem a:</p>
+<ul>
+<li><p><code>x</code> é o objeto Raster* (onde * significa <code>RasterBrick</code>, <code>RasterStack</code> ou <code>RasterLayer</code>)</p></li>
+<li><p><code>xy</code> é um argumento lógico, se <code>TRUE</code> (verdadeiro) inclui as coordenadas espaciais (longitude e altitude) das células do Raster como colunas no <em>data frame</em> de saída</p></li>
+<li><p><code>na.rm</code> é um argumento opcional lógico, tal que se for <code>TRUE</code> remove linhas com valores <code>NA</code>. Isto é particularmente útil para grandes conjuntos de dados com muitos valores <code>NA</code>s e em regiões oceânicas, como no arquivo de exemplo, onde não há dados medidos. Note que se <code>na.rm = FALSE</code> (<code>TRUE</code>) o <em>data frame</em> resultante terá (poderá ter) um número de linhas igual ao (menor que o) número de células do <code>RasterBrick</code>.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(df_tar_cru) <span class="op">&lt;</span><span class="st"> </span><span class="kw">ncell</span>(brick_tar_cru)</code></pre></div>
+<ul>
+<li><code>long</code> é um argumento opcional lógico. Se for <code>TRUE</code> (verdadeiro) os valores são reestruturados de um formato amplo para um formato longo (veja a seção <a href="restruturacao-de-dados.html#formatos-dados">9.3.2.1</a> para definição de dados no formato longo e amplo).</li>
+</ul>
+<p>Como exercício, rode novamente o trecho de código anterior, mudando os valores dos argumentos lógicos e observe as mudanças nas dimensões do <code>data frame</code> resultante.</p>
 </div>
 </div>
 </div>

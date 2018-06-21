@@ -54,12 +54,12 @@ Agora você pode carregar os pacotes.
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
+#> ── Attaching packages ──────────────────────────────────────────── tidyverse 1.2.1 ──
 #> ✔ ggplot2 2.2.1     ✔ purrr   0.2.5
 #> ✔ tibble  1.4.2     ✔ dplyr   0.7.5
 #> ✔ tidyr   0.8.1     ✔ stringr 1.3.1
-#> ✔ readr   1.1.1     ✔ forcats 0.3.0
-#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+#> ✔ readr   1.2.0     ✔ forcats 0.3.0
+#> ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
 ```
@@ -250,7 +250,7 @@ Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir a
 
 5. cada tipo de unidade observacional deve compor uma tabela
 
-![Estrura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
+![Estrutura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
 
 Um exemplo de dados no formato arrumado é o tibble `meteo_tbl` mostrado abaixo:  
 
@@ -293,15 +293,17 @@ Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos probl
 
 ### tidyr
 
+
+
 O pacote **tidyr** é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são: 
 
-- dados longos, são tabelas com maior extensão vertical ou no sentido  das linhas;
+- dados longos, são tabelas com maior extensão vertical ou no sentido das linhas; geralmente contém variáveis ao longo das linhas;
 
 - dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;
 
-Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.
+Com os dados no formado \"arrumado\" você consegue fazer facilmente qualquer transformação na estrutura dos dados.
 
-#### Formato de dados longo
+#### Formato de dados longo {#formatos-dados}
 
 Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `meteo_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para reproduzir exatamente os dados de exemplo do formato \"arrumado\".
 
@@ -1288,13 +1290,13 @@ tab_week
 #> # A tibble: 7 x 5
 #>   dia   n_prec     N n_prec_perc n_all
 #>   <ord>  <int> <int>       <dbl> <dbl>
-#> 1 Sun     1129 13163        14.4  1.22
-#> 2 Mon     1109 13154        14.2  1.20
-#> 3 Tue     1088 13183        13.9  1.18
-#> 4 Wed     1014 13215        13.0  1.10
-#> 5 Thu      980 13220        12.5  1.06
-#> 6 Fri     1170 13182        15.0  1.27
-#> 7 Sat     1325 13203        17.0  1.44
+#> 1 Dom     1129 13163        14.4  1.22
+#> 2 Seg     1109 13154        14.2  1.20
+#> 3 Ter     1088 13183        13.9  1.18
+#> 4 Qua     1014 13215        13.0  1.10
+#> 5 Qui      980 13220        12.5  1.06
+#> 6 Sex     1170 13182        15.0  1.27
+#> 7 Sáb     1325 13203        17.0  1.44
 ```
 
 

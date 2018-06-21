@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-18">
+<meta name="date" content="2018-06-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
-<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
 <li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
 <li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-nao-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
 </ul></li>
@@ -322,8 +322,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><p>cada tipo de unidade observacional deve compor uma tabela</p></li>
 </ol>
 <div class="figure">
-<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrura de dados padronizados" />
-<p class="caption">Estrura de dados padronizados</p>
+<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrutura de dados padronizados" />
+<p class="caption">Estrutura de dados padronizados</p>
 </div>
 <p>Um exemplo de dados no formato arrumado é o tibble <code>meteo_tbl</code> mostrado abaixo:</p>
 <table>
@@ -405,11 +405,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">9.3.2</span> tidyr</h3>
 <p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são:</p>
 <ul>
-<li><p>dados longos, são tabelas com maior extensão vertical ou no sentido das linhas;</p></li>
+<li><p>dados longos, são tabelas com maior extensão vertical ou no sentido das linhas; geralmente contém variáveis ao longo das linhas;</p></li>
 <li><p>dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;</p></li>
 </ul>
-<p>Com os dados no formado arrumado você consegue fazer facilmente qualquer transformação na estrutura dos dados.</p>
-<div id="formato-de-dados-longo" class="section level4">
+<p>Com os dados no formado &quot;arrumado&quot; você consegue fazer facilmente qualquer transformação na estrutura dos dados.</p>
+<div id="formatos-dados" class="section level4">
 <h4><span class="header-section-number">9.3.2.1</span> Formato de dados longo</h4>
 <p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>meteo_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para reproduzir exatamente os dados de exemplo do formato &quot;arrumado&quot;.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
