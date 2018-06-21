@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -349,7 +349,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot; </span>
 <span class="co">#&gt; [13] &quot;link_soi&quot;           &quot;nome_vars&quot;          &quot;pacotes&quot;           </span>
 <span class="co">#&gt; [16] &quot;pcks&quot;               &quot;rblue&quot;              &quot;soi&quot;               </span>
-<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
 <span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))
 <span class="co">#&gt; [1] &quot;chuva_df&quot;</span>
@@ -380,7 +380,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span>
 <span class="kw">rm</span>(cab, chuva_df)
 <span class="kw">ls</span>()
@@ -389,8 +389,8 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt;  [7] &quot;file_83004_limpo&quot;   &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;   </span>
 <span class="co">#&gt; [10] &quot;hidroweb_dest_file&quot; &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;          </span>
 <span class="co">#&gt; [13] &quot;nome_vars&quot;          &quot;pacotes&quot;            &quot;pcks&quot;              </span>
-<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi.df&quot;            </span>
-<span class="co">#&gt; [19] &quot;soi_file&quot;           &quot;tab_rio&quot;</span>
+<span class="co">#&gt; [16] &quot;rblue&quot;              &quot;soi&quot;                &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [19] &quot;soi.df&quot;             &quot;tab_rio&quot;</span>
 <span class="co"># carrega e imprime na tela nome dos dados carregados</span>
 <span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))
 <span class="co">#&gt; [1] &quot;cab&quot;      &quot;chuva_df&quot;</span>
@@ -401,7 +401,7 @@ file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span
 <span class="co">#&gt; [10] &quot;file_chuva_df&quot;      &quot;file_dados_prec&quot;    &quot;hidroweb_dest_file&quot;</span>
 <span class="co">#&gt; [13] &quot;hidroweb_url_file&quot;  &quot;link_soi&quot;           &quot;nome_vars&quot;         </span>
 <span class="co">#&gt; [16] &quot;pacotes&quot;            &quot;pcks&quot;               &quot;rblue&quot;             </span>
-<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi.df&quot;             &quot;soi_file&quot;          </span>
+<span class="co">#&gt; [19] &quot;soi&quot;                &quot;soi_file&quot;           &quot;soi.df&quot;            </span>
 <span class="co">#&gt; [22] &quot;tab_rio&quot;</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
@@ -478,7 +478,7 @@ dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_file_nc
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/cru10min30_tmp.nc&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/cru10min30_tmp.nc&quot;</span>
 <span class="kw">file.exists</span>(dest_file_nc)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável de interesse, tmp: temperatura do ar</span>

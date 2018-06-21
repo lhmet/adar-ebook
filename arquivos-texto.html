@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -452,15 +452,15 @@ hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar
 <span class="co"># caminho de destino para o aquivo baixado</span>
 <span class="co"># alterando a extensão de TXT para csv</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/file12b8c8982e7&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/file2dd0483decd7&quot;</span>
 (hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/file12b8c8982e7.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/file2dd0483decd7.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/file12b8c8982e7.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/file2dd0483decd7.csv&quot;</span></code></pre></div>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
@@ -492,9 +492,9 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/file12b83d28520b&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/file2dd056d17a70&quot;</span>
 (dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgL/file12b83d28520b.tsv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3/file2dd056d17a70.tsv&quot;</span>
 <span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
 </div>
 <div id="arquivos-fwf" class="section level4">
@@ -570,7 +570,7 @@ nome_vars
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
 (soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpS62mgLSOI.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp5tdIF3SOI.csv&quot;</span>
 <span class="co"># exportação com rio</span>
 <span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,

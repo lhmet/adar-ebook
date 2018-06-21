@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7"
+#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7.csv"
+#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpS62mgL/file12b8c8982e7.csv"
+#> [1] "/tmp/Rtmp5tdIF3/file2dd0483decd7.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpS62mgL/file12b83d28520b"
+#> [1] "/tmp/Rtmp5tdIF3/file2dd056d17a70"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpS62mgL/file12b83d28520b.tsv"
+#> [1] "/tmp/Rtmp5tdIF3/file2dd056d17a70.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpS62mgLSOI.csv"
+#> [1] "/tmp/Rtmp5tdIF3SOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -537,7 +537,7 @@ ls()
 #> [10] "file_chuva_df"      "hidroweb_dest_file" "hidroweb_url_file" 
 #> [13] "link_soi"           "nome_vars"          "pacotes"           
 #> [16] "pcks"               "rblue"              "soi"               
-#> [19] "soi.df"             "soi_file"           "tab_rio"
+#> [19] "soi_file"           "soi.df"             "tab_rio"
 # para carregar os dados e saber o nome com que foram salvos
 print(load(file = file_chuva_df))
 #> [1] "chuva_df"
@@ -576,7 +576,7 @@ ls()
 #> [10] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
 #> [13] "hidroweb_url_file"  "link_soi"           "nome_vars"         
 #> [16] "pacotes"            "pcks"               "rblue"             
-#> [19] "soi"                "soi.df"             "soi_file"          
+#> [19] "soi"                "soi_file"           "soi.df"            
 #> [22] "tab_rio"
 rm(cab, chuva_df)
 ls()
@@ -585,8 +585,8 @@ ls()
 #>  [7] "file_83004_limpo"   "file_chuva_df"      "file_dados_prec"   
 #> [10] "hidroweb_dest_file" "hidroweb_url_file"  "link_soi"          
 #> [13] "nome_vars"          "pacotes"            "pcks"              
-#> [16] "rblue"              "soi"                "soi.df"            
-#> [19] "soi_file"           "tab_rio"
+#> [16] "rblue"              "soi"                "soi_file"          
+#> [19] "soi.df"             "tab_rio"
 # carrega e imprime na tela nome dos dados carregados
 print(load(file_dados_prec))
 #> [1] "cab"      "chuva_df"
@@ -597,7 +597,7 @@ ls()
 #> [10] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
 #> [13] "hidroweb_url_file"  "link_soi"           "nome_vars"         
 #> [16] "pacotes"            "pcks"               "rblue"             
-#> [19] "soi"                "soi.df"             "soi_file"          
+#> [19] "soi"                "soi_file"           "soi.df"            
 #> [22] "tab_rio"
 ```
 
@@ -710,7 +710,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmpS62mgL/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp5tdIF3/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -954,19 +954,16 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq       mean    median         uq      max
-#>   writexl  7.399395  7.892629   9.391514  8.134437   8.296814  15.2343
-#>  openxlsx 43.238119 51.000443 134.963923 70.163147 131.850840 378.5671
-#>  neval cld
-#>      5   a
-#>      5   a
+#>      expr       min       lq     mean   median       uq      max neval
+#>   writexl  9.785325 10.05461 10.55988 10.26473 10.89970 11.79506     5
+#>  openxlsx 45.724435 46.58747 58.91577 50.47930 56.64326 95.14440     5
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 6 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares

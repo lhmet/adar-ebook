@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -378,14 +378,11 @@ arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 )
 tempos_escrita_xlsx
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr       min        lq       mean    median         uq      max</span>
-<span class="co">#&gt;   writexl  7.399395  7.892629   9.391514  8.134437   8.296814  15.2343</span>
-<span class="co">#&gt;  openxlsx 43.238119 51.000443 134.963923 70.163147 131.850840 378.5671</span>
-<span class="co">#&gt;  neval cld</span>
-<span class="co">#&gt;      5   a</span>
-<span class="co">#&gt;      5   a</span></code></pre></div>
+<span class="co">#&gt;      expr       min       lq     mean   median       uq      max neval</span>
+<span class="co">#&gt;   writexl  9.785325 10.05461 10.55988 10.26473 10.89970 11.79506     5</span>
+<span class="co">#&gt;  openxlsx 45.724435 46.58747 58.91577 50.47930 56.64326 95.14440     5</span></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
-<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 14 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 6 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-nao-tabulares" class="section level3">
 <h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>

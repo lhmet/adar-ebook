@@ -346,9 +346,9 @@ nchar(y)
 
 ```r
 vetor <- c(0, 1, -1, -2, 3, 5, -5)
-all(vetor < 0)  # todas as posições são maiores que 0 ?
+all(vetor < 0) # todas as posições são maiores que 0 ?
 #> [1] FALSE
-any(vetor > 0)  # alguma posição é maior que 0?
+any(vetor > 0) # alguma posição é maior que 0?
 #> [1] TRUE
 ```
 
@@ -698,8 +698,11 @@ Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de 
 
 
 ```r
-vetor_l <- c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, 
-    FALSE, TRUE)
+vetor_l <- c(
+  TRUE, FALSE, FALSE, TRUE,
+  TRUE, FALSE, TRUE, FALSE,
+  TRUE, FALSE, FALSE, TRUE
+)
 meses[vetor_l]
 #> [1] "Jan" "Abr" "Mai" "Jul" "Set" "Dez"
 ```
@@ -815,8 +818,8 @@ b <- c(2, 1, 0, 1)
 # forma normal verifica cada elemento de a e cada elemento de b
 a == 1 & b == 1
 #> [1] FALSE  TRUE FALSE  TRUE
-# forma dupla verifica somente o primeiro elemento de a e o primeiro
-# elemento de b retornando somente um resultado
+# forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b
+# retornando somente um resultado
 a == 1 && b == 1
 #> [1] FALSE
 ```
@@ -1001,7 +1004,7 @@ v
 #> [1]   3 100  NA  NA   6
 # adicionando elementos de vetores
 x <- c(88, 5, 12, 13)
-x <- c(x[1:3], 168, x[4])  # insere 168 antes do 13
+x <- c(x[1:3], 168, x[4]) # insere 168 antes do 13
 x
 #> [1]  88   5  12 168  13
 # outra opção
@@ -1010,9 +1013,9 @@ class(k)
 #> [1] "logical"
 # vetor k existe?
 ls()
-#>  [1] "a"             "above80"       "an"            "anos"         
-#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
-#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
+#>  [1] "a"             "a_sn"          "above80"       "an"           
+#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
+#>  [9] "below100"      "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "frac_d30mn"    "horas"         "k"             "meses"        
 #> [21] "months"        "new_temp"      "night_below20" "old_temp"     
@@ -1024,8 +1027,8 @@ ls()
 #> [45] "seco01"        "sel"           "sel_prec"      "sel_temp"     
 #> [49] "seqn"          "si_dec"        "snum_b"        "tar_hor"      
 #> [53] "temp"          "temp_dez"      "temp_djf"      "temp_djf_med" 
-#> [57] "temp_jan"      "v"             "v1"            "v_123"        
-#> [61] "v_123a"        "v_123b"        "v2"            "v3"           
+#> [57] "temp_jan"      "v"             "v_123"         "v_123a"       
+#> [61] "v_123b"        "v1"            "v2"            "v3"           
 #> [65] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [69] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [73] "z"
@@ -1060,8 +1063,7 @@ temp[]
 temp <- 0
 temp
 #> [1] 0
-# vamos redefinir temp e comparar o anterior com o obtido com o próximo
-# comando
+# vamos redefinir temp e comparar o anterior com o obtido com o próximo comando
 temp <- temp_orig
 temp[1:length(temp)] <- 0
 temp
@@ -1155,9 +1157,9 @@ O `NULL` é um tipo de dado especial do R.
 ```r
 # v1 existe ?
 ls()
-#>  [1] "a"             "above80"       "an"            "anos"         
-#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
-#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
+#>  [1] "a"             "a_sn"          "above80"       "an"           
+#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
+#>  [9] "below100"      "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "faltante"      "frac_d30mn"    "horas"         "k"            
 #> [21] "meses"         "months"        "new_temp"      "night_below20"
@@ -1170,8 +1172,8 @@ ls()
 #> [49] "sel_prec"      "sel_temp"      "seqn"          "si_dec"       
 #> [53] "snum_b"        "tar_hor"       "temp"          "temp_dez"     
 #> [57] "temp_djf"      "temp_djf_med"  "temp_jan"      "temp_orig"    
-#> [61] "umvetor"       "v"             "v1"            "v_123"        
-#> [65] "v_123a"        "v_123b"        "v2"            "v3"           
+#> [61] "umvetor"       "v"             "v_123"         "v_123a"       
+#> [65] "v_123b"        "v1"            "v2"            "v3"           
 #> [69] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [73] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [77] "z"
@@ -1180,9 +1182,9 @@ exists("v1")
 # vamos anular todo v1
 v1 <- NULL
 ls()
-#>  [1] "a"             "above80"       "an"            "anos"         
-#>  [5] "anos_dec"      "a_sn"          "b"             "below100"     
-#>  [9] "below_avg"     "chuva"         "cond"          "cte"          
+#>  [1] "a"             "a_sn"          "above80"       "an"           
+#>  [5] "anos"          "anos_dec"      "b"             "below_avg"    
+#>  [9] "below100"      "chuva"         "cond"          "cte"          
 #> [13] "day_below20"   "dda"           "decd"          "desc"         
 #> [17] "faltante"      "frac_d30mn"    "horas"         "k"            
 #> [21] "meses"         "months"        "new_temp"      "night_below20"
@@ -1195,8 +1197,8 @@ ls()
 #> [49] "sel_prec"      "sel_temp"      "seqn"          "si_dec"       
 #> [53] "snum_b"        "tar_hor"       "temp"          "temp_dez"     
 #> [57] "temp_djf"      "temp_djf_med"  "temp_jan"      "temp_orig"    
-#> [61] "umvetor"       "v"             "v1"            "v_123"        
-#> [65] "v_123a"        "v_123b"        "v2"            "v3"           
+#> [61] "umvetor"       "v"             "v_123"         "v_123a"       
+#> [65] "v_123b"        "v1"            "v2"            "v3"           
 #> [69] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
 #> [73] "vetor_log"     "vetor_num"     "x"             "y"            
 #> [77] "z"
@@ -1264,7 +1266,7 @@ Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento 
 
 ```r
 # atribuindo novas dimensões ao vetor
-m <- matrix(vetor)  # matriz de uma coluna
+m <- matrix(vetor) # matriz de uma coluna
 m
 #>      [,1]
 #> [1,]    0
@@ -1321,13 +1323,20 @@ Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construi
 
 ```r
 # temperatura do ar média mensal do ano de 1990
-temp90 <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
+temp90 <- c(
+  25.00, 23.20, 22.50, 21.00, 19.00, 17.60,
+  18.00, 19.70, 21.30, 22.00, 24.00, 26.80
+)
 # temperatura do ar média mensal do ano de 1991
-temp91 <- c(24.89, 24.07, 23.56, 23.11, 18.29, 18.22, 16.72, 19.37, 20.08, 21.45, 
-    26.61, 25.99)
+temp91 <- c(
+  24.89, 24.07, 23.56, 23.11, 18.29, 18.22,
+  16.72, 19.37, 20.08, 21.45, 26.61, 25.99
+)
 # temperatura do ar média mensal do ano de 1992
-temp92 <- c(23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22, 21.45, 19.7, 22.5, 24.07, 
-    20.08)
+temp92 <- c(
+  23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22,
+  21.45, 19.7, 22.5, 24.07, 20.08
+)
 # vetor com as temperaturas dos 3 anos
 vtemp <- c(temp90, temp91, temp92)
 vtemp
@@ -1356,8 +1365,11 @@ Atribuindo nomes às linhas (`rownames()`) e colunas (`colnames()`) da matriz cr
 ```r
 # atribuindo nomes as colunas e linhas da temp_mat
 rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
-colnames(temp_mat) <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", 
-    "Set", "Out", "Nov", "Dez")
+colnames(temp_mat) <- c(
+  "Jan", "Fev", "Mar", "Abr", "Mai",
+  "Jun", "Jul", "Ago", "Set", "Out",
+  "Nov", "Dez"
+)
 temp_mat
 #>           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 #> ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
@@ -1375,7 +1387,7 @@ Como acessamos o valor de temperatura de maio de 1991 na matriz `temp_mat`?
 
 
 ```r
-temp_mat  # matriz de temperaturas com nomes
+temp_mat # matriz de temperaturas com nomes
 #>           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 #> ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 #> ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -1384,7 +1396,7 @@ temp_mat  # matriz de temperaturas com nomes
 #> ano1990 26.80
 #> ano1991 25.99
 #> ano1992 20.08
-temp_matO  # matriz de temperaturas sem nomes
+temp_matO # matriz de temperaturas sem nomes
 #>       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 #> [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 #> [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -1419,7 +1431,7 @@ temp_mat[, "Jan"]
 #> ano1990 ano1991 ano1992 
 #>   25.00   24.89   23.20
 # só as temperaturas de 1990 e 1993
-temp_mat[-2, ]
+temp_mat[ -2, ]
 #>          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez
 #> ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80
 #> ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08
@@ -1440,7 +1452,7 @@ temp_mat[, ncol(temp_mat):1]
 #> ano1991 24.89
 #> ano1992 23.20
 # invertendo ordem das colunas e das linhas
-temp_mat[3:1, 12:1]
+temp_mat[ 3:1, 12:1]
 #>           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 #> ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
 #> ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07
@@ -1450,19 +1462,19 @@ temp_mat[3:1, 12:1]
 #> ano1991 24.89
 #> ano1990 25.00
 # invertendo ordem das colunas e das linhas
-temp_mat[c(2, 1, 3), c(6:1, 12, 10:8)]
+temp_mat[ c(2, 1, 3), c(6:1, 12, 10:8)]
 #>           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago
 #> ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37
 #> ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70
 #> ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45
 # só as temperaturas dos invernos
-temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago")]
+temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago") ]
 #>           Jun   Jul   Ago
 #> ano1990 17.60 18.00 19.70
 #> ano1991 18.22 16.72 19.37
 #> ano1992 21.30 18.22 21.45
 # exceto as temperaturas dos invernos
-temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago"))]
+temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago")) ]
 #>           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez
 #> ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80
 #> ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99
@@ -1646,7 +1658,7 @@ t(temp_mat)
 #> Out    22.0   21.45   22.50
 #> Nov    24.0   26.61   24.07
 #> Dez    26.8   25.99   20.08
-# diagonal
+# diagonal 
 diag(temp_mat)
 #> [1] 25.00 24.07 18.00
 ```
@@ -2811,17 +2823,17 @@ attributes(dados)
 #> $names
 #> [1] "datas"  "cidade" "tar"   
 #> 
-#> $row.names
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-#> 
 #> $class
 #> [1] "data.frame"
+#> 
+#> $row.names
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
 # atributos armazenados em uma lista
 str(attributes(dados))
 #> List of 3
 #>  $ names    : chr [1:3] "datas" "cidade" "tar"
-#>  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...
 #>  $ class    : chr "data.frame"
+#>  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...
 # número de colunas
 ncol(dados)
 #> [1] 3
