@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a"
+#> [1] "/tmp/RtmpjrZdrF/file325cd602e71"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a.csv"
+#> [1] "/tmp/RtmpjrZdrF/file325cd602e71.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp1KBtLM/file325825fbe30a.csv"
+#> [1] "/tmp/RtmpjrZdrF/file325cd602e71.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp1KBtLM/file32587d2d162e"
+#> [1] "/tmp/RtmpjrZdrF/file325c1e375f4c"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp1KBtLM/file32587d2d162e.tsv"
+#> [1] "/tmp/RtmpjrZdrF/file325c1e375f4c.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp1KBtLMSOI.csv"
+#> [1] "/tmp/RtmpjrZdrFSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp1KBtLM/cru10min30_tmp.nc"
+#> [1] "/tmp/RtmpjrZdrF/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmp1KBtLM/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/RtmpjrZdrF/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 
-#> data source : /tmp/Rtmp1KBtLM/cru10min30_tmp.nc 
+#> data source : /tmp/RtmpjrZdrF/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -1078,9 +1078,12 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min       lq     mean   median       uq      max neval
-#>   writexl  9.958039 10.01028 10.11780 10.05355 10.12162 10.44549     5
-#>  openxlsx 43.681054 44.09899 51.39075 44.43601 44.91916 79.81856     5
+#>      expr       min        lq      mean    median        uq       max
+#>   writexl  9.699717  9.749175  9.795445  9.771639  9.874504  9.882189
+#>  openxlsx 41.474047 42.329273 49.130151 42.580322 43.551616 75.715497
+#>  neval
+#>      5
+#>      5
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 

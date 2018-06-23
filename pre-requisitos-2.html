@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-21">
+<meta name="date" content="2018-06-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -238,11 +238,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
-<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -302,9 +304,9 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="pre-requisitos-2" class="section level2">
 <h2><span class="header-section-number">9.1</span> Pré-requisitos</h2>
-<p>O pacote tidyverse torna fácil de instalar e carregar os pacotes do <em>tidyverse</em> em apenas um comando.</p>
+<p>O pacote <strong>tidyverse</strong> torna fácil de instalar e carregar os pacotes do <em>tidyverse</em> com apenas uma chamada à função:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<p>Agora você pode carregar os pacotes.</p>
+<p>E da mesma forma carregamos o conjunto de pacotes com:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="co">#&gt; ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</span>
 <span class="co">#&gt; ✔ ggplot2 2.2.1     ✔ purrr   0.2.5</span>
@@ -314,58 +316,260 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
 <span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre></div>
-<p>Outros pacotes:</p>
+<div class="rmdnote">
+<p>
+Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacotes que foram carregados. À direita são mostradas as configurações e informações sobre o seu sistema operacional. Na parte inferior, há uma mensagem sobre os conflitos entre as funções da base do R (ou de outros pacotes) que tem mesmo nome que as de algum pacote do <em>tidyverse</em>. A função do pacote carregado mais recentemente terá prioridade de uso. No caso acima, a função <code>filter()</code> do <strong>dplyr</strong> sobrepôs a função <code>filter()</code> do pacote <strong>stats</strong> da base do R. Em situações como esta é melhor deixar explícito no seu código a chamada à função usando <code>pacote::funcao()</code>.
+</p>
+</div>
+<p>Neste capítulo além do <strong>tidyverse</strong> usaremos outros pacotes que já podemos instalar:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)
 easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre></div>
 <div id="dados" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Dados</h3>
-<p>Dados climatológicos:</p>
+<p>Para este capítulo utilizaremos alguns conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do <em>tidyverse</em>.</p>
+<ol style="list-style-type: decimal">
+<li>Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> localizadas no estado do Rio Grande do Sul.</li>
+</ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span>
 <span class="co"># dados de exemplo</span>
 clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
-clima_rs
-<span class="co">#&gt;    codigo                 estacao uf   prec tmax</span>
-<span class="co">#&gt; 1   83931                Alegrete RS 1492.2 25.4</span>
-<span class="co">#&gt; 2   83980                    Bagé RS 1299.9 24.1</span>
-<span class="co">#&gt; 3   83941         Bento Gonçalves RS 1683.7 23.0</span>
-<span class="co">#&gt; 4   83919               Bom Jesus RS 1807.3 20.3</span>
-<span class="co">#&gt; 5   83963        Cachoeira do Sul RS 1477.1 25.1</span>
-<span class="co">#&gt; 6   83942           Caxias do Sul RS 1823.0 21.8</span>
-<span class="co">#&gt; 7   83912               Cruz Alta RS 1630.7 24.5</span>
-<span class="co">#&gt; 8   83964     Encruzilhada do Sul RS 1510.8 22.5</span>
-<span class="co">#&gt; 9   83915                 Guaporé RS 1758.7 24.7</span>
-<span class="co">#&gt; 10  83881                    Iraí RS 1806.7 27.1</span>
-<span class="co">#&gt; 11  83929                  Itaqui RS 1369.4 26.2</span>
-<span class="co">#&gt; 12  83916          Lagoa Vermelha RS 1691.1 23.0</span>
-<span class="co">#&gt; 13  83880    Palmeira das Missões RS 1747.8 24.0</span>
-<span class="co">#&gt; 14  83914             Passo Fundo RS 1803.1 23.6</span>
-<span class="co">#&gt; 15  83967            Porto Alegre RS 1320.2 24.8</span>
-<span class="co">#&gt; 16  83995              Rio Grande RS 1233.6 21.7</span>
-<span class="co">#&gt; 17  83936             Santa Maria RS 1616.8 24.9</span>
-<span class="co">#&gt; 18  83997 Santa Vitória do Palmar RS 1228.9 21.8</span>
-<span class="co">#&gt; 19  83957             São Gabriel RS 1313.9 25.0</span>
-<span class="co">#&gt; 20  83907        São Luiz Gonzaga RS 1770.9 26.1</span>
-<span class="co">#&gt; 21  83966                   Tapes RS 1349.8 23.8</span>
-<span class="co">#&gt; 22  83948                  Torres RS 1363.2 22.3</span>
-<span class="co">#&gt; 23  83927              Uruguaiana RS 1647.4 25.8</span></code></pre></div>
-<p>Dados de estação meteorológicas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+clima_rs</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">codigo</th>
+<th align="center">estacao</th>
+<th align="center">uf</th>
+<th align="center">prec</th>
+<th align="center">tmax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">83931</td>
+<td align="center">Alegrete</td>
+<td align="center">RS</td>
+<td align="center">1492.2</td>
+<td align="center">25.4</td>
+</tr>
+<tr class="even">
+<td align="center">83980</td>
+<td align="center">Bagé</td>
+<td align="center">RS</td>
+<td align="center">1299.9</td>
+<td align="center">24.1</td>
+</tr>
+<tr class="odd">
+<td align="center">83941</td>
+<td align="center">Bento Gonçalves</td>
+<td align="center">RS</td>
+<td align="center">1683.7</td>
+<td align="center">23.0</td>
+</tr>
+<tr class="even">
+<td align="center">83919</td>
+<td align="center">Bom Jesus</td>
+<td align="center">RS</td>
+<td align="center">1807.3</td>
+<td align="center">20.3</td>
+</tr>
+<tr class="odd">
+<td align="center">83963</td>
+<td align="center">Cachoeira do Sul</td>
+<td align="center">RS</td>
+<td align="center">1477.1</td>
+<td align="center">25.1</td>
+</tr>
+<tr class="even">
+<td align="center">83942</td>
+<td align="center">Caxias do Sul</td>
+<td align="center">RS</td>
+<td align="center">1823.0</td>
+<td align="center">21.8</td>
+</tr>
+<tr class="odd">
+<td align="center">83912</td>
+<td align="center">Cruz Alta</td>
+<td align="center">RS</td>
+<td align="center">1630.7</td>
+<td align="center">24.5</td>
+</tr>
+<tr class="even">
+<td align="center">83964</td>
+<td align="center">Encruzilhada do Sul</td>
+<td align="center">RS</td>
+<td align="center">1510.8</td>
+<td align="center">22.5</td>
+</tr>
+<tr class="odd">
+<td align="center">83915</td>
+<td align="center">Guaporé</td>
+<td align="center">RS</td>
+<td align="center">1758.7</td>
+<td align="center">24.7</td>
+</tr>
+<tr class="even">
+<td align="center">83881</td>
+<td align="center">Iraí</td>
+<td align="center">RS</td>
+<td align="center">1806.7</td>
+<td align="center">27.1</td>
+</tr>
+<tr class="odd">
+<td align="center">83929</td>
+<td align="center">Itaqui</td>
+<td align="center">RS</td>
+<td align="center">1369.4</td>
+<td align="center">26.2</td>
+</tr>
+<tr class="even">
+<td align="center">83916</td>
+<td align="center">Lagoa Vermelha</td>
+<td align="center">RS</td>
+<td align="center">1691.1</td>
+<td align="center">23.0</td>
+</tr>
+<tr class="odd">
+<td align="center">83880</td>
+<td align="center">Palmeira das Missões</td>
+<td align="center">RS</td>
+<td align="center">1747.8</td>
+<td align="center">24.0</td>
+</tr>
+<tr class="even">
+<td align="center">83914</td>
+<td align="center">Passo Fundo</td>
+<td align="center">RS</td>
+<td align="center">1803.1</td>
+<td align="center">23.6</td>
+</tr>
+<tr class="odd">
+<td align="center">83967</td>
+<td align="center">Porto Alegre</td>
+<td align="center">RS</td>
+<td align="center">1320.2</td>
+<td align="center">24.8</td>
+</tr>
+<tr class="even">
+<td align="center">83995</td>
+<td align="center">Rio Grande</td>
+<td align="center">RS</td>
+<td align="center">1233.6</td>
+<td align="center">21.7</td>
+</tr>
+<tr class="odd">
+<td align="center">83936</td>
+<td align="center">Santa Maria</td>
+<td align="center">RS</td>
+<td align="center">1616.8</td>
+<td align="center">24.9</td>
+</tr>
+<tr class="even">
+<td align="center">83997</td>
+<td align="center">Santa Vitória do Palmar</td>
+<td align="center">RS</td>
+<td align="center">1228.9</td>
+<td align="center">21.8</td>
+</tr>
+<tr class="odd">
+<td align="center">83957</td>
+<td align="center">São Gabriel</td>
+<td align="center">RS</td>
+<td align="center">1313.9</td>
+<td align="center">25.0</td>
+</tr>
+<tr class="even">
+<td align="center">83907</td>
+<td align="center">São Luiz Gonzaga</td>
+<td align="center">RS</td>
+<td align="center">1770.9</td>
+<td align="center">26.1</td>
+</tr>
+<tr class="odd">
+<td align="center">83966</td>
+<td align="center">Tapes</td>
+<td align="center">RS</td>
+<td align="center">1349.8</td>
+<td align="center">23.8</td>
+</tr>
+<tr class="even">
+<td align="center">83948</td>
+<td align="center">Torres</td>
+<td align="center">RS</td>
+<td align="center">1363.2</td>
+<td align="center">22.3</td>
+</tr>
+<tr class="odd">
+<td align="center">83927</td>
+<td align="center">Uruguaiana</td>
+<td align="center">RS</td>
+<td align="center">1647.4</td>
+<td align="center">25.8</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">site =</span> <span class="kw">c</span>(
     <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
   ),
   <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
   <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
 )
-meteo_df
-<span class="co">#&gt;   site  ano prec</span>
-<span class="co">#&gt; 1 A001 2000 1800</span>
-<span class="co">#&gt; 2 A001 2001 1400</span>
-<span class="co">#&gt; 3 A002 2000 1750</span>
-<span class="co">#&gt; 4 A002 2001 1470</span>
-<span class="co">#&gt; 5 A002 2002 1630</span>
-<span class="co">#&gt; 6 A003 2004 1300</span>
-<span class="co">#&gt; 7 A803 2005 1950</span>
-<span class="co">#&gt; 8 A803 2006 1100</span></code></pre></div>
+prec_anual</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">site</th>
+<th align="center">ano</th>
+<th align="center">prec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">A001</td>
+<td align="center">2000</td>
+<td align="center">1800</td>
+</tr>
+<tr class="even">
+<td align="center">A001</td>
+<td align="center">2001</td>
+<td align="center">1400</td>
+</tr>
+<tr class="odd">
+<td align="center">A002</td>
+<td align="center">2000</td>
+<td align="center">1750</td>
+</tr>
+<tr class="even">
+<td align="center">A002</td>
+<td align="center">2001</td>
+<td align="center">1470</td>
+</tr>
+<tr class="odd">
+<td align="center">A002</td>
+<td align="center">2002</td>
+<td align="center">1630</td>
+</tr>
+<tr class="even">
+<td align="center">A003</td>
+<td align="center">2004</td>
+<td align="center">1300</td>
+</tr>
+<tr class="odd">
+<td align="center">A803</td>
+<td align="center">2005</td>
+<td align="center">1950</td>
+</tr>
+<tr class="even">
+<td align="center">A803</td>
+<td align="center">2006</td>
+<td align="center">1100</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
             </section>

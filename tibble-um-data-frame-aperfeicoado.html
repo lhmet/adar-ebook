@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-21">
+<meta name="date" content="2018-06-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -238,11 +238,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
-<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -302,46 +304,82 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="tibble-um-data-frame-aperfeicoado" class="section level2">
 <h2><span class="header-section-number">9.2</span> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</h2>
-<p><em>Data frames</em> são a unidade fundamental de armazenamento de dados retangulares no R. O pacote <strong>tibble</strong> define uma nova classe de <em>data frame</em> para o R, o <em>tbl_df</em> (‘<em>tibble diffs</em>’). Uma <em>tibble</em> é uma extensão da classe de dados <em>data.frame</em> da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>.</p>
-<p>Para criar um <em>tibble</em> nós usamos a função <em>tibble()</em>. Para ilustrar algumas vantagens do <em>tibble</em> vamos recriar o <em>data frame</em> <code>meteo_df</code> incluindo uma nova variável <code>int prec</code>(intensidade da precipitação):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+<p><em>Data frames</em> são a unidade fundamental de armazenamento de dados retangulares no R. O pacote <strong>tibble</strong> estende a classe <em>data frame</em> da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>. O novo objeto é chamdo de <em>tibble</em> e sua classde de <code>tbl_df</code>.</p>
+<div id="funcionalidades-do-tibble" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Funcionalidades do <em>tibble</em></h3>
+<p>Para ilustrar algumas vantagens do <em>tibble</em>, vamos recriar o <em>data frame</em> <code>prec_anual</code> incluindo uma nova variável <code>int prec</code>(intensidade da precipitação) baseada na razão da precipitação pelo número de dias no ano. Criamos um <em>tibble</em> com a função <code>tibble()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">site =</span> <span class="kw">c</span>(
+    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+  ),
+  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
+)</code></pre></div>
+<p>Com o exemplo acima, as principais diferenças entre um <em>tibble</em> e um <em>data frame</em> podem ser demonstradas:</p>
+<ul>
+<li>quando impresso no console do R, o <em>tibble</em> mostra a classe de cada variável, enquanto objetos <em>data.frame</em> não.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs
+<span class="co">#&gt;    codigo                 estacao uf   prec tmax</span>
+<span class="co">#&gt; 1   83931                Alegrete RS 1492.2 25.4</span>
+<span class="co">#&gt; 2   83980                    Bagé RS 1299.9 24.1</span>
+<span class="co">#&gt; 3   83941         Bento Gonçalves RS 1683.7 23.0</span>
+<span class="co">#&gt; 4   83919               Bom Jesus RS 1807.3 20.3</span>
+<span class="co">#&gt; 5   83963        Cachoeira do Sul RS 1477.1 25.1</span>
+<span class="co">#&gt; 6   83942           Caxias do Sul RS 1823.0 21.8</span>
+<span class="co">#&gt; 7   83912               Cruz Alta RS 1630.7 24.5</span>
+<span class="co">#&gt; 8   83964     Encruzilhada do Sul RS 1510.8 22.5</span>
+<span class="co">#&gt; 9   83915                 Guaporé RS 1758.7 24.7</span>
+<span class="co">#&gt; 10  83881                    Iraí RS 1806.7 27.1</span>
+<span class="co">#&gt; 11  83929                  Itaqui RS 1369.4 26.2</span>
+<span class="co">#&gt; 12  83916          Lagoa Vermelha RS 1691.1 23.0</span>
+<span class="co">#&gt; 13  83880    Palmeira das Missões RS 1747.8 24.0</span>
+<span class="co">#&gt; 14  83914             Passo Fundo RS 1803.1 23.6</span>
+<span class="co">#&gt; 15  83967            Porto Alegre RS 1320.2 24.8</span>
+<span class="co">#&gt; 16  83995              Rio Grande RS 1233.6 21.7</span>
+<span class="co">#&gt; 17  83936             Santa Maria RS 1616.8 24.9</span>
+<span class="co">#&gt; 18  83997 Santa Vitória do Palmar RS 1228.9 21.8</span>
+<span class="co">#&gt; 19  83957             São Gabriel RS 1313.9 25.0</span>
+<span class="co">#&gt; 20  83907        São Luiz Gonzaga RS 1770.9 26.1</span>
+<span class="co">#&gt; 21  83966                   Tapes RS 1349.8 23.8</span>
+<span class="co">#&gt; 22  83948                  Torres RS 1363.2 22.3</span>
+<span class="co">#&gt; 23  83927              Uruguaiana RS 1647.4 25.8</span></code></pre></div>
+<ul>
+<li>vetores caracteres não são interpretados como <em>factors</em> em um <em>tibble</em>, em contraste a <code>data.frame()</code> que faz a coerção para <em>factor</em> e não conserva o nome das variáveis. Para quem não estiver informado sobre esse comportamento padrão pode causar problemas nas próximas etapas do trabalho.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>)
+<span class="co">#&gt;   temp..do.ar</span>
+<span class="co">#&gt; 1          18</span></code></pre></div>
+<ul>
+<li>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">site =</span> <span class="kw">c</span>(
     <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
   ),
   <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
   <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>),
-  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="dv">365</span>
-)
-meteo_tbl
-<span class="co">#&gt; # A tibble: 8 x 4</span>
+  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="fl">365.25</span>
+)</code></pre></div>
+<ul>
+<li>nunca adiciona nomes às linhas (<code>row.names</code>)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nomes das linhas de um data frame são carregados adiante</span>
+<span class="kw">subset</span>(prec_anual, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)
+<span class="co">#&gt;   site  ano prec</span>
+<span class="co">#&gt; 2 A001 2001 1400</span>
+<span class="co">#&gt; 4 A002 2001 1470</span>
+<span class="co"># tibble não possui nome de linhas (rownames)</span>
+<span class="kw">subset</span>(prec_anual_tbl, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)
+<span class="co">#&gt; # A tibble: 2 x 4</span>
 <span class="co">#&gt;   site    ano  prec `int prec`</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000  1800       4.93</span>
-<span class="co">#&gt; 2 A001   2001  1400       3.84</span>
-<span class="co">#&gt; 3 A002   2000  1750       4.79</span>
-<span class="co">#&gt; 4 A002   2001  1470       4.03</span>
-<span class="co">#&gt; 5 A002   2002  1630       4.47</span>
-<span class="co">#&gt; 6 A003   2004  1300       3.56</span>
-<span class="co">#&gt; 7 A803   2005  1950       5.34</span>
-<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre></div>
-<p>No exemplo acima, as principais diferenças entre o <em>tibble</em> e o <em>data frame</em> ficam evidentes:</p>
-<ul>
-<li><p>quando impresso no console do R, o <em>tibble</em> mostra a classe de cada variável, enquanto objetos <em>data.frame</em> não.</p></li>
-<li><p>vetores caracteres não são interpretados como <em>factors</em> quando incorparados em um <em>tibble</em>, em contraste, <code>data.frame()</code> faz a coerção de caracteres para <em>factors</em>, o que pode causar problemas nas etapas de processamento futuras.</p></li>
-<li><p>o nome das variáveis nunca são modificados</p></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> </span><span class="dv">1</span>)
-<span class="co">#&gt;   temp..do.ar</span>
-<span class="co">#&gt; 1           1</span></code></pre></div>
-<ul>
-<li><p>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>.</p></li>
-<li><p>nunca adiciona nomes às linhas (<code>row.names</code>)</p></li>
-</ul>
-<p>Quando um <em>tibble</em> é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas depende do tamanho da janela.</p>
-<p>Outras diferenças do <em>tibble</em> podem ser consultada no página de ajuda da função <code>tibble()</code> (<code>?tibble</code>) e na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
-<p>A conversão de um <code>data.frame</code> para <em>tibble</em> pode ser feita simplesmente com a função <code>as_tibble()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_tbl_conv &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(meteo_df)
-meteo_tbl_conv
+<span class="co">#&gt; 1 A001   2001  1400       3.83</span>
+<span class="co">#&gt; 2 A002   2001  1470       4.02</span></code></pre></div>
+<p>Quando um <em>tibble</em> é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas é ajustado de acordo com o tamanho da janela.</p>
+<p>A conversão de um <em>data frame</em> para <em>tibble</em> pode ser feita simplesmente com a função <code>as_tibble()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl_conv &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)
+prec_anual_tbl_conv
 <span class="co">#&gt; # A tibble: 8 x 3</span>
 <span class="co">#&gt;   site    ano  prec</span>
 <span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -353,14 +391,38 @@ meteo_tbl_conv
 <span class="co">#&gt; 6 A003   2004  1300</span>
 <span class="co">#&gt; 7 A803   2005  1950</span>
 <span class="co">#&gt; 8 A803   2006  1100</span></code></pre></div>
-<p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> na tela são controladas através da função de opções de configuração:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
-  <span class="dt">tibble.print_max =</span> n,
-  <span class="dt">tibble.print_min =</span> m
+<p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> no console pode ser configuradas através da função de opções de configuração global do R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">15</span>
+n &lt;-<span class="st"> </span><span class="dv">3</span>
+<span class="kw">options</span>(
+  <span class="dt">tibble.print_max =</span> m,
+  <span class="dt">tibble.print_min =</span> n
 )</code></pre></div>
-<p>Se o número de linhas do <em>tibble</em> for maior que <code>m</code> linhas, a impressão será somente até <code>n</code> linhas.</p>
-<p>Você pode usar <code>options(dplyr.print_min = Inf)</code> se deseja que sempre sejam mostradas todas linhas de seus dados.</p>
-<p>Finalmente é bom recordar a visualização de dados no RStudio através da função <code>View()</code>.</p>
+<p>Com a configuração acima, será impresso no console do R <code>n = 3</code> linhas da <em>tibble</em> se ela tiver mais de <code>m = 15</code> linhas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co"># coersão do data.frame clima_rs para tibble</span>
+<span class="kw">as_tibble</span>(clima_rs)
+<span class="co">#&gt; # A tibble: 23 x 5</span>
+<span class="co">#&gt;   codigo estacao         uf     prec  tmax</span>
+<span class="co">#&gt; * &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 83931  Alegrete        RS    1492.  25.4</span>
+<span class="co">#&gt; 2 83980  Bagé            RS    1300.  24.1</span>
+<span class="co">#&gt; 3 83941  Bento Gonçalves RS    1684.  23  </span>
+<span class="co">#&gt; # ... with 20 more rows</span></code></pre></div>
+<p>Uma alternativa útil para inspecionar mais detalhadamente os dados é a função <code>glimpse()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(clima_rs)
+<span class="co">#&gt; Observations: 23</span>
+<span class="co">#&gt; Variables: 5</span>
+<span class="co">#&gt; $ codigo  &lt;chr&gt; &quot;83931&quot;, &quot;83980&quot;, &quot;83941&quot;, &quot;83919&quot;, &quot;83963&quot;, &quot;83942&quot;, ...</span>
+<span class="co">#&gt; $ estacao &lt;chr&gt; &quot;Alegrete&quot;, &quot;Bagé&quot;, &quot;Bento Gonçalves&quot;, &quot;Bom Jesus&quot;, &quot;C...</span>
+<span class="co">#&gt; $ uf      &lt;chr&gt; &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, ...</span>
+<span class="co">#&gt; $ prec    &lt;dbl&gt; 1492.2, 1299.9, 1683.7, 1807.3, 1477.1, 1823.0, 1630.7...</span>
+<span class="co">#&gt; $ tmax    &lt;dbl&gt; 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, ...</span></code></pre></div>
+<p>Lembre-se também, da função <code>View()</code> para visualizar e navegar através dos dados usando o RStudio.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(clima_rs)</code></pre></div>
+<p>Outras aspectos diferencias do <em>tibble</em> podem consultados na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
+</div>
 </div>
             </section>
 
