@@ -33,9 +33,9 @@ Neste capítulo veremos:
 
 - como manipular os dados com uma ferramenta intuitiva e padronizada
 
-Existem diversas ferramentas da base do `r rblue` para realizar as operações listadas acima. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. 
+Existem diversas ferramentas da base do `r rblue` para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do R. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Consequentemere, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.
 
-Muitas coisas no `r rblue` que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Mudar os códigos da base do `r rblue` é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações no `r rblue` estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes denominado [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
+Muitas coisas no `r rblue` que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do `r rblue` é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no `r rblue` estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
 ```{r, include = FALSE}
 #A nossa capacidade tecnológica de coletar e armazenar uma quantidade massiva de dados digitalmente demanda ferramentas pragmáticas e acessíveis.
@@ -46,28 +46,35 @@ Muitas coisas no `r rblue` que foram desenvolvidas há 20 anos atrás são útei
 knitr::include_graphics("images/workflowtidy.png")
 ```
 
-O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do `r rblue` que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comun de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do `r rblue`. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do `r rblue`), legíveis e com sintaxe mais fácil de lembrar.
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do `r rblue` que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comum de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do `r rblue`. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do `r rblue`), legíveis e com sintaxe mais fácil de lembrar.
 
 ```{r tidyverse-components, out.width="80%", fig.cap="Coleção de pacotes do *tidyverse*.", echo = FALSE}
 knitr::include_graphics("images/tidyverse_components.png")
 ```
-  
+
 
 ## Pré-requisitos
 
-O pacote tidyverse torna fácil de instalar e carregar os pacotes do *tidyverse* em apenas um comando.
+O pacote **tidyverse** torna fácil de instalar e carregar os pacotes do *tidyverse* com apenas uma chamada à função:
 
 ```{r, eval = FALSE}
 install.packages("tidyverse")
 ```
 
-Agora você pode carregar os pacotes.
+E da mesma forma carregamos o conjunto de pacotes com:
 
 ```{r}
 library(tidyverse)
 ```
 
-Outros pacotes:
+```{block, tidyverse-load, type='rmdnote'}
+Ao carregar o pacote **tidyverse** é mostrado no console os pacotes que foram carregados. À direita são mostradas as configurações e informações sobre o seu sistema operacional. Na parte inferior, há uma mensagem sobre os conflitos entre as funções da base do R (ou de outros pacotes) que tem mesmo nome que as de algum pacote do *tidyverse*. A função do pacote carregado mais recentemente terá prioridade de uso. No caso acima, a função `filter()` do **dplyr** sobrepôs a função `filter()` do pacote **stats** da base do R. Em situações como esta é melhor deixar explícito no seu código a chamada à função usando `pacote::funcao()`.
+```
+
+
+
+
+Neste capítulo além do **tidyverse** usaremos outros pacotes que já podemos instalar:
 
 ```{r, message=FALSE, warning=FALSE}
 pacotes <- c("openair", "lubridate", "scales", "rio")
@@ -75,113 +82,167 @@ easypackages::libraries(pacotes)
 ```
 
 
-### Dados  
+### Dados 
 
-Dados climatológicos:
+Para este capítulo utilizaremos alguns conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
 
-```{r}
+1. Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) localizadas no estado do Rio Grande do Sul.
+
+```{r, results='hide'}
 clima_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true"
 # dados de exemplo
 clima_rs <- import(clima_file_url, format = "RDS")
 clima_rs
 ```
 
-Dados de estação meteorológicas:
+```{r, echo = FALSE}
+kable(clima_rs, align = "c")
+```
 
-```{r}
-meteo_df <- data.frame(
+2. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
+
+```{r, results='hide'}
+prec_anual <- data.frame(
   site = c(
     "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
   ),
   ano = c(2000:2001, 2000:2002, 2004, 2005, 2006),
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100)
 )
-meteo_df
+prec_anual
 ```
 
+```{r, echo = FALSE}
+kable(prec_anual, align = "c")
+```
 
 
 ## *tibble*: um *data frame* aperfeiçoado
 
-*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** define uma nova classe de *data frame* para o R, o *tbl_df* ('*tibble diffs*'). Uma *tibble* é uma extensão da classe de dados *data.frame* da base do R, que inclui aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*.
+*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** estende a classe *data frame* da base do `r rblue` com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*. O novo objeto é chamdo de *tibble* e sua classde de `tbl_df`. 
 
-Para criar um *tibble* nós usamos a função *tibble()*. Para ilustrar algumas vantagens do *tibble* vamos recriar o *data frame* `meteo_df` incluindo uma nova variável `int prec`(intensidade da precipitação):
+### Funcionalidades do *tibble*
+
+Para ilustrar algumas vantagens do *tibble*, vamos recriar o *data frame* `prec_anual` incluindo uma nova variável `int prec`(intensidade da precipitação) baseada na razão da precipitação pelo número de dias no ano. Criamos um *tibble* com a função `tibble()`.
 
 ```{r}
-meteo_tbl <- tibble(
+prec_anual_tbl <- tibble(
+  site = c(
+    "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
+  ),
+  ano = c(2000:2001, 2000:2002, 2004, 2005, 2006),
+  prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100)
+)
+```
+
+Com o exemplo acima, as principais diferenças entre um *tibble* e um *data frame* podem ser demonstradas:
+
+- quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
+
+```{r}
+clima_rs
+```
+
+
+- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Para quem não estiver informado sobre esse comportamento padrão pode causar problemas nas próximas etapas do trabalho. 
+
+```{r}
+data.frame("temp. do ar" = "18")
+```
+
+- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
+
+```{r}
+prec_anual_tbl <- tibble(
   site = c(
     "A001", "A001", "A002", "A002", "A002", "A003", "A803", "A803"
   ),
   ano = c(2000:2001, 2000:2002, 2004, 2005, 2006),
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100),
-  "int prec" = prec / 365
+  "int prec" = prec / 365.25
 )
-meteo_tbl
 ```
 
-No exemplo acima, as principais diferenças entre o *tibble* e o *data frame* ficam evidentes:
-
-- quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
-
-- vetores caracteres não são interpretados como *factors* quando incorparados em um *tibble*, em contraste, `data.frame()` faz a coerção de caracteres para *factors*, o que pode causar problemas nas etapas de processamento futuras.
-
-- o nome das variáveis nunca são modificados
-
-```{r}
-data.frame("temp. do ar" = 1)
-```
-
-- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
 
 - nunca adiciona nomes às linhas (`row.names`)
 
-Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas depende do tamanho da janela.
-
-Outras diferenças do *tibble* podem ser consultada no página de ajuda da função `tibble()` (`?tibble`) e na vinheta do referido pacote (`vignette("tibble")`).
-
-A conversão de um `data.frame` para *tibble* pode ser feita simplesmente com a função `as_tibble()`:
-
 ```{r}
-meteo_tbl_conv <- as_tibble(meteo_df)
-meteo_tbl_conv
+# nomes das linhas de um data frame são carregados adiante
+subset(prec_anual, ano == 2001)
+# tibble não possui nome de linhas (rownames)
+subset(prec_anual_tbl, ano == 2001)
 ```
 
-As opções de controle *default* da impressão de *tibbles* na tela são controladas através da função de opções de configuração:
 
-```{r, eval=FALSE}
+Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas é ajustado de acordo com o tamanho da janela.
+
+A conversão de um *data frame* para *tibble* pode ser feita simplesmente com a função `as_tibble()`:
+
+```{r}
+prec_anual_tbl_conv <- as_tibble(prec_anual)
+prec_anual_tbl_conv
+```
+
+As opções de controle *default* da impressão de *tibbles* no console pode ser configuradas através da função de opções de configuração global do R:
+
+```{r}
+m <- 15
+n <- 3
 options(
-  tibble.print_max = n,
-  tibble.print_min = m
+  tibble.print_max = m,
+  tibble.print_min = n
 )
 ```
 
-Se o número de linhas do *tibble* for maior que `m` linhas, a impressão será somente até `n` linhas. 
+Com a configuração acima, será impresso no console do R `n = 3` linhas da *tibble* se ela tiver mais de `m = 15` linhas. 
 
-Você pode usar `options(dplyr.print_min = Inf)` se deseja que sempre sejam mostradas todas linhas de seus dados.
+```{r}
+nrow(clima_rs) > 15
+# coersão do data.frame clima_rs para tibble
+as_tibble(clima_rs)
+```
 
-Finalmente é bom recordar a visualização de dados no RStudio através da função `View()`.
+Uma alternativa útil para inspecionar mais detalhadamente os dados é a função `glimpse()`.
+
+```{r}
+glimpse(clima_rs)
+```
+
+
+Lembre-se também, da função `View()` para visualizar e navegar através dos dados usando o RStudio.
+
+```{r, eval = FALSE}
+View(clima_rs)
+```
+
+
+Outras aspectos diferencias do *tibble* podem consultados na vinheta do referido pacote (`vignette("tibble")`).
 
 
 ## Restruturação de dados
 
 > Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson].
 
+```{r, include=FALSE}
+# references
+#http://www.storybench.org/getting-started-with-tidyverse-in-r/
+```
 
 ### Dados arrumados
 
-O conceito \"dados arrumados\" foi estabelecido por @Wickham2014 e representa uma forma padronizada de conectar a estrutura de um conjunto de dados (formato) com a sua semântica (significado). 
+O conceito \"dados arrumados\" foi estabelecido por @Wickham2014 e representa uma forma padronizada de conectar a estrutura (formato) de um conjunto de dados a sua semântica (significado).
 
 Dados bem estruturados servem para:
 
-- fornecer dados propícios para o processamento e análise de dados por softwares;
+- fornecer dados propícios para o processamento e análise de dados por *softwares*;
 
 - revelar informações e facilitar a percepção de padrões
 
-Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir as seguintes regras:
+Dados no \"formato arrumado\" atendem as seguintes regras:
 
-1. colocar seus dados em formato retangular
+1. dados em formato retangular
 
-2. cada variável corresponde a uma coluna 
+2. cada variável está em uma coluna 
 
 3. cada observação corresponde a uma linha
 
@@ -189,12 +250,21 @@ Para rearranjar um conjunto de dados no \"formato arrumado\" você deve seguir a
 
 5. cada tipo de unidade observacional deve compor uma tabela
 
+```{block, significados-obs, type='rmdnote'}
+Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras, dependendo da área de aplicação.
+```
+
+ 
 ![Estrutura de dados padronizados](http://garrettgman.github.io/images/tidy-1.png)
 
-Um exemplo de dados no formato arrumado é o tibble `meteo_tbl` mostrado abaixo:  
+Um exemplo de dados no formato arrumado é o *tibble* `prec_anual_tbl` mostrado abaixo:
+
 ```{r, echo = FALSE}
 kable(
-  rename(meteo_tbl, "intensidade" = `int prec`),
+  rename(
+    prec_anual_tbl, 
+    "intensidade" = `int prec`
+  ),
   longtable = TRUE,
   booktabs = TRUE,
   #caption = "Exemplo de dados no formato arrumado.",
@@ -221,7 +291,7 @@ Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é i
 
 - uma observação deve ser distribuída ao longo das linhas
 
-Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos problemas. Felizmente, agora você saberá como resolver usando as principais funções do pacote **tidyr**: `gather()` e `spread()`.
+Conjuntos de dados ambientais brasileiros tipicamente sofrem de ambos problemas. Felizmente, eles são resolvidos com as  duas principais funções do pacote **tidyr**: `gather()` e `spread()`.
 
 ```{r, include = FALSE}
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
@@ -232,127 +302,124 @@ Conjuntos de dados meteorológicos brasileiros tipicamente sofrem de ambos probl
 
 ### tidyr
 
+O pacote **tidyr** é a extensão do `r rblue` que fornece funcionalidades para reestruturar os dados entre diferentes formatos. 
 
+Os principais formatos de dados são: 
 
-O pacote **tidyr** é a extensão do `r rblue` que fornece funcionalidades para reestruturar os dados entre diferentes formatos. Os principais formatos são: 
+- dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;
 
-- dados longos, são tabelas com maior extensão vertical ou no sentido das linhas; geralmente contém variáveis ao longo das linhas;
+- dados amplos, são tabelas com valores mais dstribuínos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;
 
-- dados amplos, são tabelas largas, com maior extensão horizontal ou no sentido das colunas, geralmente contém pelo menos uma unidade observacional nas colunas;
-
-Com os dados no formado \"arrumado\" você consegue fazer facilmente qualquer transformação na estrutura dos dados.
 
 #### Formato de dados longo {#formatos-dados}
 
-Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `meteo_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para reproduzir exatamente os dados de exemplo do formato \"arrumado\".
+Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `prec_anual_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para  seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no R.
 
 ```{r}
-meteo_tbl <- rename(
-  meteo_tbl,
+prec_anual_tbl <- rename(
+  prec_anual_tbl,
   "intensidade" = `int prec`
 ) 
-meteo_tbl
+prec_anual_tbl
 ```
 
-Agora, vamos usar a função `gather()` para reestruturar os dados `meteo_tbl` em uma nova tabela de dados que chamaremos `meteo_longo`. 
+Vamos usar a função `gather()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
 
-Na nova tabela, manteremos as colunas `site`, `ano` e   teremos duas novas colunas: `variavel` e `valor`. A coluna `variavel` reunirá o nome das variáveis `prec` e `intensidade`. A coluna `valor`reunirá os valores das variáveis `prec` e `intensidade`. 
+Na nova tabela, manteremos as colunas `site`, `ano` e   teremos dois novos pares de variáveis: `variavel` e `valor`. Na coluna `variavel` será distribuído o nome das variáveis `prec` e `intensidade`. A coluna `valor`reunirá os valores das variáveis `prec` e `intensidade`.
 
 ```{r}
-meteo_long <- gather(
-  data = meteo_tbl,
+prec_anual_long <- gather(
+  data = prec_anual_tbl,
   key = variavel,
   value = medida,
   prec, intensidade
 )
-meteo_long
+prec_anual_long
 ```
 
 O código acima demonstra os principais argumentos requeridos pela função `gather`:
 
-- `data = meteo_tbl`, o *data frame* ou *tibble* que será reestruturado;
+- `data = prec_anual_tbl`, o *data frame* ou *tibble* que será reestruturado;
 
-- `key = variavel`, nome que nós escolhemos para dar à nova coluna que reunirá os **nomes das variáveis** do *data frame* orginal.
+- `key = variavel`, nome que nós escolhemos para dar à nova coluna que distribuirá os **nomes das variáveis** dos dados de entrada.
 
-- `value = medida`, nome que nós escolhemos para dar à nova coluna que reunirá os **valores das variáveis** do *data frame* original.
+- `value = medida`, nome que nós escolhemos para dar à nova coluna que reunirá os **valores das variáveis** dos dados de entrada;
 
-- `...`, lista com o nome das variáveis, no código acima corresponde à `prec, intensidade` que é uma funcionalidade para seleção de variáveis do pacote `dplyr` que significa a seleção das variáveis compreendidas entre a coluna `prec` e `intensidade` 
+- `...`, lista com o nome das variáveis, no código acima corresponde à `prec, intensidade`;
 
 As demais colunas dos dados (`site` e `ano`) serão mantidas inalteradas e seus valores serão repetidos quando necessário.
 
-Como em outras funções do *tiverse* você perceberá que os argumentos **não são especificados como caracteres** e sim como nomes, como aqueles usados quando definimos variáveis (p.ex.: `nome_var <- 10`). Os argumentos `key` e `value` podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.
+Como em outras funções dos pacotes do **tidyverse** você perceberá que os argumentos **não são especificados como caracteres** e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: `nome_var <- 10`). Os argumentos `key` e `value` podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.
 
-Se nós desejássemos que todas colunas do *data frame* fossem reunidas em uma nova coluna `atributo` e os seus valores em uma nova coluna `valor`, isso poderia ser feito simplesmente sem especificar `prec, intensidade` no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares (variável/observação) de valores dos dados originais com 4 colunas por 8 linhas:
+Se nós desejássemos que todas colunas do *data frame* fossem reunidas em uma nova coluna `atributo` e os seus valores em uma nova coluna `valor`, isso poderia ser feito simplesmente sem especificar variáveis de interesse (`prec, intensidade`) no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais:
 
 ```{r}
-meteo_longo <- gather(
-  meteo_tbl, 
+prec_anual_longo <- gather(
+  prec_anual_tbl, 
   key = atributo,
   value = valor
 )
-meteo_longo
+prec_anual_longo
 ```
 
-Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função gather, serão atribuídos os valores *default*.
+Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função gather, serão atribuídos os valores *default*: `key` e `value`.
 
 ```{r}
-gather(meteo_tbl)
+gather(prec_anual_tbl)
 ```
 
 
 #### Formato de dados amplo
 
-Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da `spread()`. Você verá que a função `spread()` é complementar à `gather()`.
+Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função `spread()`. Esta função é complementar à `gather()`.
 
 ```{r}
-meteo_long
+prec_anual_long
 ```
 
-Nosso objetivo é então gerar uma nova tabela de dados reestruturada de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
+Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
 
 ```{r}
-meteo_amplo <- spread(
-  data = meteo_long,
+prec_anual_amplo <- spread(
+  data = prec_anual_long,
   key = variavel,
   value = medida
 )
-meteo_amplo
+prec_anual_amplo
 ```
 
-Esta operação foi usada para colocar os dados originais (`meteo_long`) no formato \"arrumado\" (meteo_ampo).
+Esta operação serviu para colocar os dados originais (`prec_anual_long`) no formato \"arrumado\" (`prec_anual_amplo`).
 
 
+### Funções adicionais do **tidyr**
 
-### Outras funções do **tidyr**
-
-Você pode unir duas colunas com um separador com a função `unite()`:
+Você pode unir duas colunas inserindo um separador entre elas com a função `unite()`:
 
 ```{r}
-(meteo_long_u <- unite(meteo_long, 
+(prec_anual_long_u <- unite(prec_anual_long, 
                        col = site_ano, 
                        site, ano, 
                        sep = "_"))
 ```
 
-Para separar colunas você pode usar a função recíproca:
-
+Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função `separate()`:
 
 ```{r}
-separate(meteo_long_u, 
+separate(prec_anual_long_u, 
          col = site_ano,
          sep =  "_",
          into = c("site", "ano"))
 ```
 
-Para completar unidades observacionais podemos utilizar a função `complete()`:
+Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função `complete()`:
 
 ```{r}
-meteo_df
-meteo_comp <- complete(
-  meteo_df,
+prec_anual
+prec_anual_comp <- complete(
+  prec_anual,
   site, ano
 )
-meteo_comp
+prec_anual_comp
 ```
 
 
@@ -368,13 +435,13 @@ Gramática de manipulação de dados implementada no pacote **dplyr**.
   - `filter()`, para filtrar observações
   - `arrange()`, para ordenar variáveis
   - `mutate()`, para transformat variáveis
-  - `group_by()` e `summarise()` , para agrupar observações e obter resumos estatísticos
+  - `group_by()` e `summarise()`, para agrupar observações e obter resumos estatísticos
 
 ### Operador Pipe `%>%`
 
 Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.
 
-Embora não requerido os pacotes tidyr e dplyr usam o operador pipe `%>%` que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código. 
+Embora não requerido os pacotes **tidyr** e **dplyr** usam o operador pipe `%>%` que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código. 
 
 ```{r}
 # exemplo simples para aplicar uma função

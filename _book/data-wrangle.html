@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-21">
+<meta name="date" content="2018-06-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -238,11 +238,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
-<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -309,15 +311,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><p>como reestruturar os dados de uma forma versátil e fácil de entender</p></li>
 <li><p>como manipular os dados com uma ferramenta intuitiva e padronizada</p></li>
 </ul>
-<p>Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas são um pouco confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados.</p>
-<p>Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Mudar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes denominado <a href="https://www.tidyverse.org/"><em>tidyverse</em></a> desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura <a href="data-wrangle.html#fig:tidy-workflow">9.1</a>).</p>
+<p>Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do R. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Consequentemere, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.</p>
+<p>Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes <a href="https://www.tidyverse.org/"><em>tidyverse</em></a> desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura <a href="data-wrangle.html#fig:tidy-workflow">9.1</a>).</p>
 <div class="figure"><span id="fig:tidy-workflow"></span>
 <img src="images/workflowtidy.png" alt="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017." width="100%" />
 <p class="caption">
 Figure 9.1: Modelo de ferramentas empregadas em ciência de dados. Adaptado de <span class="citation">Wickham and Grolemund (<a href="#ref-Wickham2017">2017</a>)</span>.
 </p>
 </div>
-<p>O termo <em>tidyverse</em> pode ser traduzido como ‘universo arrumado’ e consiste em um pacote do <img src="images/logo_r.png" width="20"> que agrupa pacotes (Figura <a href="data-wrangle.html#fig:tidyverse-components">9.2</a>) que compartilham uma filosofia comun de <em>design</em>, gramática <span class="citation">(Wickham et al. <a href="#ref-Wickham-dplyr">2017</a>)</span> e estrutura de dados <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span>. Consequentemente, o <em>tidyverse</em> tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do <img src="images/logo_r.png" width="20">. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do <img src="images/logo_r.png" width="20">), legíveis e com sintaxe mais fácil de lembrar.</p>
+<p>O termo <em>tidyverse</em> pode ser traduzido como ‘universo arrumado’ e consiste em um pacote do <img src="images/logo_r.png" width="20"> que agrupa pacotes (Figura <a href="data-wrangle.html#fig:tidyverse-components">9.2</a>) que compartilham uma filosofia comum de <em>design</em>, gramática <span class="citation">(Wickham et al. <a href="#ref-Wickham-dplyr">2017</a>)</span> e estrutura de dados <span class="citation">(Wickham <a href="#ref-Wickham2014">2014</a>)</span>. Consequentemente, o <em>tidyverse</em> tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do <img src="images/logo_r.png" width="20">. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do <img src="images/logo_r.png" width="20">), legíveis e com sintaxe mais fácil de lembrar.</p>
 <div class="figure"><span id="fig:tidyverse-components"></span>
 <img src="images/tidyverse_components.png" alt="Coleção de pacotes do *tidyverse*." width="80%" />
 <p class="caption">

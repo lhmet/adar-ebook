@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp8d4AHB/file413b65f49eec"
+#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp8d4AHB/file413b65f49eec.csv"
+#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp8d4AHB/file413b65f49eec.csv"
+#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp8d4AHB/file413b9627f49"
+#> [1] "/tmp/RtmpscHuyQ/file44ae1b27e6bb"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp8d4AHB/file413b9627f49.tsv"
+#> [1] "/tmp/RtmpscHuyQ/file44ae1b27e6bb.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp8d4AHBSOI.csv"
+#> [1] "/tmp/RtmpscHuyQSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp8d4AHB/cru10min30_tmp.nc"
+#> [1] "/tmp/RtmpscHuyQ/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmp8d4AHB/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/RtmpscHuyQ/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /tmp/Rtmp8d4AHB/cru10min30_tmp.nc 
+#> data source : /tmp/RtmpscHuyQ/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -1078,19 +1078,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq       mean    median        uq       max
-#>   writexl  7.176492  7.346524   9.056802  7.736047  9.225657  13.79929
-#>  openxlsx 47.877718 48.846230 122.515648 49.362915 82.135247 384.35613
-#>  neval cld
-#>      5   a
-#>      5   a
+#>      expr      min        lq      mean    median        uq       max neval
+#>   writexl  9.01393  9.942926  16.38602  10.29491  22.38759  30.29075     5
+#>  openxlsx 61.64823 71.144354 179.14175 109.42481 212.95492 440.53646     5
+#>  cld
+#>    a
+#>    a
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 11 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
@@ -1144,7 +1144,13 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 
 
-4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. (a) Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. (b) Compare as dimensões do *data frame* com as dimensões do objeto importado. O número de linhas e de colunas do *data frame* correpondem a quais propriedades ou dimensões do objeto importado?
+4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. 
+
+    a. Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. 
+    
+    b. Compare as dimensões do *data frame* com as dimensões do objeto importado, o número de linhas e de colunas do *data frame* correspondem a quais propriedades ou dimensões do objeto importado?
+
+
 
 
 

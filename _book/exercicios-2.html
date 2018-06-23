@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-21">
+<meta name="date" content="2018-06-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -238,11 +238,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="pre-requisitos-2.html"><a href="pre-requisitos-2.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeicoado.html"><a href="tibble-um-data-frame-aperfeicoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
 <li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
-<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#outras-funcoes-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Outras funções do <strong>tidyr</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#operador-pipe"><i class="fa fa-check"></i><b>9.4.1</b> Operador Pipe <code>%&gt;%</code></a></li>
@@ -314,7 +316,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ol></li>
 <li><p>Importe as anomalias padronizadas dos dados do <a href="%22http://www.cpc.ncep.noaa.gov/data/indices/soi%22">SOI</a> (2ª tabela ou a tabela mais abaixo na página do <em>link</em>). Veja a seção <a href="arquivos-texto.html#arquivos-fwf">8.4.1.2</a> para detalhes. Mostre as últimas linhas dos dados importados.</p></li>
 <li><p>Importe no R o arquivo excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste <a href="http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls">link</a>. Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.</p></li>
-<li><p>Faça <em>download</em> de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo <code>prec_daily_UT_Brazil_v2.2_20100101_20151231.nc</code>), disponível em <a href="https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA" class="uri">https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA</a>. Navegue pelas páginas até encontrar o arquivo NetCDF. (a) Importe os dados para o R, converta-os para <em>data frame</em> e verifique o número de colunas e linhas resultantes. (b) Compare as dimensões do <em>data frame</em> com as dimensões do objeto importado. O número de linhas e de colunas do <em>data frame</em> correpondem a quais propriedades ou dimensões do objeto importado?</p></li>
+<li><p>Faça <em>download</em> de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo <code>prec_daily_UT_Brazil_v2.2_20100101_20151231.nc</code>), disponível em <a href="https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA" class="uri">https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA</a>. Navegue pelas páginas até encontrar o arquivo NetCDF.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Importe os dados para o R, converta-os para <em>data frame</em> e verifique o número de colunas e linhas resultantes.</p></li>
+<li><p>Compare as dimensões do <em>data frame</em> com as dimensões do objeto importado, o número de linhas e de colunas do <em>data frame</em> correspondem a quais propriedades ou dimensões do objeto importado?</p></li>
+</ol></li>
 </ol>
 
 </div>
