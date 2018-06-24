@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="arranjo.html">
-<link rel="next" href="dataframe.html">
+<link rel="prev" href="tibble-um-data-frame-aperfeicoado.html">
+<link rel="next" href="manipulacao-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -309,571 +309,353 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lista" class="section level2">
-<h2><span class="header-section-number">7.4</span> Lista</h2>
-<p>Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os <strong>vetores atômicos</strong>, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:</p>
+<div id="restruturacao-de-dados-retangulares" class="section level2">
+<h2><span class="header-section-number">9.3</span> Restruturação de dados retangulares</h2>
+<blockquote>
+<p>Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados <span class="citation">(Dasu and Johnson <a href="#ref-Dasu-Johnson">2003</a>, <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">New York Times 2014/08/18</a>)</span>.</p>
+</blockquote>
+<div id="dados-arrumados" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Dados arrumados</h3>
+<p>O conceito &quot;dados arrumados&quot; foi estabelecido por <span class="citation">Wickham (<a href="#ref-Wickham2014">2014</a>)</span> e representa uma forma padronizada de conectar a estrutura (formato) de um conjunto de dados a sua semântica (significado).</p>
+<p>Dados bem estruturados servem para:</p>
+<ul>
+<li><p>fornecer dados propícios para o processamento e análise de dados por <em>softwares</em>;</p></li>
+<li><p>revelar informações e facilitar a percepção de padrões</p></li>
+</ul>
+<p>Dados no &quot;formato arrumado&quot; atendem as seguintes regras para dados retangulares:</p>
 <ol style="list-style-type: decimal">
-<li>Os elementos podem ser de diferentes classes de objetos (p.ex.: um elemento <code>numeric</code>, outro <code>character</code>);</li>
-<li>Cada elemento pode ter um tamanho diferente;</li>
-<li>Os elementos podem conter diferentes estrutura de dados (p.ex.: um elemento <code>matrix</code>, outro <code>vector</code>);</li>
+<li><p>cada <strong>variável</strong> está em uma coluna</p></li>
+<li><p>cada <strong>observação</strong> corresponde a uma linha</p></li>
+<li><p>cada <strong>valor</strong> corresponde a uma célula</p></li>
+<li><p>cada tipo de unidade observacional deve compor uma tabela</p></li>
 </ol>
-<p>Dentro da lista o conjunto de objetos são ordenados e cada elemento pode conter sub-elementos.</p>
-<div id="criacao-2" class="section level3">
-<h3><span class="header-section-number">7.4.1</span> Criação</h3>
-<p>As vezes precisamos de um <em>container</em> para armazenar diferentes tipos de dados do R e com diferente tamanhos. As <em>listas</em> servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de <em>dataframes</em>, sub-listas, matrizes e vetores.</p>
-<p>Listas podem ser criadas com a função <code>list()</code>. A especificação do conteúdo de uma lista é muito similar a da função <code>c()</code> vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função <code>list()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de dados heterogêneos</span>
-lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">2.3</span>, <span class="fl">5.9</span>), <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="st">&quot;R&quot;</span>, <span class="kw">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))
-lst
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] 1 2 3 4</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] 1.1 2.3 5.9</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [1]  TRUE FALSE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; [1] &quot;R&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[5]]</span>
-<span class="co">#&gt; [[5]][[1]]</span>
-<span class="co">#&gt; [1] 0</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[5]][[2]]</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co"># estrutura da lista</span>
-<span class="kw">str</span>(lst)
-<span class="co">#&gt; List of 5</span>
-<span class="co">#&gt;  $ : int [1:4] 1 2 3 4</span>
-<span class="co">#&gt;  $ : num [1:3] 1.1 2.3 5.9</span>
-<span class="co">#&gt;  $ : logi [1:2] TRUE FALSE</span>
-<span class="co">#&gt;  $ : chr &quot;R&quot;</span>
-<span class="co">#&gt;  $ :List of 2</span>
-<span class="co">#&gt;   ..$ : num 0</span>
-<span class="co">#&gt;   ..$ : num 1</span>
-<span class="co"># tamanho da lista (num. de componentes ou elementos)</span>
-<span class="kw">length</span>(lst)
-<span class="co">#&gt; [1] 5</span>
-<span class="co"># atribuindo nomes a lista</span>
-<span class="kw">names</span>(lst)
-<span class="co">#&gt; NULL</span>
-<span class="kw">names</span>(lst) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vetor_int&quot;</span>, <span class="st">&quot;vetor_num&quot;</span>, <span class="st">&quot;logico&quot;</span>, <span class="st">&quot;char&quot;</span>, <span class="st">&quot;lista&quot;</span>)</code></pre></div>
-<p>Os índices em colchetes duplos <code>[[]]</code> identificam o elemento ou a componente da lista. Os índices em colchete simples <code>[]</code> indicam qual sub-elemento da lista está sendo mostrado. Por exemplo <code>1.1</code> é o primeiro sub-elemento do segundo elemento da lista <code>lst</code>. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.</p>
-<div class="rmdtip">
+<div class="rmdnote">
 <p>
-Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados. Como por exemplo a saída das funções <code>rle()</code>.
+Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras dependendo da área de aplicação.
 </p>
 </div>
-<p>Para verificar se uma lista é aninhada usamos a função <code>is.recursive()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.recursive</span>(lst)
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<p>Vamos ver um exemplo onde criamos uma lista com informações de duas estações meteorológicas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matriz de dados meteorológicos da estação de Santa Maria</span>
-dados_sm &lt;-<span class="st"> </span><span class="kw">cbind</span>(
-  <span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>),
-  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">210</span>, <span class="dv">110</span>)
-)
-dados_sm
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co"># lista com informações da estação de santa maria</span>
-sm_l &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="op">-</span><span class="dv">23</span>),
-  <span class="st">&quot;Santa Maria&quot;</span>,
-  dados_sm
-)
-sm_l
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co"># adicionar nomes aos elementos</span>
-<span class="kw">names</span>(sm_l) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;coords&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;dados&quot;</span>)
-sm_l
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co"># matriz de dados meteorológicos da estação de Júlio de Castilhos</span>
-dados_jc &lt;-<span class="st"> </span><span class="kw">cbind</span>(
-  <span class="dt">tar =</span> <span class="kw">c</span>(<span class="fl">22.5</span>, <span class="dv">20</span>, <span class="fl">18.75</span>, <span class="dv">18</span>, <span class="fl">20.25</span>, <span class="fl">17.75</span>),
-  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">360</span>, <span class="dv">310</span>, <span class="dv">285</span>, <span class="dv">270</span>, <span class="dv">315</span>, <span class="dv">265</span>)
-)
-<span class="co"># criando lista de JC, mas nomeando de forma diferente</span>
-jc_l &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="dt">coords =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">45.1</span>, <span class="op">-</span><span class="fl">23.2</span>),
-  <span class="dt">cidade =</span> <span class="st">&quot;Júlio de Castilhos&quot;</span>,
-  <span class="dt">dados =</span> dados_jc
-)
-<span class="co"># adicionar nomes as componentes</span>
-<span class="kw">names</span>(jc_l) &lt;-<span class="st"> </span><span class="kw">names</span>(sm_l)
-jc_l
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45.1 -23.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;        tar prec</span>
-<span class="co">#&gt; [1,] 22.50  360</span>
-<span class="co">#&gt; [2,] 20.00  310</span>
-<span class="co">#&gt; [3,] 18.75  285</span>
-<span class="co">#&gt; [4,] 18.00  270</span>
-<span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span></code></pre></div>
-<p>As informações de cada estação estão armazenadas em 2 listas. Mas é mais prático termos todas estações em um única lista:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combinando listas mantendo os elementos separadamente</span>
-dados_l &lt;-<span class="st"> </span><span class="kw">list</span>(sm_l, jc_l)
-dados_l
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [[1]]$coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [[2]]$coords</span>
-<span class="co">#&gt; [1] -45.1 -23.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$cidade</span>
-<span class="co">#&gt; [1] &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]$dados</span>
-<span class="co">#&gt;        tar prec</span>
-<span class="co">#&gt; [1,] 22.50  360</span>
-<span class="co">#&gt; [2,] 20.00  310</span>
-<span class="co">#&gt; [3,] 18.75  285</span>
-<span class="co">#&gt; [4,] 18.00  270</span>
-<span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span>
-<span class="kw">names</span>(dados_l)
-<span class="co">#&gt; NULL</span>
-<span class="kw">names</span>(dados_l) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sm&quot;</span>, <span class="st">&quot;jc&quot;</span>)
-dados_l
-<span class="co">#&gt; $sm</span>
-<span class="co">#&gt; $sm$coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sm$cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $sm$dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $jc</span>
-<span class="co">#&gt; $jc$coords</span>
-<span class="co">#&gt; [1] -45.1 -23.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $jc$cidade</span>
-<span class="co">#&gt; [1] &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $jc$dados</span>
-<span class="co">#&gt;        tar prec</span>
-<span class="co">#&gt; [1,] 22.50  360</span>
-<span class="co">#&gt; [2,] 20.00  310</span>
-<span class="co">#&gt; [3,] 18.75  285</span>
-<span class="co">#&gt; [4,] 18.00  270</span>
-<span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span>
-<span class="co"># como a lista é um tipo vetor, a função length()</span>
-<span class="co"># fornece o número de elementos da lista</span>
-<span class="kw">length</span>(dados_l)
-<span class="co">#&gt; [1] 2</span></code></pre></div>
-<p>Para resumir a estrutura de uma lista (ou <em>dataframe</em>) podemos usar a função <code>str()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados_l)
-<span class="co">#&gt; List of 2</span>
-<span class="co">#&gt;  $ sm:List of 3</span>
-<span class="co">#&gt;   ..$ coords: num [1:2] -45 -23</span>
-<span class="co">#&gt;   ..$ cidade: chr &quot;Santa Maria&quot;</span>
-<span class="co">#&gt;   ..$ dados : num [1:6, 1:2] 31 35 21 23 33 17 300 200 150 120 ...</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
-<span class="co">#&gt;   .. .. ..$ : NULL</span>
-<span class="co">#&gt;   .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span>
-<span class="co">#&gt;  $ jc:List of 3</span>
-<span class="co">#&gt;   ..$ coords: num [1:2] -45.1 -23.2</span>
-<span class="co">#&gt;   ..$ cidade: chr &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt;   ..$ dados : num [1:6, 1:2] 22.5 20 18.8 18 20.2 ...</span>
-<span class="co">#&gt;   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
-<span class="co">#&gt;   .. .. ..$ : NULL</span>
-<span class="co">#&gt;   .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre></div>
-<p>As listas também poderiam ser combinadas com função concatena ou combina <code>c()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l2 &lt;-<span class="st"> </span><span class="kw">c</span>(sm_l, jc_l)
-dados_l2
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45.1 -23.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;        tar prec</span>
-<span class="co">#&gt; [1,] 22.50  360</span>
-<span class="co">#&gt; [2,] 20.00  310</span>
-<span class="co">#&gt; [3,] 18.75  285</span>
-<span class="co">#&gt; [4,] 18.00  270</span>
-<span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span>
-<span class="kw">str</span>(dados_l2)
-<span class="co">#&gt; List of 6</span>
-<span class="co">#&gt;  $ coords: num [1:2] -45 -23</span>
-<span class="co">#&gt;  $ cidade: chr &quot;Santa Maria&quot;</span>
-<span class="co">#&gt;  $ dados : num [1:6, 1:2] 31 35 21 23 33 17 300 200 150 120 ...</span>
-<span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
-<span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span>
-<span class="co">#&gt;  $ coords: num [1:2] -45.1 -23.2</span>
-<span class="co">#&gt;  $ cidade: chr &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt;  $ dados : num [1:6, 1:2] 22.5 20 18.8 18 20.2 ...</span>
-<span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
-<span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre></div>
+<div class="figure">
+<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrutura de dados padronizados" />
+<p class="caption">Estrutura de dados padronizados</p>
 </div>
-<div id="indexacao-1" class="section level3">
-<h3><span class="header-section-number">7.4.2</span> Indexação</h3>
-<div id="operador" class="section level4">
-<h4><span class="header-section-number">7.4.2.1</span> Operador <code>[</code></h4>
-<p>Assim como em vetores, podemos acessar os elementos de uma lista usando os colchetes <code>[</code> com índices numéricos positivos, negativos, caracteres (nomes dos elementos) e lógicos. As expressões abaixo, ilustram o uso dessas diferentes formas de seleção de elementos e produzem o mesmo resultado.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-sm_l[<span class="kw">c</span>(<span class="st">&quot;coords&quot;</span>, <span class="st">&quot;alt&quot;</span>)]
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $&lt;NA&gt;</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p>O resultado da seleção do 1º e 2º elemento é uma lista menor que a original. Isso não é muito útil, uma vez que muitas funções do R não lidam com listas. Por exemplo, se quiséssemos calcular a soma do vetor contido do primeiro elemento da lista <code>lst</code> obtém-se um erro.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção do 1º elemento da lst</span>
-lst[<span class="dv">1</span>]
-<span class="co">#&gt; $vetor_int</span>
-<span class="co">#&gt; [1] 1 2 3 4</span>
-<span class="co"># o resultado da seleção é uma lista</span>
-<span class="kw">mode</span>(lst[<span class="dv">1</span>])
-<span class="co">#&gt; [1] &quot;list&quot;</span>
-<span class="co"># a função sum() espera como entrada um vetor</span>
-<span class="kw">sum</span>(lst[<span class="dv">1</span>])
-<span class="co">#&gt; Error in sum(lst[1]): invalid &#39;type&#39; (list) of argument</span>
-<span class="co"># acessando elemento inexistente</span>
-lst[<span class="dv">6</span>]
-<span class="co">#&gt; $&lt;NA&gt;</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p>Então ao selecionar elementos de uma lista com o operador <code>[</code> o resultado preserva a estrutura original do objeto. <code>lst</code> é uma lista e o resultado da seleção <code>lst[1]</code> também é uma lista. <strong>Portanto, a seleção de elementos com o operador <code>[</code> preserva a estrutura do objeto original</strong>.</p>
-</div>
-<div id="operador-e" class="section level4">
-<h4><span class="header-section-number">7.4.2.2</span> Operador <code>[[</code> e <code>$</code></h4>
-<p>Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos de uma lista. Para fazer isso há dois operadores: o duplo colchetes <code>[[</code> e o <code>$</code>. Para acessar elementos individuais de uma lista usamos o duplo colchetes <code>[[</code> especificando o número do elemento ou o nome. Essa forma de seleção de dados permite o acesso a um elemento por vez.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1º elemento de sm_l</span>
-sm_l[[<span class="dv">1</span>]]
-<span class="co">#&gt; [1] -45 -23</span>
-sm_l[[<span class="st">&quot;coords&quot;</span>]]
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co"># modo de sm_l</span>
-<span class="kw">mode</span>(sm_l)
-<span class="co">#&gt; [1] &quot;list&quot;</span>
-<span class="co"># ultimo elemento de sm_l</span>
-sm_l[[<span class="kw">length</span>(sm_l)]]
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-sm_l[[<span class="st">&quot;dados&quot;</span>]]
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co"># subelementos</span>
-dados_l[[<span class="st">&quot;sm&quot;</span>]][[<span class="st">&quot;cidade&quot;</span>]]
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span></code></pre></div>
-<p>Para acessar o conteúdo de elementos de uma lista que possui nomes podemos também usar o operador <code>$</code>. Ele funciona de forma similar ao duplo colchetes usado com o nome do elemento da lista. Mas esse operador tem duas vantagens: a IDE RStudio autocompleta o nome do elemento (usando a tecla <code>&lt;tab&gt;</code>) e o R aceita o nome parcial dos nomes dos elementos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção de dados por nomes usando o símbolo $</span>
-dados_l<span class="op">$</span>s
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-dados_l<span class="op">$</span>j
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45.1 -23.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Júlio de Castilhos&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;        tar prec</span>
-<span class="co">#&gt; [1,] 22.50  360</span>
-<span class="co">#&gt; [2,] 20.00  310</span>
-<span class="co">#&gt; [3,] 18.75  285</span>
-<span class="co">#&gt; [4,] 18.00  270</span>
-<span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span>
-dados_l<span class="op">$</span>sm<span class="op">$</span>dados
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-dados_l<span class="op">$</span>sm<span class="op">$</span>dados[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  21  150</span>
-<span class="co">#&gt; [2,]  23  120</span>
-<span class="co">#&gt; [3,]  33  210</span>
-dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="st">&quot;tar&quot;</span>]
-<span class="co">#&gt; [1] 31 35 21 23 33 17</span>
-dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="st">&quot;tar&quot;</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]
-<span class="co">#&gt;      tar</span>
-<span class="co">#&gt; [1,]  31</span>
-<span class="co">#&gt; [2,]  35</span>
-<span class="co">#&gt; [3,]  21</span>
-<span class="co">#&gt; [4,]  23</span>
-<span class="co">#&gt; [5,]  33</span>
-<span class="co">#&gt; [6,]  17</span></code></pre></div>
-</div>
-<div id="lista-de-condimentos" class="section level4">
-<h4><span class="header-section-number">7.4.2.3</span> Lista de condimentos</h4>
-<p>É fácil de confundir quando usar <code>]</code> e <code>]]</code>. A tabela abaixo ajuda lembrar da diferença entre eles.</p>
+<p>Um exemplo de dados no formato arrumado é o <em>tibble</em> <code>prec_anual_tbl</code> mostrado abaixo:</p>
 <table>
-<colgroup>
-<col width="42%" />
-<col width="24%" />
-<col width="33%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="center">descrição</th>
-<th align="center">código</th>
-<th align="center">resultado</th>
+<th align="center">site</th>
+<th align="center">ano</th>
+<th align="center">prec</th>
+<th align="center">intensidade</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">frasco de pimenta</td>
-<td align="center">frasco</td>
-<td align="center"><img src="images/pepper.jpg" /></td>
+<td align="center">A001</td>
+<td align="center">2000</td>
+<td align="center">1800</td>
+<td align="center">4.928131</td>
 </tr>
 <tr class="even">
-<td align="center">frasco de pimenta com apenas 1 pacote de pimenta</td>
-<td align="center">frasco[1]</td>
-<td align="center"><img src="images/pepper-1.jpg" /></td>
+<td align="center">A001</td>
+<td align="center">2001</td>
+<td align="center">1400</td>
+<td align="center">3.832991</td>
 </tr>
 <tr class="odd">
-<td align="center">1 pacote de pimenta</td>
-<td align="center">frasco[[1]]</td>
-<td align="center"><img src="images/pepper-2.jpg" /></td>
+<td align="center">A002</td>
+<td align="center">2000</td>
+<td align="center">1750</td>
+<td align="center">4.791239</td>
 </tr>
 <tr class="even">
-<td align="center">conteúdo de um pacote de pimenta</td>
-<td align="center">frasco[[1]][[1]]</td>
-<td align="center"><img src="images/pepper-3.jpg" /></td>
+<td align="center">A002</td>
+<td align="center">2001</td>
+<td align="center">1470</td>
+<td align="center">4.024641</td>
+</tr>
+<tr class="odd">
+<td align="center">A002</td>
+<td align="center">2002</td>
+<td align="center">1630</td>
+<td align="center">4.462697</td>
+</tr>
+<tr class="even">
+<td align="center">A003</td>
+<td align="center">2004</td>
+<td align="center">1300</td>
+<td align="center">3.559206</td>
+</tr>
+<tr class="odd">
+<td align="center">A803</td>
+<td align="center">2005</td>
+<td align="center">1950</td>
+<td align="center">5.338809</td>
+</tr>
+<tr class="even">
+<td align="center">A803</td>
+<td align="center">2006</td>
+<td align="center">1100</td>
+<td align="center">3.011636</td>
 </tr>
 </tbody>
 </table>
+<p>Os dados acima tem duas variáveis: precipitação (<code>prec</code>) e intensidade da precipitação (<code>intensidade</code>). As unidades observacionais são as colunas <code>site</code> e <code>ano</code>. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.</p>
+<p>Uma <strong>variável</strong> contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma <strong>observação</strong> contém todos valores medidos na mesma unidade observacional ao longo dos atributos. Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e uma observação.</p>
+<p>Exemplo de diferentes <strong>tipos de unidades observacionais</strong> são a tabela com a séries temporais dos elementos meteorológicos (exemplo acima) e a tabela com os metadados das estações de superfície que contém atributos das estações meteorológicas (<code>site</code> no exemplo acima), tais como: longitude, latitude, altitude, nome, município, estado e etc.</p>
+<p>A estrutura de dados &quot;arrumados&quot; parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
+<ul>
+<li><p>quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;</p></li>
+<li><p>a organização dos dados busca tornar o registro de dados o mais fácil possível;</p></li>
+</ul>
+<p>Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns <span class="citation">(Wickham and Grolemund <a href="#ref-Wickham2017">2017</a>)</span>:</p>
+<ul>
+<li><p>uma variável deve ser distribuída ao longo das colunas</p></li>
+<li><p>uma observação deve ser distribuída ao longo das linhas</p></li>
+</ul>
+<p>Essas duas operações são realizadas com as principais funções do pacote <strong>tidyr</strong>:</p>
+<ul>
+<li><p><code>gather()</code>, que pode ser traduzida como reunir (nas linhas);</p></li>
+<li><p><code>spread()</code> que pode ser traduzida como espalhar (nas colunas)</p></li>
+</ul>
+</div>
+<div id="formatos-de-dados-mais-comuns" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Formatos de dados mais comuns</h3>
+<p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos.</p>
+<p>Os principais formatos de dados são:</p>
+<ul>
+<li><p>dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;</p></li>
+<li><p>dados amplos, são tabelas com valores mais dstribuínos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;</p></li>
+</ul>
+<div id="formatos-dados" class="section level4">
+<h4><span class="header-section-number">9.3.2.1</span> Formato de dados longo</h4>
+<p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
+  prec_anual_tbl,
+  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span>
+) 
+prec_anual_tbl
+<span class="co">#&gt; # A tibble: 8 x 4</span>
+<span class="co">#&gt;   site    ano  prec intensidade</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A001   2000  1800        4.93</span>
+<span class="co">#&gt; 2 A001   2001  1400        3.83</span>
+<span class="co">#&gt; 3 A002   2000  1750        4.79</span>
+<span class="co">#&gt; 4 A002   2001  1470        4.02</span>
+<span class="co">#&gt; 5 A002   2002  1630        4.46</span>
+<span class="co">#&gt; 6 A003   2004  1300        3.56</span>
+<span class="co">#&gt; 7 A803   2005  1950        5.34</span>
+<span class="co">#&gt; 8 A803   2006  1100        3.01</span></code></pre></div>
+<p>Vamos usar a função <code>gather()</code> para reestruturar os dados <code>prec_anual_tbl</code> em uma nova tabela de dados que chamaremos <code>prec_anual_long</code>.</p>
+<p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos dois novos pares de variáveis: <code>variavel</code> e <code>valor</code>. Na coluna <code>variavel</code> será distribuído o nome das variáveis <code>prec</code> e <code>intensidade</code>. A coluna <code>valor</code>reunirá os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long &lt;-<span class="st"> </span><span class="kw">gather</span>(
+  <span class="dt">data =</span> prec_anual_tbl,
+  <span class="dt">key =</span> variavel,
+  <span class="dt">value =</span> medida,
+  prec, intensidade
+)
+prec_anual_long
+<span class="co">#&gt; # A tibble: 16 x 4</span>
+<span class="co">#&gt;    site    ano variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001   2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002   2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002   2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
+<p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
+<ul>
+<li><p><code>data = prec_anual_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
+<li><p><code>key = variavel</code>, nome que nós escolhemos para dar à nova coluna que distribuirá os <strong>nomes das variáveis</strong> dos dados de entrada.</p></li>
+<li><p><code>value = medida</code>, nome que nós escolhemos para dar à nova coluna que reunirá os <strong>valores das variáveis</strong> dos dados de entrada;</p></li>
+<li><p><code>...</code>, lista com o nome das variáveis, no código acima corresponde à <code>prec, intensidade</code>;</p></li>
+</ul>
+<p>As demais colunas dos dados (<code>site</code> e <code>ano</code>) serão mantidas inalteradas e seus valores serão repetidos quando necessário.</p>
+<p>Como em outras funções dos pacotes do <strong>tidyverse</strong> você perceberá que os argumentos <strong>não são especificados como caracteres</strong> e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>key</code> e <code>value</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
+<p>Se nós desejássemos que todas colunas do <em>data frame</em> fossem reunidas em uma nova coluna <code>atributo</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia ser feito simplesmente sem especificar variáveis de interesse (<code>prec, intensidade</code>) no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">gather</span>(
+  prec_anual_tbl, 
+  <span class="dt">key =</span> atributo,
+  <span class="dt">value =</span> valor
+)
+prec_anual_longo
+<span class="co">#&gt; # A tibble: 32 x 2</span>
+<span class="co">#&gt;    atributo valor</span>
+<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;</span>
+<span class="co">#&gt;  1 site     A001 </span>
+<span class="co">#&gt;  2 site     A001 </span>
+<span class="co">#&gt;  3 site     A002 </span>
+<span class="co">#&gt;  4 site     A002 </span>
+<span class="co">#&gt;  5 site     A002 </span>
+<span class="co">#&gt;  6 site     A003 </span>
+<span class="co">#&gt;  7 site     A803 </span>
+<span class="co">#&gt;  8 site     A803 </span>
+<span class="co">#&gt;  9 ano      2000 </span>
+<span class="co">#&gt; 10 ano      2001 </span>
+<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
+<p>Se não forem especificados nomes para os argumentos <code>key</code> e <code>value</code> na chamada da função gather, serão atribuídos os valores <em>default</em>: <code>key</code> e <code>value</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(prec_anual_tbl)
+<span class="co">#&gt; # A tibble: 32 x 2</span>
+<span class="co">#&gt;    key   value</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt;  1 site  A001 </span>
+<span class="co">#&gt;  2 site  A001 </span>
+<span class="co">#&gt;  3 site  A002 </span>
+<span class="co">#&gt;  4 site  A002 </span>
+<span class="co">#&gt;  5 site  A002 </span>
+<span class="co">#&gt;  6 site  A003 </span>
+<span class="co">#&gt;  7 site  A803 </span>
+<span class="co">#&gt;  8 site  A803 </span>
+<span class="co">#&gt;  9 ano   2000 </span>
+<span class="co">#&gt; 10 ano   2001 </span>
+<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
+</div>
+<div id="formato-de-dados-amplo" class="section level4">
+<h4><span class="header-section-number">9.3.2.2</span> Formato de dados amplo</h4>
+<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>spread()</code>. Esta função é complementar à <code>gather()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long
+<span class="co">#&gt; # A tibble: 16 x 4</span>
+<span class="co">#&gt;    site    ano variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001   2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002   2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002   2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
+<p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(
+  <span class="dt">data =</span> prec_anual_long,
+  <span class="dt">key =</span> variavel,
+  <span class="dt">value =</span> medida
+)
+prec_anual_amplo
+<span class="co">#&gt; # A tibble: 8 x 4</span>
+<span class="co">#&gt;   site    ano intensidade  prec</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A001   2000        4.93  1800</span>
+<span class="co">#&gt; 2 A001   2001        3.83  1400</span>
+<span class="co">#&gt; 3 A002   2000        4.79  1750</span>
+<span class="co">#&gt; 4 A002   2001        4.02  1470</span>
+<span class="co">#&gt; 5 A002   2002        4.46  1630</span>
+<span class="co">#&gt; 6 A003   2004        3.56  1300</span>
+<span class="co">#&gt; 7 A803   2005        5.34  1950</span>
+<span class="co">#&gt; 8 A803   2006        3.01  1100</span></code></pre></div>
+<p>Esta operação serviu para colocar os dados originais (<code>prec_anual_long</code>) no formato &quot;arrumado&quot; (<code>prec_anual_amplo</code>).</p>
 </div>
 </div>
-<div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level3">
-<h3><span class="header-section-number">7.4.3</span> Conversão de lista para vetor e vice-versa.</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-vet
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
-vet.list &lt;-<span class="st"> </span><span class="kw">as.list</span>(vet)
-vet.list
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; [1] 4</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[5]]</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[6]]</span>
-<span class="co">#&gt; [1] 6</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[7]]</span>
-<span class="co">#&gt; [1] 7</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[8]]</span>
-<span class="co">#&gt; [1] 8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[9]]</span>
-<span class="co">#&gt; [1] 9</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[10]]</span>
-<span class="co">#&gt; [1] 10</span>
-<span class="co"># desmanchando a lista</span>
-<span class="kw">unlist</span>(vet.list)
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
-<span class="co"># deletando um elemento de uma lista</span>
-<span class="kw">length</span>(vet.list)
-<span class="co">#&gt; [1] 10</span>
-vet.list[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="ot">NULL</span>
-vet.list
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; [1] 4</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[5]]</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[6]]</span>
-<span class="co">#&gt; [1] 6</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[7]]</span>
-<span class="co">#&gt; [1] 7</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[8]]</span>
-<span class="co">#&gt; [1] 9</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[9]]</span>
-<span class="co">#&gt; [1] 10</span>
-<span class="kw">length</span>(vet.list)
-<span class="co">#&gt; [1] 9</span></code></pre></div>
+<div id="funcoes-adicionais-do-tidyr" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Funções adicionais do <strong>tidyr</strong></h3>
+<p>Você pode unir duas colunas inserindo um separador entre elas com a função <code>unite()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(prec_anual_long, 
+                       <span class="dt">col =</span> site_ano, 
+                       site, ano, 
+                       <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>))
+<span class="co">#&gt; # A tibble: 16 x 3</span>
+<span class="co">#&gt;    site_ano  variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001_2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001_2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002_2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002_2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002_2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003_2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803_2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803_2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001_2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001_2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002_2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002_2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002_2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003_2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803_2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803_2006 intensidade    3.01</span></code></pre></div>
+<p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>separate()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(prec_anual_long_u, 
+         <span class="dt">col =</span> site_ano,
+         <span class="dt">sep =</span>  <span class="st">&quot;_&quot;</span>,
+         <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>))
+<span class="co">#&gt; # A tibble: 16 x 4</span>
+<span class="co">#&gt;    site  ano   variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001  2000  prec        1800   </span>
+<span class="co">#&gt;  2 A001  2001  prec        1400   </span>
+<span class="co">#&gt;  3 A002  2000  prec        1750   </span>
+<span class="co">#&gt;  4 A002  2001  prec        1470   </span>
+<span class="co">#&gt;  5 A002  2002  prec        1630   </span>
+<span class="co">#&gt;  6 A003  2004  prec        1300   </span>
+<span class="co">#&gt;  7 A803  2005  prec        1950   </span>
+<span class="co">#&gt;  8 A803  2006  prec        1100   </span>
+<span class="co">#&gt;  9 A001  2000  intensidade    4.93</span>
+<span class="co">#&gt; 10 A001  2001  intensidade    3.83</span>
+<span class="co">#&gt; 11 A002  2000  intensidade    4.79</span>
+<span class="co">#&gt; 12 A002  2001  intensidade    4.02</span>
+<span class="co">#&gt; 13 A002  2002  intensidade    4.46</span>
+<span class="co">#&gt; 14 A003  2004  intensidade    3.56</span>
+<span class="co">#&gt; 15 A803  2005  intensidade    5.34</span>
+<span class="co">#&gt; 16 A803  2006  intensidade    3.01</span></code></pre></div>
+<p>Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função <code>complete()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual
+<span class="co">#&gt;   site  ano prec</span>
+<span class="co">#&gt; 1 A001 2000 1800</span>
+<span class="co">#&gt; 2 A001 2001 1400</span>
+<span class="co">#&gt; 3 A002 2000 1750</span>
+<span class="co">#&gt; 4 A002 2001 1470</span>
+<span class="co">#&gt; 5 A002 2002 1630</span>
+<span class="co">#&gt; 6 A003 2004 1300</span>
+<span class="co">#&gt; 7 A803 2005 1950</span>
+<span class="co">#&gt; 8 A803 2006 1100</span>
+prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(
+  prec_anual,
+  site, ano
+)
+prec_anual_comp
+<span class="co">#&gt; # A tibble: 24 x 3</span>
+<span class="co">#&gt;    site    ano  prec</span>
+<span class="co">#&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000  1800</span>
+<span class="co">#&gt;  2 A001   2001  1400</span>
+<span class="co">#&gt;  3 A001   2002    NA</span>
+<span class="co">#&gt;  4 A001   2004    NA</span>
+<span class="co">#&gt;  5 A001   2005    NA</span>
+<span class="co">#&gt;  6 A001   2006    NA</span>
+<span class="co">#&gt;  7 A002   2000  1750</span>
+<span class="co">#&gt;  8 A002   2001  1470</span>
+<span class="co">#&gt;  9 A002   2002  1630</span>
+<span class="co">#&gt; 10 A002   2004    NA</span>
+<span class="co">#&gt; # ... with 14 more rows</span></code></pre></div>
 </div>
-<div id="conversao-de-list-para-data.frame" class="section level3">
-<h3><span class="header-section-number">7.4.4</span> Conversão de <code>list</code> para <code>data.frame</code></h3>
-<p>Vamos modificar a lista <code>sm_l</code> para convertê-la em um <em>dataframe</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l
-<span class="co">#&gt; $coords</span>
-<span class="co">#&gt; [1] -45 -23</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co"># ao invés da componente coords, criamos uma lon e lat</span>
-sm_l<span class="op">$</span>lon &lt;-<span class="st"> </span>sm_l<span class="op">$</span>coords[<span class="dv">1</span>]
-sm_l<span class="op">$</span>lat &lt;-<span class="st"> </span>sm_l<span class="op">$</span>coords[<span class="dv">2</span>]
-sm_l<span class="op">$</span>coords &lt;-<span class="st"> </span><span class="ot">NULL</span>
-sm_l
-<span class="co">#&gt; $cidade</span>
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dados</span>
-<span class="co">#&gt;      tar prec</span>
-<span class="co">#&gt; [1,]  31  300</span>
-<span class="co">#&gt; [2,]  35  200</span>
-<span class="co">#&gt; [3,]  21  150</span>
-<span class="co">#&gt; [4,]  23  120</span>
-<span class="co">#&gt; [5,]  33  210</span>
-<span class="co">#&gt; [6,]  17  110</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lon</span>
-<span class="co">#&gt; [1] -45</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lat</span>
-<span class="co">#&gt; [1] -23</span>
-<span class="co"># converter para dataframe</span>
-sm_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(sm_l)
-sm_df
-<span class="co">#&gt;        cidade dados.tar dados.prec lon lat</span>
-<span class="co">#&gt; 1 Santa Maria        31        300 -45 -23</span>
-<span class="co">#&gt; 2 Santa Maria        35        200 -45 -23</span>
-<span class="co">#&gt; 3 Santa Maria        21        150 -45 -23</span>
-<span class="co">#&gt; 4 Santa Maria        23        120 -45 -23</span>
-<span class="co">#&gt; 5 Santa Maria        33        210 -45 -23</span>
-<span class="co">#&gt; 6 Santa Maria        17        110 -45 -23</span></code></pre></div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Dasu-Johnson">
+<p>Dasu, Tamraparni, and Theodore Johnson. 2003. “Data Quality.” In <em>Exploratory Data Mining and Data Cleaning</em>, edited by Walter A. Shewhart and Samuel S. Wilks, 99–137. Wiley-Blackwell. doi:<a href="https://doi.org/10.1002/0471448354.ch4">10.1002/0471448354.ch4</a>.</p>
+</div>
+<div id="ref-Wickham2014">
+<p>Wickham, H. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
+</div>
+<div id="ref-Wickham2017">
+<p>Wickham, H., and G. Grolemund. 2017. <em>R for Data Science</em>. O’Reilly Media. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
             </section>
@@ -881,8 +663,8 @@ sm_df
           </div>
         </div>
       </div>
-<a href="arranjo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dataframe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tibble-um-data-frame-aperfeicoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -912,7 +694,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/07-estrutura-dados.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/09-manipulacao-dados.Rmd",
 "text": "Edit"
 },
 "download": ["ADAR.pdf", "ADAR.epub"],

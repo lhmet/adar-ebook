@@ -154,7 +154,7 @@ prec_anual
 
 ### Funcionalidades do *tibble*
 
-Para ilustrar algumas vantagens do *tibble*, vamos recriar o *data frame* `prec_anual` incluindo uma nova variável `int prec`(intensidade da precipitação) baseada na razão da precipitação pelo número de dias no ano. Criamos um *tibble* com a função `tibble()`.
+Para ilustrar algumas vantagens do *tibble*, vamos usar o *data frame* `prec_anual`. A criação destes dados como *tibble* é feita com a função de mesmo nome do pacote: `tibble()`.
 
 
 ```r
@@ -167,50 +167,40 @@ prec_anual_tbl <- tibble(
 )
 ```
 
-Com o exemplo acima, as principais diferenças entre um *tibble* e um *data frame* podem ser demonstradas:
-
-- quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
+O exemplo acima é ilustrativo, pois um *data frame* pode ser convertido em um *tibble* simplesmente com a função `as_tibble()`:
 
 
 ```r
-clima_rs
-#>    codigo                 estacao uf   prec tmax
-#> 1   83931                Alegrete RS 1492.2 25.4
-#> 2   83980                    Bagé RS 1299.9 24.1
-#> 3   83941         Bento Gonçalves RS 1683.7 23.0
-#> 4   83919               Bom Jesus RS 1807.3 20.3
-#> 5   83963        Cachoeira do Sul RS 1477.1 25.1
-#> 6   83942           Caxias do Sul RS 1823.0 21.8
-#> 7   83912               Cruz Alta RS 1630.7 24.5
-#> 8   83964     Encruzilhada do Sul RS 1510.8 22.5
-#> 9   83915                 Guaporé RS 1758.7 24.7
-#> 10  83881                    Iraí RS 1806.7 27.1
-#> 11  83929                  Itaqui RS 1369.4 26.2
-#> 12  83916          Lagoa Vermelha RS 1691.1 23.0
-#> 13  83880    Palmeira das Missões RS 1747.8 24.0
-#> 14  83914             Passo Fundo RS 1803.1 23.6
-#> 15  83967            Porto Alegre RS 1320.2 24.8
-#> 16  83995              Rio Grande RS 1233.6 21.7
-#> 17  83936             Santa Maria RS 1616.8 24.9
-#> 18  83997 Santa Vitória do Palmar RS 1228.9 21.8
-#> 19  83957             São Gabriel RS 1313.9 25.0
-#> 20  83907        São Luiz Gonzaga RS 1770.9 26.1
-#> 21  83966                   Tapes RS 1349.8 23.8
-#> 22  83948                  Torres RS 1363.2 22.3
-#> 23  83927              Uruguaiana RS 1647.4 25.8
+prec_anual_tbl <- as_tibble(prec_anual)
+prec_anual_tbl
+#> # A tibble: 8 x 3
+#>   site    ano  prec
+#>   <fct> <dbl> <dbl>
+#> 1 A001   2000  1800
+#> 2 A001   2001  1400
+#> 3 A002   2000  1750
+#> 4 A002   2001  1470
+#> 5 A002   2002  1630
+#> 6 A003   2004  1300
+#> 7 A803   2005  1950
+#> 8 A803   2006  1100
 ```
 
 
-- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Para quem não estiver informado sobre esse comportamento padrão pode causar problemas nas próximas etapas do trabalho. 
+Com o *tibble* acima, as principais diferenças entre um *tibble* e um *data frame* podem ser enfatizadas.
+
+- quando impresso no console do R, o *tibble* já mostra a classe de cada variável.
+
+- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores. 
 
 
 ```r
-data.frame("temp. do ar" = "18")
-#>   temp..do.ar
-#> 1          18
+str(data.frame("temp. do ar" = "18"))
+#> 'data.frame':	1 obs. of  1 variable:
+#>  $ temp..do.ar: Factor w/ 1 level "18": 1
 ```
 
-- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
+- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*; veja o exemplo abaixo, onde a `int prec`(intensidade da precipitação) é baseada na razão da precipitação (`prec`) pelo número de dias no ano.
 
 
 ```r
@@ -222,6 +212,18 @@ prec_anual_tbl <- tibble(
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100),
   "int prec" = prec / 365.25
 )
+prec_anual_tbl
+#> # A tibble: 8 x 4
+#>   site    ano  prec `int prec`
+#>   <chr> <dbl> <dbl>      <dbl>
+#> 1 A001   2000  1800       4.93
+#> 2 A001   2001  1400       3.83
+#> 3 A002   2000  1750       4.79
+#> 4 A002   2001  1470       4.02
+#> 5 A002   2002  1630       4.46
+#> 6 A003   2004  1300       3.56
+#> 7 A803   2005  1950       5.34
+#> 8 A803   2006  1100       3.01
 ```
 
 
@@ -244,26 +246,8 @@ subset(prec_anual_tbl, ano == 2001)
 ```
 
 
-Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas é ajustado de acordo com o tamanho da janela.
+- a impressão de um *tibble* mostra as dez primeiras linhas e a quantidade de colunas mostradas é ajustada ao tamanho da janela do console.
 
-A conversão de um *data frame* para *tibble* pode ser feita simplesmente com a função `as_tibble()`:
-
-
-```r
-prec_anual_tbl_conv <- as_tibble(prec_anual)
-prec_anual_tbl_conv
-#> # A tibble: 8 x 3
-#>   site    ano  prec
-#>   <fct> <dbl> <dbl>
-#> 1 A001   2000  1800
-#> 2 A001   2001  1400
-#> 3 A002   2000  1750
-#> 4 A002   2001  1470
-#> 5 A002   2002  1630
-#> 6 A003   2004  1300
-#> 7 A803   2005  1950
-#> 8 A803   2006  1100
-```
 
 As opções de controle *default* da impressão de *tibbles* no console pode ser configuradas através da função de opções de configuração global do R:
 
@@ -277,24 +261,43 @@ options(
 )
 ```
 
-Com a configuração acima, será impresso no console do R `n = 3` linhas da *tibble* se ela tiver mais de `m = 15` linhas. 
+Com a configuração acima, será impresso no console do R `n = 3` linhas do *tibble* se ele tiver mais de `m = 15` linhas. 
 
 
 ```r
 nrow(clima_rs) > 15
 #> [1] TRUE
 # coersão do data.frame clima_rs para tibble
-as_tibble(clima_rs)
-#> # A tibble: 23 x 5
-#>   codigo estacao         uf     prec  tmax
-#> * <chr>  <chr>           <chr> <dbl> <dbl>
-#> 1 83931  Alegrete        RS    1492.  25.4
-#> 2 83980  Bagé            RS    1300.  24.1
-#> 3 83941  Bento Gonçalves RS    1684.  23  
-#> # ... with 20 more rows
+clima_rs_tbl <- as_tibble(clima_rs)
 ```
 
-Uma alternativa útil para inspecionar mais detalhadamente os dados é a função `glimpse()`.
+Para restaurar as opções *default* use:
+
+
+```r
+options(
+  tibble.print_max = NULL,
+  tibble.print_min = NULL
+)
+clima_rs_tbl
+#> # A tibble: 23 x 5
+#>    codigo estacao             uf     prec  tmax
+#>  * <chr>  <chr>               <chr> <dbl> <dbl>
+#>  1 83931  Alegrete            RS    1492.  25.4
+#>  2 83980  Bagé                RS    1300.  24.1
+#>  3 83941  Bento Gonçalves     RS    1684.  23  
+#>  4 83919  Bom Jesus           RS    1807.  20.3
+#>  5 83963  Cachoeira do Sul    RS    1477.  25.1
+#>  6 83942  Caxias do Sul       RS    1823   21.8
+#>  7 83912  Cruz Alta           RS    1631.  24.5
+#>  8 83964  Encruzilhada do Sul RS    1511.  22.5
+#>  9 83915  Guaporé             RS    1759.  24.7
+#> 10 83881  Iraí                RS    1807.  27.1
+#> # ... with 13 more rows
+```
+
+
+Uma alternativa útil para inspecionar mais detalhadamente os dados é a função `tibble::glimpse()`.
 
 
 ```r
@@ -309,7 +312,7 @@ glimpse(clima_rs)
 ```
 
 
-Lembre-se também, da função `View()` para visualizar e navegar através dos dados usando o RStudio.
+Lembre-se também, da função `utils::View()` para visualizar os dados no RStudio.
 
 
 ```r
@@ -317,12 +320,12 @@ View(clima_rs)
 ```
 
 
-Outras aspectos diferencias do *tibble* podem consultados na vinheta do referido pacote (`vignette("tibble")`).
+Outros aspectos diferencias do *tibble* podem consultados na vinheta do referido pacote (`vignette("tibble")`).
 
 
-## Restruturação de dados
+## Restruturação de dados retangulares
 
-> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson].
+> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson, [New York Times 2014/08/18](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)].
 
 
 
@@ -336,20 +339,18 @@ Dados bem estruturados servem para:
 
 - revelar informações e facilitar a percepção de padrões
 
-Dados no \"formato arrumado\" atendem as seguintes regras:
+Dados no \"formato arrumado\" atendem as seguintes regras para dados retangulares:
 
-1. dados em formato retangular
+1. cada **variável** está em uma coluna 
 
-2. cada variável está em uma coluna 
+2. cada **observação** corresponde a uma linha
 
-3. cada observação corresponde a uma linha
+3. cada **valor** corresponde a uma célula
 
-4. cada valor corresponde a uma célula
-
-5. cada tipo de unidade observacional deve compor uma tabela
+4. cada tipo de unidade observacional deve compor uma tabela
 
 <div class="rmdnote">
-<p>Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras, dependendo da área de aplicação.</p>
+<p>Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras dependendo da área de aplicação.</p>
 </div>
 
  
@@ -378,9 +379,9 @@ Exemplo de diferentes **tipos de unidades observacionais** são a tabela com a s
 
 A estrutura de dados \"arrumados\" parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:
 
-- as pessoas que projetam a coleta e o registro de dados nem sempre são aquelas que gastam tempo trabalhando sobre os dados.
+- quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;
 
-- a organização dos dados buscar tornar o registro de dados o mais fácil possível
+- a organização dos dados busca tornar o registro de dados o mais fácil possível;
 
 Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
 
@@ -388,16 +389,20 @@ Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é i
 
 - uma observação deve ser distribuída ao longo das linhas
 
-Conjuntos de dados ambientais brasileiros tipicamente sofrem de ambos problemas. Felizmente, eles são resolvidos com as  duas principais funções do pacote **tidyr**: `gather()` e `spread()`.
+Essas duas operações são realizadas com as principais funções do pacote **tidyr**: 
+
+- `gather()`, que pode ser traduzida como reunir (nas linhas);
+
+- `spread()` que pode ser traduzida como espalhar (nas colunas)
 
 
 
 
 
 
-### tidyr
+### Formatos de dados mais comuns
 
-O pacote **tidyr** é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos. 
+O pacote **tidyr** é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos.
 
 Os principais formatos de dados são: 
 
@@ -444,12 +449,24 @@ prec_anual_long <- gather(
 )
 prec_anual_long
 #> # A tibble: 16 x 4
-#>   site    ano variavel medida
-#>   <chr> <dbl> <chr>     <dbl>
-#> 1 A001   2000 prec       1800
-#> 2 A001   2001 prec       1400
-#> 3 A002   2000 prec       1750
-#> # ... with 13 more rows
+#>    site    ano variavel     medida
+#>    <chr> <dbl> <chr>         <dbl>
+#>  1 A001   2000 prec        1800   
+#>  2 A001   2001 prec        1400   
+#>  3 A002   2000 prec        1750   
+#>  4 A002   2001 prec        1470   
+#>  5 A002   2002 prec        1630   
+#>  6 A003   2004 prec        1300   
+#>  7 A803   2005 prec        1950   
+#>  8 A803   2006 prec        1100   
+#>  9 A001   2000 intensidade    4.93
+#> 10 A001   2001 intensidade    3.83
+#> 11 A002   2000 intensidade    4.79
+#> 12 A002   2001 intensidade    4.02
+#> 13 A002   2002 intensidade    4.46
+#> 14 A003   2004 intensidade    3.56
+#> 15 A803   2005 intensidade    5.34
+#> 16 A803   2006 intensidade    3.01
 ```
 
 O código acima demonstra os principais argumentos requeridos pela função `gather`:
@@ -477,12 +494,19 @@ prec_anual_longo <- gather(
 )
 prec_anual_longo
 #> # A tibble: 32 x 2
-#>   atributo valor
-#>   <chr>    <chr>
-#> 1 site     A001 
-#> 2 site     A001 
-#> 3 site     A002 
-#> # ... with 29 more rows
+#>    atributo valor
+#>    <chr>    <chr>
+#>  1 site     A001 
+#>  2 site     A001 
+#>  3 site     A002 
+#>  4 site     A002 
+#>  5 site     A002 
+#>  6 site     A003 
+#>  7 site     A803 
+#>  8 site     A803 
+#>  9 ano      2000 
+#> 10 ano      2001 
+#> # ... with 22 more rows
 ```
 
 Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função gather, serão atribuídos os valores *default*: `key` e `value`.
@@ -491,12 +515,19 @@ Se não forem especificados nomes para os argumentos `key` e `value` na chamada 
 ```r
 gather(prec_anual_tbl)
 #> # A tibble: 32 x 2
-#>   key   value
-#>   <chr> <chr>
-#> 1 site  A001 
-#> 2 site  A001 
-#> 3 site  A002 
-#> # ... with 29 more rows
+#>    key   value
+#>    <chr> <chr>
+#>  1 site  A001 
+#>  2 site  A001 
+#>  3 site  A002 
+#>  4 site  A002 
+#>  5 site  A002 
+#>  6 site  A003 
+#>  7 site  A803 
+#>  8 site  A803 
+#>  9 ano   2000 
+#> 10 ano   2001 
+#> # ... with 22 more rows
 ```
 
 
@@ -508,12 +539,24 @@ Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para de
 ```r
 prec_anual_long
 #> # A tibble: 16 x 4
-#>   site    ano variavel medida
-#>   <chr> <dbl> <chr>     <dbl>
-#> 1 A001   2000 prec       1800
-#> 2 A001   2001 prec       1400
-#> 3 A002   2000 prec       1750
-#> # ... with 13 more rows
+#>    site    ano variavel     medida
+#>    <chr> <dbl> <chr>         <dbl>
+#>  1 A001   2000 prec        1800   
+#>  2 A001   2001 prec        1400   
+#>  3 A002   2000 prec        1750   
+#>  4 A002   2001 prec        1470   
+#>  5 A002   2002 prec        1630   
+#>  6 A003   2004 prec        1300   
+#>  7 A803   2005 prec        1950   
+#>  8 A803   2006 prec        1100   
+#>  9 A001   2000 intensidade    4.93
+#> 10 A001   2001 intensidade    3.83
+#> 11 A002   2000 intensidade    4.79
+#> 12 A002   2001 intensidade    4.02
+#> 13 A002   2002 intensidade    4.46
+#> 14 A003   2004 intensidade    3.56
+#> 15 A803   2005 intensidade    5.34
+#> 16 A803   2006 intensidade    3.01
 ```
 
 Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
@@ -553,12 +596,24 @@ Você pode unir duas colunas inserindo um separador entre elas com a função `u
                        site, ano, 
                        sep = "_"))
 #> # A tibble: 16 x 3
-#>   site_ano  variavel medida
-#>   <chr>     <chr>     <dbl>
-#> 1 A001_2000 prec       1800
-#> 2 A001_2001 prec       1400
-#> 3 A002_2000 prec       1750
-#> # ... with 13 more rows
+#>    site_ano  variavel     medida
+#>    <chr>     <chr>         <dbl>
+#>  1 A001_2000 prec        1800   
+#>  2 A001_2001 prec        1400   
+#>  3 A002_2000 prec        1750   
+#>  4 A002_2001 prec        1470   
+#>  5 A002_2002 prec        1630   
+#>  6 A003_2004 prec        1300   
+#>  7 A803_2005 prec        1950   
+#>  8 A803_2006 prec        1100   
+#>  9 A001_2000 intensidade    4.93
+#> 10 A001_2001 intensidade    3.83
+#> 11 A002_2000 intensidade    4.79
+#> 12 A002_2001 intensidade    4.02
+#> 13 A002_2002 intensidade    4.46
+#> 14 A003_2004 intensidade    3.56
+#> 15 A803_2005 intensidade    5.34
+#> 16 A803_2006 intensidade    3.01
 ```
 
 Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função `separate()`:
@@ -570,12 +625,24 @@ separate(prec_anual_long_u,
          sep =  "_",
          into = c("site", "ano"))
 #> # A tibble: 16 x 4
-#>   site  ano   variavel medida
-#>   <chr> <chr> <chr>     <dbl>
-#> 1 A001  2000  prec       1800
-#> 2 A001  2001  prec       1400
-#> 3 A002  2000  prec       1750
-#> # ... with 13 more rows
+#>    site  ano   variavel     medida
+#>    <chr> <chr> <chr>         <dbl>
+#>  1 A001  2000  prec        1800   
+#>  2 A001  2001  prec        1400   
+#>  3 A002  2000  prec        1750   
+#>  4 A002  2001  prec        1470   
+#>  5 A002  2002  prec        1630   
+#>  6 A003  2004  prec        1300   
+#>  7 A803  2005  prec        1950   
+#>  8 A803  2006  prec        1100   
+#>  9 A001  2000  intensidade    4.93
+#> 10 A001  2001  intensidade    3.83
+#> 11 A002  2000  intensidade    4.79
+#> 12 A002  2001  intensidade    4.02
+#> 13 A002  2002  intensidade    4.46
+#> 14 A003  2004  intensidade    3.56
+#> 15 A803  2005  intensidade    5.34
+#> 16 A803  2006  intensidade    3.01
 ```
 
 Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função `complete()`:
@@ -598,12 +665,19 @@ prec_anual_comp <- complete(
 )
 prec_anual_comp
 #> # A tibble: 24 x 3
-#>   site    ano  prec
-#>   <fct> <dbl> <dbl>
-#> 1 A001   2000  1800
-#> 2 A001   2001  1400
-#> 3 A001   2002    NA
-#> # ... with 21 more rows
+#>    site    ano  prec
+#>    <fct> <dbl> <dbl>
+#>  1 A001   2000  1800
+#>  2 A001   2001  1400
+#>  3 A001   2002    NA
+#>  4 A001   2004    NA
+#>  5 A001   2005    NA
+#>  6 A001   2006    NA
+#>  7 A002   2000  1750
+#>  8 A002   2001  1470
+#>  9 A002   2002  1630
+#> 10 A002   2004    NA
+#> # ... with 14 more rows
 ```
 
 
@@ -611,21 +685,114 @@ prec_anual_comp
 
 ## Manipulação de dados
 
-Gramática de manipulação de dados implementada no pacote **dplyr**.
+Com os dados arrumados, a próxima etapa é a manipulação dos dados. O pacote **dplyr** oferece um conjunto de funções que facilita as operações mais comuns para lidar com dados retangulares de uma forma bem pensada.
 
-* Os 5 verbos básicos são: 
+Os verbos fundamentais desta gramática de manipulação de dados são: 
 
-  - `select()`, para selecionar variáveis
-  - `filter()`, para filtrar observações
-  - `arrange()`, para ordenar variáveis
-  - `mutate()`, para transformat variáveis
-  - `group_by()` e `summarise()`, para agrupar observações e obter resumos estatísticos
+  - `select()`, para selecionar variáveis;
+  - `filter()`, para filtrar observações;
+  - `arrange()`, para classificar variáveis;
+  - `mutate()`, para criar e transformar variáveis;
+  - `group_by()`, para agrupar observações;
+  - `summarise()`, para resumir os dados com medidas estatísticas descritivas;
 
-### Operador Pipe `%>%`
+
+Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `verbo(sujeito, complemento)` </p>
+ traduzindo de outra forma:
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `função(dados, z = x + y)` </p>
+
+- o `verbo` é a função do **dplyr**;
+- o `sujeito` (dados) é quem sofre a ação e é **sempre o primeiro argumento**, nomeado (`.data`);
+- o `complemento` são expressões que podem ser usadas como argumentos (o que é representado pela reticência `...` no segundo argumento); isso ficará mais claro nos exemplos mais a frente;
+
+
+<div class="rmdtip">
+<p>Os verbos listados anteriormente possuem versões equivalentes na base do <code>r rblue</code>. Então, por que usar o <em>dplyr</em> ?</p>
+<ul>
+<li><p>é muito mais rápido de se aprender, com poucas funções (ou verbos) nomeadas intuitivamente;</p></li>
+<li><p>as funções do <strong>dplyr</strong> são mais rápidas (parte dos códigos são programados em C++);</p></li>
+<li><p>trabalha bem com dados arrumados e também com sistemas de banco de dados</p></li>
+<li><p>as funções foram projetadas para trabalharem juntas na solução diversos problemas de processamento de dados;</p></li>
+</ul>
+</div>
+
+
+
+### Seleção de variáveis 
+
+<img src="images/dplyr-select.png" width="20%" height="20%" style="display: block; margin: auto;" />
+
+Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select()`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `select()` da seguinte forma:
+
+
+```r
+select(clima_rs_tbl, estacao, tmax)
+#> # A tibble: 23 x 2
+#>    estacao              tmax
+#>  * <chr>               <dbl>
+#>  1 Alegrete             25.4
+#>  2 Bagé                 24.1
+#>  3 Bento Gonçalves      23  
+#>  4 Bom Jesus            20.3
+#>  5 Cachoeira do Sul     25.1
+#>  6 Caxias do Sul        21.8
+#>  7 Cruz Alta            24.5
+#>  8 Encruzilhada do Sul  22.5
+#>  9 Guaporé              24.7
+#> 10 Iraí                 27.1
+#> # ... with 13 more rows
+```
+
+O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
+
+
+
+### Seleção de observações
+
+<img src="images/dplyr-filter.png" width="20%" height="20%" style="display: block; margin: auto;" />
+
+filter()
+slice()
+
+
+### Reordenando dados
+
+<img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" />
+
+arrange(desc())
+
+
+### Criando e renomeando variáveis
+
+<img src="images/dplyr-mutate-rename.png" width="50%" height="55%" style="display: block; margin: auto;" />
+
+mutate()
+rename()
+
+### Agregando observações
+
+<img src="images/dplyr-summarise-count.png" width="40%" height="50%" style="display: block; margin: auto;" />
+
+
+### Agrupando observações
+
+<img src="images/dplyr-group-by-summarise.png" width="40%" height="50%" style="display: block; margin: auto;" />
+
+### Códigos como fluxogramas 
+
+A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
+
+Para manter o código simplificado, legível, claro e  exlícito utilizaremos o operador *pipe* `%>%`, que vem do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+
+os pacotes **tidyr** e **dplyr** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. 
+
+
+- - -
 
 Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.
 
-Embora não requerido os pacotes **tidyr** e **dplyr** usam o operador pipe `%>%` que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código. 
 
 
 ```r
@@ -701,6 +868,10 @@ res_pipe
 
 Quando as suas tarefas aumentam o operador pipe `%>%` torna-se mais útil e o seu código fica mais legível.
 
+### Combinação de dados 
+
+  - `<tipo>_join`, para combinar dados usando variáveis em comum a dois *data frames*;
+  
 ## Exercícios
 
 
@@ -784,12 +955,19 @@ hprec <- as_tibble(hprec) %>%
   mutate(prec = ifelse(prec < 0, NA, prec))
 hprec
 #> # A tibble: 96,428 x 3
-#>   site  date                 prec
-#>   <chr> <chr>               <dbl>
-#> 1 A803  2004-01-01 00:00:00     0
-#> 2 A803  2004-01-01 01:00:00     0
-#> 3 A803  2004-01-01 02:00:00     0
-#> # ... with 9.642e+04 more rows
+#>    site  date                 prec
+#>    <chr> <chr>               <dbl>
+#>  1 A803  2004-01-01 00:00:00     0
+#>  2 A803  2004-01-01 01:00:00     0
+#>  3 A803  2004-01-01 02:00:00     0
+#>  4 A803  2004-01-01 03:00:00     0
+#>  5 A803  2004-01-01 04:00:00     0
+#>  6 A803  2004-01-01 05:00:00     0
+#>  7 A803  2004-01-01 06:00:00     0
+#>  8 A803  2004-01-01 07:00:00     0
+#>  9 A803  2004-01-01 08:00:00     0
+#> 10 A803  2004-01-01 09:00:00     0
+#> # ... with 96,418 more rows
 summary(hprec)
 #>      site               date                prec       
 #>  Length:96428       Length:96428       Min.   : 0.000  
@@ -1267,12 +1445,19 @@ group_by(filter(hprec, !is.na(prec)),
          )
 tab_h
 #> # A tibble: 24 x 3
-#>    hour   n_h n_h_perc
-#>   <int> <int>    <dbl>
-#> 1     0   304     3.89
-#> 2     1   290     3.71
-#> 3     2   319     4.08
-#> # ... with 21 more rows
+#>     hour   n_h n_h_perc
+#>    <int> <int>    <dbl>
+#>  1     0   304     3.89
+#>  2     1   290     3.71
+#>  3     2   319     4.08
+#>  4     3   334     4.27
+#>  5     4   365     4.67
+#>  6     5   399     5.11
+#>  7     6   400     5.12
+#>  8     7   405     5.18
+#>  9     8   370     4.73
+#> 10     9   340     4.35
+#> # ... with 14 more rows
 ```
 
 
