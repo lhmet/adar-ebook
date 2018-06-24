@@ -594,10 +594,12 @@ Você pode unir duas colunas inserindo um separador entre elas com a função `u
 
 
 ```r
-(prec_anual_long_u <- unite(prec_anual_long, 
-                       col = site_ano, 
-                       site, ano, 
-                       sep = "_"))
+(prec_anual_long_u <- unite(
+  prec_anual_long,
+  col = site_ano,
+  site, ano,
+  sep = "_"
+))
 #> # A tibble: 16 x 3
 #>    site_ano  variavel     medida
 #>    <chr>     <chr>         <dbl>
@@ -623,10 +625,12 @@ Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a fu
 
 
 ```r
-separate(prec_anual_long_u, 
-         col = site_ano,
-         sep =  "_",
-         into = c("site", "ano"))
+separate(
+  prec_anual_long_u,
+  col = site_ano,
+  sep = "_",
+  into = c("site", "ano")
+)
 #> # A tibble: 16 x 4
 #>    site  ano   variavel     medida
 #>    <chr> <chr> <chr>         <dbl>
@@ -722,12 +726,143 @@ Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
 </div>
 
 
+### Códigos como fluxogramas 
+
+A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
+
+Essa é justamente a idéia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no <img src="images/logo_r.png" width="20"> através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+
+
+
+Os pacotes **tidyverse** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. Vamos ilustrar as vantagens de uso do %>% com exemplos a seguir.
+
+#### Vantagens do %>%
+
+O exemplo a baixo mostra uma aplicação simples do `%>%` para extrair a raiz quadrada de um número com a função `base::sqrt()`e a extração do segundo elemento de um vetor com a função `dplyr::nth()` (uma função alternativa aos colchetes `[]`).
+
+
+```r
+# chamada tradicional de uma função 
+sqrt(4)
+#> [1] 2
+nth(5:1, 2)
+#> [1] 4
+# chamada de uma função com %>%
+4 %>% sqrt()
+#> [1] 2
+5:1 %>% nth(2)
+#> [1] 4
+```
+
+Ambas formas realizam a mesma tarefa e com mesmo resultado e o benefício do `%>%` não fica evidente. Entretanto, quando precisamos aplicar várias funções as vantagens ficam mais óbvias.
+
+No código abaixo tente decifrar o objetivo das operações no vetor x.
+
+
+```r
+x <- c(1, 3, -1, 1, 4, 2, 2, -3)
+x
+nth(sort(cos(unique(x)), decreasing = TRUE), 2)
+```
+
+Talvez com o código identado fique mais claro:
+
+
+```r
+x <- c(1, 3, -1, 1, 4, 2, 2, -3)
+x
+#> [1]  1  3 -1  1  4  2  2 -3
+nth(            # 4
+  sort(         # 3
+    cos(        # 2
+      unique(x) # 1
+    ),
+    decreasing = TRUE
+  ),n =  2
+)
+#> [1] 0.5403023
+```
+
+O código acima está aninhando funções e isso leva a uma dificuldade de ler por causa da desordem. Para interpretá-lo precisamos fazer a leitura de dentro para fora:
+
+1. mantém somente os valores únicos de x
+2. calcula o cosseno do resultado de (1)
+3. coloca em ordem decrescente o resultado de (2)
+4. extrai o 2° elemento do resultado de (3)
+
+Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor númerico x.
+
+A versão usando pipe é:
+
+
+```r
+x %>%
+  unique() %>%                # 1
+  sort(decreasing = TRUE) %>% # 2
+  cos() %>%                   # 3
+  nth(2)                      # 4
+#> [1] -0.9899925
+```
+
+Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador `%>%` para ilustrar os verbos do **dplyr** e suas combinações.
+
+
+<div class="rmdtip">
+<p>No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador conchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:</p>
+<p><code>&gt; a[2]; nth(a, 2)</code></p>
+<p><code>#&gt; [1] 4</code> <code>#&gt; [1] 4</code></p>
+</div>
+
+#### O operador `.` como argumento
+
+Uma representação mais explícita do código usado na cadeia de funções acima, seria com a inclusão do operador `.` e os nomes dos argumentos das funções:
+
+
+
+```r
+x %>%
+  unique(x = .) %>%                  # 1
+  sort(x = ., decreasing = TRUE) %>% # 2
+  cos(x = .) %>%                     # 3
+  nth(x = ., n = 2)                  # 4
+#> [1] -0.9899925
+```
+
+O tempo a mais digitando é compensado posteriormente quando o você mesmo futuramente tiver que reler o código. Essa forma enfatiza com o `.` que o resultado à esquerda é usado como entrada para função à direita do `%>%`.
+
+Mas nem todas funções do <img src="images/logo_r.png" width="20"> foram construídas com os dados de entrada no primeiro argumento. Essa é a deixa para outra funcionalidade do `.` que é redirecionar os dados de entrada para a posição adequada naquelas funções. Uma função que se encaixa neste caso é a `base::grep()` que detecta uma expressão regular num conjunto de caracteres (*strings*). 
+
+
+```r
+dias <- c("ontem", "hoje", "amanhã")
+grep(
+  pattern = "h",
+  x = dias,
+  value = TRUE
+)
+#> [1] "hoje"   "amanhã"
+```
+
+O código acima seve para retornar os elementos do vetor `dias` que contenham a letra `h`. No entanto os dados de entrada da `base::grep()` são esperados no 2° argumento (`x`). Para redirecioná-los para essa posição dentro de uma cadeia de funções com `%>%`, colocamos o operador `.` no 2° argumento da função:
+
+
+```r
+dias %>%
+  grep(
+  pattern = "h",
+  x = .,
+  value = TRUE
+)
+#> [1] "hoje"   "amanhã"
+```
+
+
 
 ### Seleção de variáveis 
 
 <img src="images/dplyr-select.png" width="20%" height="20%" style="display: block; margin: auto;" />
 
-Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select()`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `select()` da seguinte forma:
+Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select(.data, ...)`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `select()` com o 2° argumento listando as colunas que desejamos selecionar:
 
 
 ```r
@@ -750,6 +885,37 @@ select(clima_rs_tbl, estacao, tmax)
 
 O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
 
+A função `select()` possui funções auxiliares para seleção de variáveis:
+
+
+```r
+clima_rs %>%
+  # todas variáveis menos as compreendidas entre codigo:uf
+  select(., -(codigo:uf)) %>%
+  head(., n = 3)
+#>     prec tmax
+#> 1 1492.2 25.4
+#> 2 1299.9 24.1
+#> 3 1683.7 23.0
+
+clima_rs %>%
+  # nomes que contenham a letra "a"
+  select(., contains("a")) %>%
+  head(n = 3)
+#>           estacao tmax
+#> 1        Alegrete 25.4
+#> 2            Bagé 24.1
+#> 3 Bento Gonçalves 23.0
+
+clima_rs %>%
+  # intervalo de nomes na ordem inversa das variáveis originais
+  select(., tmax:codigo) %>%
+  head(., n = 3)
+#>   tmax   prec uf         estacao codigo
+#> 1 25.4 1492.2 RS        Alegrete  83931
+#> 2 24.1 1299.9 RS            Bagé  83980
+#> 3 23.0 1683.7 RS Bento Gonçalves  83941
+```
 
 
 ### Seleção de observações
@@ -783,93 +949,6 @@ rename()
 
 <img src="images/dplyr-group-by-summarise.png" width="40%" height="50%" style="display: block; margin: auto;" />
 
-### Códigos como fluxogramas 
-
-A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
-
-Para manter o código simplificado, legível, claro e  exlícito utilizaremos o operador *pipe* `%>%`, que vem do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
-
-os pacotes **tidyr** e **dplyr** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. 
-
-
-- - -
-
-Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.
-
-
-
-```r
-# exemplo simples para aplicar uma função
-quadrado <- function(x) x ^ 2
-a <- 1:4
-quadrado(a)
-#> [1]  1  4  9 16
-a %>% quadrado()
-#> [1]  1  4  9 16
-```
-
-Este operador irá transmitir um valor, ou o resultado de uma expressão, como primeiro argumento da próxima função/expressão chamada.
-
-
-```r
-c(1, 10, 100, 1000) %>%
-  cumsum() %>%
-  mean()
-#> [1] 308.5
-```
-
-
-Por exemplo, uma função para filtrar os dados pode ser escrito como:
-
-
-```r
-# exemplo com um dataframe
-data(airquality)
-subset(airquality, Ozone == 23)
-#>     Ozone Solar.R Wind Temp Month Day
-#> 7      23     299  8.6   65     5   7
-#> 28     23      13 12.0   67     5  28
-#> 44     23     148  8.0   82     6  13
-#> 110    23     115  7.4   76     8  18
-#> 131    23     220 10.3   78     9   8
-#> 145    23      14  9.2   71     9  22
-# ou
-airquality %>% 
-  subset(Ozone == 23) %>%
-  `[[`(., "Wind") %>%
-  mean()
-#> [1] 9.25
-```
-
-Ambas funções realizam a mesma tarefa e o benefício de usar `%>%` fica mais evidente. 
-
-Dessa forma, quando precisamos aplicar várias funções o fluxograma das operações fica mais claro e o código mais legível. 
-
-Vamos utilizar o conjunto de dados `airquality` do R, para selecionar algumas variáveis, filtrar algum dados e obter a média da temperatura do ar:
-
-
-```r
-# opção aninhada
-res_anin <- summarize(filter(select(airquality, Ozone, Temp), Ozone > 23), tmed = mean(Temp))
-res_anin
-#>       tmed
-#> 1 82.72059
-# opção por etapas
-etapa1 <- select(airquality, Ozone, Temp)
-etapa2 <- filter(etapa1, Ozone > 23)
-res_etapas <- summarise(etapa2, tmed = mean(Temp))
-
-# opção usando pipe
-res_pipe <- airquality %>%
-  select(Ozone, Temp) %>%
-  filter(Ozone > 23) %>%
-  summarise(tmed = mean(Temp))
-res_pipe
-#>       tmed
-#> 1 82.72059
-```
-
-Quando as suas tarefas aumentam o operador pipe `%>%` torna-se mais útil e o seu código fica mais legível.
 
 ### Combinação de dados 
 

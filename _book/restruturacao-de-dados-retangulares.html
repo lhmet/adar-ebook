@@ -251,13 +251,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados-retangulares.html"><a href="restruturacao-de-dados-retangulares.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#selecao-de-variaveis"><i class="fa fa-check"></i><b>9.4.1</b> Seleção de variáveis</a></li>
-<li class="chapter" data-level="9.4.2" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#selecao-de-observacoes"><i class="fa fa-check"></i><b>9.4.2</b> Seleção de observações</a></li>
-<li class="chapter" data-level="9.4.3" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#reordenando-dados"><i class="fa fa-check"></i><b>9.4.3</b> Reordenando dados</a></li>
-<li class="chapter" data-level="9.4.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#criando-e-renomeando-variaveis"><i class="fa fa-check"></i><b>9.4.4</b> Criando e renomeando variáveis</a></li>
-<li class="chapter" data-level="9.4.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#agregando-observacoes"><i class="fa fa-check"></i><b>9.4.5</b> Agregando observações</a></li>
-<li class="chapter" data-level="9.4.6" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#agrupando-observacoes"><i class="fa fa-check"></i><b>9.4.6</b> Agrupando observações</a></li>
-<li class="chapter" data-level="9.4.7" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#codigos-como-fluxogramas"><i class="fa fa-check"></i><b>9.4.7</b> Códigos como fluxogramas</a></li>
+<li class="chapter" data-level="9.4.1" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#codigos-como-fluxogramas"><i class="fa fa-check"></i><b>9.4.1</b> Códigos como fluxogramas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#selecao-de-variaveis"><i class="fa fa-check"></i><b>9.4.2</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#selecao-de-observacoes"><i class="fa fa-check"></i><b>9.4.3</b> Seleção de observações</a></li>
+<li class="chapter" data-level="9.4.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#reordenando-dados"><i class="fa fa-check"></i><b>9.4.4</b> Reordenando dados</a></li>
+<li class="chapter" data-level="9.4.5" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#criando-e-renomeando-variaveis"><i class="fa fa-check"></i><b>9.4.5</b> Criando e renomeando variáveis</a></li>
+<li class="chapter" data-level="9.4.6" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#agregando-observacoes"><i class="fa fa-check"></i><b>9.4.6</b> Agregando observações</a></li>
+<li class="chapter" data-level="9.4.7" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#agrupando-observacoes"><i class="fa fa-check"></i><b>9.4.7</b> Agrupando observações</a></li>
 <li class="chapter" data-level="9.4.8" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#combinacao-de-dados"><i class="fa fa-check"></i><b>9.4.8</b> Combinação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
@@ -570,10 +570,12 @@ prec_anual_amplo
 <div id="funcoes-adicionais-do-tidyr" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> Funções adicionais do <strong>tidyr</strong></h3>
 <p>Você pode unir duas colunas inserindo um separador entre elas com a função <code>unite()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(prec_anual_long, 
-                       <span class="dt">col =</span> site_ano, 
-                       site, ano, 
-                       <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(
+  prec_anual_long,
+  <span class="dt">col =</span> site_ano,
+  site, ano,
+  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>
+))
 <span class="co">#&gt; # A tibble: 16 x 3</span>
 <span class="co">#&gt;    site_ano  variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
@@ -594,10 +596,12 @@ prec_anual_amplo
 <span class="co">#&gt; 15 A803_2005 intensidade    5.34</span>
 <span class="co">#&gt; 16 A803_2006 intensidade    3.01</span></code></pre></div>
 <p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>separate()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(prec_anual_long_u, 
-         <span class="dt">col =</span> site_ano,
-         <span class="dt">sep =</span>  <span class="st">&quot;_&quot;</span>,
-         <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(
+  prec_anual_long_u,
+  <span class="dt">col =</span> site_ano,
+  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,
+  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)
+)
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    site  ano   variavel     medida</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
