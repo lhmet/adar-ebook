@@ -243,7 +243,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
-<li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#tidyr"><i class="fa fa-check"></i><b>9.3.2</b> tidyr</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#formatos-de-dados"><i class="fa fa-check"></i><b>9.3.2</b> Formatos de dados</a></li>
 <li class="chapter" data-level="9.3.3" data-path="restruturacao-de-dados.html"><a href="restruturacao-de-dados.html#funcoes-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
@@ -406,10 +406,14 @@ Como sinônimo de observações você pode encontrar os termos: registros, casos
 <li><p>uma variável deve ser distribuída ao longo das colunas</p></li>
 <li><p>uma observação deve ser distribuída ao longo das linhas</p></li>
 </ul>
-<p>Conjuntos de dados ambientais brasileiros tipicamente sofrem de ambos problemas. Felizmente, eles são resolvidos com as duas principais funções do pacote <strong>tidyr</strong>: <code>gather()</code> e <code>spread()</code>.</p>
+<p>Essas duas operações são realizadas com as principais funções do pacote <strong>tidyr</strong>:</p>
+<ul>
+<li><p><code>gather()</code>, que pode ser traduzida como reunir (nas linhas);</p></li>
+<li><p><code>spread()</code> que pode ser traduzida como espalhar (nas colunas)</p></li>
+</ul>
 </div>
-<div id="tidyr" class="section level3">
-<h3><span class="header-section-number">9.3.2</span> tidyr</h3>
+<div id="formatos-de-dados" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Formatos de dados</h3>
 <p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos.</p>
 <p>Os principais formatos de dados são:</p>
 <ul>
@@ -445,12 +449,24 @@ prec_anual_tbl
 )
 prec_anual_long
 <span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;   site    ano variavel medida</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000 prec       1800</span>
-<span class="co">#&gt; 2 A001   2001 prec       1400</span>
-<span class="co">#&gt; 3 A002   2000 prec       1750</span>
-<span class="co">#&gt; # ... with 13 more rows</span></code></pre></div>
+<span class="co">#&gt;    site    ano variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001   2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002   2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002   2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
 <p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
 <ul>
 <li><p><code>data = prec_anual_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
@@ -468,33 +484,59 @@ prec_anual_long
 )
 prec_anual_longo
 <span class="co">#&gt; # A tibble: 32 x 2</span>
-<span class="co">#&gt;   atributo valor</span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;</span>
-<span class="co">#&gt; 1 site     A001 </span>
-<span class="co">#&gt; 2 site     A001 </span>
-<span class="co">#&gt; 3 site     A002 </span>
-<span class="co">#&gt; # ... with 29 more rows</span></code></pre></div>
+<span class="co">#&gt;    atributo valor</span>
+<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;</span>
+<span class="co">#&gt;  1 site     A001 </span>
+<span class="co">#&gt;  2 site     A001 </span>
+<span class="co">#&gt;  3 site     A002 </span>
+<span class="co">#&gt;  4 site     A002 </span>
+<span class="co">#&gt;  5 site     A002 </span>
+<span class="co">#&gt;  6 site     A003 </span>
+<span class="co">#&gt;  7 site     A803 </span>
+<span class="co">#&gt;  8 site     A803 </span>
+<span class="co">#&gt;  9 ano      2000 </span>
+<span class="co">#&gt; 10 ano      2001 </span>
+<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
 <p>Se não forem especificados nomes para os argumentos <code>key</code> e <code>value</code> na chamada da função gather, serão atribuídos os valores <em>default</em>: <code>key</code> e <code>value</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(prec_anual_tbl)
 <span class="co">#&gt; # A tibble: 32 x 2</span>
-<span class="co">#&gt;   key   value</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;</span>
-<span class="co">#&gt; 1 site  A001 </span>
-<span class="co">#&gt; 2 site  A001 </span>
-<span class="co">#&gt; 3 site  A002 </span>
-<span class="co">#&gt; # ... with 29 more rows</span></code></pre></div>
+<span class="co">#&gt;    key   value</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt;  1 site  A001 </span>
+<span class="co">#&gt;  2 site  A001 </span>
+<span class="co">#&gt;  3 site  A002 </span>
+<span class="co">#&gt;  4 site  A002 </span>
+<span class="co">#&gt;  5 site  A002 </span>
+<span class="co">#&gt;  6 site  A003 </span>
+<span class="co">#&gt;  7 site  A803 </span>
+<span class="co">#&gt;  8 site  A803 </span>
+<span class="co">#&gt;  9 ano   2000 </span>
+<span class="co">#&gt; 10 ano   2001 </span>
+<span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
 </div>
 <div id="formato-de-dados-amplo" class="section level4">
 <h4><span class="header-section-number">9.3.2.2</span> Formato de dados amplo</h4>
 <p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>spread()</code>. Esta função é complementar à <code>gather()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long
 <span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;   site    ano variavel medida</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000 prec       1800</span>
-<span class="co">#&gt; 2 A001   2001 prec       1400</span>
-<span class="co">#&gt; 3 A002   2000 prec       1750</span>
-<span class="co">#&gt; # ... with 13 more rows</span></code></pre></div>
+<span class="co">#&gt;    site    ano variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001   2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002   2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002   2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002   2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003   2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803   2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803   2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001   2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001   2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002   2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002   2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002   2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003   2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803   2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803   2006 intensidade    3.01</span></code></pre></div>
 <p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(
   <span class="dt">data =</span> prec_anual_long,
@@ -524,24 +566,48 @@ prec_anual_amplo
                        site, ano, 
                        <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>))
 <span class="co">#&gt; # A tibble: 16 x 3</span>
-<span class="co">#&gt;   site_ano  variavel medida</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001_2000 prec       1800</span>
-<span class="co">#&gt; 2 A001_2001 prec       1400</span>
-<span class="co">#&gt; 3 A002_2000 prec       1750</span>
-<span class="co">#&gt; # ... with 13 more rows</span></code></pre></div>
+<span class="co">#&gt;    site_ano  variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001_2000 prec        1800   </span>
+<span class="co">#&gt;  2 A001_2001 prec        1400   </span>
+<span class="co">#&gt;  3 A002_2000 prec        1750   </span>
+<span class="co">#&gt;  4 A002_2001 prec        1470   </span>
+<span class="co">#&gt;  5 A002_2002 prec        1630   </span>
+<span class="co">#&gt;  6 A003_2004 prec        1300   </span>
+<span class="co">#&gt;  7 A803_2005 prec        1950   </span>
+<span class="co">#&gt;  8 A803_2006 prec        1100   </span>
+<span class="co">#&gt;  9 A001_2000 intensidade    4.93</span>
+<span class="co">#&gt; 10 A001_2001 intensidade    3.83</span>
+<span class="co">#&gt; 11 A002_2000 intensidade    4.79</span>
+<span class="co">#&gt; 12 A002_2001 intensidade    4.02</span>
+<span class="co">#&gt; 13 A002_2002 intensidade    4.46</span>
+<span class="co">#&gt; 14 A003_2004 intensidade    3.56</span>
+<span class="co">#&gt; 15 A803_2005 intensidade    5.34</span>
+<span class="co">#&gt; 16 A803_2006 intensidade    3.01</span></code></pre></div>
 <p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>separate()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(prec_anual_long_u, 
          <span class="dt">col =</span> site_ano,
          <span class="dt">sep =</span>  <span class="st">&quot;_&quot;</span>,
          <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>))
 <span class="co">#&gt; # A tibble: 16 x 4</span>
-<span class="co">#&gt;   site  ano   variavel medida</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001  2000  prec       1800</span>
-<span class="co">#&gt; 2 A001  2001  prec       1400</span>
-<span class="co">#&gt; 3 A002  2000  prec       1750</span>
-<span class="co">#&gt; # ... with 13 more rows</span></code></pre></div>
+<span class="co">#&gt;    site  ano   variavel     medida</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001  2000  prec        1800   </span>
+<span class="co">#&gt;  2 A001  2001  prec        1400   </span>
+<span class="co">#&gt;  3 A002  2000  prec        1750   </span>
+<span class="co">#&gt;  4 A002  2001  prec        1470   </span>
+<span class="co">#&gt;  5 A002  2002  prec        1630   </span>
+<span class="co">#&gt;  6 A003  2004  prec        1300   </span>
+<span class="co">#&gt;  7 A803  2005  prec        1950   </span>
+<span class="co">#&gt;  8 A803  2006  prec        1100   </span>
+<span class="co">#&gt;  9 A001  2000  intensidade    4.93</span>
+<span class="co">#&gt; 10 A001  2001  intensidade    3.83</span>
+<span class="co">#&gt; 11 A002  2000  intensidade    4.79</span>
+<span class="co">#&gt; 12 A002  2001  intensidade    4.02</span>
+<span class="co">#&gt; 13 A002  2002  intensidade    4.46</span>
+<span class="co">#&gt; 14 A003  2004  intensidade    3.56</span>
+<span class="co">#&gt; 15 A803  2005  intensidade    5.34</span>
+<span class="co">#&gt; 16 A803  2006  intensidade    3.01</span></code></pre></div>
 <p>Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função <code>complete()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual
 <span class="co">#&gt;   site  ano prec</span>
@@ -559,12 +625,19 @@ prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(
 )
 prec_anual_comp
 <span class="co">#&gt; # A tibble: 24 x 3</span>
-<span class="co">#&gt;   site    ano  prec</span>
-<span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A001   2000  1800</span>
-<span class="co">#&gt; 2 A001   2001  1400</span>
-<span class="co">#&gt; 3 A001   2002    NA</span>
-<span class="co">#&gt; # ... with 21 more rows</span></code></pre></div>
+<span class="co">#&gt;    site    ano  prec</span>
+<span class="co">#&gt;    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 A001   2000  1800</span>
+<span class="co">#&gt;  2 A001   2001  1400</span>
+<span class="co">#&gt;  3 A001   2002    NA</span>
+<span class="co">#&gt;  4 A001   2004    NA</span>
+<span class="co">#&gt;  5 A001   2005    NA</span>
+<span class="co">#&gt;  6 A001   2006    NA</span>
+<span class="co">#&gt;  7 A002   2000  1750</span>
+<span class="co">#&gt;  8 A002   2001  1470</span>
+<span class="co">#&gt;  9 A002   2002  1630</span>
+<span class="co">#&gt; 10 A002   2004    NA</span>
+<span class="co">#&gt; # ... with 14 more rows</span></code></pre></div>
 </div>
 </div>
 <h3>References</h3>

@@ -663,13 +663,13 @@ Um gráfico pode ser gerado através da funções `plot()`. Por default são mos
 plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
 
-Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
+Os dados em formato `RasterBrick`, `RasterStack` ou `RasterLayer` podem ser convertidos para `data frame` por meio da função `raster::as.data.frame()`.
 
 ```{r, eval = TRUE}
 df_tar_cru <- as.data.frame(
   x = brick_tar_cru,
   xy = TRUE, 
-  na.rm = TRUE,
+  na.rm = TRUE
   #long = TRUE
 )
 str(df_tar_cru)

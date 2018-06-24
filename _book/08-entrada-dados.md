@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20"
+#> [1] "/tmp/Rtmp9v8dMm/file16647ba24c18"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20.csv"
+#> [1] "/tmp/Rtmp9v8dMm/file16647ba24c18.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmpscHuyQ/file44ae798e8d20.csv"
+#> [1] "/tmp/Rtmp9v8dMm/file16647ba24c18.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmpscHuyQ/file44ae1b27e6bb"
+#> [1] "/tmp/Rtmp9v8dMm/file166441bf1fda"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmpscHuyQ/file44ae1b27e6bb.tsv"
+#> [1] "/tmp/Rtmp9v8dMm/file166441bf1fda.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmpscHuyQSOI.csv"
+#> [1] "/tmp/Rtmp9v8dMmSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmpscHuyQ/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp9v8dMm/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/RtmpscHuyQ/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmp9v8dMm/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> data source : /tmp/RtmpscHuyQ/cru10min30_tmp.nc 
+#> data source : /tmp/Rtmp9v8dMm/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -891,14 +891,14 @@ plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 
 <img src="images/unnamed-chunk-25-1.png" width="1056" />
 
-Os dados em formato `RasterBrick`, RasterStack ou RasterLayer podem ser convertidos para classe `data.frame` pela função `as.data.frame()`.
+Os dados em formato `RasterBrick`, `RasterStack` ou `RasterLayer` podem ser convertidos para `data frame` por meio da função `raster::as.data.frame()`.
 
 
 ```r
 df_tar_cru <- as.data.frame(
   x = brick_tar_cru,
   xy = TRUE, 
-  na.rm = TRUE,
+  na.rm = TRUE
   #long = TRUE
 )
 str(df_tar_cru)
@@ -1078,9 +1078,9 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr      min        lq      mean    median        uq       max neval
-#>   writexl  9.01393  9.942926  16.38602  10.29491  22.38759  30.29075     5
-#>  openxlsx 61.64823 71.144354 179.14175 109.42481 212.95492 440.53646     5
+#>      expr       min        lq      mean   median        uq       max neval
+#>   writexl  9.275415  9.419507  11.12654  9.42737  9.846497  17.66393     5
+#>  openxlsx 49.597490 56.312666 134.29396 57.99444 88.313153 419.25204     5
 #>  cld
 #>    a
 #>    a
@@ -1090,7 +1090,7 @@ A função `microbenckmar::microbenckmark` usada acima toma os tempos das expres
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 11 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 12 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares

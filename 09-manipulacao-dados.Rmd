@@ -21,6 +21,7 @@ opts_chunk$set(
 )
 # rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
+figselect <- '<img src=images/dplyr-select.png" width="20">'
 ```
 
 Neste capítulo veremos:
@@ -123,7 +124,7 @@ kable(prec_anual, align = "c")
 
 ### Funcionalidades do *tibble*
 
-Para ilustrar algumas vantagens do *tibble*, vamos recriar o *data frame* `prec_anual` incluindo uma nova variável `int prec`(intensidade da precipitação) baseada na razão da precipitação pelo número de dias no ano. Criamos um *tibble* com a função `tibble()`.
+Para ilustrar algumas vantagens do *tibble*, vamos usar o *data frame* `prec_anual`. A criação destes dados como *tibble* é feita com a função de mesmo nome do pacote: `tibble()`.
 
 ```{r}
 prec_anual_tbl <- tibble(
@@ -135,22 +136,25 @@ prec_anual_tbl <- tibble(
 )
 ```
 
-Com o exemplo acima, as principais diferenças entre um *tibble* e um *data frame* podem ser demonstradas:
-
-- quando impresso no console do R, o *tibble* mostra a classe de cada variável, enquanto objetos *data.frame* não.
+O exemplo acima é ilustrativo, pois um *data frame* pode ser convertido em um *tibble* simplesmente com a função `as_tibble()`:
 
 ```{r}
-clima_rs
+prec_anual_tbl <- as_tibble(prec_anual)
+prec_anual_tbl
 ```
 
 
-- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Para quem não estiver informado sobre esse comportamento padrão pode causar problemas nas próximas etapas do trabalho. 
+Com o *tibble* acima, as principais diferenças entre um *tibble* e um *data frame* podem ser enfatizadas.
+
+- quando impresso no console do R, o *tibble* já mostra a classe de cada variável.
+
+- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores. 
 
 ```{r}
-data.frame("temp. do ar" = "18")
+str(data.frame("temp. do ar" = "18"))
 ```
 
-- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*. 
+- permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*; veja o exemplo abaixo, onde a `int prec`(intensidade da precipitação) é baseada na razão da precipitação (`prec`) pelo número de dias no ano.
 
 ```{r}
 prec_anual_tbl <- tibble(
@@ -161,6 +165,7 @@ prec_anual_tbl <- tibble(
   prec = c(1800, 1400, 1750, 1470, 1630, 1300, 1950, 1100),
   "int prec" = prec / 365.25
 )
+prec_anual_tbl
 ```
 
 
@@ -174,14 +179,8 @@ subset(prec_anual_tbl, ano == 2001)
 ```
 
 
-Quando um *tibble* é impresso na tela, somente as dez primeiras linhas são mostradas. O número de colunas mostradas é ajustado de acordo com o tamanho da janela.
+- a impressão de um *tibble* mostra as dez primeiras linhas e a quantidade de colunas mostradas é ajustada ao tamanho da janela do console.
 
-A conversão de um *data frame* para *tibble* pode ser feita simplesmente com a função `as_tibble()`:
-
-```{r}
-prec_anual_tbl_conv <- as_tibble(prec_anual)
-prec_anual_tbl_conv
-```
 
 As opções de controle *default* da impressão de *tibbles* no console pode ser configuradas através da função de opções de configuração global do R:
 
@@ -194,34 +193,45 @@ options(
 )
 ```
 
-Com a configuração acima, será impresso no console do R `n = 3` linhas da *tibble* se ela tiver mais de `m = 15` linhas. 
+Com a configuração acima, será impresso no console do R `n = 3` linhas do *tibble* se ele tiver mais de `m = 15` linhas. 
 
 ```{r}
 nrow(clima_rs) > 15
 # coersão do data.frame clima_rs para tibble
-as_tibble(clima_rs)
+clima_rs_tbl <- as_tibble(clima_rs)
 ```
 
-Uma alternativa útil para inspecionar mais detalhadamente os dados é a função `glimpse()`.
+Para restaurar as opções *default* use:
+
+```{r}
+options(
+  tibble.print_max = NULL,
+  tibble.print_min = NULL
+)
+clima_rs_tbl
+```
+
+
+Uma alternativa útil para inspecionar mais detalhadamente os dados é a função `tibble::glimpse()`.
 
 ```{r}
 glimpse(clima_rs)
 ```
 
 
-Lembre-se também, da função `View()` para visualizar e navegar através dos dados usando o RStudio.
+Lembre-se também, da função `utils::View()` para visualizar os dados no RStudio.
 
 ```{r, eval = FALSE}
 View(clima_rs)
 ```
 
 
-Outras aspectos diferencias do *tibble* podem consultados na vinheta do referido pacote (`vignette("tibble")`).
+Outros aspectos diferencias do *tibble* podem consultados na vinheta do referido pacote (`vignette("tibble")`).
 
 
-## Restruturação de dados
+## Restruturação de dados retangulares
 
-> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson].
+> Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson, [New York Times 2014/08/18](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)].
 
 ```{r, include=FALSE}
 # references
@@ -238,20 +248,18 @@ Dados bem estruturados servem para:
 
 - revelar informações e facilitar a percepção de padrões
 
-Dados no \"formato arrumado\" atendem as seguintes regras:
+Dados no \"formato arrumado\" atendem as seguintes regras para dados retangulares:
 
-1. dados em formato retangular
+1. cada **variável** está em uma coluna 
 
-2. cada variável está em uma coluna 
+2. cada **observação** corresponde a uma linha
 
-3. cada observação corresponde a uma linha
+3. cada **valor** corresponde a uma célula
 
-4. cada valor corresponde a uma célula
-
-5. cada tipo de unidade observacional deve compor uma tabela
+4. cada tipo de unidade observacional deve compor uma tabela
 
 ```{block, significados-obs, type='rmdnote'}
-Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras, dependendo da área de aplicação.
+Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras dependendo da área de aplicação.
 ```
 
  
@@ -281,9 +289,9 @@ Exemplo de diferentes **tipos de unidades observacionais** são a tabela com a s
 
 A estrutura de dados \"arrumados\" parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:
 
-- as pessoas que projetam a coleta e o registro de dados nem sempre são aquelas que gastam tempo trabalhando sobre os dados.
+- quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;
 
-- a organização dos dados buscar tornar o registro de dados o mais fácil possível
+- a organização dos dados busca tornar o registro de dados o mais fácil possível;
 
 Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
 
@@ -291,7 +299,11 @@ Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é i
 
 - uma observação deve ser distribuída ao longo das linhas
 
-Conjuntos de dados ambientais brasileiros tipicamente sofrem de ambos problemas. Felizmente, eles são resolvidos com as  duas principais funções do pacote **tidyr**: `gather()` e `spread()`.
+Essas duas operações são realizadas com as principais funções do pacote **tidyr**: 
+
+- `gather()`, que pode ser traduzida como reunir (nas linhas);
+
+- `spread()` que pode ser traduzida como espalhar (nas colunas)
 
 ```{r, include = FALSE}
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
@@ -300,9 +312,9 @@ Conjuntos de dados ambientais brasileiros tipicamente sofrem de ambos problemas.
 
 
 
-### tidyr
+### Formatos de dados mais comuns
 
-O pacote **tidyr** é a extensão do `r rblue` que fornece funcionalidades para reestruturar os dados entre diferentes formatos. 
+O pacote **tidyr** é a extensão do `r rblue` que fornece funcionalidades para reestruturar os dados entre diferentes formatos.
 
 Os principais formatos de dados são: 
 
@@ -427,21 +439,113 @@ prec_anual_comp
 
 ## Manipulação de dados
 
-Gramática de manipulação de dados implementada no pacote **dplyr**.
+Com os dados arrumados, a próxima etapa é a manipulação dos dados. O pacote **dplyr** oferece um conjunto de funções que facilita as operações mais comuns para lidar com dados retangulares de uma forma bem pensada.
 
-* Os 5 verbos básicos são: 
+Os verbos fundamentais desta gramática de manipulação de dados são: 
 
-  - `select()`, para selecionar variáveis
-  - `filter()`, para filtrar observações
-  - `arrange()`, para ordenar variáveis
-  - `mutate()`, para transformat variáveis
-  - `group_by()` e `summarise()`, para agrupar observações e obter resumos estatísticos
+  - `select()`, para selecionar variáveis;
+  - `filter()`, para filtrar observações;
+  - `arrange()`, para classificar variáveis;
+  - `mutate()`, para criar e transformar variáveis;
+  - `group_by()`, para agrupar observações;
+  - `summarise()`, para resumir os dados com medidas estatísticas descritivas;
 
-### Operador Pipe `%>%`
+
+Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `verbo(sujeito, complemento)` </p>
+ traduzindo de outra forma:
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `função(dados, z = x + y)` </p>
+
+- o `verbo` é a função do **dplyr**;
+- o `sujeito` (dados) é quem sofre a ação e é **sempre o primeiro argumento**, nomeado (`.data`);
+- o `complemento` são expressões que podem ser usadas como argumentos (o que é representado pela reticência `...` no segundo argumento); isso ficará mais claro nos exemplos mais a frente;
+
+
+```{block, note-pq-dplyr, type='rmdtip'}
+Os verbos listados anteriormente possuem versões equivalentes na base do `r rblue`. Então, por que usar o *dplyr* ? 
+
+- é muito mais rápido de se aprender, com poucas funções (ou verbos) nomeadas intuitivamente;
+
+- as funções do **dplyr** são mais rápidas (parte dos códigos são programados em C++);
+
+- trabalha bem com dados arrumados e também com sistemas de banco de dados
+
+- as funções foram projetadas para trabalharem juntas na solução diversos problemas de processamento de dados; 
+```
+
+
+
+### Seleção de variáveis 
+
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+knitr::include_graphics("images/dplyr-select.png")
+```
+
+Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select()`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `select()` da seguinte forma:
+
+```{r}
+select(clima_rs_tbl, estacao, tmax)
+```
+
+O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
+
+
+
+### Seleção de observações
+
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+knitr::include_graphics("images/dplyr-filter.png")
+```
+
+filter()
+slice()
+
+
+### Reordenando dados
+
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+knitr::include_graphics("images/dplyr-arrange.png")
+```
+
+arrange(desc())
+
+
+### Criando e renomeando variáveis
+
+```{r, ,echo = FALSE, out.width="50%", out.height="55%", fig.align='center'}
+knitr::include_graphics("images/dplyr-mutate-rename.png")
+```
+
+mutate()
+rename()
+
+### Agregando observações
+
+```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center'}
+knitr::include_graphics("images/dplyr-summarise-count.png")
+```
+
+
+### Agrupando observações
+
+```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center'}
+knitr::include_graphics("images/dplyr-group-by-summarise.png")
+```
+
+### Códigos como fluxogramas 
+
+A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
+
+Para manter o código simplificado, legível, claro e  exlícito utilizaremos o operador *pipe* `%>%`, que vem do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+
+os pacotes **tidyr** e **dplyr** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. 
+
+
+- - -
 
 Isso leva a uma dificuldade de ler funções aninhadas e um código desordenado.
 
-Embora não requerido os pacotes **tidyr** e **dplyr** usam o operador pipe `%>%` que quando combinado com vários funções forma uma cadeia de processamento de dados, ao invés do aninhamento de funções que limita a legibilidade do código. 
 
 ```{r}
 # exemplo simples para aplicar uma função
@@ -498,6 +602,10 @@ res_pipe
 
 Quando as suas tarefas aumentam o operador pipe `%>%` torna-se mais útil e o seu código fica mais legível.
 
+### Combinação de dados 
+
+  - `<tipo>_join`, para combinar dados usando variáveis em comum a dois *data frames*;
+  
 ## Exercícios
 
 
