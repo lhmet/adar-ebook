@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # (PART) Ferramentas modernas do R {-}
 
@@ -54,7 +54,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-06-24
+#> + ggplot2 2.2.1        Date: 2018-06-25
 #> + tibble  1.4.2           R: 3.4.4
 #> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
@@ -157,7 +157,7 @@ prec_anual
 
 ### Funcionalidades do *tibble*
 
-Para ilustrar algumas vantagens do *tibble*, vamos usar o *data frame* `prec_anual`. A criação destes dados como *tibble* é feita com a função de mesmo nome do pacote: `tibble()`.
+Para ilustrar algumas vantagens do *tibble*, vamos usar o *data frame* `prec_anual`. A criação destes dados como *tibble* é feita com a função de mesmo nome do pacote: `tibble::tibble()`.
 
 
 ```r
@@ -170,7 +170,7 @@ prec_anual_tbl <- tibble(
 )
 ```
 
-O exemplo acima é ilustrativo, pois um *data frame* pode ser convertido em um *tibble* simplesmente com a função `as_tibble()`:
+O exemplo acima é ilustrativo, pois um *data frame* pode ser convertido em um *tibble* simplesmente com a função `tibble::as_tibble()`:
 
 
 ```r
@@ -194,7 +194,7 @@ Com o *tibble* acima, as principais diferenças entre um *tibble* e um *data fra
 
 - quando impresso no console do R, o *tibble* já mostra a classe de cada variável.
 
-- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores. 
+- vetores caracteres não são interpretados como *factors* em um *tibble*, em contraste a `base::data.frame()` que faz a coerção para *factor* e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores. 
 
 
 ```r
@@ -438,7 +438,7 @@ prec_anual_tbl
 #> 8 A803   2006  1100        3.01
 ```
 
-Vamos usar a função `gather()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
+Vamos usar a função `tidyr::gather()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
 
 Na nova tabela, manteremos as colunas `site`, `ano` e   teremos dois novos pares de variáveis: `variavel` e `valor`. Na coluna `variavel` será distribuído o nome das variáveis `prec` e `intensidade`. A coluna `valor`reunirá os valores das variáveis `prec` e `intensidade`.
 
@@ -536,7 +536,7 @@ gather(prec_anual_tbl)
 
 #### Formato de dados amplo
 
-Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função `spread()`. Esta função é complementar à `gather()`.
+Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função `tidyr::spread()`. Esta função é complementar à `tidyr::gather()`.
 
 
 ```r
@@ -590,7 +590,7 @@ Esta operação serviu para colocar os dados originais (`prec_anual_long`) no fo
 
 ### Funções adicionais do **tidyr**
 
-Você pode unir duas colunas inserindo um separador entre elas com a função `unite()`:
+Você pode unir duas colunas inserindo um separador entre elas com a função `tidyr::unite()`:
 
 
 ```r
@@ -621,7 +621,7 @@ Você pode unir duas colunas inserindo um separador entre elas com a função `u
 #> 16 A803_2006 intensidade    3.01
 ```
 
-Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função `separate()`:
+Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função `tidyr::separate()`:
 
 
 ```r
@@ -652,7 +652,7 @@ separate(
 #> 16 A803  2006  intensidade    3.01
 ```
 
-Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função `complete()`:
+Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função `tidyr::complete()`:
 
 
 ```r
@@ -762,16 +762,15 @@ No código abaixo tente decifrar o objetivo das operações no vetor x.
 ```r
 x <- c(1, 3, -1, 1, 4, 2, 2, -3)
 x
-nth(sort(cos(unique(x)), decreasing = TRUE), 2)
+#> [1]  1  3 -1  1  4  2  2 -3
+nth(sort(cos(unique(x)), decreasing = TRUE), n = 2)
+#> [1] 0.5403023
 ```
 
 Talvez com o código identado fique mais claro:
 
 
 ```r
-x <- c(1, 3, -1, 1, 4, 2, 2, -3)
-x
-#> [1]  1  3 -1  1  4  2  2 -3
 nth(            # 4
   sort(         # 3
     cos(        # 2
@@ -780,7 +779,6 @@ nth(            # 4
     decreasing = TRUE
   ),n =  2
 )
-#> [1] 0.5403023
 ```
 
 O código acima está aninhando funções e isso leva a uma dificuldade de ler por causa da desordem. Para interpretá-lo precisamos fazer a leitura de dentro para fora:
@@ -798,10 +796,10 @@ A versão usando pipe é:
 ```r
 x %>%
   unique() %>%                # 1
-  sort(decreasing = TRUE) %>% # 2
-  cos() %>%                   # 3
-  nth(2)                      # 4
-#> [1] -0.9899925
+  cos() %>%                   # 2
+  sort(decreasing = TRUE) %>% # 3
+  nth(n = 2)                      # 4
+#> [1] 0.5403023
 ```
 
 Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador `%>%` para ilustrar os verbos do **dplyr** e suas combinações.
@@ -809,7 +807,7 @@ Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui
 
 <div class="rmdtip">
 <p>No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador conchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:</p>
-<p><code>&gt; a[2]; nth(a, 2)</code></p>
+<p><code>a[2]; nth(a, 2)</code></p>
 <p><code>#&gt; [1] 4</code> <code>#&gt; [1] 4</code></p>
 </div>
 
@@ -834,10 +832,10 @@ Mas nem todas funções do <img src="images/logo_r.png" width="20"> foram constr
 
 
 ```r
-dias <- c("ontem", "hoje", "amanhã")
+adverbs <- c("ontem", "hoje", "amanhã")
 grep(
   pattern = "h",
-  x = dias,
+  x = adverbs,
   value = TRUE
 )
 #> [1] "hoje"   "amanhã"
@@ -847,7 +845,7 @@ O código acima seve para retornar os elementos do vetor `dias` que contenham a 
 
 
 ```r
-dias %>%
+adverbs %>%
   grep(
   pattern = "h",
   x = .,
@@ -858,11 +856,13 @@ dias %>%
 
 
 
+
+
 ### Seleção de variáveis 
 
 <img src="images/dplyr-select.png" width="20%" height="20%" style="display: block; margin: auto;" />
 
-Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select(.data, ...)`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `select()` com o 2° argumento listando as colunas que desejamos selecionar:
+Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função `dplyr::select(.data, ...)`. Nos dados `clima_rs_tbl` se desejamos selecionar apenas as colunas `estacao` e `tmax` aplicamos a `dplyr::select()` com o 2° argumento listando as colunas que desejamos selecionar:
 
 
 ```r
@@ -885,72 +885,678 @@ select(clima_rs_tbl, estacao, tmax)
 
 O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
 
-A função `select()` possui funções auxiliares para seleção de variáveis:
+A função `dplyr::select()` possui funções auxiliares para seleção de variáveis:
 
 
 ```r
-clima_rs %>%
-  # todas variáveis menos as compreendidas entre codigo:uf
+clima_rs_tbl %>%
+  # as variáveis entre uf e tmax
+  select(., uf:tmax) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 3
+#>   uf     prec  tmax
+#>   <chr> <dbl> <dbl>
+#> 1 RS    1492.  25.4
+#> 2 RS    1300.  24.1
+#> 3 RS    1684.  23
+
+clima_rs_tbl %>%
+  # todas variáveis menos as entre codigo:uf
   select(., -(codigo:uf)) %>%
   head(., n = 3)
-#>     prec tmax
-#> 1 1492.2 25.4
-#> 2 1299.9 24.1
-#> 3 1683.7 23.0
+#> # A tibble: 3 x 2
+#>    prec  tmax
+#>   <dbl> <dbl>
+#> 1 1492.  25.4
+#> 2 1300.  24.1
+#> 3 1684.  23
 
-clima_rs %>%
+clima_rs_tbl %>%
+  # ordem inversa das variáveis
+  select(., tmax:codigo) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 5
+#>    tmax  prec uf    estacao         codigo
+#>   <dbl> <dbl> <chr> <chr>           <chr> 
+#> 1  25.4 1492. RS    Alegrete        83931 
+#> 2  24.1 1300. RS    Bagé            83980 
+#> 3  23   1684. RS    Bento Gonçalves 83941
+
+clima_rs_tbl %>%
   # nomes que contenham a letra "a"
   select(., contains("a")) %>%
   head(n = 3)
-#>           estacao tmax
-#> 1        Alegrete 25.4
-#> 2            Bagé 24.1
-#> 3 Bento Gonçalves 23.0
+#> # A tibble: 3 x 2
+#>   estacao          tmax
+#>   <chr>           <dbl>
+#> 1 Alegrete         25.4
+#> 2 Bagé             24.1
+#> 3 Bento Gonçalves  23
 
-clima_rs %>%
-  # intervalo de nomes na ordem inversa das variáveis originais
-  select(., tmax:codigo) %>%
+clima_rs_tbl %>%
+  # variáveis que iniciam com "c"
+  select(., starts_with("c")) %>%
   head(., n = 3)
-#>   tmax   prec uf         estacao codigo
-#> 1 25.4 1492.2 RS        Alegrete  83931
-#> 2 24.1 1299.9 RS            Bagé  83980
-#> 3 23.0 1683.7 RS Bento Gonçalves  83941
+#> # A tibble: 3 x 1
+#>   codigo
+#>   <chr> 
+#> 1 83931 
+#> 2 83980 
+#> 3 83941
+
+clima_rs_tbl %>%
+  # usando um vetor de caracteres
+  select(., one_of(c("estacao", "uf"))) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 2
+#>   estacao         uf   
+#>   <chr>           <chr>
+#> 1 Alegrete        RS   
+#> 2 Bagé            RS   
+#> 3 Bento Gonçalves RS
+
+clima_rs_tbl %>%
+  # combinações
+  select(., -uf, ends_with("o")) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 4
+#>   codigo estacao          prec  tmax
+#>   <chr>  <chr>           <dbl> <dbl>
+#> 1 83931  Alegrete        1492.  25.4
+#> 2 83980  Bagé            1300.  24.1
+#> 3 83941  Bento Gonçalves 1684.  23
+
+clima_rs_tbl %>%
+  # variáveis que inciam com letras minúsculas e com 4 caracteres
+  select(., matches("^[a-z]{4}$")) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 2
+#>    prec  tmax
+#>   <dbl> <dbl>
+#> 1 1492.  25.4
+#> 2 1300.  24.1
+#> 3 1684.  23
 ```
 
+O último exemplo usa uma expressão regular ([regex](https://pt.wikipedia.org/wiki/Express%C3%A3o_regular)). *Regex* é uma linguagem para descrever e manipular caracteres de texto. Há [livros sobre este assunto](http://aurelio.net/regex/guia/) e diversos [tutorias](https://stringr.tidyverse.org/articles/regular-expressions.html) sobre *regex* no R. Para saber mais sobre isso veja  o capítulo sobre [strings](http://r4ds.had.co.nz/strings.html) do livro de @Wickham2017. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.
+
+Veja mais funções úteis para seleção de variáveis em `?dplyr::select`. 
 
 ### Seleção de observações
 
 <img src="images/dplyr-filter.png" width="20%" height="20%" style="display: block; margin: auto;" />
 
-filter()
-slice()
+A filtragem de observações geralmente envolve uma expressão que retorna valores lógicos ou as posições das linhas selecionadas (como a função `which()`).
+
+A função `dplyr::filter()` permite filtrar observações de um *data frame* correspondentes a alguns creitérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: `&`, ou: `|`). Veja abaixo alguns exemplos de filtragem de observações: 
+
+- linhas correspondentes ao `codigo` da estação 83936.
+
+
+```r
+clima_rs_tbl %>%
+  filter(codigo == 83936)
+#> # A tibble: 1 x 5
+#>   codigo estacao     uf     prec  tmax
+#>   <chr>  <chr>       <chr> <dbl> <dbl>
+#> 1 83936  Santa Maria RS    1617.  24.9
+```
+
+- linhas da variável `estacao` que contenham o vetor caractere `litoraneas`.
+
+```r
+litoraneas <- c("Torres", 
+                "Guaporé")
+clima_rs_tbl %>%
+  filter(estacao %in% litoraneas)
+#> # A tibble: 2 x 5
+#>   codigo estacao uf     prec  tmax
+#>   <chr>  <chr>   <chr> <dbl> <dbl>
+#> 1 83915  Guaporé RS    1759.  24.7
+#> 2 83948  Torres  RS    1363.  22.3
+```
+
+- observações com `tmax` acima de 10% da média
+
+
+```r
+filter(clima_rs_tbl,  tmax > 1.1*mean(tmax))
+#> # A tibble: 1 x 5
+#>   codigo estacao uf     prec  tmax
+#>   <chr>  <chr>   <chr> <dbl> <dbl>
+#> 1 83881  Iraí    RS    1807.  27.1
+```
+
+- observações com `tmax` e `prec` acima de suas médias
+
+
+```r
+clima_rs_tbl %>%
+filter(
+  tmax > mean(tmax),  
+  prec > mean(prec)
+)
+#> # A tibble: 7 x 5
+#>   codigo estacao              uf     prec  tmax
+#>   <chr>  <chr>                <chr> <dbl> <dbl>
+#> 1 83912  Cruz Alta            RS    1631.  24.5
+#> 2 83915  Guaporé              RS    1759.  24.7
+#> 3 83881  Iraí                 RS    1807.  27.1
+#> 4 83880  Palmeira das Missões RS    1748.  24  
+#> 5 83936  Santa Maria          RS    1617.  24.9
+#> 6 83907  São Luiz Gonzaga     RS    1771.  26.1
+#> 7 83927  Uruguaiana           RS    1647.  25.8
+# equivalente a
+#clima_rs %>% 
+#  filter(tmax > mean(tmax) & prec > mean(prec))
+```
+- observações cuja variável `estacao` tem a palavra \"Sul\" 
+
+
+```r
+# estações com "Sul" no nome
+clima_rs_tbl %>% 
+  filter(str_detect(estacao, "Sul"))
+#> # A tibble: 3 x 5
+#>   codigo estacao             uf     prec  tmax
+#>   <chr>  <chr>               <chr> <dbl> <dbl>
+#> 1 83963  Cachoeira do Sul    RS    1477.  25.1
+#> 2 83942  Caxias do Sul       RS    1823   21.8
+#> 3 83964  Encruzilhada do Sul RS    1511.  22.5
+```
+
+
+<div class="rmdtip">
+<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo &quot;Sul&quot;. O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
+<p><code>str_replace_all(</code></p>
+<p><code>string = c(&quot;abc&quot;, &quot;lca&quot;),</code></p>
+<p><code>pattern = &quot;a&quot;,</code></p>
+<p><code>replacement =  &quot;A&quot;</code></p>
+<p><code>)</code></p>
+<p><code>#&gt; [1] &quot;Abc&quot; &quot;lcA&quot;</code></p>
+</div>
+
+
+A seleção de observações também pode ser baseada em índices passados para função `dplyr::slice()` que retorna o subconjunto de observações correspondentes. Abaixo vejamos alguns exemplos de filtragem de linhas baseada em índices ou posições:
+
+
+```r
+#linhas 2 e 4 
+clima_rs_tbl %>%
+  slice(., c(2,4))
+#> # A tibble: 2 x 5
+#>   codigo estacao   uf     prec  tmax
+#>   <chr>  <chr>     <chr> <dbl> <dbl>
+#> 1 83980  Bagé      RS    1300.  24.1
+#> 2 83919  Bom Jesus RS    1807.  20.3
+#última linha
+clima_rs_tbl %>%
+  slice(., n())
+#> # A tibble: 1 x 5
+#>   codigo estacao    uf     prec  tmax
+#>   <chr>  <chr>      <chr> <dbl> <dbl>
+#> 1 83927  Uruguaiana RS    1647.  25.8
+# exlui da última à 3a linha
+clima_rs_tbl %>%
+  slice(., -(n():3))
+#> # A tibble: 2 x 5
+#>   codigo estacao  uf     prec  tmax
+#>   <chr>  <chr>    <chr> <dbl> <dbl>
+#> 1 83931  Alegrete RS    1492.  25.4
+#> 2 83980  Bagé     RS    1300.  24.1
+# linhas com tmax > 26
+clima_rs_tbl %>%
+  slice(., which(tmax > 26))
+#> # A tibble: 3 x 5
+#>   codigo estacao          uf     prec  tmax
+#>   <chr>  <chr>            <chr> <dbl> <dbl>
+#> 1 83881  Iraí             RS    1807.  27.1
+#> 2 83929  Itaqui           RS    1369.  26.2
+#> 3 83907  São Luiz Gonzaga RS    1771.  26.1
+# linhas com tmax mais próxima a média de tmax
+clima_rs_tbl %>%
+  slice(., which.min(abs(tmax - mean(tmax))))
+#> # A tibble: 1 x 5
+#>   codigo estacao              uf     prec  tmax
+#>   <chr>  <chr>                <chr> <dbl> <dbl>
+#> 1 83880  Palmeira das Missões RS    1748.    24
+```
 
 
 ### Reordenando dados
 
 <img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" />
 
-arrange(desc())
+As vezes é útil reordenadar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados `clima_rs_tbl` podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.
+
+
+```r
+clima_rs_tbl %>% 
+  arrange(., desc(prec)) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 5
+#>   codigo estacao       uf     prec  tmax
+#>   <chr>  <chr>         <chr> <dbl> <dbl>
+#> 1 83942  Caxias do Sul RS    1823   21.8
+#> 2 83919  Bom Jesus     RS    1807.  20.3
+#> 3 83881  Iraí          RS    1807.  27.1
+```
+
+Ou, da menor para maior `tmax`:
+
+
+```r
+clima_rs_tbl %>% 
+  arrange(., tmax) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 5
+#>   codigo estacao       uf     prec  tmax
+#>   <chr>  <chr>         <chr> <dbl> <dbl>
+#> 1 83919  Bom Jesus     RS    1807.  20.3
+#> 2 83995  Rio Grande    RS    1234.  21.7
+#> 3 83942  Caxias do Sul RS    1823   21.8
+```
+
 
 
 ### Criando e renomeando variáveis
 
 <img src="images/dplyr-mutate-rename.png" width="50%" height="55%" style="display: block; margin: auto;" />
 
-mutate()
-rename()
+
+Uma nova variável pode ser adicionada aos dados através da função `dplyr::mutate()`. A `tmax` expressa em Kelvin pode ser adicionada aos dados `clima_rs_tbl`, com:
+
+
+
+```r
+clima_rs_tbl %>%
+  # tmax em Kelvin
+  mutate(., tmaxK = tmax + 273.15) %>%
+  # só as colunas de interesse
+  select(., contains("tmax")) %>%
+  # 3 primeiras linhas
+  head(., n = 3)
+#> # A tibble: 3 x 2
+#>    tmax tmaxK
+#>   <dbl> <dbl>
+#> 1  25.4  299.
+#> 2  24.1  297.
+#> 3  23    296.
+```
+
+
+Podemos renomear variáveis com a função `dplyr::rename()`.
+
+
+```r
+clima_rs_tbl %>%
+rename(., 
+       "id" = codigo,
+       "site" = estacao,
+       "temp_max" = tmax,
+       "precip" = prec
+       ) %>%
+  head(., n = 3)
+#> # A tibble: 3 x 5
+#>   id    site            uf    precip temp_max
+#>   <chr> <chr>           <chr>  <dbl>    <dbl>
+#> 1 83931 Alegrete        RS     1492.     25.4
+#> 2 83980 Bagé            RS     1300.     24.1
+#> 3 83941 Bento Gonçalves RS     1684.     23
+```
+
+Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável `site` será corrigida, de forma os valores iguais a "A803" sejam substituídos por "A003".
+
+
+```r
+prec_anual_corr <- prec_anual %>%
+mutate(
+  site = recode(site, A803 = "A003")
+) 
+tail(prec_anual_corr, n = 4)
+#>   site  ano prec
+#> 5 A002 2002 1630
+#> 6 A003 2004 1300
+#> 7 A003 2005 1950
+#> 8 A003 2006 1100
+```
+
+
+Podemos preencher os valores faltantes de uma variável por um valor preescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da `dplyr::mutate()`. 
+
+
+
+```r
+# preenchendo prec faltante pela média
+prec_anual_comp %>%
+  mutate(., 
+         prec = replace_na(prec,
+                           mean(prec, na.rm = TRUE)
+                           ),
+         ndias = ifelse(ano %% 4 == 0, 
+                      366, 
+                      365),
+         # intensidade de ndias, criada na linha acima
+         intensidade = prec / ndias
+         )
+#> # A tibble: 24 x 5
+#>    site    ano  prec ndias intensidade
+#>    <fct> <dbl> <dbl> <dbl>       <dbl>
+#>  1 A001   2000  1800   366        4.92
+#>  2 A001   2001  1400   365        3.84
+#>  3 A001   2002  1550   365        4.25
+#>  4 A001   2004  1550   366        4.23
+#>  5 A001   2005  1550   365        4.25
+#>  6 A001   2006  1550   365        4.25
+#>  7 A002   2000  1750   366        4.78
+#>  8 A002   2001  1470   365        4.03
+#>  9 A002   2002  1630   365        4.47
+#> 10 A002   2004  1550   366        4.23
+#> # ... with 14 more rows
+
+prec_anual_comp %>%
+  # preenche com  a observação prévia
+  fill(prec, .direction = "down")
+#> # A tibble: 24 x 3
+#>    site    ano  prec
+#>    <fct> <dbl> <dbl>
+#>  1 A001   2000  1800
+#>  2 A001   2001  1400
+#>  3 A001   2002  1400
+#>  4 A001   2004  1400
+#>  5 A001   2005  1400
+#>  6 A001   2006  1400
+#>  7 A002   2000  1750
+#>  8 A002   2001  1470
+#>  9 A002   2002  1630
+#> 10 A002   2004  1630
+#> # ... with 14 more rows
+
+prec_anual_comp %>%
+  # preenche com  a observação posterior
+  fill(prec, .direction = "up")
+#> # A tibble: 24 x 3
+#>    site    ano  prec
+#>    <fct> <dbl> <dbl>
+#>  1 A001   2000  1800
+#>  2 A001   2001  1400
+#>  3 A001   2002  1750
+#>  4 A001   2004  1750
+#>  5 A001   2005  1750
+#>  6 A001   2006  1750
+#>  7 A002   2000  1750
+#>  8 A002   2001  1470
+#>  9 A002   2002  1630
+#> 10 A002   2004  1300
+#> # ... with 14 more rows
+```
+
+
 
 ### Agregando observações
 
 <img src="images/dplyr-summarise-count.png" width="40%" height="50%" style="display: block; margin: auto;" />
+
+A função `dplyr::summarise()` (ou `dplyr::sumarize()`) agrega valores de uma variável e os fornece para uma função que retorna um único resultado. O resultado será armazenado em um `data frame`.
+
+Por exemplo, qual a `prec`  média anual do RS?
+
+
+```r
+clima_rs_tbl %>%
+  summarise(
+    .,
+    prec_med = mean(prec)
+  )
+#> # A tibble: 1 x 1
+#>   prec_med
+#>      <dbl>
+#> 1    1554.
+```
+
+Se você só quer o valor (ou o vetor), ao invés de um `data frame`, pode usar a função `dplyr::pull()`:
+
+
+```r
+clima_rs_tbl %>%
+  summarise(
+    .,
+    prec_med = mean(prec)
+  ) %>%
+  pull()
+#> [1] 1554.183
+```
+
+
+Podemos aplicar uma ou mais funções a mais de uma variável usando `dplyr::summarise_at()`:
+
+
+```r
+clima_rs_tbl %>%
+  summarise_at(
+    .,
+    .vars = vars(prec, tmax),
+    .funs = funs(min, median, max),
+    na.rm = TRUE
+  )
+#> # A tibble: 1 x 6
+#>   prec_min tmax_min prec_median tmax_median prec_max tmax_max
+#>      <dbl>    <dbl>       <dbl>       <dbl>    <dbl>    <dbl>
+#> 1    1229.     20.3       1617.        24.1     1823     27.1
+```
+
+
+Observações repetidas devem ser removidas dos dados antes de qualquer cálculo. Suponha os dados abaixo:
+
+
+```r
+prec_anual_comp_rep <-
+  prec_anual_comp %>%
+  mutate(
+    site = recode(site, A803 = "A003"),
+    ano = NULL
+  ) %>%
+  # preenche com  a observação posterior
+  fill(., prec, .direction = "up")
+prec_anual_comp_rep
+#> # A tibble: 24 x 2
+#>    site   prec
+#>    <fct> <dbl>
+#>  1 A001   1800
+#>  2 A001   1400
+#>  3 A001   1750
+#>  4 A001   1750
+#>  5 A001   1750
+#>  6 A001   1750
+#>  7 A002   1750
+#>  8 A002   1470
+#>  9 A002   1630
+#> 10 A002   1300
+#> # ... with 14 more rows
+```
+
+Para desconsiderar linhas duplicadas nos dados usamos a função `dplyr::distinct()`:
+
+
+```r
+# remove observações repetidas
+prec_anual_comp_rep %>%
+  distinct(site, prec)
+#> # A tibble: 10 x 2
+#>    site   prec
+#>    <fct> <dbl>
+#>  1 A001   1800
+#>  2 A001   1400
+#>  3 A001   1750
+#>  4 A002   1750
+#>  5 A002   1470
+#>  6 A002   1630
+#>  7 A002   1300
+#>  8 A003   1300
+#>  9 A003   1950
+#> 10 A003   1100
+```
+
+
+A função `dplyr::count()` é util para obter a frequência de ocorrência de uma variável ou da combinação de variáveis. 
+
+
+```r
+prec_anual_comp_rep %>%
+  count(site)
+#> # A tibble: 3 x 2
+#>   site      n
+#>   <fct> <int>
+#> 1 A001      6
+#> 2 A002      6
+#> 3 A003     12
+prec_anual_comp_rep %>%
+  count(site, prec)
+#> # A tibble: 10 x 3
+#>    site   prec     n
+#>    <fct> <dbl> <int>
+#>  1 A001   1400     1
+#>  2 A001   1750     4
+#>  3 A001   1800     1
+#>  4 A002   1300     3
+#>  5 A002   1470     1
+#>  6 A002   1630     1
+#>  7 A002   1750     1
+#>  8 A003   1100     1
+#>  9 A003   1300     4
+#> 10 A003   1950     7
+```
+
 
 
 ### Agrupando observações
 
 <img src="images/dplyr-group-by-summarise.png" width="40%" height="50%" style="display: block; margin: auto;" />
 
+Frequentemente temos que agrupar observações em categorias ou grupos para realizar uma análise estatística. A função 
+`dplyr::group_by()` é uma função silenciosa que separa (invisivelmente) as observações em categorias ou grupos.
+A única mudança ao aplicar a `dplyr::group_by()` à um *data frame* é a indicação da variável agrupada e o seu número de grupos na saída do console. No exemplo a seguir vamos agrupar os dados `prec_anual_tbl` por `site` e teremos 4 grupos para esta variável.
+
+
+```r
+prec_anual_tbl %>%
+  group_by(site)
+#> # A tibble: 8 x 4
+#> # Groups:   site [4]
+#>   site    ano  prec intensidade
+#>   <chr> <dbl> <dbl>       <dbl>
+#> 1 A001   2000  1800        4.93
+#> 2 A001   2001  1400        3.83
+#> 3 A002   2000  1750        4.79
+#> 4 A002   2001  1470        4.02
+#> 5 A002   2002  1630        4.46
+#> 6 A003   2004  1300        3.56
+#> 7 A803   2005  1950        5.34
+#> 8 A803   2006  1100        3.01
+```
+
+
+
+
+A grande funcionalidade da `dplyr::group_by()` surge quando combinada com a função `dplyr::summarise()`, o que nos permite obter resumos estatísticos para cada grupo da variável. 
+
+Por exemplo a chuva anual média por `site` é obtida com o seguinte código:
+
+
+```r
+prec_anual_tbl %>%
+  group_by(., site) %>%
+  summarise(., prec_med = mean(prec))
+#> # A tibble: 4 x 2
+#>   site  prec_med
+#>   <chr>    <dbl>
+#> 1 A001     1600 
+#> 2 A002     1617.
+#> 3 A003     1300 
+#> 4 A803     1525
+```
+
+A `prec` média para cada ano e o número de anos utilizados em seu cálculo é obtida por: 
+
+
+```r
+prec_anual_tbl %>%
+  group_by(., ano) %>%
+  summarise(
+    .,
+    prec_med = mean(prec),
+    nobs = n()
+  )
+#> # A tibble: 6 x 3
+#>     ano prec_med  nobs
+#>   <dbl>    <dbl> <int>
+#> 1  2000     1775     2
+#> 2  2001     1435     2
+#> 3  2002     1630     1
+#> 4  2004     1300     1
+#> 5  2005     1950     1
+#> 6  2006     1100     1
+```
+
+A função `n()` conta quantas observações temos em um subconjunto dos dados.
+
+Os grupos podem ser compostos de mais de uma variável. Para o exemplo com os dados `prec_anual_long`;
+
+
+```r
+prec_anual_long
+#> # A tibble: 16 x 4
+#>    site    ano variavel     medida
+#>    <chr> <dbl> <chr>         <dbl>
+#>  1 A001   2000 prec        1800   
+#>  2 A001   2001 prec        1400   
+#>  3 A002   2000 prec        1750   
+#>  4 A002   2001 prec        1470   
+#>  5 A002   2002 prec        1630   
+#>  6 A003   2004 prec        1300   
+#>  7 A803   2005 prec        1950   
+#>  8 A803   2006 prec        1100   
+#>  9 A001   2000 intensidade    4.93
+#> 10 A001   2001 intensidade    3.83
+#> 11 A002   2000 intensidade    4.79
+#> 12 A002   2001 intensidade    4.02
+#> 13 A002   2002 intensidade    4.46
+#> 14 A003   2004 intensidade    3.56
+#> 15 A803   2005 intensidade    5.34
+#> 16 A803   2006 intensidade    3.01
+```
+
+podemos obter a média por `variavel` e `site`, fazendo:
+
+
+```r
+estats_por_site_var <- prec_anual_long %>%
+  group_by(site, variavel) %>%
+  summarise(
+    media = mean(medida, na.rm = TRUE)
+  ) %>%
+  arrange(variavel, site)
+estats_por_site_var
+#> # A tibble: 8 x 3
+#> # Groups:   site [4]
+#>   site  variavel      media
+#>   <chr> <chr>         <dbl>
+#> 1 A001  intensidade    4.38
+#> 2 A002  intensidade    4.43
+#> 3 A003  intensidade    3.56
+#> 4 A803  intensidade    4.18
+#> 5 A001  prec        1600   
+#> 6 A002  prec        1617.  
+#> 7 A003  prec        1300   
+#> 8 A803  prec        1525
+```
+
+Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.
+
+Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubri-las. 
 
 ### Combinação de dados 
+
 
   - `<tipo>_join`, para combinar dados usando variáveis em comum a dois *data frames*;
   
