@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-25">
+<meta name="date" content="2018-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -706,7 +706,8 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 <span class="co">#&gt; 1 83942  Caxias do Sul RS    1823   21.8</span>
 <span class="co">#&gt; 2 83919  Bom Jesus     RS    1807.  20.3</span>
 <span class="co">#&gt; 3 83881  Iraí          RS    1807.  27.1</span></code></pre></div>
-<p>Ou, da menor para maior <code>tmax</code>:</p>
+<p>A função <code>dplyr::arrange()</code> por padrão ordena os dados em ordem crescente. A função <code>dplyr::desc()</code> ordena os valores da variável em ordem descendente.</p>
+<p>Os dados ordenados pela <code>tmax</code>, ficam da seguinte forma:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(., tmax) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
@@ -1015,12 +1016,640 @@ estats_por_site_var
 <span class="co">#&gt; 8 A803  prec        1525</span></code></pre></div>
 <p>Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.</p>
 <p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubri-las.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#faltando </span>
+<span class="co"># - non standard evaluation</span>
+<span class="co"># - ...</span></code></pre></div>
 </div>
 <div id="combinacao-de-dados" class="section level3">
 <h3><span class="header-section-number">9.4.8</span> Combinação de dados</h3>
-<ul>
-<li><code>&lt;tipo&gt;_join</code>, para combinar dados usando variáveis em comum a dois <em>data frames</em>;</li>
-</ul>
+<p>O processamento de dados frequentemente envolve a manipulação de diversas tabelas de dados. Ás vezes precisamos juntar dados de diferentes fontes, formar uma tabela única de dados com o período em comum à elas, ou combiná-las para compará-las.</p>
+<p>A combinação de 2 <em>data frames</em> separados, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de união de tabelas (<em>join</em>). O pacote <strong>dplyr</strong> possui uma gama de funções do tipo <em>join</em> para combinar <em>data frames</em>, genericamente representadas por <code>&lt;tipo&gt;_join()</code>, onde <code>&lt;tipo&gt;</code> pode ser substituído por <code>dplyr::full_join()</code>, <code>dplyr::inner_join()</code>, <code>dplyr::left_join()</code>, <code>dplyr::right_join()</code>.</p>
+<p>Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham.</p>
+<p>Vamos considerar os dados <code>clima_rs_tbl</code> e <code>metadados_rs</code>. Para melhor compreensão do exemplo vamos remover algumas variáveis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># normais climatológicas das estaçõess</span>
+clima_rs_tbl &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(estacao<span class="op">:</span>uf))
+<span class="kw">head</span>(clima_rs_tbl)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   codigo  prec  tmax</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 83931  1492.  25.4</span>
+<span class="co">#&gt; 2 83980  1300.  24.1</span>
+<span class="co">#&gt; 3 83941  1684.  23  </span>
+<span class="co">#&gt; 4 83919  1807.  20.3</span>
+<span class="co">#&gt; 5 83963  1477.  25.1</span>
+<span class="co">#&gt; 6 83942  1823   21.8</span>
+<span class="co"># metadados das estações convertidos para tibble</span>
+metadados_rs &lt;-<span class="st"> </span>metadados_rs <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_tibble</span>()
+<span class="kw">head</span>(metadados_rs)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   codigo   lon   lat    alt</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 83931  -55.5 -29.7  121. </span>
+<span class="co">#&gt; 2 83980  -54.1 -31.3  242. </span>
+<span class="co">#&gt; 3 83941  -51.5 -29.2  640  </span>
+<span class="co">#&gt; 4 83919  -50.4 -28.7 1048. </span>
+<span class="co">#&gt; 5 83959  -53.5 -30.5  450  </span>
+<span class="co">#&gt; 6 83963  -52.9 -30.0   72.7</span></code></pre></div>
+<p>A variável comum às duas tabelas é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_comum &lt;-<span class="st"> </span><span class="kw">names</span>(clima_rs_tbl) <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(metadados_rs)
+<span class="kw">names</span>(clima_rs_tbl)[var_comum]
+<span class="co">#&gt; [1] &quot;codigo&quot;</span></code></pre></div>
+<p>Vamos comparar os valores da variável <code>codigo</code> em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa.</p>
+<p>Para saber se algum valor da variável <code>codigo</code> da tabela <code>clima_rs_tbl</code> não está contido na tabela <code>metadados_rs</code> podemos usar o seguinte código:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># algum codigo não está presente na tabela metadados_rs</span>
+clima_rs_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>metadados_rs<span class="op">$</span>codigo ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(., codigo)
+<span class="co">#&gt; # A tibble: 0 x 1</span>
+<span class="co">#&gt; # ... with 1 variable: codigo &lt;chr&gt;</span></code></pre></div>
+<p>Não há nenhum caso.</p>
+<p>Analogamente, vamos verificar se algum valor da variável <code>codigo</code> dos <code>metadados_rs</code> não está contido em <code>clima_rs_tbl</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># algum codigo não está presente na tabela metadados_rs</span>
+metadados_rs <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>clima_rs_tbl<span class="op">$</span>codigo )<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(., codigo)
+<span class="co">#&gt; # A tibble: 7 x 1</span>
+<span class="co">#&gt;   codigo</span>
+<span class="co">#&gt;   &lt;chr&gt; </span>
+<span class="co">#&gt; 1 83959 </span>
+<span class="co">#&gt; 2 83885 </span>
+<span class="co">#&gt; 3 83985 </span>
+<span class="co">#&gt; 4 83983 </span>
+<span class="co">#&gt; 5 83953 </span>
+<span class="co">#&gt; 6 83909 </span>
+<span class="co">#&gt; 7 83918</span></code></pre></div>
+<p>Obtemos que 7 valores da variável <code>codigo</code> dos <code>metadados_rs</code> que não estão presentes na tabela <code>clima_rs_tbl</code>. Portanto, não há valores de <code>tmax</code> e <code>prec</code> para essas observações.</p>
+<p>Suponha agora que desejássemos visualizar a variação espacial da precipitação (<code>prec</code>) ou da temperatura máxima do ar (<code>tmax</code>) climatológica. Precisaríamos além dessas variáveis, as coordenadas geográficas das estações meteorológicas para plotar sua localização espacial. As coordenadas <code>lon</code> e <code>lat</code> da <code>metadados_rs</code> podem ser combinadas com <code>clima_rs_tbl</code> em uma nova tabela (<code>clima_rs_comb</code>), usando a função <code>dplyr::full_join()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_comb &lt;-<span class="st"> </span><span class="kw">full_join</span>(
+  <span class="dt">x =</span> clima_rs_tbl, 
+  <span class="dt">y =</span> metadados_rs,
+  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>)
+clima_rs_comb</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">prec</th>
+<th align="right">tmax</th>
+<th align="right">lon</th>
+<th align="right">lat</th>
+<th align="right">alt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">83931</td>
+<td align="right">1492.2</td>
+<td align="right">25.4</td>
+<td align="right">-55.51667</td>
+<td align="right">-29.68333</td>
+<td align="right">120.91</td>
+</tr>
+<tr class="even">
+<td align="left">83980</td>
+<td align="right">1299.9</td>
+<td align="right">24.1</td>
+<td align="right">-54.10000</td>
+<td align="right">-31.33333</td>
+<td align="right">242.31</td>
+</tr>
+<tr class="odd">
+<td align="left">83941</td>
+<td align="right">1683.7</td>
+<td align="right">23.0</td>
+<td align="right">-51.51667</td>
+<td align="right">-29.15000</td>
+<td align="right">640.00</td>
+</tr>
+<tr class="even">
+<td align="left">83919</td>
+<td align="right">1807.3</td>
+<td align="right">20.3</td>
+<td align="right">-50.43333</td>
+<td align="right">-28.66667</td>
+<td align="right">1047.50</td>
+</tr>
+<tr class="odd">
+<td align="left">83963</td>
+<td align="right">1477.1</td>
+<td align="right">25.1</td>
+<td align="right">-52.88333</td>
+<td align="right">-30.03333</td>
+<td align="right">72.71</td>
+</tr>
+<tr class="even">
+<td align="left">83942</td>
+<td align="right">1823.0</td>
+<td align="right">21.8</td>
+<td align="right">-51.20000</td>
+<td align="right">-29.16667</td>
+<td align="right">759.60</td>
+</tr>
+<tr class="odd">
+<td align="left">83912</td>
+<td align="right">1630.7</td>
+<td align="right">24.5</td>
+<td align="right">-53.60000</td>
+<td align="right">-28.63333</td>
+<td align="right">472.50</td>
+</tr>
+<tr class="even">
+<td align="left">83964</td>
+<td align="right">1510.8</td>
+<td align="right">22.5</td>
+<td align="right">-52.51667</td>
+<td align="right">-30.53333</td>
+<td align="right">427.75</td>
+</tr>
+<tr class="odd">
+<td align="left">83915</td>
+<td align="right">1758.7</td>
+<td align="right">24.7</td>
+<td align="right">-51.90000</td>
+<td align="right">-28.91667</td>
+<td align="right">471.51</td>
+</tr>
+<tr class="even">
+<td align="left">83881</td>
+<td align="right">1806.7</td>
+<td align="right">27.1</td>
+<td align="right">-53.23333</td>
+<td align="right">-27.18333</td>
+<td align="right">247.10</td>
+</tr>
+<tr class="odd">
+<td align="left">83929</td>
+<td align="right">1369.4</td>
+<td align="right">26.2</td>
+<td align="right">-56.53333</td>
+<td align="right">-29.11667</td>
+<td align="right">76.00</td>
+</tr>
+<tr class="even">
+<td align="left">83916</td>
+<td align="right">1691.1</td>
+<td align="right">23.0</td>
+<td align="right">-51.50000</td>
+<td align="right">-28.21667</td>
+<td align="right">840.00</td>
+</tr>
+<tr class="odd">
+<td align="left">83880</td>
+<td align="right">1747.8</td>
+<td align="right">24.0</td>
+<td align="right">-53.43333</td>
+<td align="right">-27.88333</td>
+<td align="right">634.00</td>
+</tr>
+<tr class="even">
+<td align="left">83914</td>
+<td align="right">1803.1</td>
+<td align="right">23.6</td>
+<td align="right">-52.40000</td>
+<td align="right">-28.21667</td>
+<td align="right">684.05</td>
+</tr>
+<tr class="odd">
+<td align="left">83967</td>
+<td align="right">1320.2</td>
+<td align="right">24.8</td>
+<td align="right">-51.16667</td>
+<td align="right">-30.05000</td>
+<td align="right">46.97</td>
+</tr>
+<tr class="even">
+<td align="left">83995</td>
+<td align="right">1233.6</td>
+<td align="right">21.7</td>
+<td align="right">-52.10000</td>
+<td align="right">-32.03333</td>
+<td align="right">2.46</td>
+</tr>
+<tr class="odd">
+<td align="left">83936</td>
+<td align="right">1616.8</td>
+<td align="right">24.9</td>
+<td align="right">-53.70000</td>
+<td align="right">-29.70000</td>
+<td align="right">95.00</td>
+</tr>
+<tr class="even">
+<td align="left">83997</td>
+<td align="right">1228.9</td>
+<td align="right">21.8</td>
+<td align="right">-53.35000</td>
+<td align="right">-33.51667</td>
+<td align="right">24.01</td>
+</tr>
+<tr class="odd">
+<td align="left">83957</td>
+<td align="right">1313.9</td>
+<td align="right">25.0</td>
+<td align="right">-54.31667</td>
+<td align="right">-30.33333</td>
+<td align="right">124.00</td>
+</tr>
+<tr class="even">
+<td align="left">83907</td>
+<td align="right">1770.9</td>
+<td align="right">26.1</td>
+<td align="right">-55.01667</td>
+<td align="right">-28.40000</td>
+<td align="right">245.11</td>
+</tr>
+<tr class="odd">
+<td align="left">83966</td>
+<td align="right">1349.8</td>
+<td align="right">23.8</td>
+<td align="right">-51.58333</td>
+<td align="right">-30.83333</td>
+<td align="right">5.00</td>
+</tr>
+<tr class="even">
+<td align="left">83948</td>
+<td align="right">1363.2</td>
+<td align="right">22.3</td>
+<td align="right">-49.71667</td>
+<td align="right">-29.35000</td>
+<td align="right">4.66</td>
+</tr>
+<tr class="odd">
+<td align="left">83927</td>
+<td align="right">1647.4</td>
+<td align="right">25.8</td>
+<td align="right">-57.08333</td>
+<td align="right">-29.75000</td>
+<td align="right">62.31</td>
+</tr>
+<tr class="even">
+<td align="left">83959</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-53.48333</td>
+<td align="right">-30.51667</td>
+<td align="right">450.00</td>
+</tr>
+<tr class="odd">
+<td align="left">83885</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-51.90000</td>
+<td align="right">-27.45000</td>
+<td align="right">414.17</td>
+</tr>
+<tr class="even">
+<td align="left">83985</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-52.41667</td>
+<td align="right">-31.78333</td>
+<td align="right">13.00</td>
+</tr>
+<tr class="odd">
+<td align="left">83983</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-53.10000</td>
+<td align="right">-31.43333</td>
+<td align="right">345.00</td>
+</tr>
+<tr class="even">
+<td align="left">83953</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-55.60000</td>
+<td align="right">-30.83333</td>
+<td align="right">328.00</td>
+</tr>
+<tr class="odd">
+<td align="left">83909</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-54.25000</td>
+<td align="right">-28.30000</td>
+<td align="right">284.50</td>
+</tr>
+<tr class="even">
+<td align="left">83918</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">-50.70000</td>
+<td align="right">-28.55000</td>
+<td align="right">954.60</td>
+</tr>
+</tbody>
+</table>
+<p>Da inspeção das últimas linhas de <code>clima_rs_comb</code> verificamos que o resultado é uma tabela que contém todos valores da variável <code>codigo</code> das duas tabelas. Os valores das variáveis <code>prec</code> e <code>tmax</code>, para as observações da variável <code>codigo</code> sem valores ( na <code>metadados_rs</code>) são preenchidos com <code>NA</code>.</p>
+<p>Se a combinação de interesse for nas observações em comum entre as tabelas, usaríamos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_intersec &lt;-<span class="st"> </span><span class="kw">inner_join</span>(
+  <span class="dt">x =</span> metadados_rs, 
+  <span class="dt">y =</span> clima_rs_tbl,
+  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
+)
+clima_rs_intersec</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">lon</th>
+<th align="right">lat</th>
+<th align="right">alt</th>
+<th align="right">prec</th>
+<th align="right">tmax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">83931</td>
+<td align="right">-55.51667</td>
+<td align="right">-29.68333</td>
+<td align="right">120.91</td>
+<td align="right">1492.2</td>
+<td align="right">25.4</td>
+</tr>
+<tr class="even">
+<td align="left">83980</td>
+<td align="right">-54.10000</td>
+<td align="right">-31.33333</td>
+<td align="right">242.31</td>
+<td align="right">1299.9</td>
+<td align="right">24.1</td>
+</tr>
+<tr class="odd">
+<td align="left">83941</td>
+<td align="right">-51.51667</td>
+<td align="right">-29.15000</td>
+<td align="right">640.00</td>
+<td align="right">1683.7</td>
+<td align="right">23.0</td>
+</tr>
+<tr class="even">
+<td align="left">83919</td>
+<td align="right">-50.43333</td>
+<td align="right">-28.66667</td>
+<td align="right">1047.50</td>
+<td align="right">1807.3</td>
+<td align="right">20.3</td>
+</tr>
+<tr class="odd">
+<td align="left">83963</td>
+<td align="right">-52.88333</td>
+<td align="right">-30.03333</td>
+<td align="right">72.71</td>
+<td align="right">1477.1</td>
+<td align="right">25.1</td>
+</tr>
+<tr class="even">
+<td align="left">83942</td>
+<td align="right">-51.20000</td>
+<td align="right">-29.16667</td>
+<td align="right">759.60</td>
+<td align="right">1823.0</td>
+<td align="right">21.8</td>
+</tr>
+<tr class="odd">
+<td align="left">83912</td>
+<td align="right">-53.60000</td>
+<td align="right">-28.63333</td>
+<td align="right">472.50</td>
+<td align="right">1630.7</td>
+<td align="right">24.5</td>
+</tr>
+<tr class="even">
+<td align="left">83964</td>
+<td align="right">-52.51667</td>
+<td align="right">-30.53333</td>
+<td align="right">427.75</td>
+<td align="right">1510.8</td>
+<td align="right">22.5</td>
+</tr>
+<tr class="odd">
+<td align="left">83915</td>
+<td align="right">-51.90000</td>
+<td align="right">-28.91667</td>
+<td align="right">471.51</td>
+<td align="right">1758.7</td>
+<td align="right">24.7</td>
+</tr>
+<tr class="even">
+<td align="left">83881</td>
+<td align="right">-53.23333</td>
+<td align="right">-27.18333</td>
+<td align="right">247.10</td>
+<td align="right">1806.7</td>
+<td align="right">27.1</td>
+</tr>
+<tr class="odd">
+<td align="left">83929</td>
+<td align="right">-56.53333</td>
+<td align="right">-29.11667</td>
+<td align="right">76.00</td>
+<td align="right">1369.4</td>
+<td align="right">26.2</td>
+</tr>
+<tr class="even">
+<td align="left">83916</td>
+<td align="right">-51.50000</td>
+<td align="right">-28.21667</td>
+<td align="right">840.00</td>
+<td align="right">1691.1</td>
+<td align="right">23.0</td>
+</tr>
+<tr class="odd">
+<td align="left">83880</td>
+<td align="right">-53.43333</td>
+<td align="right">-27.88333</td>
+<td align="right">634.00</td>
+<td align="right">1747.8</td>
+<td align="right">24.0</td>
+</tr>
+<tr class="even">
+<td align="left">83914</td>
+<td align="right">-52.40000</td>
+<td align="right">-28.21667</td>
+<td align="right">684.05</td>
+<td align="right">1803.1</td>
+<td align="right">23.6</td>
+</tr>
+<tr class="odd">
+<td align="left">83967</td>
+<td align="right">-51.16667</td>
+<td align="right">-30.05000</td>
+<td align="right">46.97</td>
+<td align="right">1320.2</td>
+<td align="right">24.8</td>
+</tr>
+<tr class="even">
+<td align="left">83995</td>
+<td align="right">-52.10000</td>
+<td align="right">-32.03333</td>
+<td align="right">2.46</td>
+<td align="right">1233.6</td>
+<td align="right">21.7</td>
+</tr>
+<tr class="odd">
+<td align="left">83936</td>
+<td align="right">-53.70000</td>
+<td align="right">-29.70000</td>
+<td align="right">95.00</td>
+<td align="right">1616.8</td>
+<td align="right">24.9</td>
+</tr>
+<tr class="even">
+<td align="left">83997</td>
+<td align="right">-53.35000</td>
+<td align="right">-33.51667</td>
+<td align="right">24.01</td>
+<td align="right">1228.9</td>
+<td align="right">21.8</td>
+</tr>
+<tr class="odd">
+<td align="left">83957</td>
+<td align="right">-54.31667</td>
+<td align="right">-30.33333</td>
+<td align="right">124.00</td>
+<td align="right">1313.9</td>
+<td align="right">25.0</td>
+</tr>
+<tr class="even">
+<td align="left">83907</td>
+<td align="right">-55.01667</td>
+<td align="right">-28.40000</td>
+<td align="right">245.11</td>
+<td align="right">1770.9</td>
+<td align="right">26.1</td>
+</tr>
+<tr class="odd">
+<td align="left">83966</td>
+<td align="right">-51.58333</td>
+<td align="right">-30.83333</td>
+<td align="right">5.00</td>
+<td align="right">1349.8</td>
+<td align="right">23.8</td>
+</tr>
+<tr class="even">
+<td align="left">83948</td>
+<td align="right">-49.71667</td>
+<td align="right">-29.35000</td>
+<td align="right">4.66</td>
+<td align="right">1363.2</td>
+<td align="right">22.3</td>
+</tr>
+<tr class="odd">
+<td align="left">83927</td>
+<td align="right">-57.08333</td>
+<td align="right">-29.75000</td>
+<td align="right">62.31</td>
+<td align="right">1647.4</td>
+<td align="right">25.8</td>
+</tr>
+</tbody>
+</table>
+<p>Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_disj &lt;-<span class="st"> </span><span class="kw">anti_join</span>(
+  <span class="dt">x =</span> metadados_rs, 
+  <span class="dt">y =</span> clima_rs_tbl,
+  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
+)
+clima_rs_disj</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">lon</th>
+<th align="right">lat</th>
+<th align="right">alt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">83959</td>
+<td align="right">-53.48333</td>
+<td align="right">-30.51667</td>
+<td align="right">450.00</td>
+</tr>
+<tr class="even">
+<td align="left">83885</td>
+<td align="right">-51.90000</td>
+<td align="right">-27.45000</td>
+<td align="right">414.17</td>
+</tr>
+<tr class="odd">
+<td align="left">83985</td>
+<td align="right">-52.41667</td>
+<td align="right">-31.78333</td>
+<td align="right">13.00</td>
+</tr>
+<tr class="even">
+<td align="left">83983</td>
+<td align="right">-53.10000</td>
+<td align="right">-31.43333</td>
+<td align="right">345.00</td>
+</tr>
+<tr class="odd">
+<td align="left">83953</td>
+<td align="right">-55.60000</td>
+<td align="right">-30.83333</td>
+<td align="right">328.00</td>
+</tr>
+<tr class="even">
+<td align="left">83909</td>
+<td align="right">-54.25000</td>
+<td align="right">-28.30000</td>
+<td align="right">284.50</td>
+</tr>
+<tr class="odd">
+<td align="left">83918</td>
+<td align="right">-50.70000</td>
+<td align="right">-28.55000</td>
+<td align="right">954.60</td>
+</tr>
+</tbody>
+</table>
+<p>O exemplo abaixo demonstram os resultados das funções <code>dplyr::left_join()</code> e <code>dplyr::right_join()</code> para um versão reduzida dos dados <code>clima_rs_tbl</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl_mini &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(., <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) 
+clima_rs_tbl_mini
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   codigo  prec  tmax</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 83931  1492.  25.4</span>
+<span class="co">#&gt; 2 83980  1300.  24.1</span>
+<span class="co">#&gt; 3 83941  1684.  23</span>
+<span class="co"># combina os dados baseado nas observações dos dados à esquerda (x)</span>
+<span class="kw">left_join</span>(
+  <span class="dt">x =</span> clima_rs_tbl_mini, 
+  <span class="dt">y =</span>metadados_rs, 
+  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
+)
+<span class="co">#&gt; # A tibble: 3 x 6</span>
+<span class="co">#&gt;   codigo  prec  tmax   lon   lat   alt</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 83931  1492.  25.4 -55.5 -29.7  121.</span>
+<span class="co">#&gt; 2 83980  1300.  24.1 -54.1 -31.3  242.</span>
+<span class="co">#&gt; 3 83941  1684.  23   -51.5 -29.2  640</span>
+<span class="co"># combina os dados baseado nas observações dos dados à direita (y)</span>
+<span class="kw">right_join</span>(
+  <span class="dt">x =</span> clima_rs_tbl_mini, 
+  <span class="dt">y =</span> metadados_rs, 
+  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
+)
+<span class="co">#&gt; # A tibble: 30 x 6</span>
+<span class="co">#&gt;    codigo  prec  tmax   lon   lat    alt</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 83931  1492.  25.4 -55.5 -29.7  121. </span>
+<span class="co">#&gt;  2 83980  1300.  24.1 -54.1 -31.3  242. </span>
+<span class="co">#&gt;  3 83941  1684.  23   -51.5 -29.2  640  </span>
+<span class="co">#&gt;  4 83919    NA   NA   -50.4 -28.7 1048. </span>
+<span class="co">#&gt;  5 83959    NA   NA   -53.5 -30.5  450  </span>
+<span class="co">#&gt;  6 83963    NA   NA   -52.9 -30.0   72.7</span>
+<span class="co">#&gt;  7 83942    NA   NA   -51.2 -29.2  760. </span>
+<span class="co">#&gt;  8 83912    NA   NA   -53.6 -28.6  472. </span>
+<span class="co">#&gt;  9 83964    NA   NA   -52.5 -30.5  428. </span>
+<span class="co">#&gt; 10 83915    NA   NA   -51.9 -28.9  472. </span>
+<span class="co">#&gt; # ... with 20 more rows</span></code></pre></div>
 </div>
 </div>
 <h3>References</h3>

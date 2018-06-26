@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-25">
+<meta name="date" content="2018-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -333,7 +333,7 @@ Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacote
 easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre></div>
 <div id="dados" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Dados</h3>
-<p>Para este capítulo utilizaremos alguns conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do <em>tidyverse</em>.</p>
+<p>Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do <em>tidyverse</em>.</p>
 <ol style="list-style-type: decimal">
 <li>Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> localizadas no estado do Rio Grande do Sul.</li>
 </ol>
@@ -516,6 +516,205 @@ clima_rs</code></pre></div>
 </tbody>
 </table>
 <ol start="2" style="list-style-type: decimal">
+<li>Metadados das estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> relacionadas a tabela de dados <code>clima_rs</code>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span>
+<span class="co"># dados de exemplo</span>
+metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
+metadados_rs</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">codigo</th>
+<th align="center">lon</th>
+<th align="center">lat</th>
+<th align="center">alt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">83931</td>
+<td align="center">-55.51667</td>
+<td align="center">-29.68333</td>
+<td align="center">120.91</td>
+</tr>
+<tr class="even">
+<td align="center">83980</td>
+<td align="center">-54.10000</td>
+<td align="center">-31.33333</td>
+<td align="center">242.31</td>
+</tr>
+<tr class="odd">
+<td align="center">83941</td>
+<td align="center">-51.51667</td>
+<td align="center">-29.15000</td>
+<td align="center">640.00</td>
+</tr>
+<tr class="even">
+<td align="center">83919</td>
+<td align="center">-50.43333</td>
+<td align="center">-28.66667</td>
+<td align="center">1047.50</td>
+</tr>
+<tr class="odd">
+<td align="center">83959</td>
+<td align="center">-53.48333</td>
+<td align="center">-30.51667</td>
+<td align="center">450.00</td>
+</tr>
+<tr class="even">
+<td align="center">83963</td>
+<td align="center">-52.88333</td>
+<td align="center">-30.03333</td>
+<td align="center">72.71</td>
+</tr>
+<tr class="odd">
+<td align="center">83942</td>
+<td align="center">-51.20000</td>
+<td align="center">-29.16667</td>
+<td align="center">759.60</td>
+</tr>
+<tr class="even">
+<td align="center">83912</td>
+<td align="center">-53.60000</td>
+<td align="center">-28.63333</td>
+<td align="center">472.50</td>
+</tr>
+<tr class="odd">
+<td align="center">83964</td>
+<td align="center">-52.51667</td>
+<td align="center">-30.53333</td>
+<td align="center">427.75</td>
+</tr>
+<tr class="even">
+<td align="center">83915</td>
+<td align="center">-51.90000</td>
+<td align="center">-28.91667</td>
+<td align="center">471.51</td>
+</tr>
+<tr class="odd">
+<td align="center">83881</td>
+<td align="center">-53.23333</td>
+<td align="center">-27.18333</td>
+<td align="center">247.10</td>
+</tr>
+<tr class="even">
+<td align="center">83929</td>
+<td align="center">-56.53333</td>
+<td align="center">-29.11667</td>
+<td align="center">76.00</td>
+</tr>
+<tr class="odd">
+<td align="center">83916</td>
+<td align="center">-51.50000</td>
+<td align="center">-28.21667</td>
+<td align="center">840.00</td>
+</tr>
+<tr class="even">
+<td align="center">83885</td>
+<td align="center">-51.90000</td>
+<td align="center">-27.45000</td>
+<td align="center">414.17</td>
+</tr>
+<tr class="odd">
+<td align="center">83880</td>
+<td align="center">-53.43333</td>
+<td align="center">-27.88333</td>
+<td align="center">634.00</td>
+</tr>
+<tr class="even">
+<td align="center">83914</td>
+<td align="center">-52.40000</td>
+<td align="center">-28.21667</td>
+<td align="center">684.05</td>
+</tr>
+<tr class="odd">
+<td align="center">83985</td>
+<td align="center">-52.41667</td>
+<td align="center">-31.78333</td>
+<td align="center">13.00</td>
+</tr>
+<tr class="even">
+<td align="center">83983</td>
+<td align="center">-53.10000</td>
+<td align="center">-31.43333</td>
+<td align="center">345.00</td>
+</tr>
+<tr class="odd">
+<td align="center">83967</td>
+<td align="center">-51.16667</td>
+<td align="center">-30.05000</td>
+<td align="center">46.97</td>
+</tr>
+<tr class="even">
+<td align="center">83995</td>
+<td align="center">-52.10000</td>
+<td align="center">-32.03333</td>
+<td align="center">2.46</td>
+</tr>
+<tr class="odd">
+<td align="center">83936</td>
+<td align="center">-53.70000</td>
+<td align="center">-29.70000</td>
+<td align="center">95.00</td>
+</tr>
+<tr class="even">
+<td align="center">83997</td>
+<td align="center">-53.35000</td>
+<td align="center">-33.51667</td>
+<td align="center">24.01</td>
+</tr>
+<tr class="odd">
+<td align="center">83953</td>
+<td align="center">-55.60000</td>
+<td align="center">-30.83333</td>
+<td align="center">328.00</td>
+</tr>
+<tr class="even">
+<td align="center">83909</td>
+<td align="center">-54.25000</td>
+<td align="center">-28.30000</td>
+<td align="center">284.50</td>
+</tr>
+<tr class="odd">
+<td align="center">83957</td>
+<td align="center">-54.31667</td>
+<td align="center">-30.33333</td>
+<td align="center">124.00</td>
+</tr>
+<tr class="even">
+<td align="center">83907</td>
+<td align="center">-55.01667</td>
+<td align="center">-28.40000</td>
+<td align="center">245.11</td>
+</tr>
+<tr class="odd">
+<td align="center">83966</td>
+<td align="center">-51.58333</td>
+<td align="center">-30.83333</td>
+<td align="center">5.00</td>
+</tr>
+<tr class="even">
+<td align="center">83948</td>
+<td align="center">-49.71667</td>
+<td align="center">-29.35000</td>
+<td align="center">4.66</td>
+</tr>
+<tr class="odd">
+<td align="center">83927</td>
+<td align="center">-57.08333</td>
+<td align="center">-29.75000</td>
+<td align="center">62.31</td>
+</tr>
+<tr class="even">
+<td align="center">83918</td>
+<td align="center">-50.70000</td>
+<td align="center">-28.55000</td>
+<td align="center">954.60</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
 <li>Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(

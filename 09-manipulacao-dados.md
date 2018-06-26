@@ -82,7 +82,7 @@ easypackages::libraries(pacotes)
 
 ### Dados 
 
-Para este capítulo utilizaremos alguns conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
+Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
 
 1. Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) localizadas no estado do Rio Grande do Sul.
 
@@ -121,7 +121,52 @@ clima_rs
  83948             Torres             RS    1363.2    22.3 
  83927           Uruguaiana           RS    1647.4    25.8 
 
-2. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
+
+2. Metadados das estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) relacionadas a tabela de dados `clima_rs`.
+
+
+```r
+metadados_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true"
+# dados de exemplo
+metadados_rs <- import(metadados_url, format = "RDS")
+metadados_rs
+```
+
+
+ codigo       lon          lat         alt   
+--------  -----------  -----------  ---------
+ 83931     -55.51667    -29.68333    120.91  
+ 83980     -54.10000    -31.33333    242.31  
+ 83941     -51.51667    -29.15000    640.00  
+ 83919     -50.43333    -28.66667    1047.50 
+ 83959     -53.48333    -30.51667    450.00  
+ 83963     -52.88333    -30.03333     72.71  
+ 83942     -51.20000    -29.16667    759.60  
+ 83912     -53.60000    -28.63333    472.50  
+ 83964     -52.51667    -30.53333    427.75  
+ 83915     -51.90000    -28.91667    471.51  
+ 83881     -53.23333    -27.18333    247.10  
+ 83929     -56.53333    -29.11667     76.00  
+ 83916     -51.50000    -28.21667    840.00  
+ 83885     -51.90000    -27.45000    414.17  
+ 83880     -53.43333    -27.88333    634.00  
+ 83914     -52.40000    -28.21667    684.05  
+ 83985     -52.41667    -31.78333     13.00  
+ 83983     -53.10000    -31.43333    345.00  
+ 83967     -51.16667    -30.05000     46.97  
+ 83995     -52.10000    -32.03333     2.46   
+ 83936     -53.70000    -29.70000     95.00  
+ 83997     -53.35000    -33.51667     24.01  
+ 83953     -55.60000    -30.83333    328.00  
+ 83909     -54.25000    -28.30000    284.50  
+ 83957     -54.31667    -30.33333    124.00  
+ 83907     -55.01667    -28.40000    245.11  
+ 83966     -51.58333    -30.83333     5.00   
+ 83948     -49.71667    -29.35000     4.66   
+ 83927     -57.08333    -29.75000     62.31  
+ 83918     -50.70000    -28.55000    954.60  
+
+3. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
 
 
 ```r
@@ -146,6 +191,7 @@ prec_anual
  A003    2004    1300 
  A803    2005    1950 
  A803    2006    1100 
+
 
 
 ## *tibble*: um *data frame* aperfeiçoado
@@ -1139,7 +1185,9 @@ clima_rs_tbl %>%
 #> 3 83881  Iraí          RS    1807.  27.1
 ```
 
-Ou, da menor para maior `tmax`:
+A função `dplyr::arrange()` por padrão ordena os dados em ordem crescente. A função `dplyr::desc()` ordena os valores da variável em ordem descendente. 
+
+Os dados ordenados pela `tmax`, ficam da seguinte forma:
 
 
 ```r
@@ -1552,11 +1600,262 @@ Com o conjunto de verbos exemplificados você agora é capaz de realizar as tare
 
 Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubri-las. 
 
+
+```r
+#faltando 
+# - non standard evaluation
+# - ...
+```
+
+
 ### Combinação de dados 
 
+O processamento de dados frequentemente envolve a manipulação de diversas tabelas de dados. Ás vezes precisamos juntar dados de diferentes fontes, formar uma tabela única de dados com o período em comum à elas, ou combiná-las para compará-las.
 
-  - `<tipo>_join`, para combinar dados usando variáveis em comum a dois *data frames*;
-  
+A combinação de 2 *data frames* separados, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de união de tabelas (*join*). O pacote **dplyr** possui uma gama de funções do tipo *join* para combinar *data frames*, genericamente representadas por `<tipo>_join()`, onde `<tipo>` pode ser substituído por `dplyr::full_join()`, `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()`.
+
+Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham. 
+
+Vamos considerar os dados `clima_rs_tbl` e `metadados_rs`. Para melhor compreensão do exemplo vamos remover algumas variáveis.
+
+
+```r
+# normais climatológicas das estaçõess
+clima_rs_tbl <- clima_rs_tbl %>%
+  select(-(estacao:uf))
+head(clima_rs_tbl)
+#> # A tibble: 6 x 3
+#>   codigo  prec  tmax
+#>   <chr>  <dbl> <dbl>
+#> 1 83931  1492.  25.4
+#> 2 83980  1300.  24.1
+#> 3 83941  1684.  23  
+#> 4 83919  1807.  20.3
+#> 5 83963  1477.  25.1
+#> 6 83942  1823   21.8
+# metadados das estações convertidos para tibble
+metadados_rs <- metadados_rs %>% 
+  as_tibble()
+head(metadados_rs)
+#> # A tibble: 6 x 4
+#>   codigo   lon   lat    alt
+#>   <chr>  <dbl> <dbl>  <dbl>
+#> 1 83931  -55.5 -29.7  121. 
+#> 2 83980  -54.1 -31.3  242. 
+#> 3 83941  -51.5 -29.2  640  
+#> 4 83919  -50.4 -28.7 1048. 
+#> 5 83959  -53.5 -30.5  450  
+#> 6 83963  -52.9 -30.0   72.7
+```
+
+A variável comum às duas tabelas é:
+
+
+```r
+var_comum <- names(clima_rs_tbl) %in% names(metadados_rs)
+names(clima_rs_tbl)[var_comum]
+#> [1] "codigo"
+```
+
+Vamos comparar os valores da variável `codigo` em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa. 
+
+Para saber se algum valor da variável `codigo` da tabela `clima_rs_tbl` não está contido na tabela `metadados_rs` podemos usar o seguinte código:
+
+
+```r
+# algum codigo não está presente na tabela metadados_rs
+clima_rs_tbl %>%
+  filter(., ! codigo %in% metadados_rs$codigo ) %>%
+  select(., codigo)
+#> # A tibble: 0 x 1
+#> # ... with 1 variable: codigo <chr>
+```
+
+Não há nenhum caso.
+
+Analogamente, vamos verificar se algum valor da variável `codigo` dos `metadados_rs` não está contido em `clima_rs_tbl`.
+
+
+```r
+# algum codigo não está presente na tabela metadados_rs
+metadados_rs %>%
+  filter(., ! codigo %in% clima_rs_tbl$codigo )%>%
+  select(., codigo)
+#> # A tibble: 7 x 1
+#>   codigo
+#>   <chr> 
+#> 1 83959 
+#> 2 83885 
+#> 3 83985 
+#> 4 83983 
+#> 5 83953 
+#> 6 83909 
+#> 7 83918
+```
+
+
+
+
+Obtemos que 7 valores da variável `codigo` dos `metadados_rs` que não estão presentes na tabela `clima_rs_tbl`. Portanto, não há valores de `tmax` e `prec` para essas observações.
+
+
+Suponha agora que desejássemos visualizar a variação espacial da precipitação (`prec`) ou da temperatura máxima do ar (`tmax`) climatológica. Precisaríamos além dessas variáveis, as coordenadas geográficas das estações meteorológicas para plotar sua localização espacial. As coordenadas `lon` e `lat` da `metadados_rs` podem ser combinadas com `clima_rs_tbl` em uma nova tabela (`clima_rs_comb`), usando a função `dplyr::full_join()`:
+
+
+```r
+clima_rs_comb <- full_join(
+  x = clima_rs_tbl, 
+  y = metadados_rs,
+  by = "codigo")
+clima_rs_comb
+```
+
+
+codigo      prec   tmax         lon         lat       alt
+-------  -------  -----  ----------  ----------  --------
+83931     1492.2   25.4   -55.51667   -29.68333    120.91
+83980     1299.9   24.1   -54.10000   -31.33333    242.31
+83941     1683.7   23.0   -51.51667   -29.15000    640.00
+83919     1807.3   20.3   -50.43333   -28.66667   1047.50
+83963     1477.1   25.1   -52.88333   -30.03333     72.71
+83942     1823.0   21.8   -51.20000   -29.16667    759.60
+83912     1630.7   24.5   -53.60000   -28.63333    472.50
+83964     1510.8   22.5   -52.51667   -30.53333    427.75
+83915     1758.7   24.7   -51.90000   -28.91667    471.51
+83881     1806.7   27.1   -53.23333   -27.18333    247.10
+83929     1369.4   26.2   -56.53333   -29.11667     76.00
+83916     1691.1   23.0   -51.50000   -28.21667    840.00
+83880     1747.8   24.0   -53.43333   -27.88333    634.00
+83914     1803.1   23.6   -52.40000   -28.21667    684.05
+83967     1320.2   24.8   -51.16667   -30.05000     46.97
+83995     1233.6   21.7   -52.10000   -32.03333      2.46
+83936     1616.8   24.9   -53.70000   -29.70000     95.00
+83997     1228.9   21.8   -53.35000   -33.51667     24.01
+83957     1313.9   25.0   -54.31667   -30.33333    124.00
+83907     1770.9   26.1   -55.01667   -28.40000    245.11
+83966     1349.8   23.8   -51.58333   -30.83333      5.00
+83948     1363.2   22.3   -49.71667   -29.35000      4.66
+83927     1647.4   25.8   -57.08333   -29.75000     62.31
+83959         NA     NA   -53.48333   -30.51667    450.00
+83885         NA     NA   -51.90000   -27.45000    414.17
+83985         NA     NA   -52.41667   -31.78333     13.00
+83983         NA     NA   -53.10000   -31.43333    345.00
+83953         NA     NA   -55.60000   -30.83333    328.00
+83909         NA     NA   -54.25000   -28.30000    284.50
+83918         NA     NA   -50.70000   -28.55000    954.60
+
+
+Da inspeção das últimas linhas de `clima_rs_comb` verificamos que o resultado é uma tabela que contém todos valores da variável `codigo` das duas tabelas. Os valores das variáveis `prec` e `tmax`, para as observações da variável `codigo` sem valores ( na `metadados_rs`) são preenchidos com `NA`.
+
+Se a combinação de interesse for nas observações em comum entre as tabelas, usaríamos:
+
+
+```r
+clima_rs_intersec <- inner_join(
+  x = metadados_rs, 
+  y = clima_rs_tbl,
+  by = "codigo"
+)
+clima_rs_intersec
+```
+
+
+codigo          lon         lat       alt     prec   tmax
+-------  ----------  ----------  --------  -------  -----
+83931     -55.51667   -29.68333    120.91   1492.2   25.4
+83980     -54.10000   -31.33333    242.31   1299.9   24.1
+83941     -51.51667   -29.15000    640.00   1683.7   23.0
+83919     -50.43333   -28.66667   1047.50   1807.3   20.3
+83963     -52.88333   -30.03333     72.71   1477.1   25.1
+83942     -51.20000   -29.16667    759.60   1823.0   21.8
+83912     -53.60000   -28.63333    472.50   1630.7   24.5
+83964     -52.51667   -30.53333    427.75   1510.8   22.5
+83915     -51.90000   -28.91667    471.51   1758.7   24.7
+83881     -53.23333   -27.18333    247.10   1806.7   27.1
+83929     -56.53333   -29.11667     76.00   1369.4   26.2
+83916     -51.50000   -28.21667    840.00   1691.1   23.0
+83880     -53.43333   -27.88333    634.00   1747.8   24.0
+83914     -52.40000   -28.21667    684.05   1803.1   23.6
+83967     -51.16667   -30.05000     46.97   1320.2   24.8
+83995     -52.10000   -32.03333      2.46   1233.6   21.7
+83936     -53.70000   -29.70000     95.00   1616.8   24.9
+83997     -53.35000   -33.51667     24.01   1228.9   21.8
+83957     -54.31667   -30.33333    124.00   1313.9   25.0
+83907     -55.01667   -28.40000    245.11   1770.9   26.1
+83966     -51.58333   -30.83333      5.00   1349.8   23.8
+83948     -49.71667   -29.35000      4.66   1363.2   22.3
+83927     -57.08333   -29.75000     62.31   1647.4   25.8
+
+Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:
+
+
+```r
+clima_rs_disj <- anti_join(
+  x = metadados_rs, 
+  y = clima_rs_tbl,
+  by = "codigo"
+)
+clima_rs_disj
+```
+
+
+codigo          lon         lat      alt
+-------  ----------  ----------  -------
+83959     -53.48333   -30.51667   450.00
+83885     -51.90000   -27.45000   414.17
+83985     -52.41667   -31.78333    13.00
+83983     -53.10000   -31.43333   345.00
+83953     -55.60000   -30.83333   328.00
+83909     -54.25000   -28.30000   284.50
+83918     -50.70000   -28.55000   954.60
+
+O exemplo abaixo demonstram os resultados das funções `dplyr::left_join()` e `dplyr::right_join()` para um versão reduzida dos dados `clima_rs_tbl`.
+
+
+```r
+clima_rs_tbl_mini <- clima_rs_tbl %>%
+  slice(., 1:3) 
+clima_rs_tbl_mini
+#> # A tibble: 3 x 3
+#>   codigo  prec  tmax
+#>   <chr>  <dbl> <dbl>
+#> 1 83931  1492.  25.4
+#> 2 83980  1300.  24.1
+#> 3 83941  1684.  23
+# combina os dados baseado nas observações dos dados à esquerda (x)
+left_join(
+  x = clima_rs_tbl_mini, 
+  y =metadados_rs, 
+  by = "codigo"
+)
+#> # A tibble: 3 x 6
+#>   codigo  prec  tmax   lon   lat   alt
+#>   <chr>  <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 83931  1492.  25.4 -55.5 -29.7  121.
+#> 2 83980  1300.  24.1 -54.1 -31.3  242.
+#> 3 83941  1684.  23   -51.5 -29.2  640
+# combina os dados baseado nas observações dos dados à direita (y)
+right_join(
+  x = clima_rs_tbl_mini, 
+  y = metadados_rs, 
+  by = "codigo"
+)
+#> # A tibble: 30 x 6
+#>    codigo  prec  tmax   lon   lat    alt
+#>    <chr>  <dbl> <dbl> <dbl> <dbl>  <dbl>
+#>  1 83931  1492.  25.4 -55.5 -29.7  121. 
+#>  2 83980  1300.  24.1 -54.1 -31.3  242. 
+#>  3 83941  1684.  23   -51.5 -29.2  640  
+#>  4 83919    NA   NA   -50.4 -28.7 1048. 
+#>  5 83959    NA   NA   -53.5 -30.5  450  
+#>  6 83963    NA   NA   -52.9 -30.0   72.7
+#>  7 83942    NA   NA   -51.2 -29.2  760. 
+#>  8 83912    NA   NA   -53.6 -28.6  472. 
+#>  9 83964    NA   NA   -52.5 -30.5  428. 
+#> 10 83915    NA   NA   -51.9 -28.9  472. 
+#> # ... with 20 more rows
+```
+
 ## Exercícios
 
 
