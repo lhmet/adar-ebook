@@ -85,7 +85,7 @@ easypackages::libraries(pacotes)
 
 ### Dados 
 
-Para este capítulo utilizaremos alguns conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
+Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
 
 1. Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) localizadas no estado do Rio Grande do Sul.
 
@@ -100,7 +100,21 @@ clima_rs
 kable(clima_rs, align = "c")
 ```
 
-2. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
+
+2. Metadados das estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) relacionadas a tabela de dados `clima_rs`.
+
+```{r, results='hide'}
+metadados_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true"
+# dados de exemplo
+metadados_rs <- import(metadados_url, format = "RDS")
+metadados_rs
+```
+
+```{r, echo = FALSE}
+kable(metadados_rs, align = "c")
+```
+
+3. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
 
 ```{r, results='hide'}
 prec_anual <- data.frame(
@@ -116,6 +130,7 @@ prec_anual
 ```{r, echo = FALSE}
 kable(prec_anual, align = "c")
 ```
+
 
 
 ## *tibble*: um *data frame* aperfeiçoado
@@ -771,7 +786,9 @@ clima_rs_tbl %>%
   head(., n = 3)
 ```
 
-Ou, da menor para maior `tmax`:
+A função `dplyr::arrange()` por padrão ordena os dados em ordem crescente. A função `dplyr::desc()` ordena os valores da variável em ordem descendente. 
+
+Os dados ordenados pela `tmax`, ficam da seguinte forma:
 
 ```{r}
 clima_rs_tbl %>% 
@@ -996,11 +1013,136 @@ Com o conjunto de verbos exemplificados você agora é capaz de realizar as tare
 
 Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubri-las. 
 
+```{r}
+#faltando 
+# - non standard evaluation
+# - ...
+```
+
+
 ### Combinação de dados 
 
+O processamento de dados frequentemente envolve a manipulação de diversas tabelas de dados. Ás vezes precisamos juntar dados de diferentes fontes, formar uma tabela única de dados com o período em comum à elas, ou combiná-las para compará-las.
 
-  - `<tipo>_join`, para combinar dados usando variáveis em comum a dois *data frames*;
-  
+A combinação de 2 *data frames* separados, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de união de tabelas (*join*). O pacote **dplyr** possui uma gama de funções do tipo *join* para combinar *data frames*, genericamente representadas por `<tipo>_join()`, onde `<tipo>` pode ser substituído por `dplyr::full_join()`, `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()`.
+
+Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham. 
+
+Vamos considerar os dados `clima_rs_tbl` e `metadados_rs`. Para melhor compreensão do exemplo vamos remover algumas variáveis.
+
+```{r}
+# normais climatológicas das estaçõess
+clima_rs_tbl <- clima_rs_tbl %>%
+  select(-(estacao:uf))
+head(clima_rs_tbl)
+# metadados das estações convertidos para tibble
+metadados_rs <- metadados_rs %>% 
+  as_tibble()
+head(metadados_rs)
+```
+
+A variável comum às duas tabelas é:
+
+```{r}
+var_comum <- names(clima_rs_tbl) %in% names(metadados_rs)
+names(clima_rs_tbl)[var_comum]
+```
+
+Vamos comparar os valores da variável `codigo` em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa. 
+
+Para saber se algum valor da variável `codigo` da tabela `clima_rs_tbl` não está contido na tabela `metadados_rs` podemos usar o seguinte código:
+
+```{r}
+# algum codigo não está presente na tabela metadados_rs
+clima_rs_tbl %>%
+  filter(., ! codigo %in% metadados_rs$codigo ) %>%
+  select(., codigo)
+```
+
+Não há nenhum caso.
+
+Analogamente, vamos verificar se algum valor da variável `codigo` dos `metadados_rs` não está contido em `clima_rs_tbl`.
+
+```{r}
+# algum codigo não está presente na tabela metadados_rs
+metadados_rs %>%
+  filter(., ! codigo %in% clima_rs_tbl$codigo )%>%
+  select(., codigo)
+```
+
+
+
+
+Obtemos que 7 valores da variável `codigo` dos `metadados_rs` que não estão presentes na tabela `clima_rs_tbl`. Portanto, não há valores de `tmax` e `prec` para essas observações.
+
+
+Suponha agora que desejássemos visualizar a variação espacial da precipitação (`prec`) ou da temperatura máxima do ar (`tmax`) climatológica. Precisaríamos além dessas variáveis, as coordenadas geográficas das estações meteorológicas para plotar sua localização espacial. As coordenadas `lon` e `lat` da `metadados_rs` podem ser combinadas com `clima_rs_tbl` em uma nova tabela (`clima_rs_comb`), usando a função `dplyr::full_join()`:
+
+```{r, results='hide'}
+clima_rs_comb <- full_join(
+  x = clima_rs_tbl, 
+  y = metadados_rs,
+  by = "codigo")
+clima_rs_comb
+```
+
+```{r, echo = FALSE}
+kable(clima_rs_comb)
+```
+
+
+Da inspeção das últimas linhas de `clima_rs_comb` verificamos que o resultado é uma tabela que contém todos valores da variável `codigo` das duas tabelas. Os valores das variáveis `prec` e `tmax`, para as observações da variável `codigo` sem valores ( na `metadados_rs`) são preenchidos com `NA`.
+
+Se a combinação de interesse for nas observações em comum entre as tabelas, usaríamos:
+
+```{r, results='hide'}
+clima_rs_intersec <- inner_join(
+  x = metadados_rs, 
+  y = clima_rs_tbl,
+  by = "codigo"
+)
+clima_rs_intersec
+```
+
+```{r, echo = FALSE}
+kable(clima_rs_intersec)
+```
+
+Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:
+
+```{r, results='hide'}
+clima_rs_disj <- anti_join(
+  x = metadados_rs, 
+  y = clima_rs_tbl,
+  by = "codigo"
+)
+clima_rs_disj
+```
+
+```{r, echo = FALSE}
+kable(clima_rs_disj)
+```
+
+O exemplo abaixo demonstram os resultados das funções `dplyr::left_join()` e `dplyr::right_join()` para um versão reduzida dos dados `clima_rs_tbl`.
+
+```{r}
+clima_rs_tbl_mini <- clima_rs_tbl %>%
+  slice(., 1:3) 
+clima_rs_tbl_mini
+# combina os dados baseado nas observações dos dados à esquerda (x)
+left_join(
+  x = clima_rs_tbl_mini, 
+  y =metadados_rs, 
+  by = "codigo"
+)
+# combina os dados baseado nas observações dos dados à direita (y)
+right_join(
+  x = clima_rs_tbl_mini, 
+  y = metadados_rs, 
+  by = "codigo"
+)
+```
+
 ## Exercícios
 
 
