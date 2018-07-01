@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-26">
+<meta name="date" content="2018-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -316,17 +316,17 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><p>Importe da <em>web</em> diretamente para o <img src="images/logo_r.png" width="20"> os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em <a href="http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt" class="uri">http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt</a>.</p></li>
 <li><p>Defina o nome das variáveis como: year, month, day, RMM1, RMM2, phase, amplitude, status. Tente obter os nomes das variáveis do próprio link para os dados (Releia a seção <a href="arquivos-texto.html#arquivos-fwf">8.4.1.2</a> e a seção <a href="amostras-pequenas-de-dados.html#scan">B.1.1</a> para detalhes). Mostre os 10 primeiros valores da variável <code>RMM1</code>.</p></li>
 <li><p>Escreva os dados importados em um arquivo excel no <strong>formato <code>xls</code></strong> e nomeado <code>mjo.xls</code>. Dê uma olhada na seção <a href="arquivos-excel.html#export-xls">8.6.2</a>.</p></li>
-<li><p>Importe no R o arquivo excel nomeado <code>mjo.xlsx</code> e mostre qual a classe dos dados importados.</p></li>
+<li><p>Importe no R o arquivo excel nomeado <code>mjo.xls</code> e mostre qual a classe dos dados importados.</p></li>
 <li><p>Mostre as primeiras e as últimas 10 linhas dos dados.</p></li>
 <li><p>Qual o código para mostrar quantas linhas e colunas possui a tabela de dados.</p></li>
-<li><p>Interprete a saída da <code>glimpse()</code> do pacote <strong>dplyr</strong> aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?</p></li>
+<li><p>Interprete a saída da <code>tibble::glimpse()</code> do pacote <strong>dplyr</strong> aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?</p></li>
 </ol></li>
 <li><p>Importe as anomalias padronizadas dos dados do <a href="%22http://www.cpc.ncep.noaa.gov/data/indices/soi%22">SOI</a> (2ª tabela ou a tabela mais abaixo na página do <em>link</em>). Veja a seção <a href="arquivos-texto.html#arquivos-fwf">8.4.1.2</a> para detalhes. Mostre as últimas linhas dos dados importados.</p></li>
-<li><p>Importe no R o arquivo excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste <a href="http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls">link</a>. Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.</p></li>
+<li><p>Importe no R o arquivo Excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste <a href="http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls">link</a>. Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.</p></li>
 <li><p>Faça <em>download</em> de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo <code>prec_daily_UT_Brazil_v2.2_20100101_20151231.nc</code>), disponível em <a href="https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA" class="uri">https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA</a>. Navegue pelas páginas até encontrar o arquivo NetCDF.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Importe os dados para o R, converta-os para <em>data frame</em> e verifique o número de colunas e linhas resultantes.</p></li>
-<li><p>Compare as dimensões do <em>data frame</em> com as dimensões do objeto importado, o número de linhas e de colunas do <em>data frame</em> correspondem a quais propriedades ou dimensões do objeto importado?</p></li>
+<li><p>Importe os dados para o R. Converta-os para <em>data frame</em> incluindo as coordenadas espaciais e verifique o número de colunas e linhas resultantes.</p></li>
+<li><p>Compare as dimensões do <em>data frame</em> com as dimensões do objeto importado, o número de linhas e de colunas do <em>data frame</em> correspondem a quais propriedades ou dimensões do objeto importado? Faça essa comparação usando os diferentes valores lógicos para os argumentos <code>na.rm</code> e <code>xy</code>.</p></li>
 </ol></li>
 </ol>
 

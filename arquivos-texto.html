@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-26">
+<meta name="date" content="2018-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -461,15 +461,15 @@ hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar
 <span class="co"># caminho de destino para o aquivo baixado</span>
 <span class="co"># alterando a extensão de TXT para csv</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpK/file32c4120b112b&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdO/file32d5f92e699&quot;</span>
 (hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpK/file32c4120b112b.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdO/file32d5f92e699.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpK/file32c4120b112b.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdO/file32d5f92e699.csv&quot;</span></code></pre></div>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
@@ -497,13 +497,13 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <span class="co">#&gt; 5 119.4        29              8            1           1</span>
 <span class="co">#&gt; 6 191.6        13             11            1           1</span></code></pre></div>
 <p>Para saber quais argumentos devem ser especificados na função <code>import()</code> você precisar ler a documentação de ajuda da função (<code>?import</code>), principalmente a sessão <em>Details</em>. Os argumentos usados no exemplo acima, estão implícitos no argumento da função <code>import()</code> representado pela reticência (<code>...</code>). Conforme descrito na sessão <em>Details</em>, o parâmetro <code>fread = FALSE</code> implica no uso da função <code>read.table()</code> da base do R (descrita no Apêndice <a href="readtable.html#readtable">B.4</a>) para importar o arquivo; então a descrição dos argumentos especificados encontra-se na ajuda da função <code>read.table()</code>, facilmente acessada pelo <em>link</em> na ajuda da função <code>import</code>.</p>
-<p>Quando os nomes dos arquivos incluem uma extensão reconhecida pelo <strong>rio</strong> (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>), não há necesidade de especificar o argumento <code>format</code> nas funções <code>import()</code> e <code>export()</code>. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do <em>site</em> é desconhecida (ex.: &quot;.TXT&quot;, &quot;.dat&quot;, etc). Nesta situação você deve especificar o formato do arquivo através do argumento <code>format</code> da <code>import()</code>.</p>
+<p>Quando os nomes dos arquivos incluem uma extensão reconhecida pelo <strong>rio</strong> (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>), não há necessidade de especificar o argumento <code>format</code> nas funções <code>import()</code> e <code>export()</code>. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do <em>site</em> é desconhecida (ex.: &quot;.TXT&quot;, &quot;.dat&quot;, etc). Nesta situação você deve especificar o formato do arquivo através do argumento <code>format</code> da <code>import()</code>.</p>
 <p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpK/file32c44503ae53&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdO/file32d53f910727&quot;</span>
 (dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpK/file32c44503ae53.tsv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdO/file32d53f910727.tsv&quot;</span>
 <span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
 </div>
 <div id="arquivos-fwf" class="section level4">
@@ -520,7 +520,7 @@ link_soi &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/
 <li><p>os valores da coluna <code>YEAR</code> ocupam 4 campos (ou espaços), ou seja, vão desde a 1ª até a 4 coluna; os valores da coluna <code>JAN</code> ocupam os campos da 5ª à 10ª coluna e este padrão é repetido para as colunas restantes.</p></li>
 <li><p>dados faltantes são representados pelo rótulo <code>-999.9</code></p></li>
 <li><p>os dados incluem os nomes das variáveis (cabeçalho)</p></li>
-<li><p>o cabeçalho ocupa um número de campos diferentes daqueles ocuppados pelos valores de SOI (note o sinal de menos que antecede os valores)</p></li>
+<li><p>o cabeçalho ocupa um número de campos diferentes daqueles ocupados pelos valores de SOI (note o sinal de menos que antecede os valores)</p></li>
 </ul>
 <p>Nosso interesse é na 1ª tabela de dados. Uma estratégia possível de importar estes dados é começar lendo o cabeçalho.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nome_vars &lt;-<span class="st"> </span><span class="kw">scan</span>(
@@ -579,7 +579,7 @@ nome_vars
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
 (soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmppIYEpKSOI.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpi63qdOSOI.csv&quot;</span>
 <span class="co"># exportação com rio</span>
 <span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,

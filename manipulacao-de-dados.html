@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-06-26">
+<meta name="date" content="2018-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -364,7 +364,7 @@ as funções foram projetadas para trabalharem juntas na solução diversos prob
 <div id="codigos-como-fluxogramas" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> Códigos como fluxogramas</h3>
 <p>A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento.</p>
-<p>Essa é justamente a idéia do operador <em>pipe</em> <code>%&gt;%</code>: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador <code>%&gt;%</code> está disponível no <img src="images/logo_r.png" width="20"> através do pacote <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a>.</p>
+<p>Essa é justamente a ideia do operador <em>pipe</em> <code>%&gt;%</code>: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador <code>%&gt;%</code> está disponível no <img src="images/logo_r.png" width="20"> através do pacote <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a>.</p>
 <p>Os pacotes <strong>tidyverse</strong> integram-se muito bem com o <code>%&gt;%</code>, por isso ele é automaticamente carregado com o <strong>tidyverse</strong>. Vamos ilustrar as vantagens de uso do %&gt;% com exemplos a seguir.</p>
 <div id="vantagens-do" class="section level4">
 <h4><span class="header-section-number">9.4.1.1</span> Vantagens do %&gt;%</h4>
@@ -402,7 +402,7 @@ x
 <li>coloca em ordem decrescente o resultado de (2)</li>
 <li>extrai o 2° elemento do resultado de (3)</li>
 </ol>
-<p>Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor númerico x.</p>
+<p>Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor numérico x.</p>
 <p>A versão usando pipe é:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># 1</span>
@@ -413,7 +413,7 @@ x
 <p>Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador <code>%&gt;%</code> para ilustrar os verbos do <strong>dplyr</strong> e suas combinações.</p>
 <div class="rmdtip">
 <p>
-No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador conchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:
+No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador colchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:
 </p>
 <p>
 <code>a[2]; nth(a, 2)</code>
@@ -566,7 +566,7 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 <h3><span class="header-section-number">9.4.3</span> Seleção de observações</h3>
 <p><img src="images/dplyr-filter.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
 <p>A filtragem de observações geralmente envolve uma expressão que retorna valores lógicos ou as posições das linhas selecionadas (como a função <code>which()</code>).</p>
-<p>A função <code>dplyr::filter()</code> permite filtrar observações de um <em>data frame</em> correspondentes a alguns creitérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: <code>&amp;</code>, ou: <code>|</code>). Veja abaixo alguns exemplos de filtragem de observações:</p>
+<p>A função <code>dplyr::filter()</code> permite filtrar observações de um <em>data frame</em> correspondentes a alguns critérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: <code>&amp;</code>, ou: <code>|</code>). Veja abaixo alguns exemplos de filtragem de observações:</p>
 <ul>
 <li>linhas correspondentes ao <code>codigo</code> da estação 83936.</li>
 </ul>
@@ -696,7 +696,7 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 <div id="reordenando-dados" class="section level3">
 <h3><span class="header-section-number">9.4.4</span> Reordenando dados</h3>
 <p><img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
-<p>As vezes é útil reordenadar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados <code>clima_rs_tbl</code> podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.</p>
+<p>As vezes é útil reordenar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados <code>clima_rs_tbl</code> podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(., <span class="kw">desc</span>(prec)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
@@ -761,7 +761,7 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 <span class="co">#&gt; 6 A003 2004 1300</span>
 <span class="co">#&gt; 7 A003 2005 1950</span>
 <span class="co">#&gt; 8 A003 2006 1100</span></code></pre></div>
-<p>Podemos preencher os valores faltantes de uma variável por um valor preescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da <code>dplyr::mutate()</code>.</p>
+<p>Podemos preencher os valores faltantes de uma variável por um valor prescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da <code>dplyr::mutate()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># preenchendo prec faltante pela média</span>
 prec_anual_comp <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(., 
@@ -900,7 +900,7 @@ prec_anual_comp_rep <span class="op">%&gt;%</span>
 <span class="co">#&gt;  8 A003   1300</span>
 <span class="co">#&gt;  9 A003   1950</span>
 <span class="co">#&gt; 10 A003   1100</span></code></pre></div>
-<p>A função <code>dplyr::count()</code> é util para obter a frequência de ocorrência de uma variável ou da combinação de variáveis.</p>
+<p>A função <code>dplyr::count()</code> é útil para obter a frequência de ocorrência de uma variável ou da combinação de variáveis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_comp_rep <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">count</span>(site)
 <span class="co">#&gt; # A tibble: 3 x 2</span>
@@ -1015,7 +1015,7 @@ estats_por_site_var
 <span class="co">#&gt; 7 A003  prec        1300   </span>
 <span class="co">#&gt; 8 A803  prec        1525</span></code></pre></div>
 <p>Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.</p>
-<p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubri-las.</p>
+<p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubrí-las.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#faltando </span>
 <span class="co"># - non standard evaluation</span>
 <span class="co"># - ...</span></code></pre></div>

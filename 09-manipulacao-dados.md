@@ -20,7 +20,7 @@ Neste capítulo veremos:
 
 - como manipular os dados com uma ferramenta intuitiva e padronizada
 
-Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do R. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Consequentemere, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.
+Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do R. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Conseqüentemente, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.
 
 Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
@@ -82,7 +82,7 @@ easypackages::libraries(pacotes)
 
 ### Dados 
 
-Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de maniulação de dados do *tidyverse*.
+Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de manipulação de dados do *tidyverse*.
 
 1. Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) localizadas no estado do Rio Grande do Sul.
 
@@ -196,7 +196,7 @@ prec_anual
 
 ## *tibble*: um *data frame* aperfeiçoado
 
-*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** estende a classe *data frame* da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*. O novo objeto é chamdo de *tibble* e sua classde de `tbl_df`. 
+*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** estende a classe *data frame* da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*. O novo objeto é chamado de *tibble* e sua classe de `tbl_df`. 
 
 ### Funcionalidades do *tibble*
 
@@ -429,7 +429,7 @@ A estrutura de dados \"arrumados\" parece óbvia, mas na prática, dados neste f
 
 - a organização dos dados busca tornar o registro de dados o mais fácil possível;
 
-Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identifição das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
+Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
 
 - uma variável deve ser distribuída ao longo das colunas
 
@@ -454,7 +454,7 @@ Os principais formatos de dados são:
 
 - dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;
 
-- dados amplos, são tabelas com valores mais dstribuínos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;
+- dados amplos, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;
 
 
 #### Formato de dados longo {#formatos-dados}
@@ -555,7 +555,7 @@ prec_anual_longo
 #> # ... with 22 more rows
 ```
 
-Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função gather, serão atribuídos os valores *default*: `key` e `value`.
+Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função `tidyr::gather()`, serão atribuídos os valores *default*: `key` e `value`.
 
 
 ```r
@@ -773,7 +773,7 @@ Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
 
 A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
 
-Essa é justamente a idéia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no <img src="images/logo_r.png" width="20"> através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+Essa é justamente a ideia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no <img src="images/logo_r.png" width="20"> através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
 
 
@@ -831,7 +831,7 @@ O código acima está aninhando funções e isso leva a uma dificuldade de ler p
 3. coloca em ordem decrescente o resultado de (2)
 4. extrai o 2° elemento do resultado de (3)
 
-Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor númerico x.
+Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor numérico x.
 
 A versão usando pipe é:
 
@@ -849,7 +849,7 @@ Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui
 
 
 <div class="rmdtip">
-<p>No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador conchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:</p>
+<p>No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador colchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:</p>
 <p><code>a[2]; nth(a, 2)</code></p>
 <p><code>#&gt; [1] 4</code> <code>#&gt; [1] 4</code></p>
 </div>
@@ -1031,7 +1031,7 @@ Veja mais funções úteis para seleção de variáveis em `?dplyr::select`.
 
 A filtragem de observações geralmente envolve uma expressão que retorna valores lógicos ou as posições das linhas selecionadas (como a função `which()`).
 
-A função `dplyr::filter()` permite filtrar observações de um *data frame* correspondentes a alguns creitérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: `&`, ou: `|`). Veja abaixo alguns exemplos de filtragem de observações: 
+A função `dplyr::filter()` permite filtrar observações de um *data frame* correspondentes a alguns critérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: `&`, ou: `|`). Veja abaixo alguns exemplos de filtragem de observações: 
 
 - linhas correspondentes ao `codigo` da estação 83936.
 
@@ -1170,7 +1170,7 @@ clima_rs_tbl %>%
 
 <img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" />
 
-As vezes é útil reordenadar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados `clima_rs_tbl` podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.
+As vezes é útil reordenar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados `clima_rs_tbl` podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.
 
 
 ```r
@@ -1267,7 +1267,7 @@ tail(prec_anual_corr, n = 4)
 ```
 
 
-Podemos preencher os valores faltantes de uma variável por um valor preescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da `dplyr::mutate()`. 
+Podemos preencher os valores faltantes de uma variável por um valor prescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da `dplyr::mutate()`. 
 
 
 
@@ -1443,7 +1443,7 @@ prec_anual_comp_rep %>%
 ```
 
 
-A função `dplyr::count()` é util para obter a frequência de ocorrência de uma variável ou da combinação de variáveis. 
+A função `dplyr::count()` é útil para obter a frequência de ocorrência de uma variável ou da combinação de variáveis. 
 
 
 ```r
@@ -1598,7 +1598,7 @@ estats_por_site_var
 
 Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.
 
-Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubri-las. 
+Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubrí-las. 
 
 
 ```r
@@ -1877,7 +1877,7 @@ head(soi_df)
 
 ## Exemplo de manipulação de dados 
 
-Nesta seção vamos fazer um estudo de caso para demostrar diversas funções do tidyverse aplicadas ao conjunto de dados de precipitação horária de Santa Maria-RS.
+Nesta seção vamos fazer um estudo de caso para demostrar diversas funções do \"universo arrumado\" aplicadas ao conjunto de dados de precipitação horária de Santa Maria-RS.
 
 Objetivos:
 

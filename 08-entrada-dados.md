@@ -6,14 +6,14 @@
 O <img src="images/logo_r.png" width="20"> é capaz de importar dados de uma diversidade de fontes, formatos e tamanhos. Neste capítulo será visto como importar e exportar dados nos formatos mais comuns em aplicações ambientais, como: 
 
 - dados retangulares armazenados em arquivos de texto puro
-- dados binários e netCDF
+- dados binários e NetCDF
 - dados espaciais em formato GIS
 
 Nós estamos em uma era digital e a quantidade de dados disponíveis na internet está aumentando monstruosamente. Para você estar preparado para o futuro, além de aprender como importar arquivos locais, veremos também como baixar e importar dados da *web*.
 
 Serão utilizados diversos pacotes para lidar com os diferentes formatos de dados. Começaremos com o pacote **rio** que permite importar uma diversidade de tipos de dados com muita facilidade.
 
-Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso também veremos formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato netCDF.
+Arquivos texto com valores separados por vírgula (*CSV*) serão tratados com os pacotes **readr** e **data.table**. Dados em formato texto puro tem desvantagens e por isso também veremos formatos binários, entre eles, as funções nativas do R (`readRDS()`, `load()`) e funções de pacotes específicos para importar arquivos no formato NetCDF.
 
 ## Pré-requisitos
 
@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmppIYEpK/file32c4120b112b"
+#> [1] "/tmp/Rtmpi63qdO/file32d5f92e699"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/RtmppIYEpK/file32c4120b112b.csv"
+#> [1] "/tmp/Rtmpi63qdO/file32d5f92e699.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/RtmppIYEpK/file32c4120b112b.csv"
+#> [1] "/tmp/Rtmpi63qdO/file32d5f92e699.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -255,7 +255,7 @@ head(dprec[, 1:10])
 Para saber quais argumentos devem ser especificados na função `import()` você precisar ler a documentação de ajuda da função (`?import`), principalmente a sessão *Details*. Os argumentos usados no exemplo acima, estão implícitos no argumento da função `import()` representado pela reticência (`...`). Conforme descrito na sessão *Details*, o parâmetro `fread = FALSE` implica no uso da função `read.table()` da base do R (descrita no Apêndice \@ref(readtable)) para importar o arquivo; então a descrição dos argumentos especificados encontra-se na ajuda da função `read.table()`, facilmente acessada pelo *link* na ajuda da função `import`.
 
 
-Quando os nomes dos arquivos incluem uma extensão reconhecida pelo **rio** (Tabela \@ref(tab:rio-table)), não há necesidade de especificar o argumento `format` nas funções `import()` e `export()`. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do *site* é desconhecida (ex.: \".TXT\", \".dat\", etc). Nesta situação você deve especificar o formato do arquivo através do argumento `format` da `import()`.
+Quando os nomes dos arquivos incluem uma extensão reconhecida pelo **rio** (Tabela \@ref(tab:rio-table)), não há necessidade de especificar o argumento `format` nas funções `import()` e `export()`. O formato dos arquivos é inferido da extensão do arquivo (csv, no exemplo acima). No exemplo acima, a extensão do arquivo original do *site* é desconhecida (ex.: \".TXT\", \".dat\", etc). Nesta situação você deve especificar o formato do arquivo através do argumento `format` da `import()`.
 
 Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função `export()`. Vamos salvá-lo usando um formato diferente do original, como *tsv* (valores separados por *tab*), para explorar a funcionalidade do **rio**.
 
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/RtmppIYEpK/file32c44503ae53"
+#> [1] "/tmp/Rtmpi63qdO/file32d53f910727"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/RtmppIYEpK/file32c44503ae53.tsv"
+#> [1] "/tmp/Rtmpi63qdO/file32d53f910727.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -299,7 +299,7 @@ Ao inspecionar cuidadosamente os dados até o fim da página no navegador, perce
 
 - os dados incluem os nomes das variáveis (cabeçalho)
 
-- o cabeçalho ocupa um número de campos diferentes daqueles ocuppados pelos valores de SOI (note o sinal de menos que antecede os valores)
+- o cabeçalho ocupa um número de campos diferentes daqueles ocupados pelos valores de SOI (note o sinal de menos que antecede os valores)
 
 Nosso interesse é na 1ª tabela de dados. Uma estratégia possível de importar estes dados é começar lendo o cabeçalho.
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/RtmppIYEpKSOI.csv"
+#> [1] "/tmp/Rtmpi63qdOSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -488,7 +488,7 @@ Após a leitura e o processamento de dados brutos você provavelmente os salvar�
 
 #### Rdata 
 
-Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados pluviométricos lidos anteriormente (`dprec`) e selecionar as colunas de interesse. O dataframe será salvo em um arquivo binário do R com a extensão `.RData`.
+Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados pluviométricos lidos anteriormente (`dprec`) e selecionar as colunas de interesse. O *data frame* será salvo em um arquivo binário do R com a extensão `.RData`.
 
 
 ```r
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/RtmppIYEpK/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmpi63qdO/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/RtmppIYEpK/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmpi63qdO/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -828,7 +828,7 @@ nc_close(ncin)
 
 As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), *arrays* bidimensionais (matrizes, campo espacial de um momento), ou *arrays* multidimensionais (campos espaciais de uma variável em diversos tempos).
 
-Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. 
+Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um *data frame* onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. 
 
 
 ```r
@@ -845,7 +845,7 @@ image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
 
 ##### Forma fácil de importar NetCDF
 
-O pacote [raste](https://cran.r-project.org/web/packages/raster/index.html) fornece uma função para fácil importação de arquivos NetCDF. Os dados importados são retornados no formato específico do pacote (classe de dados *RasterBrick*). Esta classe de dados, corresponde a uma estrutura de dados espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões. 
+O pacote [raster](https://cran.r-project.org/web/packages/raster/index.html) fornece uma função para fácil importação de arquivos NetCDF. Os dados importados são retornados no formato específico do pacote (classe de dados *RasterBrick*). Esta classe de dados, corresponde a uma estrutura de dados espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões. 
 
 Quando o dados gradeados possuem somente uma variável em um único tempo, como por exemplo a altitude do terreno (z), temos 2 dimensões espaciais *x* (longitude), *y* (latitude) e *z*. Neste caso, o dado é um [raster](https://docs.qgis.org/2.8/pt_BR/docs/gentle_gis_introduction/raster_data.html) e sua classe de dados é denominada `RasterLayer` no pacote **raster**, ou seja os dados possuem somente uma camada. Quando os dados possuem mais de uma camada, como no casos de campos espaciais de temperatura em diferentes meses (cada mês é uma camada) a classe de dados é denominada `Rasterbrick`. 
 
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 
-#> data source : /tmp/RtmppIYEpK/cru10min30_tmp.nc 
+#> data source : /tmp/Rtmpi63qdO/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -868,7 +868,7 @@ brick_tar_cru
 
 O resultado da importação de um `RasterBrick` mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF. 
 
-Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome da variável de interesse através do argumento `varname`. No exemplo acima poderíamos ter chamado a função brick com `brick(dest_file_nc, varname = "tmp")`. Mas como há somente uma variável no arquivo NetCDF deste exemplo a especificação deste argumento é opcional.
+Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome da variável de interesse através do argumento `varname`. No exemplo acima poderíamos ter chamado a função `raster::brick()` com `brick(dest_file_nc, varname = "tmp")`. Mas como há somente uma variável no arquivo NetCDF deste exemplo a especificação deste argumento é opcional.
 
 Os nomes das camadas, são acessados e alterados com função `names()`, da mesma forma que em *data frames*.
 
@@ -950,9 +950,9 @@ head(df_tar_cru)
 
 Os argumentos usados na função `as.dataframe()` correspondem a:
 
-- `x` é o objeto Raster* (onde \* significa  `RasterBrick`, `RasterStack` ou `RasterLayer`)
+- `x` é o objeto `Raster*` (onde \* significa  `RasterBrick`, `RasterStack` ou `RasterLayer`)
 
-- `xy` é um argumento lógico, se `TRUE` (verdadeiro) inclui as coordenadas espaciais (longitude e altitude) das células do Raster como colunas no *data frame* de saída
+- `xy` é um argumento lógico, se `TRUE` (verdadeiro) inclui as coordenadas espaciais (longitude e altitude) das células do *raster* como colunas no *data frame* de saída
 
 - `na.rm` é um argumento opcional lógico, tal que se for `TRUE` remove linhas com valores `NA`. Isto é particularmente útil para grandes conjuntos de dados com muitos valores `NA`s e em regiões oceânicas, como no arquivo de exemplo, onde não há dados medidos. Note que se `na.rm = FALSE` (`TRUE`) o *data frame* resultante terá (poderá ter) um número de linhas igual ao (menor que o) número de células do `RasterBrick`.
 
@@ -978,7 +978,7 @@ Há uma variedade de pacotes para processar dados em Excel, entre eles estão: [
 [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html), [xlsx](https://cran.r-project.org/web/packages/xlsx/index.html), [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html), [readxl](https://readxl.tidyverse.org/), [writexl](https://github.com/ropensci/writexl) e [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html). 
 
 
-Na seção \@ref(Rio) vimos que o pacote **rio** importa diversos formatos de arquivos, inclusive Excel (Tabela \@ref(tab:rio-table)). A função `import()` utiliza a função `read_excel()`do pacote **readr** para importar arquivos excel. A função `export()`, por outro lado, utiliza a função `write.xlsx()` do pacote **openxlsx**. 
+Na seção \@ref(Rio) vimos que o pacote **rio** importa diversos formatos de arquivos, inclusive Excel (Tabela \@ref(tab:rio-table)). A função `import()` utiliza a função `read_excel()`do pacote **readr** para importar arquivos Excel. A função `export()`, por outro lado, utiliza a função `write.xlsx()` do pacote **openxlsx**. 
 
 Além do uso do pacote **rio** para exportar arquivos `xlsx`, veremos também o pacote [writexl](https://github.com/ropensci/writexl) por ter uma exportação mais rápida que a usada no pacote **rio**.
 
@@ -1078,16 +1078,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min       lq     mean   median       uq      max neval
-#>   writexl  9.920464 10.11652 10.15191 10.22975 10.23898 10.25384     5
-#>  openxlsx 44.160013 45.27226 52.35017 45.32401 45.56773 81.42685     5
+#>      expr       min        lq      mean    median        uq       max
+#>   writexl  9.678572  9.710369  9.770102  9.719913  9.806069  9.935589
+#>  openxlsx 44.129615 45.660735 53.789327 45.952300 47.511175 85.692809
+#>  neval
+#>      5
+#>      5
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 5 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 6 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
@@ -1115,7 +1118,7 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
     
 
     
-    d. Importe no R o arquivo excel nomeado `mjo.xlsx` e mostre qual a classe dos dados importados.
+    d. Importe no R o arquivo excel nomeado `mjo.xls` e mostre qual a classe dos dados importados.
 
 
     e. Mostre as primeiras e as últimas 10 linhas dos dados.
@@ -1125,7 +1128,7 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
     f. Qual o código para mostrar quantas linhas e colunas possui a tabela de dados.
 
 
-    g. Interprete a saída da `glimpse()` do pacote **dplyr** aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
+    g. Interprete a saída da `tibble::glimpse()` do pacote **dplyr** aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
 
 
 
@@ -1136,17 +1139,19 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 
 
-3. Importe no R o arquivo excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste
+3. Importe no R o arquivo Excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível neste
 [link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.
 
 
 
 4. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. 
 
-    a. Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. 
-    
-    b. Compare as dimensões do *data frame* com as dimensões do objeto importado, o número de linhas e de colunas do *data frame* correspondem a quais propriedades ou dimensões do objeto importado?
+    a. Importe os dados para o R. Converta-os para *data frame* incluindo as coordenadas espaciais e verifique o número de colunas e linhas resultantes.
 
+
+
+
+    b. Compare as dimensões do *data frame* com as dimensões do objeto importado, o número de linhas e de colunas do *data frame* correspondem a quais propriedades ou dimensões do objeto importado? Faça essa comparação usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
 
 
 
