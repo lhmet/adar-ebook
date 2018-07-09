@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-07-01">
+<meta name="date" content="2018-07-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -387,12 +387,9 @@ arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 )
 tempos_escrita_xlsx
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr       min        lq      mean    median        uq       max</span>
-<span class="co">#&gt;   writexl  9.678572  9.710369  9.770102  9.719913  9.806069  9.935589</span>
-<span class="co">#&gt;  openxlsx 44.129615 45.660735 53.789327 45.952300 47.511175 85.692809</span>
-<span class="co">#&gt;  neval</span>
-<span class="co">#&gt;      5</span>
-<span class="co">#&gt;      5</span></code></pre></div>
+<span class="co">#&gt;      expr      min       lq     mean   median       uq       max neval</span>
+<span class="co">#&gt;   writexl 10.37822 10.44472 11.35328 10.88891 12.24280  12.81174     5</span>
+<span class="co">#&gt;  openxlsx 56.00220 59.78892 68.86561 59.94933 62.52889 106.05873     5</span></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 6 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
