@@ -54,7 +54,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-07-01
+#> + ggplot2 2.2.1        Date: 2018-07-09
 #> + tibble  1.4.2           R: 3.4.4
 #> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
@@ -1604,18 +1604,13 @@ Com o conjunto de verbos exemplificados você agora é capaz de realizar as tare
 Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubrí-las. 
 
 
-```r
-#faltando 
-# - non standard evaluation
-# - ...
-```
 
 
 ### Combinação de dados 
 
 O processamento de dados frequentemente envolve a manipulação de diversas tabelas de dados. Ás vezes precisamos juntar dados de diferentes fontes, formar uma tabela única de dados com o período em comum à elas, ou combiná-las para compará-las.
 
-A combinação de 2 *data frames* separados, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de união de tabelas (*join*). O pacote **dplyr** possui uma gama de funções do tipo *join* para combinar *data frames*, genericamente representadas por `<tipo>_join()`, onde `<tipo>` pode ser substituído por `dplyr::full_join()`, `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()`.
+A combinação de 2 *data frames*, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de **junção** (do termo em inglês *join*) de tabelas . O pacote **dplyr** possui uma gama de funções do tipo *join* para combinar *data frames*, genericamente representadas por `<tipo>_join()`, onde `<tipo>` pode ser substituído por `dplyr::full_join()`, `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()`.
 
 Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham. 
 
@@ -1861,21 +1856,244 @@ right_join(
 
 ## Exercícios
 
-
-Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
+**Pacotes necessários**
 
 
 ```r
-# converte a matriz de dados para um vetor (em sequencia cronológica)
-soi_v <- c(t(soi[, -1]))
-# criando um dataframe com valores de SOI, mes e ano
-soi_df <- data.frame(
-  ano = rep(soi$YEAR, each = 12),
-  mes = rep(1:12, length(soi[, 1])),
-  soi = soi_v
-)
-head(soi_df)
+pcks <- c("rio", "tidyverse")
+easypackages::libraries(pcks)
 ```
+
+- - -
+
+1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
+
+
+```r
+soi <- structure(list(
+  YEAR = 1951:1953, 
+  JAN = c(1.5, -0.9, 0.3), 
+  FEB = c(0.9, -0.6, -0.5), 
+  MAR = c(-0.1, 0.5, -0.2), 
+  APR = c(-0.3, -0.2, 0.2), 
+  MAY = c(-0.7, 0.8, -1.7), 
+  JUN = c(0.2, 0.7, 0.1), 
+  JUL = c(-1, 0.5, 0), 
+  AUG = c(-0.2, 0.1, -1.2), 
+  SEP = c(-1.1, -0.2, -1.2),
+  OCT = c(-1, 0.4, 0.1), 
+  NOV = c(-0.8, 0, -0.3), 
+  DEC = c(-0.7, -1.2, -0.5)
+), .Names = c(
+  "YEAR", "1", "2", "3", "4",
+  "5", "6", "7", "8", "9", 
+  "10", "11", "12"
+), row.names = c(
+  NA,
+  3L
+), class = "data.frame")
+soi
+#>   YEAR    1    2    3    4    5   6    7    8    9   10   11   12
+#> 1 1951  1.5  0.9 -0.1 -0.3 -0.7 0.2 -1.0 -0.2 -1.1 -1.0 -0.8 -0.7
+#> 2 1952 -0.9 -0.6  0.5 -0.2  0.8 0.7  0.5  0.1 -0.2  0.4  0.0 -1.2
+#> 3 1953  0.3 -0.5 -0.2  0.2 -1.7 0.1  0.0 -1.2 -1.2  0.1 -0.3 -0.5
+```
+
+
+
+
+
+A estrutura esperada dos dados arrumados é mostrada abaixo: 
+
+
+```
+#> Observations: 36
+#> Variables: 3
+#> $ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 195...
+#> $ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, ...
+#> $ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, ...
+```
+
+- - -
+
+2. Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o *tibble* fornecido abaixo para o \"formato arrumado\". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe *date* usando a função `as.Date()`.
+
+
+```r
+precd_ncdf <- structure(
+  list(
+    x = c(
+      -60.625, -60.375, -60.125, -60.625, -60.375
+    ),
+    y = c(
+      5.125, 5.125, 5.125, 4.875, 4.875
+    ),
+    X2010.01.01.13.00.00 = c(
+      0, 0, 0, 0, 0
+    ),
+    X2010.01.02.13.00.00 = c(
+      0, 0, 0, 0, 0
+    ),
+    X2010.01.03.13.00.00 = c(
+      0, 0, 0, 0, 0
+    ),
+    X2010.01.04.13.00.00 = c(
+      0.448486328125, 0.44091796875, 0.5791015625, 0.441162109375, 0.3916015625
+    ),
+    X2010.01.05.13.00.00 = c(
+      2.3515625, 1.189453125, 2.013671875, 1.939453125, 0.42822265625
+    ),
+    X2010.01.06.13.00.00 = c(
+      4.49609375, 1.7568359375, 4.58984375, 3.919921875, 0.9443359375
+    ),
+    X2010.01.07.13.00.00 = c(
+      0.1661376953125, 0.51904296875, 0.1339111328125, 0.1488037109375, 0.46240234375
+    ),
+    X2010.01.08.13.00.00 = c(0, 0, 0, 0, 0)
+  ),
+  .Names = c(
+    "x",
+    "y",
+    "X2010.01.01",
+    "X2010.01.02",
+    "X2010.01.03",
+    "X2010.01.04",
+    "X2010.01.05",
+    "X2010.01.06",
+    "X2010.01.07",
+    "X2010.01.08"
+  ),
+  row.names = c(NA, -5L),
+  class = c("tbl_df", "tbl", "data.frame")
+)
+precd_ncdf
+#> # A tibble: 5 x 10
+#>       x     y X2010.01.01 X2010.01.02 X2010.01.03 X2010.01.04 X2010.01.05
+#>   <dbl> <dbl>       <dbl>       <dbl>       <dbl>       <dbl>       <dbl>
+#> 1 -60.6  5.12           0           0           0       0.448       2.35 
+#> 2 -60.4  5.12           0           0           0       0.441       1.19 
+#> 3 -60.1  5.12           0           0           0       0.579       2.01 
+#> 4 -60.6  4.88           0           0           0       0.441       1.94 
+#> 5 -60.4  4.88           0           0           0       0.392       0.428
+#> # ... with 3 more variables: X2010.01.06 <dbl>, X2010.01.07 <dbl>,
+#> #   X2010.01.08 <dbl>
+```
+
+
+
+
+
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
+
+```r
+glimpse(precd_arrum)
+#> Observations: 40
+#> Variables: 4
+#> $ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60...
+#> $ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4...
+#> $ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-...
+#> $ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0....
+```
+
+- - -
+
+3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
+
+
+```r
+poluentes <- read.table(
+  text='
+  poluente   duracao    estacao                 
+      ozone         1h            1
+        so2         1h            1
+      ozone         8h            2
+        no2         1h            4
+                         ',
+  header = TRUE, 
+  stringsAsFactors = FALSE
+) %>% 
+  as_tibble(.) 
+poluentes
+#> # A tibble: 4 x 3
+#>   poluente duracao estacao
+#>   <chr>    <chr>     <int>
+#> 1 ozone    1h            1
+#> 2 so2      1h            1
+#> 3 ozone    8h            2
+#> 4 no2      1h            4
+```
+
+
+
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
+
+```r
+glimpse(poluentes_arrum)
+#> Observations: 3
+#> Variables: 4
+#> $ estacao <int> 1, 2, 4
+#> $ no2     <chr> NA, NA, "1h"
+#> $ ozone   <chr> "1h", "8h", NA
+#> $ so2     <chr> "1h", NA, NA
+```
+
+- - -
+
+4. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.
+
+
+```r
+meteo_data <- import("https://github.com/lhmet/adar-ufsm/blob/master/data/data_sm_wide.RDS?raw=true") %>%
+  as_tibble()
+meteo_data
+#> # A tibble: 12 x 35
+#>    id    element month  year    d1    d2    d3    d4    d5    d6    d7
+#>  * <chr> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 83936 tmax        1  2010  32.6  33.4  24.8  29.4  27    24.4  29.6
+#>  2 83936 tmin        1  2010  17.9  21.4  21.6  23.4  23.2  21.8  18  
+#>  3 83936 tmax        2  2010  36.8  38.4  32.6  38.6  34    36.4  29.8
+#>  4 83936 tmin        2  2010  25.4  25    29.6  26.2  25    25.8  25.4
+#>  5 83936 tmax        3  2010  32    32.4  33.6  32.4  32    29.6  30.2
+#>  6 83936 tmin        3  2010  18.6  19    20.2  21.6  19.8  18.4  17.3
+#>  7 83936 tmax        4  2010  34.4  28.6  21    24.2  23.4  24    24.6
+#>  8 83936 tmin        4  2010  17.5  21    20.6  17.6  15    10.8  11.7
+#>  9 83936 tmax        5  2010  27    26.4  20.2  22.8  25.4  17.4  19.6
+#> 10 83936 tmin        5  2010   7.2   7    13    16.2  14.1  11.5  14.4
+#> 11 83936 tmax        6  2010  19.2  23.8  17.2  18.6  21.2  20.2  17.8
+#> 12 83936 tmin        6  2010   4.1   8.8   9.1  15.2  11.4   6.1   6.3
+#> # ... with 24 more variables: d8 <dbl>, d9 <dbl>, d10 <dbl>, d11 <dbl>,
+#> #   d12 <dbl>, d13 <dbl>, d14 <dbl>, d15 <dbl>, d16 <dbl>, d17 <dbl>,
+#> #   d18 <dbl>, d19 <dbl>, d20 <dbl>, d21 <dbl>, d22 <dbl>, d23 <dbl>,
+#> #   d24 <dbl>, d25 <dbl>, d26 <dbl>, d27 <dbl>, d28 <dbl>, d29 <dbl>,
+#> #   d30 <dbl>, d31 <dbl>
+#glimpse(meteo_data)
+```
+
+
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
+  
+
+
+
+
+
+```r
+glimpse(meteo_data_arrum)
+#> Observations: 186
+#> Variables: 6
+#> $ id    <chr> "83936", "83936", "83936", "83936", "83936", "83936", "8...
+#> $ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+#> $ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20...
+#> $ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...
+#> $ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31...
+#> $ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...
+```
+
+
+
+
 
 
 ## Exemplo de manipulação de dados 
