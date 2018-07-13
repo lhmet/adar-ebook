@@ -1853,7 +1853,7 @@ right_join(
 
 ## Exercícios
 
-**Pacotes necessários**
+Para resolução dos exercícios serão necessários os seguintes pacotes
 
 
 ```r
@@ -1861,35 +1861,28 @@ pcks <- c("rio", "tidyverse")
 easypackages::libraries(pcks)
 ```
 
-- - -
+
+e dados
+
+
+```r
+arq_temp <- tempfile(fileext = ".RData")
+download.file(
+  "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
+  destfile = arq_temp
+)
+# nome dos dados carregados para os exercícios
+print(load(arq_temp))
+#> [1] "soi"         "precd_ncdf"  "poluentes"   "estacoes"    "dados_sm"   
+#> [6] "dados_zorra" "datas_comp"  "datas_obs"
+```
+
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
 
 
 ```r
-soi <- structure(list(
-  YEAR = 1951:1953, 
-  JAN = c(1.5, -0.9, 0.3), 
-  FEB = c(0.9, -0.6, -0.5), 
-  MAR = c(-0.1, 0.5, -0.2), 
-  APR = c(-0.3, -0.2, 0.2), 
-  MAY = c(-0.7, 0.8, -1.7), 
-  JUN = c(0.2, 0.7, 0.1), 
-  JUL = c(-1, 0.5, 0), 
-  AUG = c(-0.2, 0.1, -1.2), 
-  SEP = c(-1.1, -0.2, -1.2),
-  OCT = c(-1, 0.4, 0.1), 
-  NOV = c(-0.8, 0, -0.3), 
-  DEC = c(-0.7, -1.2, -0.5)
-), .Names = c(
-  "YEAR", "1", "2", "3", "4",
-  "5", "6", "7", "8", "9", 
-  "10", "11", "12"
-), row.names = c(
-  NA,
-  3L
-), class = "data.frame")
-soi
+soi 
 #>   YEAR    1    2    3    4    5   6    7    8    9   10   11   12
 #> 1 1951  1.5  0.9 -0.1 -0.3 -0.7 0.2 -1.0 -0.2 -1.1 -1.0 -0.8 -0.7
 #> 2 1952 -0.9 -0.6  0.5 -0.2  0.8 0.7  0.5  0.1 -0.2  0.4  0.0 -1.2
@@ -1911,58 +1904,11 @@ A estrutura esperada dos dados arrumados é mostrada abaixo:
 #> $ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, ...
 ```
 
-- - -
 
 2. Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o *tibble* fornecido abaixo para o \"formato arrumado\". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe *date* usando a função `as.Date()`.
 
 
 ```r
-precd_ncdf <- structure(
-  list(
-    x = c(
-      -60.625, -60.375, -60.125, -60.625, -60.375
-    ),
-    y = c(
-      5.125, 5.125, 5.125, 4.875, 4.875
-    ),
-    X2010.01.01.13.00.00 = c(
-      0, 0, 0, 0, 0
-    ),
-    X2010.01.02.13.00.00 = c(
-      0, 0, 0, 0, 0
-    ),
-    X2010.01.03.13.00.00 = c(
-      0, 0, 0, 0, 0
-    ),
-    X2010.01.04.13.00.00 = c(
-      0.448486328125, 0.44091796875, 0.5791015625, 0.441162109375, 0.3916015625
-    ),
-    X2010.01.05.13.00.00 = c(
-      2.3515625, 1.189453125, 2.013671875, 1.939453125, 0.42822265625
-    ),
-    X2010.01.06.13.00.00 = c(
-      4.49609375, 1.7568359375, 4.58984375, 3.919921875, 0.9443359375
-    ),
-    X2010.01.07.13.00.00 = c(
-      0.1661376953125, 0.51904296875, 0.1339111328125, 0.1488037109375, 0.46240234375
-    ),
-    X2010.01.08.13.00.00 = c(0, 0, 0, 0, 0)
-  ),
-  .Names = c(
-    "x",
-    "y",
-    "X2010.01.01",
-    "X2010.01.02",
-    "X2010.01.03",
-    "X2010.01.04",
-    "X2010.01.05",
-    "X2010.01.06",
-    "X2010.01.07",
-    "X2010.01.08"
-  ),
-  row.names = c(NA, -5L),
-  class = c("tbl_df", "tbl", "data.frame")
-)
 precd_ncdf
 #> # A tibble: 5 x 10
 #>       x     y X2010.01.01 X2010.01.02 X2010.01.03 X2010.01.04 X2010.01.05
@@ -1983,8 +1929,7 @@ precd_ncdf
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```r
-glimpse(precd_arrum)
+```
 #> Observations: 40
 #> Variables: 4
 #> $ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60...
@@ -1993,24 +1938,10 @@ glimpse(precd_arrum)
 #> $ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0....
 ```
 
-- - -
-
 3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
 
 
 ```r
-poluentes <- read.table(
-  text='
-  poluente   duracao    estacao                 
-      ozone         1h            1
-        so2         1h            1
-      ozone         8h            2
-        no2         1h            4
-                         ',
-  header = TRUE, 
-  stringsAsFactors = FALSE
-) %>% 
-  as_tibble(.) 
 poluentes
 #> # A tibble: 4 x 3
 #>   poluente duracao estacao
@@ -2026,8 +1957,7 @@ poluentes
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```r
-glimpse(poluentes_arrum)
+```
 #> Observations: 3
 #> Variables: 4
 #> $ estacao <int> 1, 2, 4
@@ -2036,18 +1966,15 @@ glimpse(poluentes_arrum)
 #> $ so2     <chr> "1h", NA, NA
 ```
 
-- - -
 
 4. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.
 
 
 ```r
-meteo_data <- import("https://github.com/lhmet/adar-ufsm/blob/master/data/data_sm_wide.RDS?raw=true") %>%
-  as_tibble()
-meteo_data
+dados_sm
 #> # A tibble: 12 x 35
 #>    id    element month  year    d1    d2    d3    d4    d5    d6    d7
-#>  * <chr> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>    <chr> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1 83936 tmax        1  2010  32.6  33.4  24.8  29.4  27    24.4  29.6
 #>  2 83936 tmin        1  2010  17.9  21.4  21.6  23.4  23.2  21.8  18  
 #>  3 83936 tmax        2  2010  36.8  38.4  32.6  38.6  34    36.4  29.8
@@ -2065,7 +1992,6 @@ meteo_data
 #> #   d18 <dbl>, d19 <dbl>, d20 <dbl>, d21 <dbl>, d22 <dbl>, d23 <dbl>,
 #> #   d24 <dbl>, d25 <dbl>, d26 <dbl>, d27 <dbl>, d28 <dbl>, d29 <dbl>,
 #> #   d30 <dbl>, d31 <dbl>
-#glimpse(meteo_data)
 ```
 
 
@@ -2076,8 +2002,7 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
 
-```r
-glimpse(meteo_data_arrum)
+```
 #> Observations: 186
 #> Variables: 6
 #> $ id    <chr> "83936", "83936", "83936", "83936", "83936", "83936", "8...
@@ -2087,6 +2012,129 @@ glimpse(meteo_data_arrum)
 #> $ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31...
 #> $ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...
 ```
+
+
+- - -
+
+5. Com os dados obtidos na questão 4: 
+
+   a. junte as colunas `year`, `month` e `day` em uma única coluna denominada `date` de forma que a classe dessa nova coluna seja `date`.  
+
+
+
+
+
+
+
+   b. Filtre os dados obtidos em **(a)** de forma a descobrir as datas em que as observações de `tmax` ou `tmin` são faltantes. Mostre o *tibble* filtrado com as datas e explique o porquê de seus valores. 
+
+
+
+
+
+
+- - -
+
+6. A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato \"arrumado\" e as informações de data e horário agregadas em uma única variável da classe *POSIXct*.
+
+
+```r
+dados_zorra
+#>         date tmax.0 tmax.600 tmax.1200 tmax.1800 tmin.0 tmin.600 tmin.1200
+#> 2 01-01-2010   22.1     21.0      26.4      27.0     16     13.5      18.2
+#> 3 02-01-2010   26.0     25.0      29.4      29.5     19     13.7      16.3
+#> 4 03-01-2010   25.7     26.3      28.4      29.0     21     14.1      17.2
+#> 5 04-01-2010   23.5     24.5      27.4      28.0     23     16.2      16.9
+#>   tmin.1800
+#> 2      24.1
+#> 3      22.3
+#> 4      26.0
+#> 5      23.0
+```
+
+
+
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
+
+```
+#> Observations: 16
+#> Variables: 3
+#> $ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:...
+#> $ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26....
+#> $ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14....
+```
+
+
+- - -
+
+7. Faça uma junção da tabela de dados de informações das estações de poluição (`etacoes`, dada abaixo) com os períodos de duração de poluição crítica (`poluentes`). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.
+
+
+```r
+estacoes
+#>   id      lat       lon
+#> 1  1 42.46757 -87.81005
+#> 2  2 42.04915 -88.27303
+#> 3  3 39.11054 -90.32408
+```
+
+
+
+Estrutura da tabela resultante:
+
+
+```
+#> Observations: 3
+#> Variables: 5
+#> $ id       <int> 1, 1, 2
+#> $ lat      <dbl> 42.46757, 42.46757, 42.04915
+#> $ lon      <dbl> -87.81005, -87.81005, -88.27303
+#> $ poluente <chr> "ozone", "so2", "ozone"
+#> $ duracao  <chr> "1h", "1h", "8h"
+```
+
+- - -
+
+8. Combine as 2 tabelas abaixo de forma que:
+
+  a. a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`. 
+
+
+```r
+# datas completas
+datas_comp
+#> # A tibble: 7 x 1
+#>   date      
+#>   <date>    
+#> 1 2018-07-13
+#> 2 2018-07-14
+#> 3 2018-07-15
+#> 4 2018-07-16
+#> 5 2018-07-17
+#> 6 2018-07-18
+#> 7 2018-07-19
+# datas das observações de theta
+datas_obs
+#> # A tibble: 4 x 2
+#>   date       theta
+#>   <date>     <dbl>
+#> 1 2018-07-12 0.330
+#> 2 2018-07-13 0.412
+#> 3 2018-07-14 0.392
+#> 4 2018-07-17 0.327
+```
+
+
+
+
+
+
+
+  b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
+  
+
+
 
 
 
