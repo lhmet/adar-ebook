@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-07-09">
+<meta name="date" content="2018-07-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -311,36 +311,23 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="exercicios-3" class="section level2">
 <h2><span class="header-section-number">9.5</span> Exercícios</h2>
-<p><strong>Pacotes necessários</strong></p>
+<p>Para resolução dos exercícios serão necessários os seguintes pacotes</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>)
 easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</code></pre></div>
-<hr />
+<p>e dados</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)
+<span class="kw">download.file</span>(
+  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,
+  <span class="dt">destfile =</span> arq_temp
+)
+<span class="co"># nome dos dados carregados para os exercícios</span>
+<span class="kw">print</span>(<span class="kw">load</span>(arq_temp))
+<span class="co">#&gt; [1] &quot;soi&quot;         &quot;precd_ncdf&quot;  &quot;poluentes&quot;   &quot;estacoes&quot;    &quot;dados_sm&quot;   </span>
+<span class="co">#&gt; [6] &quot;dados_zorra&quot; &quot;datas_comp&quot;  &quot;datas_obs&quot;</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato &quot;arrumado&quot; e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi &lt;-<span class="st"> </span><span class="kw">structure</span>(<span class="kw">list</span>(
-  <span class="dt">YEAR =</span> <span class="dv">1951</span><span class="op">:</span><span class="dv">1953</span>, 
-  <span class="dt">JAN =</span> <span class="kw">c</span>(<span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="fl">0.3</span>), 
-  <span class="dt">FEB =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="op">-</span><span class="fl">0.6</span>, <span class="op">-</span><span class="fl">0.5</span>), 
-  <span class="dt">MAR =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.2</span>), 
-  <span class="dt">APR =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>), 
-  <span class="dt">MAY =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="op">-</span><span class="fl">1.7</span>), 
-  <span class="dt">JUN =</span> <span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>), 
-  <span class="dt">JUL =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>), 
-  <span class="dt">AUG =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">1.2</span>), 
-  <span class="dt">SEP =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.1</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="op">-</span><span class="fl">1.2</span>),
-  <span class="dt">OCT =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.4</span>, <span class="fl">0.1</span>), 
-  <span class="dt">NOV =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.8</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.3</span>), 
-  <span class="dt">DEC =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.7</span>, <span class="op">-</span><span class="fl">1.2</span>, <span class="op">-</span><span class="fl">0.5</span>)
-), <span class="dt">.Names =</span> <span class="kw">c</span>(
-  <span class="st">&quot;YEAR&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>,
-  <span class="st">&quot;5&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;8&quot;</span>, <span class="st">&quot;9&quot;</span>, 
-  <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>
-), <span class="dt">row.names =</span> <span class="kw">c</span>(
-  <span class="ot">NA</span>,
-  3L
-), <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>)
-soi
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi 
 <span class="co">#&gt;   YEAR    1    2    3    4    5   6    7    8    9   10   11   12</span>
 <span class="co">#&gt; 1 1951  1.5  0.9 -0.1 -0.3 -0.7 0.2 -1.0 -0.2 -1.1 -1.0 -0.8 -0.7</span>
 <span class="co">#&gt; 2 1952 -0.9 -0.6  0.5 -0.2  0.8 0.7  0.5  0.1 -0.2  0.4  0.0 -1.2</span>
@@ -351,57 +338,10 @@ soi
 #&gt; $ year &lt;int&gt; 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 195...
 #&gt; $ mes  &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, ...
 #&gt; $ soi  &lt;dbl&gt; 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, ...</code></pre>
-<hr />
 <ol start="2" style="list-style-type: decimal">
 <li>Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o <em>tibble</em> fornecido abaixo para o &quot;formato arrumado&quot;. No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe <em>date</em> usando a função <code>as.Date()</code>.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">precd_ncdf &lt;-<span class="st"> </span><span class="kw">structure</span>(
-  <span class="kw">list</span>(
-    <span class="dt">x =</span> <span class="kw">c</span>(
-      <span class="op">-</span><span class="fl">60.625</span>, <span class="op">-</span><span class="fl">60.375</span>, <span class="op">-</span><span class="fl">60.125</span>, <span class="op">-</span><span class="fl">60.625</span>, <span class="op">-</span><span class="fl">60.375</span>
-    ),
-    <span class="dt">y =</span> <span class="kw">c</span>(
-      <span class="fl">5.125</span>, <span class="fl">5.125</span>, <span class="fl">5.125</span>, <span class="fl">4.875</span>, <span class="fl">4.875</span>
-    ),
-    <span class="dt">X2010.01.01.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>
-    ),
-    <span class="dt">X2010.01.02.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>
-    ),
-    <span class="dt">X2010.01.03.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>
-    ),
-    <span class="dt">X2010.01.04.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="fl">0.448486328125</span>, <span class="fl">0.44091796875</span>, <span class="fl">0.5791015625</span>, <span class="fl">0.441162109375</span>, <span class="fl">0.3916015625</span>
-    ),
-    <span class="dt">X2010.01.05.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="fl">2.3515625</span>, <span class="fl">1.189453125</span>, <span class="fl">2.013671875</span>, <span class="fl">1.939453125</span>, <span class="fl">0.42822265625</span>
-    ),
-    <span class="dt">X2010.01.06.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="fl">4.49609375</span>, <span class="fl">1.7568359375</span>, <span class="fl">4.58984375</span>, <span class="fl">3.919921875</span>, <span class="fl">0.9443359375</span>
-    ),
-    <span class="dt">X2010.01.07.13.00.00 =</span> <span class="kw">c</span>(
-      <span class="fl">0.1661376953125</span>, <span class="fl">0.51904296875</span>, <span class="fl">0.1339111328125</span>, <span class="fl">0.1488037109375</span>, <span class="fl">0.46240234375</span>
-    ),
-    <span class="dt">X2010.01.08.13.00.00 =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)
-  ),
-  <span class="dt">.Names =</span> <span class="kw">c</span>(
-    <span class="st">&quot;x&quot;</span>,
-    <span class="st">&quot;y&quot;</span>,
-    <span class="st">&quot;X2010.01.01&quot;</span>,
-    <span class="st">&quot;X2010.01.02&quot;</span>,
-    <span class="st">&quot;X2010.01.03&quot;</span>,
-    <span class="st">&quot;X2010.01.04&quot;</span>,
-    <span class="st">&quot;X2010.01.05&quot;</span>,
-    <span class="st">&quot;X2010.01.06&quot;</span>,
-    <span class="st">&quot;X2010.01.07&quot;</span>,
-    <span class="st">&quot;X2010.01.08&quot;</span>
-  ),
-  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>5L),
-  <span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;tbl_df&quot;</span>, <span class="st">&quot;tbl&quot;</span>, <span class="st">&quot;data.frame&quot;</span>)
-)
-precd_ncdf
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">precd_ncdf
 <span class="co">#&gt; # A tibble: 5 x 10</span>
 <span class="co">#&gt;       x     y X2010.01.01 X2010.01.02 X2010.01.03 X2010.01.04 X2010.01.05</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span>
@@ -413,30 +353,16 @@ precd_ncdf
 <span class="co">#&gt; # ... with 3 more variables: X2010.01.06 &lt;dbl&gt;, X2010.01.07 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   X2010.01.08 &lt;dbl&gt;</span></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(precd_arrum)
-<span class="co">#&gt; Observations: 40</span>
-<span class="co">#&gt; Variables: 4</span>
-<span class="co">#&gt; $ x    &lt;dbl&gt; -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60...</span>
-<span class="co">#&gt; $ y    &lt;dbl&gt; 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4...</span>
-<span class="co">#&gt; $ date &lt;date&gt; 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-...</span>
-<span class="co">#&gt; $ prec &lt;dbl&gt; 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0....</span></code></pre></div>
-<hr />
+<pre><code>#&gt; Observations: 40
+#&gt; Variables: 4
+#&gt; $ x    &lt;dbl&gt; -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60...
+#&gt; $ y    &lt;dbl&gt; 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4...
+#&gt; $ date &lt;date&gt; 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-...
+#&gt; $ prec &lt;dbl&gt; 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0....</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Coloque os dados de poluição (<em>tibble</em> <code>poluentes</code>) no formato &quot;arrumado&quot;.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poluentes &lt;-<span class="st"> </span><span class="kw">read.table</span>(
-  <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st">  poluente   duracao    estacao                 </span>
-<span class="st">      ozone         1h            1</span>
-<span class="st">        so2         1h            1</span>
-<span class="st">      ozone         8h            2</span>
-<span class="st">        no2         1h            4</span>
-<span class="st">                         &#39;</span>,
-  <span class="dt">header =</span> <span class="ot">TRUE</span>, 
-  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
-) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as_tibble</span>(.) 
-poluentes
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poluentes
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   poluente duracao estacao</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;</span>
@@ -445,23 +371,19 @@ poluentes
 <span class="co">#&gt; 3 ozone    8h            2</span>
 <span class="co">#&gt; 4 no2      1h            4</span></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(poluentes_arrum)
-<span class="co">#&gt; Observations: 3</span>
-<span class="co">#&gt; Variables: 4</span>
-<span class="co">#&gt; $ estacao &lt;int&gt; 1, 2, 4</span>
-<span class="co">#&gt; $ no2     &lt;chr&gt; NA, NA, &quot;1h&quot;</span>
-<span class="co">#&gt; $ ozone   &lt;chr&gt; &quot;1h&quot;, &quot;8h&quot;, NA</span>
-<span class="co">#&gt; $ so2     &lt;chr&gt; &quot;1h&quot;, NA, NA</span></code></pre></div>
-<hr />
+<pre><code>#&gt; Observations: 3
+#&gt; Variables: 4
+#&gt; $ estacao &lt;int&gt; 1, 2, 4
+#&gt; $ no2     &lt;chr&gt; NA, NA, &quot;1h&quot;
+#&gt; $ ozone   &lt;chr&gt; &quot;1h&quot;, &quot;8h&quot;, NA
+#&gt; $ so2     &lt;chr&gt; &quot;1h&quot;, NA, NA</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteo_data &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/data_sm_wide.RDS?raw=true&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">as_tibble</span>()
-meteo_data
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_sm
 <span class="co">#&gt; # A tibble: 12 x 35</span>
 <span class="co">#&gt;    id    element month  year    d1    d2    d3    d4    d5    d6    d7</span>
-<span class="co">#&gt;  * &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 83936 tmax        1  2010  32.6  33.4  24.8  29.4  27    24.4  29.6</span>
 <span class="co">#&gt;  2 83936 tmin        1  2010  17.9  21.4  21.6  23.4  23.2  21.8  18  </span>
 <span class="co">#&gt;  3 83936 tmax        2  2010  36.8  38.4  32.6  38.6  34    36.4  29.8</span>
@@ -478,18 +400,93 @@ meteo_data
 <span class="co">#&gt; #   d12 &lt;dbl&gt;, d13 &lt;dbl&gt;, d14 &lt;dbl&gt;, d15 &lt;dbl&gt;, d16 &lt;dbl&gt;, d17 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   d18 &lt;dbl&gt;, d19 &lt;dbl&gt;, d20 &lt;dbl&gt;, d21 &lt;dbl&gt;, d22 &lt;dbl&gt;, d23 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   d24 &lt;dbl&gt;, d25 &lt;dbl&gt;, d26 &lt;dbl&gt;, d27 &lt;dbl&gt;, d28 &lt;dbl&gt;, d29 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   d30 &lt;dbl&gt;, d31 &lt;dbl&gt;</span>
-<span class="co">#glimpse(meteo_data)</span></code></pre></div>
+<span class="co">#&gt; #   d30 &lt;dbl&gt;, d31 &lt;dbl&gt;</span></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(meteo_data_arrum)
-<span class="co">#&gt; Observations: 186</span>
-<span class="co">#&gt; Variables: 6</span>
-<span class="co">#&gt; $ id    &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;8...</span>
-<span class="co">#&gt; $ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...</span>
-<span class="co">#&gt; $ year  &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20...</span>
-<span class="co">#&gt; $ day   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...</span>
-<span class="co">#&gt; $ tmax  &lt;dbl&gt; 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31...</span>
-<span class="co">#&gt; $ tmin  &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...</span></code></pre></div>
+<pre><code>#&gt; Observations: 186
+#&gt; Variables: 6
+#&gt; $ id    &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;8...
+#&gt; $ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+#&gt; $ year  &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20...
+#&gt; $ day   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...
+#&gt; $ tmax  &lt;dbl&gt; 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31...
+#&gt; $ tmin  &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...</code></pre>
+<hr />
+<ol start="5" style="list-style-type: decimal">
+<li>Com os dados obtidos na questão 4:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>junte as colunas <code>year</code>, <code>month</code> e <code>day</code> em uma única coluna denominada <code>date</code> de forma que a classe dessa nova coluna seja <code>date</code>.</p></li>
+<li><p>Filtre os dados obtidos em <strong>(a)</strong> de forma a descobrir as datas em que as observações de <code>tmax</code> ou <code>tmin</code> são faltantes. Mostre o <em>tibble</em> filtrado com as datas e explique o porquê de seus valores.</p></li>
+</ol>
+<hr />
+<ol start="6" style="list-style-type: decimal">
+<li>A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato &quot;arrumado&quot; e as informações de data e horário agregadas em uma única variável da classe <em>POSIXct</em>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_zorra
+<span class="co">#&gt;         date tmax.0 tmax.600 tmax.1200 tmax.1800 tmin.0 tmin.600 tmin.1200</span>
+<span class="co">#&gt; 2 01-01-2010   22.1     21.0      26.4      27.0     16     13.5      18.2</span>
+<span class="co">#&gt; 3 02-01-2010   26.0     25.0      29.4      29.5     19     13.7      16.3</span>
+<span class="co">#&gt; 4 03-01-2010   25.7     26.3      28.4      29.0     21     14.1      17.2</span>
+<span class="co">#&gt; 5 04-01-2010   23.5     24.5      27.4      28.0     23     16.2      16.9</span>
+<span class="co">#&gt;   tmin.1800</span>
+<span class="co">#&gt; 2      24.1</span>
+<span class="co">#&gt; 3      22.3</span>
+<span class="co">#&gt; 4      26.0</span>
+<span class="co">#&gt; 5      23.0</span></code></pre></div>
+<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<pre><code>#&gt; Observations: 16
+#&gt; Variables: 3
+#&gt; $ date &lt;dttm&gt; 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:...
+#&gt; $ tmax &lt;dbl&gt; 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26....
+#&gt; $ tmin &lt;dbl&gt; 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14....</code></pre>
+<hr />
+<ol start="7" style="list-style-type: decimal">
+<li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>etacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">estacoes
+<span class="co">#&gt;   id      lat       lon</span>
+<span class="co">#&gt; 1  1 42.46757 -87.81005</span>
+<span class="co">#&gt; 2  2 42.04915 -88.27303</span>
+<span class="co">#&gt; 3  3 39.11054 -90.32408</span></code></pre></div>
+<p>Estrutura da tabela resultante:</p>
+<pre><code>#&gt; Observations: 3
+#&gt; Variables: 5
+#&gt; $ id       &lt;int&gt; 1, 1, 2
+#&gt; $ lat      &lt;dbl&gt; 42.46757, 42.46757, 42.04915
+#&gt; $ lon      &lt;dbl&gt; -87.81005, -87.81005, -88.27303
+#&gt; $ poluente &lt;chr&gt; &quot;ozone&quot;, &quot;so2&quot;, &quot;ozone&quot;
+#&gt; $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pre>
+<hr />
+<ol start="8" style="list-style-type: decimal">
+<li>Combine as 2 tabelas abaixo de forma que:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># datas completas</span>
+datas_comp
+<span class="co">#&gt; # A tibble: 7 x 1</span>
+<span class="co">#&gt;   date      </span>
+<span class="co">#&gt;   &lt;date&gt;    </span>
+<span class="co">#&gt; 1 2018-07-13</span>
+<span class="co">#&gt; 2 2018-07-14</span>
+<span class="co">#&gt; 3 2018-07-15</span>
+<span class="co">#&gt; 4 2018-07-16</span>
+<span class="co">#&gt; 5 2018-07-17</span>
+<span class="co">#&gt; 6 2018-07-18</span>
+<span class="co">#&gt; 7 2018-07-19</span>
+<span class="co"># datas das observações de theta</span>
+datas_obs
+<span class="co">#&gt; # A tibble: 4 x 2</span>
+<span class="co">#&gt;   date       theta</span>
+<span class="co">#&gt;   &lt;date&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 2018-07-12 0.330</span>
+<span class="co">#&gt; 2 2018-07-13 0.412</span>
+<span class="co">#&gt; 3 2018-07-14 0.392</span>
+<span class="co">#&gt; 4 2018-07-17 0.327</span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>a tabela resultante contenha exatamente as datas da tabela <code>data_comp</code> (em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
+</ol>
 </div>
             </section>
 
