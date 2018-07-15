@@ -3,7 +3,7 @@ output:
   html_document: default
   pdf_document: default
 ---
-# (PART) Ferramentas modernas do R {-}
+
 
 
 # Visualização de dados {#data-vis}
@@ -29,7 +29,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-07-14
+#> + ggplot2 2.2.1        Date: 2018-07-15
 #> + tibble  1.4.2           R: 3.4.4
 #> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
