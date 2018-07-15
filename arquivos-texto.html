@@ -258,7 +258,6 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
 </ul></li>
-<li class="part"><span><b>VI Ferramentas modernas do R</b></span></li>
 <li class="chapter" data-level="10" data-path="data-vis.html"><a href="data-vis.html"><i class="fa fa-check"></i><b>10</b> Visualização de dados</a><ul>
 <li class="chapter" data-level="10.1" data-path="pre-requisitos-3.html"><a href="pre-requisitos-3.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="pre-requisitos-3.html"><a href="pre-requisitos-3.html#dados-1"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
@@ -467,15 +466,15 @@ hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar
 <span class="co"># caminho de destino para o aquivo baixado</span>
 <span class="co"># alterando a extensão de TXT para csv</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUF/file355f325401fc&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/file354a1e81f725&quot;</span>
 (hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUF/file355f325401fc.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/file354a1e81f725.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUF/file355f325401fc.csv&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/file354a1e81f725.csv&quot;</span></code></pre></div>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
@@ -507,9 +506,9 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUF/file355f1543434f&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/file354a53714ac6&quot;</span>
 (dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUF/file355f1543434f.tsv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/file354a53714ac6.tsv&quot;</span>
 <span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre></div>
 </div>
 <div id="arquivos-fwf" class="section level4">
@@ -585,7 +584,7 @@ nome_vars
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
 (soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/RtmpobQsUFSOI.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKeSOI.csv&quot;</span>
 <span class="co"># exportação com rio</span>
 <span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,

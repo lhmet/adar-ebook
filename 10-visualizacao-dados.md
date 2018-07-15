@@ -3,7 +3,7 @@ output:
   html_document: default
   pdf_document: default
 ---
-# (PART) Ferramentas modernas do R {-}
+
 
 
 # Visualização de dados {#data-vis}
