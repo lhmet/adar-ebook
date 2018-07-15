@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-07-13">
+<meta name="date" content="2018-07-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="manipulacao-de-dados.html">
-<link rel="next" href="exemplo-de-manipulacao-de-dados.html">
+<link rel="next" href="data-vis.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -257,7 +257,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="9.4.8" data-path="manipulacao-de-dados.html"><a href="manipulacao-de-dados.html#combinacao-de-dados"><i class="fa fa-check"></i><b>9.4.8</b> Combinação de dados</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="exercicios-3.html"><a href="exercicios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
-<li class="chapter" data-level="9.6" data-path="exemplo-de-manipulacao-de-dados.html"><a href="exemplo-de-manipulacao-de-dados.html"><i class="fa fa-check"></i><b>9.6</b> Exemplo de manipulação de dados</a></li>
+</ul></li>
+<li class="part"><span><b>VI Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="10" data-path="data-vis.html"><a href="data-vis.html"><i class="fa fa-check"></i><b>10</b> Visualização de dados</a><ul>
+<li class="chapter" data-level="10.1" data-path="pre-requisitos-3.html"><a href="pre-requisitos-3.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="pre-requisitos-3.html"><a href="pre-requisitos-3.html#dados-1"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>10.2</b> <em>ggplot2</em></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -311,10 +317,10 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="exercicios-3" class="section level2">
 <h2><span class="header-section-number">9.5</span> Exercícios</h2>
-<p>Para resolução dos exercícios serão necessários os seguintes pacotes</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>)
+<p><strong>Pacotes necessários</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)
 easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</code></pre></div>
-<p>e dados</p>
+<p><strong>Dados</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)
 <span class="kw">download.file</span>(
   <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,
@@ -322,8 +328,10 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 )
 <span class="co"># nome dos dados carregados para os exercícios</span>
 <span class="kw">print</span>(<span class="kw">load</span>(arq_temp))
-<span class="co">#&gt; [1] &quot;soi&quot;         &quot;precd_ncdf&quot;  &quot;poluentes&quot;   &quot;estacoes&quot;    &quot;dados_sm&quot;   </span>
-<span class="co">#&gt; [6] &quot;dados_zorra&quot; &quot;datas_comp&quot;  &quot;datas_obs&quot;</span></code></pre></div>
+<span class="co">#&gt;  [1] &quot;soi&quot;                &quot;precd_ncdf&quot;         &quot;poluentes&quot;         </span>
+<span class="co">#&gt;  [4] &quot;estacoes&quot;           &quot;dados_sm&quot;           &quot;dados_zorra&quot;       </span>
+<span class="co">#&gt;  [7] &quot;datas_comp&quot;         &quot;datas_obs&quot;          &quot;dados_rs_08_16&quot;    </span>
+<span class="co">#&gt; [10] &quot;info_emas_rs_08_16&quot;</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato &quot;arrumado&quot; e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>
@@ -463,38 +471,92 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <ol style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># datas completas</span>
-datas_comp
-<span class="co">#&gt; # A tibble: 7 x 1</span>
-<span class="co">#&gt;   date      </span>
-<span class="co">#&gt;   &lt;date&gt;    </span>
-<span class="co">#&gt; 1 2018-07-13</span>
-<span class="co">#&gt; 2 2018-07-14</span>
-<span class="co">#&gt; 3 2018-07-15</span>
-<span class="co">#&gt; 4 2018-07-16</span>
-<span class="co">#&gt; 5 2018-07-17</span>
-<span class="co">#&gt; 6 2018-07-18</span>
-<span class="co">#&gt; 7 2018-07-19</span>
-<span class="co"># datas das observações de theta</span>
-datas_obs
-<span class="co">#&gt; # A tibble: 4 x 2</span>
-<span class="co">#&gt;   date       theta</span>
-<span class="co">#&gt;   &lt;date&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 2018-07-12 0.330</span>
-<span class="co">#&gt; 2 2018-07-13 0.412</span>
-<span class="co">#&gt; 3 2018-07-14 0.392</span>
-<span class="co">#&gt; 4 2018-07-17 0.327</span></code></pre></div>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 8
+#&gt; Variables: 2
+#&gt; $ date  &lt;date&gt; 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07...
+#&gt; $ theta &lt;dbl&gt; 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha exatamente as datas da tabela <code>data_comp</code> (em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 7
+#&gt; Variables: 2
+#&gt; $ date  &lt;date&gt; 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07...
+#&gt; $ theta &lt;dbl&gt; 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA</code></pre>
+<hr />
+<p>Utilize os dados horários de estações meteorológicas automáticas (EMA) do RS (<code>dados_rs_08_16</code>) para solução das questões a seguir.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável <code>site</code>).</li>
+</ol>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 42
+#&gt; Variables: 4
+#&gt; $ site    &lt;chr&gt; &quot;A801&quot;, &quot;A802&quot;, &quot;A803&quot;, &quot;A804&quot;, &quot;A805&quot;, &quot;A808&quot;, &quot;A809&quot;...
+#&gt; $ periodo &lt;dbl&gt; 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027322,...
+#&gt; $ inicio  &lt;dttm&gt; 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-31 ...
+#&gt; $ fim     &lt;dttm&gt; 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 ...</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.</li>
+</ol>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 42
+#&gt; Variables: 6
+#&gt; $ site &lt;chr&gt; &quot;A801&quot;, &quot;A802&quot;, &quot;A803&quot;, &quot;A804&quot;, &quot;A805&quot;, &quot;A808&quot;, &quot;A809&quot;, &quot;...
+#&gt; $ tair &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 9...
+#&gt; $ rh   &lt;int&gt; 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 9...
+#&gt; $ prec &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 9...
+#&gt; $ rg   &lt;int&gt; 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 5...
+#&gt; $ ws   &lt;int&gt; 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 7...</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações.</li>
+</ol>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 42
+#&gt; Variables: 7
+#&gt; $ site     &lt;chr&gt; &quot;A894&quot;, &quot;A886&quot;, &quot;A801&quot;, &quot;A884&quot;, &quot;A839&quot;, &quot;A889&quot;, &quot;A879...
+#&gt; $ tair     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96,...
+#&gt; $ rh       &lt;int&gt; 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, ...
+#&gt; $ prec     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96,...
+#&gt; $ rg       &lt;int&gt; 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 5...
+#&gt; $ ws       &lt;int&gt; 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 9...
+#&gt; $ disp_med &lt;dbl&gt; 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6,...</code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li>Para a EMA de Santa Maria (ver <code>info_emas_rs_08_16</code>) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a <code>tair</code> média de cada hora.</li>
+</ol>
+<blockquote>
+<p>Dica: Para extrair as horas das datas use a função <code>lubridate::hour(date)</code>.</p>
+</blockquote>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 24
+#&gt; Variables: 3
+#&gt; $ hour      &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
+#&gt; $ tair_med  &lt;dbl&gt; 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15...
+#&gt; $ tair_disp &lt;dbl&gt; 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96...</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>Com os dados de temperatura do ar (<code>tair</code>) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.</li>
+</ol>
+<blockquote>
+<p>Dica: para obter o dia a partir da data e hora (coluna <code>date</code> do tipo <code>POSIXct</code>) use <code>lubridate::floor_date(date, unit = &quot;day&quot;)</code>.</p>
+</blockquote>
+<p>Estrutura da tabela de dados resultante:</p>
+<pre><code>#&gt; Observations: 24
+#&gt; Variables: 2
+#&gt; $ h_tmin &lt;int&gt; 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 1...
+#&gt; $ n      &lt;int&gt; 720, 561, 438, 311, 196, 190, 123, 90, 75, 60, 47, 29, ...</code></pre>
+
 </div>
+<!-- </div> -->
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="manipulacao-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exemplo-de-manipulacao-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-vis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -54,7 +54,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-07-13
+#> + ggplot2 2.2.1        Date: 2018-07-14
 #> + tibble  1.4.2           R: 3.4.4
 #> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
 #> + readr   1.1.1         GUI: X11
@@ -1856,16 +1856,17 @@ right_join(
 
 ## Exercícios
 
-Para resolução dos exercícios serão necessários os seguintes pacotes
+
+
+**Pacotes necessários**
 
 
 ```r
-pcks <- c("rio", "tidyverse")
+pcks <- c("rio", "tidyverse", "lubridate")
 easypackages::libraries(pcks)
 ```
 
-
-e dados
+**Dados**
 
 
 ```r
@@ -1876,10 +1877,11 @@ download.file(
 )
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
-#> [1] "soi"         "precd_ncdf"  "poluentes"   "estacoes"    "dados_sm"   
-#> [6] "dados_zorra" "datas_comp"  "datas_obs"
+#>  [1] "soi"                "precd_ncdf"         "poluentes"         
+#>  [4] "estacoes"           "dados_sm"           "dados_zorra"       
+#>  [7] "datas_comp"         "datas_obs"          "dados_rs_08_16"    
+#> [10] "info_emas_rs_08_16"
 ```
-
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
 
@@ -1998,11 +2000,11 @@ dados_sm
 ```
 
 
-A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
   
 
 
-
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
 ```
@@ -2022,6 +2024,7 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 5. Com os dados obtidos na questão 4: 
 
    a. junte as colunas `year`, `month` e `day` em uma única coluna denominada `date` de forma que a classe dessa nova coluna seja `date`.  
+
 
 
 
@@ -2104,675 +2107,127 @@ Estrutura da tabela resultante:
   a. a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`. 
 
 
-```r
-# datas completas
-datas_comp
-#> # A tibble: 7 x 1
-#>   date      
-#>   <date>    
-#> 1 2018-07-13
-#> 2 2018-07-14
-#> 3 2018-07-15
-#> 4 2018-07-16
-#> 5 2018-07-17
-#> 6 2018-07-18
-#> 7 2018-07-19
-# datas das observações de theta
-datas_obs
-#> # A tibble: 4 x 2
-#>   date       theta
-#>   <date>     <dbl>
-#> 1 2018-07-12 0.330
-#> 2 2018-07-13 0.412
-#> 3 2018-07-14 0.392
-#> 4 2018-07-17 0.327
+
+
+
+Estrutura da tabela de dados resultante:
+
+
 ```
-
-
-
-
-
-
+#> Observations: 8
+#> Variables: 2
+#> $ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07...
+#> $ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
+```
 
   b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
   
 
 
+Estrutura da tabela de dados resultante:
 
 
-
-
-
-
-## Exemplo de manipulação de dados 
-
-Nesta seção vamos fazer um estudo de caso para demostrar diversas funções do \"universo arrumado\" aplicadas ao conjunto de dados de precipitação horária de Santa Maria-RS.
-
-Objetivos:
-
-- determinar a quantidade de dados de chuva horária faltantes em termos absolutos (número de casos) e relativos (% do total);
-
-- visualizar por meio de um gráfico a variação temporal da chuva horária com a identificação das falhas
-
-- determinar o número de dados faltantes por ano e verifique se o seu resultado confere com aquele da inspeção visual do gráfico;
-
-- determinar o valor da chuva máxima horária e a data de ocorrência do evento;
-
-- determinar a chuva máxima diária e a data de ocorrência do evento;
-
-- fazer o pluviograma mensal climatológico (médias dos totais mensais de precipitação);
-
-- plotar os totais anuais de chuva para cada ano;
-
-- determinar a frequência de ocorrência da chuva para cada ano;
-
-- determinar a intensidade média da chuva (em mm/dia) em Santa Maria;
-
-- determinar a frequência de ocorrência de chuva (ou seja, o número de casos em que choveu) para cada hora do dia (das 0 às 23 h)
-
-- determinar a frequência de ocorrência (%) de precipitação para cada dia da semana;
-
-**Dados**
-
-
-```r
-# definindo os horários como UTC para essa sessão do R
-Sys.setenv(TZ = "UTC")
-
-hprec_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/hprec_sm.RDS?raw=true"
-# importa dados, hprec: precipitação horária da EMA de SM
-hprec <- rio::import(
-  file = hprec_url,
-  format = "RDS"
-)
-str(hprec)
-#> 'data.frame':	96428 obs. of  3 variables:
-#>  $ site: chr  "A803" "A803" "A803" "A803" ...
-#>  $ date: chr  "2004-01-01 00:00:00" "2004-01-01 01:00:00" "2004-01-01 02:00:00" "2004-01-01 03:00:00" ...
-#>  $ prec: num  0 0 0 0 0 0 0 0 0 0 ...
-summary(hprec)
-#>      site               date                prec        
-#>  Length:96428       Length:96428       Min.   :-9999.0  
-#>  Class :character   Class :character   1st Qu.:    0.0  
-#>  Mode  :character   Mode  :character   Median :    0.0  
-#>                                        Mean   : -425.8  
-#>                                        3rd Qu.:    0.0  
-#>                                        Max.   :   48.0
 ```
-
-Conversão para `tibble` e atribuição de dados faltantes:
-
-
-```r
-hprec <- as_tibble(hprec) %>%
-  mutate(prec = ifelse(prec < 0, NA, prec))
-hprec
-#> # A tibble: 96,428 x 3
-#>    site  date                 prec
-#>    <chr> <chr>               <dbl>
-#>  1 A803  2004-01-01 00:00:00     0
-#>  2 A803  2004-01-01 01:00:00     0
-#>  3 A803  2004-01-01 02:00:00     0
-#>  4 A803  2004-01-01 03:00:00     0
-#>  5 A803  2004-01-01 04:00:00     0
-#>  6 A803  2004-01-01 05:00:00     0
-#>  7 A803  2004-01-01 06:00:00     0
-#>  8 A803  2004-01-01 07:00:00     0
-#>  9 A803  2004-01-01 08:00:00     0
-#> 10 A803  2004-01-01 09:00:00     0
-#> # ... with 96,418 more rows
-summary(hprec)
-#>      site               date                prec       
-#>  Length:96428       Length:96428       Min.   : 0.000  
-#>  Class :character   Class :character   1st Qu.: 0.000  
-#>  Mode  :character   Mode  :character   Median : 0.000  
-#>                                        Mean   : 0.192  
-#>                                        3rd Qu.: 0.000  
-#>                                        Max.   :48.000  
-#>                                        NA's   :4108
-```
-
-
-**1. Disponibilidade de dados.**
-
-  a. Determine a quantidade de dados de chuva horária faltantes em termos absolutos (número de casos) e relativos (% do total).
-
-
-```r
-# converte data e horas para POSIX
-hprec <- mutate(hprec, date = as.POSIXct(date))
-# número de casos faltantes
-sum(is.na(hprec$prec))
-#> [1] 4108
-# porcentagem de casos faltantes
-sum(is.na(hprec$prec)) / nrow(hprec) * 100
-#> [1] 4.260173
-```
-
-  
-  b. Faça um gráfico da chuva horária no tempo que permita identificar os períodos de falhas e que os anos sejam visíveis no eixo x. O gráfico deve ter aspecto similar ao mostrado na Figura abaixo. 
-  
-
-```r
-# dados para plot; adiciona uma prec modificada, para mostrar dados faltantes
-hprec_plot <- mutate(
-  hprec
-  , faltante = ifelse(is.na(prec), -2, NA)
-)
-hprec_plot <- as.data.frame(hprec_plot)
-# plot da chuva no tempo
-# tp <- timePlot(selectByDate(hprec_plot, year = 2014)
-tp <- timePlot(
-  hprec_plot
-  , c("prec", "faltante")
-  , group = TRUE
-  , plot.type = "h"
-  , lty = 1
-  , col = c(1, 2)
-  , ylab = "Prec (mm/h)"
-  , date.format = "%Y\n%b"
-)
-```
-
-<img src="images/chunck1b-1.png" width="672" />
-
-  c. Baseado na inspeção visual do seu gráfico qual o ano que tem mais falhas? Calcule o número de dados faltantes por ano e verifique se o seu resultado confere com aquele da inspeção visual do gráfico. Apresente esses resultados em uma tabela.
-
-
-```r
-######
-# R: por inpeção visual sugere o ano de 2005 devido a sequência de falhas consecutivas
-# Por meio do calculo verifica-se que foi 2011, uma falha longa contínua
-######
-tab_falt <- hprec %>%
-  # agrupa os dados por anos
-  group_by(year = lubridate::year(date)) %>%
-  # resumo estatístico (soma, porcentagem) da prec para cada componente do grupo
-  summarise(
-    n_falt = sum(is.na(prec))
-    , perc_falt = round(sum(is.na(prec)) / n() * 100, 1)
-  )
-tab_falt
-#> # A tibble: 11 x 3
-#>     year n_falt perc_falt
-#>    <dbl>  <int>     <dbl>
-#>  1  2004    155       1.8
-#>  2  2005    816       9.3
-#>  3  2006    427       4.9
-#>  4  2007    290       3.3
-#>  5  2008     50       0.6
-#>  6  2009     42       0.5
-#>  7  2010     62       0.7
-#>  8  2011   1120      12.8
-#>  9  2012    313       3.6
-#> 10  2013     15       0.2
-#> 11  2014    818       9.3
+#> Observations: 7
+#> Variables: 2
+#> $ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07...
+#> $ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
 ```
 
 - - - 
 
-**2. Estatísticas básicas. Desconsidere os registros faltantes em seus cálculos.** 
+Utilize os dados horários de estações meteorológicas automáticas (EMA) do RS (`dados_rs_08_16`) para solução das questões a seguir.
+
+10. Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
+
+
+
+Estrutura da tabela de dados resultante: 
+
+
+```
+#> Observations: 42
+#> Variables: 4
+#> $ site    <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809"...
+#> $ periodo <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027322,...
+#> $ inicio  <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-31 ...
+#> $ fim     <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 ...
+```
+
+
+11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
+
+
+
+Estrutura da tabela de dados resultante:
+
+
+```
+#> Observations: 42
+#> Variables: 6
+#> $ site <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809", "...
+#> $ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 9...
+#> $ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 9...
+#> $ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 9...
+#> $ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 5...
+#> $ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 7...
+```
+
+
+12. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
   
-  (a) Qual o valor da chuva máxima horária? Em que data ocorreu o evento?
 
 
-```r
-######
-# (2a)
-######
-max(hprec$prec, na.rm = TRUE)
-#> [1] 48
-hprec %>% slice(which.max(prec)) %>% select(date)
-#> # A tibble: 1 x 1
-#>   date               
-#>   <dttm>             
-#> 1 2004-03-13 22:00:00
+Estrutura da tabela de dados resultante:
+
+
 ```
-
-  (b) Qual a chuva máxima diária? Em que data ocorreu o evento?
-
-
-
-```r
-######
-# (2b)
-######
-dprec <- 
-  # agrupando os dados por data (dias)
-  group_by(hprec, date = as.character(as.Date(date))) %>%
-  # resumo estatístico (soma) da prec para cada componente do grupo
-  dplyr::summarise(prec = sum(prec, na.rm = TRUE)) %>%
-  # seleciona do resultado somente as colunas date e prec
-  dplyr::select(date, prec) %>%
-  # converte date para classe POSIX
-  mutate(date = as.POSIXct(date))
-
-# calcula máximo diário
-max(dprec$prec)
-#> [1] 130.4
-# timePlot(dprec, "prec", plot.type = "h")
-# encontra quando ocorreu o máximo
-posicao <- which.max(dprec$prec)
-dprec$date[posicao]
-#> [1] "2010-01-16 UTC"
+#> Observations: 42
+#> Variables: 7
+#> $ site     <chr> "A894", "A886", "A801", "A884", "A839", "A889", "A879...
+#> $ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96,...
+#> $ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, ...
+#> $ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96,...
+#> $ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 5...
+#> $ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 9...
+#> $ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6,...
 ```
 
 
-**3. Pluviograma mensal climatológico.**
+13. Para a EMA de Santa Maria (ver `info_emas_rs_08_16`) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a `tair` média de cada hora. 
+
+> Dica: Para extrair as horas das datas use a função `lubridate::hour(date)`.
 
 
-```r
-######
-# (3a) e (3b)
-######
-(n_anos <- length(unique(year(hprec$date))))
-#> [1] 11
-# tabela com médias dos totais mensais, média do num. horas com prec
-# usando os dados HORÁRIOS
-tab_mon_h <- 
-  # agrupa dados por mês
-  group_by(hprec, month = lubridate::month(date)) %>%
-  # reumo estatístico para cada componente do grupo
-  summarise(prec_med = sum(prec, na.rm = TRUE)/n_anos
-            # total de horas com prec
-            ,n_horas_tot = sum(prec > 0, na.rm = TRUE)
-            # num. horas médio mensal (horas)
-            ,n_horas_med = sum(prec > 0, na.rm = TRUE)/n_anos
-            # num. horas médio mensal (dias)
-            ,n_horas_med_d = (sum(prec > 0, na.rm = TRUE)/n_anos)/24)
-#tab_mon_h
+
+
+
+Estrutura da tabela de dados resultante:
+
+
 ```
-
-  (a) Faça um gráfico com as médias dos totais mensais de chuva.
-
-
-```r
-g0 <- ggplot(tab_mon_h, aes(x = factor(month), y = prec_med))
-ggp1 <- g0 + geom_bar(stat = "identity") + 
-        ylab("Prec(mm/mês)") + 
-        xlab("mês")+
-        scale_y_continuous(expand = c(0.01, 0.01), 
-                           breaks = pretty_breaks(10)) +
-        theme(text = element_text(size=15), axis.text.x = element_text(angle=0))
-ggp1
-```
-
-<img src="images/chunck3ab2-1.png" width="672" style="display: block; margin: auto;" />
-  
-  (b) Utilizando a série horária de chuva, determine o número médio de horas com chuva para cada mês. Converta a número de horas em dias para melhor comparação com o item (c).
-
-
-```r
-tab_mon_h
-#> # A tibble: 12 x 5
-#>    month prec_med n_horas_tot n_horas_med n_horas_med_d
-#>    <dbl>    <dbl>       <int>       <dbl>         <dbl>
-#>  1     1     145.         474        43.1          1.80
-#>  2     2     124          570        51.8          2.16
-#>  3     3     115.         469        42.6          1.78
-#>  4     4     128.         617        56.1          2.34
-#>  5     5     106.         679        61.7          2.57
-#>  6     6     121.         833        75.7          3.16
-#>  7     7     116.         740        67.3          2.80
-#>  8     8     106.         785        71.4          2.97
-#>  9     9     179.         947        86.1          3.59
-#> 10    10     173.         683        62.1          2.59
-#> 11    11     141.         543        49.4          2.06
-#> 12    12     156.         475        43.2          1.80
-```
-  
-  (c) Utilizando a série de totais diários de chuva, determine o número médio de dias com chuva para cada mês. Compare com os resultados do item (b) e discuta os resultados. 
-
-
-```r
-######
-# (3c)
-######
-# tabela com médias dos totais mensais, média do num. horas com prec
-# usando os dados DIÁRIOS
-tab_mon_d <- 
-  # agrupa dados por mês
-  group_by(dprec, month = lubridate::month(date)) %>%
-  # resumo estatístico para cada componente do grupo
-  summarise(prec_med = sum(prec, na.rm = TRUE)/n_anos
-            ,n_dias = sum(prec > 0, na.rm = TRUE)
-            ,n_dias_med = (sum(prec > 0, na.rm = TRUE)/n_anos))
-tab_mon_d
-#> # A tibble: 12 x 4
-#>    month prec_med n_dias n_dias_med
-#>    <dbl>    <dbl>  <int>      <dbl>
-#>  1     1     145.    125       11.4
-#>  2     2     124     131       11.9
-#>  3     3     115.    133       12.1
-#>  4     4     128.    185       16.8
-#>  5     5     106.    203       18.5
-#>  6     6     121.    220       20  
-#>  7     7     116.    168       15.3
-#>  8     8     106.    182       16.5
-#>  9     9     179.    166       15.1
-#> 10    10     173.    140       12.7
-#> 11    11     141.    110       10  
-#> 12    12     156.    115       10.5
-```
-  
-  (d) Compare a intensidade média da chuva para cada mês do ano obtida nos dois itens. Qual a importância das medidas horárias? 
-
-
-```r
-######
-# (3d)
-######
-# insere coluna com intensidade baseada nos dados horários e diários
-tab_mon_h <- mutate(tab_mon_h, intens_d = prec_med/n_horas_med_d)
-tab_mon_d <- mutate(tab_mon_d, intens_d = prec_med/n_dias_med)
-tab_intens <- data.frame(month = tab_mon_h$month,
-                         #prec = tab_mon_h$prec_mon,
-                         #nh_d = tab_mon_h$n_d,
-                         #n_d =  tab_mon_d$n_d,
-                         intens_d = tab_mon_d$intens_d,
-                         intens_h = tab_mon_h$intens_d )
-tab_intens
-#>    month  intens_d intens_h
-#> 1      1 12.798400 81.00253
-#> 2      2 10.412214 57.43158
-#> 3      3  9.476692 64.49808
-#> 4      4  7.591351 54.62820
-#> 5      5  5.734975 41.14993
-#> 6      6  6.050909 38.35390
-#> 7      7  7.605952 41.44216
-#> 8      8  6.412088 35.67898
-#> 9      9 11.881928 49.98691
-#> 10    10 13.620000 67.00322
-#> 11    11 14.081818 68.46409
-#> 12    12 14.923478 86.71326
-```
-
-**4. Pluviograma anual.** 
-
-  (a) Faça um gráfico com os totais anuais de chuva para cada ano.
-
-
-```r
-######
-# Solução geral (4a-c)
-######
-# tabela de resultados anuais
-tab_year_h <- 
-  # agrupa dados por ano
-  group_by(hprec, year = lubridate::year(date)) %>%
-  summarise(prec_tot = sum(prec, na.rm = TRUE)
-            # num. total de horas com chuva por ano (em horas)
-            ,n_horas_tot = sum(prec > 0, na.rm = TRUE)) %>%
-            # num. total de horas com chuva por ano (em dias)
-  mutate(n_horas_tot_d = round(n_horas_tot/24, 2)
-         # intensidade por ano
-         ,intens = prec_tot/n_horas_tot * 24
-         # num. médio de "dias" (convertidos das horas) com chuva
-         ,n_d_med = mean(n_horas_tot_d)
-         # chuva total média anual
-         ,prec_tot_med = mean(prec_tot)
-         # instensidade média anual
-         ,intens_med_d = prec_tot_med/n_d_med)
-select(tab_year_h, year, prec_tot)
-#> # A tibble: 11 x 2
-#>     year prec_tot
-#>    <dbl>    <dbl>
-#>  1  2004    1083.
-#>  2  2005    1353.
-#>  3  2006    1244.
-#>  4  2007    1660 
-#>  5  2008    1508.
-#>  6  2009    2187.
-#>  7  2010    1921.
-#>  8  2011    1148 
-#>  9  2012    1656.
-#> 10  2013    1680 
-#> 11  2014    2274
+#> Observations: 24
+#> Variables: 3
+#> $ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
+#> $ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15...
+#> $ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96...
 ```
 
 
-```r
-######
-# (4a)
-######
-# pluviograma anual
-g4a <- ggplot(tab_year_h, aes(x = factor(year), y = prec_tot))
-g4a + geom_bar(stat = "identity") + 
-     ylab("Prec (mm)") + 
-     xlab("Ano")+
-     geom_hline(yintercept = mean(tab_year_h$prec_tot)) +
-     geom_hline(yintercept = 1100, colour = "red") +
-     scale_y_continuous(expand = c(0.01, 0.01), 
-                        breaks = pretty_breaks(10)) +
-     theme(text = element_text(size=15), axis.text.x = element_text(angle=0))+
-     annotate("text", 
-              x = 9, 
-              y = 1100-50, 
-              label = "Prec. média global (continentes)",
-              colour = "red", size = 4)
+14. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
+
+> Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
+
+
+
+Estrutura da tabela de dados resultante:
+
+
 ```
-
-<img src="images/chunck4a2-1.png" width="672" style="display: block; margin: auto;" />
-
-  (b) Determine a frequência de ocorrência da chuva para cada ano. O gráfico deve apresentar a frequência de ocorrência em dias. 
-
-*Para determinar a frequência de ocorrência de chuva para cada ano, devem ser contados o número horas de chuva (`prec > 0`) (`n_horas_tot`) e então multiplicar por 24 h para obtê-la a em dias (`n_horas_tot_d`).*
- 
-
-```r
-select(tab_year_h, year, n_horas_tot, n_horas_tot_d, n_d_med)
-#> # A tibble: 11 x 4
-#>     year n_horas_tot n_horas_tot_d n_d_med
-#>    <dbl>       <int>         <dbl>   <dbl>
-#>  1  2004         550          22.9    29.6
-#>  2  2005         715          29.8    29.6
-#>  3  2006         561          23.4    29.6
-#>  4  2007         797          33.2    29.6
-#>  5  2008         764          31.8    29.6
-#>  6  2009         831          34.6    29.6
-#>  7  2010         839          35.0    29.6
-#>  8  2011         569          23.7    29.6
-#>  9  2012         595          24.8    29.6
-#> 10  2013         715          29.8    29.6
-#> 11  2014         879          36.6    29.6
+#> Observations: 24
+#> Variables: 2
+#> $ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 1...
+#> $ n      <int> 720, 561, 438, 311, 196, 190, 123, 90, 75, 60, 47, 29, ...
 ```
 
 
-```r
-# freq ocorrência
-g4b <- ggplot(tab_year_h, aes(x = factor(year), y = n_horas_tot_d))
-g4b + geom_bar(stat = "identity") + 
-     ylab("Freq. ocorrência (dias)") + 
-     xlab("Anos")+
-     geom_hline(yintercept = mean(tab_year_h$n_d_med)) +
-     geom_hline(yintercept = 27, colour = "red") +
-     scale_y_continuous(expand = c(0.01, 0.01), 
-                        breaks = pretty_breaks(10)) +
-     theme(text = element_text(size=15), axis.text.x = element_text(angle=0))+
-     annotate("text", 
-              x = 10, 
-              y = 28, 
-              label = "Trenberth et al. (2003)",
-              colour = "red", size = 4)
-```
-
-<img src="images/chunck4b2-1.png" width="672" style="display: block; margin: auto;" />
- 
-*Para fins de comparação, abaixo mostra-se o resultado obtido a partir da série de totais de precipitação. Note que a frequência de ocorrência é superestimada em relação a frequência obtida com a série horária e tais valores são imcomparáveis ao valor de [Trenberth et al. 2003](http://journals.ametsoc.org/doi/abs/10.1175/BAMS-84-9-1205) (~27 dias por ano)*
- 
-
-```r
-# tabela de resultados anuais com dados diarios
-tab_year_d <- 
-  # agrupa dados por ano
-  group_by(dprec, year = lubridate::year(date)) %>%
-  summarise(prec_tot = sum(prec, na.rm = TRUE)
-            # num. total de horas com chuva por ano (em horas)
-            ,n_tot_d = sum(prec > 0, na.rm = TRUE)) %>%
-            # num. total de horas com chuva por ano (em dias)
-  mutate(
-         # intensidade por ano
-         intens = prec_tot/n_tot_d
-         # num. médio de "dias" (convertidos das horas) com chuva
-         ,n_d_med = mean(n_tot_d)
-         # chuva total média anual
-         ,prec_tot_med = mean(prec_tot)
-         # instensidade média anual
-         ,intens_med_d = mean(intens))
-select(tab_year_d, year, n_tot_d, n_d_med) 
-#> # A tibble: 11 x 3
-#>     year n_tot_d n_d_med
-#>    <dbl>   <int>   <dbl>
-#>  1  2004     135    171.
-#>  2  2005     159    171.
-#>  3  2006     162    171.
-#>  4  2007     184    171.
-#>  5  2008     180    171.
-#>  6  2009     183    171.
-#>  7  2010     174    171.
-#>  8  2011     149    171.
-#>  9  2012     149    171.
-#> 10  2013     195    171.
-#> 11  2014     208    171.
-```
- 
-  
-  (c) Qual a intensidade média da chuva (em mm/dia) em Santa Maria? Faça a média das frequências de ocorrência e das intensidade obtidas para cada ano.
-
-
-```r
-select(tab_year_h, year, prec_tot, n_horas_tot_d, intens, intens_med_d)
-#> # A tibble: 11 x 5
-#>     year prec_tot n_horas_tot_d intens intens_med_d
-#>    <dbl>    <dbl>         <dbl>  <dbl>        <dbl>
-#>  1  2004    1083.          22.9   47.3         54.4
-#>  2  2005    1353.          29.8   45.4         54.4
-#>  3  2006    1244.          23.4   53.2         54.4
-#>  4  2007    1660           33.2   50.0         54.4
-#>  5  2008    1508.          31.8   47.4         54.4
-#>  6  2009    2187.          34.6   63.2         54.4
-#>  7  2010    1921.          35.0   54.9         54.4
-#>  8  2011    1148           23.7   48.4         54.4
-#>  9  2012    1656.          24.8   66.8         54.4
-#> 10  2013    1680           29.8   56.4         54.4
-#> 11  2014    2274           36.6   62.1         54.4
-```
-
-
-```r
-# intensdade anual
-g4c <- ggplot(tab_year_h, aes(x = factor(year), y = intens))
-g4c + geom_bar(stat = "identity") + 
-     ylab("Intensidade (mm/dia)") + 
-     xlab("Ano")+
-     geom_hline(yintercept = mean(tab_year_h$intens_med_d)) +
-     geom_hline(yintercept = 45, colour = "red") +
-     scale_y_continuous(expand = c(0.01, 0.01), 
-                        breaks = pretty_breaks(10)) +
-     theme(text = element_text(size=15), axis.text.x = element_text(angle=0)) +
-     annotate("text", 
-              x = 10, 
-              y = 47, 
-              label = "Trenberth et al. (2003)",
-              colour = "red", size = 4)
-```
-
-<img src="images/chunck4c2-1.png" width="672" style="display: block; margin: auto;" />
-
-- - - 
-
-**5. Frequência de ocorrência de chuva horária.**
-
-  (a) Determine a frequência de ocorrência de chuva (ou seja, o número de casos em que choveu) para cada hora do dia (das 0 às 23 h). Apresente os resultados na forma de um gráfico de barras com a frequência de ocorrência de chuva (eixo y, em %)  em cada hora (eixo x). Descreva se há algum padrão no gráfico? Chove mais de dia ou à noite?
-
-
-```r
-tab_h <-
-group_by(filter(hprec, !is.na(prec)), 
-         hour = lubridate::hour(date)) %>%
-  summarise(n_h = sum(prec > 0)
-            #N = n()
-            ) %>%
-  mutate(n_h_perc = round(n_h/sum(n_h) * 100, 2)
-         #n_h_perc_all = round((n_h/sum(N)) * 100, 2)
-         )
-tab_h
-#> # A tibble: 24 x 3
-#>     hour   n_h n_h_perc
-#>    <int> <int>    <dbl>
-#>  1     0   304     3.89
-#>  2     1   290     3.71
-#>  3     2   319     4.08
-#>  4     3   334     4.27
-#>  5     4   365     4.67
-#>  6     5   399     5.11
-#>  7     6   400     5.12
-#>  8     7   405     5.18
-#>  9     8   370     4.73
-#> 10     9   340     4.35
-#> # ... with 14 more rows
-```
-
-
-```r
-# gráfico
-g2 <- ggplot(tab_h, aes(x = factor(hour), y = n_h_perc))
-g2 + geom_bar(stat = "identity") + 
-     ylab("Freq. ocorrência (%)") + 
-     xlab("Hora")+
-     scale_y_continuous(expand = c(0.01, 0.01), 
-                        breaks = pretty_breaks(10)) +
-     theme(text = element_text(size=15), axis.text.x = element_text(angle=0))
-```
-
-<img src="images/chunck5a2-1.png" width="672" style="display: block; margin: auto;" />
-
-- - - 
-
-**6. Frequência de ocorrência semanal.**
-
-(a) Determine a frequência de ocorrência (%) de precipitação para cada dia da semana. Qual o dia da semana é mais provável de ocorra precipitação?
-
-
-```r
-tab_week <-
-group_by(filter(hprec, !is.na(prec)), 
-         dia = lubridate::wday(date, label = TRUE)) %>%
-  summarise(n_prec = sum(prec > 0),
-            N = n()) %>%
-  mutate(n_prec_perc = round(n_prec/sum(n_prec) * 100, 2),
-         n_all = round((n_prec/sum(N)) * 100, 2))
-tab_week
-#> # A tibble: 7 x 5
-#>   dia   n_prec     N n_prec_perc n_all
-#>   <ord>  <int> <int>       <dbl> <dbl>
-#> 1 Dom     1129 13163        14.4  1.22
-#> 2 Seg     1109 13154        14.2  1.2 
-#> 3 Ter     1088 13183        13.9  1.18
-#> 4 Qua     1014 13215        13.0  1.1 
-#> 5 Qui      980 13220        12.5  1.06
-#> 6 Sex     1170 13182        15.0  1.27
-#> 7 Sáb     1325 13203        17.0  1.44
-```
-
-
-```r
-# gráfico
-g3 <- ggplot(tab_week, aes(x = factor(dia), y = n_prec_perc))
-g3 + geom_bar(stat = "identity") + 
-     ylab("Freq. ocorrência (%)") + 
-     xlab("dia da semana") +
-     scale_y_continuous(expand = c(0.01, 0.01), 
-                        breaks = pretty_breaks(10)) +
-     theme(text = element_text(size=15), axis.text.x = element_text(angle=0))
-```
-
-<img src="images/chunck6a2-1.png" width="672" />
-
-- - - 
-
-**7. A Prefeitura Municipal de Santa Maria precisa definir uma data (mês, dia da semana e horário) para realização de um grande evento de entretenimento que requer um período de 3 horas sem chuva, independente do turno.** 
-
-  (a) Com base nos seus resultados que data você recomendaria?
-
-> Em março, numa quinta-feira, entre 21 e 23 horas.

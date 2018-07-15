@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmpt53J1I/file4e8f2a020a7b"
+#> [1] "/tmp/Rtmpr1gEjF/file42a84bb31256"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmpt53J1I/file4e8f2a020a7b.csv"
+#> [1] "/tmp/Rtmpr1gEjF/file42a84bb31256.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmpt53J1I/file4e8f2a020a7b.csv"
+#> [1] "/tmp/Rtmpr1gEjF/file42a84bb31256.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmpt53J1I/file4e8f25fc9cdd"
+#> [1] "/tmp/Rtmpr1gEjF/file42a8df14b7c"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmpt53J1I/file4e8f25fc9cdd.tsv"
+#> [1] "/tmp/Rtmpr1gEjF/file42a8df14b7c.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmpt53J1ISOI.csv"
+#> [1] "/tmp/Rtmpr1gEjFSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmpt53J1I/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmpr1gEjF/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmpt53J1I/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmpr1gEjF/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution  : 0.5, 0.5  (x, y)
 #> extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> coord. ref. : +proj=longlat +datum=WGS84 
-#> data source : /tmp/Rtmpt53J1I/cru10min30_tmp.nc 
+#> data source : /tmp/Rtmpr1gEjF/cru10min30_tmp.nc 
 #> names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname     : tmp
@@ -1078,19 +1078,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq      mean   median        uq      max neval
-#>   writexl  8.901113  9.597409  11.69829 11.77384  11.84031  16.3788     5
-#>  openxlsx 53.919703 59.035581 143.45254 63.34954 114.54067 426.4172     5
-#>  cld
-#>    a
-#>    a
+#>      expr       min        lq      mean    median        uq       max
+#>   writexl  8.731293  8.875348  10.95456  9.070338  12.50162  15.59419
+#>  openxlsx 48.372814 48.885650 161.69740 54.753304 243.53284 412.94237
+#>  neval cld
+#>      5   a
+#>      5   a
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 12 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 15 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
