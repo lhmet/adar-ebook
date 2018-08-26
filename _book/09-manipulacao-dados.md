@@ -54,13 +54,13 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 2.2.1        Date: 2018-07-15
-#> + tibble  1.4.2           R: 3.4.4
-#> + tidyr   0.8.1          OS: Ubuntu 14.04.5 LTS
-#> + readr   1.1.1         GUI: X11
-#> + purrr   0.2.5      Locale: en_US.UTF-8
-#> + dplyr   0.7.5          TZ: America/Sao_Paulo
-#> + stringr 1.3.1      
+#> + ggplot2 3.0.0.9000        Date: 2018-08-26
+#> + tibble  1.4.2                R: 3.4.4
+#> + tidyr   0.8.1               OS: Ubuntu 14.04.5 LTS
+#> + readr   1.1.1              GUI: X11
+#> + purrr   0.2.5           Locale: en_US.UTF-8
+#> + dplyr   0.7.6               TZ: America/Sao_Paulo
+#> + stringr 1.3.1           
 #> + forcats 0.3.0
 #> ── Conflicts ────────────────────────────────────────────────────
 #> * filter(),  from dplyr, masks stats::filter()
@@ -2147,12 +2147,14 @@ Estrutura da tabela de dados resultante:
 
 ```
 #> Observations: 42
-#> Variables: 4
-#> $ site    <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809"...
-#> $ periodo <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027322,...
-#> $ inicio  <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-31 ...
-#> $ fim     <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 ...
+#> Variables: 5
+#> $ site        <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A...
+#> $ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027...
+#> $ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12...
+#> $ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12...
+#> $ periodo_err <dbl> 9.0081050, 9.0081050, 9.0081050, 0.5039954, 9.0081...
 ```
+
 
 
 11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.

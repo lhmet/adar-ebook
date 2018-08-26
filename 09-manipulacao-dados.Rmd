@@ -1208,9 +1208,18 @@ precd_ncdf
 
 
 ```{r}
-precd_arrum <- gather(precd_ncdf, date, value = prec, -c(x, y)) %>%
-  mutate(date = gsub(pattern = "X", replacement = "", x = date),
-         date = as.Date(date, "%Y.%m.%d"))
+precd_arrum <- gather(precd_ncdf,
+                      key =  date, 
+                      value = prec,
+                      -c(x, y)) %>%
+  mutate(
+    date = gsub(
+      pattern = "X", 
+      replacement = "", 
+      x = date
+      ),
+    date = as.Date(date, "%Y.%m.%d")
+  )
 precd_arrum
 ```
 
@@ -1429,8 +1438,10 @@ ini_fim <- dados_rs_08_16 %>%
   group_by(site) %>%
   summarise(
     inicio = min(date),
-    fim = max(date)#,
-    #periodo = as.vector((fim - inicio)/365.25)
+    fim = max(date),
+    periodo_err = time_length(
+      fim - inicio, unit = "year"
+      )
     ) #%>% glimpse()
 #glimpse(ini_fim)
 
@@ -1454,6 +1465,7 @@ Estrutura da tabela de dados resultante:
 ```{r, echo=FALSE, include = TRUE}
 glimpse(per_ini_fim, by = "site")
 ```
+
 
 
 11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
