@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.14 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-07-15">
+<meta name="date" content="2018-08-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -392,9 +392,12 @@ arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 )
 tempos_escrita_xlsx
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr       min        lq     mean   median       uq      max neval</span>
-<span class="co">#&gt;   writexl  9.782659  9.894286 10.09458 10.07421 10.20629 10.51544     5</span>
-<span class="co">#&gt;  openxlsx 45.401492 45.686227 53.88176 45.69778 46.16684 86.45644     5</span></code></pre></div>
+<span class="co">#&gt;      expr       min        lq      mean    median        uq       max</span>
+<span class="co">#&gt;   writexl  9.579468  9.623706  9.699781  9.647367  9.722044  9.926318</span>
+<span class="co">#&gt;  openxlsx 44.371134 44.668742 52.353263 44.756410 45.066295 82.903736</span>
+<span class="co">#&gt;  neval</span>
+<span class="co">#&gt;      5</span>
+<span class="co">#&gt;      5</span></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 5 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>

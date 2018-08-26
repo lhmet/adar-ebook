@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.14 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-07-15">
+<meta name="date" content="2018-08-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -489,7 +489,7 @@ dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_file_nc
-<span class="co">#&gt; [1] &quot;/tmp/RtmpWZGbKe/cru10min30_tmp.nc&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp961BHw/cru10min30_tmp.nc&quot;</span>
 <span class="kw">file.exists</span>(dest_file_nc)
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável de interesse, tmp: temperatura do ar</span>
@@ -497,7 +497,7 @@ dname &lt;-<span class="st"> &quot;tmp&quot;</span>
 <span class="co"># abre o arquivo NetCDF</span>
 ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(dest_file_nc)
 <span class="kw">print</span>(ncin)
-<span class="co">#&gt; File /tmp/RtmpWZGbKe/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):</span>
+<span class="co">#&gt; File /tmp/Rtmp961BHw/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;      2 variables (excluding dimension variables):</span>
 <span class="co">#&gt;         float climatology_bounds[nv,time]   </span>
@@ -613,7 +613,7 @@ brick_tar_cru
 <span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span>
 <span class="co">#&gt; extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
 <span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 </span>
-<span class="co">#&gt; data source : /tmp/RtmpWZGbKe/cru10min30_tmp.nc </span>
+<span class="co">#&gt; data source : /tmp/Rtmp961BHw/cru10min30_tmp.nc </span>
 <span class="co">#&gt; names       : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 </span>
 <span class="co">#&gt; Date        : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 </span>
 <span class="co">#&gt; varname     : tmp</span></code></pre></div>

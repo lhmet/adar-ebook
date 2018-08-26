@@ -55,8 +55,8 @@ E da mesma forma carregamos o conjunto de pacotes com:
 ```r
 library(tidyverse)
 #> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 2.2.1     ✔ purrr   0.2.5
-#> ✔ tibble  1.4.2     ✔ dplyr   0.7.5
+#> ✔ ggplot2 3.0.0     ✔ purrr   0.2.5
+#> ✔ tibble  1.4.2     ✔ dplyr   0.7.6
 #> ✔ tidyr   0.8.1     ✔ stringr 1.3.1
 #> ✔ readr   1.1.1     ✔ forcats 0.3.0
 #> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
@@ -2144,12 +2144,14 @@ Estrutura da tabela de dados resultante:
 
 ```
 #> Observations: 42
-#> Variables: 4
-#> $ site    <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809"...
-#> $ periodo <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027322,...
-#> $ inicio  <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-31 ...
-#> $ fim     <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 ...
+#> Variables: 5
+#> $ site        <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A...
+#> $ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027...
+#> $ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12...
+#> $ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12...
+#> $ periodo_err <dbl> 9.0081050, 9.0081050, 9.0081050, 0.5039954, 9.0081...
 ```
+
 
 
 11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.

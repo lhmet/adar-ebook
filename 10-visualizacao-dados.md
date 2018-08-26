@@ -10,54 +10,42 @@ output:
 
 
 
-Neste capítulo veremos:
+> \"Uma imagem vale mais que mil palavras\"
 
-- asd
+é uma expressão popular atribuída ao filósofo chinês [Confúcio](https://en.wikipedia.org/wiki/Confucius) utilizada para transmitir a idéia do poder da comunicação através das imagens.
+
+Gráficos são uma forma efetiva de olhar os seus dados e servem para apresentar informações.
+
+Figura \@ref(fig:tidy-workflow)
+
+
+Neste capítulo veremos como produzir gráficos usando o pacote ggplot2 que baseia-se na [gramática de gráficos](http://amzn.to/2ef1eWp).
+
+Citando @Tufte2001 e @Wilkinson2005.
 
 
 ## Pré-requisitos
 
-O pacote **tidyverse** torna fácil de instalar e carregar os pacotes do *tidyverse* com apenas uma chamada à função:
+O pacote **ggplot2** faz parte do **tidyverse**, mas além dele precisaremos de outros pacotes com funcionalidades que complementam o **ggplot2**.
 
 
 ```r
-install.packages("tidyverse")
-```
-
-E da mesma forma carregamos o conjunto de pacotes com:
-
-
-```r
-library(tidyverse)
-#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 2.2.1     ✔ purrr   0.2.5
-#> ✔ tibble  1.4.2     ✔ dplyr   0.7.5
-#> ✔ tidyr   0.8.1     ✔ stringr 1.3.1
-#> ✔ readr   1.1.1     ✔ forcats 0.3.0
-#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
-```
-
-
-
-Neste capítulo além do **tidyverse** usaremos outros pacotes que já podemos instalar:
-
-
-```r
-pacotes <- c("openair", "lubridate", "scales", "rio")
+pacotes <- c("openair", "lubridate",
+             "scales", "rio", 
+             "tidyverse", 
+             "ggrepel", "ggthemes",
+             "viridis")
 easypackages::libraries(pacotes)
 ```
 
 
 ### Dados 
 
-Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de manipulação de dados do *tidyverse*.
+Neste capítulo utilizaremos os seguintes dados:
 
-1. asd
+1. dados meteorológicos diários de POA.
 
 
-2. asd
 
 
 ## *ggplot2*
