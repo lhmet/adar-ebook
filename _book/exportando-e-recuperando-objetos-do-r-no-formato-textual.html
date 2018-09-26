@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -319,7 +347,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="dput-dget-dump-e-source." class="section level3">
 <h3><span class="header-section-number">B.2.1</span> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</h3>
 <p>Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função <code>dput()</code> (que pode ser traduzido como &quot;despejar&quot;). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função <code>dget()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+<pre class="sourceCode r"><code class="sourceCode r">x
 <span class="co">#&gt;        dates cidade temperatura chuva</span>
 <span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
 <span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
@@ -333,9 +361,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
 <span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp0MbM1W/file32cd19ab75c4&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpqyBJGR/file2dc41f66851&quot;</span>
 (x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp0MbM1W/file32cd2f23f871&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpqyBJGR/file2dc479c9b7a6&quot;</span>
 <span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
 <span class="co"># recuperando x a partir do arquivo</span>
 y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
@@ -357,7 +385,7 @@ y
 <span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
 <span class="co"># salvando mais de um objeto em um arquivo</span>
 (xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp0MbM1W/file32cdbe3f3ad&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpqyBJGR/file2dc474a67783&quot;</span>
 <span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
 <span class="co"># vamos apagar x e y do espaco de trabalho</span>
 <span class="kw">rm</span>(x, y)
@@ -383,9 +411,9 @@ y
 <span class="co">#&gt;   temperatura     chuva</span>
 <span class="co">#&gt; 1    29.58579  1.585786</span>
 <span class="co">#&gt; 2    33.58579  8.585786</span>
-<span class="co">#&gt; 3    19.58579 12.585786</span></code></pre></div>
+<span class="co">#&gt; 3    19.58579 12.585786</span></code></pre>
 <p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget(&quot;nomedoarquivo&quot;)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual de um data.frame</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual de um data.frame</span>
 dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(
   <span class="kw">list</span>(
     <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),
@@ -401,7 +429,7 @@ dados3est
 <span class="co">#&gt;        dates cidade temperatura chuva</span>
 <span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
 <span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
-<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre></div>
+<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre>
 <p><strong>Vantagens:</strong></p>
 <ul>
 <li>armazena os <strong>dados e os metadados</strong></li>
@@ -467,7 +495,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

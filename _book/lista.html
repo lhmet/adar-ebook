@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -327,7 +355,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">7.4.1</span> Criação</h3>
 <p>As vezes precisamos de um <em>container</em> para armazenar diferentes tipos de dados do R e com diferente tamanhos. As <em>listas</em> servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de <em>dataframes</em>, sub-listas, matrizes e vetores.</p>
 <p>Listas podem ser criadas com a função <code>list()</code>. A especificação do conteúdo de uma lista é muito similar a da função <code>c()</code> vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função <code>list()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de dados heterogêneos</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de dados heterogêneos</span>
 lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">2.3</span>, <span class="fl">5.9</span>), <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="st">&quot;R&quot;</span>, <span class="kw">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))
 lst
 <span class="co">#&gt; [[1]]</span>
@@ -364,7 +392,7 @@ lst
 <span class="co"># atribuindo nomes a lista</span>
 <span class="kw">names</span>(lst)
 <span class="co">#&gt; NULL</span>
-<span class="kw">names</span>(lst) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vetor_int&quot;</span>, <span class="st">&quot;vetor_num&quot;</span>, <span class="st">&quot;logico&quot;</span>, <span class="st">&quot;char&quot;</span>, <span class="st">&quot;lista&quot;</span>)</code></pre></div>
+<span class="kw">names</span>(lst) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vetor_int&quot;</span>, <span class="st">&quot;vetor_num&quot;</span>, <span class="st">&quot;logico&quot;</span>, <span class="st">&quot;char&quot;</span>, <span class="st">&quot;lista&quot;</span>)</code></pre>
 <p>Os índices em colchetes duplos <code>[[]]</code> identificam o elemento ou a componente da lista. Os índices em colchete simples <code>[]</code> indicam qual sub-elemento da lista está sendo mostrado. Por exemplo <code>1.1</code> é o primeiro sub-elemento do segundo elemento da lista <code>lst</code>. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.</p>
 <div class="rmdtip">
 <p>
@@ -372,10 +400,10 @@ Veremos que no R, listas são frequentemente usadas para armazenar a saída de f
 </p>
 </div>
 <p>Para verificar se uma lista é aninhada usamos a função <code>is.recursive()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.recursive</span>(lst)
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.recursive</span>(lst)
+<span class="co">#&gt; [1] TRUE</span></code></pre>
 <p>Vamos ver um exemplo onde criamos uma lista com informações de duas estações meteorológicas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matriz de dados meteorológicos da estação de Santa Maria</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matriz de dados meteorológicos da estação de Santa Maria</span>
 dados_sm &lt;-<span class="st"> </span><span class="kw">cbind</span>(
   <span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>),
   <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">210</span>, <span class="dv">110</span>)
@@ -390,7 +418,7 @@ dados_sm
 <span class="co">#&gt; [6,]  17  110</span>
 <span class="co"># lista com informações da estação de santa maria</span>
 sm_l &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="op">-</span><span class="dv">23</span>),
+  <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-23</span>),
   <span class="st">&quot;Santa Maria&quot;</span>,
   dados_sm
 )
@@ -433,7 +461,7 @@ dados_jc &lt;-<span class="st"> </span><span class="kw">cbind</span>(
 )
 <span class="co"># criando lista de JC, mas nomeando de forma diferente</span>
 jc_l &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="dt">coords =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">45.1</span>, <span class="op">-</span><span class="fl">23.2</span>),
+  <span class="dt">coords =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">45.1</span>, <span class="fl">-23.2</span>),
   <span class="dt">cidade =</span> <span class="st">&quot;Júlio de Castilhos&quot;</span>,
   <span class="dt">dados =</span> dados_jc
 )
@@ -453,9 +481,9 @@ jc_l
 <span class="co">#&gt; [3,] 18.75  285</span>
 <span class="co">#&gt; [4,] 18.00  270</span>
 <span class="co">#&gt; [5,] 20.25  315</span>
-<span class="co">#&gt; [6,] 17.75  265</span></code></pre></div>
+<span class="co">#&gt; [6,] 17.75  265</span></code></pre>
 <p>As informações de cada estação estão armazenadas em 2 listas. Mas é mais prático termos todas estações em um única lista:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combinando listas mantendo os elementos separadamente</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combinando listas mantendo os elementos separadamente</span>
 dados_l &lt;-<span class="st"> </span><span class="kw">list</span>(sm_l, jc_l)
 dados_l
 <span class="co">#&gt; [[1]]</span>
@@ -529,9 +557,9 @@ dados_l
 <span class="co"># como a lista é um tipo vetor, a função length()</span>
 <span class="co"># fornece o número de elementos da lista</span>
 <span class="kw">length</span>(dados_l)
-<span class="co">#&gt; [1] 2</span></code></pre></div>
+<span class="co">#&gt; [1] 2</span></code></pre>
 <p>Para resumir a estrutura de uma lista (ou <em>dataframe</em>) podemos usar a função <code>str()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados_l)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados_l)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ sm:List of 3</span>
 <span class="co">#&gt;   ..$ coords: num [1:2] -45 -23</span>
@@ -546,9 +574,9 @@ dados_l
 <span class="co">#&gt;   ..$ dados : num [1:6, 1:2] 22.5 20 18.8 18 20.2 ...</span>
 <span class="co">#&gt;   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
 <span class="co">#&gt;   .. .. ..$ : NULL</span>
-<span class="co">#&gt;   .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre></div>
+<span class="co">#&gt;   .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre>
 <p>As listas também poderiam ser combinadas com função concatena ou combina <code>c()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l2 &lt;-<span class="st"> </span><span class="kw">c</span>(sm_l, jc_l)
+<pre class="sourceCode r"><code class="sourceCode r">dados_l2 &lt;-<span class="st"> </span><span class="kw">c</span>(sm_l, jc_l)
 dados_l2
 <span class="co">#&gt; $coords</span>
 <span class="co">#&gt; [1] -45 -23</span>
@@ -592,14 +620,14 @@ dados_l2
 <span class="co">#&gt;  $ dados : num [1:6, 1:2] 22.5 20 18.8 18 20.2 ...</span>
 <span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
 <span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre></div>
+<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</span></code></pre>
 </div>
 <div id="indexacao-1" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Indexação</h3>
 <div id="operador" class="section level4">
 <h4><span class="header-section-number">7.4.2.1</span> Operador <code>[</code></h4>
 <p>Assim como em vetores, podemos acessar os elementos de uma lista usando os colchetes <code>[</code> com índices numéricos positivos, negativos, caracteres (nomes dos elementos) e lógicos. As expressões abaixo, ilustram o uso dessas diferentes formas de seleção de elementos e produzem o mesmo resultado.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
+<pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
 <span class="co">#&gt; $coords</span>
 <span class="co">#&gt; [1] -45 -23</span>
 <span class="co">#&gt; </span>
@@ -610,9 +638,9 @@ sm_l[<span class="kw">c</span>(<span class="st">&quot;coords&quot;</span>, <span
 <span class="co">#&gt; [1] -45 -23</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $&lt;NA&gt;</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
+<span class="co">#&gt; NULL</span></code></pre>
 <p>O resultado da seleção do 1º e 2º elemento é uma lista menor que a original. Isso não é muito útil, uma vez que muitas funções do R não lidam com listas. Por exemplo, se quiséssemos calcular a soma do vetor contido do primeiro elemento da lista <code>lst</code> obtém-se um erro.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção do 1º elemento da lst</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção do 1º elemento da lst</span>
 lst[<span class="dv">1</span>]
 <span class="co">#&gt; $vetor_int</span>
 <span class="co">#&gt; [1] 1 2 3 4</span>
@@ -625,13 +653,14 @@ lst[<span class="dv">1</span>]
 <span class="co"># acessando elemento inexistente</span>
 lst[<span class="dv">6</span>]
 <span class="co">#&gt; $&lt;NA&gt;</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p>Então ao selecionar elementos de uma lista com o operador <code>[</code> o resultado preserva a estrutura original do objeto. <code>lst</code> é uma lista e o resultado da seleção <code>lst[1]</code> também é uma lista. <strong>Portanto, a seleção de elementos com o operador <code>[</code> preserva a estrutura do objeto original</strong>.</p>
+<span class="co">#&gt; NULL</span></code></pre>
+<p>Então ao selecionar elementos de uma lista com o operador <code>[</code> o resultado preserva a estrutura original do objeto. <code>lst</code> é uma lista e o resultado da seleção <code>lst[1]</code> também é uma lista.
+<strong>Portanto, a seleção de elementos com o operador <code>[</code> preserva a estrutura do objeto original</strong>.</p>
 </div>
 <div id="operador-e" class="section level4">
 <h4><span class="header-section-number">7.4.2.2</span> Operador <code>[[</code> e <code>$</code></h4>
 <p>Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos de uma lista. Para fazer isso há dois operadores: o duplo colchetes <code>[[</code> e o <code>$</code>. Para acessar elementos individuais de uma lista usamos o duplo colchetes <code>[[</code> especificando o número do elemento ou o nome. Essa forma de seleção de dados permite o acesso a um elemento por vez.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1º elemento de sm_l</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1º elemento de sm_l</span>
 sm_l[[<span class="dv">1</span>]]
 <span class="co">#&gt; [1] -45 -23</span>
 sm_l[[<span class="st">&quot;coords&quot;</span>]]
@@ -658,9 +687,9 @@ sm_l[[<span class="st">&quot;dados&quot;</span>]]
 <span class="co">#&gt; [6,]  17  110</span>
 <span class="co"># subelementos</span>
 dados_l[[<span class="st">&quot;sm&quot;</span>]][[<span class="st">&quot;cidade&quot;</span>]]
-<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span></code></pre>
 <p>Para acessar o conteúdo de elementos de uma lista que possui nomes podemos também usar o operador <code>$</code>. Ele funciona de forma similar ao duplo colchetes usado com o nome do elemento da lista. Mas esse operador tem duas vantagens: a IDE RStudio autocompleta o nome do elemento (usando a tecla <code>&lt;tab&gt;</code>) e o R aceita o nome parcial dos nomes dos elementos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção de dados por nomes usando o símbolo $</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção de dados por nomes usando o símbolo $</span>
 dados_l<span class="op">$</span>s
 <span class="co">#&gt; $coords</span>
 <span class="co">#&gt; [1] -45 -23</span>
@@ -713,16 +742,16 @@ dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="
 <span class="co">#&gt; [3,]  21</span>
 <span class="co">#&gt; [4,]  23</span>
 <span class="co">#&gt; [5,]  33</span>
-<span class="co">#&gt; [6,]  17</span></code></pre></div>
+<span class="co">#&gt; [6,]  17</span></code></pre>
 </div>
 <div id="lista-de-condimentos" class="section level4">
 <h4><span class="header-section-number">7.4.2.3</span> Lista de condimentos</h4>
 <p>É fácil de confundir quando usar <code>]</code> e <code>]]</code>. A tabela abaixo ajuda lembrar da diferença entre eles.</p>
 <table>
 <colgroup>
-<col width="43%" />
-<col width="23%" />
-<col width="33%" />
+<col width="41%" />
+<col width="24%" />
+<col width="34%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -738,7 +767,8 @@ dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="
 <td align="center"><img src="images/pepper.jpg" /></td>
 </tr>
 <tr class="even">
-<td align="center">frasco de pimenta com apenas 1 pacote de pimenta</td>
+<td align="center">frasco de pimenta com apenas 1
+pacote de pimenta</td>
 <td align="center">frasco[1]</td>
 <td align="center"><img src="images/pepper-1.jpg" /></td>
 </tr>
@@ -748,7 +778,8 @@ dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="
 <td align="center"><img src="images/pepper-2.jpg" /></td>
 </tr>
 <tr class="even">
-<td align="center">conteúdo de um pacote de pimenta</td>
+<td align="center">conteúdo de um pacote de
+pimenta</td>
 <td align="center">frasco[[1]][[1]]</td>
 <td align="center"><img src="images/pepper-3.jpg" /></td>
 </tr>
@@ -758,7 +789,7 @@ dados_l<span class="op">$</span>sm<span class="op">$</span>dados[, <span class="
 </div>
 <div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level3">
 <h3><span class="header-section-number">7.4.3</span> Conversão de lista para vetor e vice-versa.</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<pre class="sourceCode r"><code class="sourceCode r">vet &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
 vet
 <span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
 vet.list &lt;-<span class="st"> </span><span class="kw">as.list</span>(vet)
@@ -827,12 +858,12 @@ vet.list
 <span class="co">#&gt; [[9]]</span>
 <span class="co">#&gt; [1] 10</span>
 <span class="kw">length</span>(vet.list)
-<span class="co">#&gt; [1] 9</span></code></pre></div>
+<span class="co">#&gt; [1] 9</span></code></pre>
 </div>
 <div id="conversao-de-list-para-data.frame" class="section level3">
 <h3><span class="header-section-number">7.4.4</span> Conversão de <code>list</code> para <code>data.frame</code></h3>
 <p>Vamos modificar a lista <code>sm_l</code> para convertê-la em um <em>dataframe</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l
+<pre class="sourceCode r"><code class="sourceCode r">sm_l
 <span class="co">#&gt; $coords</span>
 <span class="co">#&gt; [1] -45 -23</span>
 <span class="co">#&gt; </span>
@@ -878,7 +909,7 @@ sm_df
 <span class="co">#&gt; 3 Santa Maria        21        150 -45 -23</span>
 <span class="co">#&gt; 4 Santa Maria        23        120 -45 -23</span>
 <span class="co">#&gt; 5 Santa Maria        33        210 -45 -23</span>
-<span class="co">#&gt; 6 Santa Maria        17        110 -45 -23</span></code></pre></div>
+<span class="co">#&gt; 6 Santa Maria        17        110 -45 -23</span></code></pre>
 </div>
 </div>
             </section>
@@ -933,7 +964,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

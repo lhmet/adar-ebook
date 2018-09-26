@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2018-08-26"
+date: "2018-09-26"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -20,7 +20,6 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 <img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
 <p style="font-size: 11px; font-style: italic; background: whitesmoke; text-align="right"; color: gray; line-height: 12px;width: 650px;">Ilustração: The Project Twins</p> 
-
 
 Este material é uma composição das notas de aula da disciplina
 **Análise de Dados Ambientais com <img src="images/logo_r.png" width="20">** do curso de Graduação em [<span style="font-variant:small-caps;">meteorologia</span>](http://w3.ufsm.br/meteorologia/) oferecido no Departamento de Física da Universidade Federal de Santa Maria ([UFSM](http://site.ufsm.br/)). 

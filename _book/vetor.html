@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -334,20 +362,20 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="criacao" class="section level4">
 <h4><span class="header-section-number">7.1.1.2</span> Criação</h4>
 <p><strong>Vetores atômicos</strong> são geralmente criados com <code>c()</code>, abreviatura para o verbo <strong>combinar ou concatenar</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor numérico</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor numérico</span>
 vetor_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="fl">2.5</span>, <span class="fl">4.5</span>)
 <span class="co"># Note o sufixo L que distingue variaveis &quot;double&quot; de &quot;integers&quot;</span>
 vetor_int &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 6L, 10L)
 <span class="co"># Vetor logico</span>
 vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
 <span class="co"># Vetor de caracteres</span>
-vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Analise de dados&quot;</span>, <span class="st">&quot;ambientais com o R&quot;</span>)</code></pre></div>
+vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Analise de dados&quot;</span>, <span class="st">&quot;ambientais com o R&quot;</span>)</code></pre>
 <p>Vetores atômicos podem ser criados a partir de outros vetores aninhados entre si pela função <code>c()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># vetor com 1 elemento</span>
+<pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># vetor com 1 elemento</span>
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>) <span class="co"># vetor com 1 elemento</span>
-v3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>) <span class="co"># vetor com 2 elemento</span></code></pre></div>
+v3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>) <span class="co"># vetor com 2 elemento</span></code></pre>
 <p>Formas diferentes para criação de vetor que resultam num mesmo vetor:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(v_<span class="dv">123</span> &lt;-<span class="st"> </span><span class="kw">c</span>(v1, v2, v3))
+<pre class="sourceCode r"><code class="sourceCode r">(v_<span class="dv">123</span> &lt;-<span class="st"> </span><span class="kw">c</span>(v1, v2, v3))
 <span class="co">#&gt; [1] 1 2 4 6</span>
 (v_123a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">c</span>(v2, v3)))
 <span class="co">#&gt; [1] 1 2 4 6</span>
@@ -355,17 +383,17 @@ v3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</s
 <span class="co">#&gt; [1] 5.0 2.5 4.5 1.0 2.0 4.0 6.0</span>
 v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)
 v
-<span class="co">#&gt; [1] 1 2 4 6</span></code></pre></div>
+<span class="co">#&gt; [1] 1 2 4 6</span></code></pre>
 </div>
 <div id="coercao-de-vetores" class="section level4">
 <h4><span class="header-section-number">7.1.1.3</span> Coerção de vetores</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>)
 <span class="co">#&gt; [1] &quot;a&quot; &quot;1&quot;</span>
 <span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>))
-<span class="co">#&gt; [1] 0 0 1</span></code></pre></div>
+<span class="co">#&gt; [1] 0 0 1</span></code></pre>
 <p>Você pode manualmente forçar um tipo de vetor para outro usando funções de coerção: <code>as.character()</code>, <code>as.double()</code>,<code>as.integer()</code>, <code>as.logical()</code>. Coerção frequentemente acontece automaticamente, mas geralmente será mostrada uma mensagem quando ocorrer.</p>
 <p>Vamos usar a coerção no seguinte caso. Imagine um vetor com valores de chuva mensal de um ano e outro vetor com os meses do ano. Note a diferença da forma como criamos o vetor <code>meses</code> e o vetor <code>months</code>. Como descobrir o número de meses sem chuva nesse ano?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor com nomes criados com 1 comando</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor com nomes criados com 1 comando</span>
 meses &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dt">jan =</span> <span class="dv">1</span>, <span class="dt">fev =</span> <span class="dv">2</span>, <span class="dt">mar =</span> <span class="dv">3</span>, <span class="dt">abr =</span> <span class="dv">4</span>, <span class="dt">mai =</span> <span class="dv">5</span>, <span class="dt">jun =</span> <span class="dv">6</span>,
   <span class="dt">jul =</span> <span class="dv">7</span>, <span class="dt">ago =</span> <span class="dv">8</span>, <span class="dt">set =</span> <span class="dv">9</span>, <span class="dt">out =</span> <span class="dv">10</span>, <span class="dt">nov =</span> <span class="dv">11</span>, <span class="dt">dez =</span> <span class="dv">12</span>
@@ -405,7 +433,7 @@ seco01
 <span class="co">#&gt; [1] 4</span>
 <span class="co"># também funciona com vetores lógicos</span>
 <span class="kw">sum</span>(seco)
-<span class="co">#&gt; [1] 4</span></code></pre></div>
+<span class="co">#&gt; [1] 4</span></code></pre>
 </div>
 <div id="nomeando-vetores" class="section level4">
 <h4><span class="header-section-number">7.1.1.4</span> Nomeando vetores</h4>
@@ -416,7 +444,7 @@ seco01
 <li><p>Criando um vetor modificado</p></li>
 </ul>
 <p>Nomes devem ser únicos (sem repetições), porque para filtragem de elementos de um vetor ou a seleção de um subconjunto (razão pela qual usam-se os <code>names</code>) retornará somente o primeiro elemento que tiver nome repetido.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Durante a criação:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Durante a criação:</span>
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">c =</span> <span class="dv">3</span>)
 x
 <span class="co">#&gt; a b c </span>
@@ -431,16 +459,16 @@ x
 x &lt;-<span class="st"> </span><span class="kw">setNames</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))
 x
 <span class="co">#&gt; a b c </span>
-<span class="co">#&gt; 1 2 3</span></code></pre></div>
-<p>Nem todos elementos precisam ter nomes. Se os nomes são faltantes, <code>names()</code> retornará um string vazia (“”) para aqueles elementos. Se todos forem faltantes, <code>names()</code> retornará <code>NULL</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+<span class="co">#&gt; 1 2 3</span></code></pre>
+<p>Nem todos elementos precisam ter nomes. Se os nomes são faltantes, <code>names()</code> retornará um string vazia (&quot;&quot;) para aqueles elementos. Se todos forem faltantes, <code>names()</code> retornará <code>NULL</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
 <span class="kw">names</span>(y)
 <span class="co">#&gt; [1] &quot;a&quot; &quot;&quot;  &quot;&quot;</span>
 z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
 <span class="kw">names</span>(z)
-<span class="co">#&gt; NULL</span></code></pre></div>
+<span class="co">#&gt; NULL</span></code></pre>
 <p>Podemos criar um vetor sem nomes usando a função <code>unname(x)</code>, ou remover <code>names</code> com <code>names(x) &lt;- NULL</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">dia1 =</span> <span class="dv">12</span>, <span class="dt">dia2 =</span> <span class="dv">20</span>, <span class="dt">dia3 =</span> <span class="dv">10</span>)
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">dia1 =</span> <span class="dv">12</span>, <span class="dt">dia2 =</span> <span class="dv">20</span>, <span class="dt">dia3 =</span> <span class="dv">10</span>)
 a
 <span class="co">#&gt; dia1 dia2 dia3 </span>
 <span class="co">#&gt;   12   20   10</span>
@@ -450,13 +478,13 @@ a_sn &lt;-<span class="st"> </span><span class="kw">unname</span>(a)
 a_sn
 <span class="co">#&gt; [1] 12 20 10</span>
 <span class="kw">names</span>(a_sn)
-<span class="co">#&gt; NULL</span></code></pre></div>
+<span class="co">#&gt; NULL</span></code></pre>
 </div>
 </div>
 <div id="operacoes-com-vetores" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> Operações com vetores</h3>
 <p>Para multiplicar cada elemento de um vetor por um valor é usar o operador de multiplicação (*). O mesmo procedimento se aplica as demais operações de soma, subtração, divisão, exponenciação e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
 x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>
 <span class="co">#&gt;  [1]  3  6  9 12 15 18 21 24 27 30</span>
 x <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
@@ -472,11 +500,11 @@ x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>
 <span class="co">#&gt;  [1]   1   4   9  16  25  36  49  64  81 100</span>
 <span class="kw">sqrt</span>(x)
 <span class="co">#&gt;  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751</span>
-<span class="co">#&gt;  [8] 2.828427 3.000000 3.162278</span></code></pre></div>
+<span class="co">#&gt;  [8] 2.828427 3.000000 3.162278</span></code></pre>
 <p>Operações vetoriais podem ser estendidas para mais de um vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando 2 vetores de mesmo tamanho</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando 2 vetores de mesmo tamanho</span>
 x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-y &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">5</span><span class="op">:</span><span class="dv">4</span>
+y &lt;-<span class="st"> </span><span class="dv">-5</span><span class="op">:</span><span class="dv">4</span>
 <span class="co"># somando-os</span>
 x <span class="op">+</span><span class="st"> </span>y
 <span class="co">#&gt;  [1] -4 -2  0  2  4  6  8 10 12 14</span>
@@ -499,58 +527,59 @@ x <span class="op">%%</span><span class="st"> </span>y
 <span class="kw">length</span>(y)
 <span class="co">#&gt; [1] 10</span>
 <span class="kw">length</span>(x <span class="op">+</span><span class="st"> </span>y)
-<span class="co">#&gt; [1] 10</span></code></pre></div>
+<span class="co">#&gt; [1] 10</span></code></pre>
 <p>Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
+<pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)
 v1 <span class="op">+</span><span class="st"> </span>v2
-<span class="co">#&gt; [1]  5  6 90 91</span></code></pre></div>
+<span class="co">#&gt; [1]  5  6 90 91</span></code></pre>
 <p>Se o vetor mais longo não é múltiplo do mais curto, o R imprime um aviso.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
+<pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)
 v1 <span class="op">+</span><span class="st"> </span>v2
 <span class="co">#&gt; Warning in v1 + v2: longer object length is not a multiple of shorter</span>
 <span class="co">#&gt; object length</span>
-<span class="co">#&gt; [1]  5  6 91 92</span></code></pre></div>
+<span class="co">#&gt; [1]  5  6 91 92</span></code></pre>
 <p>A reciclagem é intrinsecamente usada em operações envolvendo vetores.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1
+<pre class="sourceCode r"><code class="sourceCode r">v1
 <span class="co">#&gt; [1]  3  5 88 90</span>
 cte &lt;-<span class="st"> </span><span class="dv">4</span>
 v1 <span class="op">*</span><span class="st"> </span>cte
-<span class="co">#&gt; [1]  12  20 352 360</span></code></pre></div>
-<p>O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento do vetor <code>v1</code>. Avisos e erros:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
+<span class="co">#&gt; [1]  12  20 352 360</span></code></pre>
+<p>O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento do vetor <code>v1</code>.
+Avisos e erros:</p>
+<pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">88</span>, <span class="dv">90</span>)
 <span class="kw">srt</span>(v1)
 <span class="co">#&gt; Error in srt(v1): could not find function &quot;srt&quot;</span>
 <span class="kw">sqrt</span>(<span class="op">-</span>v1)
 <span class="co">#&gt; Warning in sqrt(-v1): NaNs produced</span>
-<span class="co">#&gt; [1] NaN NaN NaN NaN</span></code></pre></div>
+<span class="co">#&gt; [1] NaN NaN NaN NaN</span></code></pre>
 <p>Comparações também funcionam com vetores.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
+<pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>
 <span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span>
 x <span class="op">&gt;</span><span class="st"> </span>y
 <span class="co">#&gt;  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span>
 x <span class="op">&lt;</span><span class="st"> </span>y
-<span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></code></pre></div>
+<span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></code></pre>
 <p>Entre os operadores lógicos vistos (Tabela <a href="classes-de-dados.html#tab:oper-logic">6.2</a>) alguns deles não foram aplicados em exemplos. Vamos então usar o operador <code>%in%</code> para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># operador está contido em</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># operador está contido em</span>
 <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">%in%</span><span class="st"> </span>x
 <span class="co">#&gt; [1] TRUE TRUE TRUE</span>
 <span class="co"># 2:4 são elementos de x?</span>
 <span class="kw">is.element</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, x)
-<span class="co">#&gt; [1] TRUE TRUE TRUE</span></code></pre></div>
+<span class="co">#&gt; [1] TRUE TRUE TRUE</span></code></pre>
 <p>A função <code>nchar()</code> também funciona sobre cada elemento do vetor. Esse é mais um exemplo de função vetorizada do R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(month.name)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(month.name)
 <span class="co">#&gt;  [1] 7 8 5 5 3 4 4 6 9 7 8 8</span>
 <span class="kw">nchar</span>(y)
-<span class="co">#&gt;  [1] 2 2 2 2 2 1 1 1 1 1</span></code></pre></div>
+<span class="co">#&gt;  [1] 2 2 2 2 2 1 1 1 1 1</span></code></pre>
 <div id="operadores-any-e-all" class="section level4">
 <h4><span class="header-section-number">7.1.2.1</span> Operadores <code>any</code> e <code>all</code></h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>)
+<pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)
 <span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)  <span class="co"># todas as posições são maiores que 0 ?</span>
 <span class="co">#&gt; [1] FALSE</span>
 <span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)  <span class="co"># alguma posição é maior que 0?</span>
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<span class="co">#&gt; [1] TRUE</span></code></pre>
 <p>Ambas as funções sintetizam a informação:</p>
 <ul>
 <li><code>all()</code> verifica se a condição avaliada é válida para todos elementos do vetor;</li>
@@ -565,7 +594,7 @@ x <span class="op">&lt;</span><span class="st"> </span>y
 <div id="sequencias-de-numeros-inteiros" class="section level4">
 <h4><span class="header-section-number">7.1.3.1</span> Sequências de números inteiros</h4>
 <p>Sequências de números formam um vetor. Há diversas formas de se gerar sequências no R. Para gerar uma sequência de 1 até 365, em vez de escrevermos cada número e combiná-los usando <code>c(1,2,3,...,365)</code>, podemos usar o operador <code>:</code> da seguinte forma:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dias do ano</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dias do ano</span>
 dda &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">365</span>
 dda
 <span class="co">#&gt;   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17</span>
@@ -606,17 +635,17 @@ seqn &lt;-<span class="st"> </span><span class="fl">1.5</span><span class="op">:
 seqn
 <span class="co">#&gt; [1] 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5</span>
 <span class="kw">c</span>(seqn, <span class="dv">10</span>)
-<span class="co">#&gt;  [1]  1.5  2.5  3.5  4.5  5.5  6.5  7.5  8.5  9.5 10.0</span></code></pre></div>
+<span class="co">#&gt;  [1]  1.5  2.5  3.5  4.5  5.5  6.5  7.5  8.5  9.5 10.0</span></code></pre>
 </div>
 <div id="sequencias-de-numeros-nao-inteiros" class="section level4">
 <h4><span class="header-section-number">7.1.3.2</span> Sequências de números não inteiros</h4>
 <p>Mas para gerar uma sequencia de números não inteiros há uma função específica para tal tarefa.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># igual a c(snum, 10), mas usando o seq</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># igual a c(snum, 10), mas usando o seq</span>
 (snum_b &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">1.5</span>, <span class="dt">to =</span> <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.5</span>))
 <span class="co">#&gt;  [1]  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0</span>
-<span class="co">#&gt; [15]  8.5  9.0  9.5 10.0</span></code></pre></div>
+<span class="co">#&gt; [15]  8.5  9.0  9.5 10.0</span></code></pre>
 <p>Exemplos de sequência de anos, meses e dias.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor com de anos decimais (2 valores por dia)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor com de anos decimais (2 valores por dia)</span>
 anos_dec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dt">length.out =</span> <span class="dv">365</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)
 <span class="co"># para ver só o início do vetor ao invés de todo o vetor</span>
 <span class="kw">head</span>(anos_dec)
@@ -694,20 +723,20 @@ an &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</s
 <span class="co">#&gt; [1] 1 0</span>
 <span class="co"># conflito entre parâmetros</span>
 <span class="co"># a &lt;-seq(from = -5, to = 5, by = 0.05, length.out=200)</span>
-s5by &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="op">-</span><span class="dv">5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.05</span>)
+s5by &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.05</span>)
 <span class="kw">length</span>(s5by)
 <span class="co">#&gt; [1] 201</span>
 <span class="kw">tail</span>(s5by)
 <span class="co">#&gt; [1] 4.75 4.80 4.85 4.90 4.95 5.00</span>
-s5len &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="op">-</span><span class="dv">5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">200</span>)
+s5len &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">200</span>)
 <span class="kw">length</span>(s5len)
 <span class="co">#&gt; [1] 200</span>
 <span class="kw">tail</span>(s5len)
-<span class="co">#&gt; [1] 4.74874 4.79899 4.84925 4.89950 4.94975 5.00000</span></code></pre></div>
+<span class="co">#&gt; [1] 4.74874 4.79899 4.84925 4.89950 4.94975 5.00000</span></code></pre>
 </div>
 <div id="sequencias-de-numeros-repetidos" class="section level4">
 <h4><span class="header-section-number">7.1.3.3</span> Sequências de números repetidos</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rep_t4 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">times =</span> <span class="dv">4</span>)
+<pre class="sourceCode r"><code class="sourceCode r">rep_t4 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">times =</span> <span class="dv">4</span>)
 rep_t4
 <span class="co">#&gt; [1] 1 2 1 2 1 2 1 2</span>
 rep_e31 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">each =</span> <span class="dv">31</span>)
@@ -735,7 +764,7 @@ rep_t13
 rep_t13_t4 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;chuva&quot;</span>, <span class="st">&quot;sol&quot;</span>), <span class="dt">times =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)), <span class="dt">times =</span> <span class="dv">4</span>)
 rep_t13_t4
 <span class="co">#&gt;  [1] &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;   &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;  </span>
-<span class="co">#&gt;  [9] &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;   &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;</span></code></pre></div>
+<span class="co">#&gt;  [9] &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;   &quot;chuva&quot; &quot;sol&quot;   &quot;sol&quot;   &quot;sol&quot;</span></code></pre>
 </div>
 </div>
 <div id="index-vetores" class="section level3">
@@ -744,7 +773,7 @@ rep_t13_t4
 <p>Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos.</p>
 <p>Através do operador <code>[</code> podemos acessar ou filtrar elementos de um vetor. O operador colchete <code>[</code> aplicado a um vetor retornará um vetor.</p>
 <p>Considere os seguintes vetores como exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva mensal para um dado ano</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva mensal para um dado ano</span>
 prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">280</span>)
 meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span>)
 <span class="kw">names</span>(prec) &lt;-<span class="st"> </span>meses
@@ -753,15 +782,15 @@ prec
 <span class="co">#&gt; 300 150 210  12   0   0  12  22  80 100   0 280</span>
 <span class="co"># gráfico de barras</span>
 <span class="kw">barplot</span>(prec)
-<span class="kw">box</span>()</code></pre></div>
+<span class="kw">box</span>()</code></pre>
 <p><img src="images/chunk720-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal para um dado ano</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal para um dado ano</span>
 temp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="fl">23.2</span>, <span class="fl">22.5</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="fl">17.6</span>, <span class="dv">18</span>, <span class="fl">19.7</span>, <span class="fl">21.3</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="fl">26.8</span>)
 <span class="kw">names</span>(temp) &lt;-<span class="st"> </span>meses
 temp
 <span class="co">#&gt;  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez </span>
 <span class="co">#&gt; 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8</span>
-<span class="kw">plot</span>(temp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</code></pre></div>
+<span class="kw">plot</span>(temp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</code></pre>
 <p><img src="images/chunk720-2.png" width="672" /></p>
 <p>Como selecionar o valor de chuva e temperatura só para janeiro?</p>
 <p>Usando a seguinte sintaxe:</p>
@@ -772,16 +801,16 @@ temp
 <div id="positivos" class="section level5">
 <h5><span class="header-section-number">7.1.4.1.1</span> Positivos</h5>
 <p>Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_jan &lt;-<span class="st"> </span>prec[<span class="dv">1</span>]
+<pre class="sourceCode r"><code class="sourceCode r">prec_jan &lt;-<span class="st"> </span>prec[<span class="dv">1</span>]
 prec_jan
 <span class="co">#&gt; Jan </span>
 <span class="co">#&gt; 300</span>
 temp_jan &lt;-<span class="st"> </span>temp[<span class="dv">1</span>]
 temp_jan
 <span class="co">#&gt; Jan </span>
-<span class="co">#&gt;  25</span></code></pre></div>
+<span class="co">#&gt;  25</span></code></pre>
 <p>Como selecionar os últimos valores dos vetores de chuva e temperatura?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer</span>
 temp_dez &lt;-<span class="st"> </span>temp[<span class="kw">length</span>(temp)]
 temp_dez
 <span class="co">#&gt;  Dez </span>
@@ -789,9 +818,9 @@ temp_dez
 prec_dez &lt;-<span class="st"> </span>prec[<span class="kw">length</span>(prec)]
 prec_dez
 <span class="co">#&gt; Dez </span>
-<span class="co">#&gt; 280</span></code></pre></div>
+<span class="co">#&gt; 280</span></code></pre>
 <p>Como selecionar os valores de chuva do trimestre JJA e de temperatura para o trimestre DJF?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel_prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)
+<pre class="sourceCode r"><code class="sourceCode r">sel_prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)
 <span class="co"># vetor de chuva JJA</span>
 prec_jja &lt;-<span class="st"> </span>prec[sel_prec]
 prec_jja
@@ -810,12 +839,12 @@ temp_djf
 <span class="co"># temp média trimestral nesse ano</span>
 temp_djf_med &lt;-<span class="st"> </span><span class="kw">mean</span>(temp_djf)
 temp_djf_med
-<span class="co">#&gt; [1] 25</span></code></pre></div>
+<span class="co">#&gt; [1] 25</span></code></pre>
 </div>
 <div id="negativos" class="section level5">
 <h5><span class="header-section-number">7.1.4.1.2</span> Negativos</h5>
 <p>Como selecionar todos valores menos o primeiro e o último?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto o primeiro e ultimo</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto o primeiro e ultimo</span>
 prec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))]
 <span class="co">#&gt; Fev Mar Abr Mai Jun Jul Ago Set Out Nov </span>
 <span class="co">#&gt; 150 210  12   0   0  12  22  80 100   0</span>
@@ -826,30 +855,30 @@ temp[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span
 <span class="co"># exceto os 3 últimos meses</span>
 temp[<span class="op">-</span><span class="kw">c</span>(<span class="kw">length</span>(temp)<span class="op">:</span>(<span class="kw">length</span>(temp) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>))]
 <span class="co">#&gt;  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set </span>
-<span class="co">#&gt; 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3</span></code></pre></div>
+<span class="co">#&gt; 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3</span></code></pre>
 </div>
 </div>
 <div id="indexacao-por-nomes" class="section level4">
 <h4><span class="header-section-number">7.1.4.2</span> Indexação por nomes</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="st">&quot;Jan&quot;</span>]
+<pre class="sourceCode r"><code class="sourceCode r">prec[<span class="st">&quot;Jan&quot;</span>]
 <span class="co">#&gt; Jan </span>
 <span class="co">#&gt; 300</span>
 prec[<span class="kw">c</span>(<span class="st">&quot;Dez&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Jun&quot;</span>)]
 <span class="co">#&gt; Dez Fev Jun </span>
-<span class="co">#&gt; 280 150   0</span></code></pre></div>
+<span class="co">#&gt; 280 150   0</span></code></pre>
 </div>
 <div id="indexacao-por-vetores-logicos" class="section level4">
 <h4><span class="header-section-number">7.1.4.3</span> Indexação por vetores lógicos</h4>
 <p>Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, 
+<pre class="sourceCode r"><code class="sourceCode r">vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, 
     <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)
 meses[vetor_l]
-<span class="co">#&gt; [1] &quot;Jan&quot; &quot;Abr&quot; &quot;Mai&quot; &quot;Jul&quot; &quot;Set&quot; &quot;Dez&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;Jan&quot; &quot;Abr&quot; &quot;Mai&quot; &quot;Jul&quot; &quot;Set&quot; &quot;Dez&quot;</span></code></pre>
 <p>Os elementos de <code>vetor_l</code> correspondentes a <code>TRUE</code> foram selecionados. Aplicando-se a função <code>sum()</code> a um vetor lógico obtemos o total de elementos verdadeiros:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vetor_l)
-<span class="co">#&gt; [1] 6</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vetor_l)
+<span class="co">#&gt; [1] 6</span></code></pre>
 <p>Vamos considerar agora a seguinte forma do vetor lógico (<code>vetor_l</code>) e relembrar da <strong>coerção</strong> de vetores.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
 vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
 meses[vetor_l]
 <span class="co">#&gt; [1] &quot;Jan&quot; &quot;Mar&quot; &quot;Mai&quot; &quot;Jul&quot; &quot;Set&quot; &quot;Nov&quot;</span>
@@ -861,9 +890,9 @@ prec[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FA
 <span class="co">#&gt; 300 210   0  12  80   0</span>
 temp[<span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">FALSE</span>, <span class="dv">3</span>), <span class="ot">TRUE</span>)]
 <span class="co">#&gt;  Abr  Ago  Dez </span>
-<span class="co">#&gt; 21.0 19.7 26.8</span></code></pre></div>
+<span class="co">#&gt; 21.0 19.7 26.8</span></code></pre>
 <p>A indexação pode ser feita também por comparações:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor prec</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor prec</span>
 prec
 <span class="co">#&gt; Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez </span>
 <span class="co">#&gt; 300 150 210  12   0   0  12  22  80 100   0 280</span>
@@ -899,7 +928,7 @@ prec[prec <span class="op">&lt;</span><span class="st"> </span><span class="kw">
 <span class="co"># teste para meses com prec diferente de zero</span>
 prec[prec <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>]
 <span class="co">#&gt; Jan Fev Mar Abr Jul Ago Set Out Dez </span>
-<span class="co">#&gt; 300 150 210  12  12  22  80 100 280</span></code></pre></div>
+<span class="co">#&gt; 300 150 210  12  12  22  80 100 280</span></code></pre>
 </div>
 <div id="indexacao-com-multiplas-condicoes" class="section level4">
 <h4><span class="header-section-number">7.1.4.4</span> Indexação com múltiplas condições</h4>
@@ -910,12 +939,12 @@ prec[prec <span class="op">!=</span><span class="st"> </span><span class="dv">0<
 </ul>
 <p>precisamos usar os operadores relacionais:</p>
 <ul>
-<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e“)</p></li>
-<li><p><code>|</code> e <code>||</code> (&quot;ou“)</p></li>
+<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e&quot;)</p></li>
+<li><p><code>|</code> e <code>||</code> (&quot;ou&quot;)</p></li>
 </ul>
 <p>A ordem das operações pode ser controladas por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
 <p>As diferenças entre os operadores são mostradas nos exemplos a seguir.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec</span>
 prec
 <span class="co">#&gt; Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez </span>
 <span class="co">#&gt; 300 150 210  12   0   0  12  22  80 100   0 280</span>
@@ -924,9 +953,9 @@ below100 &lt;-<span class="st"> </span>prec <span class="op">&gt;</span><span cl
 prec_cond1 &lt;-<span class="st"> </span>prec[below100]
 prec_cond1
 <span class="co">#&gt; Abr Jul Ago Set Out </span>
-<span class="co">#&gt;  12  12  22  80 100</span></code></pre></div>
+<span class="co">#&gt;  12  12  22  80 100</span></code></pre>
 <p>A forma dupla (<code>&amp;&amp;</code> ou <code>||</code>) compara somente um elemento de cada lado, enquanto a forma normal (<code>&amp;</code> e <code>|</code>), compara cada elemento dos vetores em cada lado.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
 b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
 <span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span>
 a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
@@ -934,16 +963,16 @@ a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <
 <span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro</span>
 <span class="co"># elemento de b retornando somente um resultado</span>
 a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<table style="width:81%;">
+<span class="co">#&gt; [1] FALSE</span></code></pre>
+<table style="width:85%;">
 <caption>Demostração da diferença entre &amp; e &amp;&amp;.</caption>
 <colgroup>
 <col width="5%" />
 <col width="5%" />
-<col width="9%" />
-<col width="9%" />
+<col width="11%" />
+<col width="11%" />
 <col width="25%" />
-<col width="25%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -995,7 +1024,7 @@ a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <
 <li><strong>PEMDAS</strong>: Parênteses &gt; Expoentes &gt; Multiplicação &gt; Divisão &gt; Adição e Subtração</li>
 </ul>
 <p>Onde <code>&amp;</code>é equivalente à <strong>multiplicação</strong> e <code>|</code> é equivalente à <strong>adição</strong>, logo <strong>e</strong> tem precedência sobre <strong>ou</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de horas</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de horas</span>
 horas &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">23</span>
 <span class="co"># vetor de temperaturas horárias</span>
 tar_hor &lt;-<span class="st"> </span><span class="kw">c</span>(
@@ -1025,10 +1054,10 @@ tar_hor[night_below20]
 day_below20 &lt;-<span class="st"> </span>tar_hor <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>night_below20
 <span class="kw">points</span>(horas[day_below20], tar_hor[day_below20], <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>)
 <span class="co"># adicionando linha horizontal ao longo da temperatura = 20ºC</span>
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</code></pre></div>
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</code></pre>
 <p><img src="images/chunk7292-1.png" width="672" /></p>
 <p>Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira Nós podemos localizar essas ocorrências usando a função <code>which()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec sem nomes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec sem nomes</span>
 <span class="kw">names</span>(prec) &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="co"># combinação de operador lógico e relacional</span>
 below100
@@ -1062,9 +1091,9 @@ prec[sel]
 <span class="kw">which.min</span>(prec)
 <span class="co">#&gt; [1] 5</span>
 prec
-<span class="co">#&gt;  [1] 300 150 210  12   0   0  12  22  80 100   0 280</span></code></pre></div>
+<span class="co">#&gt;  [1] 300 150 210  12   0   0  12  22  80 100   0 280</span></code></pre>
 <p>Um outro operador útil para comparação entre vetores é o operador <code>%in%</code>, que pode ser interpretado como &quot;está contido em&quot;. O <strong>resultado é um vetor de mesmo tamanho que o vetor à esquerda do teste</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># compare o tamanho dos vetores resultantes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># compare o tamanho dos vetores resultantes</span>
 <span class="kw">which</span>(meses <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>))
 <span class="co">#&gt; [1] 3</span>
 <span class="co"># note a diferença</span>
@@ -1077,12 +1106,12 @@ quais
 prec[cond]
 <span class="co">#&gt; [1]  0 12 22</span>
 prec[quais]
-<span class="co">#&gt; [1]  0 12 22</span></code></pre></div>
+<span class="co">#&gt; [1]  0 12 22</span></code></pre>
 </div>
 </div>
 <div id="substituicao-de-elementos-de-um-vetor" class="section level3">
 <h3><span class="header-section-number">7.1.5</span> Substituição de elementos de um vetor</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># posição a ser alterada</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># posição a ser alterada</span>
 pos &lt;-<span class="st"> </span><span class="dv">10</span>
 <span class="co"># valor da temperatura naquela posição</span>
 old_temp &lt;-<span class="st"> </span>temp[pos]
@@ -1099,9 +1128,9 @@ new_temp &lt;-<span class="st"> </span><span class="dv">30</span>
 temp[pos] &lt;-<span class="st"> </span>new_temp
 temp
 <span class="co">#&gt;  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez </span>
-<span class="co">#&gt; 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 30.0 24.0 26.8</span></code></pre></div>
+<span class="co">#&gt; 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 30.0 24.0 26.8</span></code></pre>
 <p>A substituição também pode ser feita também pelo nome das variáveis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec
+<pre class="sourceCode r"><code class="sourceCode r">prec
 <span class="co">#&gt;  [1] 300 150 210  12   0   0  12  22  80 100   0 280</span>
 prec[<span class="st">&quot;Mai&quot;</span>] &lt;-<span class="st"> </span><span class="dv">5</span>
 temp
@@ -1110,12 +1139,12 @@ temp
 temp[<span class="kw">c</span>(<span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jul&quot;</span>)] &lt;-<span class="st"> </span>temp[<span class="kw">c</span>(<span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jul&quot;</span>)] <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
 temp
 <span class="co">#&gt;  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez </span>
-<span class="co">#&gt; 25.0 23.2 22.5 21.0 21.0 17.6 20.0 19.7 21.3 30.0 24.0 26.8</span></code></pre></div>
+<span class="co">#&gt; 25.0 23.2 22.5 21.0 21.0 17.6 20.0 19.7 21.3 30.0 24.0 26.8</span></code></pre>
 </div>
 <div id="criacao-de-vetores-com-vector" class="section level3">
 <h3><span class="header-section-number">7.1.6</span> Criação de vetores com <code>vector</code></h3>
 <p>Outra forma de se criar vetores é através da função <code>vector()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criação de vetor v</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criação de vetor v</span>
 v &lt;-<span class="st"> </span><span class="dv">3</span>
 v
 <span class="co">#&gt; [1] 3</span>
@@ -1213,12 +1242,13 @@ umvetor
 <span class="co">#&gt;  [35]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</span>
 <span class="co">#&gt;  [52]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</span>
 <span class="co">#&gt;  [69]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</span>
-<span class="co">#&gt;  [86]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</span></code></pre></div>
+<span class="co">#&gt;  [86]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</span></code></pre>
 </div>
 <div id="vetores-nulos-e-elementos-faltantes" class="section level3">
 <h3><span class="header-section-number">7.1.7</span> Vetores nulos e elementos faltantes</h3>
-<p>Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. No R dados faltantes são representados pela string <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="ot">NA</span>)
+<p>Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo.
+No R dados faltantes são representados pela string <code>NA</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="ot">NA</span>)
 v1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> <span class="co"># NA sai na resposta</span>
 <span class="co">#&gt; [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE    NA</span>
 <span class="co"># teste lógico com o operador idêntico &quot;==&quot;</span>
@@ -1259,18 +1289,18 @@ v1
 <span class="co">#&gt; [1] 9</span>
 <span class="co"># vetor com dados faltantes indicados por -999</span>
 <span class="co"># substituir onde é -999 por NA</span>
-x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">999</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="op">-</span><span class="dv">999</span>, <span class="dv">50</span>)
-x <span class="op">==</span><span class="st"> </span><span class="op">-</span><span class="dv">999</span>
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">999</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">-999</span>, <span class="dv">50</span>)
+x <span class="op">==</span><span class="st"> </span><span class="dv">-999</span>
 <span class="co">#&gt; [1]  TRUE FALSE FALSE  TRUE FALSE</span>
-x[x <span class="op">==</span><span class="st"> </span><span class="op">-</span><span class="dv">999</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+x[x <span class="op">==</span><span class="st"> </span><span class="dv">-999</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
 <span class="co"># total de dados faltantes</span>
 <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x))
-<span class="co">#&gt; [1] 3</span></code></pre></div>
+<span class="co">#&gt; [1] 3</span></code></pre>
 </div>
 <div id="diferenca-entre-na-e-null" class="section level3">
 <h3><span class="header-section-number">7.1.8</span> Diferença entre <code>NA</code> e <code>NULL</code></h3>
 <p>O <code>NULL</code> é um tipo de dado especial do R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># v1 existe ?</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># v1 existe ?</span>
 <span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;a&quot;             &quot;above80&quot;       &quot;an&quot;            &quot;anos&quot;         </span>
 <span class="co">#&gt;  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     </span>
@@ -1361,7 +1391,7 @@ b
 <span class="kw">length</span>(a)
 <span class="co">#&gt; [1] 0</span>
 <span class="kw">length</span>(b)
-<span class="co">#&gt; [1] 1</span></code></pre></div>
+<span class="co">#&gt; [1] 1</span></code></pre>
 </div>
 </div>
             </section>
@@ -1416,7 +1446,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

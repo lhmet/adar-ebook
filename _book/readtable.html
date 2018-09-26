@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -343,16 +371,16 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="hidroweb-ana" class="section level4">
 <h4><span class="header-section-number">B.4.1.1</span> <a href="http://hidroweb.ana.gov.br/">hidroweb-ANA</a></h4>
 <p>O sistema hidroweb é o maior base de dados hidrológicos brasileira. No trecho de código a seguir baixamos um arquivo de dados de precipitação obtidos no sistema hidroweb que foi salvo no site do livro.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivo de exemplo disponível no GitHub</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivo de exemplo disponível no GitHub</span>
 hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span>
 <span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span>
 hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
-)</code></pre></div>
+)</code></pre>
 <p>Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto ou</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># caracteres não devem tratados como fatores</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># caracteres não devem tratados como fatores</span>
 <span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 <span class="co"># leitura de dados da ANA</span>
 dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> hidroweb_url_file, 
@@ -726,21 +754,21 @@ dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span cl
 <span class="co">#&gt; 3             1             1 NA</span>
 <span class="co">#&gt; 4             1             0 NA</span>
 <span class="co">#&gt; 5             1             1 NA</span>
-<span class="co">#&gt; 6             1             0 NA</span></code></pre></div>
+<span class="co">#&gt; 6             1             0 NA</span></code></pre>
 </div>
 <div id="bdmep-inmet" class="section level4">
 <h4><span class="header-section-number">B.4.1.2</span> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></h4>
 <p>O Banco de Dados Meteorológicos para Ensino e Pesquisa do INMET é uma das principais fonte de dados climáticos brasileiros. Abaixo veremos como importar um arquivo de dados diários de uma estação meteorológica convencional. Os dados foram obtidos no BDMEP e salvos no site do livro.</p>
 <p>No trecho de código a seguir baixamos o arquivo de dados da estação 83004.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivo de exemplo disponível no GitHub</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivo de exemplo disponível no GitHub</span>
 bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span>
 <span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span>
 bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> bdmep_url_file, 
   <span class="dt">destfile =</span> bdmep_dest_file
-)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> bdmep_dest_file, 
+)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> bdmep_dest_file, 
                <span class="dt">header =</span> <span class="ot">FALSE</span>, 
                <span class="dt">skip =</span> <span class="dv">16</span>,
                <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
@@ -782,11 +810,11 @@ bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="co">#&gt;  $ V17: chr  NA &quot;22.04&quot; NA NA ...</span>
 <span class="co">#&gt;  $ V18: chr  NA &quot;86.75&quot; NA NA ...</span>
 <span class="co">#&gt;  $ V19: chr  NA &quot;2&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre></div>
+<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre>
 <p>Os dados lidos não incluíram a linha de cabeçalho com os nomes das variáveis. Nós pulamos essa linha porque o nome das variáveis está de acordo como número de colunas do arquivo. Então se tentarmos ler um arquivo de dados que contém linhas com número de registros diferentes ocorrerá um erro pois os dados não são tabulares.</p>
 <p>Outro aspecto nos dados lidos é que aparecem vários <code>&lt;NA&gt;</code>, que é o símbolo para dados do tipo <code>character</code> faltantes. A razão dos terem sido interpretados dessa forma deve-se a um caractere (<code>&lt;/pre&gt;</code>) encontrado na última linha do arquivo.</p>
 <p>Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função <code>read.table(..., nrows = 5878)</code>, que ignoraria a última linha do arquivo e os dados seriam interpretados como <code>numeric</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, 
+<pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, 
                <span class="dt">header =</span> <span class="ot">FALSE</span>, 
                <span class="dt">skip =</span> <span class="dv">16</span>,
                <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
@@ -830,9 +858,9 @@ bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="co">#&gt;  $ V17: num  NA 22 NA NA 23.3 ...</span>
 <span class="co">#&gt;  $ V18: num  NA 86.8 NA NA 83 ...</span>
 <span class="co">#&gt;  $ V19: num  NA 2 NA NA 2.67 ...</span>
-<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre></div>
+<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre>
 <p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo classe dos dados</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo classe dos dados</span>
 <span class="co"># convertendo de character para numeric</span>
 x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)
 <span class="kw">str</span>(x)
@@ -858,9 +886,9 @@ x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>
 <span class="co">#&gt;  $ V19: num  NA 2 NA NA 2.67 ...</span>
 <span class="co">#&gt;  $ V20: num  NA NA NA NA NA NA NA NA NA NA ...</span>
 <span class="co"># razão dos avisos</span>
-<span class="co">#as.numeric(&quot;NA&quot;)</span></code></pre></div>
+<span class="co">#as.numeric(&quot;NA&quot;)</span></code></pre>
 <p>Mas e o nome das variáveis? Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas. Vamos fazer essa adequação aos dados.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo somente o nome das variaveis</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo somente o nome das variaveis</span>
 vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, 
                     <span class="dt">header =</span> <span class="ot">FALSE</span>, 
                     <span class="dt">skip =</span> <span class="dv">15</span>,
@@ -923,25 +951,25 @@ vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span clas
 <span class="co">#&gt; 3              NA                     NA                        NA NA</span>
 <span class="co">#&gt; 4              NA                     NA                        NA NA</span>
 <span class="co">#&gt; 5           23.32                  83.00                  2.666667 NA</span>
-<span class="co">#&gt; 6              NA                     NA                        NA NA</span></code></pre></div>
+<span class="co">#&gt; 6              NA                     NA                        NA NA</span></code></pre>
 <p>Finalmente vamos escrever os dados do INMET corretamente organizados.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)
 <span class="kw">write.csv2</span>(x,
            <span class="dt">file =</span> bdmep_dest_file_clean, 
            <span class="dt">na =</span> <span class="st">&quot;-9999&quot;</span>,
-           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre>
 </div>
 </div>
 <div id="arquivos-formatados-com-largura-fixa" class="section level3">
 <h3><span class="header-section-number">B.4.2</span> Arquivos formatados com largura fixa</h3>
 <p>Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que aumenta a legibilidade dos dados em editor de texto.</p>
 <p>Nesses casos a função <code>read.fwf()</code> é conveniente. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link para os dados do SOI</span>
-noaa_url_file &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link para os dados do SOI</span>
+noaa_url_file &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre>
 <p>Abrindo o link dos dados no navegador para visualização dos dados.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> noaa_url_file)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> noaa_url_file)</code></pre>
 <p>Leitura dos dados:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span>
 soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="dt">file =</span> noaa_url_file,                       <span class="co"># sem internet, usar esse arquivo</span>
                 <span class="dt">skip =</span> <span class="dv">4</span>,                               <span class="co"># pula 4 linhas</span>
                 <span class="dt">header =</span> <span class="ot">FALSE</span>,                             <span class="co"># sem cabeçalho</span>
@@ -961,10 +989,10 @@ soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="
 <span class="co">#&gt; 3 1953  0.5 -0.8 -0.3  0.3 -2.8 0.2  0.0 -2.0 -2.1  0.1 -0.5 -0.8</span>
 <span class="co">#&gt; 4 1954  1.1 -0.5  0.4  1.1  0.8 0.2  0.7  1.8  0.3  0.4  0.2  2.3</span>
 <span class="co">#&gt; 5 1955 -0.9  3.1  1.1 -0.2  1.7 2.2  2.6  2.4  2.2  2.5  2.0  1.6</span>
-<span class="co">#&gt; 6 1956  2.2  2.7  2.2  1.5  2.3 1.8  1.8  2.0  0.1  2.9  0.2  1.8</span></code></pre></div>
+<span class="co">#&gt; 6 1956  2.2  2.7  2.2  1.5  2.3 1.8  1.8  2.0  0.1  2.9  0.2  1.8</span></code></pre>
 <p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
-soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="op">-</span><span class="dv">1</span>]))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
+soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="dv">-1</span>]))
 <span class="co"># criando um dataframe com valores de SOI, mes e ano</span>
 soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),
                      <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),
@@ -974,19 +1002,19 @@ soi_csv_file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<sp
 <span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, 
           <span class="dt">file =</span> soi_csv_file, 
           <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, 
-          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre>
 <p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura de dados com escolha interativa do arquivo</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura de dados com escolha interativa do arquivo</span>
 soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),
                    <span class="co"># file.choose só é válido em sistema *unix</span>
                    <span class="co"># no windows é choose.file()</span>
                    <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
+                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre>
 <p>Navegue até o diretório do arquivo <code>SOI.csv</code> e clique duas vezes sobre ele.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> soi_csv_file,
+<pre class="sourceCode r"><code class="sourceCode r">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> soi_csv_file,
                    <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(soi.df)
+                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(soi.df)
 <span class="co">#&gt;    ano mes  soi</span>
 <span class="co">#&gt; 1 1951   1  2.5</span>
 <span class="co">#&gt; 2 1951   2  1.5</span>
@@ -998,12 +1026,12 @@ soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
 <span class="co">#&gt; &#39;data.frame&#39;:    840 obs. of  3 variables:</span>
 <span class="co">#&gt;  $ ano: int  1951 1951 1951 1951 1951 1951 1951 1951 1951 1951 ...</span>
 <span class="co">#&gt;  $ mes: int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;  $ soi: num  2.5 1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 ...</span></code></pre></div>
+<span class="co">#&gt;  $ soi: num  2.5 1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 ...</span></code></pre>
 <p>A função <code>read.fortran()</code> é uma função similar à <code>read.fwf()</code> e permite usar especificações de colunas no estilo <a href="http://en.wikipedia.org/wiki/Fortran">Fortran</a>.</p>
 
 <div id="refs" class="references">
 <div>
-<p>Dasu, Tamraparni, and Theodore Johnson. 2003. “Data Quality.” In <em>Exploratory Data Mining and Data Cleaning</em>, edited by Walter A. Shewhart and Samuel S. Wilks, 99–137. Wiley-Blackwell. doi:<a href="https://doi.org/10.1002/0471448354.ch4">10.1002/0471448354.ch4</a>.</p>
+<p>Dasu, Tamraparni, and Theodore Johnson. 2003. “Data Quality.” In <em>Exploratory Data Mining and Data Cleaning</em>, edited by Walter A. Shewhart and Samuel S. Wilks, 99–137. Wiley-Blackwell. <a href="https://doi.org/10.1002/0471448354.ch4" class="uri">https://doi.org/10.1002/0471448354.ch4</a>.</p>
 </div>
 <div>
 <p>Gillespie, Colin, and Robin Lovelace. 2017. <em>Efficient R Programming: A Practical Guide to Smarter Programming</em>. 1st ed. O’Reilly Media, Inc.</p>
@@ -1021,16 +1049,16 @@ soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
 <p>Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Cheshire, CT: Graphics Press.</p>
 </div>
 <div>
-<p>Wickham, H. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>.</p>
+<p>Wickham, H. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10" class="uri">https://doi.org/10.18637/jss.v059.i10</a>.</p>
 </div>
 <div>
-<p>Wickham, H., and G. Grolemund. 2017. <em>R for Data Science</em>. O’Reilly Media. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
+<p>Wickham, Hadley. 2018. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
 </div>
 <div>
 <p>Wickham, H., R. Francois, L. Henry, and K. Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley. 2018. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+<p>Wickham, H., and G. Grolemund. 2017. <em>R for Data Science</em>. O’Reilly Media. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
 </div>
 <div>
 <p>Wilkinson, L., D. Wills, D. Rope, A. Norton, and R. Dubbs. 2005. <em>The Grammar of Graphics</em>. Statistics and Computing. Springer New York. <a href="https://books.google.com.br/books?id=\_kRX4LoFfGQC" class="uri">https://books.google.com.br/books?id=\_kRX4LoFfGQC</a>.</p>
@@ -1105,7 +1133,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

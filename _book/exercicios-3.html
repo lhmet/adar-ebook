@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -317,10 +345,10 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="exercicios-3" class="section level2">
 <h2><span class="header-section-number">9.5</span> Exercícios</h2>
 <p><strong>Pacotes necessários</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)
-easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)
+easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</code></pre>
 <p><strong>Dados</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)
 <span class="kw">download.file</span>(
   <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,
   <span class="dt">destfile =</span> arq_temp
@@ -330,15 +358,15 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <span class="co">#&gt;  [1] &quot;soi&quot;                &quot;precd_ncdf&quot;         &quot;poluentes&quot;         </span>
 <span class="co">#&gt;  [4] &quot;estacoes&quot;           &quot;dados_sm&quot;           &quot;dados_zorra&quot;       </span>
 <span class="co">#&gt;  [7] &quot;datas_comp&quot;         &quot;datas_obs&quot;          &quot;dados_rs_08_16&quot;    </span>
-<span class="co">#&gt; [10] &quot;info_emas_rs_08_16&quot;</span></code></pre></div>
+<span class="co">#&gt; [10] &quot;info_emas_rs_08_16&quot;</span></code></pre>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato &quot;arrumado&quot; e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soi 
+<pre class="sourceCode r"><code class="sourceCode r">soi 
 <span class="co">#&gt;   YEAR    1    2    3    4    5   6    7    8    9   10   11   12</span>
 <span class="co">#&gt; 1 1951  1.5  0.9 -0.1 -0.3 -0.7 0.2 -1.0 -0.2 -1.1 -1.0 -0.8 -0.7</span>
 <span class="co">#&gt; 2 1952 -0.9 -0.6  0.5 -0.2  0.8 0.7  0.5  0.1 -0.2  0.4  0.0 -1.2</span>
-<span class="co">#&gt; 3 1953  0.3 -0.5 -0.2  0.2 -1.7 0.1  0.0 -1.2 -1.2  0.1 -0.3 -0.5</span></code></pre></div>
+<span class="co">#&gt; 3 1953  0.3 -0.5 -0.2  0.2 -1.7 0.1  0.0 -1.2 -1.2  0.1 -0.3 -0.5</span></code></pre>
 <p>A estrutura esperada dos dados arrumados é mostrada abaixo:</p>
 <pre><code>#&gt; Observations: 36
 #&gt; Variables: 3
@@ -348,7 +376,7 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <ol start="2" style="list-style-type: decimal">
 <li>Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o <em>tibble</em> fornecido abaixo para o &quot;formato arrumado&quot;. No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe <em>date</em> usando a função <code>as.Date()</code>.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">precd_ncdf
+<pre class="sourceCode r"><code class="sourceCode r">precd_ncdf
 <span class="co">#&gt; # A tibble: 5 x 10</span>
 <span class="co">#&gt;       x     y X2010.01.01 X2010.01.02 X2010.01.03 X2010.01.04 X2010.01.05</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span>
@@ -358,7 +386,7 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <span class="co">#&gt; 4 -60.6  4.88           0           0           0       0.441       1.94 </span>
 <span class="co">#&gt; 5 -60.4  4.88           0           0           0       0.392       0.428</span>
 <span class="co">#&gt; # ... with 3 more variables: X2010.01.06 &lt;dbl&gt;, X2010.01.07 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   X2010.01.08 &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; #   X2010.01.08 &lt;dbl&gt;</span></code></pre>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>#&gt; Observations: 40
 #&gt; Variables: 4
@@ -369,14 +397,14 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <ol start="3" style="list-style-type: decimal">
 <li>Coloque os dados de poluição (<em>tibble</em> <code>poluentes</code>) no formato &quot;arrumado&quot;.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">poluentes
+<pre class="sourceCode r"><code class="sourceCode r">poluentes
 <span class="co">#&gt; # A tibble: 4 x 3</span>
 <span class="co">#&gt;   poluente duracao estacao</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;</span>
 <span class="co">#&gt; 1 ozone    1h            1</span>
 <span class="co">#&gt; 2 so2      1h            1</span>
 <span class="co">#&gt; 3 ozone    8h            2</span>
-<span class="co">#&gt; 4 no2      1h            4</span></code></pre></div>
+<span class="co">#&gt; 4 no2      1h            4</span></code></pre>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>#&gt; Observations: 3
 #&gt; Variables: 4
@@ -387,7 +415,7 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <ol start="4" style="list-style-type: decimal">
 <li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_sm
+<pre class="sourceCode r"><code class="sourceCode r">dados_sm
 <span class="co">#&gt; # A tibble: 12 x 35</span>
 <span class="co">#&gt;    id    element month  year    d1    d2    d3    d4    d5    d6    d7</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -407,7 +435,7 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <span class="co">#&gt; #   d12 &lt;dbl&gt;, d13 &lt;dbl&gt;, d14 &lt;dbl&gt;, d15 &lt;dbl&gt;, d16 &lt;dbl&gt;, d17 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   d18 &lt;dbl&gt;, d19 &lt;dbl&gt;, d20 &lt;dbl&gt;, d21 &lt;dbl&gt;, d22 &lt;dbl&gt;, d23 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   d24 &lt;dbl&gt;, d25 &lt;dbl&gt;, d26 &lt;dbl&gt;, d27 &lt;dbl&gt;, d28 &lt;dbl&gt;, d29 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   d30 &lt;dbl&gt;, d31 &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; #   d30 &lt;dbl&gt;, d31 &lt;dbl&gt;</span></code></pre>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>#&gt; Observations: 186
 #&gt; Variables: 6
@@ -419,17 +447,17 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 #&gt; $ tmin  &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...</code></pre>
 <hr />
 <ol start="5" style="list-style-type: decimal">
-<li>Com os dados obtidos na questão 4:</li>
-</ol>
+<li><p>Com os dados obtidos na questão 4:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>junte as colunas <code>year</code>, <code>month</code> e <code>day</code> em uma única coluna denominada <code>date</code> de forma que a classe dessa nova coluna seja <code>date</code>.</p></li>
 <li><p>Filtre os dados obtidos em <strong>(a)</strong> de forma a descobrir as datas em que as observações de <code>tmax</code> ou <code>tmin</code> são faltantes. Mostre o <em>tibble</em> filtrado com as datas e explique o porquê de seus valores.</p></li>
+</ol></li>
 </ol>
 <hr />
 <ol start="6" style="list-style-type: decimal">
 <li>A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato &quot;arrumado&quot; e as informações de data e horário agregadas em uma única variável da classe <em>POSIXct</em>.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_zorra
+<pre class="sourceCode r"><code class="sourceCode r">dados_zorra
 <span class="co">#&gt;         date tmax.0 tmax.600 tmax.1200 tmax.1800 tmin.0 tmin.600 tmin.1200</span>
 <span class="co">#&gt; 2 01-01-2010   22.1     21.0      26.4      27.0     16     13.5      18.2</span>
 <span class="co">#&gt; 3 02-01-2010   26.0     25.0      29.4      29.5     19     13.7      16.3</span>
@@ -439,7 +467,7 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <span class="co">#&gt; 2      24.1</span>
 <span class="co">#&gt; 3      22.3</span>
 <span class="co">#&gt; 4      26.0</span>
-<span class="co">#&gt; 5      23.0</span></code></pre></div>
+<span class="co">#&gt; 5      23.0</span></code></pre>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>#&gt; Observations: 16
 #&gt; Variables: 3
@@ -450,11 +478,11 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
 <ol start="7" style="list-style-type: decimal">
 <li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>etacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">estacoes
+<pre class="sourceCode r"><code class="sourceCode r">estacoes
 <span class="co">#&gt;   id      lat       lon</span>
 <span class="co">#&gt; 1  1 42.46757 -87.81005</span>
 <span class="co">#&gt; 2  2 42.04915 -88.27303</span>
-<span class="co">#&gt; 3  3 39.11054 -90.32408</span></code></pre></div>
+<span class="co">#&gt; 3  3 39.11054 -90.32408</span></code></pre>
 <p>Estrutura da tabela resultante:</p>
 <pre><code>#&gt; Observations: 3
 #&gt; Variables: 5
@@ -599,7 +627,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -321,13 +349,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="criacao-1" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Criação</h3>
 <p>Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor <code>temp_vetor</code> abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(
+<pre class="sourceCode r"><code class="sourceCode r">temp_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">27</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">17</span>,
   <span class="dv">9</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">29</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">26</span>,
   <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span>
-)</code></pre></div>
+)</code></pre>
 <p>O vetor <code>temp_vetor</code> pode ser convertido em um arranjo dos campos espaciais usando a função <code>array()</code>, com o argumento <code>dim</code> especificando as dimensões.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))
+<pre class="sourceCode r"><code class="sourceCode r">temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))
 temp_array
 <span class="co">#&gt; , , 1</span>
 <span class="co">#&gt; </span>
@@ -352,9 +380,9 @@ temp_array
 <span class="kw">dim</span>(temp_array)
 <span class="co">#&gt; [1] 3 4 3</span>
 <span class="kw">class</span>(temp_array)
-<span class="co">#&gt; [1] &quot;array&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;array&quot;</span></code></pre>
 <p>O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">45</span><span class="op">:</span><span class="dv">42</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">45</span><span class="op">:</span><span class="dv">42</span>)
 <span class="kw">rownames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">19</span><span class="op">:</span><span class="dv">21</span>)
 <span class="co"># nomes das dimensões</span>
 <span class="kw">dimnames</span>(temp_array)
@@ -388,12 +416,12 @@ temp_array
 <span class="co">#&gt;     -45 -44 -43 -42</span>
 <span class="co">#&gt; -19  11  17  26  20</span>
 <span class="co">#&gt; -20  18  13  21  14</span>
-<span class="co">#&gt; -21  19  17  22  17</span></code></pre></div>
+<span class="co">#&gt; -21  19  17  22  17</span></code></pre>
 </div>
 <div id="indexacao" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Indexação</h3>
 <p>Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices <code>A[linha, coluna, camada]</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
 temp_array[<span class="dv">1</span>, <span class="dv">1</span>, ]
 <span class="co">#&gt; Jan Fev Mar </span>
 <span class="co">#&gt;  18  18  11</span>
@@ -579,7 +607,7 @@ mat_temp
 <span class="co">#&gt; [117,]   3     17      13      9</span>
 <span class="co">#&gt; [118,]   3     18      20     10</span>
 <span class="co">#&gt; [119,]   3     19      25     11</span>
-<span class="co">#&gt; [120,]   3     20      19     12</span></code></pre></div>
+<span class="co">#&gt; [120,]   3     20      19     12</span></code></pre>
 </div>
 </div>
             </section>
@@ -634,7 +662,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

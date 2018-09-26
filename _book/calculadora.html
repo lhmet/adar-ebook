@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -320,7 +348,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="aritmetica-basica" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Aritmética básica</h3>
 <p>Todas operações feitas em uma calculadora podem ser realizadas na linha de comandos do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span>
 <span class="co">#&gt; [1] 16</span>
 <span class="co"># Exemplo de divisao </span>
 (<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">14</span>)<span class="op">/</span><span class="dv">2</span>
@@ -337,23 +365,23 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co">#&gt; [1] 1</span>
 <span class="co"># o inteiro do quociente </span>
 <span class="dv">11</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 5</span></code></pre></div>
+<span class="co">#&gt; [1] 5</span></code></pre>
 <div class="rmdwarning">
 <p>
 Note que no R, o separador decimal é o ponto “.”, ao invés da vírgula “,” usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.
 </p>
 </div>
 <p>Conheça mais operadores aritméticos, digitando na linha de comando:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="st">&quot;Arithmetic&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?<span class="st">&quot;Arithmetic&quot;</span></code></pre>
 <p>A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do <img src="images/logo_r.png" width="20">.</p>
 </div>
 <div id="constantes" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Constantes</h3>
 <p>O R possui algumas constantes pré-definidas, como o a constante pi (<span class="math inline">\(\pi\)</span>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi
-<span class="co">#&gt; [1] 3.141593</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">pi
+<span class="co">#&gt; [1] 3.141593</span></code></pre>
 <p>O <img src="images/logo_r.png" width="20"> também tem vetores de caracteres pré-definidos, são eles:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LETTERS
+<pre class="sourceCode r"><code class="sourceCode r">LETTERS
 <span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;</span>
 <span class="co">#&gt; [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span>
 letters
@@ -365,15 +393,15 @@ month.abb
 month.name
 <span class="co">#&gt;  [1] &quot;January&quot;   &quot;February&quot;  &quot;March&quot;     &quot;April&quot;     &quot;May&quot;      </span>
 <span class="co">#&gt;  [6] &quot;June&quot;      &quot;July&quot;      &quot;August&quot;    &quot;September&quot; &quot;October&quot;  </span>
-<span class="co">#&gt; [11] &quot;November&quot;  &quot;December&quot;</span></code></pre></div>
+<span class="co">#&gt; [11] &quot;November&quot;  &quot;December&quot;</span></code></pre>
 <p>Note que caracteres estão sempre entre aspas: <code>&quot;&quot;</code>.</p>
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
 “caracteres são entre aspas”
 </p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aeiou
-<span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;aeiou&#39; not found</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;aeiou&quot;</span>
-<span class="co">#&gt; [1] &quot;aeiou&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">aeiou
+<span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;aeiou&#39; not found</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;aeiou&quot;</span>
+<span class="co">#&gt; [1] &quot;aeiou&quot;</span></code></pre>
 </div>
 <div id="funcoes-matematicas-internas" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Funções matemáticas internas</h3>
@@ -382,7 +410,7 @@ month.name
 <code>funcão(argumento)</code>
 </p>
 <p>Por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># funções trigonométricas</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># funções trigonométricas</span>
 <span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">6</span>)
 <span class="co">#&gt; [1] 0.5</span>
 <span class="kw">cos</span>(pi)
@@ -395,10 +423,10 @@ month.name
 <span class="co">#&gt; [1] 2.718282</span>
 <span class="co"># fatorial</span>
 <span class="kw">factorial</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1] 24</span></code></pre></div>
+<span class="co">#&gt; [1] 24</span></code></pre>
 <p>No <img src="images/logo_r.png" width="20"> você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.</p>
 <p>Para ver a lista completa de funções trigonométricas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="st">&quot;Trig&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?<span class="st">&quot;Trig&quot;</span></code></pre>
 </div>
 <div id="valores-numericos-especiais" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> Valores numéricos especiais</h3>
@@ -456,7 +484,7 @@ month.name
 </tbody>
 </table>
 <p>Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="ot">Inf</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="ot">Inf</span>)
 <span class="co">#&gt; [1] 0</span>
 (<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>)<span class="op">^</span><span class="ot">Inf</span>
 <span class="co">#&gt; [1] 0 1</span>
@@ -465,7 +493,7 @@ month.name
 (<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span><span class="ot">Inf</span>)<span class="op">^</span><span class="dv">0</span>
 <span class="co">#&gt; [1] 1 1</span>
 <span class="dv">0</span><span class="op">^</span><span class="dv">0</span>
-<span class="co">#&gt; [1] 1</span></code></pre></div>
+<span class="co">#&gt; [1] 1</span></code></pre>
 <p>Outra constante especial do <img src="images/logo_r.png" width="20"> é o <code>NA</code> (<em>Not Available</em>) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo <code>NA</code> resultará em <code>NA</code> (Tabela <a href="calculadora.html#tab:tab-nas">5.2</a>).</p>
 <table>
 <caption><span id="tab:tab-nas">Table 5.2: </span>Operações com NA.</caption>
@@ -498,14 +526,14 @@ month.name
 <div id="notacao-cientifica-e-numero-de-digitos" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> Notação científica e número de dígitos</h3>
 <p>Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No <img src="images/logo_r.png" width="20"> há diferentes formas de representar números com expoentes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1.2e-6</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1.2e-6</span>
 <span class="co">#&gt; [1] 1.2e-06</span>
 <span class="co"># expressões equivalentes</span>
 <span class="fl">1.2E6</span>; <span class="fl">1.2</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>  
 <span class="co">#&gt; [1] 1200000</span>
-<span class="co">#&gt; [1] 1200000</span></code></pre></div>
+<span class="co">#&gt; [1] 1200000</span></code></pre>
 <p>Os resultados dos cálculos no <img src="images/logo_r.png" width="20"> são mostrados com 7 dígitos significativos, o que pode ser verificado pela <code>getOptions()</code>. É possível mudar para <code>n</code> dígitos usando a função <code>options()</code>, conforme exemplo abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># opção de dígitos padrão</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># opção de dígitos padrão</span>
 <span class="kw">getOption</span>(<span class="st">&quot;digits&quot;</span>)
 <span class="co">#&gt; [1] 7</span>
 <span class="kw">exp</span>(<span class="dv">1</span>)
@@ -519,7 +547,7 @@ month.name
 <span class="co"># redefinindo para o número de casas decimais padrão</span>
 <span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">7</span>)
 <span class="kw">getOption</span>(<span class="st">&quot;digits&quot;</span>)
-<span class="co">#&gt; [1] 7</span></code></pre></div>
+<span class="co">#&gt; [1] 7</span></code></pre>
 </div>
 </div>
             </section>
@@ -574,7 +602,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

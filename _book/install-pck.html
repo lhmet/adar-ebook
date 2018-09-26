@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -324,9 +352,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>A forma mais fácil de instalar uma pacote do R é através da função <code>install.packages(&quot;nome_do_pacote&quot;)</code>.</p>
 <p>Por <em>default</em> o pacote informado é instalado a partir da (<a href="https://cran.r-project.org/">CRAN</a>)</p>
 <p>A seguir você verá como instalar um pacote. Como exemplo instalaremos o pacote <strong>remotes</strong> que dispões de funções para instalar pacotes de repositórios remotos, como por exemplo do <a href="https://github.com/">GitHub</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</code></pre>
 <p>Para ter acesso as funções disponibilizadas com o pacote você precisa carregar o pacote:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(remotes)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(remotes)</code></pre>
 <p>Apesar de precisar só instalar uma vez um pacote, você precisará carregá-lo a cada nova sessão.</p>
 <p>Para desinstalar um pacote você pode usar a função <code>remove.packages(&quot;nome_do_pacote&quot;)</code>.</p>
 </div>
@@ -335,12 +363,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibilizam seus pacotes em plataformas como o <a href="https://github.com/">GitHub</a> e <a href="https://r-forge.r-project.org/">R-forge</a>. As vezes um pacote pode estar em ambos CRAN e GitHub (ou R-forge), mas a última versão - a de desenvolvimento - é somente disponibilizada no GitHub (ou R-forge).</p>
 <p>Para instalar um pacote de um repositório do GitHub usa-se a função <code>install_github()</code> do pacote <strong>remotes</strong>. Portanto, o pacote <strong>remotes</strong> precisa ser sido instalado primeiro (ver seção <a href="install-pck.html#install-cran">2.2.1.1</a>).</p>
 <p>A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote <code>inmetr</code> do repositório mantido pelo <a href="https://github.com/lhmet">lhmet</a>, usa-se:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;devtools&quot;)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;devtools&quot;)</span>
 <span class="co"># carrega o pacote devtools</span>
 <span class="kw">library</span>(remotes)
 <span class="co"># instala o pacote inmetr do repositório </span>
 <span class="co"># https://github.com/lhmet/inmetr </span>
-<span class="kw">install_github</span>(<span class="st">&quot;lhmet/inmetr&quot;</span>)</code></pre></div>
+<span class="kw">install_github</span>(<span class="st">&quot;lhmet/inmetr&quot;</span>)</code></pre>
 <div class="rmdtip">
 <p>
 Você pode acessar uma função de um pacote instalado com a forma especial <code>pacote::funcao</code>. O trecho de código anterior poderia ser reduzido a:
@@ -356,18 +384,18 @@ As vezes você pode estar com diversos pacotes carregados e eles podem ter funç
 </p>
 </div>
 <p>Para instalar um pacote num repositório do R-forge, por exemplo o repositório do pacote <a href="https://r-forge.r-project.org/projects/raster/">raster</a>, usa-se:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(
   <span class="st">&quot;raster&quot;</span>,  
   <span class="dt">repos =</span> <span class="st">&quot;http://R-Forge.R-project.org&quot;</span>,
   <span class="dt">dependencies =</span> <span class="ot">TRUE</span>
-)</code></pre></div>
+)</code></pre>
 <p>Alguns pacotes as vezes dependem de outros pacotes e para lidar com essas dependências define-se o argumento <code>dependencies = TRUE</code> na função <code>install.packages()</code>, como no trecho de código anterior. A função automaticamente resolverá as dependências do pacote, de forma que qualquer pacote dependente também será instalado.</p>
 </div>
 <div id="arquivo-fonte-local" class="section level4">
 <h4><span class="header-section-number">2.2.1.3</span> Arquivo fonte local</h4>
 <p>Códigos fonte de pacotes do R são armazenados como arquivos com a extensão <code>.tar.gz</code>. Binários compilados são armazenados com a extensão <code>.zip</code>. Exemplo de arquivos como estes podem ser baixados manualmente da CRAN (veja a seção Downloads em <a href="https://cran.r-project.org/web/packages/ggplot2/index.html" class="uri">https://cran.r-project.org/web/packages/ggplot2/index.html</a>), GitHub ou R-forge.</p>
 <p>Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito com a função <code>install.packages()</code>, especificando o argumento <code>repos = NULL</code> e o argumento <code>pkgs</code> com o caminho do arquivo. Por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2_2.1.0.tar.gz&quot;</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2_2.1.0.tar.gz&quot;</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>)</code></pre>
 </div>
 </div>
 </div>
@@ -423,7 +451,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

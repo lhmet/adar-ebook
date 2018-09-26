@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -320,15 +348,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="funcionalidades-do-tibble" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Funcionalidades do <em>tibble</em></h3>
 <p>Para ilustrar algumas vantagens do <em>tibble</em>, vamos usar o <em>data frame</em> <code>prec_anual</code>. A criação destes dados como <em>tibble</em> é feita com a função de mesmo nome do pacote: <code>tibble::tibble()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">site =</span> <span class="kw">c</span>(
     <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
   ),
   <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
   <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
-)</code></pre></div>
+)</code></pre>
 <p>O exemplo acima é ilustrativo, pois um <em>data frame</em> pode ser convertido em um <em>tibble</em> simplesmente com a função <code>tibble::as_tibble()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)
+<pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)
 prec_anual_tbl
 <span class="co">#&gt; # A tibble: 8 x 3</span>
 <span class="co">#&gt;   site    ano  prec</span>
@@ -340,19 +368,19 @@ prec_anual_tbl
 <span class="co">#&gt; 5 A002   2002  1630</span>
 <span class="co">#&gt; 6 A003   2004  1300</span>
 <span class="co">#&gt; 7 A803   2005  1950</span>
-<span class="co">#&gt; 8 A803   2006  1100</span></code></pre></div>
+<span class="co">#&gt; 8 A803   2006  1100</span></code></pre>
 <p>Com o <em>tibble</em> acima, as principais diferenças entre um <em>tibble</em> e um <em>data frame</em> podem ser enfatizadas.</p>
 <ul>
 <li><p>quando impresso no console do R, o <em>tibble</em> já mostra a classe de cada variável.</p></li>
 <li><p>vetores caracteres não são interpretados como <em>factors</em> em um <em>tibble</em>, em contraste a <code>base::data.frame()</code> que faz a coerção para <em>factor</em> e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores.</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>))
 <span class="co">#&gt; &#39;data.frame&#39;:    1 obs. of  1 variable:</span>
-<span class="co">#&gt;  $ temp..do.ar: Factor w/ 1 level &quot;18&quot;: 1</span></code></pre></div>
+<span class="co">#&gt;  $ temp..do.ar: Factor w/ 1 level &quot;18&quot;: 1</span></code></pre>
 <ul>
 <li>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>; veja o exemplo abaixo, onde a <code>int prec</code>(intensidade da precipitação) é baseada na razão da precipitação (<code>prec</code>) pelo número de dias no ano.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">site =</span> <span class="kw">c</span>(
     <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
   ),
@@ -371,11 +399,11 @@ prec_anual_tbl
 <span class="co">#&gt; 5 A002   2002  1630       4.46</span>
 <span class="co">#&gt; 6 A003   2004  1300       3.56</span>
 <span class="co">#&gt; 7 A803   2005  1950       5.34</span>
-<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre></div>
+<span class="co">#&gt; 8 A803   2006  1100       3.01</span></code></pre>
 <ul>
 <li>nunca adiciona nomes às linhas (<code>row.names</code>)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nomes das linhas de um data frame são carregados adiante</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nomes das linhas de um data frame são carregados adiante</span>
 <span class="kw">subset</span>(prec_anual, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)
 <span class="co">#&gt;   site  ano prec</span>
 <span class="co">#&gt; 2 A001 2001 1400</span>
@@ -386,24 +414,24 @@ prec_anual_tbl
 <span class="co">#&gt;   site    ano  prec `int prec`</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 A001   2001  1400       3.83</span>
-<span class="co">#&gt; 2 A002   2001  1470       4.02</span></code></pre></div>
+<span class="co">#&gt; 2 A002   2001  1470       4.02</span></code></pre>
 <ul>
 <li>a impressão de um <em>tibble</em> mostra as dez primeiras linhas e a quantidade de colunas mostradas é ajustada ao tamanho da janela do console.</li>
 </ul>
 <p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> no console pode ser configuradas através da função de opções de configuração global do R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">15</span>
+<pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">15</span>
 n &lt;-<span class="st"> </span><span class="dv">3</span>
 <span class="kw">options</span>(
   <span class="dt">tibble.print_max =</span> m,
   <span class="dt">tibble.print_min =</span> n
-)</code></pre></div>
+)</code></pre>
 <p>Com a configuração acima, será impresso no console do R <code>n = 3</code> linhas do <em>tibble</em> se ele tiver mais de <code>m = 15</code> linhas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>
 <span class="co">#&gt; [1] TRUE</span>
 <span class="co"># coersão do data.frame clima_rs para tibble</span>
-clima_rs_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(clima_rs)</code></pre></div>
+clima_rs_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(clima_rs)</code></pre>
 <p>Para restaurar as opções <em>default</em> use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
   <span class="dt">tibble.print_max =</span> <span class="ot">NULL</span>,
   <span class="dt">tibble.print_min =</span> <span class="ot">NULL</span>
 )
@@ -421,18 +449,18 @@ clima_rs_tbl
 <span class="co">#&gt;  8 83964  Encruzilhada do Sul RS    1511.  22.5</span>
 <span class="co">#&gt;  9 83915  Guaporé             RS    1759.  24.7</span>
 <span class="co">#&gt; 10 83881  Iraí                RS    1807.  27.1</span>
-<span class="co">#&gt; # ... with 13 more rows</span></code></pre></div>
+<span class="co">#&gt; # ... with 13 more rows</span></code></pre>
 <p>Uma alternativa útil para inspecionar mais detalhadamente os dados é a função <code>tibble::glimpse()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(clima_rs)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(clima_rs)
 <span class="co">#&gt; Observations: 23</span>
 <span class="co">#&gt; Variables: 5</span>
 <span class="co">#&gt; $ codigo  &lt;chr&gt; &quot;83931&quot;, &quot;83980&quot;, &quot;83941&quot;, &quot;83919&quot;, &quot;83963&quot;, &quot;83942&quot;, ...</span>
 <span class="co">#&gt; $ estacao &lt;chr&gt; &quot;Alegrete&quot;, &quot;Bagé&quot;, &quot;Bento Gonçalves&quot;, &quot;Bom Jesus&quot;, &quot;C...</span>
 <span class="co">#&gt; $ uf      &lt;chr&gt; &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, &quot;RS&quot;, ...</span>
 <span class="co">#&gt; $ prec    &lt;dbl&gt; 1492.2, 1299.9, 1683.7, 1807.3, 1477.1, 1823.0, 1630.7...</span>
-<span class="co">#&gt; $ tmax    &lt;dbl&gt; 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, ...</span></code></pre></div>
+<span class="co">#&gt; $ tmax    &lt;dbl&gt; 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, ...</span></code></pre>
 <p>Lembre-se também, da função <code>utils::View()</code> para visualizar os dados no RStudio.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(clima_rs)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(clima_rs)</code></pre>
 <p>Outros aspectos diferencias do <em>tibble</em> podem consultados na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
 </div>
 </div>
@@ -488,7 +516,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

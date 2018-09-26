@@ -54,17 +54,14 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> + ggplot2 3.0.0.9000        Date: 2018-08-26
-#> + tibble  1.4.2                R: 3.4.4
-#> + tidyr   0.8.1               OS: Ubuntu 14.04.5 LTS
-#> + readr   1.1.1              GUI: X11
-#> + purrr   0.2.5           Locale: en_US.UTF-8
-#> + dplyr   0.7.6               TZ: America/Sao_Paulo
-#> + stringr 1.3.1           
-#> + forcats 0.3.0
-#> ── Conflicts ────────────────────────────────────────────────────
-#> * filter(),  from dplyr, masks stats::filter()
-#> * lag(),     from dplyr, masks stats::lag()
+#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.0.0           ✔ purrr   0.2.5      
+#> ✔ tibble  1.4.2           ✔ dplyr   0.7.99.9000
+#> ✔ tidyr   0.8.1           ✔ stringr 1.3.1      
+#> ✔ readr   1.2.0           ✔ forcats 0.3.0
+#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 ```
 
 <div class="rmdnote">

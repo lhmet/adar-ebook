@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-09-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,44 +50,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -319,18 +347,18 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="scan" class="section level3">
 <h3><span class="header-section-number">B.1.1</span> scan()</h3>
 <p>Nós podemos informar os números de um vetor a partir do teclado, um de cada vez usando e quando terminar teclar enter:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 v1 &lt;-<span class="st"> </span><span class="kw">scan</span>()
-<span class="co"># digite os números do v1, ao terminar, tecle enter</span></code></pre></div>
+<span class="co"># digite os números do v1, ao terminar, tecle enter</span></code></pre>
 <p>A função <code>scan()</code> também pode ler dados de arquivos, mas a sua saída é um vetor, ou seja ela não mantém a estrutura dos dados contidos no arquivo.</p>
 <p>Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o uso da <code>scan()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download dados de exemplo</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download dados de exemplo</span>
 aq_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt&quot;</span>
 <span class="co"># arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
 (aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp0MbM1W/file32cd213a88b3&quot;</span>
-<span class="kw">download.file</span>(aq_url, <span class="dt">destfile =</span> aq_dest_file)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
+<span class="co">#&gt; [1] &quot;/tmp/RtmpqyBJGR/file2dc413a83fe9&quot;</span>
+<span class="kw">download.file</span>(aq_url, <span class="dt">destfile =</span> aq_dest_file)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(aq_dest_file)
 <span class="co"># parte inicial dos dados</span>
 <span class="kw">head</span>(vetor_aq, <span class="dv">100</span>)
@@ -360,9 +388,9 @@ vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(aq_dest_file
 <span class="kw">is.vector</span>(vetor_aq)
 <span class="co">#&gt; [1] TRUE</span>
 <span class="kw">mode</span>(vetor_aq)
-<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre>
 <p>Vimos que <code>dataframes</code> são geralmente criados pela função <code>data.frame</code>, conforme o exemplo abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: dataframe</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: dataframe</span>
 dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),
   <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;Santa Maria&quot;</span>, <span class="st">&quot;Sao Sepe&quot;</span>, <span class="st">&quot;Caçapava&quot;</span>),
@@ -373,17 +401,17 @@ dados
 <span class="co">#&gt;        dates      cidade temperatura chuva</span>
 <span class="co">#&gt; 1 2013-01-01 Santa Maria          31     3</span>
 <span class="co">#&gt; 2 2013-01-01    Sao Sepe          35    10</span>
-<span class="co">#&gt; 3 2013-01-01    Caçapava          21    14</span></code></pre></div>
+<span class="co">#&gt; 3 2013-01-01    Caçapava          21    14</span></code></pre>
 </div>
 <div id="readline" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> readline()</h3>
 <p>Para ler apenas uma linha de dados a partir do teclado como <code>character</code> usamos a função <strong><code>readline()</code></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sentenca &lt;-<span class="st"> </span><span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;digite alguma coisa e tecle enter para continuar: &quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">sentenca &lt;-<span class="st"> </span><span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;digite alguma coisa e tecle enter para continuar: &quot;</span>)
 <span class="co">#&gt; digite alguma coisa e tecle enter para continuar:</span>
 sentenca
-<span class="co">#&gt; [1] &quot;&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;&quot;</span></code></pre>
 <p>Esta função pode ser utilizada como uma forma de controlar um <em>looping</em>. Esse exemplo ilustra o uso da função <code>lapply()</code> para execução de laços ou <em>loopings</em> ao longo de um vetor de índices. Essa função será vista futuramente no curso.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para reprodutibilidade</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para reprodutibilidade</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
 <span class="co"># looping ao longo da sequência de 1 a 5</span>
 l &lt;-<span class="st"> </span><span class="kw">sapply</span>(
@@ -399,20 +427,20 @@ l &lt;-<span class="st"> </span><span class="kw">sapply</span>(
     <span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;tecle &lt;enter&gt; para continuar: &quot;</span>)
   }
 )
-l</code></pre></div>
+l</code></pre>
 </div>
 <div id="impressao-na-tela" class="section level3">
 <h3><span class="header-section-number">B.1.3</span> Impressão na tela</h3>
 <p>No modo interativo do R podemos imprimir os valores de um objeto na tela digitando o nome do objeto.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
 y &lt;-<span class="st"> </span>x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>
 y
 <span class="co">#&gt; [1] 1 4 9</span>
 <span class="co"># ou</span>
 <span class="kw">print</span>(x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)
-<span class="co">#&gt; [1] 1 4 9</span></code></pre></div>
+<span class="co">#&gt; [1] 1 4 9</span></code></pre>
 <p>Entretanto isso não é possível quando precisamos mostrar o valor de uma variável dentro do corpo de uma função ou dentro de um laço (<em>looping</em>). Nesse caso podemos usar a função <code>print()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dentro de uma função</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dentro de uma função</span>
 <span class="co"># digitando o nome do objeto não imprimi na tela</span>
 fcubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
   classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)
@@ -433,11 +461,11 @@ cubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
 <span class="co">#&gt; [1] -27</span>
 <span class="kw">cubo</span>(<span class="op">-</span><span class="dv">3</span>) <span class="co"># imprime classe do objeto de entrada</span>
 <span class="co">#&gt; [1] &quot;numeric&quot;</span>
-<span class="co">#&gt; [1] -27</span></code></pre></div>
+<span class="co">#&gt; [1] -27</span></code></pre>
 <div id="cat-ao-inves-de-print" class="section level4">
 <h4><span class="header-section-number">B.1.3.1</span> <code>cat()</code> ao invés de <code>print()</code></h4>
 <p>É melhor usar a função <code>cat()</code> ao invés da função <code>print()</code>, já que a <code>print()</code> permite a impressão de apenas um único objeto enquanto a <code>cat()</code> não. Compare os resultados das duas funções:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;abc&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;abc&quot;</span>)
 <span class="co">#&gt; [1] &quot;abc&quot;</span>
 <span class="kw">cat</span>(<span class="st">&quot;abc</span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="co"># \n indica quebra de linha</span>
 <span class="co">#&gt; abc</span>
@@ -455,7 +483,7 @@ x
 k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">8</span>, <span class="dv">88</span>)
 <span class="kw">cat</span>(k, <span class="dt">sep =</span> <span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;___&quot;</span>, <span class="st">&quot; ---&gt; &quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
 <span class="co">#&gt; 5.12___13 ---&gt; 8</span>
-<span class="co">#&gt; 88</span></code></pre></div>
+<span class="co">#&gt; 88</span></code></pre>
 </div>
 </div>
 <div id="textconnection" class="section level3">
@@ -466,7 +494,7 @@ k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</sp
 2013-01-01 SS          30    10
 2013-01-01 CV          22    12</code></pre>
 <p>Para converter essa pequena amostra de dados em um <em>dataframe</em> nós podemos selecionar, copiar e colar o texto no primeiro argumento da função <code>textConnection</code>, e então usar a função <code>read.table</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">texto &lt;-<span class="st"> &quot;       dates      cidade temperatura chuva</span>
+<pre class="sourceCode r"><code class="sourceCode r">texto &lt;-<span class="st"> &quot;       dates      cidade temperatura chuva</span>
 <span class="st">    2013-01-01 SM          31     3</span>
 <span class="st">    2013-01-01 SS          35    10</span>
 <span class="st">    2013-01-01 CV          21    14&quot;</span>
@@ -486,7 +514,7 @@ x
 <span class="co">#&gt;        dates cidade temperatura chuva</span>
 <span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
 <span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
-<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre></div>
+<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre>
 </div>
 </div>
             </section>
@@ -541,7 +569,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
