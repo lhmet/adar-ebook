@@ -54,12 +54,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 3.0.0           ✔ purrr   0.2.5      
-#> ✔ tibble  1.4.2           ✔ dplyr   0.7.99.9000
-#> ✔ tidyr   0.8.1           ✔ stringr 1.3.1      
-#> ✔ readr   1.2.0           ✔ forcats 0.3.0
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+#> ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+#> ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+#> ✔ readr   1.1.1     ✔ forcats 0.4.0
+#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
 ```
@@ -328,7 +328,7 @@ options(
 clima_rs_tbl
 #> # A tibble: 23 x 5
 #>    codigo estacao             uf     prec  tmax
-#>  * <chr>  <chr>               <chr> <dbl> <dbl>
+#>    <chr>  <chr>               <chr> <dbl> <dbl>
 #>  1 83931  Alegrete            RS    1492.  25.4
 #>  2 83980  Bagé                RS    1300.  24.1
 #>  3 83941  Bento Gonçalves     RS    1684.  23  
@@ -339,7 +339,7 @@ clima_rs_tbl
 #>  8 83964  Encruzilhada do Sul RS    1511.  22.5
 #>  9 83915  Guaporé             RS    1759.  24.7
 #> 10 83881  Iraí                RS    1807.  27.1
-#> # ... with 13 more rows
+#> # … with 13 more rows
 ```
 
 
@@ -350,11 +350,11 @@ Uma alternativa útil para inspecionar mais detalhadamente os dados é a funçã
 glimpse(clima_rs)
 #> Observations: 23
 #> Variables: 5
-#> $ codigo  <chr> "83931", "83980", "83941", "83919", "83963", "83942", ...
-#> $ estacao <chr> "Alegrete", "Bagé", "Bento Gonçalves", "Bom Jesus", "C...
-#> $ uf      <chr> "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", ...
-#> $ prec    <dbl> 1492.2, 1299.9, 1683.7, 1807.3, 1477.1, 1823.0, 1630.7...
-#> $ tmax    <dbl> 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, ...
+#> $ codigo  <chr> "83931", "83980", "83941", "83919", "83963", "83942", "8…
+#> $ estacao <chr> "Alegrete", "Bagé", "Bento Gonçalves", "Bom Jesus", "Cac…
+#> $ uf      <chr> "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", "R…
+#> $ prec    <dbl> 1492.2, 1299.9, 1683.7, 1807.3, 1477.1, 1823.0, 1630.7, …
+#> $ tmax    <dbl> 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, 27…
 ```
 
 
@@ -552,7 +552,7 @@ prec_anual_longo
 #>  8 site     A803 
 #>  9 ano      2000 
 #> 10 ano      2001 
-#> # ... with 22 more rows
+#> # … with 22 more rows
 ```
 
 Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função `tidyr::gather()`, serão atribuídos os valores *default*: `key` e `value`.
@@ -573,7 +573,7 @@ gather(prec_anual_tbl)
 #>  8 site  A803 
 #>  9 ano   2000 
 #> 10 ano   2001 
-#> # ... with 22 more rows
+#> # … with 22 more rows
 ```
 
 
@@ -727,7 +727,7 @@ prec_anual_comp
 #>  8 A002   2001  1470
 #>  9 A002   2002  1630
 #> 10 A002   2004    NA
-#> # ... with 14 more rows
+#> # … with 14 more rows
 ```
 
 
@@ -912,7 +912,7 @@ Para selecionar somente variáveis de interesse em uma tabela de dados podemos u
 select(clima_rs_tbl, estacao, tmax)
 #> # A tibble: 23 x 2
 #>    estacao              tmax
-#>  * <chr>               <dbl>
+#>    <chr>               <dbl>
 #>  1 Alegrete             25.4
 #>  2 Bagé                 24.1
 #>  3 Bento Gonçalves      23  
@@ -923,7 +923,7 @@ select(clima_rs_tbl, estacao, tmax)
 #>  8 Encruzilhada do Sul  22.5
 #>  9 Guaporé              24.7
 #> 10 Iraí                 27.1
-#> # ... with 13 more rows
+#> # … with 13 more rows
 ```
 
 O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
@@ -1297,7 +1297,7 @@ prec_anual_comp %>%
 #>  8 A002   2001  1470   365        4.03
 #>  9 A002   2002  1630   365        4.47
 #> 10 A002   2004  1550   366        4.23
-#> # ... with 14 more rows
+#> # … with 14 more rows
 
 prec_anual_comp %>%
   # preenche com  a observação prévia
@@ -1315,7 +1315,7 @@ prec_anual_comp %>%
 #>  8 A002   2001  1470
 #>  9 A002   2002  1630
 #> 10 A002   2004  1630
-#> # ... with 14 more rows
+#> # … with 14 more rows
 
 prec_anual_comp %>%
   # preenche com  a observação posterior
@@ -1333,7 +1333,7 @@ prec_anual_comp %>%
 #>  8 A002   2001  1470
 #>  9 A002   2002  1630
 #> 10 A002   2004  1300
-#> # ... with 14 more rows
+#> # … with 14 more rows
 ```
 
 
@@ -1384,6 +1384,18 @@ clima_rs_tbl %>%
     .funs = funs(min, median, max),
     na.rm = TRUE
   )
+#> Warning: funs() is soft deprecated as of dplyr 0.8.0
+#> Please use a list of either functions or lambdas: 
+#> 
+#>   # Simple named list: 
+#>   list(mean = mean, median = median)
+#> 
+#>   # Auto named with `tibble::lst()`: 
+#>   tibble::lst(mean, median)
+#> 
+#>   # Using lambdas
+#>   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+#> This warning is displayed once per session.
 #> # A tibble: 1 x 6
 #>   prec_min tmax_min prec_median tmax_median prec_max tmax_max
 #>      <dbl>    <dbl>       <dbl>       <dbl>    <dbl>    <dbl>
@@ -1417,7 +1429,7 @@ prec_anual_comp_rep
 #>  8 A002   1470
 #>  9 A002   1630
 #> 10 A002   1300
-#> # ... with 14 more rows
+#> # … with 14 more rows
 ```
 
 Para desconsiderar linhas duplicadas nos dados usamos a função `dplyr::distinct()`:
@@ -1663,7 +1675,7 @@ clima_rs_tbl %>%
   filter(., ! codigo %in% metadados_rs$codigo ) %>%
   select(., codigo)
 #> # A tibble: 0 x 1
-#> # ... with 1 variable: codigo <chr>
+#> # … with 1 variable: codigo <chr>
 ```
 
 Não há nenhum caso.
@@ -1848,7 +1860,7 @@ right_join(
 #>  8 83912    NA   NA   -53.6 -28.6  472. 
 #>  9 83964    NA   NA   -52.5 -30.5  428. 
 #> 10 83915    NA   NA   -51.9 -28.9  472. 
-#> # ... with 20 more rows
+#> # … with 20 more rows
 ```
 
 ## Exercícios
@@ -1901,9 +1913,9 @@ A estrutura esperada dos dados arrumados é mostrada abaixo:
 ```
 #> Observations: 36
 #> Variables: 3
-#> $ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 195...
-#> $ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, ...
-#> $ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, ...
+#> $ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951,…
+#> $ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7,…
+#> $ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, -0…
 ```
 
 
@@ -1920,7 +1932,7 @@ precd_ncdf
 #> 3 -60.1  5.12           0           0           0       0.579       2.01 
 #> 4 -60.6  4.88           0           0           0       0.441       1.94 
 #> 5 -60.4  4.88           0           0           0       0.392       0.428
-#> # ... with 3 more variables: X2010.01.06 <dbl>, X2010.01.07 <dbl>,
+#> # … with 3 more variables: X2010.01.06 <dbl>, X2010.01.07 <dbl>,
 #> #   X2010.01.08 <dbl>
 ```
 
@@ -1934,10 +1946,10 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 ```
 #> Observations: 40
 #> Variables: 4
-#> $ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60...
-#> $ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4...
-#> $ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-...
-#> $ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0....
+#> $ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60.3…
+#> $ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4.8…
+#> $ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01…
+#> $ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.00…
 ```
 
 3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
@@ -1989,7 +2001,7 @@ dados_sm
 #> 10 83936 tmin        5  2010   7.2   7    13    16.2  14.1  11.5  14.4
 #> 11 83936 tmax        6  2010  19.2  23.8  17.2  18.6  21.2  20.2  17.8
 #> 12 83936 tmin        6  2010   4.1   8.8   9.1  15.2  11.4   6.1   6.3
-#> # ... with 24 more variables: d8 <dbl>, d9 <dbl>, d10 <dbl>, d11 <dbl>,
+#> # … with 24 more variables: d8 <dbl>, d9 <dbl>, d10 <dbl>, d11 <dbl>,
 #> #   d12 <dbl>, d13 <dbl>, d14 <dbl>, d15 <dbl>, d16 <dbl>, d17 <dbl>,
 #> #   d18 <dbl>, d19 <dbl>, d20 <dbl>, d21 <dbl>, d22 <dbl>, d23 <dbl>,
 #> #   d24 <dbl>, d25 <dbl>, d26 <dbl>, d27 <dbl>, d28 <dbl>, d29 <dbl>,
@@ -2007,12 +2019,12 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 ```
 #> Observations: 186
 #> Variables: 6
-#> $ id    <chr> "83936", "83936", "83936", "83936", "83936", "83936", "8...
-#> $ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-#> $ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20...
-#> $ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...
-#> $ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31...
-#> $ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22...
+#> $ id    <chr> "83936", "83936", "83936", "83936", "83936", "83936", "839…
+#> $ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+#> $ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010…
+#> $ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+#> $ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31.8…
+#> $ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22.4…
 ```
 
 
@@ -2063,9 +2075,9 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 ```
 #> Observations: 16
 #> Variables: 3
-#> $ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:...
-#> $ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26....
-#> $ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14....
+#> $ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:00…
+#> $ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26.3,…
+#> $ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1,…
 ```
 
 
@@ -2113,7 +2125,7 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 8
 #> Variables: 2
-#> $ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07...
+#> $ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-1…
 #> $ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
 ```
 
@@ -2127,7 +2139,7 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 7
 #> Variables: 2
-#> $ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07...
+#> $ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-1…
 #> $ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
 ```
 
@@ -2145,11 +2157,11 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 42
 #> Variables: 5
-#> $ site        <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A...
-#> $ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.5027...
-#> $ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12...
-#> $ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12...
-#> $ periodo_err <dbl> 9.0081050, 9.0081050, 9.0081050, 0.5039954, 9.0081...
+#> $ site        <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A80…
+#> $ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.502732…
+#> $ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-3…
+#> $ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-3…
+#> $ periodo_err <dbl> 9.0081050, 9.0081050, 9.0081050, 0.5039954, 9.008105…
 ```
 
 
@@ -2164,12 +2176,12 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 42
 #> Variables: 6
-#> $ site <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809", "...
-#> $ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 9...
-#> $ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 9...
-#> $ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 9...
-#> $ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 5...
-#> $ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 7...
+#> $ site <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809", "A8…
+#> $ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 96,…
+#> $ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 96,…
+#> $ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 96,…
+#> $ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 51,…
+#> $ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 75,…
 ```
 
 
@@ -2183,13 +2195,13 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 42
 #> Variables: 7
-#> $ site     <chr> "A894", "A886", "A801", "A884", "A839", "A889", "A879...
-#> $ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96,...
-#> $ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, ...
-#> $ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96,...
-#> $ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 5...
-#> $ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 9...
-#> $ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6,...
+#> $ site     <chr> "A894", "A886", "A801", "A884", "A839", "A889", "A879",…
+#> $ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96, 9…
+#> $ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, 97…
+#> $ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96, 9…
+#> $ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 50,…
+#> $ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 97,…
+#> $ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6, 8…
 ```
 
 
@@ -2207,9 +2219,9 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 24
 #> Variables: 3
-#> $ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
-#> $ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15...
-#> $ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96...
+#> $ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+#> $ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15.7…
+#> $ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96.1…
 ```
 
 
@@ -2225,8 +2237,8 @@ Estrutura da tabela de dados resultante:
 ```
 #> Observations: 24
 #> Variables: 2
-#> $ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 1...
-#> $ n      <int> 720, 561, 438, 311, 196, 190, 123, 90, 75, 60, 47, 29, ...
+#> $ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 11,…
+#> $ n      <int> 720, 561, 438, 311, 196, 190, 123, 90, 75, 60, 47, 29, 28…
 ```
 
 
