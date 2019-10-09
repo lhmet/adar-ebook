@@ -25,7 +25,7 @@
 <meta name="author" content="Jônatan Tatsch">
 
 
-<meta name="date" content="2019-10-04">
+<meta name="date" content="2019-10-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -492,15 +492,15 @@ hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar
 <span class="co"># caminho de destino para o aquivo baixado</span>
 <span class="co"># alterando a extensão de TXT para csv</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zO/file5f5b5971de64&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVc/file3ec21b97adad&quot;</span>
 (hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zO/file5f5b5971de64.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVc/file3ec21b97adad.csv&quot;</span>
 <span class="kw">download.file</span>(
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )
 hidroweb_dest_file
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zO/file5f5b5971de64.csv&quot;</span></code></pre>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVc/file3ec21b97adad.csv&quot;</span></code></pre>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importa o arquivo </span>
 dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest_file, 
@@ -532,9 +532,9 @@ dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hidroweb_dest
 <p>Para exportar os dados importados anteriormente, vamos criar um nome para salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar a funcionalidade do <strong>rio</strong>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exporta para arquivo texto separado por tab</span>
 (arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zO/file5f5b25c59b1c&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVc/file3ec222f4081&quot;</span>
 (dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zO/file5f5b25c59b1c.tsv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVc/file3ec222f4081.tsv&quot;</span>
 <span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</code></pre>
 </div>
 <div id="arquivos-fwf" class="section level4">
@@ -595,7 +595,7 @@ nome_vars
 <span class="co">#&gt; 66 2016 -3.6 -3.2 -0.1 -2.0  0.7  1.1  0.7  1.2  2.0 -0.4 -0.2  0.5</span>
 <span class="co">#&gt; 67 2017  0.3 -0.1  1.5 -0.3  0.4 -0.7  1.3  0.9  1.0  1.5  1.5 -0.2</span>
 <span class="co">#&gt; 68 2018  1.8 -0.8  2.4  0.8  0.6 -0.2  0.4 -0.5 -1.5  0.6 -0.1  1.7</span>
-<span class="co">#&gt; 69 2019 -0.1 -2.3 -0.5  0.2 -0.7 -0.7 -0.6 -0.2   NA   NA   NA   NA</span>
+<span class="co">#&gt; 69 2019 -0.1 -2.3 -0.5  0.2 -0.7 -0.7 -0.6 -0.2 -1.9   NA   NA   NA</span>
 <span class="co">#&gt; 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA</span></code></pre>
 <p>A documentação de ajuda da função <code>import()</code> do <strong>rio</strong> nos diz que no arquivo acima foi usada a função <code>read.fwf()</code> do <img src="images/logo_r.png" width="20"> para ler os dados. Os argumentos usados foram:</p>
 <ul>
@@ -610,7 +610,7 @@ nome_vars
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome para o arquivo CSV</span>
 (soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp1Cq3zOSOI.csv&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp24rMVcSOI.csv&quot;</span>
 <span class="co"># exportação com rio</span>
 <span class="kw">export</span>(soi,
   <span class="dt">file =</span> soi_file,

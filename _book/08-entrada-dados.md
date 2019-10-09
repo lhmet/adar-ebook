@@ -210,15 +210,15 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp1Cq3zO/file5f5b5971de64"
+#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp1Cq3zO/file5f5b5971de64.csv"
+#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp1Cq3zO/file5f5b5971de64.csv"
+#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -263,9 +263,9 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp1Cq3zO/file5f5b25c59b1c"
+#> [1] "/tmp/Rtmp24rMVc/file3ec222f4081"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp1Cq3zO/file5f5b25c59b1c.tsv"
+#> [1] "/tmp/Rtmp24rMVc/file3ec222f4081.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -351,7 +351,7 @@ tail(soi)
 #> 66 2016 -3.6 -3.2 -0.1 -2.0  0.7  1.1  0.7  1.2  2.0 -0.4 -0.2  0.5
 #> 67 2017  0.3 -0.1  1.5 -0.3  0.4 -0.7  1.3  0.9  1.0  1.5  1.5 -0.2
 #> 68 2018  1.8 -0.8  2.4  0.8  0.6 -0.2  0.4 -0.5 -1.5  0.6 -0.1  1.7
-#> 69 2019 -0.1 -2.3 -0.5  0.2 -0.7 -0.7 -0.6 -0.2   NA   NA   NA   NA
+#> 69 2019 -0.1 -2.3 -0.5  0.2 -0.7 -0.7 -0.6 -0.2 -1.9   NA   NA   NA
 #> 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 ```
 
@@ -372,7 +372,7 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp1Cq3zOSOI.csv"
+#> [1] "/tmp/Rtmp24rMVcSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -708,7 +708,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp1Cq3zO/cru10min30_tmp.nc"
+#> [1] "/tmp/Rtmp24rMVc/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
 #> [1] TRUE
 ```
@@ -720,7 +720,7 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmp1Cq3zO/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
+#> File /tmp/Rtmp24rMVc/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 #> 
 #>      2 variables (excluding dimension variables):
 #>         float climatology_bounds[nv,time]   
@@ -860,7 +860,7 @@ brick_tar_cru
 #> resolution : 0.5, 0.5  (x, y)
 #> extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> source     : /tmp/Rtmp1Cq3zO/cru10min30_tmp.nc 
+#> source     : /tmp/Rtmp24rMVc/cru10min30_tmp.nc 
 #> names      : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
 #> Date       : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
 #> varname    : tmp
@@ -1078,19 +1078,19 @@ tempos_escrita_xlsx <- microbenchmark(
 )
 tempos_escrita_xlsx
 #> Unit: milliseconds
-#>      expr       min        lq      mean    median       uq      max neval
-#>   writexl  6.712807  6.977417  8.927837  7.630515 10.74545  12.5730     5
-#>  openxlsx 32.170756 32.406472 99.917960 42.262655 51.68382 341.0661     5
-#>  cld
-#>    a
-#>    a
+#>      expr       min        lq       mean    median        uq       max
+#>   writexl  6.577054  6.613369   7.518534  6.750687  6.782805  10.86876
+#>  openxlsx 32.463036 33.006864 102.749450 33.785229 71.057498 343.43462
+#>  neval cld
+#>      5   a
+#>      5   a
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 11 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
 ### Estrutura de dados não tabulares
