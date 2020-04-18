@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.1 Instalando o  | Análise de Dados Ambientais com R</title>
+  <title>2.3 Atualização de pacotes | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.1 Instalando o  | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="2.3 Atualização de pacotes | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.1 Instalando o  | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="2.3 Atualização de pacotes | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="install.html"/>
-<link rel="next" href="install-pck.html"/>
+<link rel="prev" href="install-pck.html"/>
+<link rel="next" href="install-rstudio.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -343,172 +343,86 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instalando-o" class="section level2">
-<h2><span class="header-section-number">2.1</span> Instalando o <img src="images/logo_r.png" width="20"></h2>
-<p>O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos <a href="https://cran.r-project.org/bin/">binários pré-compilados</a> ou do <a href="https://cran.r-project.org/sources.html">código fonte</a>. Aqui, descreve-se a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.</p>
-<div id="windows" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Windows</h3>
-<p>O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na <strong>Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20"></strong> (<a href="https://cran.r-project.org/">CRAN</a>) e pode ser baixado <a href="http://cran.r-project.org/bin/windows/base/">aqui</a>.</p>
-<p>Abra o executável e siga instruções de instalação do R mantendo todas as opções padrões.</p>
-<p>No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável <code>RGui.exe</code> (Figura <a href="instalando-o.html#fig:r-gui">2.1</a>). Um atalho para esse executável é gerado por <em>default</em> na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.</p>
-<div class="figure"><span id="fig:r-gui"></span>
-<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
-<p class="caption">
-Figure 2.1: Interface gráfica do usuário no R para Windows.
-</p>
-</div>
-<div id="atualização-do-no-windows" class="section level4">
-<h4><span class="header-section-number">2.1.1.1</span> Atualização do <img src="images/logo_r.png" width="20"> no Windows</h4>
-<p>Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem <a href="https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.3.html">aperfeiçoamentos e a correção de <em>bugs</em></a>.</p>
-<p>As novas versões do <img src="images/logo_r.png" width="20"> vem com os <a href="https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f">pacotes padrões do R</a>. Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.</p>
-<p>Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote <a href="https://cran.r-project.org/web/packages/installr/index.html"><strong>installr</strong></a>. A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção <a href="install-pck.html#install-pck">2.2</a>.</p>
-</div>
-</div>
-<div id="linux" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Linux</h3>
-<div id="ubuntu" class="section level4">
-<h4><span class="header-section-number">2.1.2.1</span> Ubuntu</h4>
-<p>Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu, mas geralmente a versão compilada no repositório <em>default</em> do Ubuntu não é a última. Se isso não for problema para você então basta executar:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">sudo apt<span class="op">-</span>get install r<span class="op">-</span>base</a></code></pre></div>
-<p>Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como instalar o <img src="images/logo_r.png" width="20"> de forma que seja atualizado automaticamente pelo sistema.</p>
-</div>
-<div id="r-sempre-atualizado" class="section level4">
-<h4><span class="header-section-number">2.1.2.2</span> R sempre atualizado</h4>
-<p>Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios <a href="https://en.wikipedia.org/wiki/Sudo">sudo</a>. Caso não tenha, consulte o administrador do sistema.</p>
-<p>Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. As versões de Suporte de Longo Prazo (LTS) mais recentes são:</p>
+<div id="atualização-de-pacotes" class="section level2">
+<h2><span class="header-section-number">2.3</span> Atualização de pacotes</h2>
+<p>Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção <code>checkbuild = TRUE</code> reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">update.packages</span>(<span class="dt">checkBuilt=</span><span class="ot">TRUE</span>, <span class="dt">ask=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilicitar este processo, como o <a href="https://github.com/GuangchuangYu/rvcheck">rvcheck</a>.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rvcheck&quot;</span>)</a></code></pre></div>
+<p>Com o <a href="https://github.com/GuangchuangYu/rvcheck">rvcheck</a> podemos:</p>
 <ul>
-<li>14.04 (abril de 2014, <em>codename</em> <code>trusty</code>)</li>
-<li>16.04 (abril de 2016, <em>codename</em> <code>xenial</code>)</li>
-<li>18.04 (abril de 2016, <em>codename</em> <code>bionic</code>)</li>
+<li>checar a versão mais recente do R</li>
 </ul>
-<p>A versão mais atual é a R version 3.6.3 (2020-02-29). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço <a href="https://cloud.r-project.org/bin/linux/ubuntu" class="uri">https://cloud.r-project.org/bin/linux/ubuntu</a> que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.</p>
-<div id="incluindo-repositório-do-na-lista-de-repositórios-do-ubuntu" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.1</span> Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu</h5>
-<p>O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> :</p>
-<pre><code>$ lsb_release --codename | cut -f2</code></pre>
-<pre><code>xenial</code></pre>
-<p>O endereço do espelho da CRAN e algumas configurações do sistema devem ser inseridas no arquivo <code>/etc/apt/sources.list.d/cran.list</code>. Essa tarefa requer privilégios de <a href="https://pt.wikipedia.org/wiki/Superusu%C3%A1rio">superusuário</a>. Vamos trocar do seu usuário para o superusuário.</p>
-<pre><code>$ sudo su</code></pre>
-<p>Após o comando, informe a senha de superusuário e então vamos criar o arquivo <code>/etc/apt/sources.list.d/cran.list</code>.</p>
-<pre><code># touch /etc/apt/sources.list.d/cran.list</code></pre>
-<p>Vamos definir no terminal uma variável chamada <code>repos</code> que será composta pelo endereço do espelho, o nome da versão do Ubuntu e o sufixo <code>-cran35</code>. Este sufixo é para obter o <strong>R 3.6</strong>.</p>
-<pre><code># repos=&quot;deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release --codename | cut -f2`-cran35/&quot;</code></pre>
-<p>O valor da variável <code>repos</code> é mostrado pelo comando: <code>echo $repos</code>. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.</p>
-<p>Adicionamos o conteúdo da <code>repos</code> ao arquivo cran.list usando o comando:</p>
-<pre><code># echo $repos &gt;&gt; /etc/apt/sources.list.d/cran.list</code></pre>
-<p>Assim o gerenciador de pacotes
-<a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.</p>
-<p>Feito isso, você podemos retornar a sessão de usuário comum:</p>
-<pre><code># exit</code></pre>
-</div>
-<div id="apt-protegido" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.2</span> <a href="https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt">APT protegido</a></h5>
-<p>Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na <a href="http://cran.r-project.org">CRAN</a> são assinados com uma chave pública.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Para adicionar essa chave ao seu sistema digite os seguintes comandos:</p>
-<pre><code>$ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-
-$ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -</code></pre>
-<p>Se aparecer uma mensagem <strong>OK</strong> a chave foi adicionada com sucesso e os comandos a seguir podem ignorados. Porém, se aparecer uma mensagem do tipo <em>keyserver error</em>, utilize o seguinte comando:</p>
-<pre><code>$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9</code></pre>
-<p>Caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:</p>
-<pre><code>$ gpg --keyserver keyserver.ubuntu.com --recv-key E298A3A825C0D65DFD57CBB651716619E084DAB9
-
-$ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -</code></pre>
-</div>
-<div id="atualização-da-lista-de-repositórios-do-ubuntu-e-instalação-do" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.3</span> Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20"></h5>
-<p>Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):</p>
-<pre><code>$ sudo apt-get update</code></pre>
-<p>Agora, pode instalar o binário do R:</p>
-<pre><code>$ sudo apt-get install r-base</code></pre>
-<!---
-referências
- https://stackoverflow.com/questions/46704247/upgrade-r-in-ubuntu-xenial
- https://gist.github.com/mGalarnyk/41c887e921e712baf86fecc507b3afc7
- https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r 
- https://rtask.thinkr.fr/installation-of-r-3-5-on-ubuntu-18-04-lts-and-tips-for-spatial-packages/
- https://yiweiniu.github.io/blog/2019/07/Install-Update-R-and-R-packages/
- https://shiny.rstudio.com/articles/upgrade-R.html
-
-# for r dev packages
-sudo add-apt-repository ppa:marutter/rrutter3.5
-sudo add-apt-repository ppa:marutter/c2d4u
-sudo apt-get update
-sudo apt-get -y install r-base-core r-recommended r-base-dev
-
-# run apt-get update and then check via apt-cache policy r-base-core
-apt-cache policy r-base-core
-
-sudo apt install r-cran-rgl r-cran-rjags r-cran-snow r-cran-ggplot2 r-cran-igraph r-cran-lme4 r-cran-rjava r-cran-devtools r-cran-roxygen2 r-cran-rjava r-cran-xlsx
-
-# pacotes mais usados
-c("tidyverse", 
-  "data.table",
-  "knitr",
-  "rstudioapi",
-  
-  )
-
-rlang > Rcpp > backports > vctrs > glue > tibble > tidyselect> dplyr > purrr
-nlme > lattice > broom
-
-‘broom’, ‘dbplyr’, ‘haven’, ‘hms’, ‘modelr’, ‘reprex’, ‘rvest’, ‘tidyr’
---->
-</div>
-<div id="testando-o" class="section level5">
-<h5><span class="header-section-number">2.1.2.2.4</span> Testando o <img src="images/logo_r.png" width="20"></h5>
-<p>Para iniciar o <img src="images/logo_r.png" width="20"> no Ubuntu, digite <code>R</code> no cursor do terminal:</p>
-<pre><code>$ R</code></pre>
-<p>A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Chunck4"></span>
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
-<p class="caption">
-Figure 2.2: Gráfico da sequência de 10 números.
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(rvcheck)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">check_r</span>()</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="co">## $installed_version</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co">## [1] &quot;R-3.6.3&quot;</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="co">## $latest_version</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="co">## [1] &quot;R-3.6.3&quot;</span></a>
+<a class="sourceLine" id="cb29-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb29-9" data-line-number="9"><span class="co">## $latest_url</span></a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="co">## [1] &quot;https://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz&quot;</span></a>
+<a class="sourceLine" id="cb29-11" data-line-number="11"><span class="co">## </span></a>
+<a class="sourceLine" id="cb29-12" data-line-number="12"><span class="co">## $up_to_date</span></a>
+<a class="sourceLine" id="cb29-13" data-line-number="13"><span class="co">## [1] TRUE</span></a></code></pre></div>
+<ul>
+<li>checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">check_cran</span>(<span class="st">&#39;dplyr&#39;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="co">## package is up-to-date release version</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="co">## $package</span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co">## [1] &quot;dplyr&quot;</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co">## $installed_version</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="co">## [1] &quot;0.8.5&quot;</span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="co">## $latest_version</span></a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="co">## [1] &quot;0.8.5&quot;</span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-12" data-line-number="12"><span class="co">## $up_to_date</span></a>
+<a class="sourceLine" id="cb30-13" data-line-number="13"><span class="co">## [1] TRUE</span></a>
+<a class="sourceLine" id="cb30-14" data-line-number="14"><span class="kw">check_github</span>(<span class="st">&#39;lhmet/inmetr&#39;</span>)</a>
+<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="co">## package is up-to-date devel version</span></a>
+<a class="sourceLine" id="cb30-16" data-line-number="16"><span class="co">## $package</span></a>
+<a class="sourceLine" id="cb30-17" data-line-number="17"><span class="co">## [1] &quot;lhmet/inmetr&quot;</span></a>
+<a class="sourceLine" id="cb30-18" data-line-number="18"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-19" data-line-number="19"><span class="co">## $installed_version</span></a>
+<a class="sourceLine" id="cb30-20" data-line-number="20"><span class="co">## [1] &#39;0.3.0.9000&#39;</span></a>
+<a class="sourceLine" id="cb30-21" data-line-number="21"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-22" data-line-number="22"><span class="co">## $latest_version</span></a>
+<a class="sourceLine" id="cb30-23" data-line-number="23"><span class="co">## [1] &quot;0.3.0.9000&quot;</span></a>
+<a class="sourceLine" id="cb30-24" data-line-number="24"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-25" data-line-number="25"><span class="co">## $up_to_date</span></a>
+<a class="sourceLine" id="cb30-26" data-line-number="26"><span class="co">## [1] TRUE</span></a>
+<a class="sourceLine" id="cb30-27" data-line-number="27"><span class="kw">check_bioc</span>(<span class="st">&#39;EBImage&#39;</span>)</a>
+<a class="sourceLine" id="cb30-28" data-line-number="28"><span class="co">## package is up-to-date release version</span></a>
+<a class="sourceLine" id="cb30-29" data-line-number="29"><span class="co">## $package</span></a>
+<a class="sourceLine" id="cb30-30" data-line-number="30"><span class="co">## [1] &quot;EBImage&quot;</span></a>
+<a class="sourceLine" id="cb30-31" data-line-number="31"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-32" data-line-number="32"><span class="co">## $installed_version</span></a>
+<a class="sourceLine" id="cb30-33" data-line-number="33"><span class="co">## [1] &quot;4.28.1&quot;</span></a>
+<a class="sourceLine" id="cb30-34" data-line-number="34"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-35" data-line-number="35"><span class="co">## $latest_version</span></a>
+<a class="sourceLine" id="cb30-36" data-line-number="36"><span class="co">## [1] &quot;4.28.1&quot;</span></a>
+<a class="sourceLine" id="cb30-37" data-line-number="37"><span class="co">## </span></a>
+<a class="sourceLine" id="cb30-38" data-line-number="38"><span class="co">## $up_to_date</span></a>
+<a class="sourceLine" id="cb30-39" data-line-number="39"><span class="co">## [1] TRUE</span></a></code></pre></div>
+<p>Por fim, para atualizar todos os pacotes:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">update_all</span>(<span class="dt">check_R =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="rmdtip">
+<p>
+Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.
 </p>
 </div>
-<p>Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com o código a seguir:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">q</span>(<span class="dt">save =</span> <span class="st">&quot;no&quot;</span>)</a></code></pre></div>
-</div>
-</div>
-<div id="diretório-para-pacotes-instalados-pelo-usuário" class="section level4">
-<h4><span class="header-section-number">2.1.2.3</span> Diretório para pacotes instalados pelo usuário</h4>
-<p>Os pacotes que vem com os pacotes <em>r-base</em> e <em>r-recommended</em> são instalados no diretório <code>/usr/lib/R/library</code>. Estes pacotes são atualizados pelo sistema<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> ou usando <code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code>.</p>
-<p>Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o <code>/home/usuario/.R/libs</code>. O seu <code>home</code> ou <code>pasta pessoal</code> pode ser obtido com o comando <code>echo $HOME</code>. Para criar o diretório você pode digitar o comando abaixo:</p>
-<pre><code>$ mkdir -p `echo $HOME`/.R/libs/</code></pre>
-<p>Para informar ao <img src="images/logo_r.png" width="20"> onde procurar os pacotes instalados, você precisa criar um arquivo chamado <code>.Renviron</code>, no diretório <code>$HOME</code>, contendo a expressão <code>R_LIBS=/home/usuario/.R/libs/</code>. Você pode fazer isso em um terminal com os comandos:</p>
-<pre><code>$ R_LIBS=`echo $HOME/.R/libs/`
-$ echo $R_LIBS &gt;&gt; `echo $HOME/.Renviron`</code></pre>
-<p>Esse caminho fica então visível ao <img src="images/logo_r.png" width="20">, o que pode ser verificado executando a função <code>.libPaths()</code> na linha de comando do <img src="images/logo_r.png" width="20">.</p>
-<p>Abra o <img src="images/logo_r.png" width="20">:</p>
-<pre><code>$ R</code></pre>
-<p>e ao digitar:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">.libPaths</span>()</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;/home/hidrometeorologista/.R/libs&quot;</span> <span class="st">&quot;/usr/local/lib/R/site-library&quot;</span>    </a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">[<span class="dv">3</span>] <span class="st">&quot;/usr/lib/R/site-library&quot;</span>           <span class="st">&quot;/usr/lib/R/library&quot;</span>               </a></code></pre></div>
-<p>o seu diretório <code>/home/usuario/.R/libs</code><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes serão usados.</p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>Clique <a href="https://wiki.ubuntu.com/Releases">aqui</a> para saber mais sobre as versões do Ubuntu.<a href="instalando-o.html#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Se o comando <code>lsb_release</code> não funcionar você precisa instalar o pacote <code>lsb-release</code> no sistema. Para isso, digite no terminal Linux <code>sudo apt-get install lsb-release</code>.<a href="instalando-o.html#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>o gerenciador de pacotes <a href="http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool">apt</a> é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.<a href="instalando-o.html#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja <a href="http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html">aqui</a>.<a href="instalando-o.html#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.<a href="instalando-o.html#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>digite ‘Ctrl+Alt+t’ para abrir um terminal no Linux Ubuntu<a href="instalando-o.html#fnref6" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="install.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install-pck.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="install-pck.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="install-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

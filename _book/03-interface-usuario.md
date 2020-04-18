@@ -63,12 +63,12 @@ O número entre colchetes que aparece como resultado da operação ("[1]" no cas
 
 ```r
 > 100:1
-  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84  83
+ [19]  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67  66  65
+ [37]  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50  49  48  47
+ [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
+ [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
+ [91]  10   9   8   7   6   5   4   3   2   1
 ```
 
 O elemento `[18]` da sequência de 100 até 1 é o número `83`.
@@ -102,19 +102,20 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 ```r
 > 62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10; 4 - 3
 [1] 100
-  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84  83
+ [19]  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67  66  65
+ [37]  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50  49  48  47
+ [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
+ [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
+ [91]  10   9   8   7   6   5   4   3   2   1
 [1] 3628800
 [1] 1
 ```
 
 ### Navegação entre as expressões já avaliadas
 
-Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.
+
+Você pode usar as teclas ↑ e ↓ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.
 
 Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
 
@@ -123,12 +124,12 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
 > 15 + 4
 [1] 19
 > 100:1
-  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84  83
+ [19]  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67  66  65
+ [37]  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50  49  48  47
+ [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
+ [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
+ [91]  10   9   8   7   6   5   4   3   2   1
 > #tecle <Ctr + l>
 ```
 
@@ -233,7 +234,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20191009.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200418.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 

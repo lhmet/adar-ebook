@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Análise de Dados Ambientais com R</title>
-  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.6 Arquivos Excel | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="8.6 Arquivos Excel | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="8.6 Arquivos Excel | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
 
-<meta name="author" content="Jônatan Tatsch">
+<meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2019-10-09">
+<meta name="date" content="2020-04-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="arquivos-binários.html">
-<link rel="next" href="para-saber-mais.html">
+<link rel="prev" href="arquivos-binários.html"/>
+<link rel="next" href="para-saber-mais.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -155,7 +157,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -352,81 +355,50 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="como-usar-1" class="section level3">
 <h3><span class="header-section-number">8.6.1</span> Como usar</h3>
 <p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote <strong>rio</strong>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span>
-dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span>)
-<span class="kw">download.file</span>(excel_file_url, dest_file_excel)</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb257-2" data-line-number="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span>)</a>
+<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(
-  <span class="dt">file =</span> dest_file_excel,
-  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, 
-  <span class="dt">skip =</span> <span class="dv">3</span>)
-<span class="kw">head</span>(inmet_estacoes)
-<span class="co">#&gt;   Nº Código Nome da Estação UF  Latitude Longitude Atitude Inicio Operação</span>
-<span class="co">#&gt; 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228</span>
-<span class="co">#&gt; 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594</span>
-<span class="co">#&gt; 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264</span>
-<span class="co">#&gt; 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353</span>
-<span class="co">#&gt; 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594</span>
-<span class="co">#&gt; 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289</span>
-<span class="co">#&gt;   Fim Operação   Situação</span>
-<span class="co">#&gt; 1   2016-02-01 Desativada</span>
-<span class="co">#&gt; 2         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 3         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 4         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 5         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 6         &lt;NA&gt;       &lt;NA&gt;</span></code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb258-2" data-line-number="2">  <span class="dt">file =</span> dest_file_excel,</a>
+<a class="sourceLine" id="cb258-3" data-line-number="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb258-4" data-line-number="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb258-5" data-line-number="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">8.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
 <p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em> em novo arquivo <code>.xls</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))
-<span class="kw">head</span>(inmet_estacoes)
-<span class="co">#&gt;   nº código nome da estação uf  latitude longitude atitude inicio operação</span>
-<span class="co">#&gt; 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228</span>
-<span class="co">#&gt; 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594</span>
-<span class="co">#&gt; 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264</span>
-<span class="co">#&gt; 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353</span>
-<span class="co">#&gt; 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594</span>
-<span class="co">#&gt; 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289</span>
-<span class="co">#&gt;   fim operação   situação</span>
-<span class="co">#&gt; 1   2016-02-01 Desativada</span>
-<span class="co">#&gt; 2         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 3         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 4         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 5         &lt;NA&gt;       &lt;NA&gt;</span>
-<span class="co">#&gt; 6         &lt;NA&gt;       &lt;NA&gt;</span></code></pre>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 <p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). Uma alternativa, caso você ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(WriteXLS)
-arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))
-<span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)
-<span class="kw">file.exists</span>(arq_xls_temp)
-<span class="co"># conferindo</span>
-<span class="kw">head</span>(
-  <span class="kw">import</span>(
-    <span class="dt">file =</span> arq_xls_temp,
-    <span class="dt">col_names =</span> <span class="ot">TRUE</span>
-  )
-)</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">library</span>(WriteXLS)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
+<a class="sourceLine" id="cb260-4" data-line-number="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
+<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="co"># conferindo</span></a>
+<a class="sourceLine" id="cb260-6" data-line-number="6"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb260-7" data-line-number="7">  <span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb260-8" data-line-number="8">    <span class="dt">file =</span> arq_xls_temp,</a>
+<a class="sourceLine" id="cb260-9" data-line-number="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb260-10" data-line-number="10">  )</a>
+<a class="sourceLine" id="cb260-11" data-line-number="11">)</a></code></pre></div>
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">8.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
 <p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel, então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais eficiente.</p>
 <p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados da seção <a href="arquivos-excel.html#export-xls">8.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(
-  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
-  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
-  <span class="dt">times =</span> <span class="dv">5</span>
-)
-tempos_escrita_xlsx
-<span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;      expr       min        lq       mean    median        uq       max</span>
-<span class="co">#&gt;   writexl  6.577054  6.613369   7.518534  6.750687  6.782805  10.86876</span>
-<span class="co">#&gt;  openxlsx 32.463036 33.006864 102.749450 33.785229 71.057498 343.43462</span>
-<span class="co">#&gt;  neval cld</span>
-<span class="co">#&gt;      5   a</span>
-<span class="co">#&gt;      5   a</span></code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
+<a class="sourceLine" id="cb261-2" data-line-number="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb261-3" data-line-number="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb261-4" data-line-number="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb261-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb261-6" data-line-number="6">tempos_escrita_xlsx</a></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
-<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 14 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<!---
+# substituição para teste +rápido de construção do livro no travis
+O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+--->
+<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 5 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-não-tabulares" class="section level3">
 <h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>
@@ -445,11 +417,13 @@ tempos_escrita_xlsx
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -457,12 +431,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -473,7 +446,15 @@ gitbook.start({
 "link": "https://github.com/lhmet/adar-ebook/edit/master/08-entrada-dados.Rmd",
 "text": "Edit"
 },
-"download": ["ADAR.pdf", "ADAR.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -487,9 +468,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

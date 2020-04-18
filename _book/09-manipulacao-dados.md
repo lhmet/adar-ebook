@@ -24,7 +24,9 @@ Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20">
 
 Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
-
+<!---
+#A nossa capacidade tecnológica de coletar e armazenar uma quantidade massiva de dados digitalmente demanda ferramentas pragmáticas e acessíveis.
+--->
 
 
 <div class="figure">
@@ -54,14 +56,14 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-#> ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-#> ✔ tidyr   0.8.3     ✔ stringr 1.4.0
-#> ✔ readr   1.1.1     ✔ forcats 0.4.0
-#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
+#> ── Attaching packages ───────────────────── tidyverse 1.3.0 ──
+#> ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
+#> ✓ tibble  3.0.0     ✓ dplyr   0.8.5
+#> ✓ tidyr   1.0.2     ✓ stringr 1.4.0
+#> ✓ readr   1.3.1     ✓ forcats 0.4.0
+#> ── Conflicts ──────────────────────── tidyverse_conflicts() ──
+#> x dplyr::filter() masks stats::filter()
+#> x dplyr::lag()    masks stats::lag()
 ```
 
 <div class="rmdnote">
@@ -95,31 +97,6 @@ clima_rs
 ```
 
 
- codigo            estacao            uf     prec     tmax 
---------  -------------------------  ----  --------  ------
- 83931            Alegrete            RS    1492.2    25.4 
- 83980              Bagé              RS    1299.9    24.1 
- 83941         Bento Gonçalves        RS    1683.7    23.0 
- 83919            Bom Jesus           RS    1807.3    20.3 
- 83963        Cachoeira do Sul        RS    1477.1    25.1 
- 83942          Caxias do Sul         RS    1823.0    21.8 
- 83912            Cruz Alta           RS    1630.7    24.5 
- 83964       Encruzilhada do Sul      RS    1510.8    22.5 
- 83915             Guaporé            RS    1758.7    24.7 
- 83881              Iraí              RS    1806.7    27.1 
- 83929             Itaqui             RS    1369.4    26.2 
- 83916         Lagoa Vermelha         RS    1691.1    23.0 
- 83880      Palmeira das Missões      RS    1747.8    24.0 
- 83914           Passo Fundo          RS    1803.1    23.6 
- 83967          Porto Alegre          RS    1320.2    24.8 
- 83995           Rio Grande           RS    1233.6    21.7 
- 83936           Santa Maria          RS    1616.8    24.9 
- 83997     Santa Vitória do Palmar    RS    1228.9    21.8 
- 83957           São Gabriel          RS    1313.9    25.0 
- 83907        São Luiz Gonzaga        RS    1770.9    26.1 
- 83966              Tapes             RS    1349.8    23.8 
- 83948             Torres             RS    1363.2    22.3 
- 83927           Uruguaiana           RS    1647.4    25.8 
 
 
 2. Metadados das estações meteorológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep) relacionadas a tabela de dados `clima_rs`.
@@ -133,38 +110,6 @@ metadados_rs
 ```
 
 
- codigo       lon          lat         alt   
---------  -----------  -----------  ---------
- 83931     -55.51667    -29.68333    120.91  
- 83980     -54.10000    -31.33333    242.31  
- 83941     -51.51667    -29.15000    640.00  
- 83919     -50.43333    -28.66667    1047.50 
- 83959     -53.48333    -30.51667    450.00  
- 83963     -52.88333    -30.03333     72.71  
- 83942     -51.20000    -29.16667    759.60  
- 83912     -53.60000    -28.63333    472.50  
- 83964     -52.51667    -30.53333    427.75  
- 83915     -51.90000    -28.91667    471.51  
- 83881     -53.23333    -27.18333    247.10  
- 83929     -56.53333    -29.11667     76.00  
- 83916     -51.50000    -28.21667    840.00  
- 83885     -51.90000    -27.45000    414.17  
- 83880     -53.43333    -27.88333    634.00  
- 83914     -52.40000    -28.21667    684.05  
- 83985     -52.41667    -31.78333     13.00  
- 83983     -53.10000    -31.43333    345.00  
- 83967     -51.16667    -30.05000     46.97  
- 83995     -52.10000    -32.03333     2.46   
- 83936     -53.70000    -29.70000     95.00  
- 83997     -53.35000    -33.51667     24.01  
- 83953     -55.60000    -30.83333    328.00  
- 83909     -54.25000    -28.30000    284.50  
- 83957     -54.31667    -30.33333    124.00  
- 83907     -55.01667    -28.40000    245.11  
- 83966     -51.58333    -30.83333     5.00   
- 83948     -49.71667    -29.35000     4.66   
- 83927     -57.08333    -29.75000     62.31  
- 83918     -50.70000    -28.55000    954.60  
 
 3. Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.
 
@@ -181,16 +126,6 @@ prec_anual
 ```
 
 
- site    ano     prec 
-------  ------  ------
- A001    2000    1800 
- A001    2001    1400 
- A002    2000    1750 
- A002    2001    1470 
- A002    2002    1630 
- A003    2004    1300 
- A803    2005    1950 
- A803    2006    1100 
 
 
 
@@ -219,17 +154,6 @@ O exemplo acima é ilustrativo, pois um *data frame* pode ser convertido em um *
 ```r
 prec_anual_tbl <- as_tibble(prec_anual)
 prec_anual_tbl
-#> # A tibble: 8 x 3
-#>   site    ano  prec
-#>   <fct> <dbl> <dbl>
-#> 1 A001   2000  1800
-#> 2 A001   2001  1400
-#> 3 A002   2000  1750
-#> 4 A002   2001  1470
-#> 5 A002   2002  1630
-#> 6 A003   2004  1300
-#> 7 A803   2005  1950
-#> 8 A803   2006  1100
 ```
 
 
@@ -242,8 +166,6 @@ Com o *tibble* acima, as principais diferenças entre um *tibble* e um *data fra
 
 ```r
 str(data.frame("temp. do ar" = "18"))
-#> 'data.frame':	1 obs. of  1 variable:
-#>  $ temp..do.ar: Factor w/ 1 level "18": 1
 ```
 
 - permite usar seus próprios argumentos prévios para definir variáveis durante a criação do *tibble*; veja o exemplo abaixo, onde a `int prec`(intensidade da precipitação) é baseada na razão da precipitação (`prec`) pelo número de dias no ano.
@@ -259,17 +181,6 @@ prec_anual_tbl <- tibble(
   "int prec" = prec / 365.25
 )
 prec_anual_tbl
-#> # A tibble: 8 x 4
-#>   site    ano  prec `int prec`
-#>   <chr> <dbl> <dbl>      <dbl>
-#> 1 A001   2000  1800       4.93
-#> 2 A001   2001  1400       3.83
-#> 3 A002   2000  1750       4.79
-#> 4 A002   2001  1470       4.02
-#> 5 A002   2002  1630       4.46
-#> 6 A003   2004  1300       3.56
-#> 7 A803   2005  1950       5.34
-#> 8 A803   2006  1100       3.01
 ```
 
 
@@ -279,16 +190,8 @@ prec_anual_tbl
 ```r
 # nomes das linhas de um data frame são carregados adiante
 subset(prec_anual, ano == 2001)
-#>   site  ano prec
-#> 2 A001 2001 1400
-#> 4 A002 2001 1470
 # tibble não possui nome de linhas (rownames)
 subset(prec_anual_tbl, ano == 2001)
-#> # A tibble: 2 x 4
-#>   site    ano  prec `int prec`
-#>   <chr> <dbl> <dbl>      <dbl>
-#> 1 A001   2001  1400       3.83
-#> 2 A002   2001  1470       4.02
 ```
 
 
@@ -312,7 +215,6 @@ Com a configuração acima, será impresso no console do R `n = 3` linhas do *ti
 
 ```r
 nrow(clima_rs) > 15
-#> [1] TRUE
 # coersão do data.frame clima_rs para tibble
 clima_rs_tbl <- as_tibble(clima_rs)
 ```
@@ -326,20 +228,6 @@ options(
   tibble.print_min = NULL
 )
 clima_rs_tbl
-#> # A tibble: 23 x 5
-#>    codigo estacao             uf     prec  tmax
-#>    <chr>  <chr>               <chr> <dbl> <dbl>
-#>  1 83931  Alegrete            RS    1492.  25.4
-#>  2 83980  Bagé                RS    1300.  24.1
-#>  3 83941  Bento Gonçalves     RS    1684.  23  
-#>  4 83919  Bom Jesus           RS    1807.  20.3
-#>  5 83963  Cachoeira do Sul    RS    1477.  25.1
-#>  6 83942  Caxias do Sul       RS    1823   21.8
-#>  7 83912  Cruz Alta           RS    1631.  24.5
-#>  8 83964  Encruzilhada do Sul RS    1511.  22.5
-#>  9 83915  Guaporé             RS    1759.  24.7
-#> 10 83881  Iraí                RS    1807.  27.1
-#> # … with 13 more rows
 ```
 
 
@@ -348,13 +236,6 @@ Uma alternativa útil para inspecionar mais detalhadamente os dados é a funçã
 
 ```r
 glimpse(clima_rs)
-#> Observations: 23
-#> Variables: 5
-#> $ codigo  <chr> "83931", "83980", "83941", "83919", "83963", "83942", "8…
-#> $ estacao <chr> "Alegrete", "Bagé", "Bento Gonçalves", "Bom Jesus", "Cac…
-#> $ uf      <chr> "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", "RS", "R…
-#> $ prec    <dbl> 1492.2, 1299.9, 1683.7, 1807.3, 1477.1, 1823.0, 1630.7, …
-#> $ tmax    <dbl> 25.4, 24.1, 23.0, 20.3, 25.1, 21.8, 24.5, 22.5, 24.7, 27…
 ```
 
 
@@ -373,7 +254,10 @@ Outros aspectos diferencias do *tibble* podem consultados na vinheta do referido
 
 > Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson, [New York Times 2014/08/18](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)].
 
-
+<!---
+# references
+#http://www.storybench.org/getting-started-with-tidyverse-in-r/
+--->
 
 ### Dados arrumados
 
@@ -405,16 +289,6 @@ Dados no \"formato arrumado\" atendem as seguintes regras para dados retangulare
 Um exemplo de dados no formato arrumado é o *tibble* `prec_anual_tbl` mostrado abaixo:
 
 
- site    ano     prec    intensidade 
-------  ------  ------  -------------
- A001    2000    1800     4.928131   
- A001    2001    1400     3.832991   
- A002    2000    1750     4.791239   
- A002    2001    1470     4.024641   
- A002    2002    1630     4.462697   
- A003    2004    1300     3.559206   
- A803    2005    1950     5.338809   
- A803    2006    1100     3.011636   
 
 Os dados acima tem duas variáveis: precipitação (`prec`) e intensidade da precipitação (`intensidade`). As unidades observacionais são as colunas `site` e `ano`. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.
 
@@ -441,7 +315,9 @@ Essas duas operações são realizadas com as principais funções do pacote **t
 
 - `spread()` que pode ser traduzida como espalhar (nas colunas)
 
-
+<!---
+#O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
+--->
 
 
 
@@ -468,17 +344,6 @@ prec_anual_tbl <- rename(
   "intensidade" = `int prec`
 ) 
 prec_anual_tbl
-#> # A tibble: 8 x 4
-#>   site    ano  prec intensidade
-#>   <chr> <dbl> <dbl>       <dbl>
-#> 1 A001   2000  1800        4.93
-#> 2 A001   2001  1400        3.83
-#> 3 A002   2000  1750        4.79
-#> 4 A002   2001  1470        4.02
-#> 5 A002   2002  1630        4.46
-#> 6 A003   2004  1300        3.56
-#> 7 A803   2005  1950        5.34
-#> 8 A803   2006  1100        3.01
 ```
 
 Vamos usar a função `tidyr::gather()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
@@ -494,25 +359,6 @@ prec_anual_long <- gather(
   prec, intensidade
 )
 prec_anual_long
-#> # A tibble: 16 x 4
-#>    site    ano variavel     medida
-#>    <chr> <dbl> <chr>         <dbl>
-#>  1 A001   2000 prec        1800   
-#>  2 A001   2001 prec        1400   
-#>  3 A002   2000 prec        1750   
-#>  4 A002   2001 prec        1470   
-#>  5 A002   2002 prec        1630   
-#>  6 A003   2004 prec        1300   
-#>  7 A803   2005 prec        1950   
-#>  8 A803   2006 prec        1100   
-#>  9 A001   2000 intensidade    4.93
-#> 10 A001   2001 intensidade    3.83
-#> 11 A002   2000 intensidade    4.79
-#> 12 A002   2001 intensidade    4.02
-#> 13 A002   2002 intensidade    4.46
-#> 14 A003   2004 intensidade    3.56
-#> 15 A803   2005 intensidade    5.34
-#> 16 A803   2006 intensidade    3.01
 ```
 
 O código acima demonstra os principais argumentos requeridos pela função `gather`:
@@ -539,20 +385,6 @@ prec_anual_longo <- gather(
   value = valor
 )
 prec_anual_longo
-#> # A tibble: 32 x 2
-#>    atributo valor
-#>    <chr>    <chr>
-#>  1 site     A001 
-#>  2 site     A001 
-#>  3 site     A002 
-#>  4 site     A002 
-#>  5 site     A002 
-#>  6 site     A003 
-#>  7 site     A803 
-#>  8 site     A803 
-#>  9 ano      2000 
-#> 10 ano      2001 
-#> # … with 22 more rows
 ```
 
 Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função `tidyr::gather()`, serão atribuídos os valores *default*: `key` e `value`.
@@ -560,20 +392,6 @@ Se não forem especificados nomes para os argumentos `key` e `value` na chamada 
 
 ```r
 gather(prec_anual_tbl)
-#> # A tibble: 32 x 2
-#>    key   value
-#>    <chr> <chr>
-#>  1 site  A001 
-#>  2 site  A001 
-#>  3 site  A002 
-#>  4 site  A002 
-#>  5 site  A002 
-#>  6 site  A003 
-#>  7 site  A803 
-#>  8 site  A803 
-#>  9 ano   2000 
-#> 10 ano   2001 
-#> # … with 22 more rows
 ```
 
 
@@ -584,25 +402,6 @@ Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para de
 
 ```r
 prec_anual_long
-#> # A tibble: 16 x 4
-#>    site    ano variavel     medida
-#>    <chr> <dbl> <chr>         <dbl>
-#>  1 A001   2000 prec        1800   
-#>  2 A001   2001 prec        1400   
-#>  3 A002   2000 prec        1750   
-#>  4 A002   2001 prec        1470   
-#>  5 A002   2002 prec        1630   
-#>  6 A003   2004 prec        1300   
-#>  7 A803   2005 prec        1950   
-#>  8 A803   2006 prec        1100   
-#>  9 A001   2000 intensidade    4.93
-#> 10 A001   2001 intensidade    3.83
-#> 11 A002   2000 intensidade    4.79
-#> 12 A002   2001 intensidade    4.02
-#> 13 A002   2002 intensidade    4.46
-#> 14 A003   2004 intensidade    3.56
-#> 15 A803   2005 intensidade    5.34
-#> 16 A803   2006 intensidade    3.01
 ```
 
 Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
@@ -615,17 +414,6 @@ prec_anual_amplo <- spread(
   value = medida
 )
 prec_anual_amplo
-#> # A tibble: 8 x 4
-#>   site    ano intensidade  prec
-#>   <chr> <dbl>       <dbl> <dbl>
-#> 1 A001   2000        4.93  1800
-#> 2 A001   2001        3.83  1400
-#> 3 A002   2000        4.79  1750
-#> 4 A002   2001        4.02  1470
-#> 5 A002   2002        4.46  1630
-#> 6 A003   2004        3.56  1300
-#> 7 A803   2005        5.34  1950
-#> 8 A803   2006        3.01  1100
 ```
 
 Esta operação serviu para colocar os dados originais (`prec_anual_long`) no formato \"arrumado\" (`prec_anual_amplo`).
@@ -643,25 +431,6 @@ Você pode unir duas colunas inserindo um separador entre elas com a função `t
   site, ano,
   sep = "_"
 ))
-#> # A tibble: 16 x 3
-#>    site_ano  variavel     medida
-#>    <chr>     <chr>         <dbl>
-#>  1 A001_2000 prec        1800   
-#>  2 A001_2001 prec        1400   
-#>  3 A002_2000 prec        1750   
-#>  4 A002_2001 prec        1470   
-#>  5 A002_2002 prec        1630   
-#>  6 A003_2004 prec        1300   
-#>  7 A803_2005 prec        1950   
-#>  8 A803_2006 prec        1100   
-#>  9 A001_2000 intensidade    4.93
-#> 10 A001_2001 intensidade    3.83
-#> 11 A002_2000 intensidade    4.79
-#> 12 A002_2001 intensidade    4.02
-#> 13 A002_2002 intensidade    4.46
-#> 14 A003_2004 intensidade    3.56
-#> 15 A803_2005 intensidade    5.34
-#> 16 A803_2006 intensidade    3.01
 ```
 
 Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função `tidyr::separate()`:
@@ -674,25 +443,6 @@ separate(
   sep = "_",
   into = c("site", "ano")
 )
-#> # A tibble: 16 x 4
-#>    site  ano   variavel     medida
-#>    <chr> <chr> <chr>         <dbl>
-#>  1 A001  2000  prec        1800   
-#>  2 A001  2001  prec        1400   
-#>  3 A002  2000  prec        1750   
-#>  4 A002  2001  prec        1470   
-#>  5 A002  2002  prec        1630   
-#>  6 A003  2004  prec        1300   
-#>  7 A803  2005  prec        1950   
-#>  8 A803  2006  prec        1100   
-#>  9 A001  2000  intensidade    4.93
-#> 10 A001  2001  intensidade    3.83
-#> 11 A002  2000  intensidade    4.79
-#> 12 A002  2001  intensidade    4.02
-#> 13 A002  2002  intensidade    4.46
-#> 14 A003  2004  intensidade    3.56
-#> 15 A803  2005  intensidade    5.34
-#> 16 A803  2006  intensidade    3.01
 ```
 
 Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função `tidyr::complete()`:
@@ -700,34 +450,11 @@ Para completar valores das variáveis para unidades observacionais faltantes pod
 
 ```r
 prec_anual
-#>   site  ano prec
-#> 1 A001 2000 1800
-#> 2 A001 2001 1400
-#> 3 A002 2000 1750
-#> 4 A002 2001 1470
-#> 5 A002 2002 1630
-#> 6 A003 2004 1300
-#> 7 A803 2005 1950
-#> 8 A803 2006 1100
 prec_anual_comp <- complete(
   prec_anual,
   site, ano
 )
 prec_anual_comp
-#> # A tibble: 24 x 3
-#>    site    ano  prec
-#>    <fct> <dbl> <dbl>
-#>  1 A001   2000  1800
-#>  2 A001   2001  1400
-#>  3 A001   2002    NA
-#>  4 A001   2004    NA
-#>  5 A001   2005    NA
-#>  6 A001   2006    NA
-#>  7 A002   2000  1750
-#>  8 A002   2001  1470
-#>  9 A002   2002  1630
-#> 10 A002   2004    NA
-#> # … with 14 more rows
 ```
 
 
@@ -775,7 +502,11 @@ A manipulação de dados requer uma organização apropriada do código. A medid
 
 Essa é justamente a ideia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no <img src="images/logo_r.png" width="20"> através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
-
+<!---
+#{block, pipe-linux, type='rmdtip'}
+# O *pipe* pode ser familiar para quem já usou SO unix, onde o operador  é representado por `|`. No comando linux abaixo listamos os arquivos com a extensão `.txt` e o resultado é passado como entrada ao comando `wc` com o argumento `-l` que conta quantas linhas tem a lista de arquivos. Neste caso o número de linhas corresponderá ao número de arquivos com a extensão `.txt`.
+# `ls *.txt | wc -l`
+--->
 
 Os pacotes **tidyverse** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. Vamos ilustrar as vantagens de uso do %>% com exemplos a seguir.
 
@@ -787,14 +518,10 @@ O exemplo a baixo mostra uma aplicação simples do `%>%` para extrair a raiz qu
 ```r
 # chamada tradicional de uma função 
 sqrt(4)
-#> [1] 2
 nth(5:1, 2)
-#> [1] 4
 # chamada de uma função com %>%
 4 %>% sqrt()
-#> [1] 2
 5:1 %>% nth(2)
-#> [1] 4
 ```
 
 Ambas formas realizam a mesma tarefa e com mesmo resultado e o benefício do `%>%` não fica evidente. Entretanto, quando precisamos aplicar várias funções as vantagens ficam mais óbvias.
@@ -842,7 +569,6 @@ x %>%
   cos() %>%                   # 2
   sort(decreasing = TRUE) %>% # 3
   nth(n = 2)                      # 4
-#> [1] 0.5403023
 ```
 
 Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador `%>%` para ilustrar os verbos do **dplyr** e suas combinações.
@@ -866,7 +592,6 @@ x %>%
   sort(x = ., decreasing = TRUE) %>% # 2
   cos(x = .) %>%                     # 3
   nth(x = ., n = 2)                  # 4
-#> [1] -0.9899925
 ```
 
 O tempo a mais digitando é compensado posteriormente quando o você mesmo futuramente tiver que reler o código. Essa forma enfatiza com o `.` que o resultado à esquerda é usado como entrada para função à direita do `%>%`.
@@ -881,7 +606,6 @@ grep(
   x = adverbs,
   value = TRUE
 )
-#> [1] "hoje"   "amanhã"
 ```
 
 O código acima seve para retornar os elementos do vetor `dias` que contenham a letra `h`. No entanto os dados de entrada da `base::grep()` são esperados no 2° argumento (`x`). Para redirecioná-los para essa posição dentro de uma cadeia de funções com `%>%`, colocamos o operador `.` no 2° argumento da função:
@@ -894,11 +618,13 @@ adverbs %>%
   x = .,
   value = TRUE
 )
-#> [1] "hoje"   "amanhã"
 ```
 
 
-
+<!---
+# pipe forever?
+# No. ver http://r4ds.had.co.nz/pipes.html#When%20not%20to%20use%20the%20pipe
+--->
 
 
 ### Seleção de variáveis 
@@ -910,20 +636,6 @@ Para selecionar somente variáveis de interesse em uma tabela de dados podemos u
 
 ```r
 select(clima_rs_tbl, estacao, tmax)
-#> # A tibble: 23 x 2
-#>    estacao              tmax
-#>    <chr>               <dbl>
-#>  1 Alegrete             25.4
-#>  2 Bagé                 24.1
-#>  3 Bento Gonçalves      23  
-#>  4 Bom Jesus            20.3
-#>  5 Cachoeira do Sul     25.1
-#>  6 Caxias do Sul        21.8
-#>  7 Cruz Alta            24.5
-#>  8 Encruzilhada do Sul  22.5
-#>  9 Guaporé              24.7
-#> 10 Iraí                 27.1
-#> # … with 13 more rows
 ```
 
 O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.
@@ -936,89 +648,41 @@ clima_rs_tbl %>%
   # as variáveis entre uf e tmax
   select(., uf:tmax) %>%
   head(., n = 3)
-#> # A tibble: 3 x 3
-#>   uf     prec  tmax
-#>   <chr> <dbl> <dbl>
-#> 1 RS    1492.  25.4
-#> 2 RS    1300.  24.1
-#> 3 RS    1684.  23
 
 clima_rs_tbl %>%
   # todas variáveis menos as entre codigo:uf
   select(., -(codigo:uf)) %>%
   head(., n = 3)
-#> # A tibble: 3 x 2
-#>    prec  tmax
-#>   <dbl> <dbl>
-#> 1 1492.  25.4
-#> 2 1300.  24.1
-#> 3 1684.  23
 
 clima_rs_tbl %>%
   # ordem inversa das variáveis
   select(., tmax:codigo) %>%
   head(., n = 3)
-#> # A tibble: 3 x 5
-#>    tmax  prec uf    estacao         codigo
-#>   <dbl> <dbl> <chr> <chr>           <chr> 
-#> 1  25.4 1492. RS    Alegrete        83931 
-#> 2  24.1 1300. RS    Bagé            83980 
-#> 3  23   1684. RS    Bento Gonçalves 83941
 
 clima_rs_tbl %>%
   # nomes que contenham a letra "a"
   select(., contains("a")) %>%
   head(n = 3)
-#> # A tibble: 3 x 2
-#>   estacao          tmax
-#>   <chr>           <dbl>
-#> 1 Alegrete         25.4
-#> 2 Bagé             24.1
-#> 3 Bento Gonçalves  23
 
 clima_rs_tbl %>%
   # variáveis que iniciam com "c"
   select(., starts_with("c")) %>%
   head(., n = 3)
-#> # A tibble: 3 x 1
-#>   codigo
-#>   <chr> 
-#> 1 83931 
-#> 2 83980 
-#> 3 83941
 
 clima_rs_tbl %>%
   # usando um vetor de caracteres
   select(., one_of(c("estacao", "uf"))) %>%
   head(., n = 3)
-#> # A tibble: 3 x 2
-#>   estacao         uf   
-#>   <chr>           <chr>
-#> 1 Alegrete        RS   
-#> 2 Bagé            RS   
-#> 3 Bento Gonçalves RS
 
 clima_rs_tbl %>%
   # combinações
   select(., -uf, ends_with("o")) %>%
   head(., n = 3)
-#> # A tibble: 3 x 4
-#>   codigo estacao          prec  tmax
-#>   <chr>  <chr>           <dbl> <dbl>
-#> 1 83931  Alegrete        1492.  25.4
-#> 2 83980  Bagé            1300.  24.1
-#> 3 83941  Bento Gonçalves 1684.  23
 
 clima_rs_tbl %>%
   # variáveis que inciam com letras minúsculas e com 4 caracteres
   select(., matches("^[a-z]{4}$")) %>%
   head(., n = 3)
-#> # A tibble: 3 x 2
-#>    prec  tmax
-#>   <dbl> <dbl>
-#> 1 1492.  25.4
-#> 2 1300.  24.1
-#> 3 1684.  23
 ```
 
 O último exemplo usa uma expressão regular ([regex](https://pt.wikipedia.org/wiki/Express%C3%A3o_regular)). *Regex* é uma linguagem para descrever e manipular caracteres de texto. Há [livros sobre este assunto](http://aurelio.net/regex/guia/) e diversos [tutorias](https://stringr.tidyverse.org/articles/regular-expressions.html) sobre *regex* no R. Para saber mais sobre isso veja  o capítulo sobre [strings](http://r4ds.had.co.nz/strings.html) do livro de @Wickham2017. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.
@@ -1039,10 +703,6 @@ A função `dplyr::filter()` permite filtrar observações de um *data frame* co
 ```r
 clima_rs_tbl %>%
   filter(codigo == 83936)
-#> # A tibble: 1 x 5
-#>   codigo estacao     uf     prec  tmax
-#>   <chr>  <chr>       <chr> <dbl> <dbl>
-#> 1 83936  Santa Maria RS    1617.  24.9
 ```
 
 - linhas da variável `estacao` que contenham o vetor caractere `litoraneas`.
@@ -1052,11 +712,6 @@ litoraneas <- c("Torres",
                 "Guaporé")
 clima_rs_tbl %>%
   filter(estacao %in% litoraneas)
-#> # A tibble: 2 x 5
-#>   codigo estacao uf     prec  tmax
-#>   <chr>  <chr>   <chr> <dbl> <dbl>
-#> 1 83915  Guaporé RS    1759.  24.7
-#> 2 83948  Torres  RS    1363.  22.3
 ```
 
 - observações com `tmax` acima de 10% da média
@@ -1064,10 +719,6 @@ clima_rs_tbl %>%
 
 ```r
 filter(clima_rs_tbl,  tmax > 1.1*mean(tmax))
-#> # A tibble: 1 x 5
-#>   codigo estacao uf     prec  tmax
-#>   <chr>  <chr>   <chr> <dbl> <dbl>
-#> 1 83881  Iraí    RS    1807.  27.1
 ```
 
 - observações com `tmax` e `prec` acima de suas médias
@@ -1079,16 +730,6 @@ filter(
   tmax > mean(tmax),  
   prec > mean(prec)
 )
-#> # A tibble: 7 x 5
-#>   codigo estacao              uf     prec  tmax
-#>   <chr>  <chr>                <chr> <dbl> <dbl>
-#> 1 83912  Cruz Alta            RS    1631.  24.5
-#> 2 83915  Guaporé              RS    1759.  24.7
-#> 3 83881  Iraí                 RS    1807.  27.1
-#> 4 83880  Palmeira das Missões RS    1748.  24  
-#> 5 83936  Santa Maria          RS    1617.  24.9
-#> 6 83907  São Luiz Gonzaga     RS    1771.  26.1
-#> 7 83927  Uruguaiana           RS    1647.  25.8
 # equivalente a
 #clima_rs %>% 
 #  filter(tmax > mean(tmax) & prec > mean(prec))
@@ -1100,12 +741,6 @@ filter(
 # estações com "Sul" no nome
 clima_rs_tbl %>% 
   filter(str_detect(estacao, "Sul"))
-#> # A tibble: 3 x 5
-#>   codigo estacao             uf     prec  tmax
-#>   <chr>  <chr>               <chr> <dbl> <dbl>
-#> 1 83963  Cachoeira do Sul    RS    1477.  25.1
-#> 2 83942  Caxias do Sul       RS    1823   21.8
-#> 3 83964  Encruzilhada do Sul RS    1511.  22.5
 ```
 
 
@@ -1127,42 +762,18 @@ A seleção de observações também pode ser baseada em índices passados para 
 #linhas 2 e 4 
 clima_rs_tbl %>%
   slice(., c(2,4))
-#> # A tibble: 2 x 5
-#>   codigo estacao   uf     prec  tmax
-#>   <chr>  <chr>     <chr> <dbl> <dbl>
-#> 1 83980  Bagé      RS    1300.  24.1
-#> 2 83919  Bom Jesus RS    1807.  20.3
 #última linha
 clima_rs_tbl %>%
   slice(., n())
-#> # A tibble: 1 x 5
-#>   codigo estacao    uf     prec  tmax
-#>   <chr>  <chr>      <chr> <dbl> <dbl>
-#> 1 83927  Uruguaiana RS    1647.  25.8
 # exlui da última à 3a linha
 clima_rs_tbl %>%
   slice(., -(n():3))
-#> # A tibble: 2 x 5
-#>   codigo estacao  uf     prec  tmax
-#>   <chr>  <chr>    <chr> <dbl> <dbl>
-#> 1 83931  Alegrete RS    1492.  25.4
-#> 2 83980  Bagé     RS    1300.  24.1
 # linhas com tmax > 26
 clima_rs_tbl %>%
   slice(., which(tmax > 26))
-#> # A tibble: 3 x 5
-#>   codigo estacao          uf     prec  tmax
-#>   <chr>  <chr>            <chr> <dbl> <dbl>
-#> 1 83881  Iraí             RS    1807.  27.1
-#> 2 83929  Itaqui           RS    1369.  26.2
-#> 3 83907  São Luiz Gonzaga RS    1771.  26.1
 # linhas com tmax mais próxima a média de tmax
 clima_rs_tbl %>%
   slice(., which.min(abs(tmax - mean(tmax))))
-#> # A tibble: 1 x 5
-#>   codigo estacao              uf     prec  tmax
-#>   <chr>  <chr>                <chr> <dbl> <dbl>
-#> 1 83880  Palmeira das Missões RS    1748.    24
 ```
 
 
@@ -1177,12 +788,6 @@ As vezes é útil reordenar os dados segundo a ordem (crescente ou decrescente) 
 clima_rs_tbl %>% 
   arrange(., desc(prec)) %>%
   head(., n = 3)
-#> # A tibble: 3 x 5
-#>   codigo estacao       uf     prec  tmax
-#>   <chr>  <chr>         <chr> <dbl> <dbl>
-#> 1 83942  Caxias do Sul RS    1823   21.8
-#> 2 83919  Bom Jesus     RS    1807.  20.3
-#> 3 83881  Iraí          RS    1807.  27.1
 ```
 
 A função `dplyr::arrange()` por padrão ordena os dados em ordem crescente. A função `dplyr::desc()` ordena os valores da variável em ordem descendente. 
@@ -1194,12 +799,6 @@ Os dados ordenados pela `tmax`, ficam da seguinte forma:
 clima_rs_tbl %>% 
   arrange(., tmax) %>%
   head(., n = 3)
-#> # A tibble: 3 x 5
-#>   codigo estacao       uf     prec  tmax
-#>   <chr>  <chr>         <chr> <dbl> <dbl>
-#> 1 83919  Bom Jesus     RS    1807.  20.3
-#> 2 83995  Rio Grande    RS    1234.  21.7
-#> 3 83942  Caxias do Sul RS    1823   21.8
 ```
 
 
@@ -1221,12 +820,6 @@ clima_rs_tbl %>%
   select(., contains("tmax")) %>%
   # 3 primeiras linhas
   head(., n = 3)
-#> # A tibble: 3 x 2
-#>    tmax tmaxK
-#>   <dbl> <dbl>
-#> 1  25.4  299.
-#> 2  24.1  297.
-#> 3  23    296.
 ```
 
 
@@ -1242,12 +835,6 @@ rename(.,
        "precip" = prec
        ) %>%
   head(., n = 3)
-#> # A tibble: 3 x 5
-#>   id    site            uf    precip temp_max
-#>   <chr> <chr>           <chr>  <dbl>    <dbl>
-#> 1 83931 Alegrete        RS     1492.     25.4
-#> 2 83980 Bagé            RS     1300.     24.1
-#> 3 83941 Bento Gonçalves RS     1684.     23
 ```
 
 Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável `site` será corrigida, de forma os valores iguais a "A803" sejam substituídos por "A003".
@@ -1259,11 +846,6 @@ mutate(
   site = recode(site, A803 = "A003")
 ) 
 tail(prec_anual_corr, n = 4)
-#>   site  ano prec
-#> 5 A002 2002 1630
-#> 6 A003 2004 1300
-#> 7 A003 2005 1950
-#> 8 A003 2006 1100
 ```
 
 
@@ -1284,56 +866,15 @@ prec_anual_comp %>%
          # intensidade de ndias, criada na linha acima
          intensidade = prec / ndias
          )
-#> # A tibble: 24 x 5
-#>    site    ano  prec ndias intensidade
-#>    <fct> <dbl> <dbl> <dbl>       <dbl>
-#>  1 A001   2000  1800   366        4.92
-#>  2 A001   2001  1400   365        3.84
-#>  3 A001   2002  1550   365        4.25
-#>  4 A001   2004  1550   366        4.23
-#>  5 A001   2005  1550   365        4.25
-#>  6 A001   2006  1550   365        4.25
-#>  7 A002   2000  1750   366        4.78
-#>  8 A002   2001  1470   365        4.03
-#>  9 A002   2002  1630   365        4.47
-#> 10 A002   2004  1550   366        4.23
-#> # … with 14 more rows
 
 prec_anual_comp %>%
   # preenche com  a observação prévia
   fill(prec, .direction = "down")
-#> # A tibble: 24 x 3
-#>    site    ano  prec
-#>    <fct> <dbl> <dbl>
-#>  1 A001   2000  1800
-#>  2 A001   2001  1400
-#>  3 A001   2002  1400
-#>  4 A001   2004  1400
-#>  5 A001   2005  1400
-#>  6 A001   2006  1400
-#>  7 A002   2000  1750
-#>  8 A002   2001  1470
-#>  9 A002   2002  1630
-#> 10 A002   2004  1630
-#> # … with 14 more rows
 
 prec_anual_comp %>%
   # preenche com  a observação posterior
   fill(prec, .direction = "up")
-#> # A tibble: 24 x 3
-#>    site    ano  prec
-#>    <fct> <dbl> <dbl>
-#>  1 A001   2000  1800
-#>  2 A001   2001  1400
-#>  3 A001   2002  1750
-#>  4 A001   2004  1750
-#>  5 A001   2005  1750
-#>  6 A001   2006  1750
-#>  7 A002   2000  1750
-#>  8 A002   2001  1470
-#>  9 A002   2002  1630
-#> 10 A002   2004  1300
-#> # … with 14 more rows
+
 ```
 
 
@@ -1353,10 +894,6 @@ clima_rs_tbl %>%
     .,
     prec_med = mean(prec)
   )
-#> # A tibble: 1 x 1
-#>   prec_med
-#>      <dbl>
-#> 1    1554.
 ```
 
 Se você só quer o valor (ou o vetor), ao invés de um `data frame`, pode usar a função `dplyr::pull()`:
@@ -1369,7 +906,6 @@ clima_rs_tbl %>%
     prec_med = mean(prec)
   ) %>%
   pull()
-#> [1] 1554.183
 ```
 
 
@@ -1384,22 +920,6 @@ clima_rs_tbl %>%
     .funs = funs(min, median, max),
     na.rm = TRUE
   )
-#> Warning: funs() is soft deprecated as of dplyr 0.8.0
-#> Please use a list of either functions or lambdas: 
-#> 
-#>   # Simple named list: 
-#>   list(mean = mean, median = median)
-#> 
-#>   # Auto named with `tibble::lst()`: 
-#>   tibble::lst(mean, median)
-#> 
-#>   # Using lambdas
-#>   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
-#> This warning is displayed once per session.
-#> # A tibble: 1 x 6
-#>   prec_min tmax_min prec_median tmax_median prec_max tmax_max
-#>      <dbl>    <dbl>       <dbl>       <dbl>    <dbl>    <dbl>
-#> 1    1229.     20.3       1617.        24.1     1823     27.1
 ```
 
 
@@ -1416,20 +936,6 @@ prec_anual_comp_rep <-
   # preenche com  a observação posterior
   fill(., prec, .direction = "up")
 prec_anual_comp_rep
-#> # A tibble: 24 x 2
-#>    site   prec
-#>    <fct> <dbl>
-#>  1 A001   1800
-#>  2 A001   1400
-#>  3 A001   1750
-#>  4 A001   1750
-#>  5 A001   1750
-#>  6 A001   1750
-#>  7 A002   1750
-#>  8 A002   1470
-#>  9 A002   1630
-#> 10 A002   1300
-#> # … with 14 more rows
 ```
 
 Para desconsiderar linhas duplicadas nos dados usamos a função `dplyr::distinct()`:
@@ -1439,19 +945,6 @@ Para desconsiderar linhas duplicadas nos dados usamos a função `dplyr::distinc
 # remove observações repetidas
 prec_anual_comp_rep %>%
   distinct(site, prec)
-#> # A tibble: 10 x 2
-#>    site   prec
-#>    <fct> <dbl>
-#>  1 A001   1800
-#>  2 A001   1400
-#>  3 A001   1750
-#>  4 A002   1750
-#>  5 A002   1470
-#>  6 A002   1630
-#>  7 A002   1300
-#>  8 A003   1300
-#>  9 A003   1950
-#> 10 A003   1100
 ```
 
 
@@ -1461,27 +954,8 @@ A função `dplyr::count()` é útil para obter a frequência de ocorrência de 
 ```r
 prec_anual_comp_rep %>%
   count(site)
-#> # A tibble: 3 x 2
-#>   site      n
-#>   <fct> <int>
-#> 1 A001      6
-#> 2 A002      6
-#> 3 A003     12
 prec_anual_comp_rep %>%
   count(site, prec)
-#> # A tibble: 10 x 3
-#>    site   prec     n
-#>    <fct> <dbl> <int>
-#>  1 A001   1400     1
-#>  2 A001   1750     4
-#>  3 A001   1800     1
-#>  4 A002   1300     3
-#>  5 A002   1470     1
-#>  6 A002   1630     1
-#>  7 A002   1750     1
-#>  8 A003   1100     1
-#>  9 A003   1300     4
-#> 10 A003   1950     7
 ```
 
 
@@ -1498,18 +972,6 @@ A única mudança ao aplicar a `dplyr::group_by()` à um *data frame* é a indic
 ```r
 prec_anual_tbl %>%
   group_by(site)
-#> # A tibble: 8 x 4
-#> # Groups:   site [4]
-#>   site    ano  prec intensidade
-#>   <chr> <dbl> <dbl>       <dbl>
-#> 1 A001   2000  1800        4.93
-#> 2 A001   2001  1400        3.83
-#> 3 A002   2000  1750        4.79
-#> 4 A002   2001  1470        4.02
-#> 5 A002   2002  1630        4.46
-#> 6 A003   2004  1300        3.56
-#> 7 A803   2005  1950        5.34
-#> 8 A803   2006  1100        3.01
 ```
 
 
@@ -1524,13 +986,6 @@ Por exemplo a chuva anual média por `site` é obtida com o seguinte código:
 prec_anual_tbl %>%
   group_by(., site) %>%
   summarise(., prec_med = mean(prec))
-#> # A tibble: 4 x 2
-#>   site  prec_med
-#>   <chr>    <dbl>
-#> 1 A001     1600 
-#> 2 A002     1617.
-#> 3 A003     1300 
-#> 4 A803     1525
 ```
 
 A `prec` média para cada ano e o número de anos utilizados em seu cálculo é obtida por: 
@@ -1544,15 +999,6 @@ prec_anual_tbl %>%
     prec_med = mean(prec),
     nobs = n()
   )
-#> # A tibble: 6 x 3
-#>     ano prec_med  nobs
-#>   <dbl>    <dbl> <int>
-#> 1  2000     1775     2
-#> 2  2001     1435     2
-#> 3  2002     1630     1
-#> 4  2004     1300     1
-#> 5  2005     1950     1
-#> 6  2006     1100     1
 ```
 
 A função `n()` conta quantas observações temos em um subconjunto dos dados.
@@ -1562,25 +1008,6 @@ Os grupos podem ser compostos de mais de uma variável. Para o exemplo com os da
 
 ```r
 prec_anual_long
-#> # A tibble: 16 x 4
-#>    site    ano variavel     medida
-#>    <chr> <dbl> <chr>         <dbl>
-#>  1 A001   2000 prec        1800   
-#>  2 A001   2001 prec        1400   
-#>  3 A002   2000 prec        1750   
-#>  4 A002   2001 prec        1470   
-#>  5 A002   2002 prec        1630   
-#>  6 A003   2004 prec        1300   
-#>  7 A803   2005 prec        1950   
-#>  8 A803   2006 prec        1100   
-#>  9 A001   2000 intensidade    4.93
-#> 10 A001   2001 intensidade    3.83
-#> 11 A002   2000 intensidade    4.79
-#> 12 A002   2001 intensidade    4.02
-#> 13 A002   2002 intensidade    4.46
-#> 14 A003   2004 intensidade    3.56
-#> 15 A803   2005 intensidade    5.34
-#> 16 A803   2006 intensidade    3.01
 ```
 
 podemos obter a média por `variavel` e `site`, fazendo:
@@ -1594,25 +1021,17 @@ estats_por_site_var <- prec_anual_long %>%
   ) %>%
   arrange(variavel, site)
 estats_por_site_var
-#> # A tibble: 8 x 3
-#> # Groups:   site [4]
-#>   site  variavel      media
-#>   <chr> <chr>         <dbl>
-#> 1 A001  intensidade    4.38
-#> 2 A002  intensidade    4.43
-#> 3 A003  intensidade    3.56
-#> 4 A803  intensidade    4.18
-#> 5 A001  prec        1600   
-#> 6 A002  prec        1617.  
-#> 7 A003  prec        1300   
-#> 8 A803  prec        1525
 ```
 
 Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.
 
 Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubrí-las. 
 
-
+<!---
+#faltando 
+# - non standard evaluation
+# - ...
+--->
 
 
 ### Combinação de dados 
@@ -1631,28 +1050,10 @@ Vamos considerar os dados `clima_rs_tbl` e `metadados_rs`. Para melhor compreens
 clima_rs_tbl <- clima_rs_tbl %>%
   select(-(estacao:uf))
 head(clima_rs_tbl)
-#> # A tibble: 6 x 3
-#>   codigo  prec  tmax
-#>   <chr>  <dbl> <dbl>
-#> 1 83931  1492.  25.4
-#> 2 83980  1300.  24.1
-#> 3 83941  1684.  23  
-#> 4 83919  1807.  20.3
-#> 5 83963  1477.  25.1
-#> 6 83942  1823   21.8
 # metadados das estações convertidos para tibble
 metadados_rs <- metadados_rs %>% 
   as_tibble()
 head(metadados_rs)
-#> # A tibble: 6 x 4
-#>   codigo   lon   lat    alt
-#>   <chr>  <dbl> <dbl>  <dbl>
-#> 1 83931  -55.5 -29.7  121. 
-#> 2 83980  -54.1 -31.3  242. 
-#> 3 83941  -51.5 -29.2  640  
-#> 4 83919  -50.4 -28.7 1048. 
-#> 5 83959  -53.5 -30.5  450  
-#> 6 83963  -52.9 -30.0   72.7
 ```
 
 A variável comum às duas tabelas é:
@@ -1661,7 +1062,6 @@ A variável comum às duas tabelas é:
 ```r
 var_comum <- names(clima_rs_tbl) %in% names(metadados_rs)
 names(clima_rs_tbl)[var_comum]
-#> [1] "codigo"
 ```
 
 Vamos comparar os valores da variável `codigo` em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa. 
@@ -1674,8 +1074,6 @@ Para saber se algum valor da variável `codigo` da tabela `clima_rs_tbl` não es
 clima_rs_tbl %>%
   filter(., ! codigo %in% metadados_rs$codigo ) %>%
   select(., codigo)
-#> # A tibble: 0 x 1
-#> # … with 1 variable: codigo <chr>
 ```
 
 Não há nenhum caso.
@@ -1688,16 +1086,6 @@ Analogamente, vamos verificar se algum valor da variável `codigo` dos `metadado
 metadados_rs %>%
   filter(., ! codigo %in% clima_rs_tbl$codigo )%>%
   select(., codigo)
-#> # A tibble: 7 x 1
-#>   codigo
-#>   <chr> 
-#> 1 83959 
-#> 2 83885 
-#> 3 83985 
-#> 4 83983 
-#> 5 83953 
-#> 6 83909 
-#> 7 83918
 ```
 
 
@@ -1718,38 +1106,6 @@ clima_rs_comb
 ```
 
 
-codigo      prec   tmax         lon         lat       alt
--------  -------  -----  ----------  ----------  --------
-83931     1492.2   25.4   -55.51667   -29.68333    120.91
-83980     1299.9   24.1   -54.10000   -31.33333    242.31
-83941     1683.7   23.0   -51.51667   -29.15000    640.00
-83919     1807.3   20.3   -50.43333   -28.66667   1047.50
-83963     1477.1   25.1   -52.88333   -30.03333     72.71
-83942     1823.0   21.8   -51.20000   -29.16667    759.60
-83912     1630.7   24.5   -53.60000   -28.63333    472.50
-83964     1510.8   22.5   -52.51667   -30.53333    427.75
-83915     1758.7   24.7   -51.90000   -28.91667    471.51
-83881     1806.7   27.1   -53.23333   -27.18333    247.10
-83929     1369.4   26.2   -56.53333   -29.11667     76.00
-83916     1691.1   23.0   -51.50000   -28.21667    840.00
-83880     1747.8   24.0   -53.43333   -27.88333    634.00
-83914     1803.1   23.6   -52.40000   -28.21667    684.05
-83967     1320.2   24.8   -51.16667   -30.05000     46.97
-83995     1233.6   21.7   -52.10000   -32.03333      2.46
-83936     1616.8   24.9   -53.70000   -29.70000     95.00
-83997     1228.9   21.8   -53.35000   -33.51667     24.01
-83957     1313.9   25.0   -54.31667   -30.33333    124.00
-83907     1770.9   26.1   -55.01667   -28.40000    245.11
-83966     1349.8   23.8   -51.58333   -30.83333      5.00
-83948     1363.2   22.3   -49.71667   -29.35000      4.66
-83927     1647.4   25.8   -57.08333   -29.75000     62.31
-83959         NA     NA   -53.48333   -30.51667    450.00
-83885         NA     NA   -51.90000   -27.45000    414.17
-83985         NA     NA   -52.41667   -31.78333     13.00
-83983         NA     NA   -53.10000   -31.43333    345.00
-83953         NA     NA   -55.60000   -30.83333    328.00
-83909         NA     NA   -54.25000   -28.30000    284.50
-83918         NA     NA   -50.70000   -28.55000    954.60
 
 
 Da inspeção das últimas linhas de `clima_rs_comb` verificamos que o resultado é uma tabela que contém todos valores da variável `codigo` das duas tabelas. Os valores das variáveis `prec` e `tmax`, para as observações da variável `codigo` sem valores ( na `metadados_rs`) são preenchidos com `NA`.
@@ -1767,31 +1123,6 @@ clima_rs_intersec
 ```
 
 
-codigo          lon         lat       alt     prec   tmax
--------  ----------  ----------  --------  -------  -----
-83931     -55.51667   -29.68333    120.91   1492.2   25.4
-83980     -54.10000   -31.33333    242.31   1299.9   24.1
-83941     -51.51667   -29.15000    640.00   1683.7   23.0
-83919     -50.43333   -28.66667   1047.50   1807.3   20.3
-83963     -52.88333   -30.03333     72.71   1477.1   25.1
-83942     -51.20000   -29.16667    759.60   1823.0   21.8
-83912     -53.60000   -28.63333    472.50   1630.7   24.5
-83964     -52.51667   -30.53333    427.75   1510.8   22.5
-83915     -51.90000   -28.91667    471.51   1758.7   24.7
-83881     -53.23333   -27.18333    247.10   1806.7   27.1
-83929     -56.53333   -29.11667     76.00   1369.4   26.2
-83916     -51.50000   -28.21667    840.00   1691.1   23.0
-83880     -53.43333   -27.88333    634.00   1747.8   24.0
-83914     -52.40000   -28.21667    684.05   1803.1   23.6
-83967     -51.16667   -30.05000     46.97   1320.2   24.8
-83995     -52.10000   -32.03333      2.46   1233.6   21.7
-83936     -53.70000   -29.70000     95.00   1616.8   24.9
-83997     -53.35000   -33.51667     24.01   1228.9   21.8
-83957     -54.31667   -30.33333    124.00   1313.9   25.0
-83907     -55.01667   -28.40000    245.11   1770.9   26.1
-83966     -51.58333   -30.83333      5.00   1349.8   23.8
-83948     -49.71667   -29.35000      4.66   1363.2   22.3
-83927     -57.08333   -29.75000     62.31   1647.4   25.8
 
 Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:
 
@@ -1806,15 +1137,6 @@ clima_rs_disj
 ```
 
 
-codigo          lon         lat      alt
--------  ----------  ----------  -------
-83959     -53.48333   -30.51667   450.00
-83885     -51.90000   -27.45000   414.17
-83985     -52.41667   -31.78333    13.00
-83983     -53.10000   -31.43333   345.00
-83953     -55.60000   -30.83333   328.00
-83909     -54.25000   -28.30000   284.50
-83918     -50.70000   -28.55000   954.60
 
 O exemplo abaixo demonstram os resultados das funções `dplyr::left_join()` e `dplyr::right_join()` para um versão reduzida dos dados `clima_rs_tbl`.
 
@@ -1823,44 +1145,18 @@ O exemplo abaixo demonstram os resultados das funções `dplyr::left_join()` e `
 clima_rs_tbl_mini <- clima_rs_tbl %>%
   slice(., 1:3) 
 clima_rs_tbl_mini
-#> # A tibble: 3 x 3
-#>   codigo  prec  tmax
-#>   <chr>  <dbl> <dbl>
-#> 1 83931  1492.  25.4
-#> 2 83980  1300.  24.1
-#> 3 83941  1684.  23
 # combina os dados baseado nas observações dos dados à esquerda (x)
 left_join(
   x = clima_rs_tbl_mini, 
   y =metadados_rs, 
   by = "codigo"
 )
-#> # A tibble: 3 x 6
-#>   codigo  prec  tmax   lon   lat   alt
-#>   <chr>  <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1 83931  1492.  25.4 -55.5 -29.7  121.
-#> 2 83980  1300.  24.1 -54.1 -31.3  242.
-#> 3 83941  1684.  23   -51.5 -29.2  640
 # combina os dados baseado nas observações dos dados à direita (y)
 right_join(
   x = clima_rs_tbl_mini, 
   y = metadados_rs, 
   by = "codigo"
 )
-#> # A tibble: 30 x 6
-#>    codigo  prec  tmax   lon   lat    alt
-#>    <chr>  <dbl> <dbl> <dbl> <dbl>  <dbl>
-#>  1 83931  1492.  25.4 -55.5 -29.7  121. 
-#>  2 83980  1300.  24.1 -54.1 -31.3  242. 
-#>  3 83941  1684.  23   -51.5 -29.2  640  
-#>  4 83919    NA   NA   -50.4 -28.7 1048. 
-#>  5 83959    NA   NA   -53.5 -30.5  450  
-#>  6 83963    NA   NA   -52.9 -30.0   72.7
-#>  7 83942    NA   NA   -51.2 -29.2  760. 
-#>  8 83912    NA   NA   -53.6 -28.6  472. 
-#>  9 83964    NA   NA   -52.5 -30.5  428. 
-#> 10 83915    NA   NA   -51.9 -28.9  472. 
-#> # … with 20 more rows
 ```
 
 ## Exercícios
@@ -1886,10 +1182,6 @@ download.file(
 )
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
-#>  [1] "soi"                "precd_ncdf"         "poluentes"         
-#>  [4] "estacoes"           "dados_sm"           "dados_zorra"       
-#>  [7] "datas_comp"         "datas_obs"          "dados_rs_08_16"    
-#> [10] "info_emas_rs_08_16"
 ```
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
@@ -1897,26 +1189,25 @@ print(load(arq_temp))
 
 ```r
 soi 
-#>   YEAR    1    2    3    4    5   6    7    8    9   10   11   12
-#> 1 1951  1.5  0.9 -0.1 -0.3 -0.7 0.2 -1.0 -0.2 -1.1 -1.0 -0.8 -0.7
-#> 2 1952 -0.9 -0.6  0.5 -0.2  0.8 0.7  0.5  0.1 -0.2  0.4  0.0 -1.2
-#> 3 1953  0.3 -0.5 -0.2  0.2 -1.7 0.1  0.0 -1.2 -1.2  0.1 -0.3 -0.5
 ```
 
 
 
 
+```r
+soi_arrumado <- gather(data = soi, 
+                       key = "mes", 
+                       value = "soi",
+                       -YEAR) %>%
+  mutate(., mes = as.integer(mes)) %>%
+  arrange(YEAR, mes) %>%
+  setNames(., tolower(names(.)))
+soi_arrumado
+```
 
 A estrutura esperada dos dados arrumados é mostrada abaixo: 
 
 
-```
-#> Observations: 36
-#> Variables: 3
-#> $ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951,…
-#> $ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7,…
-#> $ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, -0.2, -1.1, -1.0, -0…
-```
 
 
 2. Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o *tibble* fornecido abaixo para o \"formato arrumado\". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe *date* usando a função `as.Date()`.
@@ -1924,61 +1215,48 @@ A estrutura esperada dos dados arrumados é mostrada abaixo:
 
 ```r
 precd_ncdf
-#> # A tibble: 5 x 10
-#>       x     y X2010.01.01 X2010.01.02 X2010.01.03 X2010.01.04 X2010.01.05
-#>   <dbl> <dbl>       <dbl>       <dbl>       <dbl>       <dbl>       <dbl>
-#> 1 -60.6  5.12           0           0           0       0.448       2.35 
-#> 2 -60.4  5.12           0           0           0       0.441       1.19 
-#> 3 -60.1  5.12           0           0           0       0.579       2.01 
-#> 4 -60.6  4.88           0           0           0       0.441       1.94 
-#> 5 -60.4  4.88           0           0           0       0.392       0.428
-#> # … with 3 more variables: X2010.01.06 <dbl>, X2010.01.07 <dbl>,
-#> #   X2010.01.08 <dbl>
 ```
 
 
 
 
+```r
+precd_arrum <- gather(precd_ncdf,
+                      key =  date, 
+                      value = prec,
+                      -c(x, y)) %>%
+  mutate(
+    date = gsub(
+      pattern = "X", 
+      replacement = "", 
+      x = date
+      ),
+    date = as.Date(date, "%Y.%m.%d")
+  )
+precd_arrum
+```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```
-#> Observations: 40
-#> Variables: 4
-#> $ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60.375, -60.625, -60.3…
-#> $ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.125, 5.125, 5.125, 4.8…
-#> $ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01, 2010-01-01…
-#> $ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.00…
-```
 
 3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
 
 
 ```r
 poluentes
-#> # A tibble: 4 x 3
-#>   poluente duracao estacao
-#>   <chr>    <chr>     <int>
-#> 1 ozone    1h            1
-#> 2 so2      1h            1
-#> 3 ozone    8h            2
-#> 4 no2      1h            4
 ```
 
 
+```r
+poluentes_arrum <- poluentes %>%
+  spread(., poluente, duracao)
+poluentes_arrum
+```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```
-#> Observations: 3
-#> Variables: 4
-#> $ estacao <int> 1, 2, 4
-#> $ no2     <chr> NA, NA, "1h"
-#> $ ozone   <chr> "1h", "8h", NA
-#> $ so2     <chr> "1h", NA, NA
-```
 
 
 4. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.
@@ -1986,46 +1264,32 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 ```r
 dados_sm
-#> # A tibble: 12 x 35
-#>    id    element month  year    d1    d2    d3    d4    d5    d6    d7
-#>    <chr> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 83936 tmax        1  2010  32.6  33.4  24.8  29.4  27    24.4  29.6
-#>  2 83936 tmin        1  2010  17.9  21.4  21.6  23.4  23.2  21.8  18  
-#>  3 83936 tmax        2  2010  36.8  38.4  32.6  38.6  34    36.4  29.8
-#>  4 83936 tmin        2  2010  25.4  25    29.6  26.2  25    25.8  25.4
-#>  5 83936 tmax        3  2010  32    32.4  33.6  32.4  32    29.6  30.2
-#>  6 83936 tmin        3  2010  18.6  19    20.2  21.6  19.8  18.4  17.3
-#>  7 83936 tmax        4  2010  34.4  28.6  21    24.2  23.4  24    24.6
-#>  8 83936 tmin        4  2010  17.5  21    20.6  17.6  15    10.8  11.7
-#>  9 83936 tmax        5  2010  27    26.4  20.2  22.8  25.4  17.4  19.6
-#> 10 83936 tmin        5  2010   7.2   7    13    16.2  14.1  11.5  14.4
-#> 11 83936 tmax        6  2010  19.2  23.8  17.2  18.6  21.2  20.2  17.8
-#> 12 83936 tmin        6  2010   4.1   8.8   9.1  15.2  11.4   6.1   6.3
-#> # … with 24 more variables: d8 <dbl>, d9 <dbl>, d10 <dbl>, d11 <dbl>,
-#> #   d12 <dbl>, d13 <dbl>, d14 <dbl>, d15 <dbl>, d16 <dbl>, d17 <dbl>,
-#> #   d18 <dbl>, d19 <dbl>, d20 <dbl>, d21 <dbl>, d22 <dbl>, d23 <dbl>,
-#> #   d24 <dbl>, d25 <dbl>, d26 <dbl>, d27 <dbl>, d28 <dbl>, d29 <dbl>,
-#> #   d30 <dbl>, d31 <dbl>
 ```
 
 
 
   
 
+```r
+dados_sm_arrum <- dados_sm %>%
+  gather(., 
+         key = day, 
+         value = valor, 
+         d1:d31
+         ) %>%
+  spread(., 
+         element, 
+         valor
+         ) %>%
+  mutate(.,
+         day = as.integer(str_replace_all(day, "d", ""))
+         ) %>%
+  arrange(year, month, day)
+```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```
-#> Observations: 186
-#> Variables: 6
-#> $ id    <chr> "83936", "83936", "83936", "83936", "83936", "83936", "839…
-#> $ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010…
-#> $ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
-#> $ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4, 29.6, 31.8…
-#> $ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4, 21.8, 22.4…
-```
 
 
 - - -
@@ -2035,17 +1299,41 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
    a. junte as colunas `year`, `month` e `day` em uma única coluna denominada `date` de forma que a classe dessa nova coluna seja `date`.  
 
 
+```r
+dados_sm_arrum_u <- dados_sm_arrum %>%
+  unite(., 
+        col = date, 
+        c("year", "month", "day"),
+        sep = "-"
+        ) %>%
+  mutate(date = as.Date(date))
+```
 
 
 
+```r
+glimpse(dados_sm_arrum_u)
+```
 
 
 
    b. Filtre os dados obtidos em **(a)** de forma a descobrir as datas em que as observações de `tmax` ou `tmin` são faltantes. Mostre o *tibble* filtrado com as datas e explique o porquê de seus valores. 
 
 
+```r
+dados_sm_arrum_u %>%
+  filter(., is.na(tmax) | is.na(tmin))
+```
 
 
+```r
+# As datas faltantes de tmax e tmin também são NA, pq 
+# são datas inválidas ou inexistentes.
+# O que pode ser mostrado com :
+dados_sm_arrum %>%
+  filter(., is.na(tmax) | is.na(tmin)) %>%
+  select(., year, month, day)
+```
 
 
 - - -
@@ -2055,30 +1343,36 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 ```r
 dados_zorra
-#>         date tmax.0 tmax.600 tmax.1200 tmax.1800 tmin.0 tmin.600 tmin.1200
-#> 2 01-01-2010   22.1     21.0      26.4      27.0     16     13.5      18.2
-#> 3 02-01-2010   26.0     25.0      29.4      29.5     19     13.7      16.3
-#> 4 03-01-2010   25.7     26.3      28.4      29.0     21     14.1      17.2
-#> 5 04-01-2010   23.5     24.5      27.4      28.0     23     16.2      16.9
-#>   tmin.1800
-#> 2      24.1
-#> 3      22.3
-#> 4      26.0
-#> 5      23.0
 ```
 
 
+```r
+# solucao
+res <- dados_zorra %>%
+  gather(., key = variavel, value = valor, -date) %>%
+  separate(
+    .,
+    col = variavel,
+    into = c("varname", "hora")
+    #sep = "\\."
+    ) %>% #.$hora %>% unique()
+  mutate(.,
+         hora = ifelse(
+           nchar(hora) >= 3,
+           as.numeric(hora)/100,
+           as.numeric(hora)),
+         hora = paste0(hora,":", "00:00"),
+         date = as.Date(date, "%d-%m-%Y")
+         ) %>%
+  unite(., col = date, date, hora, sep = " ") %>%
+  mutate(., date = as.POSIXct(date)) %>%
+  spread(., varname, valor)
+res
+```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
-```
-#> Observations: 16
-#> Variables: 3
-#> $ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:00…
-#> $ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26.3,…
-#> $ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1,…
-```
 
 
 - - -
@@ -2088,26 +1382,20 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 ```r
 estacoes
-#>   id      lat       lon
-#> 1  1 42.46757 -87.81005
-#> 2  2 42.04915 -88.27303
-#> 3  3 39.11054 -90.32408
 ```
 
 
+```r
+res7 <- inner_join(
+  x = estacoes, 
+  y = poluentes, 
+  by = c("id" = "estacao")
+)
+```
 
 Estrutura da tabela resultante:
 
 
-```
-#> Observations: 3
-#> Variables: 5
-#> $ id       <int> 1, 1, 2
-#> $ lat      <dbl> 42.46757, 42.46757, 42.04915
-#> $ lon      <dbl> -87.81005, -87.81005, -88.27303
-#> $ poluente <chr> "ozone", "so2", "ozone"
-#> $ duracao  <chr> "1h", "1h", "8h"
-```
 
 - - -
 
@@ -2116,32 +1404,41 @@ Estrutura da tabela resultante:
   a. a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`. 
 
 
+```r
+# datas completas
+datas_comp
+# datas das observações de theta
+datas_obs
+```
 
 
+```r
+res8a <- full_join(
+  x = datas_obs,
+  y = datas_comp,
+  by = "date") %>%
+  arrange(date)
+res8a
+```
 
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 8
-#> Variables: 2
-#> $ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-1…
-#> $ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
-```
 
   b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
   
 
+```r
+res8b <- right_join(
+  x = datas_obs,
+  y = datas_comp,
+  by = "date") %>%
+  arrange(date)
+```
 
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 7
-#> Variables: 2
-#> $ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-1…
-#> $ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
-```
 
 - - - 
 
@@ -2150,59 +1447,71 @@ Utilize os dados horários de estações meteorológicas automáticas (EMA) do R
 10. Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
 
 
+```r
+ini_fim <- dados_rs_08_16 %>%
+  select(site, date) %>%
+  group_by(site) %>%
+  summarise(
+    inicio = min(date),
+    fim = max(date),
+    periodo_err = time_length(
+      fim - inicio, unit = "year"
+      )
+    ) #%>% glimpse()
+#glimpse(ini_fim)
+
+periodo <- dados_rs_08_16 %>%
+  select(site, date) %>%
+  group_by(site, year = year(date)) %>%
+  count() %>%
+  mutate(ndays = ifelse(year %% 4 == 0, 366, 365),
+         n = n/24,
+         periodo = n/ndays) %>%
+  ungroup() %>%
+  group_by(site) %>%
+  summarise(periodo = sum(periodo))
+#glimpse(periodo)
+
+per_ini_fim <- full_join(periodo, ini_fim, by = "site")
+```
 
 Estrutura da tabela de dados resultante: 
 
 
-```
-#> Observations: 42
-#> Variables: 5
-#> $ site        <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A80…
-#> $ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322, 0.5027322, 8.502732…
-#> $ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31 21:00:00, 2007-12-3…
-#> $ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-3…
-#> $ periodo_err <dbl> 9.0081050, 9.0081050, 9.0081050, 0.5039954, 9.008105…
-```
 
 
 
 11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
 
 
+```r
+perc_valid <- function(x){
+  #if(all(is.na(x))) return(0)
+  sum(!is.na(x))/length(x) * 100
+} 
+validos <- dados_rs_08_16 %>%
+  group_by(site) %>%
+  summarise_at(., vars(tair:ws), perc_valid) %>%
+  mutate_at(., vars(tair:ws), as.integer)
+```
 
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 42
-#> Variables: 6
-#> $ site <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809", "A8…
-#> $ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 96,…
-#> $ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 96,…
-#> $ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 96,…
-#> $ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 51,…
-#> $ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 75,…
-```
 
 
 12. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
   
 
+```r
+disp <- validos %>%
+  mutate(., disp_med = rowMeans(.[,-1])) %>%
+  arrange(desc(disp_med))
+```
 
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 42
-#> Variables: 7
-#> $ site     <chr> "A894", "A886", "A801", "A884", "A839", "A889", "A879",…
-#> $ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96, 9…
-#> $ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, 97…
-#> $ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96, 9…
-#> $ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 50,…
-#> $ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 97,…
-#> $ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6, 8…
-```
 
 
 13. Para a EMA de Santa Maria (ver `info_emas_rs_08_16`) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a `tair` média de cada hora. 
@@ -2212,17 +1521,21 @@ Estrutura da tabela de dados resultante:
 
 
 
+```r
+id_sm <- info_emas_rs_08_16$site[info_emas_rs_08_16$name == "SANTA MARIA"]
+
+sm_tar_ciclo_medio <- dados_rs_08_16 %>%
+  select(site, date, tair) %>%
+  filter(site == id_sm) %>%
+  group_by(hour = hour(date)) %>%
+  summarise(tair_med = mean(tair, na.rm = TRUE),
+            tair_disp = perc_valid(tair)) #%>% glimpse()
+
+```
 
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 24
-#> Variables: 3
-#> $ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
-#> $ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15.7…
-#> $ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96.1…
-```
 
 
 14. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
@@ -2234,11 +1547,5 @@ Estrutura da tabela de dados resultante:
 Estrutura da tabela de dados resultante:
 
 
-```
-#> Observations: 24
-#> Variables: 2
-#> $ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 11,…
-#> $ n      <int> 720, 561, 438, 311, 196, 190, 123, 90, 75, 60, 47, 29, 28…
-```
 
 

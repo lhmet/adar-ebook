@@ -25,7 +25,7 @@ Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o u
 aq_url <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt"
 # arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/Rtmpbd1yf7/file4059c0dbae7"
+#> [1] "/tmp/RtmpfJzOd8/file2f9d7ef0f875"
 download.file(aq_url, destfile = aq_dest_file)
 ```
 
@@ -47,16 +47,15 @@ head(vetor_aq, 100)
 #>  [91]   14.0  334.0   11.5   64.0    5.0   16.0   34.0  307.0   12.0   66.0
 # parte final
 tail(vetor_aq, 100)
-#>   [1]  24.0  10.9  71.0   9.0  14.0  13.0 112.0  11.5  71.0   9.0  15.0
-#>  [12]  46.0 237.0   6.9  78.0   9.0  16.0  18.0 224.0  13.8  67.0   9.0
-#>  [23]  13.0  27.0  10.3  76.0   9.0  18.0  24.0 238.0  10.3  68.0   9.0
-#>  [34]  19.0  16.0 201.0   8.0  82.0   9.0  20.0  13.0 238.0  12.6  64.0
-#>  [45]   9.0  21.0  23.0  14.0   9.2  71.0   9.0  22.0  36.0 139.0  10.3
-#>  [56]  81.0   9.0  23.0   7.0  49.0  10.3  69.0   9.0  24.0  14.0  20.0
-#>  [67]  16.6  63.0   9.0  25.0  30.0 193.0   6.9  70.0   9.0  26.0 -99.9
-#>  [78] 145.0  13.2  77.0   9.0  27.0  14.0 191.0  14.3  75.0   9.0  28.0
-#>  [89]  18.0 131.0   8.0  76.0   9.0  29.0  20.0 223.0  11.5  68.0   9.0
-#> [100]  30.0
+#>   [1]  24.0  10.9  71.0   9.0  14.0  13.0 112.0  11.5  71.0   9.0  15.0  46.0
+#>  [13] 237.0   6.9  78.0   9.0  16.0  18.0 224.0  13.8  67.0   9.0  13.0  27.0
+#>  [25]  10.3  76.0   9.0  18.0  24.0 238.0  10.3  68.0   9.0  19.0  16.0 201.0
+#>  [37]   8.0  82.0   9.0  20.0  13.0 238.0  12.6  64.0   9.0  21.0  23.0  14.0
+#>  [49]   9.2  71.0   9.0  22.0  36.0 139.0  10.3  81.0   9.0  23.0   7.0  49.0
+#>  [61]  10.3  69.0   9.0  24.0  14.0  20.0  16.6  63.0   9.0  25.0  30.0 193.0
+#>  [73]   6.9  70.0   9.0  26.0 -99.9 145.0  13.2  77.0   9.0  27.0  14.0 191.0
+#>  [85]  14.3  75.0   9.0  28.0  18.0 131.0   8.0  76.0   9.0  29.0  20.0 223.0
+#>  [97]  11.5  68.0   9.0  30.0
 # dados são importados como vetor
 is.vector(vetor_aq)
 #> [1] TRUE
@@ -243,13 +242,13 @@ dput(x)
 #> structure(list(dates = structure(c(1L, 1L, 1L), .Label = "2013-01-01", class = "factor"), 
 #>     cidade = structure(c(2L, 3L, 1L), .Label = c("CV", "SM", 
 #>     "SS"), class = "factor"), temperatura = c(31L, 35L, 21L), 
-#>     chuva = c(3L, 10L, 14L)), .Names = c("dates", "cidade", "temperatura", 
-#> "chuva"), class = "data.frame", row.names = c(NA, -3L))
+#>     chuva = c(3L, 10L, 14L)), class = "data.frame", row.names = c(NA, 
+#> -3L))
 # salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads"
 (aq_dest_file <- tempfile())
-#> [1] "/tmp/Rtmpbd1yf7/file40593da84826"
+#> [1] "/tmp/RtmpfJzOd8/file2f9d3d39e76a"
 (x_dest_file <- tempfile())
-#> [1] "/tmp/Rtmpbd1yf7/file405920018835"
+#> [1] "/tmp/RtmpfJzOd8/file2f9d2384f241"
 dput(x, file = x_dest_file)
 # recuperando x a partir do arquivo
 y <- dget(x_dest_file)
@@ -262,32 +261,30 @@ y
 #> 3    19.58579 12.585786
 # verificar existência de x e y
 ls()
-#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"       
-#>  [5] "fcubo"        "k"            "pcks"         "rblue"       
-#>  [9] "sentenca"     "tc"           "texto"        "vetor_aq"    
-#> [13] "x"            "x_dest_file"  "y"
+#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"        "fcubo"       
+#>  [6] "k"            "pcks"         "rblue"        "sentenca"     "tc"          
+#> [11] "texto"        "vetor_aq"     "x"            "x_dest_file"  "y"
 # listando variáveis que começam com x ou y
 ls(pattern = "^[xy]")
 #> [1] "x"           "x_dest_file" "y"
 # salvando mais de um objeto em um arquivo
 (xy_dest_file <- tempfile())
-#> [1] "/tmp/Rtmpbd1yf7/file405942e737a4"
+#> [1] "/tmp/RtmpfJzOd8/file2f9d49c434a5"
 dump(ls(pattern = "^[xy]"), file = xy_dest_file)
 # vamos apagar x e y do espaco de trabalho
 rm(x, y)
 # x e y não existem mais
 ls()
-#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"       
-#>  [5] "fcubo"        "k"            "pcks"         "rblue"       
-#>  [9] "sentenca"     "tc"           "texto"        "vetor_aq"    
-#> [13] "x_dest_file"  "xy_dest_file"
+#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"        "fcubo"       
+#>  [6] "k"            "pcks"         "rblue"        "sentenca"     "tc"          
+#> [11] "texto"        "vetor_aq"     "x_dest_file"  "xy_dest_file"
 # recuperando os objetos x e y salvos em xy.R
 source(xy_dest_file)
 ls()
-#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"       
-#>  [5] "fcubo"        "k"            "pcks"         "rblue"       
-#>  [9] "sentenca"     "tc"           "texto"        "vetor_aq"    
-#> [13] "x"            "x_dest_file"  "xy_dest_file" "y"
+#>  [1] "aq_dest_file" "aq_url"       "cubo"         "dados"        "fcubo"       
+#>  [6] "k"            "pcks"         "rblue"        "sentenca"     "tc"          
+#> [11] "texto"        "vetor_aq"     "x"            "x_dest_file"  "xy_dest_file"
+#> [16] "y"
 x
 #>        dates cidade temperatura chuva
 #> 1 2013-01-01     SM          31     3
@@ -347,26 +344,22 @@ data()
 data(precip)
 # primeiros 30 elementos dos dados precip
 head(precip, n = 30)
-#>              Mobile              Juneau             Phoenix 
-#>                67.0                54.7                 7.0 
-#>         Little Rock         Los Angeles          Sacramento 
-#>                48.5                14.0                17.2 
-#>       San Francisco              Denver            Hartford 
-#>                20.7                13.0                43.4 
-#>          Wilmington          Washington        Jacksonville 
-#>                40.2                38.9                54.5 
-#>               Miami             Atlanta            Honolulu 
-#>                59.8                48.3                22.9 
-#>               Boise             Chicago              Peoria 
-#>                11.5                34.4                35.1 
-#>        Indianapolis          Des Moines             Wichita 
-#>                38.7                30.8                30.6 
-#>          Louisville         New Orleans            Portland 
-#>                43.1                56.8                40.8 
-#>           Baltimore              Boston             Detroit 
-#>                41.8                42.5                31.0 
-#>    Sault Ste. Marie              Duluth Minneapolis/St Paul 
-#>                31.7                30.2                25.9
+#>              Mobile              Juneau             Phoenix         Little Rock 
+#>                67.0                54.7                 7.0                48.5 
+#>         Los Angeles          Sacramento       San Francisco              Denver 
+#>                14.0                17.2                20.7                13.0 
+#>            Hartford          Wilmington          Washington        Jacksonville 
+#>                43.4                40.2                38.9                54.5 
+#>               Miami             Atlanta            Honolulu               Boise 
+#>                59.8                48.3                22.9                11.5 
+#>             Chicago              Peoria        Indianapolis          Des Moines 
+#>                34.4                35.1                38.7                30.8 
+#>             Wichita          Louisville         New Orleans            Portland 
+#>                30.6                43.1                56.8                40.8 
+#>           Baltimore              Boston             Detroit    Sault Ste. Marie 
+#>                41.8                42.5                31.0                31.7 
+#>              Duluth Minneapolis/St Paul 
+#>                30.2                25.9
 # New York Air Quality Measurements, , p/ mais informações "?airquality"
 data(airquality)
 # primeiras linhas dos dados
@@ -447,190 +440,183 @@ dprec <- read.csv2(file = hidroweb_url_file,
                    fill = TRUE)
 # primeiras linhas
 head(dprec)
-#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
-#> 1          3054002                 1 01/01/1934                 1     NA
-#> 2          3054002                 1 01/02/1934                 1   66.3
-#> 3          3054002                 1 01/03/1934                 1   55.0
-#> 4          3054002                 1 01/04/1934                 1   54.5
-#> 5          3054002                 1 01/05/1934                 1   30.5
-#> 6          3054002                 1 01/06/1934                 1   42.5
-#>   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
-#> 1    NA        NA             NA            0           0
-#> 2 174.7         6             10            1           1
-#> 3 160.7         9             10            1           1
-#> 4  98.4         1              4            1           1
-#> 5 119.4        29              8            1           1
-#> 6 191.6        13             11            1           1
-#>   NumDiasDeChuvaStatus TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03
-#> 1                    0         NA                0      NA      NA      NA
-#> 2                    0         NA                0    15.5     3.5     0.0
-#> 3                    0         NA                0     0.0     0.0     0.0
-#> 4                    0         NA                0    54.5     0.0     0.0
-#> 5                    1         NA                0     0.0    19.0    26.7
-#> 6                    0         NA                0     0.0     0.0    21.5
-#>   Chuva04 Chuva05 Chuva06 Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12
-#> 1      NA    10.5     3.0    11.1     0.0       0     0.0     0.0     0.0
-#> 2     0.0    11.9    66.3     1.0    40.0       0     0.0     0.0     1.1
-#> 3     0.0     0.0     0.0     0.0     0.0      55    11.7     5.0     0.0
-#> 4     0.0     0.0    18.5     0.0    19.5       0     0.0     0.0     0.0
-#> 5     0.0     3.2     4.2     0.0     0.0       0     0.0     0.0     0.0
-#> 6    12.7     8.7     0.0     0.0     0.0       0     0.0    27.3    37.5
-#>   Chuva13 Chuva14 Chuva15 Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21
-#> 1     0.0     0.0       0    37.6       0    18.4    12.5     0.0     0.0
-#> 2    24.7     0.0       0     0.0       0     0.0     0.0     0.0     0.0
-#> 3     7.5     9.5       0     3.0       1    23.0     0.0     0.0     0.0
-#> 4     0.0     0.0       0     0.0       0     0.0     0.0     0.0     0.0
-#> 5     0.0     0.0       0     0.0       0     0.0     0.0     0.0    20.5
-#> 6    42.5     0.0       0     0.0       0     0.0     0.0     0.7     3.2
-#>   Chuva22 Chuva23 Chuva24 Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30
-#> 1    67.5    12.3     0.0     0.0       0       0       0     0.0     0.0
-#> 2     0.0     0.0     8.2     2.5       0       0       0      NA      NA
-#> 3     0.0     0.0     0.0     0.0       0       0       0     0.0    23.5
-#> 4     0.0     0.0     0.0     5.9       0       0       0     0.0     0.0
-#> 5     0.0     0.0     0.0     1.3       0       0      14    30.5     0.0
-#> 6     3.0     0.0    33.5     0.0       0       0       1     0.0     0.0
-#>   Chuva31 Chuva01Status Chuva02Status Chuva03Status Chuva04Status
-#> 1     0.0             0             0             0             0
-#> 2      NA             1             1             1             1
-#> 3    21.5             1             1             1             1
-#> 4      NA             1             1             1             1
-#> 5     0.0             1             1             1             1
-#> 6      NA             1             1             1             1
-#>   Chuva05Status Chuva06Status Chuva07Status Chuva08Status Chuva09Status
+#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima Total
+#> 1          3054002                 1 01/01/1934                 1     NA    NA
+#> 2          3054002                 1 01/02/1934                 1   66.3 174.7
+#> 3          3054002                 1 01/03/1934                 1   55.0 160.7
+#> 4          3054002                 1 01/04/1934                 1   54.5  98.4
+#> 5          3054002                 1 01/05/1934                 1   30.5 119.4
+#> 6          3054002                 1 01/06/1934                 1   42.5 191.6
+#>   DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus NumDiasDeChuvaStatus
+#> 1        NA             NA            0           0                    0
+#> 2         6             10            1           1                    0
+#> 3         9             10            1           1                    0
+#> 4         1              4            1           1                    0
+#> 5        29              8            1           1                    1
+#> 6        13             11            1           1                    0
+#>   TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06
+#> 1         NA                0      NA      NA      NA      NA    10.5     3.0
+#> 2         NA                0    15.5     3.5     0.0     0.0    11.9    66.3
+#> 3         NA                0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4         NA                0    54.5     0.0     0.0     0.0     0.0    18.5
+#> 5         NA                0     0.0    19.0    26.7     0.0     3.2     4.2
+#> 6         NA                0     0.0     0.0    21.5    12.7     8.7     0.0
+#>   Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12 Chuva13 Chuva14 Chuva15
+#> 1    11.1     0.0       0     0.0     0.0     0.0     0.0     0.0       0
+#> 2     1.0    40.0       0     0.0     0.0     1.1    24.7     0.0       0
+#> 3     0.0     0.0      55    11.7     5.0     0.0     7.5     9.5       0
+#> 4     0.0    19.5       0     0.0     0.0     0.0     0.0     0.0       0
+#> 5     0.0     0.0       0     0.0     0.0     0.0     0.0     0.0       0
+#> 6     0.0     0.0       0     0.0    27.3    37.5    42.5     0.0       0
+#>   Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21 Chuva22 Chuva23 Chuva24
+#> 1    37.6       0    18.4    12.5     0.0     0.0    67.5    12.3     0.0
+#> 2     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     8.2
+#> 3     3.0       1    23.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 5     0.0       0     0.0     0.0     0.0    20.5     0.0     0.0     0.0
+#> 6     0.0       0     0.0     0.0     0.7     3.2     3.0     0.0    33.5
+#>   Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30 Chuva31 Chuva01Status
+#> 1     0.0       0       0       0     0.0     0.0     0.0             0
+#> 2     2.5       0       0       0      NA      NA      NA             1
+#> 3     0.0       0       0       0     0.0    23.5    21.5             1
+#> 4     5.9       0       0       0     0.0     0.0      NA             1
+#> 5     1.3       0       0      14    30.5     0.0     0.0             1
+#> 6     0.0       0       0       1     0.0     0.0      NA             1
+#>   Chuva02Status Chuva03Status Chuva04Status Chuva05Status Chuva06Status
+#> 1             0             0             0             1             1
+#> 2             1             1             1             1             1
+#> 3             1             1             1             1             1
+#> 4             1             1             1             1             1
+#> 5             1             1             1             1             1
+#> 6             1             1             1             1             1
+#>   Chuva07Status Chuva08Status Chuva09Status Chuva10Status Chuva11Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva10Status Chuva11Status Chuva12Status Chuva13Status Chuva14Status
+#>   Chuva12Status Chuva13Status Chuva14Status Chuva15Status Chuva16Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva15Status Chuva16Status Chuva17Status Chuva18Status Chuva19Status
+#>   Chuva17Status Chuva18Status Chuva19Status Chuva20Status Chuva21Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva20Status Chuva21Status Chuva22Status Chuva23Status Chuva24Status
+#>   Chuva22Status Chuva23Status Chuva24Status Chuva25Status Chuva26Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva25Status Chuva26Status Chuva27Status Chuva28Status Chuva29Status
-#> 1             1             1             1             1             1
-#> 2             1             1             1             1             0
-#> 3             1             1             1             1             1
-#> 4             1             1             1             1             1
-#> 5             1             1             1             1             1
-#> 6             1             1             1             1             1
-#>   Chuva30Status Chuva31Status  X
-#> 1             1             1 NA
-#> 2             0             0 NA
-#> 3             1             1 NA
-#> 4             1             0 NA
-#> 5             1             1 NA
-#> 6             1             0 NA
+#>   Chuva27Status Chuva28Status Chuva29Status Chuva30Status Chuva31Status  X
+#> 1             1             1             1             1             1 NA
+#> 2             1             1             0             0             0 NA
+#> 3             1             1             1             1             1 NA
+#> 4             1             1             1             1             0 NA
+#> 5             1             1             1             1             1 NA
+#> 6             1             1             1             1             0 NA
 # últimas linhas
 tail(dprec)
-#>      X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas
-#> 1279          3054002                 2 01/07/2005                 1
-#> 1280          3054002                 2 01/08/2005                 1
-#> 1281          3054002                 2 01/09/2005                 1
-#> 1282          3054002                 2 01/10/2005                 1
-#> 1283          3054002                 2 01/11/2005                 1
-#> 1284          3054002                 2 01/12/2005                 1
-#>      Maxima Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
-#> 1279   44.8  69.5         4              4            1           1
-#> 1280   19.9  91.4        30              9            1           1
-#> 1281   49.8 149.2        24             12            1           1
-#> 1282   57.2 145.3         4              6            1           1
-#> 1283   14.2  36.0        24              5            1           1
-#> 1284   11.2  22.0        31              6            1           1
-#>      NumDiasDeChuvaStatus TotalAnual TotalAnualStatus Chuva01 Chuva02
-#> 1279                    1     1123.4                1     0.0     0.0
-#> 1280                    1     1123.4                1     0.0     0.0
-#> 1281                    1     1123.4                1     3.8    11.3
-#> 1282                    1     1123.4                1     0.0     0.0
-#> 1283                    1     1123.4                1     0.0     0.0
-#> 1284                    1     1123.4                1     0.0     0.0
-#>      Chuva03 Chuva04 Chuva05 Chuva06 Chuva07 Chuva08 Chuva09 Chuva10
-#> 1279       0    44.8     0.0     0.0     0.0       0     0.0     0.0
-#> 1280       0     0.0     0.0     0.0     0.5       0     0.1     0.0
-#> 1281       0     0.0     0.0     0.0     0.0       0     8.9    24.7
-#> 1282       0    57.2    19.6     0.0     0.0       0     0.0     0.0
-#> 1283       0     0.0    13.2     6.3     0.0       0     0.0     0.0
-#> 1284       0     2.1     1.9     0.0     0.0       0     0.0     0.0
-#>      Chuva11 Chuva12 Chuva13 Chuva14 Chuva15 Chuva16 Chuva17 Chuva18
-#> 1279     0.0       0       0     0.0     0.0    12.9     9.7     0.0
-#> 1280     0.0       0       0     0.0     0.0     0.0     0.0    14.1
-#> 1281     9.7       0       0     0.2    15.6     0.1     0.0     3.2
-#> 1282     0.0       0       0    46.3     0.0     3.9     0.2     0.0
-#> 1283     0.0       0       0     0.0     1.4     0.0     0.9     0.0
-#> 1284     0.0       0       0     0.0     0.0     0.0     2.2     0.0
-#>      Chuva19 Chuva20 Chuva21 Chuva22 Chuva23 Chuva24 Chuva25 Chuva26
-#> 1279     0.0       0     0.0     2.1     0.0     0.0     0.0       0
-#> 1280     0.0       0     6.3    19.7     6.4    17.1     0.0       0
-#> 1281     4.5       0     0.0     0.0     0.0    49.8     0.0       0
-#> 1282     0.0       0     0.0     0.0     0.0     0.0    18.1       0
-#> 1283     0.0       0     0.0     0.0     0.0    14.2     0.0       0
-#> 1284     0.7       0     0.0     0.0     0.0     0.0     0.0       0
-#>      Chuva27 Chuva28 Chuva29 Chuva30 Chuva31 Chuva01Status Chuva02Status
-#> 1279       0       0     0.0     0.0     0.0             1             1
-#> 1280       0       0     7.3    19.9     0.0             1             1
-#> 1281       0       0     0.0    17.4      NA             1             1
-#> 1282       0       0     0.0     0.0     0.0             1             1
-#> 1283       0       0     0.0     0.0      NA             1             1
-#> 1284       0       0     0.0     3.9    11.2             1             1
-#>      Chuva03Status Chuva04Status Chuva05Status Chuva06Status Chuva07Status
+#>      X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
+#> 1279          3054002                 2 01/07/2005                 1   44.8
+#> 1280          3054002                 2 01/08/2005                 1   19.9
+#> 1281          3054002                 2 01/09/2005                 1   49.8
+#> 1282          3054002                 2 01/10/2005                 1   57.2
+#> 1283          3054002                 2 01/11/2005                 1   14.2
+#> 1284          3054002                 2 01/12/2005                 1   11.2
+#>      Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
+#> 1279  69.5         4              4            1           1
+#> 1280  91.4        30              9            1           1
+#> 1281 149.2        24             12            1           1
+#> 1282 145.3         4              6            1           1
+#> 1283  36.0        24              5            1           1
+#> 1284  22.0        31              6            1           1
+#>      NumDiasDeChuvaStatus TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03
+#> 1279                    1     1123.4                1     0.0     0.0       0
+#> 1280                    1     1123.4                1     0.0     0.0       0
+#> 1281                    1     1123.4                1     3.8    11.3       0
+#> 1282                    1     1123.4                1     0.0     0.0       0
+#> 1283                    1     1123.4                1     0.0     0.0       0
+#> 1284                    1     1123.4                1     0.0     0.0       0
+#>      Chuva04 Chuva05 Chuva06 Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12
+#> 1279    44.8     0.0     0.0     0.0       0     0.0     0.0     0.0       0
+#> 1280     0.0     0.0     0.0     0.5       0     0.1     0.0     0.0       0
+#> 1281     0.0     0.0     0.0     0.0       0     8.9    24.7     9.7       0
+#> 1282    57.2    19.6     0.0     0.0       0     0.0     0.0     0.0       0
+#> 1283     0.0    13.2     6.3     0.0       0     0.0     0.0     0.0       0
+#> 1284     2.1     1.9     0.0     0.0       0     0.0     0.0     0.0       0
+#>      Chuva13 Chuva14 Chuva15 Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21
+#> 1279       0     0.0     0.0    12.9     9.7     0.0     0.0       0     0.0
+#> 1280       0     0.0     0.0     0.0     0.0    14.1     0.0       0     6.3
+#> 1281       0     0.2    15.6     0.1     0.0     3.2     4.5       0     0.0
+#> 1282       0    46.3     0.0     3.9     0.2     0.0     0.0       0     0.0
+#> 1283       0     0.0     1.4     0.0     0.9     0.0     0.0       0     0.0
+#> 1284       0     0.0     0.0     0.0     2.2     0.0     0.7       0     0.0
+#>      Chuva22 Chuva23 Chuva24 Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30
+#> 1279     2.1     0.0     0.0     0.0       0       0       0     0.0     0.0
+#> 1280    19.7     6.4    17.1     0.0       0       0       0     7.3    19.9
+#> 1281     0.0     0.0    49.8     0.0       0       0       0     0.0    17.4
+#> 1282     0.0     0.0     0.0    18.1       0       0       0     0.0     0.0
+#> 1283     0.0     0.0    14.2     0.0       0       0       0     0.0     0.0
+#> 1284     0.0     0.0     0.0     0.0       0       0       0     0.0     3.9
+#>      Chuva31 Chuva01Status Chuva02Status Chuva03Status Chuva04Status
+#> 1279     0.0             1             1             1             1
+#> 1280     0.0             1             1             1             1
+#> 1281      NA             1             1             1             1
+#> 1282     0.0             1             1             1             1
+#> 1283      NA             1             1             1             1
+#> 1284    11.2             1             1             1             1
+#>      Chuva05Status Chuva06Status Chuva07Status Chuva08Status Chuva09Status
 #> 1279             1             1             1             1             1
 #> 1280             1             1             1             1             1
 #> 1281             1             1             1             1             1
 #> 1282             1             1             1             1             1
 #> 1283             1             1             1             1             1
 #> 1284             1             1             1             1             1
-#>      Chuva08Status Chuva09Status Chuva10Status Chuva11Status Chuva12Status
+#>      Chuva10Status Chuva11Status Chuva12Status Chuva13Status Chuva14Status
 #> 1279             1             1             1             1             1
 #> 1280             1             1             1             1             1
 #> 1281             1             1             1             1             1
 #> 1282             1             1             1             1             1
 #> 1283             1             1             1             1             1
 #> 1284             1             1             1             1             1
-#>      Chuva13Status Chuva14Status Chuva15Status Chuva16Status Chuva17Status
+#>      Chuva15Status Chuva16Status Chuva17Status Chuva18Status Chuva19Status
 #> 1279             1             1             1             1             1
 #> 1280             1             1             1             1             1
 #> 1281             1             1             1             1             1
 #> 1282             1             1             1             1             1
 #> 1283             1             1             1             1             1
 #> 1284             1             1             1             1             1
-#>      Chuva18Status Chuva19Status Chuva20Status Chuva21Status Chuva22Status
+#>      Chuva20Status Chuva21Status Chuva22Status Chuva23Status Chuva24Status
 #> 1279             1             1             1             1             1
 #> 1280             1             1             1             1             1
 #> 1281             1             1             1             1             1
 #> 1282             1             1             1             1             1
 #> 1283             1             1             1             1             1
 #> 1284             1             1             1             1             1
-#>      Chuva23Status Chuva24Status Chuva25Status Chuva26Status Chuva27Status
+#>      Chuva25Status Chuva26Status Chuva27Status Chuva28Status Chuva29Status
 #> 1279             1             1             1             1             1
 #> 1280             1             1             1             1             1
 #> 1281             1             1             1             1             1
 #> 1282             1             1             1             1             1
 #> 1283             1             1             1             1             1
 #> 1284             1             1             1             1             1
-#>      Chuva28Status Chuva29Status Chuva30Status Chuva31Status  X
-#> 1279             1             1             1             1 NA
-#> 1280             1             1             1             1 NA
-#> 1281             1             1             1             0 NA
-#> 1282             1             1             1             1 NA
-#> 1283             1             1             1             0 NA
-#> 1284             1             1             1             1 NA
+#>      Chuva30Status Chuva31Status  X
+#> 1279             1             1 NA
+#> 1280             1             1 NA
+#> 1281             1             0 NA
+#> 1282             1             1 NA
+#> 1283             1             0 NA
+#> 1284             1             1 NA
  # corrigindo nome da primeira coluna
  names(dprec)[1] <- "EstacaoCodigo"
  # removendo última coluna que só tem NAs
@@ -722,97 +708,90 @@ dprec2 <- read.table(file = hidroweb_url_file,
                    sep = ";",
                    dec = ",")
 head(dprec2)
-#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
-#> 1          3054002                 1 01/01/1934                 1     NA
-#> 2          3054002                 1 01/02/1934                 1   66.3
-#> 3          3054002                 1 01/03/1934                 1   55.0
-#> 4          3054002                 1 01/04/1934                 1   54.5
-#> 5          3054002                 1 01/05/1934                 1   30.5
-#> 6          3054002                 1 01/06/1934                 1   42.5
-#>   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
-#> 1    NA        NA             NA            0           0
-#> 2 174.7         6             10            1           1
-#> 3 160.7         9             10            1           1
-#> 4  98.4         1              4            1           1
-#> 5 119.4        29              8            1           1
-#> 6 191.6        13             11            1           1
-#>   NumDiasDeChuvaStatus TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03
-#> 1                    0         NA                0      NA      NA      NA
-#> 2                    0         NA                0    15.5     3.5     0.0
-#> 3                    0         NA                0     0.0     0.0     0.0
-#> 4                    0         NA                0    54.5     0.0     0.0
-#> 5                    1         NA                0     0.0    19.0    26.7
-#> 6                    0         NA                0     0.0     0.0    21.5
-#>   Chuva04 Chuva05 Chuva06 Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12
-#> 1      NA    10.5     3.0    11.1     0.0       0     0.0     0.0     0.0
-#> 2     0.0    11.9    66.3     1.0    40.0       0     0.0     0.0     1.1
-#> 3     0.0     0.0     0.0     0.0     0.0      55    11.7     5.0     0.0
-#> 4     0.0     0.0    18.5     0.0    19.5       0     0.0     0.0     0.0
-#> 5     0.0     3.2     4.2     0.0     0.0       0     0.0     0.0     0.0
-#> 6    12.7     8.7     0.0     0.0     0.0       0     0.0    27.3    37.5
-#>   Chuva13 Chuva14 Chuva15 Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21
-#> 1     0.0     0.0       0    37.6       0    18.4    12.5     0.0     0.0
-#> 2    24.7     0.0       0     0.0       0     0.0     0.0     0.0     0.0
-#> 3     7.5     9.5       0     3.0       1    23.0     0.0     0.0     0.0
-#> 4     0.0     0.0       0     0.0       0     0.0     0.0     0.0     0.0
-#> 5     0.0     0.0       0     0.0       0     0.0     0.0     0.0    20.5
-#> 6    42.5     0.0       0     0.0       0     0.0     0.0     0.7     3.2
-#>   Chuva22 Chuva23 Chuva24 Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30
-#> 1    67.5    12.3     0.0     0.0       0       0       0     0.0     0.0
-#> 2     0.0     0.0     8.2     2.5       0       0       0      NA      NA
-#> 3     0.0     0.0     0.0     0.0       0       0       0     0.0    23.5
-#> 4     0.0     0.0     0.0     5.9       0       0       0     0.0     0.0
-#> 5     0.0     0.0     0.0     1.3       0       0      14    30.5     0.0
-#> 6     3.0     0.0    33.5     0.0       0       0       1     0.0     0.0
-#>   Chuva31 Chuva01Status Chuva02Status Chuva03Status Chuva04Status
-#> 1     0.0             0             0             0             0
-#> 2      NA             1             1             1             1
-#> 3    21.5             1             1             1             1
-#> 4      NA             1             1             1             1
-#> 5     0.0             1             1             1             1
-#> 6      NA             1             1             1             1
-#>   Chuva05Status Chuva06Status Chuva07Status Chuva08Status Chuva09Status
+#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima Total
+#> 1          3054002                 1 01/01/1934                 1     NA    NA
+#> 2          3054002                 1 01/02/1934                 1   66.3 174.7
+#> 3          3054002                 1 01/03/1934                 1   55.0 160.7
+#> 4          3054002                 1 01/04/1934                 1   54.5  98.4
+#> 5          3054002                 1 01/05/1934                 1   30.5 119.4
+#> 6          3054002                 1 01/06/1934                 1   42.5 191.6
+#>   DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus NumDiasDeChuvaStatus
+#> 1        NA             NA            0           0                    0
+#> 2         6             10            1           1                    0
+#> 3         9             10            1           1                    0
+#> 4         1              4            1           1                    0
+#> 5        29              8            1           1                    1
+#> 6        13             11            1           1                    0
+#>   TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06
+#> 1         NA                0      NA      NA      NA      NA    10.5     3.0
+#> 2         NA                0    15.5     3.5     0.0     0.0    11.9    66.3
+#> 3         NA                0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4         NA                0    54.5     0.0     0.0     0.0     0.0    18.5
+#> 5         NA                0     0.0    19.0    26.7     0.0     3.2     4.2
+#> 6         NA                0     0.0     0.0    21.5    12.7     8.7     0.0
+#>   Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12 Chuva13 Chuva14 Chuva15
+#> 1    11.1     0.0       0     0.0     0.0     0.0     0.0     0.0       0
+#> 2     1.0    40.0       0     0.0     0.0     1.1    24.7     0.0       0
+#> 3     0.0     0.0      55    11.7     5.0     0.0     7.5     9.5       0
+#> 4     0.0    19.5       0     0.0     0.0     0.0     0.0     0.0       0
+#> 5     0.0     0.0       0     0.0     0.0     0.0     0.0     0.0       0
+#> 6     0.0     0.0       0     0.0    27.3    37.5    42.5     0.0       0
+#>   Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21 Chuva22 Chuva23 Chuva24
+#> 1    37.6       0    18.4    12.5     0.0     0.0    67.5    12.3     0.0
+#> 2     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     8.2
+#> 3     3.0       1    23.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 4     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+#> 5     0.0       0     0.0     0.0     0.0    20.5     0.0     0.0     0.0
+#> 6     0.0       0     0.0     0.0     0.7     3.2     3.0     0.0    33.5
+#>   Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30 Chuva31 Chuva01Status
+#> 1     0.0       0       0       0     0.0     0.0     0.0             0
+#> 2     2.5       0       0       0      NA      NA      NA             1
+#> 3     0.0       0       0       0     0.0    23.5    21.5             1
+#> 4     5.9       0       0       0     0.0     0.0      NA             1
+#> 5     1.3       0       0      14    30.5     0.0     0.0             1
+#> 6     0.0       0       0       1     0.0     0.0      NA             1
+#>   Chuva02Status Chuva03Status Chuva04Status Chuva05Status Chuva06Status
+#> 1             0             0             0             1             1
+#> 2             1             1             1             1             1
+#> 3             1             1             1             1             1
+#> 4             1             1             1             1             1
+#> 5             1             1             1             1             1
+#> 6             1             1             1             1             1
+#>   Chuva07Status Chuva08Status Chuva09Status Chuva10Status Chuva11Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva10Status Chuva11Status Chuva12Status Chuva13Status Chuva14Status
+#>   Chuva12Status Chuva13Status Chuva14Status Chuva15Status Chuva16Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva15Status Chuva16Status Chuva17Status Chuva18Status Chuva19Status
+#>   Chuva17Status Chuva18Status Chuva19Status Chuva20Status Chuva21Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva20Status Chuva21Status Chuva22Status Chuva23Status Chuva24Status
+#>   Chuva22Status Chuva23Status Chuva24Status Chuva25Status Chuva26Status
 #> 1             1             1             1             1             1
 #> 2             1             1             1             1             1
 #> 3             1             1             1             1             1
 #> 4             1             1             1             1             1
 #> 5             1             1             1             1             1
 #> 6             1             1             1             1             1
-#>   Chuva25Status Chuva26Status Chuva27Status Chuva28Status Chuva29Status
-#> 1             1             1             1             1             1
-#> 2             1             1             1             1             0
-#> 3             1             1             1             1             1
-#> 4             1             1             1             1             1
-#> 5             1             1             1             1             1
-#> 6             1             1             1             1             1
-#>   Chuva30Status Chuva31Status  X
-#> 1             1             1 NA
-#> 2             0             0 NA
-#> 3             1             1 NA
-#> 4             1             0 NA
-#> 5             1             1 NA
-#> 6             1             0 NA
+#>   Chuva27Status Chuva28Status Chuva29Status Chuva30Status Chuva31Status  X
+#> 1             1             1             1             1             1 NA
+#> 2             1             1             0             0             0 NA
+#> 3             1             1             1             1             1 NA
+#> 4             1             1             1             1             0 NA
+#> 5             1             1             1             1             1 NA
+#> 6             1             1             1             1             0 NA
 ```
 
 
@@ -844,20 +823,20 @@ x <- read.csv2(file = bdmep_dest_file,
                na.strings = ""
                )
 head(x)
-#>      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10  V11 V12  V13
-#> 1 83004 02/08/1993    0 <NA> <NA> <NA> <NA> <NA> NA  <NA> <NA>  NA <NA>
-#> 2 83004 01/01/1995    0 <NA> <NA> <NA> 26.8 <NA> NA  <NA> <NA>  NA <NA>
-#> 3 83004 01/01/1995 1200 21.2 22.5   20 <NA> 19.5 80 924.6 <NA>  32    4
-#> 4 83004 01/01/1995 1800 <NA> 25.2 21.5 <NA> <NA> 73 922.9 <NA>  32    2
-#> 5 83004 02/01/1995    0 <NA> 20.7 20.3 28.9 <NA> 97 924.2 <NA>   0    0
-#> 6 83004 02/01/1995 1200  3.2 23.8 20.6 <NA> 19.9 76 924.7 <NA>  32    3
-#>    V14  V15  V16   V17   V18      V19 V20
-#> 1 <NA> <NA>  1.4  <NA>  <NA>     <NA>  NA
-#> 2  1.5 <NA>  1.6 22.04 86.75        2  NA
-#> 3 <NA>   10 <NA>  <NA>  <NA>     <NA>  NA
-#> 4 <NA>   10 <NA>  <NA>  <NA>     <NA>  NA
-#> 5  1.3   10  1.1 23.32    83 2.666667  NA
-#> 6 <NA>   10 <NA>  <NA>  <NA>     <NA>  NA
+#>      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10  V11 V12  V13  V14
+#> 1 83004 02/08/1993    0 <NA> <NA> <NA> <NA> <NA> NA  <NA> <NA>  NA <NA> <NA>
+#> 2 83004 01/01/1995    0 <NA> <NA> <NA> 26.8 <NA> NA  <NA> <NA>  NA <NA>  1.5
+#> 3 83004 01/01/1995 1200 21.2 22.5   20 <NA> 19.5 80 924.6 <NA>  32    4 <NA>
+#> 4 83004 01/01/1995 1800 <NA> 25.2 21.5 <NA> <NA> 73 922.9 <NA>  32    2 <NA>
+#> 5 83004 02/01/1995    0 <NA> 20.7 20.3 28.9 <NA> 97 924.2 <NA>   0    0  1.3
+#> 6 83004 02/01/1995 1200  3.2 23.8 20.6 <NA> 19.9 76 924.7 <NA>  32    3 <NA>
+#>    V15  V16   V17   V18      V19 V20
+#> 1 <NA>  1.4  <NA>  <NA>     <NA>  NA
+#> 2 <NA>  1.6 22.04 86.75        2  NA
+#> 3   10 <NA>  <NA>  <NA>     <NA>  NA
+#> 4   10 <NA>  <NA>  <NA>     <NA>  NA
+#> 5   10  1.1 23.32    83 2.666667  NA
+#> 6   10 <NA>  <NA>  <NA>     <NA>  NA
 str(x)
 #> 'data.frame':	5863 obs. of  20 variables:
 #>  $ V1 : chr  "83004" "83004" "83004" "83004" ...
@@ -899,20 +878,20 @@ x1 <- read.csv2(file=bdmep_dest_file,
                nrows = 5878 
 )
 head(x1)
-#>      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10 V11 V12 V13 V14
-#> 1 83004 02/08/1993    0   NA   NA   NA   NA   NA NA    NA  NA  NA  NA  NA
-#> 2 83004 01/01/1995    0   NA   NA   NA 26.8   NA NA    NA  NA  NA  NA 1.5
-#> 3 83004 01/01/1995 1200 21.2 22.5 20.0   NA 19.5 80 924.6  NA  32   4  NA
-#> 4 83004 01/01/1995 1800   NA 25.2 21.5   NA   NA 73 922.9  NA  32   2  NA
-#> 5 83004 02/01/1995    0   NA 20.7 20.3 28.9   NA 97 924.2  NA   0   0 1.3
-#> 6 83004 02/01/1995 1200  3.2 23.8 20.6   NA 19.9 76 924.7  NA  32   3  NA
-#>   V15 V16   V17   V18      V19 V20
-#> 1  NA 1.4    NA    NA       NA  NA
-#> 2  NA 1.6 22.04 86.75 2.000000  NA
-#> 3  10  NA    NA    NA       NA  NA
-#> 4  10  NA    NA    NA       NA  NA
-#> 5  10 1.1 23.32 83.00 2.666667  NA
-#> 6  10  NA    NA    NA       NA  NA
+#>      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10 V11 V12 V13 V14 V15
+#> 1 83004 02/08/1993    0   NA   NA   NA   NA   NA NA    NA  NA  NA  NA  NA  NA
+#> 2 83004 01/01/1995    0   NA   NA   NA 26.8   NA NA    NA  NA  NA  NA 1.5  NA
+#> 3 83004 01/01/1995 1200 21.2 22.5 20.0   NA 19.5 80 924.6  NA  32   4  NA  10
+#> 4 83004 01/01/1995 1800   NA 25.2 21.5   NA   NA 73 922.9  NA  32   2  NA  10
+#> 5 83004 02/01/1995    0   NA 20.7 20.3 28.9   NA 97 924.2  NA   0   0 1.3  10
+#> 6 83004 02/01/1995 1200  3.2 23.8 20.6   NA 19.9 76 924.7  NA  32   3  NA  10
+#>   V16   V17   V18      V19 V20
+#> 1 1.4    NA    NA       NA  NA
+#> 2 1.6 22.04 86.75 2.000000  NA
+#> 3  NA    NA    NA       NA  NA
+#> 4  NA    NA    NA       NA  NA
+#> 5 1.1 23.32 83.00 2.666667  NA
+#> 6  NA    NA    NA       NA  NA
 str(x1)
 #> 'data.frame':	5863 obs. of  20 variables:
 #>  $ V1 : chr  "83004" "83004" "83004" "83004" ...
@@ -1010,34 +989,34 @@ ncol(x)
 #> [1] 20
 names(x) <- vnames
 head(x)
-#>   Estacao       Data Hora Precipitacao TempBulboSeco TempBulboUmido
-#> 1   83004 02/08/1993    0           NA            NA             NA
-#> 2   83004 01/01/1995    0           NA            NA             NA
-#> 3   83004 01/01/1995 1200         21.2          22.5           20.0
-#> 4   83004 01/01/1995 1800           NA          25.2           21.5
-#> 5   83004 02/01/1995    0           NA          20.7           20.3
-#> 6   83004 02/01/1995 1200          3.2          23.8           20.6
-#>   TempMaxima TempMinima UmidadeRelativa PressaoAtmEstacao PressaoAtmMar
-#> 1         NA         NA              NA                NA            NA
-#> 2       26.8         NA              NA                NA            NA
-#> 3         NA       19.5              80             924.6            NA
-#> 4         NA         NA              73             922.9            NA
-#> 5       28.9         NA              97             924.2            NA
-#> 6         NA       19.9              76             924.7            NA
-#>   DirecaoVento VelocidadeVento insolacao Nebulosidade Evaporacao Piche
-#> 1           NA              NA        NA           NA              1.4
-#> 2           NA              NA       1.5           NA              1.6
-#> 3           32               4        NA           10               NA
-#> 4           32               2        NA           10               NA
-#> 5            0               0       1.3           10              1.1
-#> 6           32               3        NA           10               NA
-#>   Temp Comp Media Umidade Relativa Media Velocidade do Vento Media NA
-#> 1              NA                     NA                        NA NA
-#> 2           22.04                  86.75                  2.000000 NA
-#> 3              NA                     NA                        NA NA
-#> 4              NA                     NA                        NA NA
-#> 5           23.32                  83.00                  2.666667 NA
-#> 6              NA                     NA                        NA NA
+#>   Estacao       Data Hora Precipitacao TempBulboSeco TempBulboUmido TempMaxima
+#> 1   83004 02/08/1993    0           NA            NA             NA         NA
+#> 2   83004 01/01/1995    0           NA            NA             NA       26.8
+#> 3   83004 01/01/1995 1200         21.2          22.5           20.0         NA
+#> 4   83004 01/01/1995 1800           NA          25.2           21.5         NA
+#> 5   83004 02/01/1995    0           NA          20.7           20.3       28.9
+#> 6   83004 02/01/1995 1200          3.2          23.8           20.6         NA
+#>   TempMinima UmidadeRelativa PressaoAtmEstacao PressaoAtmMar DirecaoVento
+#> 1         NA              NA                NA            NA           NA
+#> 2         NA              NA                NA            NA           NA
+#> 3       19.5              80             924.6            NA           32
+#> 4         NA              73             922.9            NA           32
+#> 5         NA              97             924.2            NA            0
+#> 6       19.9              76             924.7            NA           32
+#>   VelocidadeVento insolacao Nebulosidade Evaporacao Piche Temp Comp Media
+#> 1              NA        NA           NA              1.4              NA
+#> 2              NA       1.5           NA              1.6           22.04
+#> 3               4        NA           10               NA              NA
+#> 4               2        NA           10               NA              NA
+#> 5               0       1.3           10              1.1           23.32
+#> 6               3        NA           10               NA              NA
+#>   Umidade Relativa Media Velocidade do Vento Media NA
+#> 1                     NA                        NA NA
+#> 2                  86.75                  2.000000 NA
+#> 3                     NA                        NA NA
+#> 4                     NA                        NA NA
+#> 5                  83.00                  2.666667 NA
+#> 6                     NA                        NA NA
 ```
 
 Finalmente vamos escrever os dados do INMET corretamente organizados.

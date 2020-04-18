@@ -49,7 +49,7 @@ No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma
 
 #### Atualização do <img src="images/logo_r.png" width="20"> no Windows
 
-Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.1.html).
+Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.3.html).
 
 
 As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.
@@ -74,19 +74,20 @@ Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lança
 
 Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
 
-Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de longo prazo (LTS) mais recentes são:
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
 
 - 14.04 (abril de 2014, *codename* `trusty`) 
 - 16.04 (abril de 2016, *codename* `xenial`)
+- 18.04 (abril de 2016, *codename* `bionic`)
 
-[^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
+[^1]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a R version 3.4.4 (2018-03-15). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço do [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo de sua região à lista de repositórios do Linux. No exemplo deste livro, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+A versão mais atual é a R version 3.6.3 (2020-02-29). Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
 ##### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
-A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Mas primeiro, você precisa descobrir ou verificar o nome da versão do sistema operacional. Para isso, você pode utilizar o seguinte comando[^2] :
+O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^2] :
 
 
 
@@ -94,57 +95,61 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
 $ lsb_release --codename | cut -f2
 ```
 ```
-trusty
+xenial
 ```
 
 
 [^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
 
-Precisamos incluir no arquivo `sources.list` o espelho do repositório do R mais próximo. Veja a lista de espelhos de repositórios do <img src="images/logo_r.png" width="20"> [aqui](https://cran.r-project.org/mirrors.html). Assim o gerenciador de pacotes 
+O endereço do espelho da CRAN e algumas configurações do sistema devem ser inseridas no arquivo `/etc/apt/sources.list.d/cran.list`. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
+
+    $ sudo su
+
+Após o comando, informe a senha de superusuário e então vamos criar o arquivo `/etc/apt/sources.list.d/cran.list`.
+
+    # touch /etc/apt/sources.list.d/cran.list
+
+Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho, o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter o **R 3.6**. 
+
+    # repos="deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release --codename | cut -f2`-cran35/"
+    
+O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.
+
+
+Adicionamos o conteúdo da `repos` ao arquivo cran.list usando o comando:
+
+    # echo $repos >> /etc/apt/sources.list.d/cran.list
+
+Assim o gerenciador de pacotes 
 [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^3] fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.
 
 [^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
-O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
-
-    $ sudo su
-
-
-Vamos definir no terminal uma variável com o endereço do repositório (da UFPR nesse caso) e o nome de versão do Ubuntu.
-
-    # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
- 
-Note que a variável `repos` é uma sequência de caracteres com as seguintes informações:
-
-    deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/
-
-O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu. 
-
-Para acrescentar essa informação no final do arquivo `sources.list` digite no terminal linux:
-
-    # echo $repos >> /etc/apt/sources.list
-
-Feito isso, você pode retornar a sessão de usuário comum, usando o comando abaixo:
+Feito isso, você podemos retornar a sessão de usuário comum:
 
     # exit
 
+
 ##### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4] Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
-    $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+    $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+    $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
 [^4]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
-        
-e então use essa informação como entrada no `apt-key` com
 
-    $ gpg -a --export E084DAB9 | sudo apt-key add -
-      
-Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:
+Se aparecer uma mensagem **OK** a chave foi adicionada com sucesso e os comandos a seguir podem ignorados. Porém, se aparecer uma mensagem do tipo *keyserver error*, utilize o seguinte comando:
 
-    $ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
-    $ gpg -a --export E084DAB9 | sudo apt-key add -
+    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+Caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:
+
+    $ gpg --keyserver keyserver.ubuntu.com --recv-key E298A3A825C0D65DFD57CBB651716619E084DAB9
+    
+    $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
 
 ##### Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20">
@@ -156,6 +161,43 @@ Após fazer as configurações da lista de repositórios e adicionar a chave é 
 Agora, pode instalar o binário do R:
 
     $ sudo apt-get install r-base
+
+<!---
+referências
+ https://stackoverflow.com/questions/46704247/upgrade-r-in-ubuntu-xenial
+ https://gist.github.com/mGalarnyk/41c887e921e712baf86fecc507b3afc7
+ https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r 
+ https://rtask.thinkr.fr/installation-of-r-3-5-on-ubuntu-18-04-lts-and-tips-for-spatial-packages/
+ https://yiweiniu.github.io/blog/2019/07/Install-Update-R-and-R-packages/
+ https://shiny.rstudio.com/articles/upgrade-R.html
+
+# for r dev packages
+sudo add-apt-repository ppa:marutter/rrutter3.5
+sudo add-apt-repository ppa:marutter/c2d4u
+sudo apt-get update
+sudo apt-get -y install r-base-core r-recommended r-base-dev
+
+# run apt-get update and then check via apt-cache policy r-base-core
+apt-cache policy r-base-core
+
+sudo apt install r-cran-rgl r-cran-rjags r-cran-snow r-cran-ggplot2 r-cran-igraph r-cran-lme4 r-cran-rjava r-cran-devtools r-cran-roxygen2 r-cran-rjava r-cran-xlsx
+
+# pacotes mais usados
+c("tidyverse", 
+  "data.table",
+  "knitr",
+  "rstudioapi",
+  
+  )
+
+rlang > Rcpp > backports > vctrs > glue > tibble > tidyselect> dplyr > purrr
+nlme > lattice > broom
+
+‘broom’, ‘dbplyr’, ‘haven’, ‘hms’, ‘modelr’, ‘reprex’, ‘rvest’, ‘tidyr’
+--->
+
+
+
 
 ##### Testando o <img src="images/logo_r.png" width="20">
 
@@ -184,9 +226,13 @@ Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados
 > q(save = "no")
 ```
 
-#### Diretório para instalação de pacotes
+#### Diretório para pacotes instalados pelo usuário
 
-Uma boa prática é definir um diretório para armazenamento dos pacotes utilizados. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
+Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^5] ou usando `sudo apt-get update && sudo apt-get upgrade`.
+
+[^5]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
+
+Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
 
     $ mkdir -p `echo $HOME`/.R/libs/
     
@@ -210,9 +256,12 @@ e ao digitar:
 [3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
-o seu diretório `/home/usuario/.R/libs` [^5] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os seguintes diretórios serão usados.
+o seu diretório `/home/usuario/.R/libs` [^6] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
 
-[^5]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
+[^6]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
+
+
+
 
 ## Pacotes do R {#install-pck}
 
@@ -299,6 +348,102 @@ Eventualmente um usuário pode instalar um pacote a partir desses arquivos local
 ```r
 install.packages("ggplot2_2.1.0.tar.gz", repos = NULL)
 ```
+
+
+## Atualização de pacotes 
+
+Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual. 
+
+
+
+```r
+update.packages(checkBuilt=TRUE, ask=FALSE)
+```
+
+Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilicitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
+
+
+```r
+install.packages("rvcheck")
+```
+
+Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
+
+- checar a versão mais recente do R
+
+
+```r
+library(rvcheck)
+check_r()
+## $installed_version
+## [1] "R-3.6.3"
+## 
+## $latest_version
+## [1] "R-3.6.3"
+## 
+## $latest_url
+## [1] "https://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz"
+## 
+## $up_to_date
+## [1] TRUE
+```
+
+- checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor
+
+
+```r
+check_cran('dplyr')
+## package is up-to-date release version
+## $package
+## [1] "dplyr"
+## 
+## $installed_version
+## [1] "0.8.5"
+## 
+## $latest_version
+## [1] "0.8.5"
+## 
+## $up_to_date
+## [1] TRUE
+check_github('lhmet/inmetr')
+## package is up-to-date devel version
+## $package
+## [1] "lhmet/inmetr"
+## 
+## $installed_version
+## [1] '0.3.0.9000'
+## 
+## $latest_version
+## [1] "0.3.0.9000"
+## 
+## $up_to_date
+## [1] TRUE
+check_bioc('EBImage')
+## package is up-to-date release version
+## $package
+## [1] "EBImage"
+## 
+## $installed_version
+## [1] "4.28.1"
+## 
+## $latest_version
+## [1] "4.28.1"
+## 
+## $up_to_date
+## [1] TRUE
+```
+
+Por fim, para atualizar todos os pacotes:
+
+
+```r
+update_all(check_R = TRUE)
+```
+
+
+<div class="rmdtip">
+<p>Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.</p>
+</div>
 
 
 ## RStudio no Ubuntu {#install-rstudio}

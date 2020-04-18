@@ -10,14 +10,16 @@ output:
 
 ```{r setup, include = FALSE}
 rm(list = ls())
-pcks <- c("knitr", "emo", "pander") 
+#pcks <- c("knitr", "emo", "pander")
+pcks <- c("knitr", "pander") 
 easypackages::libraries(pcks)
 opts_chunk$set(
   prompt = FALSE,
   cache = FALSE,
   fig.path = "images/",
   comment = "#>",
-  collapse = TRUE
+  collapse = TRUE,
+  eval = FALSE # to try pass in travis!
 )
 # rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
@@ -38,18 +40,18 @@ Existem diversas ferramentas da base do `r rblue` para realizar as operações l
 
 Muitas coisas no `r rblue` que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do `r rblue` é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no `r rblue` estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
-```{r, include = FALSE}
+<!---
 #A nossa capacidade tecnológica de coletar e armazenar uma quantidade massiva de dados digitalmente demanda ferramentas pragmáticas e acessíveis.
-```
+--->
 
 
-```{r tidy-workflow, out.width="100%", fig.cap="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.", echo = FALSE}
+```{r tidy-workflow, out.width="100%", fig.cap="Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.", echo = FALSE, eval = TRUE}
 knitr::include_graphics("images/workflowtidy.png")
 ```
 
 O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do `r rblue` que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comum de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do `r rblue`. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do `r rblue`), legíveis e com sintaxe mais fácil de lembrar.
 
-```{r tidyverse-components, out.width="80%", fig.cap="Coleção de pacotes do *tidyverse*.", echo = FALSE}
+```{r tidyverse-components, out.width="80%", fig.cap="Coleção de pacotes do *tidyverse*.", echo = FALSE, eval = TRUE}
 knitr::include_graphics("images/tidyverse_components.png")
 ```
 
@@ -64,7 +66,7 @@ install.packages("tidyverse")
 
 E da mesma forma carregamos o conjunto de pacotes com:
 
-```{r}
+```{r, eval = TRUE}
 library(tidyverse)
 ```
 
@@ -77,7 +79,7 @@ Ao carregar o pacote **tidyverse** é mostrado no console os pacotes que foram c
 
 Neste capítulo além do **tidyverse** usaremos outros pacotes que já podemos instalar:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval = TRUE}
 pacotes <- c("openair", "lubridate", "scales", "rio")
 easypackages::libraries(pacotes)
 ```
@@ -248,10 +250,10 @@ Outros aspectos diferencias do *tibble* podem consultados na vinheta do referido
 
 > Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados [@Dasu-Johnson, [New York Times 2014/08/18](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)].
 
-```{r, include=FALSE}
+<!---
 # references
 #http://www.storybench.org/getting-started-with-tidyverse-in-r/
-```
+--->
 
 ### Dados arrumados
 
@@ -320,9 +322,9 @@ Essas duas operações são realizadas com as principais funções do pacote **t
 
 - `spread()` que pode ser traduzida como espalhar (nas colunas)
 
-```{r, include = FALSE}
+<!---
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
-```
+--->
 
 
 
@@ -500,11 +502,11 @@ A manipulação de dados requer uma organização apropriada do código. A medid
 
 Essa é justamente a ideia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no `r rblue` através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
-```{r, include = FALSE}
+<!---
 #{block, pipe-linux, type='rmdtip'}
 # O *pipe* pode ser familiar para quem já usou SO unix, onde o operador  é representado por `|`. No comando linux abaixo listamos os arquivos com a extensão `.txt` e o resultado é passado como entrada ao comando `wc` com o argumento `-l` que conta quantas linhas tem a lista de arquivos. Neste caso o número de linhas corresponderá ao número de arquivos com a extensão `.txt`.
 # `ls *.txt | wc -l`
-```
+--->
 
 Os pacotes **tidyverse** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. Vamos ilustrar as vantagens de uso do %>% com exemplos a seguir.
 
@@ -614,15 +616,15 @@ adverbs %>%
 ```
 
 
-```{r, include = FALSE}
+<!---
 # pipe forever?
 # No. ver http://r4ds.had.co.nz/pipes.html#When%20not%20to%20use%20the%20pipe
-```
+--->
 
 
 ### Seleção de variáveis 
 
-```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-select.png")
 ```
 
@@ -684,7 +686,7 @@ Veja mais funções úteis para seleção de variáveis em `?dplyr::select`.
 
 ### Seleção de observações
 
-```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-filter.png")
 ```
 
@@ -774,7 +776,7 @@ clima_rs_tbl %>%
 
 ### Reordenando dados
 
-```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="20%", out.height="20%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-arrange.png")
 ```
 
@@ -800,7 +802,7 @@ clima_rs_tbl %>%
 
 ### Criando e renomeando variáveis
 
-```{r, ,echo = FALSE, out.width="50%", out.height="55%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="50%", out.height="55%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-mutate-rename.png")
 ```
 
@@ -874,7 +876,7 @@ prec_anual_comp %>%
 
 ### Agregando observações
 
-```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-summarise-count.png")
 ```
 
@@ -951,7 +953,7 @@ prec_anual_comp_rep %>%
 
 ### Agrupando observações
 
-```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center'}
+```{r, ,echo = FALSE, out.width="40%", out.height="50%", fig.align='center', eval = TRUE}
 knitr::include_graphics("images/dplyr-group-by-summarise.png")
 ```
 
@@ -1013,11 +1015,11 @@ Com o conjunto de verbos exemplificados você agora é capaz de realizar as tare
 
 Há mais funções úteis disponíveis no pacote **dplyr** e você é encorajado a descubrí-las. 
 
-```{r, include = FALSE}
+<!---
 #faltando 
 # - non standard evaluation
 # - ...
-```
+--->
 
 
 ### Combinação de dados 
@@ -1163,7 +1165,7 @@ easypackages::libraries(pcks)
 
 **Dados**
 
-```{r, include=TRUE}
+```{r, eval = FALSE}
 arq_temp <- tempfile(fileext = ".RData")
 download.file(
   "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
@@ -1175,7 +1177,7 @@ print(load(arq_temp))
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
 
-```{r, include=TRUE}
+```{r}
 soi 
 ```
 
@@ -1532,7 +1534,7 @@ glimpse(sm_tar_ciclo_medio)
 
 > Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, echo = FALSE}
 sm_tair <- dados_rs_08_16 %>%
   select(site, date, tair) %>%
   filter(site == id_sm)

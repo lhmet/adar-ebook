@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Análise de Dados Ambientais com R</title>
-  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="9.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="9.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
 
-<meta name="author" content="Jônatan Tatsch">
+<meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2019-10-09">
+<meta name="date" content="2020-04-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangle.html">
-<link rel="next" href="tibble-um-data-frame-aperfeiçoado.html">
+<link rel="prev" href="data-wrangle.html"/>
+<link rel="next" href="tibble-um-data-frame-aperfeiçoado.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -155,7 +157,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -343,470 +346,53 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-2" class="section level2">
 <h2><span class="header-section-number">9.1</span> Pré-requisitos</h2>
 <p>O pacote <strong>tidyverse</strong> torna fácil de instalar e carregar os pacotes do <em>tidyverse</em> com apenas uma chamada à função:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <p>E da mesma forma carregamos o conjunto de pacotes com:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="co">#&gt; ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</span>
-<span class="co">#&gt; ✔ ggplot2 3.2.1     ✔ purrr   0.3.2</span>
-<span class="co">#&gt; ✔ tibble  2.1.3     ✔ dplyr   0.8.3</span>
-<span class="co">#&gt; ✔ tidyr   0.8.3     ✔ stringr 1.4.0</span>
-<span class="co">#&gt; ✔ readr   1.1.1     ✔ forcats 0.4.0</span>
-<span class="co">#&gt; ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ───────────────────── tidyverse 1.3.0 ──</span></a>
+<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="co">#&gt; ✓ ggplot2 3.2.1     ✓ purrr   0.3.3</span></a>
+<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="co">#&gt; ✓ tibble  3.0.0     ✓ dplyr   0.8.5</span></a>
+<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="co">#&gt; ✓ tidyr   1.0.2     ✓ stringr 1.4.0</span></a>
+<a class="sourceLine" id="cb263-6" data-line-number="6"><span class="co">#&gt; ✓ readr   1.3.1     ✓ forcats 0.4.0</span></a>
+<a class="sourceLine" id="cb263-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ──────────────────────── tidyverse_conflicts() ──</span></a>
+<a class="sourceLine" id="cb263-8" data-line-number="8"><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></a>
+<a class="sourceLine" id="cb263-9" data-line-number="9"><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></a></code></pre></div>
 <div class="rmdnote">
 <p>
 Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacotes que foram carregados. À direita são mostradas as configurações e informações sobre o seu sistema operacional. Na parte inferior, há uma mensagem sobre os conflitos entre as funções da base do R (ou de outros pacotes) que tem mesmo nome que as de algum pacote do <em>tidyverse</em>. A função do pacote carregado mais recentemente terá prioridade de uso. No caso acima, a função <code>filter()</code> do <strong>dplyr</strong> sobrepôs a função <code>filter()</code> do pacote <strong>stats</strong> da base do R. Em situações como esta é melhor deixar explícito no seu código a chamada à função usando <code>pacote::funcao()</code>.
 </p>
 </div>
 <p>Neste capítulo além do <strong>tidyverse</strong> usaremos outros pacotes que já podemos instalar:</p>
-<pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)
-easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
 <div id="dados" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Dados</h3>
 <p>Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de manipulação de dados do <em>tidyverse</em>.</p>
 <ol style="list-style-type: decimal">
 <li>Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> localizadas no estado do Rio Grande do Sul.</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span>
-<span class="co"># dados de exemplo</span>
-clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
-clima_rs</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="center">codigo</th>
-<th align="center">estacao</th>
-<th align="center">uf</th>
-<th align="center">prec</th>
-<th align="center">tmax</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">83931</td>
-<td align="center">Alegrete</td>
-<td align="center">RS</td>
-<td align="center">1492.2</td>
-<td align="center">25.4</td>
-</tr>
-<tr class="even">
-<td align="center">83980</td>
-<td align="center">Bagé</td>
-<td align="center">RS</td>
-<td align="center">1299.9</td>
-<td align="center">24.1</td>
-</tr>
-<tr class="odd">
-<td align="center">83941</td>
-<td align="center">Bento Gonçalves</td>
-<td align="center">RS</td>
-<td align="center">1683.7</td>
-<td align="center">23.0</td>
-</tr>
-<tr class="even">
-<td align="center">83919</td>
-<td align="center">Bom Jesus</td>
-<td align="center">RS</td>
-<td align="center">1807.3</td>
-<td align="center">20.3</td>
-</tr>
-<tr class="odd">
-<td align="center">83963</td>
-<td align="center">Cachoeira do Sul</td>
-<td align="center">RS</td>
-<td align="center">1477.1</td>
-<td align="center">25.1</td>
-</tr>
-<tr class="even">
-<td align="center">83942</td>
-<td align="center">Caxias do Sul</td>
-<td align="center">RS</td>
-<td align="center">1823.0</td>
-<td align="center">21.8</td>
-</tr>
-<tr class="odd">
-<td align="center">83912</td>
-<td align="center">Cruz Alta</td>
-<td align="center">RS</td>
-<td align="center">1630.7</td>
-<td align="center">24.5</td>
-</tr>
-<tr class="even">
-<td align="center">83964</td>
-<td align="center">Encruzilhada do Sul</td>
-<td align="center">RS</td>
-<td align="center">1510.8</td>
-<td align="center">22.5</td>
-</tr>
-<tr class="odd">
-<td align="center">83915</td>
-<td align="center">Guaporé</td>
-<td align="center">RS</td>
-<td align="center">1758.7</td>
-<td align="center">24.7</td>
-</tr>
-<tr class="even">
-<td align="center">83881</td>
-<td align="center">Iraí</td>
-<td align="center">RS</td>
-<td align="center">1806.7</td>
-<td align="center">27.1</td>
-</tr>
-<tr class="odd">
-<td align="center">83929</td>
-<td align="center">Itaqui</td>
-<td align="center">RS</td>
-<td align="center">1369.4</td>
-<td align="center">26.2</td>
-</tr>
-<tr class="even">
-<td align="center">83916</td>
-<td align="center">Lagoa Vermelha</td>
-<td align="center">RS</td>
-<td align="center">1691.1</td>
-<td align="center">23.0</td>
-</tr>
-<tr class="odd">
-<td align="center">83880</td>
-<td align="center">Palmeira das Missões</td>
-<td align="center">RS</td>
-<td align="center">1747.8</td>
-<td align="center">24.0</td>
-</tr>
-<tr class="even">
-<td align="center">83914</td>
-<td align="center">Passo Fundo</td>
-<td align="center">RS</td>
-<td align="center">1803.1</td>
-<td align="center">23.6</td>
-</tr>
-<tr class="odd">
-<td align="center">83967</td>
-<td align="center">Porto Alegre</td>
-<td align="center">RS</td>
-<td align="center">1320.2</td>
-<td align="center">24.8</td>
-</tr>
-<tr class="even">
-<td align="center">83995</td>
-<td align="center">Rio Grande</td>
-<td align="center">RS</td>
-<td align="center">1233.6</td>
-<td align="center">21.7</td>
-</tr>
-<tr class="odd">
-<td align="center">83936</td>
-<td align="center">Santa Maria</td>
-<td align="center">RS</td>
-<td align="center">1616.8</td>
-<td align="center">24.9</td>
-</tr>
-<tr class="even">
-<td align="center">83997</td>
-<td align="center">Santa Vitória do Palmar</td>
-<td align="center">RS</td>
-<td align="center">1228.9</td>
-<td align="center">21.8</td>
-</tr>
-<tr class="odd">
-<td align="center">83957</td>
-<td align="center">São Gabriel</td>
-<td align="center">RS</td>
-<td align="center">1313.9</td>
-<td align="center">25.0</td>
-</tr>
-<tr class="even">
-<td align="center">83907</td>
-<td align="center">São Luiz Gonzaga</td>
-<td align="center">RS</td>
-<td align="center">1770.9</td>
-<td align="center">26.1</td>
-</tr>
-<tr class="odd">
-<td align="center">83966</td>
-<td align="center">Tapes</td>
-<td align="center">RS</td>
-<td align="center">1349.8</td>
-<td align="center">23.8</td>
-</tr>
-<tr class="even">
-<td align="center">83948</td>
-<td align="center">Torres</td>
-<td align="center">RS</td>
-<td align="center">1363.2</td>
-<td align="center">22.3</td>
-</tr>
-<tr class="odd">
-<td align="center">83927</td>
-<td align="center">Uruguaiana</td>
-<td align="center">RS</td>
-<td align="center">1647.4</td>
-<td align="center">25.8</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
+<a class="sourceLine" id="cb265-3" data-line-number="3">clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb265-4" data-line-number="4">clima_rs</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Metadados das estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> relacionadas a tabela de dados <code>clima_rs</code>.</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span>
-<span class="co"># dados de exemplo</span>
-metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)
-metadados_rs</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="center">codigo</th>
-<th align="center">lon</th>
-<th align="center">lat</th>
-<th align="center">alt</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">83931</td>
-<td align="center">-55.51667</td>
-<td align="center">-29.68333</td>
-<td align="center">120.91</td>
-</tr>
-<tr class="even">
-<td align="center">83980</td>
-<td align="center">-54.10000</td>
-<td align="center">-31.33333</td>
-<td align="center">242.31</td>
-</tr>
-<tr class="odd">
-<td align="center">83941</td>
-<td align="center">-51.51667</td>
-<td align="center">-29.15000</td>
-<td align="center">640.00</td>
-</tr>
-<tr class="even">
-<td align="center">83919</td>
-<td align="center">-50.43333</td>
-<td align="center">-28.66667</td>
-<td align="center">1047.50</td>
-</tr>
-<tr class="odd">
-<td align="center">83959</td>
-<td align="center">-53.48333</td>
-<td align="center">-30.51667</td>
-<td align="center">450.00</td>
-</tr>
-<tr class="even">
-<td align="center">83963</td>
-<td align="center">-52.88333</td>
-<td align="center">-30.03333</td>
-<td align="center">72.71</td>
-</tr>
-<tr class="odd">
-<td align="center">83942</td>
-<td align="center">-51.20000</td>
-<td align="center">-29.16667</td>
-<td align="center">759.60</td>
-</tr>
-<tr class="even">
-<td align="center">83912</td>
-<td align="center">-53.60000</td>
-<td align="center">-28.63333</td>
-<td align="center">472.50</td>
-</tr>
-<tr class="odd">
-<td align="center">83964</td>
-<td align="center">-52.51667</td>
-<td align="center">-30.53333</td>
-<td align="center">427.75</td>
-</tr>
-<tr class="even">
-<td align="center">83915</td>
-<td align="center">-51.90000</td>
-<td align="center">-28.91667</td>
-<td align="center">471.51</td>
-</tr>
-<tr class="odd">
-<td align="center">83881</td>
-<td align="center">-53.23333</td>
-<td align="center">-27.18333</td>
-<td align="center">247.10</td>
-</tr>
-<tr class="even">
-<td align="center">83929</td>
-<td align="center">-56.53333</td>
-<td align="center">-29.11667</td>
-<td align="center">76.00</td>
-</tr>
-<tr class="odd">
-<td align="center">83916</td>
-<td align="center">-51.50000</td>
-<td align="center">-28.21667</td>
-<td align="center">840.00</td>
-</tr>
-<tr class="even">
-<td align="center">83885</td>
-<td align="center">-51.90000</td>
-<td align="center">-27.45000</td>
-<td align="center">414.17</td>
-</tr>
-<tr class="odd">
-<td align="center">83880</td>
-<td align="center">-53.43333</td>
-<td align="center">-27.88333</td>
-<td align="center">634.00</td>
-</tr>
-<tr class="even">
-<td align="center">83914</td>
-<td align="center">-52.40000</td>
-<td align="center">-28.21667</td>
-<td align="center">684.05</td>
-</tr>
-<tr class="odd">
-<td align="center">83985</td>
-<td align="center">-52.41667</td>
-<td align="center">-31.78333</td>
-<td align="center">13.00</td>
-</tr>
-<tr class="even">
-<td align="center">83983</td>
-<td align="center">-53.10000</td>
-<td align="center">-31.43333</td>
-<td align="center">345.00</td>
-</tr>
-<tr class="odd">
-<td align="center">83967</td>
-<td align="center">-51.16667</td>
-<td align="center">-30.05000</td>
-<td align="center">46.97</td>
-</tr>
-<tr class="even">
-<td align="center">83995</td>
-<td align="center">-52.10000</td>
-<td align="center">-32.03333</td>
-<td align="center">2.46</td>
-</tr>
-<tr class="odd">
-<td align="center">83936</td>
-<td align="center">-53.70000</td>
-<td align="center">-29.70000</td>
-<td align="center">95.00</td>
-</tr>
-<tr class="even">
-<td align="center">83997</td>
-<td align="center">-53.35000</td>
-<td align="center">-33.51667</td>
-<td align="center">24.01</td>
-</tr>
-<tr class="odd">
-<td align="center">83953</td>
-<td align="center">-55.60000</td>
-<td align="center">-30.83333</td>
-<td align="center">328.00</td>
-</tr>
-<tr class="even">
-<td align="center">83909</td>
-<td align="center">-54.25000</td>
-<td align="center">-28.30000</td>
-<td align="center">284.50</td>
-</tr>
-<tr class="odd">
-<td align="center">83957</td>
-<td align="center">-54.31667</td>
-<td align="center">-30.33333</td>
-<td align="center">124.00</td>
-</tr>
-<tr class="even">
-<td align="center">83907</td>
-<td align="center">-55.01667</td>
-<td align="center">-28.40000</td>
-<td align="center">245.11</td>
-</tr>
-<tr class="odd">
-<td align="center">83966</td>
-<td align="center">-51.58333</td>
-<td align="center">-30.83333</td>
-<td align="center">5.00</td>
-</tr>
-<tr class="even">
-<td align="center">83948</td>
-<td align="center">-49.71667</td>
-<td align="center">-29.35000</td>
-<td align="center">4.66</td>
-</tr>
-<tr class="odd">
-<td align="center">83927</td>
-<td align="center">-57.08333</td>
-<td align="center">-29.75000</td>
-<td align="center">62.31</td>
-</tr>
-<tr class="even">
-<td align="center">83918</td>
-<td align="center">-50.70000</td>
-<td align="center">-28.55000</td>
-<td align="center">954.60</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
+<a class="sourceLine" id="cb266-3" data-line-number="3">metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb266-4" data-line-number="4">metadados_rs</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">site =</span> <span class="kw">c</span>(
-    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
-  ),
-  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
-  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
-)
-prec_anual</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="center">site</th>
-<th align="center">ano</th>
-<th align="center">prec</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">A001</td>
-<td align="center">2000</td>
-<td align="center">1800</td>
-</tr>
-<tr class="even">
-<td align="center">A001</td>
-<td align="center">2001</td>
-<td align="center">1400</td>
-</tr>
-<tr class="odd">
-<td align="center">A002</td>
-<td align="center">2000</td>
-<td align="center">1750</td>
-</tr>
-<tr class="even">
-<td align="center">A002</td>
-<td align="center">2001</td>
-<td align="center">1470</td>
-</tr>
-<tr class="odd">
-<td align="center">A002</td>
-<td align="center">2002</td>
-<td align="center">1630</td>
-</tr>
-<tr class="even">
-<td align="center">A003</td>
-<td align="center">2004</td>
-<td align="center">1300</td>
-</tr>
-<tr class="odd">
-<td align="center">A803</td>
-<td align="center">2005</td>
-<td align="center">1950</td>
-</tr>
-<tr class="even">
-<td align="center">A803</td>
-<td align="center">2006</td>
-<td align="center">1100</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb267-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb267-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
+<a class="sourceLine" id="cb267-4" data-line-number="4">  ),</a>
+<a class="sourceLine" id="cb267-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
+<a class="sourceLine" id="cb267-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
+<a class="sourceLine" id="cb267-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb267-8" data-line-number="8">prec_anual</a></code></pre></div>
 </div>
 </div>
             </section>
@@ -820,11 +406,13 @@ prec_anual</code></pre>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -832,12 +420,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -848,7 +435,15 @@ gitbook.start({
 "link": "https://github.com/lhmet/adar-ebook/edit/master/09-manipulacao-dados.Rmd",
 "text": "Edit"
 },
-"download": ["ADAR.pdf", "ADAR.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -862,9 +457,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

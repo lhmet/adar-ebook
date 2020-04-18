@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Análise de Dados Ambientais com R</title>
-  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B.3 Dados de pacotes do R | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="B.3 Dados de pacotes do R | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="B.3 Dados de pacotes do R | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
 
-<meta name="author" content="Jônatan Tatsch">
+<meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2019-10-09">
+<meta name="date" content="2020-04-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html">
-<link rel="next" href="readtable.html">
+<link rel="prev" href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"/>
+<link rel="next" href="readtable.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -155,7 +157,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -343,47 +346,43 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dados-de-pacotes-do-r" class="section level2">
 <h2><span class="header-section-number">B.3</span> Dados de pacotes do R</h2>
 <p>O <code>R</code> possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do <code>help()</code> de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função <code>data()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de dados disponíveis</span>
-<span class="kw">data</span>()
-<span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span>
-<span class="kw">data</span>(precip)
-<span class="co"># primeiros 30 elementos dos dados precip</span>
-<span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)
-<span class="co">#&gt;              Mobile              Juneau             Phoenix </span>
-<span class="co">#&gt;                67.0                54.7                 7.0 </span>
-<span class="co">#&gt;         Little Rock         Los Angeles          Sacramento </span>
-<span class="co">#&gt;                48.5                14.0                17.2 </span>
-<span class="co">#&gt;       San Francisco              Denver            Hartford </span>
-<span class="co">#&gt;                20.7                13.0                43.4 </span>
-<span class="co">#&gt;          Wilmington          Washington        Jacksonville </span>
-<span class="co">#&gt;                40.2                38.9                54.5 </span>
-<span class="co">#&gt;               Miami             Atlanta            Honolulu </span>
-<span class="co">#&gt;                59.8                48.3                22.9 </span>
-<span class="co">#&gt;               Boise             Chicago              Peoria </span>
-<span class="co">#&gt;                11.5                34.4                35.1 </span>
-<span class="co">#&gt;        Indianapolis          Des Moines             Wichita </span>
-<span class="co">#&gt;                38.7                30.8                30.6 </span>
-<span class="co">#&gt;          Louisville         New Orleans            Portland </span>
-<span class="co">#&gt;                43.1                56.8                40.8 </span>
-<span class="co">#&gt;           Baltimore              Boston             Detroit </span>
-<span class="co">#&gt;                41.8                42.5                31.0 </span>
-<span class="co">#&gt;    Sault Ste. Marie              Duluth Minneapolis/St Paul </span>
-<span class="co">#&gt;                31.7                30.2                25.9</span>
-<span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span>
-<span class="kw">data</span>(airquality)
-<span class="co"># primeiras linhas dos dados</span>
-<span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)
-<span class="co">#&gt;    Ozone Solar.R Wind Temp Month Day</span>
-<span class="co">#&gt; 1     41     190  7.4   67     5   1</span>
-<span class="co">#&gt; 2     36     118  8.0   72     5   2</span>
-<span class="co">#&gt; 3     12     149 12.6   74     5   3</span>
-<span class="co">#&gt; 4     18     313 11.5   62     5   4</span>
-<span class="co">#&gt; 5     NA      NA 14.3   56     5   5</span>
-<span class="co">#&gt; 6     28      NA 14.9   66     5   6</span>
-<span class="co">#&gt; 7     23     299  8.6   65     5   7</span>
-<span class="co">#&gt; 8     19      99 13.8   59     5   8</span>
-<span class="co">#&gt; 9      8      19 20.1   61     5   9</span>
-<span class="co">#&gt; 10    NA     194  8.6   69     5  10</span></code></pre>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># lista de dados disponíveis</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2"><span class="kw">data</span>()</a>
+<a class="sourceLine" id="cb374-3" data-line-number="3"><span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span></a>
+<a class="sourceLine" id="cb374-4" data-line-number="4"><span class="kw">data</span>(precip)</a>
+<a class="sourceLine" id="cb374-5" data-line-number="5"><span class="co"># primeiros 30 elementos dos dados precip</span></a>
+<a class="sourceLine" id="cb374-6" data-line-number="6"><span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb374-7" data-line-number="7"><span class="co">#&gt;              Mobile              Juneau             Phoenix         Little Rock </span></a>
+<a class="sourceLine" id="cb374-8" data-line-number="8"><span class="co">#&gt;                67.0                54.7                 7.0                48.5 </span></a>
+<a class="sourceLine" id="cb374-9" data-line-number="9"><span class="co">#&gt;         Los Angeles          Sacramento       San Francisco              Denver </span></a>
+<a class="sourceLine" id="cb374-10" data-line-number="10"><span class="co">#&gt;                14.0                17.2                20.7                13.0 </span></a>
+<a class="sourceLine" id="cb374-11" data-line-number="11"><span class="co">#&gt;            Hartford          Wilmington          Washington        Jacksonville </span></a>
+<a class="sourceLine" id="cb374-12" data-line-number="12"><span class="co">#&gt;                43.4                40.2                38.9                54.5 </span></a>
+<a class="sourceLine" id="cb374-13" data-line-number="13"><span class="co">#&gt;               Miami             Atlanta            Honolulu               Boise </span></a>
+<a class="sourceLine" id="cb374-14" data-line-number="14"><span class="co">#&gt;                59.8                48.3                22.9                11.5 </span></a>
+<a class="sourceLine" id="cb374-15" data-line-number="15"><span class="co">#&gt;             Chicago              Peoria        Indianapolis          Des Moines </span></a>
+<a class="sourceLine" id="cb374-16" data-line-number="16"><span class="co">#&gt;                34.4                35.1                38.7                30.8 </span></a>
+<a class="sourceLine" id="cb374-17" data-line-number="17"><span class="co">#&gt;             Wichita          Louisville         New Orleans            Portland </span></a>
+<a class="sourceLine" id="cb374-18" data-line-number="18"><span class="co">#&gt;                30.6                43.1                56.8                40.8 </span></a>
+<a class="sourceLine" id="cb374-19" data-line-number="19"><span class="co">#&gt;           Baltimore              Boston             Detroit    Sault Ste. Marie </span></a>
+<a class="sourceLine" id="cb374-20" data-line-number="20"><span class="co">#&gt;                41.8                42.5                31.0                31.7 </span></a>
+<a class="sourceLine" id="cb374-21" data-line-number="21"><span class="co">#&gt;              Duluth Minneapolis/St Paul </span></a>
+<a class="sourceLine" id="cb374-22" data-line-number="22"><span class="co">#&gt;                30.2                25.9</span></a>
+<a class="sourceLine" id="cb374-23" data-line-number="23"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span></a>
+<a class="sourceLine" id="cb374-24" data-line-number="24"><span class="kw">data</span>(airquality)</a>
+<a class="sourceLine" id="cb374-25" data-line-number="25"><span class="co"># primeiras linhas dos dados</span></a>
+<a class="sourceLine" id="cb374-26" data-line-number="26"><span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb374-27" data-line-number="27"><span class="co">#&gt;    Ozone Solar.R Wind Temp Month Day</span></a>
+<a class="sourceLine" id="cb374-28" data-line-number="28"><span class="co">#&gt; 1     41     190  7.4   67     5   1</span></a>
+<a class="sourceLine" id="cb374-29" data-line-number="29"><span class="co">#&gt; 2     36     118  8.0   72     5   2</span></a>
+<a class="sourceLine" id="cb374-30" data-line-number="30"><span class="co">#&gt; 3     12     149 12.6   74     5   3</span></a>
+<a class="sourceLine" id="cb374-31" data-line-number="31"><span class="co">#&gt; 4     18     313 11.5   62     5   4</span></a>
+<a class="sourceLine" id="cb374-32" data-line-number="32"><span class="co">#&gt; 5     NA      NA 14.3   56     5   5</span></a>
+<a class="sourceLine" id="cb374-33" data-line-number="33"><span class="co">#&gt; 6     28      NA 14.9   66     5   6</span></a>
+<a class="sourceLine" id="cb374-34" data-line-number="34"><span class="co">#&gt; 7     23     299  8.6   65     5   7</span></a>
+<a class="sourceLine" id="cb374-35" data-line-number="35"><span class="co">#&gt; 8     19      99 13.8   59     5   8</span></a>
+<a class="sourceLine" id="cb374-36" data-line-number="36"><span class="co">#&gt; 9      8      19 20.1   61     5   9</span></a>
+<a class="sourceLine" id="cb374-37" data-line-number="37"><span class="co">#&gt; 10    NA     194  8.6   69     5  10</span></a></code></pre></div>
 </div>
             </section>
 
@@ -396,11 +395,13 @@ code span.wa { color: #bf0303; } /* Warning */
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -408,12 +409,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -424,7 +424,15 @@ gitbook.start({
 "link": "https://github.com/lhmet/adar-ebook/edit/master/AppendixB.Rmd",
 "text": "Edit"
 },
-"download": ["ADAR.pdf", "ADAR.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -438,9 +446,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

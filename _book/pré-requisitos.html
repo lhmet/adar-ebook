@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Análise de Dados Ambientais com R</title>
-  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="8.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="8.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
 
-<meta name="author" content="Jônatan Tatsch">
+<meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2019-10-09">
+<meta name="date" content="2020-04-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="io.html">
-<link rel="next" href="diretório-de-trabalho.html">
+<link rel="prev" href="io.html"/>
+<link rel="next" href="diretório-de-trabalho.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -155,7 +157,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -343,38 +346,38 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos" class="section level2">
 <h2><span class="header-section-number">8.1</span> Pré-requisitos</h2>
 <p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;easypackages&quot;</span>,
-  <span class="st">&quot;rio&quot;</span>,
-  <span class="st">&quot;readr&quot;</span>,
-  <span class="st">&quot;feather&quot;</span>,
-  <span class="st">&quot;readxl&quot;</span>,
-  <span class="st">&quot;writexl&quot;</span>,
-  <span class="st">&quot;dplyr&quot;</span>,
-  <span class="st">&quot;microbenchmark&quot;</span>,
-  <span class="st">&quot;openxlsx&quot;</span>
-)</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb219-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb219-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb219-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb219-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb219-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb219-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb219-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb219-11" data-line-number="11">)</a></code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(
-   pacotes,
-   <span class="dt">dependencies =</span> <span class="ot">TRUE</span>
-)</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">install.packages</span>(</a>
+<a class="sourceLine" id="cb220-2" data-line-number="2">   pacotes,</a>
+<a class="sourceLine" id="cb220-3" data-line-number="3">   <span class="dt">dependencies =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb220-4" data-line-number="4">)</a></code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span>
-<span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb221-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb221-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb221-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb221-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb221-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb221-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb221-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb221-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
@@ -393,7 +396,7 @@ ou simplesmente
 </p>
 </div>
 <p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua instalação precisamos executar o comando abaixo.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_formats</span>()</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 
@@ -406,11 +409,13 @@ ou simplesmente
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -418,12 +423,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -434,7 +438,15 @@ gitbook.start({
 "link": "https://github.com/lhmet/adar-ebook/edit/master/08-entrada-dados.Rmd",
 "text": "Edit"
 },
-"download": ["ADAR.pdf", "ADAR.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -448,9 +460,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

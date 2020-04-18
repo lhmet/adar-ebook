@@ -89,18 +89,16 @@ O <img src="images/logo_r.png" width="20"> também tem vetores de caracteres pr�
 
 ```r
 LETTERS
-#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
-#> [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+#> [20] "T" "U" "V" "W" "X" "Y" "Z"
 letters
-#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-#> [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+#> [20] "t" "u" "v" "w" "x" "y" "z"
 month.abb
-#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
-#> [12] "Dec"
+#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
 month.name
-#>  [1] "January"   "February"  "March"     "April"     "May"      
-#>  [6] "June"      "July"      "August"    "September" "October"  
-#> [11] "November"  "December"
+#>  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+#>  [7] "July"      "August"    "September" "October"   "November"  "December"
 ```
 
 Note que caracteres estão sempre entre aspas: `""`.
@@ -372,7 +370,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "esp_num_df"
 #>  [6] "fev"        "jan"        "jul"        "jun"        "mai"       
 #> [11] "mar"        "nd3"        "nd4"        "nov"        "oper"      
-#> [16] "oper_nas"   "out"        "p"          "pcks"       "p_pa"      
+#> [16] "oper_nas"   "out"        "p"          "p_pa"       "pcks"      
 #> [21] "rblue"      "res"        "set"        "tar"        "totd"      
 #> [26] "y1"         "y2"
 ```
@@ -424,8 +422,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
-#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
+#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "u"          "y1"         "y2"
 ```
 
@@ -439,8 +437,8 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
 #>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
 #> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "pcks"      
-#> [21] "p_pa"       "rblue"      "res"        "set"        "tar"       
+#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
+#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
 #> [26] "totd"       "y1"         "y2"
 ```
 
@@ -454,7 +452,7 @@ ls()
 #>  [1] "abr"        "ago"        "dez"        "esp_num_df" "fev"       
 #>  [6] "jan"        "jul"        "jun"        "mai"        "mar"       
 #> [11] "nd3"        "nd4"        "nov"        "oper"       "oper_nas"  
-#> [16] "out"        "p"          "pcks"       "p_pa"       "rblue"     
+#> [16] "out"        "p"          "p_pa"       "pcks"       "rblue"     
 #> [21] "res"        "set"        "totd"
 ```
 

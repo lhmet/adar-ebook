@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Análise de Dados Ambientais com R</title>
-  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM.">
-  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
 
-<meta name="author" content="Jônatan Tatsch">
+<meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2019-10-09">
+<meta name="date" content="2020-04-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="amostras-pequenas-de-dados.html">
-<link rel="next" href="dados-de-pacotes-do-r.html">
+<link rel="prev" href="amostras-pequenas-de-dados.html"/>
+<link rel="next" href="dados-de-pacotes-do-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -155,7 +157,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -345,89 +348,87 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dput-dget-dump-e-source." class="section level3">
 <h3><span class="header-section-number">B.2.1</span> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</h3>
 <p>Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função <code>dput()</code> (que pode ser traduzido como &quot;despejar&quot;). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função <code>dget()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">x
-<span class="co">#&gt;        dates cidade temperatura chuva</span>
-<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
-<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
-<span class="co">#&gt; 3 2013-01-01     CV          21    14</span>
-<span class="co"># representação textual do objeto x</span>
-<span class="kw">dput</span>(x)
-<span class="co">#&gt; structure(list(dates = structure(c(1L, 1L, 1L), .Label = &quot;2013-01-01&quot;, class = &quot;factor&quot;), </span>
-<span class="co">#&gt;     cidade = structure(c(2L, 3L, 1L), .Label = c(&quot;CV&quot;, &quot;SM&quot;, </span>
-<span class="co">#&gt;     &quot;SS&quot;), class = &quot;factor&quot;), temperatura = c(31L, 35L, 21L), </span>
-<span class="co">#&gt;     chuva = c(3L, 10L, 14L)), .Names = c(&quot;dates&quot;, &quot;cidade&quot;, &quot;temperatura&quot;, </span>
-<span class="co">#&gt; &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
-<span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
-(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmpbd1yf7/file40593da84826&quot;</span>
-(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmpbd1yf7/file405920018835&quot;</span>
-<span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)
-<span class="co"># recuperando x a partir do arquivo</span>
-y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)
-<span class="co"># alterar valores de y</span>
-y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)
-y
-<span class="co">#&gt;   temperatura     chuva</span>
-<span class="co">#&gt; 1    29.58579  1.585786</span>
-<span class="co">#&gt; 2    33.58579  8.585786</span>
-<span class="co">#&gt; 3    19.58579 12.585786</span>
-<span class="co"># verificar existência de x e y</span>
-<span class="kw">ls</span>()
-<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
-<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
-<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
-<span class="co">#&gt; [13] &quot;x&quot;            &quot;x_dest_file&quot;  &quot;y&quot;</span>
-<span class="co"># listando variáveis que começam com x ou y</span>
-<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)
-<span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span>
-<span class="co"># salvando mais de um objeto em um arquivo</span>
-(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="co">#&gt; [1] &quot;/tmp/Rtmpbd1yf7/file405942e737a4&quot;</span>
-<span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)
-<span class="co"># vamos apagar x e y do espaco de trabalho</span>
-<span class="kw">rm</span>(x, y)
-<span class="co"># x e y não existem mais</span>
-<span class="kw">ls</span>()
-<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
-<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
-<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
-<span class="co">#&gt; [13] &quot;x_dest_file&quot;  &quot;xy_dest_file&quot;</span>
-<span class="co"># recuperando os objetos x e y salvos em xy.R</span>
-<span class="kw">source</span>(xy_dest_file)
-<span class="kw">ls</span>()
-<span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;       </span>
-<span class="co">#&gt;  [5] &quot;fcubo&quot;        &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;       </span>
-<span class="co">#&gt;  [9] &quot;sentenca&quot;     &quot;tc&quot;           &quot;texto&quot;        &quot;vetor_aq&quot;    </span>
-<span class="co">#&gt; [13] &quot;x&quot;            &quot;x_dest_file&quot;  &quot;xy_dest_file&quot; &quot;y&quot;</span>
-x
-<span class="co">#&gt;        dates cidade temperatura chuva</span>
-<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
-<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
-<span class="co">#&gt; 3 2013-01-01     CV          21    14</span>
-y
-<span class="co">#&gt;   temperatura     chuva</span>
-<span class="co">#&gt; 1    29.58579  1.585786</span>
-<span class="co">#&gt; 2    33.58579  8.585786</span>
-<span class="co">#&gt; 3    19.58579 12.585786</span></code></pre>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1">x</a>
+<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="co">#&gt;        dates cidade temperatura chuva</span></a>
+<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="co">#&gt; 1 2013-01-01     SM          31     3</span></a>
+<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="co">#&gt; 2 2013-01-01     SS          35    10</span></a>
+<a class="sourceLine" id="cb372-5" data-line-number="5"><span class="co">#&gt; 3 2013-01-01     CV          21    14</span></a>
+<a class="sourceLine" id="cb372-6" data-line-number="6"><span class="co"># representação textual do objeto x</span></a>
+<a class="sourceLine" id="cb372-7" data-line-number="7"><span class="kw">dput</span>(x)</a>
+<a class="sourceLine" id="cb372-8" data-line-number="8"><span class="co">#&gt; structure(list(dates = structure(c(1L, 1L, 1L), .Label = &quot;2013-01-01&quot;, class = &quot;factor&quot;), </span></a>
+<a class="sourceLine" id="cb372-9" data-line-number="9"><span class="co">#&gt;     cidade = structure(c(2L, 3L, 1L), .Label = c(&quot;CV&quot;, &quot;SM&quot;, </span></a>
+<a class="sourceLine" id="cb372-10" data-line-number="10"><span class="co">#&gt;     &quot;SS&quot;), class = &quot;factor&quot;), temperatura = c(31L, 35L, 21L), </span></a>
+<a class="sourceLine" id="cb372-11" data-line-number="11"><span class="co">#&gt;     chuva = c(3L, 10L, 14L)), class = &quot;data.frame&quot;, row.names = c(NA, </span></a>
+<a class="sourceLine" id="cb372-12" data-line-number="12"><span class="co">#&gt; -3L))</span></a>
+<a class="sourceLine" id="cb372-13" data-line-number="13"><span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></a>
+<a class="sourceLine" id="cb372-14" data-line-number="14">(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb372-15" data-line-number="15"><span class="co">#&gt; [1] &quot;/tmp/RtmpfJzOd8/file2f9d3d39e76a&quot;</span></a>
+<a class="sourceLine" id="cb372-16" data-line-number="16">(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb372-17" data-line-number="17"><span class="co">#&gt; [1] &quot;/tmp/RtmpfJzOd8/file2f9d2384f241&quot;</span></a>
+<a class="sourceLine" id="cb372-18" data-line-number="18"><span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)</a>
+<a class="sourceLine" id="cb372-19" data-line-number="19"><span class="co"># recuperando x a partir do arquivo</span></a>
+<a class="sourceLine" id="cb372-20" data-line-number="20">y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)</a>
+<a class="sourceLine" id="cb372-21" data-line-number="21"><span class="co"># alterar valores de y</span></a>
+<a class="sourceLine" id="cb372-22" data-line-number="22">y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb372-23" data-line-number="23">y</a>
+<a class="sourceLine" id="cb372-24" data-line-number="24"><span class="co">#&gt;   temperatura     chuva</span></a>
+<a class="sourceLine" id="cb372-25" data-line-number="25"><span class="co">#&gt; 1    29.58579  1.585786</span></a>
+<a class="sourceLine" id="cb372-26" data-line-number="26"><span class="co">#&gt; 2    33.58579  8.585786</span></a>
+<a class="sourceLine" id="cb372-27" data-line-number="27"><span class="co">#&gt; 3    19.58579 12.585786</span></a>
+<a class="sourceLine" id="cb372-28" data-line-number="28"><span class="co"># verificar existência de x e y</span></a>
+<a class="sourceLine" id="cb372-29" data-line-number="29"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb372-30" data-line-number="30"><span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;        &quot;fcubo&quot;       </span></a>
+<a class="sourceLine" id="cb372-31" data-line-number="31"><span class="co">#&gt;  [6] &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;        &quot;sentenca&quot;     &quot;tc&quot;          </span></a>
+<a class="sourceLine" id="cb372-32" data-line-number="32"><span class="co">#&gt; [11] &quot;texto&quot;        &quot;vetor_aq&quot;     &quot;x&quot;            &quot;x_dest_file&quot;  &quot;y&quot;</span></a>
+<a class="sourceLine" id="cb372-33" data-line-number="33"><span class="co"># listando variáveis que começam com x ou y</span></a>
+<a class="sourceLine" id="cb372-34" data-line-number="34"><span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</a>
+<a class="sourceLine" id="cb372-35" data-line-number="35"><span class="co">#&gt; [1] &quot;x&quot;           &quot;x_dest_file&quot; &quot;y&quot;</span></a>
+<a class="sourceLine" id="cb372-36" data-line-number="36"><span class="co"># salvando mais de um objeto em um arquivo</span></a>
+<a class="sourceLine" id="cb372-37" data-line-number="37">(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb372-38" data-line-number="38"><span class="co">#&gt; [1] &quot;/tmp/RtmpfJzOd8/file2f9d49c434a5&quot;</span></a>
+<a class="sourceLine" id="cb372-39" data-line-number="39"><span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)</a>
+<a class="sourceLine" id="cb372-40" data-line-number="40"><span class="co"># vamos apagar x e y do espaco de trabalho</span></a>
+<a class="sourceLine" id="cb372-41" data-line-number="41"><span class="kw">rm</span>(x, y)</a>
+<a class="sourceLine" id="cb372-42" data-line-number="42"><span class="co"># x e y não existem mais</span></a>
+<a class="sourceLine" id="cb372-43" data-line-number="43"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb372-44" data-line-number="44"><span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;        &quot;fcubo&quot;       </span></a>
+<a class="sourceLine" id="cb372-45" data-line-number="45"><span class="co">#&gt;  [6] &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;        &quot;sentenca&quot;     &quot;tc&quot;          </span></a>
+<a class="sourceLine" id="cb372-46" data-line-number="46"><span class="co">#&gt; [11] &quot;texto&quot;        &quot;vetor_aq&quot;     &quot;x_dest_file&quot;  &quot;xy_dest_file&quot;</span></a>
+<a class="sourceLine" id="cb372-47" data-line-number="47"><span class="co"># recuperando os objetos x e y salvos em xy.R</span></a>
+<a class="sourceLine" id="cb372-48" data-line-number="48"><span class="kw">source</span>(xy_dest_file)</a>
+<a class="sourceLine" id="cb372-49" data-line-number="49"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb372-50" data-line-number="50"><span class="co">#&gt;  [1] &quot;aq_dest_file&quot; &quot;aq_url&quot;       &quot;cubo&quot;         &quot;dados&quot;        &quot;fcubo&quot;       </span></a>
+<a class="sourceLine" id="cb372-51" data-line-number="51"><span class="co">#&gt;  [6] &quot;k&quot;            &quot;pcks&quot;         &quot;rblue&quot;        &quot;sentenca&quot;     &quot;tc&quot;          </span></a>
+<a class="sourceLine" id="cb372-52" data-line-number="52"><span class="co">#&gt; [11] &quot;texto&quot;        &quot;vetor_aq&quot;     &quot;x&quot;            &quot;x_dest_file&quot;  &quot;xy_dest_file&quot;</span></a>
+<a class="sourceLine" id="cb372-53" data-line-number="53"><span class="co">#&gt; [16] &quot;y&quot;</span></a>
+<a class="sourceLine" id="cb372-54" data-line-number="54">x</a>
+<a class="sourceLine" id="cb372-55" data-line-number="55"><span class="co">#&gt;        dates cidade temperatura chuva</span></a>
+<a class="sourceLine" id="cb372-56" data-line-number="56"><span class="co">#&gt; 1 2013-01-01     SM          31     3</span></a>
+<a class="sourceLine" id="cb372-57" data-line-number="57"><span class="co">#&gt; 2 2013-01-01     SS          35    10</span></a>
+<a class="sourceLine" id="cb372-58" data-line-number="58"><span class="co">#&gt; 3 2013-01-01     CV          21    14</span></a>
+<a class="sourceLine" id="cb372-59" data-line-number="59">y</a>
+<a class="sourceLine" id="cb372-60" data-line-number="60"><span class="co">#&gt;   temperatura     chuva</span></a>
+<a class="sourceLine" id="cb372-61" data-line-number="61"><span class="co">#&gt; 1    29.58579  1.585786</span></a>
+<a class="sourceLine" id="cb372-62" data-line-number="62"><span class="co">#&gt; 2    33.58579  8.585786</span></a>
+<a class="sourceLine" id="cb372-63" data-line-number="63"><span class="co">#&gt; 3    19.58579 12.585786</span></a></code></pre></div>
 <p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget(&quot;nomedoarquivo&quot;)</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual de um data.frame</span>
-dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(
-  <span class="kw">list</span>(
-    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),
-    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),
-    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),
-    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)
-  ),
-  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),
-  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,
-  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)
-)
-dados3est
-<span class="co">#&gt;        dates cidade temperatura chuva</span>
-<span class="co">#&gt; 1 2013-01-01     SM          31     3</span>
-<span class="co">#&gt; 2 2013-01-01     SS          35    10</span>
-<span class="co">#&gt; 3 2013-01-01     CV          21    14</span></code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="co"># representação textual de um data.frame</span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2">dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3">  <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb373-4" data-line-number="4">    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb373-5" data-line-number="5">    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),</a>
+<a class="sourceLine" id="cb373-6" data-line-number="6">    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),</a>
+<a class="sourceLine" id="cb373-7" data-line-number="7">    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)</a>
+<a class="sourceLine" id="cb373-8" data-line-number="8">  ),</a>
+<a class="sourceLine" id="cb373-9" data-line-number="9">  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),</a>
+<a class="sourceLine" id="cb373-10" data-line-number="10">  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,</a>
+<a class="sourceLine" id="cb373-11" data-line-number="11">  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)</a>
+<a class="sourceLine" id="cb373-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb373-13" data-line-number="13">dados3est</a>
+<a class="sourceLine" id="cb373-14" data-line-number="14"><span class="co">#&gt;        dates cidade temperatura chuva</span></a>
+<a class="sourceLine" id="cb373-15" data-line-number="15"><span class="co">#&gt; 1 2013-01-01     SM          31     3</span></a>
+<a class="sourceLine" id="cb373-16" data-line-number="16"><span class="co">#&gt; 2 2013-01-01     SS          35    10</span></a>
+<a class="sourceLine" id="cb373-17" data-line-number="17"><span class="co">#&gt; 3 2013-01-01     CV          21    14</span></a></code></pre></div>
 <p><strong>Vantagens:</strong></p>
 <ul>
 <li>armazena os <strong>dados e os metadados</strong></li>
@@ -452,11 +453,13 @@ dados3est
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -464,12 +467,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -480,7 +482,15 @@ gitbook.start({
 "link": "https://github.com/lhmet/adar-ebook/edit/master/AppendixB.Rmd",
 "text": "Edit"
 },
-"download": ["ADAR.pdf", "ADAR.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -494,9 +504,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -210,15 +210,12 @@ hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.
 # caminho de destino para o aquivo baixado
 # alterando a extensão de TXT para csv
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad"
 (hidroweb_dest_file <- paste0(arq_temp, ".csv"))
-#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad.csv"
 download.file(
   url = hidroweb_url_file, 
   destfile = hidroweb_dest_file
 )
 hidroweb_dest_file
-#> [1] "/tmp/Rtmp24rMVc/file3ec21b97adad.csv"
 ```
 
 Agora podemos importar os dados de precipitação baixados.
@@ -236,20 +233,6 @@ dprec <- import(hidroweb_dest_file,
                 na.strings = "") # rótulo para dados faltantes
 # primeiras 10 colunas e linhas dos dados
 head(dprec[, 1:10])
-#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
-#> 1          3054002                 1 01/01/1934                 1     NA
-#> 2          3054002                 1 01/02/1934                 1   66.3
-#> 3          3054002                 1 01/03/1934                 1   55.0
-#> 4          3054002                 1 01/04/1934                 1   54.5
-#> 5          3054002                 1 01/05/1934                 1   30.5
-#> 6          3054002                 1 01/06/1934                 1   42.5
-#>   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
-#> 1    NA        NA             NA            0           0
-#> 2 174.7         6             10            1           1
-#> 3 160.7         9             10            1           1
-#> 4  98.4         1              4            1           1
-#> 5 119.4        29              8            1           1
-#> 6 191.6        13             11            1           1
 ```
 
 Para saber quais argumentos devem ser especificados na função `import()` você precisar ler a documentação de ajuda da função (`?import`), principalmente a sessão *Details*. Os argumentos usados no exemplo acima, estão implícitos no argumento da função `import()` representado pela reticência (`...`). Conforme descrito na sessão *Details*, o parâmetro `fread = FALSE` implica no uso da função `read.table()` da base do R (descrita no Apêndice \@ref(readtable)) para importar o arquivo; então a descrição dos argumentos especificados encontra-se na ajuda da função `read.table()`, facilmente acessada pelo *link* na ajuda da função `import`.
@@ -263,9 +246,7 @@ Para exportar os dados importados anteriormente, vamos criar um nome para salvar
 ```r
 # exporta para arquivo texto separado por tab
 (arq_temp <- tempfile())
-#> [1] "/tmp/Rtmp24rMVc/file3ec222f4081"
 (dprec_file <- paste0(arq_temp, ".tsv"))
-#> [1] "/tmp/Rtmp24rMVc/file3ec222f4081.tsv"
 export(dprec, file = dprec_file, na = "-999")
 ```
 
@@ -312,8 +293,6 @@ nome_vars <- scan(
     nmax = 13 # num. max. de campos a serem lidos
 )
 nome_vars
-#>  [1] "YEAR" "JAN"  "FEB"  "MAR"  "APR"  "MAY"  "JUN"  "JUL"  "AUG"  "SEP" 
-#> [11] "OCT"  "NOV"  "DEC"
 ```
 
 A seguir, podemos usar o cabeçalho obtido acima, como argumento na `import()` através do argumento `col.names`. As informações da inspeção dos dados são utilizadas para definir os outros argumentos.
@@ -331,28 +310,7 @@ soi <- import(
   col.names = nome_vars
 )
 str(soi)
-#> 'data.frame':	70 obs. of  13 variables:
-#>  $ YEAR: int  1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 ...
-#>  $ JAN : num  2.5 -1.5 0.5 1.1 -0.9 2.2 1 -3.1 -1.5 0.2 ...
-#>  $ FEB : num  1.5 -1 -0.8 -0.5 3.1 2.7 -0.1 -0.8 -2.3 0.2 ...
-#>  $ MAR : num  -0.2 0.9 -0.3 0.4 1.1 2.2 0.3 0.4 2.1 1.7 ...
-#>  $ APR : num  -0.5 -0.4 0.3 1.1 -0.2 1.5 0.4 0.6 0.7 1.3 ...
-#>  $ MAY : num  -1.1 1.2 -2.8 0.8 1.7 2.3 -1.1 -0.8 0.8 0.9 ...
-#>  $ JUN : num  0.3 1.2 0.2 0.2 2.2 1.8 0.3 0.5 -0.2 0.2 ...
-#>  $ JUL : num  -1.7 0.8 0 0.7 2.6 1.8 0.4 0.7 -0.4 0.8 ...
-#>  $ AUG : num  -0.4 0.1 -2 1.8 2.4 2 -0.8 1.5 -0.2 1.3 ...
-#>  $ SEP : num  -1.8 -0.4 -2.1 0.3 2.2 0.1 -1.5 -0.5 0 1.1 ...
-#>  $ OCT : num  -1.6 0.6 0.1 0.4 2.5 2.9 0.1 0.1 0.8 0.2 ...
-#>  $ NOV : num  -1.3 0 -0.5 0.2 2 0.2 -1.6 -0.7 1.5 0.9 ...
-#>  $ DEC : num  -1.2 -2 -0.8 2.3 1.6 1.8 -0.5 -1 1.5 1.3 ...
 tail(soi)
-#>    YEAR  JAN  FEB  MAR  APR  MAY  JUN  JUL  AUG  SEP  OCT  NOV  DEC
-#> 65 2015 -1.4  0.4 -1.2 -0.1 -1.2 -0.9 -1.9 -2.4 -2.7 -2.8 -0.8 -0.9
-#> 66 2016 -3.6 -3.2 -0.1 -2.0  0.7  1.1  0.7  1.2  2.0 -0.4 -0.2  0.5
-#> 67 2017  0.3 -0.1  1.5 -0.3  0.4 -0.7  1.3  0.9  1.0  1.5  1.5 -0.2
-#> 68 2018  1.8 -0.8  2.4  0.8  0.6 -0.2  0.4 -0.5 -1.5  0.6 -0.1  1.7
-#> 69 2019 -0.1 -2.3 -0.5  0.2 -0.7 -0.7 -0.6 -0.2 -1.9   NA   NA   NA
-#> 70 2020   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA
 ```
 
 A documentação de ajuda da função `import()` do **rio** nos diz que no arquivo acima foi usada a função `read.fwf()` do <img src="images/logo_r.png" width="20"> para ler os dados. Os argumentos usados foram:
@@ -372,7 +330,6 @@ Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
 ```r
 # nome para o arquivo CSV
 (soi_file <- paste0(tempdir(), "SOI.csv"))
-#> [1] "/tmp/Rtmp24rMVcSOI.csv"
 # exportação com rio
 export(soi,
   file = soi_file,
@@ -380,7 +337,6 @@ export(soi,
 )
 # verificar se o arquivo foi gerado
 file.exists(soi_file)
-#> [1] TRUE
 ```
 
 
@@ -404,13 +360,6 @@ Navegue até o diretório do arquivo `SOI.csv` e clique duas vezes sobre o arqui
 
 ```r
 head(soi.df)
-#>   YEAR  JAN  FEB  MAR  APR  MAY JUN  JUL  AUG  SEP  OCT  NOV  DEC
-#> 1 1951  2.5  1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 -1.3 -1.2
-#> 2 1952 -1.5 -1.0  0.9 -0.4  1.2 1.2  0.8  0.1 -0.4  0.6  0.0 -2.0
-#> 3 1953  0.5 -0.8 -0.3  0.3 -2.8 0.2  0.0 -2.0 -2.1  0.1 -0.5 -0.8
-#> 4 1954  1.1 -0.5  0.4  1.1  0.8 0.2  0.7  1.8  0.3  0.4  0.2  2.3
-#> 5 1955 -0.9  3.1  1.1 -0.2  1.7 2.2  2.6  2.4  2.2  2.5  2.0  1.6
-#> 6 1956  2.2  2.7  2.2  1.5  2.3 1.8  1.8  2.0  0.1  2.9  0.2  1.8
 ```
 
 ### Arquivos texto não estruturados
@@ -429,36 +378,13 @@ bdmep_url_file <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data
 # leitura do cabecalho do arquivo de dados de uma estação do inmet
 cab <- readLines(bdmep_url_file)
 head(cab)
-#> [1] "--------------------"                                 
-#> [2] "BDMEP - INMET"                                        
-#> [3] "--------------------"                                 
-#> [4] "Estação           : SAO PAULO  IAG  - SP (OMM: 83004)"
-#> [5] "Latitude  (graus) : -23.65"                           
-#> [6] "Longitude (graus) : -46.61"
 # somente linhas com coordenadas da estação
 cab[5:7]
-#> [1] "Latitude  (graus) : -23.65" "Longitude (graus) : -46.61"
-#> [3] "Altitude  (metros): 800.00"
 is.vector(cab[5:7])
-#> [1] TRUE
 # arranjando em coluna
 cbind(cab[5:7])
-#>      [,1]                        
-#> [1,] "Latitude  (graus) : -23.65"
-#> [2,] "Longitude (graus) : -46.61"
-#> [3,] "Altitude  (metros): 800.00"
 # selecionando somente os dados e o nome das variáveis
 cab[-c(1:15)][1:10]
-#>  [1] "Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;"
-#>  [2] "83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;"                                                                                                                                                                                                                              
-#>  [3] "83004;01/01/1995;0000;;;;26.8;;;;;;;1.5;;1.6;22.04;86.75;2;"                                                                                                                                                                                                            
-#>  [4] "83004;01/01/1995;1200;21.2;22.5;20;;19.5;80;924.6;;32;4;;10;;;;;"                                                                                                                                                                                                       
-#>  [5] "83004;01/01/1995;1800;;25.2;21.5;;;73;922.9;;32;2;;10;;;;;"                                                                                                                                                                                                             
-#>  [6] "83004;02/01/1995;0000;;20.7;20.3;28.9;;97;924.2;;0;0;1.3;10;1.1;23.32;83;2.666667;"                                                                                                                                                                                     
-#>  [7] "83004;02/01/1995;1200;3.2;23.8;20.6;;19.9;76;924.7;;32;3;;10;;;;;"                                                                                                                                                                                                      
-#>  [8] "83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;"                                                                                                                                                                                                             
-#>  [9] "83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;"                                                                                                                                                                                            
-#> [10] "83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;"
 ```
 
 A função `writeLines()` escreve os elementos do vetor de caracteres em um arquivo texto. Essa é uma forma de escrever os dados mantendo a formatação original dos dados.
@@ -494,20 +420,6 @@ Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados 
 ```r
 # primeiras linhas
 head(dprec[, 1:10])
-#>   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
-#> 1          3054002                 1 01/01/1934                 1     NA
-#> 2          3054002                 1 01/02/1934                 1   66.3
-#> 3          3054002                 1 01/03/1934                 1   55.0
-#> 4          3054002                 1 01/04/1934                 1   54.5
-#> 5          3054002                 1 01/05/1934                 1   30.5
-#> 6          3054002                 1 01/06/1934                 1   42.5
-#>   Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus
-#> 1    NA        NA             NA            0           0
-#> 2 174.7         6             10            1           1
-#> 3 160.7         9             10            1           1
-#> 4  98.4         1              4            1           1
-#> 5 119.4        29              8            1           1
-#> 6 191.6        13             11            1           1
 # selecionando somente dados diarios do dia 1 a 31 de cada ano
 chuva_df <- dprec[, c(3, 14:44)]
 # arquivo binario do R
@@ -516,7 +428,6 @@ save(chuva_df, file = file_chuva_df)
 #save(chuva_df, file = "../output-adar/chuva_df.RData")
 # verificando se arquivo foi salvo no diretório
 file.exists(file_chuva_df)
-#> [1] TRUE
 ```
 
 Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo `chuva_df.RData`.
@@ -527,35 +438,12 @@ Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recu
 rm(chuva_df)
 # verifica existência de objeto
 exists(chuva_df)
-#> Error in exists(chuva_df): object 'chuva_df' not found
 # carregando chuva_df
 load(file = file_chuva_df)
 ls()
-#>  [1] "arq_temp"           "bdmep_url_file"     "cab"               
-#>  [4] "chuva_df"           "cols_exclud"        "dados_limpos"      
-#>  [7] "dprec"              "dprec_file"         "file_83004_limpo"  
-#> [10] "file_chuva_df"      "hidroweb_dest_file" "hidroweb_url_file" 
-#> [13] "link_soi"           "nome_vars"          "pacotes"           
-#> [16] "pcks"               "rblue"              "soi"               
-#> [19] "soi.df"             "soi_file"           "tab_rio"
 # para carregar os dados e saber o nome com que foram salvos
 print(load(file = file_chuva_df))
-#> [1] "chuva_df"
 head(chuva_df[, 1:10])
-#>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
-#> 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1
-#> 2 01/02/1934    15.5     3.5     0.0     0.0    11.9    66.3     1.0
-#> 3 01/03/1934     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-#> 4 01/04/1934    54.5     0.0     0.0     0.0     0.0    18.5     0.0
-#> 5 01/05/1934     0.0    19.0    26.7     0.0     3.2     4.2     0.0
-#> 6 01/06/1934     0.0     0.0    21.5    12.7     8.7     0.0     0.0
-#>   Chuva08 Chuva09
-#> 1     0.0       0
-#> 2    40.0       0
-#> 3     0.0      55
-#> 4    19.5       0
-#> 5     0.0       0
-#> 6     0.0       0
 ```
 
 Um **vantagem desse formato** é que os objetos criados podem ser lidos pelo R independente do sistema operacional e da arquitetura do computador, tornando muito prático o acesso aos dados. 
@@ -570,35 +458,11 @@ file_dados_prec <- paste0(tempfile(), ".Rdata")
 save(cab, chuva_df, file = file_dados_prec)
 #save(cab, chuva_df, file = "../output-adar/dados_prec.RData")
 ls()
-#>  [1] "arq_temp"           "bdmep_url_file"     "cab"               
-#>  [4] "chuva_df"           "cols_exclud"        "dados_limpos"      
-#>  [7] "dprec"              "dprec_file"         "file_83004_limpo"  
-#> [10] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
-#> [13] "hidroweb_url_file"  "link_soi"           "nome_vars"         
-#> [16] "pacotes"            "pcks"               "rblue"             
-#> [19] "soi"                "soi.df"             "soi_file"          
-#> [22] "tab_rio"
 rm(cab, chuva_df)
 ls()
-#>  [1] "arq_temp"           "bdmep_url_file"     "cols_exclud"       
-#>  [4] "dados_limpos"       "dprec"              "dprec_file"        
-#>  [7] "file_83004_limpo"   "file_chuva_df"      "file_dados_prec"   
-#> [10] "hidroweb_dest_file" "hidroweb_url_file"  "link_soi"          
-#> [13] "nome_vars"          "pacotes"            "pcks"              
-#> [16] "rblue"              "soi"                "soi.df"            
-#> [19] "soi_file"           "tab_rio"
 # carrega e imprime na tela nome dos dados carregados
 print(load(file_dados_prec))
-#> [1] "cab"      "chuva_df"
 ls()
-#>  [1] "arq_temp"           "bdmep_url_file"     "cab"               
-#>  [4] "chuva_df"           "cols_exclud"        "dados_limpos"      
-#>  [7] "dprec"              "dprec_file"         "file_83004_limpo"  
-#> [10] "file_chuva_df"      "file_dados_prec"    "hidroweb_dest_file"
-#> [13] "hidroweb_url_file"  "link_soi"           "nome_vars"         
-#> [16] "pacotes"            "pcks"               "rblue"             
-#> [19] "soi"                "soi.df"             "soi_file"          
-#> [22] "tab_rio"
 ```
 
 
@@ -611,26 +475,11 @@ Vamos alterar o formato da data do *dataframe* `chuva_df` e salvá-lo no arquivo
 ```r
 # salvar dados em um arquivo rds
 head(chuva_df[, 1:10])
-#>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
-#> 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1
-#> 2 01/02/1934    15.5     3.5     0.0     0.0    11.9    66.3     1.0
-#> 3 01/03/1934     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-#> 4 01/04/1934    54.5     0.0     0.0     0.0     0.0    18.5     0.0
-#> 5 01/05/1934     0.0    19.0    26.7     0.0     3.2     4.2     0.0
-#> 6 01/06/1934     0.0     0.0    21.5    12.7     8.7     0.0     0.0
-#>   Chuva08 Chuva09
-#> 1     0.0       0
-#> 2    40.0       0
-#> 3     0.0      55
-#> 4    19.5       0
-#> 5     0.0       0
-#> 6     0.0       0
 # alterando formato de datas da coluna Data
 chuva_df$Data <- as.Date(x = chuva_df$Data, format = "%d/%m/%Y")
 file_rds_chuva_df <- paste0(tempfile(), ".RDS")
 saveRDS(object = chuva_df, file = file_rds_chuva_df)
 file.exists(file_rds_chuva_df)
-#> [1] TRUE
 ```
 
 Após salvar o *dataframe* `chuva_df` vamos removê-lo do ambiente da sessão e recuperá-lo com a função `readRDS()`.
@@ -642,20 +491,6 @@ rm(chuva_df)
 # recuperando dados do arquivo em uma variável com nome diferente do original
 prec_ana <- readRDS(file_rds_chuva_df)
 head(prec_ana[, 1:10])
-#>         Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
-#> 1 1934-01-01      NA      NA      NA      NA    10.5     3.0    11.1
-#> 2 1934-02-01    15.5     3.5     0.0     0.0    11.9    66.3     1.0
-#> 3 1934-03-01     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-#> 4 1934-04-01    54.5     0.0     0.0     0.0     0.0    18.5     0.0
-#> 5 1934-05-01     0.0    19.0    26.7     0.0     3.2     4.2     0.0
-#> 6 1934-06-01     0.0     0.0    21.5    12.7     8.7     0.0     0.0
-#>   Chuva08 Chuva09
-#> 1     0.0       0
-#> 2    40.0       0
-#> 3     0.0      55
-#> 4    19.5       0
-#> 5     0.0       0
-#> 6     0.0       0
 ```
 
 
@@ -708,9 +543,7 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 ```r
 dest_file_nc
-#> [1] "/tmp/Rtmp24rMVc/cru10min30_tmp.nc"
 file.exists(dest_file_nc)
-#> [1] TRUE
 ```
 
 
@@ -720,52 +553,12 @@ dname <- "tmp"
 # abre o arquivo NetCDF
 ncin <- nc_open(dest_file_nc)
 print(ncin)
-#> File /tmp/Rtmp24rMVc/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
-#> 
-#>      2 variables (excluding dimension variables):
-#>         float climatology_bounds[nv,time]   
-#>         float tmp[lon,lat,time]   
-#>             long_name: air_temperature
-#>             units: degC
-#>             _FillValue: -99
-#>             source: E:\Projects\cru\data\cru_cl_2.0\nc_files\cru10min_tmp.nc
-#> 
-#>      4 dimensions:
-#>         lon  Size:720
-#>             standard_name: longitude
-#>             long_name: longitude
-#>             units: degrees_east
-#>             axis: X
-#>         lat  Size:360
-#>             standard_name: latitude
-#>             long_name: latitude
-#>             units: degrees_north
-#>             axis: Y
-#>         time  Size:12
-#>             standard_name: time
-#>             long_name: time
-#>             units: days since 1900-01-01 00:00:00.0 -0:00
-#>             axis: T
-#>             calendar: standard
-#>             climatology: climatology_bounds
-#>         nv  Size:2
-#> 
-#>     7 global attributes:
-#>         data: CRU CL 2.0 1961-1990 Monthly Averages
-#>         title: CRU CL 2.0 -- 10min grid sampled every 0.5 degree
-#>         institution: http://www.cru.uea.ac.uk/
-#>         source: http://www.cru.uea.ac.uk/~markn/cru05/cru05_intro.html
-#>         references: New et al. (2002) Climate Res 21:1-25
-#>         history: P.J. Bartlein, 19 Jun 2005
-#>         Conventions: CF-1.0
 # estrutura dos dados
 #str(ncin)
 # classe
 class(ncin)
-#> [1] "ncdf4"
 # modo
 mode(ncin)
-#> [1] "list"
 ```
 
 Agora, vamos ler as coordenadas de longitude e latitude. 
@@ -775,13 +568,10 @@ Agora, vamos ler as coordenadas de longitude e latitude.
 lon <- ncvar_get(ncin, "lon")
 nlon <- dim(lon)
 head(lon)
-#> [1] -179.75 -179.25 -178.75 -178.25 -177.75 -177.25
 lat <- ncvar_get(ncin, "lat", verbose = FALSE)
 nlat <- dim(lat)
 head(lat)
-#> [1] -89.75 -89.25 -88.75 -88.25 -87.75 -87.25
 c(nlon, nlat)
-#> [1] 720 360
 ```
 
 Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
@@ -790,38 +580,16 @@ Vamos obter a variável temporal e seus atributos usando as funções `ncvarget(
 ```r
 tempo <- ncvar_get(ncin, "time")
 (tunits <- ncatt_get(ncin, "time", "units"))
-#> $hasatt
-#> [1] TRUE
-#> 
-#> $value
-#> [1] "days since 1900-01-01 00:00:00.0 -0:00"
 (nt <- dim(tempo))
-#> [1] 12
 tmp.array <- ncvar_get(ncin, dname)
 # resumo da estrutura dos dados
 str(tmp.array)
-#>  num [1:720, 1:360, 1:12] NA NA NA NA NA NA NA NA NA NA ...
 # nome longo da variável
 (dlname <- ncatt_get(ncin, dname, "long_name"))
-#> $hasatt
-#> [1] TRUE
-#> 
-#> $value
-#> [1] "air_temperature"
 # unidades da variável
 (dunits <- ncatt_get(ncin, dname, "units"))
-#> $hasatt
-#> [1] TRUE
-#> 
-#> $value
-#> [1] "degC"
 # valor definido para valores faltantes
 (fillvalue <- ncatt_get(ncin, dname, "_FillValue"))
-#> $hasatt
-#> [1] TRUE
-#> 
-#> $value
-#> [1] -99
 # fechando arquivo
 nc_close(ncin)
 ```
@@ -836,12 +604,9 @@ m <- 1
 # campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
 str(tmp.slice)
-#>  num [1:720, 1:360] NA NA NA NA NA NA NA NA NA NA ...
 # outra função para visualizar dados com 3D
 image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
 ```
-
-<img src="images/unnamed-chunk-22-1.png" width="672" />
 
 ##### Forma fácil de importar NetCDF
 
@@ -855,15 +620,6 @@ Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a 
 ```r
 brick_tar_cru <- brick(dest_file_nc)
 brick_tar_cru
-#> class      : RasterBrick 
-#> dimensions : 360, 720, 259200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.5, 0.5  (x, y)
-#> extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> source     : /tmp/Rtmp24rMVc/cru10min30_tmp.nc 
-#> names      : X1976.01.16, X1976.02.15, X1976.03.16, X1976.04.16, X1976.05.16, X1976.06.16, X1976.07.16, X1976.08.16, X1976.09.16, X1976.10.16, X1976.11.16, X1976.12.16 
-#> Date       : 1976-01-16, 1976-02-15, 1976-03-16, 1976-04-16, 1976-05-16, 1976-06-16, 1976-07-16, 1976-08-16, 1976-09-16, 1976-10-16, 1976-11-16, 1976-12-16 
-#> varname    : tmp
 ```
 
 O resultado da importação de um `RasterBrick` mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF. 
@@ -877,9 +633,6 @@ Os nomes das camadas, são acessados e alterados com função `names()`, da mesm
 # substituindo a letra "X" dos nomes por "Mes_"
 names(brick_tar_cru) <- gsub("X", "Mes_", names(brick_tar_cru))
 names(brick_tar_cru)
-#>  [1] "Mes_1976.01.16" "Mes_1976.02.15" "Mes_1976.03.16" "Mes_1976.04.16"
-#>  [5] "Mes_1976.05.16" "Mes_1976.06.16" "Mes_1976.07.16" "Mes_1976.08.16"
-#>  [9] "Mes_1976.09.16" "Mes_1976.10.16" "Mes_1976.11.16" "Mes_1976.12.16"
 ```
 
 Um gráfico pode ser gerado através da funções `plot()`. Por default são mostrados no máximo 16 camadas de um `RasteBrick`.
@@ -888,8 +641,6 @@ Um gráfico pode ser gerado através da funções `plot()`. Por default são mos
 ```r
 plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
-
-<img src="images/unnamed-chunk-25-1.png" width="1056" />
 
 Os dados em formato `RasterBrick`, `RasterStack` ou `RasterLayer` podem ser convertidos para `data frame` por meio da função `raster::as.data.frame()`.
 
@@ -902,50 +653,7 @@ df_tar_cru <- as.data.frame(
   #long = TRUE
 )
 str(df_tar_cru)
-#> 'data.frame':	62961 obs. of  14 variables:
-#>  $ x             : num  -74.8 -74.2 -73.8 -73.2 -43.8 ...
-#>  $ y             : num  83.2 83.2 83.2 83.2 83.2 ...
-#>  $ Mes_1976.01.16: num  -35.8 -35.4 -35.1 -34.6 -31.8 ...
-#>  $ Mes_1976.02.15: num  -37.9 -37.5 -37.1 -36.6 -33.3 ...
-#>  $ Mes_1976.03.16: num  -36.7 -36.3 -35.9 -35.5 -33.6 ...
-#>  $ Mes_1976.04.16: num  -28.1 -27.7 -27.4 -27.1 -24.3 ...
-#>  $ Mes_1976.05.16: num  -12.8 -12.7 -12.5 -12.3 -11.3 ...
-#>  $ Mes_1976.06.16: num  -0.9 -0.9 -0.9 -0.9 -2.3 ...
-#>  $ Mes_1976.07.16: num  3.3 3.3 3.3 3.2 1.2 ...
-#>  $ Mes_1976.08.16: num  1.4 1.4 1.4 1.4 -1.1 ...
-#>  $ Mes_1976.09.16: num  -7.9 -7.8 -7.7 -7.6 -12.9 ...
-#>  $ Mes_1976.10.16: num  -20.2 -19.9 -19.7 -19.4 -23.7 ...
-#>  $ Mes_1976.11.16: num  -29.7 -29.3 -28.9 -28.5 -28.1 ...
-#>  $ Mes_1976.12.16: num  -33.6 -33.3 -32.9 -32.5 -31 ...
 head(df_tar_cru)
-#>           x     y Mes_1976.01.16 Mes_1976.02.15 Mes_1976.03.16
-#> 9571 -74.75 83.25          -35.8          -37.9          -36.7
-#> 9572 -74.25 83.25          -35.4          -37.5          -36.3
-#> 9573 -73.75 83.25          -35.1          -37.1          -35.9
-#> 9574 -73.25 83.25          -34.6          -36.6          -35.5
-#> 9633 -43.75 83.25          -31.8          -33.3          -33.6
-#> 9634 -43.25 83.25          -32.1          -33.6          -33.8
-#>      Mes_1976.04.16 Mes_1976.05.16 Mes_1976.06.16 Mes_1976.07.16
-#> 9571          -28.1          -12.8           -0.9            3.3
-#> 9572          -27.7          -12.7           -0.9            3.3
-#> 9573          -27.4          -12.5           -0.9            3.3
-#> 9574          -27.1          -12.3           -0.9            3.2
-#> 9633          -24.3          -11.3           -2.3            1.2
-#> 9634          -24.6          -11.5           -2.5            0.9
-#>      Mes_1976.08.16 Mes_1976.09.16 Mes_1976.10.16 Mes_1976.11.16
-#> 9571            1.4           -7.9          -20.2          -29.7
-#> 9572            1.4           -7.8          -19.9          -29.3
-#> 9573            1.4           -7.7          -19.7          -28.9
-#> 9574            1.4           -7.6          -19.4          -28.5
-#> 9633           -1.1          -12.9          -23.7          -28.1
-#> 9634           -1.3          -13.2          -24.2          -28.5
-#>      Mes_1976.12.16
-#> 9571          -33.6
-#> 9572          -33.3
-#> 9573          -32.9
-#> 9574          -32.5
-#> 9633          -31.0
-#> 9634          -31.4
 ```
 
 Os argumentos usados na função `as.dataframe()` correspondem a:
@@ -959,7 +667,6 @@ Os argumentos usados na função `as.dataframe()` correspondem a:
 
 ```r
 nrow(df_tar_cru) < ncell(brick_tar_cru)
-#> [1] TRUE
 ```
 
 - `long` é um argumento opcional lógico. Se for `TRUE` (verdadeiro) os valores são reestruturados de um formato amplo para um formato longo (veja a seção \@ref(formatos-dados) para definição de dados no formato longo e amplo).
@@ -1003,20 +710,6 @@ inmet_estacoes <- import(
   col_names = TRUE, 
   skip = 3)
 head(inmet_estacoes)
-#>   Nº Código Nome da Estação UF  Latitude Longitude Atitude Inicio Operação
-#> 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228
-#> 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594
-#> 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264
-#> 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353
-#> 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594
-#> 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289
-#>   Fim Operação   Situação
-#> 1   2016-02-01 Desativada
-#> 2         <NA>       <NA>
-#> 3         <NA>       <NA>
-#> 4         <NA>       <NA>
-#> 5         <NA>       <NA>
-#> 6         <NA>       <NA>
 ```
 
 ### Escrita de arquivos excel no formato `.xls` {#export-xls}
@@ -1027,20 +720,6 @@ Vamos alterar os nomes das variáveis para minúsculo e escrever o *data frame* 
 ```r
 names(inmet_estacoes) <- tolower(names(inmet_estacoes))
 head(inmet_estacoes)
-#>   nº código nome da estação uf  latitude longitude atitude inicio operação
-#> 1  1  82704 CRUZEIRO DO SUL AC -7.600000 -72.66667  170.00           10228
-#> 2  2  82915      RIO BRANCO AC -9.950000 -67.86667  160.00           10594
-#> 3  3  82807        TARAUACA AC -8.166667 -70.76667  190.00           24264
-#> 4  4  82989     AGUA BRANCA AL -9.283333 -37.90000  605.34           10353
-#> 5  5  82995       ARAPIRACA AL -9.733333 -36.76667  247.00           10594
-#> 6  6  82994          MACEIO AL -9.666667 -35.70000   64.50            3289
-#>   fim operação   situação
-#> 1   2016-02-01 Desativada
-#> 2         <NA>       <NA>
-#> 3         <NA>       <NA>
-#> 4         <NA>       <NA>
-#> 5         <NA>       <NA>
-#> 6         <NA>       <NA>
 ```
 
 
@@ -1077,20 +756,19 @@ tempos_escrita_xlsx <- microbenchmark(
   times = 5
 )
 tempos_escrita_xlsx
-#> Unit: milliseconds
-#>      expr       min        lq       mean    median        uq       max
-#>   writexl  6.577054  6.613369   7.518534  6.750687  6.782805  10.86876
-#>  openxlsx 32.463036 33.006864 102.749450 33.785229 71.057498 343.43462
-#>  neval cld
-#>      5   a
-#>      5   a
 ```
 
 A função `microbenckmar::microbenckmark` usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes. 
 
 
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 14 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+<!---
+# substituição para teste +rápido de construção do livro no travis
+O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+--->
+
+O resultado é que a `writexl::write_xlsx()` foi cerca de 5 vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+
 
 
 ### Estrutura de dados não tabulares
@@ -1110,7 +788,7 @@ Para uma descrição mais abrangente sobre importação e exportação de dados 
 
 
 
-    b. Defina o nome das variáveis como:  year,  month,  day,  RMM1,  RMM2,  phase,  amplitude, status. Tente obter os nomes das variáveis do próprio link para os dados (Releia a seção \@ref(arquivos-fwf) e a seção \@ref(scan) para detalhes). Mostre os 10 primeiros valores da variável `RMM1`.
+    b. Defina o nome das variáveis como: `year, month, day, RMM1, RMM2, phase, amplitude, status`. Tente obter os nomes das variáveis do próprio link para os dados (Releia a seção \@ref(arquivos-fwf) e a seção \@ref(scan) para detalhes). Mostre os 10 primeiros valores da variável `RMM1`.
 
 
 
