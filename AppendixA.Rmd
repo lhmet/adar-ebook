@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-} 
 
-```{r setup, include = FALSE}
+```{r setupA1, include = FALSE}
 rm(list = ls())
 pcks <- c("knitr", "pander") # , "htmlTable")
 #pcks <- c("knitr", "emo", "pander") # , "htmlTable")
@@ -11,7 +11,8 @@ opts_chunk$set(
   cache = FALSE,
   fig.path = "images/",
   comment = "#>",
-  collapse = TRUE
+  collapse = TRUE,
+  eval = FALSE
 )
 # rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
@@ -26,7 +27,7 @@ Há outras formas de se construir uma matriz além daquela usando a função `ma
 Podemos converter um vetor atômico em uma arranjo de `n` dimensões através do atributo da dimensão de um objeto. Este atributo pode ser alterado pela função `dim()`. Para fazer isso, definimos o atributo `dim` (de dimensão) com um vetor numérico com os tamanhos para cada dimensão. 
 O R reorganizará os elementos do vetor de acordo com as dimensões.
 
-```{r Chunk111}
+```{r dim-A1}
 v <- vetor <- 1:12
 length(v)
 attributes(v)
@@ -57,7 +58,7 @@ Para mais controle na forma como R reorganiza os dados em linhas e colunas, pode
 
 Uma matriz `mat` poderia ser criada especificando os valores de cada elemento :
 
-```{r Chunk1123}
+```{r mat-A1}
 # criando a matriz gerada com dim
 mat <- matrix(nrow = 3, ncol = 4)
 mat
@@ -78,7 +79,7 @@ mat
 
 No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento **`byrow = TRUE`** da função `matrix()`:
 
-```{r Chunk1124}
+```{r mat2-A1}
 vetor <- 1:12
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
 mat
@@ -94,7 +95,7 @@ Operações algébricas, incluindo a multiplicação `*`, atuam elemento a eleme
 knitr::include_graphics("images/multilicacaoMatricial.png")
 ```
 
-```{r Chunk1611, error = TRUE}
+```{r matmult-A1, error = TRUE}
 # multiplicação de duas matrizes
 A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
 A
@@ -111,14 +112,14 @@ m * 2
 
 ### Adição matricial
 
-```{r Chunk1621}
+```{r matsum-A1}
 m
 m + m
 ```
 
 ### Produto escalar
 
-```{r Chunk1631}
+```{r matproesc-A1}
 u <- 1:3
 v <- c(5, 12, 13)
 u * v
@@ -128,7 +129,7 @@ crossprod(u, v)
 
 ### Determinante
 
-```{r Chunk1641}
+```{r matdet-A1}
 # matriz exemplo
 mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
 det(mat_ex)
@@ -146,7 +147,7 @@ $$
 
 Qual os valores de $x_1$ e $x_2$?
 
-```{r Chunk1651}
+```{r matsistlin-A1}
 # matrizes do sistema linear
 coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
 y <- c(2, 4)
