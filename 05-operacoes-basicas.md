@@ -89,18 +89,16 @@ O <img src="images/logo_r.png" width="20"> também tem vetores de caracteres pr�
 
 ```r
 LETTERS
-#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
-#> [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+#> [20] "T" "U" "V" "W" "X" "Y" "Z"
 letters
-#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-#> [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+#> [20] "t" "u" "v" "w" "x" "y" "z"
 month.abb
-#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
-#> [12] "Dec"
+#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
 month.name
-#>  [1] "January"   "February"  "March"     "April"     "May"      
-#>  [6] "June"      "July"      "August"    "September" "October"  
-#> [11] "November"  "December"
+#>  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+#>  [7] "July"      "August"    "September" "October"   "November"  "December"
 ```
 
 Note que caracteres estão sempre entre aspas: `""`.
