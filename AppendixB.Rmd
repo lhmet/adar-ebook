@@ -11,7 +11,8 @@ opts_chunk$set(
   cache = FALSE,
   fig.path = "images/",
   comment = "#>",
-  collapse = TRUE
+  collapse = TRUE,
+  eval = FALSE
 )
 # rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
@@ -21,17 +22,9 @@ rblue <- '<img src="images/logo_r.png" width="20">'
 
 ### scan() {#scan}
 
-Nós podemos informar os números de um vetor a partir do teclado, um de cada vez usando e quando terminar teclar enter:
-
-```{r Chunk1110, eval=FALSE}
-# Exemplo: vetor
-v1 <- scan()
-# digite os números do v1, ao terminar, tecle enter
-```
-
 A função `scan()` também pode ler dados de arquivos, mas a sua saída é um vetor, ou seja ela não mantém a estrutura dos dados contidos no arquivo.
 
-Vamos baixar um arquivo de dados do site com os dados do livro para ilustrar o uso da `scan()`.
+Vamos baixar um arquivo de dados da internet para ilustrar o uso da `scan()`.
 
 ```{r}
 # download dados de exemplo
@@ -41,7 +34,7 @@ aq_url <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airqual
 download.file(aq_url, destfile = aq_dest_file)
 ```
 
-```{r Chunk1111}
+```{r scan-B}
 # Exemplo: vetor
 vetor_aq <- scan(aq_dest_file)
 # parte inicial dos dados
@@ -54,19 +47,6 @@ mode(vetor_aq)
 ```
 
 
-Vimos que `dataframes` são geralmente criados pela função `data.frame`, conforme o exemplo abaixo.
-
-```{r Chunk1112}
-# Exemplo: dataframe
-dados <- data.frame(
-  dates = c("2013-01-01", "2013-01-01", "2013-01-01"),
-  cidade = c("Santa Maria", "Sao Sepe", "Caçapava"),
-  temperatura = c(31, 35, 21),
-  chuva = c(3, 10, 14)
-)
-dados
-```
-
 ### readline()
 
 Para ler apenas uma linha de dados a partir do teclado como `character` usamos a função **`readline()`**:
@@ -78,7 +58,7 @@ sentenca
 
 Esta função pode ser utilizada como uma forma de controlar um *looping*. Esse exemplo ilustra o uso da função `lapply()` para execução de laços ou *loopings* ao longo de um vetor de índices. Essa função será vista futuramente no curso.
 
-```{r Chunk1121, eval=FALSE}
+```{r readline-B}
 # para reprodutibilidade
 set.seed(123)
 # looping ao longo da sequência de 1 a 5
@@ -102,17 +82,17 @@ l
 
 No modo interativo do R podemos imprimir os valores de um objeto na tela digitando o nome do objeto.
 
-```{r Chunk1130}
+```{r print-B}
 x <- 1:3
 y <- x ^ 2
 y
 # ou
-print(x ^ 2)
+print(y)
 ```
 
 Entretanto isso não é possível quando precisamos mostrar o valor de uma variável dentro do corpo de uma função ou dentro de um laço (*looping*). Nesse caso podemos usar a função `print()`:
 
-```{r Chunk1131}
+```{r printscope-B}
 # dentro de uma função
 # digitando o nome do objeto não imprimi na tela
 fcubo <- function(x) {
@@ -137,7 +117,7 @@ cubo(-3) # imprime classe do objeto de entrada
 
 É melhor usar a função `cat()` ao invés da função `print()`, já que a `print()` permite a impressão de apenas um único objeto enquanto a `cat()` não. Compare os resultados das duas funções:
 
-```{r Chunk1132}
+```{r catprint-B}
 print("abc")
 cat("abc\n") # \n indica quebra de linha
 x
@@ -159,7 +139,7 @@ Imagine que você tivesse recebido essa amostra de dados por e-mail:
 
 Para converter essa pequena amostra de dados em um *dataframe* nós podemos selecionar, copiar e colar o texto no primeiro argumento da função `textConnection`, e então usar a função `read.table`. 
 
-```{r Chunk120}
+```{r textCon-B}
 texto <- "       dates      cidade temperatura chuva
     2013-01-01 SM          31     3
     2013-01-01 SS          35    10
@@ -178,7 +158,7 @@ x
 
 Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função `dput()` (que pode ser traduzido como \"despejar\"). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função `dget()`.
 
-```{r Chunk210}
+```{r dput-B}
 x
 # representação textual do objeto x
 dput(x)
@@ -211,7 +191,7 @@ y
 
 Portanto diferente da escrita dos dados em si para um arquivo texto as funções `dump()` e `dput()` armazenam os **dados** e os **metadados**, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do `dput()` em um arquivo, pode recriar os dados pelo comando `dget("nomedoarquivo")`. 
 
-```{r Chunk211}
+```{r str-B}
 # representação textual de um data.frame
 dados3est <- structure(
   list(
@@ -243,7 +223,7 @@ Esse procedimento é geralmente recomendado para fornecer pequenas amostras de d
 
 O `R` possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do `help()` de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função `data()`.
 
-```{r Chunk300}
+```{r data-B}
 # lista de dados disponíveis
 data()
 # Annual Precipitation in US Cities, p/ mais informações "?precip"
@@ -294,7 +274,7 @@ Vamos ver alguns exemplos de leitura de dados hidrometeorológicos no formato te
 
 O sistema hidroweb é o maior base de dados hidrológicos brasileira. No trecho de código a seguir baixamos um arquivo de dados de precipitação obtidos no sistema hidroweb que foi salvo no site do livro.
 
-```{r}
+```{r hidroweb-B}
 # arquivo de exemplo disponível no GitHub
 hidroweb_url_file <- "https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT"
 #arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads/CHUVAS.TXT"
@@ -305,7 +285,7 @@ download.file(
 )
 ```
 
-Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto ou 
+Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto.
 
 ```{r Chunk410}
 # caracteres não devem tratados como fatores
@@ -344,7 +324,7 @@ O Banco de Dados Meteorológicos para Ensino e Pesquisa do INMET é uma das prin
 
 No trecho de código a seguir baixamos o arquivo de dados da estação 83004.
 
-```{r}
+```{r, bdmep-B}
 # arquivo de exemplo disponível no GitHub
 bdmep_url_file <- "https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt"
 #arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. "~/Downloads/CHUVAS.TXT"
@@ -355,7 +335,7 @@ download.file(
 )
 ```
 
-```{r Chunk411}
+```{r readbdmep-B}
 x <- read.csv2(file = bdmep_dest_file, 
                header = FALSE, 
                skip = 16,
@@ -372,7 +352,7 @@ Outro aspecto nos dados lidos é que aparecem vários `<NA>`, que é o símbolo 
 
 Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função `read.table(..., nrows = 5878)`, que ignoraria a última linha do arquivo e os dados seriam interpretados como `numeric`.
 
-```{r Chunk412}
+```{r readbdmep2-B}
 x1 <- read.csv2(file=bdmep_dest_file, 
                header = FALSE, 
                skip = 16,
@@ -387,7 +367,7 @@ str(x1)
 
 Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para `numeric` através da função `as.numeric()` usando a função `apply` ao longo das colunas:
 
-```{r Chunk413}
+```{r bdmep3-B}
 # corrigindo classe dos dados
 # convertendo de character para numeric
 x[, -c(1:3)] <- apply(x[,-c(1:3)], 2, as.numeric)
@@ -398,7 +378,7 @@ str(x)
 
 Mas e o nome das variáveis? Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada `VelocidadeVentoInsolacao`. Essa *string* deveria ser separada em duas. Vamos fazer essa adequação aos dados.
 
-```{r Chunk414}
+```{r bdmepclean-B}
 # lendo somente o nome das variaveis
 vnames <- read.csv2(file=bdmep_dest_file, 
                     header = FALSE, 
@@ -426,7 +406,7 @@ head(x)
 
 Finalmente vamos escrever os dados do INMET corretamente organizados.
 
-```{r Chunk415}
+```{r writebdmep-B}
 bdmep_dest_file_clean <- file.path(tempdir(), "83004_clean.txt")
 write.csv2(x,
            file = bdmep_dest_file_clean, 
@@ -441,20 +421,20 @@ Alguns arquivos texto com dados tabulares podem não conter separadores (para p.
 
 Nesses casos a função `read.fwf()` é conveniente. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do [National Weather Service - Climate Prediction Center (NWS-CPC)](http://www.cpc.ncep.noaa.gov).
 
-```{r Chunk440}
+```{r fwf-B}
 # link para os dados do SOI
 noaa_url_file <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
 ```
 
 Abrindo o link dos dados no navegador para visualização dos dados.
 
-```{r Chunk441, eval=FALSE}
+```{r opennoaa-B, eval=FALSE}
 browseURL(url = noaa_url_file)
 ```
 
 Leitura dos dados: 
 
-```{r Chunk442}
+```{r readfwf-B}
 #soi <- read.fwf(file = link,                           # nome do arquivo ou link
 soi <- read.fwf(file = noaa_url_file,                       # sem internet, usar esse arquivo
                 skip = 4,                               # pula 4 linhas
@@ -473,7 +453,7 @@ head(soi)
 
 Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
 
-```{r Chunk443}
+```{r readsoi-B}
 # converte a matriz de dados para um vetor (em sequencia cronológica)
 soi_v <- c(t(soi[, -1]))
 # criando um dataframe com valores de SOI, mes e ano
@@ -490,7 +470,7 @@ write.csv(x = soi_df,
 
 Vamos ler os dados reestruturados que foram salvos no formato [csv](http://en.wikipedia.org/wiki/Comma-separated_values) usando uma função que permite a escolha do arquivo de forma iterativa.
 
-```{r Chunk444, eval = FALSE}
+```{r filechoose-B, eval = FALSE}
 # leitura de dados com escolha interativa do arquivo
 soi.df <- read.csv(file = file.choose(),
                    # file.choose só é válido em sistema *unix
@@ -501,13 +481,13 @@ soi.df <- read.csv(file = file.choose(),
 
 Navegue até o diretório do arquivo `SOI.csv` e clique duas vezes sobre ele.
 
-```{r Chunk445}
+```{r soiread-B}
 soi.df <- read.csv(file = soi_csv_file,
                    header = TRUE,
                    na.strings = "-999.9")
 ```
 
-```{r chunk446}
+```{r soishow-B}
 head(soi.df)
 str(soi.df)
 ```
