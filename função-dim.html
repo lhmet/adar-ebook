@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -323,38 +324,21 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Podemos converter um vetor atômico em uma arranjo de <code>n</code> dimensões através do atributo da dimensão de um objeto. Este atributo pode ser alterado pela função <code>dim()</code>. Para fazer isso, definimos o atributo <code>dim</code> (de dimensão) com um vetor numérico com os tamanhos para cada dimensão. O R reorganizará os elementos do vetor de acordo com as dimensões.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
 <span class="kw">length</span>(v)
-<span class="co">#&gt; [1] 12</span>
 <span class="kw">attributes</span>(v)
-<span class="co">#&gt; NULL</span>
 <span class="kw">typeof</span>(v)
-<span class="co">#&gt; [1] &quot;integer&quot;</span>
 <span class="co"># conversão de vetor para matriz</span>
 <span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas</span>
 <span class="co"># v é vector?</span>
 <span class="kw">is.vector</span>(v)
-<span class="co">#&gt; [1] FALSE</span>
 <span class="co"># v é matrix?</span>
 <span class="kw">is.matrix</span>(v)
-<span class="co">#&gt; [1] TRUE</span>
 <span class="co"># classe de vetor</span>
 <span class="kw">class</span>(v)
-<span class="co">#&gt; [1] &quot;matrix&quot;</span>
 <span class="kw">attributes</span>(v)
-<span class="co">#&gt; $dim</span>
-<span class="co">#&gt; [1] 3 4</span>
 v
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]    1    4    7   10</span>
-<span class="co">#&gt; [2,]    2    5    8   11</span>
-<span class="co">#&gt; [3,]    3    6    9   12</span>
 <span class="co"># invertendo as dimensões</span>
 <span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)
-v
-<span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]    1    5    9</span>
-<span class="co">#&gt; [2,]    2    6   10</span>
-<span class="co">#&gt; [3,]    3    7   11</span>
-<span class="co">#&gt; [4,]    4    8   12</span></code></pre></div>
+v</code></pre></div>
 <p>O R usa o primeiro elemento de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.</p>
 <p>Note como os valores de <code>v</code> foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.</p>
 <p>Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para estruturar uma <code>matrix</code>.</p>

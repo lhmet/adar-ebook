@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -355,7 +356,7 @@ hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span
   <span class="dt">url =</span> hidroweb_url_file, 
   <span class="dt">destfile =</span> hidroweb_dest_file
 )</code></pre></div>
-<p>Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto ou</p>
+<p>Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># caracteres não devem tratados como fatores</span>
 <span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 <span class="co"># leitura de dados da ANA</span>
@@ -365,265 +366,14 @@ dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span clas
                    <span class="dt">fill =</span> <span class="ot">TRUE</span>)
 <span class="co"># primeiras linhas</span>
 <span class="kw">head</span>(dprec)
-<span class="co">#&gt;   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima Total</span>
-<span class="co">#&gt; 1          3054002                 1 01/01/1934                 1     NA    NA</span>
-<span class="co">#&gt; 2          3054002                 1 01/02/1934                 1   66.3 174.7</span>
-<span class="co">#&gt; 3          3054002                 1 01/03/1934                 1   55.0 160.7</span>
-<span class="co">#&gt; 4          3054002                 1 01/04/1934                 1   54.5  98.4</span>
-<span class="co">#&gt; 5          3054002                 1 01/05/1934                 1   30.5 119.4</span>
-<span class="co">#&gt; 6          3054002                 1 01/06/1934                 1   42.5 191.6</span>
-<span class="co">#&gt;   DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus NumDiasDeChuvaStatus</span>
-<span class="co">#&gt; 1        NA             NA            0           0                    0</span>
-<span class="co">#&gt; 2         6             10            1           1                    0</span>
-<span class="co">#&gt; 3         9             10            1           1                    0</span>
-<span class="co">#&gt; 4         1              4            1           1                    0</span>
-<span class="co">#&gt; 5        29              8            1           1                    1</span>
-<span class="co">#&gt; 6        13             11            1           1                    0</span>
-<span class="co">#&gt;   TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06</span>
-<span class="co">#&gt; 1         NA                0      NA      NA      NA      NA    10.5     3.0</span>
-<span class="co">#&gt; 2         NA                0    15.5     3.5     0.0     0.0    11.9    66.3</span>
-<span class="co">#&gt; 3         NA                0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 4         NA                0    54.5     0.0     0.0     0.0     0.0    18.5</span>
-<span class="co">#&gt; 5         NA                0     0.0    19.0    26.7     0.0     3.2     4.2</span>
-<span class="co">#&gt; 6         NA                0     0.0     0.0    21.5    12.7     8.7     0.0</span>
-<span class="co">#&gt;   Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12 Chuva13 Chuva14 Chuva15</span>
-<span class="co">#&gt; 1    11.1     0.0       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 2     1.0    40.0       0     0.0     0.0     1.1    24.7     0.0       0</span>
-<span class="co">#&gt; 3     0.0     0.0      55    11.7     5.0     0.0     7.5     9.5       0</span>
-<span class="co">#&gt; 4     0.0    19.5       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 5     0.0     0.0       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 6     0.0     0.0       0     0.0    27.3    37.5    42.5     0.0       0</span>
-<span class="co">#&gt;   Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21 Chuva22 Chuva23 Chuva24</span>
-<span class="co">#&gt; 1    37.6       0    18.4    12.5     0.0     0.0    67.5    12.3     0.0</span>
-<span class="co">#&gt; 2     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     8.2</span>
-<span class="co">#&gt; 3     3.0       1    23.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 4     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 5     0.0       0     0.0     0.0     0.0    20.5     0.0     0.0     0.0</span>
-<span class="co">#&gt; 6     0.0       0     0.0     0.0     0.7     3.2     3.0     0.0    33.5</span>
-<span class="co">#&gt;   Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30 Chuva31 Chuva01Status</span>
-<span class="co">#&gt; 1     0.0       0       0       0     0.0     0.0     0.0             0</span>
-<span class="co">#&gt; 2     2.5       0       0       0      NA      NA      NA             1</span>
-<span class="co">#&gt; 3     0.0       0       0       0     0.0    23.5    21.5             1</span>
-<span class="co">#&gt; 4     5.9       0       0       0     0.0     0.0      NA             1</span>
-<span class="co">#&gt; 5     1.3       0       0      14    30.5     0.0     0.0             1</span>
-<span class="co">#&gt; 6     0.0       0       0       1     0.0     0.0      NA             1</span>
-<span class="co">#&gt;   Chuva02Status Chuva03Status Chuva04Status Chuva05Status Chuva06Status</span>
-<span class="co">#&gt; 1             0             0             0             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva07Status Chuva08Status Chuva09Status Chuva10Status Chuva11Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva12Status Chuva13Status Chuva14Status Chuva15Status Chuva16Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva17Status Chuva18Status Chuva19Status Chuva20Status Chuva21Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva22Status Chuva23Status Chuva24Status Chuva25Status Chuva26Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva27Status Chuva28Status Chuva29Status Chuva30Status Chuva31Status  X</span>
-<span class="co">#&gt; 1             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 2             1             1             0             0             0 NA</span>
-<span class="co">#&gt; 3             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 4             1             1             1             1             0 NA</span>
-<span class="co">#&gt; 5             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 6             1             1             1             1             0 NA</span>
 <span class="co"># últimas linhas</span>
 <span class="kw">tail</span>(dprec)
-<span class="co">#&gt;      X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima</span>
-<span class="co">#&gt; 1279          3054002                 2 01/07/2005                 1   44.8</span>
-<span class="co">#&gt; 1280          3054002                 2 01/08/2005                 1   19.9</span>
-<span class="co">#&gt; 1281          3054002                 2 01/09/2005                 1   49.8</span>
-<span class="co">#&gt; 1282          3054002                 2 01/10/2005                 1   57.2</span>
-<span class="co">#&gt; 1283          3054002                 2 01/11/2005                 1   14.2</span>
-<span class="co">#&gt; 1284          3054002                 2 01/12/2005                 1   11.2</span>
-<span class="co">#&gt;      Total DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus</span>
-<span class="co">#&gt; 1279  69.5         4              4            1           1</span>
-<span class="co">#&gt; 1280  91.4        30              9            1           1</span>
-<span class="co">#&gt; 1281 149.2        24             12            1           1</span>
-<span class="co">#&gt; 1282 145.3         4              6            1           1</span>
-<span class="co">#&gt; 1283  36.0        24              5            1           1</span>
-<span class="co">#&gt; 1284  22.0        31              6            1           1</span>
-<span class="co">#&gt;      NumDiasDeChuvaStatus TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03</span>
-<span class="co">#&gt; 1279                    1     1123.4                1     0.0     0.0       0</span>
-<span class="co">#&gt; 1280                    1     1123.4                1     0.0     0.0       0</span>
-<span class="co">#&gt; 1281                    1     1123.4                1     3.8    11.3       0</span>
-<span class="co">#&gt; 1282                    1     1123.4                1     0.0     0.0       0</span>
-<span class="co">#&gt; 1283                    1     1123.4                1     0.0     0.0       0</span>
-<span class="co">#&gt; 1284                    1     1123.4                1     0.0     0.0       0</span>
-<span class="co">#&gt;      Chuva04 Chuva05 Chuva06 Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12</span>
-<span class="co">#&gt; 1279    44.8     0.0     0.0     0.0       0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 1280     0.0     0.0     0.0     0.5       0     0.1     0.0     0.0       0</span>
-<span class="co">#&gt; 1281     0.0     0.0     0.0     0.0       0     8.9    24.7     9.7       0</span>
-<span class="co">#&gt; 1282    57.2    19.6     0.0     0.0       0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 1283     0.0    13.2     6.3     0.0       0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 1284     2.1     1.9     0.0     0.0       0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt;      Chuva13 Chuva14 Chuva15 Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21</span>
-<span class="co">#&gt; 1279       0     0.0     0.0    12.9     9.7     0.0     0.0       0     0.0</span>
-<span class="co">#&gt; 1280       0     0.0     0.0     0.0     0.0    14.1     0.0       0     6.3</span>
-<span class="co">#&gt; 1281       0     0.2    15.6     0.1     0.0     3.2     4.5       0     0.0</span>
-<span class="co">#&gt; 1282       0    46.3     0.0     3.9     0.2     0.0     0.0       0     0.0</span>
-<span class="co">#&gt; 1283       0     0.0     1.4     0.0     0.9     0.0     0.0       0     0.0</span>
-<span class="co">#&gt; 1284       0     0.0     0.0     0.0     2.2     0.0     0.7       0     0.0</span>
-<span class="co">#&gt;      Chuva22 Chuva23 Chuva24 Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30</span>
-<span class="co">#&gt; 1279     2.1     0.0     0.0     0.0       0       0       0     0.0     0.0</span>
-<span class="co">#&gt; 1280    19.7     6.4    17.1     0.0       0       0       0     7.3    19.9</span>
-<span class="co">#&gt; 1281     0.0     0.0    49.8     0.0       0       0       0     0.0    17.4</span>
-<span class="co">#&gt; 1282     0.0     0.0     0.0    18.1       0       0       0     0.0     0.0</span>
-<span class="co">#&gt; 1283     0.0     0.0    14.2     0.0       0       0       0     0.0     0.0</span>
-<span class="co">#&gt; 1284     0.0     0.0     0.0     0.0       0       0       0     0.0     3.9</span>
-<span class="co">#&gt;      Chuva31 Chuva01Status Chuva02Status Chuva03Status Chuva04Status</span>
-<span class="co">#&gt; 1279     0.0             1             1             1             1</span>
-<span class="co">#&gt; 1280     0.0             1             1             1             1</span>
-<span class="co">#&gt; 1281      NA             1             1             1             1</span>
-<span class="co">#&gt; 1282     0.0             1             1             1             1</span>
-<span class="co">#&gt; 1283      NA             1             1             1             1</span>
-<span class="co">#&gt; 1284    11.2             1             1             1             1</span>
-<span class="co">#&gt;      Chuva05Status Chuva06Status Chuva07Status Chuva08Status Chuva09Status</span>
-<span class="co">#&gt; 1279             1             1             1             1             1</span>
-<span class="co">#&gt; 1280             1             1             1             1             1</span>
-<span class="co">#&gt; 1281             1             1             1             1             1</span>
-<span class="co">#&gt; 1282             1             1             1             1             1</span>
-<span class="co">#&gt; 1283             1             1             1             1             1</span>
-<span class="co">#&gt; 1284             1             1             1             1             1</span>
-<span class="co">#&gt;      Chuva10Status Chuva11Status Chuva12Status Chuva13Status Chuva14Status</span>
-<span class="co">#&gt; 1279             1             1             1             1             1</span>
-<span class="co">#&gt; 1280             1             1             1             1             1</span>
-<span class="co">#&gt; 1281             1             1             1             1             1</span>
-<span class="co">#&gt; 1282             1             1             1             1             1</span>
-<span class="co">#&gt; 1283             1             1             1             1             1</span>
-<span class="co">#&gt; 1284             1             1             1             1             1</span>
-<span class="co">#&gt;      Chuva15Status Chuva16Status Chuva17Status Chuva18Status Chuva19Status</span>
-<span class="co">#&gt; 1279             1             1             1             1             1</span>
-<span class="co">#&gt; 1280             1             1             1             1             1</span>
-<span class="co">#&gt; 1281             1             1             1             1             1</span>
-<span class="co">#&gt; 1282             1             1             1             1             1</span>
-<span class="co">#&gt; 1283             1             1             1             1             1</span>
-<span class="co">#&gt; 1284             1             1             1             1             1</span>
-<span class="co">#&gt;      Chuva20Status Chuva21Status Chuva22Status Chuva23Status Chuva24Status</span>
-<span class="co">#&gt; 1279             1             1             1             1             1</span>
-<span class="co">#&gt; 1280             1             1             1             1             1</span>
-<span class="co">#&gt; 1281             1             1             1             1             1</span>
-<span class="co">#&gt; 1282             1             1             1             1             1</span>
-<span class="co">#&gt; 1283             1             1             1             1             1</span>
-<span class="co">#&gt; 1284             1             1             1             1             1</span>
-<span class="co">#&gt;      Chuva25Status Chuva26Status Chuva27Status Chuva28Status Chuva29Status</span>
-<span class="co">#&gt; 1279             1             1             1             1             1</span>
-<span class="co">#&gt; 1280             1             1             1             1             1</span>
-<span class="co">#&gt; 1281             1             1             1             1             1</span>
-<span class="co">#&gt; 1282             1             1             1             1             1</span>
-<span class="co">#&gt; 1283             1             1             1             1             1</span>
-<span class="co">#&gt; 1284             1             1             1             1             1</span>
-<span class="co">#&gt;      Chuva30Status Chuva31Status  X</span>
-<span class="co">#&gt; 1279             1             1 NA</span>
-<span class="co">#&gt; 1280             1             1 NA</span>
-<span class="co">#&gt; 1281             1             0 NA</span>
-<span class="co">#&gt; 1282             1             1 NA</span>
-<span class="co">#&gt; 1283             1             0 NA</span>
-<span class="co">#&gt; 1284             1             1 NA</span>
  <span class="co"># corrigindo nome da primeira coluna</span>
  <span class="kw">names</span>(dprec)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;EstacaoCodigo&quot;</span>
  <span class="co"># removendo última coluna que só tem NAs</span>
  dprec &lt;-<span class="st"> </span>dprec[ , <span class="op">-</span><span class="kw">ncol</span>(dprec)]
   <span class="co"># estrutura dos dados</span>
   <span class="kw">str</span>(dprec)
-<span class="co">#&gt; &#39;data.frame&#39;:    1284 obs. of  75 variables:</span>
-<span class="co">#&gt;  $ EstacaoCodigo       : int  3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 ...</span>
-<span class="co">#&gt;  $ NivelConsistencia   : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Data                : chr  &quot;01/01/1934&quot; &quot;01/02/1934&quot; &quot;01/03/1934&quot; &quot;01/04/1934&quot; ...</span>
-<span class="co">#&gt;  $ TipoMedicaoChuvas   : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Maxima              : num  NA 66.3 55 54.5 30.5 42.5 10.5 30.3 36.8 69.2 ...</span>
-<span class="co">#&gt;  $ Total               : num  NA 174.7 160.7 98.4 119.4 ...</span>
-<span class="co">#&gt;  $ DiaMaxima           : int  NA 6 9 1 29 13 6 30 19 5 ...</span>
-<span class="co">#&gt;  $ NumDiasDeChuva      : int  NA 10 10 4 8 11 7 8 4 7 ...</span>
-<span class="co">#&gt;  $ MaximaStatus        : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ TotalStatus         : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ NumDiasDeChuvaStatus: int  0 0 0 0 1 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ TotalAnual          : num  NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="co">#&gt;  $ TotalAnualStatus    : int  0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva01             : num  NA 15.5 0 54.5 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva02             : num  NA 3.5 0 0 19 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva03             : num  NA 0 0 0 26.7 21.5 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva04             : num  NA 0 0 0 0 12.7 0 0 0 20.8 ...</span>
-<span class="co">#&gt;  $ Chuva05             : num  10.5 11.9 0 0 3.2 8.7 0 27.5 0 69.2 ...</span>
-<span class="co">#&gt;  $ Chuva06             : num  3 66.3 0 18.5 4.2 0 10.5 0 5 6.1 ...</span>
-<span class="co">#&gt;  $ Chuva07             : num  11.1 1 0 0 0 0 4 2.9 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva08             : num  0 40 0 19.5 0 0 0 5.4 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva09             : num  0 0 55 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva10             : num  0 0 11.7 0 0 0 0 13.6 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva11             : num  0 0 5 0 0 27.3 0 0 34.5 0 ...</span>
-<span class="co">#&gt;  $ Chuva12             : num  0 1.1 0 0 0 37.5 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva13             : num  0 24.7 7.5 0 0 42.5 1.2 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva14             : num  0 0 9.5 0 0 0 0.7 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva15             : num  0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva16             : num  37.6 0 3 0 0 0 0 1.8 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva17             : num  0 0 1 0 0 0 0 17 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva18             : num  18.4 0 23 0 0 0 7.2 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva19             : num  12.5 0 0 0 0 0 0 0 36.8 0 ...</span>
-<span class="co">#&gt;  $ Chuva20             : num  0 0 0 0 0 0.7 0 0 17.7 0 ...</span>
-<span class="co">#&gt;  $ Chuva21             : num  0 0 0 0 20.5 3.2 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva22             : num  67.5 0 0 0 0 3 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva23             : num  12.3 0 0 0 0 0 0 0 0 14 ...</span>
-<span class="co">#&gt;  $ Chuva24             : num  0 8.2 0 0 0 33.5 0 0 0 40 ...</span>
-<span class="co">#&gt;  $ Chuva25             : num  0 2.5 0 5.9 1.3 0 0 0 0 1 ...</span>
-<span class="co">#&gt;  $ Chuva26             : num  0 0 0 0 0 0 1.1 0 0 5.4 ...</span>
-<span class="co">#&gt;  $ Chuva27             : num  0 0 0 0 0 0 5.9 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva28             : num  0 0 0 0 14 1 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva29             : num  0 NA 0 0 30.5 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva30             : num  0 NA 23.5 0 0 0 0 30.3 0 0 ...</span>
-<span class="co">#&gt;  $ Chuva31             : num  0 NA 21.5 NA 0 NA 0 1.8 NA 0 ...</span>
-<span class="co">#&gt;  $ Chuva01Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva02Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva03Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva04Status       : int  0 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva05Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva06Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva07Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva08Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva09Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva10Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva11Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva12Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva13Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva14Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva15Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva16Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva17Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva18Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva19Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva20Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva21Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva22Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva23Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva24Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva25Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva26Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva27Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva28Status       : int  1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva29Status       : int  1 0 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva30Status       : int  1 0 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Chuva31Status       : int  1 0 1 0 1 0 1 1 0 1 ...</span>
 <span class="co"># Fazendo a mesma leitura com read.table</span>
 dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> hidroweb_url_file, 
                    <span class="dt">skip =</span> <span class="dv">15</span>, 
@@ -632,91 +382,7 @@ dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span cl
                    <span class="dt">fill =</span> T,
                    <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,
                    <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)
-<span class="kw">head</span>(dprec2)
-<span class="co">#&gt;   X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima Total</span>
-<span class="co">#&gt; 1          3054002                 1 01/01/1934                 1     NA    NA</span>
-<span class="co">#&gt; 2          3054002                 1 01/02/1934                 1   66.3 174.7</span>
-<span class="co">#&gt; 3          3054002                 1 01/03/1934                 1   55.0 160.7</span>
-<span class="co">#&gt; 4          3054002                 1 01/04/1934                 1   54.5  98.4</span>
-<span class="co">#&gt; 5          3054002                 1 01/05/1934                 1   30.5 119.4</span>
-<span class="co">#&gt; 6          3054002                 1 01/06/1934                 1   42.5 191.6</span>
-<span class="co">#&gt;   DiaMaxima NumDiasDeChuva MaximaStatus TotalStatus NumDiasDeChuvaStatus</span>
-<span class="co">#&gt; 1        NA             NA            0           0                    0</span>
-<span class="co">#&gt; 2         6             10            1           1                    0</span>
-<span class="co">#&gt; 3         9             10            1           1                    0</span>
-<span class="co">#&gt; 4         1              4            1           1                    0</span>
-<span class="co">#&gt; 5        29              8            1           1                    1</span>
-<span class="co">#&gt; 6        13             11            1           1                    0</span>
-<span class="co">#&gt;   TotalAnual TotalAnualStatus Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06</span>
-<span class="co">#&gt; 1         NA                0      NA      NA      NA      NA    10.5     3.0</span>
-<span class="co">#&gt; 2         NA                0    15.5     3.5     0.0     0.0    11.9    66.3</span>
-<span class="co">#&gt; 3         NA                0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 4         NA                0    54.5     0.0     0.0     0.0     0.0    18.5</span>
-<span class="co">#&gt; 5         NA                0     0.0    19.0    26.7     0.0     3.2     4.2</span>
-<span class="co">#&gt; 6         NA                0     0.0     0.0    21.5    12.7     8.7     0.0</span>
-<span class="co">#&gt;   Chuva07 Chuva08 Chuva09 Chuva10 Chuva11 Chuva12 Chuva13 Chuva14 Chuva15</span>
-<span class="co">#&gt; 1    11.1     0.0       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 2     1.0    40.0       0     0.0     0.0     1.1    24.7     0.0       0</span>
-<span class="co">#&gt; 3     0.0     0.0      55    11.7     5.0     0.0     7.5     9.5       0</span>
-<span class="co">#&gt; 4     0.0    19.5       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 5     0.0     0.0       0     0.0     0.0     0.0     0.0     0.0       0</span>
-<span class="co">#&gt; 6     0.0     0.0       0     0.0    27.3    37.5    42.5     0.0       0</span>
-<span class="co">#&gt;   Chuva16 Chuva17 Chuva18 Chuva19 Chuva20 Chuva21 Chuva22 Chuva23 Chuva24</span>
-<span class="co">#&gt; 1    37.6       0    18.4    12.5     0.0     0.0    67.5    12.3     0.0</span>
-<span class="co">#&gt; 2     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     8.2</span>
-<span class="co">#&gt; 3     3.0       1    23.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 4     0.0       0     0.0     0.0     0.0     0.0     0.0     0.0     0.0</span>
-<span class="co">#&gt; 5     0.0       0     0.0     0.0     0.0    20.5     0.0     0.0     0.0</span>
-<span class="co">#&gt; 6     0.0       0     0.0     0.0     0.7     3.2     3.0     0.0    33.5</span>
-<span class="co">#&gt;   Chuva25 Chuva26 Chuva27 Chuva28 Chuva29 Chuva30 Chuva31 Chuva01Status</span>
-<span class="co">#&gt; 1     0.0       0       0       0     0.0     0.0     0.0             0</span>
-<span class="co">#&gt; 2     2.5       0       0       0      NA      NA      NA             1</span>
-<span class="co">#&gt; 3     0.0       0       0       0     0.0    23.5    21.5             1</span>
-<span class="co">#&gt; 4     5.9       0       0       0     0.0     0.0      NA             1</span>
-<span class="co">#&gt; 5     1.3       0       0      14    30.5     0.0     0.0             1</span>
-<span class="co">#&gt; 6     0.0       0       0       1     0.0     0.0      NA             1</span>
-<span class="co">#&gt;   Chuva02Status Chuva03Status Chuva04Status Chuva05Status Chuva06Status</span>
-<span class="co">#&gt; 1             0             0             0             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva07Status Chuva08Status Chuva09Status Chuva10Status Chuva11Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva12Status Chuva13Status Chuva14Status Chuva15Status Chuva16Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva17Status Chuva18Status Chuva19Status Chuva20Status Chuva21Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva22Status Chuva23Status Chuva24Status Chuva25Status Chuva26Status</span>
-<span class="co">#&gt; 1             1             1             1             1             1</span>
-<span class="co">#&gt; 2             1             1             1             1             1</span>
-<span class="co">#&gt; 3             1             1             1             1             1</span>
-<span class="co">#&gt; 4             1             1             1             1             1</span>
-<span class="co">#&gt; 5             1             1             1             1             1</span>
-<span class="co">#&gt; 6             1             1             1             1             1</span>
-<span class="co">#&gt;   Chuva27Status Chuva28Status Chuva29Status Chuva30Status Chuva31Status  X</span>
-<span class="co">#&gt; 1             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 2             1             1             0             0             0 NA</span>
-<span class="co">#&gt; 3             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 4             1             1             1             1             0 NA</span>
-<span class="co">#&gt; 5             1             1             1             1             1 NA</span>
-<span class="co">#&gt; 6             1             1             1             1             0 NA</span></code></pre></div>
+<span class="kw">head</span>(dprec2)</code></pre></div>
 </div>
 <div id="bdmep-inmet" class="section level4">
 <h4><span class="header-section-number">B.4.1.2</span> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></h4>
@@ -737,42 +403,7 @@ bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
                <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>
                )
 <span class="kw">head</span>(x)
-<span class="co">#&gt;      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10  V11 V12  V13  V14</span>
-<span class="co">#&gt; 1 83004 02/08/1993    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; NA  &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt;</span>
-<span class="co">#&gt; 2 83004 01/01/1995    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; 26.8 &lt;NA&gt; NA  &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt;  1.5</span>
-<span class="co">#&gt; 3 83004 01/01/1995 1200 21.2 22.5   20 &lt;NA&gt; 19.5 80 924.6 &lt;NA&gt;  32    4 &lt;NA&gt;</span>
-<span class="co">#&gt; 4 83004 01/01/1995 1800 &lt;NA&gt; 25.2 21.5 &lt;NA&gt; &lt;NA&gt; 73 922.9 &lt;NA&gt;  32    2 &lt;NA&gt;</span>
-<span class="co">#&gt; 5 83004 02/01/1995    0 &lt;NA&gt; 20.7 20.3 28.9 &lt;NA&gt; 97 924.2 &lt;NA&gt;   0    0  1.3</span>
-<span class="co">#&gt; 6 83004 02/01/1995 1200  3.2 23.8 20.6 &lt;NA&gt; 19.9 76 924.7 &lt;NA&gt;  32    3 &lt;NA&gt;</span>
-<span class="co">#&gt;    V15  V16   V17   V18      V19 V20</span>
-<span class="co">#&gt; 1 &lt;NA&gt;  1.4  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  NA</span>
-<span class="co">#&gt; 2 &lt;NA&gt;  1.6 22.04 86.75        2  NA</span>
-<span class="co">#&gt; 3   10 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  NA</span>
-<span class="co">#&gt; 4   10 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  NA</span>
-<span class="co">#&gt; 5   10  1.1 23.32    83 2.666667  NA</span>
-<span class="co">#&gt; 6   10 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  NA</span>
-<span class="kw">str</span>(x)
-<span class="co">#&gt; &#39;data.frame&#39;:    5863 obs. of  20 variables:</span>
-<span class="co">#&gt;  $ V1 : chr  &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; ...</span>
-<span class="co">#&gt;  $ V2 : chr  &quot;02/08/1993&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; ...</span>
-<span class="co">#&gt;  $ V3 : int  0 0 1200 1800 0 1200 1800 0 1200 1800 ...</span>
-<span class="co">#&gt;  $ V4 : chr  NA NA &quot;21.2&quot; NA ...</span>
-<span class="co">#&gt;  $ V5 : chr  NA NA &quot;22.5&quot; &quot;25.2&quot; ...</span>
-<span class="co">#&gt;  $ V6 : chr  NA NA &quot;20&quot; &quot;21.5&quot; ...</span>
-<span class="co">#&gt;  $ V7 : chr  NA &quot;26.8&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V8 : chr  NA NA &quot;19.5&quot; NA ...</span>
-<span class="co">#&gt;  $ V9 : int  NA NA 80 73 97 76 66 95 86 94 ...</span>
-<span class="co">#&gt;  $ V10: chr  NA NA &quot;924.6&quot; &quot;922.9&quot; ...</span>
-<span class="co">#&gt;  $ V11: chr  NA NA NA NA ...</span>
-<span class="co">#&gt;  $ V12: int  NA NA 32 32 0 32 32 0 0 5 ...</span>
-<span class="co">#&gt;  $ V13: chr  NA NA &quot;4&quot; &quot;2&quot; ...</span>
-<span class="co">#&gt;  $ V14: chr  NA &quot;1.5&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V15: chr  NA NA &quot;10&quot; &quot;10&quot; ...</span>
-<span class="co">#&gt;  $ V16: chr  &quot;1.4&quot; &quot;1.6&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V17: chr  NA &quot;22.04&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V18: chr  NA &quot;86.75&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V19: chr  NA &quot;2&quot; NA NA ...</span>
-<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre></div>
+<span class="kw">str</span>(x)</code></pre></div>
 <p>Os dados lidos não incluíram a linha de cabeçalho com os nomes das variáveis. Nós pulamos essa linha porque o nome das variáveis está de acordo como número de colunas do arquivo. Então se tentarmos ler um arquivo de dados que contém linhas com número de registros diferentes ocorrerá um erro pois os dados não são tabulares.</p>
 <p>Outro aspecto nos dados lidos é que aparecem vários <code>&lt;NA&gt;</code>, que é o símbolo para dados do tipo <code>character</code> faltantes. A razão dos terem sido interpretados dessa forma deve-se a um caractere (<code>&lt;/pre&gt;</code>) encontrado na última linha do arquivo.</p>
 <p>Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função <code>read.table(..., nrows = 5878)</code>, que ignoraria a última linha do arquivo e os dados seriam interpretados como <code>numeric</code>.</p>
@@ -785,68 +416,12 @@ bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
                <span class="dt">nrows =</span> <span class="dv">5878</span> 
 )
 <span class="kw">head</span>(x1)
-<span class="co">#&gt;      V1         V2   V3   V4   V5   V6   V7   V8 V9   V10 V11 V12 V13 V14 V15</span>
-<span class="co">#&gt; 1 83004 02/08/1993    0   NA   NA   NA   NA   NA NA    NA  NA  NA  NA  NA  NA</span>
-<span class="co">#&gt; 2 83004 01/01/1995    0   NA   NA   NA 26.8   NA NA    NA  NA  NA  NA 1.5  NA</span>
-<span class="co">#&gt; 3 83004 01/01/1995 1200 21.2 22.5 20.0   NA 19.5 80 924.6  NA  32   4  NA  10</span>
-<span class="co">#&gt; 4 83004 01/01/1995 1800   NA 25.2 21.5   NA   NA 73 922.9  NA  32   2  NA  10</span>
-<span class="co">#&gt; 5 83004 02/01/1995    0   NA 20.7 20.3 28.9   NA 97 924.2  NA   0   0 1.3  10</span>
-<span class="co">#&gt; 6 83004 02/01/1995 1200  3.2 23.8 20.6   NA 19.9 76 924.7  NA  32   3  NA  10</span>
-<span class="co">#&gt;   V16   V17   V18      V19 V20</span>
-<span class="co">#&gt; 1 1.4    NA    NA       NA  NA</span>
-<span class="co">#&gt; 2 1.6 22.04 86.75 2.000000  NA</span>
-<span class="co">#&gt; 3  NA    NA    NA       NA  NA</span>
-<span class="co">#&gt; 4  NA    NA    NA       NA  NA</span>
-<span class="co">#&gt; 5 1.1 23.32 83.00 2.666667  NA</span>
-<span class="co">#&gt; 6  NA    NA    NA       NA  NA</span>
-<span class="kw">str</span>(x1)
-<span class="co">#&gt; &#39;data.frame&#39;:    5863 obs. of  20 variables:</span>
-<span class="co">#&gt;  $ V1 : chr  &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; ...</span>
-<span class="co">#&gt;  $ V2 : chr  &quot;02/08/1993&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; ...</span>
-<span class="co">#&gt;  $ V3 : int  0 0 1200 1800 0 1200 1800 0 1200 1800 ...</span>
-<span class="co">#&gt;  $ V4 : num  NA NA 21.2 NA NA 3.2 NA NA 4.4 NA ...</span>
-<span class="co">#&gt;  $ V5 : num  NA NA 22.5 25.2 20.7 23.8 26.4 22 23 23.4 ...</span>
-<span class="co">#&gt;  $ V6 : num  NA NA 20 21.5 20.3 20.6 21.6 21.4 21.3 22.6 ...</span>
-<span class="co">#&gt;  $ V7 : num  NA 26.8 NA NA 28.9 NA NA 25.4 NA NA ...</span>
-<span class="co">#&gt;  $ V8 : num  NA NA 19.5 NA NA 19.9 NA NA 20.7 NA ...</span>
-<span class="co">#&gt;  $ V9 : int  NA NA 80 73 97 76 66 95 86 94 ...</span>
-<span class="co">#&gt;  $ V10: num  NA NA 925 923 924 ...</span>
-<span class="co">#&gt;  $ V11: num  NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="co">#&gt;  $ V12: int  NA NA 32 32 0 32 32 0 0 5 ...</span>
-<span class="co">#&gt;  $ V13: num  NA NA 4 2 0 3 5 0 0 3 ...</span>
-<span class="co">#&gt;  $ V14: num  NA 1.5 NA NA 1.3 NA NA 0.2 NA NA ...</span>
-<span class="co">#&gt;  $ V15: num  NA NA 10 10 10 10 10 10 10 10 ...</span>
-<span class="co">#&gt;  $ V16: num  1.4 1.6 NA NA 1.1 NA NA 1.3 NA NA ...</span>
-<span class="co">#&gt;  $ V17: num  NA 22 NA NA 23.3 ...</span>
-<span class="co">#&gt;  $ V18: num  NA 86.8 NA NA 83 ...</span>
-<span class="co">#&gt;  $ V19: num  NA 2 NA NA 2.67 ...</span>
-<span class="co">#&gt;  $ V20: logi  NA NA NA NA NA NA ...</span></code></pre></div>
+<span class="kw">str</span>(x1)</code></pre></div>
 <p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo classe dos dados</span>
 <span class="co"># convertendo de character para numeric</span>
 x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)
 <span class="kw">str</span>(x)
-<span class="co">#&gt; &#39;data.frame&#39;:    5863 obs. of  20 variables:</span>
-<span class="co">#&gt;  $ V1 : chr  &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; &quot;83004&quot; ...</span>
-<span class="co">#&gt;  $ V2 : chr  &quot;02/08/1993&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; &quot;01/01/1995&quot; ...</span>
-<span class="co">#&gt;  $ V3 : int  0 0 1200 1800 0 1200 1800 0 1200 1800 ...</span>
-<span class="co">#&gt;  $ V4 : num  NA NA 21.2 NA NA 3.2 NA NA 4.4 NA ...</span>
-<span class="co">#&gt;  $ V5 : num  NA NA 22.5 25.2 20.7 23.8 26.4 22 23 23.4 ...</span>
-<span class="co">#&gt;  $ V6 : num  NA NA 20 21.5 20.3 20.6 21.6 21.4 21.3 22.6 ...</span>
-<span class="co">#&gt;  $ V7 : num  NA 26.8 NA NA 28.9 NA NA 25.4 NA NA ...</span>
-<span class="co">#&gt;  $ V8 : num  NA NA 19.5 NA NA 19.9 NA NA 20.7 NA ...</span>
-<span class="co">#&gt;  $ V9 : num  NA NA 80 73 97 76 66 95 86 94 ...</span>
-<span class="co">#&gt;  $ V10: num  NA NA 925 923 924 ...</span>
-<span class="co">#&gt;  $ V11: num  NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="co">#&gt;  $ V12: num  NA NA 32 32 0 32 32 0 0 5 ...</span>
-<span class="co">#&gt;  $ V13: num  NA NA 4 2 0 3 5 0 0 3 ...</span>
-<span class="co">#&gt;  $ V14: num  NA 1.5 NA NA 1.3 NA NA 0.2 NA NA ...</span>
-<span class="co">#&gt;  $ V15: num  NA NA 10 10 10 10 10 10 10 10 ...</span>
-<span class="co">#&gt;  $ V16: num  1.4 1.6 NA NA 1.1 NA NA 1.3 NA NA ...</span>
-<span class="co">#&gt;  $ V17: num  NA 22 NA NA 23.3 ...</span>
-<span class="co">#&gt;  $ V18: num  NA 86.8 NA NA 83 ...</span>
-<span class="co">#&gt;  $ V19: num  NA 2 NA NA 2.67 ...</span>
-<span class="co">#&gt;  $ V20: num  NA NA NA NA NA NA NA NA NA NA ...</span>
 <span class="co"># razão dos avisos</span>
 <span class="co">#as.numeric(&quot;NA&quot;)</span></code></pre></div>
 <p>Mas e o nome das variáveis? Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas. Vamos fazer essa adequação aos dados.</p>
@@ -861,19 +436,8 @@ vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span cla
 <span class="co"># convertendo de dataframe para vetor</span>
 vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))
 vnames
-<span class="co">#&gt;  [1] &quot;Estacao&quot;                   &quot;Data&quot;                     </span>
-<span class="co">#&gt;  [3] &quot;Hora&quot;                      &quot;Precipitacao&quot;             </span>
-<span class="co">#&gt;  [5] &quot;TempBulboSeco&quot;             &quot;TempBulboUmido&quot;           </span>
-<span class="co">#&gt;  [7] &quot;TempMaxima&quot;                &quot;TempMinima&quot;               </span>
-<span class="co">#&gt;  [9] &quot;UmidadeRelativa&quot;           &quot;PressaoAtmEstacao&quot;        </span>
-<span class="co">#&gt; [11] &quot;PressaoAtmMar&quot;             &quot;DirecaoVento&quot;             </span>
-<span class="co">#&gt; [13] &quot;VelocidadeVentoInsolacao&quot;  &quot;Nebulosidade&quot;             </span>
-<span class="co">#&gt; [15] &quot;Evaporacao Piche&quot;          &quot;Temp Comp Media&quot;          </span>
-<span class="co">#&gt; [17] &quot;Umidade Relativa Media&quot;    &quot;Velocidade do Vento Media&quot;</span>
-<span class="co">#&gt; [19] NA</span>
 <span class="co"># número de variáveis é diferente do número de colunas do arquivo</span>
 <span class="kw">length</span>(vnames) <span class="op">==</span><span class="st"> </span><span class="kw">ncol</span>(x)
-<span class="co">#&gt; [1] FALSE</span>
 <span class="co"># corrigindo nomes das variaveis</span>
 <span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span>
 vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span>
@@ -881,39 +445,9 @@ vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&
 <span class="co"># desloca os elementos orginais do vetor </span>
 vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span><span class="op">:</span><span class="kw">length</span>(vnames)])
 <span class="kw">length</span>(vnames)
-<span class="co">#&gt; [1] 20</span>
 <span class="kw">ncol</span>(x)
-<span class="co">#&gt; [1] 20</span>
 <span class="kw">names</span>(x) &lt;-<span class="st"> </span>vnames
-<span class="kw">head</span>(x)
-<span class="co">#&gt;   Estacao       Data Hora Precipitacao TempBulboSeco TempBulboUmido TempMaxima</span>
-<span class="co">#&gt; 1   83004 02/08/1993    0           NA            NA             NA         NA</span>
-<span class="co">#&gt; 2   83004 01/01/1995    0           NA            NA             NA       26.8</span>
-<span class="co">#&gt; 3   83004 01/01/1995 1200         21.2          22.5           20.0         NA</span>
-<span class="co">#&gt; 4   83004 01/01/1995 1800           NA          25.2           21.5         NA</span>
-<span class="co">#&gt; 5   83004 02/01/1995    0           NA          20.7           20.3       28.9</span>
-<span class="co">#&gt; 6   83004 02/01/1995 1200          3.2          23.8           20.6         NA</span>
-<span class="co">#&gt;   TempMinima UmidadeRelativa PressaoAtmEstacao PressaoAtmMar DirecaoVento</span>
-<span class="co">#&gt; 1         NA              NA                NA            NA           NA</span>
-<span class="co">#&gt; 2         NA              NA                NA            NA           NA</span>
-<span class="co">#&gt; 3       19.5              80             924.6            NA           32</span>
-<span class="co">#&gt; 4         NA              73             922.9            NA           32</span>
-<span class="co">#&gt; 5         NA              97             924.2            NA            0</span>
-<span class="co">#&gt; 6       19.9              76             924.7            NA           32</span>
-<span class="co">#&gt;   VelocidadeVento insolacao Nebulosidade Evaporacao Piche Temp Comp Media</span>
-<span class="co">#&gt; 1              NA        NA           NA              1.4              NA</span>
-<span class="co">#&gt; 2              NA       1.5           NA              1.6           22.04</span>
-<span class="co">#&gt; 3               4        NA           10               NA              NA</span>
-<span class="co">#&gt; 4               2        NA           10               NA              NA</span>
-<span class="co">#&gt; 5               0       1.3           10              1.1           23.32</span>
-<span class="co">#&gt; 6               3        NA           10               NA              NA</span>
-<span class="co">#&gt;   Umidade Relativa Media Velocidade do Vento Media NA</span>
-<span class="co">#&gt; 1                     NA                        NA NA</span>
-<span class="co">#&gt; 2                  86.75                  2.000000 NA</span>
-<span class="co">#&gt; 3                     NA                        NA NA</span>
-<span class="co">#&gt; 4                     NA                        NA NA</span>
-<span class="co">#&gt; 5                  83.00                  2.666667 NA</span>
-<span class="co">#&gt; 6                     NA                        NA NA</span></code></pre></div>
+<span class="kw">head</span>(x)</code></pre></div>
 <p>Finalmente vamos escrever os dados do INMET corretamente organizados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)
 <span class="kw">write.csv2</span>(x,
@@ -944,14 +478,7 @@ soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="
                                  <span class="dt">skip =</span> <span class="dv">3</span>,              <span class="co"># pula 3 linhas</span>
                                  <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span>
                 )
-<span class="kw">head</span>(soi)
-<span class="co">#&gt;   YEAR  JAN  FEB  MAR  APR  MAY JUN  JUL  AUG  SEP  OCT  NOV  DEC</span>
-<span class="co">#&gt; 1 1951  2.5  1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 -1.3 -1.2</span>
-<span class="co">#&gt; 2 1952 -1.5 -1.0  0.9 -0.4  1.2 1.2  0.8  0.1 -0.4  0.6  0.0 -2.0</span>
-<span class="co">#&gt; 3 1953  0.5 -0.8 -0.3  0.3 -2.8 0.2  0.0 -2.0 -2.1  0.1 -0.5 -0.8</span>
-<span class="co">#&gt; 4 1954  1.1 -0.5  0.4  1.1  0.8 0.2  0.7  1.8  0.3  0.4  0.2  2.3</span>
-<span class="co">#&gt; 5 1955 -0.9  3.1  1.1 -0.2  1.7 2.2  2.6  2.4  2.2  2.5  2.0  1.6</span>
-<span class="co">#&gt; 6 1956  2.2  2.7  2.2  1.5  2.3 1.8  1.8  2.0  0.1  2.9  0.2  1.8</span></code></pre></div>
+<span class="kw">head</span>(soi)</code></pre></div>
 <p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
 soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="op">-</span><span class="dv">1</span>]))
@@ -977,18 +504,7 @@ soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
                    <span class="dt">header =</span> <span class="ot">TRUE</span>,
                    <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(soi.df)
-<span class="co">#&gt;    ano mes  soi</span>
-<span class="co">#&gt; 1 1951   1  2.5</span>
-<span class="co">#&gt; 2 1951   2  1.5</span>
-<span class="co">#&gt; 3 1951   3 -0.2</span>
-<span class="co">#&gt; 4 1951   4 -0.5</span>
-<span class="co">#&gt; 5 1951   5 -1.1</span>
-<span class="co">#&gt; 6 1951   6  0.3</span>
-<span class="kw">str</span>(soi.df)
-<span class="co">#&gt; &#39;data.frame&#39;:    840 obs. of  3 variables:</span>
-<span class="co">#&gt;  $ ano: int  1951 1951 1951 1951 1951 1951 1951 1951 1951 1951 ...</span>
-<span class="co">#&gt;  $ mes: int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;  $ soi: num  2.5 1.5 -0.2 -0.5 -1.1 0.3 -1.7 -0.4 -1.8 -1.6 ...</span></code></pre></div>
+<span class="kw">str</span>(soi.df)</code></pre></div>
 <p>A função <code>read.fortran()</code> é uma função similar à <code>read.fwf()</code> e permite usar especificações de colunas no estilo <a href="http://en.wikipedia.org/wiki/Fortran">Fortran</a>.</p>
 
 <div id="refs" class="references">

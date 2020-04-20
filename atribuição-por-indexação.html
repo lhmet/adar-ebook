@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -324,10 +325,6 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando a matriz gerada com dim</span>
 mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 mat
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]   NA   NA   NA   NA</span>
-<span class="co">#&gt; [2,]   NA   NA   NA   NA</span>
-<span class="co">#&gt; [3,]   NA   NA   NA   NA</span>
 mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span>
 mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span>
 mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span>
@@ -340,19 +337,11 @@ mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st">
 mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span>
 mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span>
 mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span>
-mat
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]    1    4    7   10</span>
-<span class="co">#&gt; [2,]    2    5    8   11</span>
-<span class="co">#&gt; [3,]    3    6    9   12</span></code></pre></div>
+mat</code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
 mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
-mat
-<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
-<span class="co">#&gt; [1,]    1    2    3    4</span>
-<span class="co">#&gt; [2,]    5    6    7    8</span>
-<span class="co">#&gt; [3,]    9   10   11   12</span></code></pre></div>
+mat</code></pre></div>
 </div>
             </section>
 
