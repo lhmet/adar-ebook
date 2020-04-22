@@ -1,6 +1,8 @@
-# (PART) Configuração {-}
+# (PART) Configuração do Sistema {-}
 
-# Instalação do R e RStudio {#install}
+
+
+# O que você precisa 
 
 ```{r setup, echo = FALSE, message=FALSE}
 rm(list = ls())
@@ -20,36 +22,45 @@ minirstudio <- '<img src="images/logo_rstudio.png" width="80">'
 source("R/utils.R")
 ```
 
-A interação do usuário com o `r rblue` é por meio da linha de comando. Essa interação pode ser facilitada com o uso do software RStudio *Desktop*.
 
-A seguir descreve-se como:
+Você precisará do [`r rblue`](https://www.r-project.org/), [RStudio](https://rstudio.com/) e se estiver em SO Windows também do programa [Rtools]().
 
-- instalar o `r rblue` no Windows e no Linux Ubuntu
+## Instalação do R e RStudio {#install}
+
+
+
+
+
+A interação do usuário com o `r rblue` é por meio da linha de comando. A interface da linha de comando tem suas vantagens, mas a sua vida ficará muito mais fácil com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
+
+A seguir veremos como:
+
+- instalar o `r rblue` nos SO Windows e Linux Ubuntu
 
 - manter o `r rblue` sempre atualizado no Linux Ubuntu 
 
 - configurar um diretório para armazenar os pacotes do R instalados
 
-- instalar pacotes do `r rblue`
+- instalar pacotes no `r rblue`
 
 - instalar o Rstudio *Desktop*
 
 Neste livro, o maior foco na instalação do `r rblue` é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
 
-A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação, sem as instruções detalhadas de instalação para este SO.
+A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação.
 
 
 ```{block, note-text-climate-system, type='rmdtip'}
-Ao instalar R e RStudio recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante o uso do software, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.
+Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.
 ```
 
-## Instalando o `r rblue`
+### Instalando o `r rblue`
 
-O `r rblue` pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do `r rblue` a partir dos arquivos binários.
+O `r rblue` pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Nós veremos a instalação do `r rblue` a partir dos arquivos binários.
 
 
 
-### Windows 
+#### Windows 
 
 O binário executável do `r rblue` para o Windows está disponível na **Rede Abrangente de Arquivos do `r rblue`** ([CRAN](https://cran.r-project.org/)) e pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
 
@@ -61,8 +72,10 @@ No Windows a instalação do `r rblue` inclui uma Interface Gráfica do Usuário
 knitr::include_graphics("images/rgui-windows.png")
 ```
 
+Para instalar pacotes de plataformas diferentes da CRAN (veja seção [#install-github]) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). Nesta página você deve selecionar a versão do `Rtools` adequada (e.g [Rtools35.exe](https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe)) para sua versão do R (`r cran_news_windows()`). 
 
-#### Atualização do `r rblue` no Windows
+
+##### Atualização do `r rblue` no Windows
 
 Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](`r cran_news_windows()`).
 
@@ -72,9 +85,9 @@ As novas versões do `r rblue` vem com os [pacotes padrões do R](https://cran.r
 
 Para atualizar o `r rblue` no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no `r rblue` será vista na seção \@ref(install-pck).
 
-### Linux 
+#### Linux 
 
-#### Ubuntu
+##### Ubuntu
 
 Há várias formas de instalar o `r rblue` no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso não for problema para você então basta executar:
 
@@ -84,38 +97,39 @@ sudo apt-get install r-base
 
 Entretanto, os pacotes do `r rblue` recém lançados são compilados para última versão do `r rblue`. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como instalar o `r rblue` de forma que seja atualizado automaticamente pelo sistema.
 
-#### R sempre atualizado
+##### R sempre atualizado
 
 Se você quer trabalhar sempre com a última versão estável do `r rblue`, é possível configurar o Linux Ubuntu para atualizar automaticamente o `r rblue`. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
 
 Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
 
-- 14.04 (abril de 2014, *codename* `trusty`) 
-- 16.04 (abril de 2016, *codename* `xenial`)
-- 18.04 (abril de 2016, *codename* `bionic`)
+- 12.04: `precise`
+- 14.04: `trusty` 
+- 16.04: `xenial`
+- 18.04: `bionic`
 
 [^1]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a `r R.version$version.string`. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
+A versão mais atual é a `r stringr::str_extract(cran_news_windows(), "[0-9].[0-9].[0-9]")`. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
-##### Incluindo repositório do `r rblue` na Lista de repositórios do Ubuntu
+###### Incluindo repositório do `r rblue` na Lista de repositórios do Ubuntu
 
 O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^2] :
 
 
 
 ```
-$ lsb_release --codename | cut -f2
+$ lsb_release -sc
 ```
 ```
-xenial
+bionic
 ```
 
 
 [^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
 
-O endereço do espelho da CRAN e algumas configurações do sistema devem ser inseridas no arquivo `/etc/apt/sources.list.d/cran.list`. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
+O endereço do espelho da CRAN e algumas configurações do sistema podem ser inseridas num arquivo em `/etc/apt/sources.list.d/cran.list`. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
     $ sudo su
 
@@ -123,10 +137,12 @@ Após o comando, informe a senha de superusuário e então vamos criar o arquivo
 
     # touch /etc/apt/sources.list.d/cran.list
 
-Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho, o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter o **R 3.6**. 
+Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho[^3], o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter versões do R  3.6**. 
 
-    # repos="deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release --codename | cut -f2`-cran35/"
+    # repos="deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/"
     
+[^3]: Usando https://cloud.r-project.org automaticamente redireciona parao espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
+
 O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.
 
 
@@ -135,9 +151,9 @@ Adicionamos o conteúdo da `repos` ao arquivo cran.list usando o comando:
     # echo $repos >> /etc/apt/sources.list.d/cran.list
 
 Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^3] fará a atualização do `r rblue` quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do `r rblue`.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^4] fará a atualização do `r rblue` quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do `r rblue`.
 
-[^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+[^4]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
 
 Feito isso, você podemos retornar a sessão de usuário comum:
@@ -145,15 +161,15 @@ Feito isso, você podemos retornar a sessão de usuário comum:
     # exit
 
 
-##### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
+###### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do `r rblue` para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do `r rblue` para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^5]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
     $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
-[^4]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+[^5]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
 Se aparecer uma mensagem **OK** a chave foi adicionada com sucesso e os comandos a seguir podem ignorados. Porém, se aparecer uma mensagem do tipo *keyserver error*, utilize o seguinte comando:
 
@@ -166,15 +182,15 @@ Caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada par
     $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
 
-##### Atualização da lista de repositórios do Ubuntu e instalação do `r rblue`
+###### Atualização da lista de repositórios do Ubuntu e instalação do `r rblue`
 
 Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):
 
     $ sudo apt-get update
     
-Agora, pode instalar o binário do R:
+Finalmente, instalamos o binário do R, a coleção de pacotes recomendados e ferramentas de desenvolvimento:
 
-    $ sudo apt-get install r-base
+    $ sudo apt-get -y install r-base-core r-recommended r-base-dev
 
 <!---
 referências
@@ -213,7 +229,7 @@ nlme > lattice > broom
 
 
 
-##### Testando o `r rblue`
+###### Testando o `r rblue`
 
 Para iniciar o `r rblue` no Ubuntu, digite `R` no cursor do terminal:
 
@@ -232,11 +248,11 @@ Você pode sair do `r rblue`, sem salvar os dados da seção, com o código a se
 q(save = "no")
 ```
 
-#### Diretório para pacotes instalados pelo usuário
+##### Diretório para pacotes instalados pelo usuário
 
-Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^5] ou usando `sudo apt-get update && sudo apt-get upgrade`.
+Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^6] ou usando `sudo apt-get update && sudo apt-get upgrade`.
 
-[^5]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
+[^6]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
 
 Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do `r rblue` instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
 
@@ -259,9 +275,9 @@ e ao digitar:
 .libPaths()
 ```
     
-o seu diretório `/home/usuario/.R/libs` [^6] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
+o seu diretório `/home/usuario/.R/libs` [^7] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
 
-[^6]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
+[^7]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
 
 
 
@@ -338,7 +354,7 @@ Você pode acessar uma função de um pacote instalado com a forma especial `pac
 
 Essa forma deixa explícito que estamos usando a função `install_github()` do pacote **remotes**.
 
-As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto essa é a alternativa mais segura de avaliar funções afim de evitar conflitos. 
+As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto, essa é a alternativa mais segura de avaliar funções afim de evitar conflitos. 
 ```
 
 Para instalar um pacote num repositório do R-forge, por exemplo o repositório do pacote [raster](https://r-forge.r-project.org/projects/raster/), usa-se:
@@ -346,12 +362,10 @@ Para instalar um pacote num repositório do R-forge, por exemplo o repositório 
 ```{r, eval = FALSE}
 install.packages(
   "raster",  
-  repos = "http://R-Forge.R-project.org",
-  dependencies = TRUE
+  repos = "http://R-Forge.R-project.org"
 )
 ```
 
-Alguns pacotes as vezes dependem de outros pacotes e para lidar com essas dependências define-se o argumento `dependencies = TRUE` na função `install.packages()`, como no trecho de código anterior. A função automaticamente resolverá as dependências do pacote, de forma que qualquer pacote dependente também será instalado.
 
 #### Arquivo fonte local
 
@@ -439,17 +453,17 @@ Com essas informações, siga os seguintes passos:
 knitr::include_graphics('images/rstudio-choose.png')
 ```
 
-  3. Clique na sua plataforma (de acordo com seu SO, arquitetura e versão da distribuição) (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.1.447 - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
+  3. Clique na sua plataforma (de acordo com seu SO, arquitetura e versão da distribuição) (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.2.5033 - `r sessioninfo::os_name()` (`r ifelse(as.logical(grep("64", sessioninfo::platform_info()$system)), 64, 32)`-bit)*.
   
 ```{r, rstudio-plat, echo = FALSE, fig.align='center', out.width="100%", fig.cap="Escolha da plataforma em que será o usada o RStudio *Desktop*."}
 knitr::include_graphics('images/rstudio-plataform-options.png')
 ```
   
 
-  4. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu *Desktop* não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^6] com os seguintes comandos:
+  4. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu *Desktop* não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^8] com os seguintes comandos:
 
 
-[^6]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
+[^8]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 
 ```
 $ cd /local/do/arquivo/baixado

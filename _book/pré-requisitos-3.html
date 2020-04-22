@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,11 +148,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -173,7 +172,9 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -347,12 +348,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-3" class="section level2">
 <h2><span class="header-section-number">10.1</span> Pré-requisitos</h2>
 <p>O pacote <strong>ggplot2</strong> faz parte do <strong>tidyverse</strong>, mas além dele precisaremos de outros pacotes com funcionalidades que complementam o <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>,</a>
-<a class="sourceLine" id="cb352-2" data-line-number="2">             <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>, </a>
-<a class="sourceLine" id="cb352-3" data-line-number="3">             <span class="st">&quot;tidyverse&quot;</span>, </a>
-<a class="sourceLine" id="cb352-4" data-line-number="4">             <span class="st">&quot;ggrepel&quot;</span>, <span class="st">&quot;ggthemes&quot;</span>,</a>
-<a class="sourceLine" id="cb352-5" data-line-number="5">             <span class="st">&quot;viridis&quot;</span>)</a>
-<a class="sourceLine" id="cb352-6" data-line-number="6">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>,</a>
+<a class="sourceLine" id="cb354-2" data-line-number="2">             <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>, </a>
+<a class="sourceLine" id="cb354-3" data-line-number="3">             <span class="st">&quot;tidyverse&quot;</span>, </a>
+<a class="sourceLine" id="cb354-4" data-line-number="4">             <span class="st">&quot;ggrepel&quot;</span>, <span class="st">&quot;ggthemes&quot;</span>,</a>
+<a class="sourceLine" id="cb354-5" data-line-number="5">             <span class="st">&quot;viridis&quot;</span>)</a>
+<a class="sourceLine" id="cb354-6" data-line-number="6">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
 <div id="dados-1" class="section level3">
 <h3><span class="header-section-number">10.1.1</span> Dados</h3>
 <p>Neste capítulo utilizaremos os seguintes dados:</p>

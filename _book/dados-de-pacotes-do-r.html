@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,11 +148,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -173,7 +172,9 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -347,16 +348,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dados-de-pacotes-do-r" class="section level2">
 <h2><span class="header-section-number">B.3</span> Dados de pacotes do R</h2>
 <p>O <code>R</code> possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do <code>help()</code> de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função <code>data()</code>.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co"># lista de dados disponíveis</span></a>
-<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="kw">data</span>()</a>
-<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span></a>
-<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="kw">data</span>(precip)</a>
-<a class="sourceLine" id="cb372-5" data-line-number="5"><span class="co"># primeiros 30 elementos dos dados precip</span></a>
-<a class="sourceLine" id="cb372-6" data-line-number="6"><span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb372-7" data-line-number="7"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span></a>
-<a class="sourceLine" id="cb372-8" data-line-number="8"><span class="kw">data</span>(airquality)</a>
-<a class="sourceLine" id="cb372-9" data-line-number="9"><span class="co"># primeiras linhas dos dados</span></a>
-<a class="sourceLine" id="cb372-10" data-line-number="10"><span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># lista de dados disponíveis</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2"><span class="kw">data</span>()</a>
+<a class="sourceLine" id="cb374-3" data-line-number="3"><span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span></a>
+<a class="sourceLine" id="cb374-4" data-line-number="4"><span class="kw">data</span>(precip)</a>
+<a class="sourceLine" id="cb374-5" data-line-number="5"><span class="co"># primeiros 30 elementos dos dados precip</span></a>
+<a class="sourceLine" id="cb374-6" data-line-number="6"><span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb374-7" data-line-number="7"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span></a>
+<a class="sourceLine" id="cb374-8" data-line-number="8"><span class="kw">data</span>(airquality)</a>
+<a class="sourceLine" id="cb374-9" data-line-number="9"><span class="co"># primeiras linhas dos dados</span></a>
+<a class="sourceLine" id="cb374-10" data-line-number="10"><span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,11 +148,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -173,7 +172,9 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -458,15 +459,15 @@ Figure 3.1: Auto preenchimento de código na linha de comandos do R.
 <a class="sourceLine" id="cb49-15" data-line-number="15"><span class="co"># definindo uma variável x</span></a>
 <a class="sourceLine" id="cb49-16" data-line-number="16">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb49-17" data-line-number="17">x</a></code></pre></div>
-<p>Este conjunto de linhas de código, quando inseridos em um arquivo texto<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> formam um primeiro <em>script</em> <img src="images/logo_r.png" width="20">. Este <em>script</em> pode ser executado pelo <img src="images/logo_r.png" width="20"> através da função <code>source()</code>, usando como argumento o caminho para o local do <em>script</em>.</p>
+<p>Este conjunto de linhas de código, quando inseridos em um arquivo texto<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> formam um primeiro <em>script</em> <img src="images/logo_r.png" width="20">. Este <em>script</em> pode ser executado pelo <img src="images/logo_r.png" width="20"> através da função <code>source()</code>, usando como argumento o caminho para o local do <em>script</em>.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">source</span>(<span class="st">&quot;/home/usuario/adar/script1.R&quot;</span>)</a></code></pre></div>
 <p>Este <em>script</em> produzirá como saída o arquivo <code>/home/usuario/adar/plot-script1.pdf</code>. Você pode visualizar o arquivo para conferir o gráficos de pontos gerado.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="8">
-<li id="fn8"><p>Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: <a href="https://help.gnome.org/users/gedit/stable/index.html.pt_BR">gedit</a> no SO Linux, ou <a href="https://pt.wikipedia.org/wiki/Bloco_de_Notas">Notepad</a> no SO Windows).<a href="no-modo-interativo.html#fnref8" class="footnote-back">↩</a></p></li>
+<ol start="9">
+<li id="fn9"><p>Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: <a href="https://help.gnome.org/users/gedit/stable/index.html.pt_BR">gedit</a> no SO Linux, ou <a href="https://pt.wikipedia.org/wiki/Bloco_de_Notas">Notepad</a> no SO Windows).<a href="no-modo-interativo.html#fnref9" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

@@ -44,8 +44,10 @@ O RStudio possui 4 painéis principais:
      - refazer `<Ctrl+Shift+Z>`
      - referência para teclas de atalho `<Alt+Shift+K>`
      - abrir script com `<Ctrl+Click>`
-     - encontrar e substituir `Ctrl+F`
+     - encontrar e substituir `<Ctrl+F>`
+     - comentar texto em R Markdown <kbd>SHIFT</kbd>+<kbd>CTRL</kbd>+<kbd>C</kbd>
 
+Nao
 
 2. Console do R
 
@@ -74,9 +76,9 @@ A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) f
 
 Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
 
-## Correção ortográfica
+## Verificação ortográfica
 
-O RStudio oferece o recurso de correção ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em `Tools > Global Options`, selecionando `Spelling` no painel à esquerda e `Install More Languages` na caixa de seleção dos dicionários de línguas (Figura \@ref(fig:rstudio-spell-config)). Assim, será feita a instalação das 28 linguagens disponíveis.
+O RStudio oferece o recurso de verificação ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em `Tools > Global Options`, selecionando `Spelling` no painel à esquerda e `Install More Languages` na caixa de seleção dos dicionários de línguas (Figura \@ref(fig:rstudio-spell-config)). Dessa forma, os dicionários de 28 linguagens serão instalados.
 
 <div class="figure" style="text-align: center">
 <img src="images/rstutio-spellcheck-more-langs.png" alt="Configuração do RStudio para instalar dicionários de outras línguas." width="80%" />
@@ -92,11 +94,31 @@ Após a adição dos dicionários, acesse novamente a caixa de seleção de dici
 
 Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla `F7` (ou `Edit > Check Spelling`).
 
-Se você quer usar uma diferente variação de dicionário para sua língua de trabalho, siga as orientações disponibilizadas no [suporte do RStudio](https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries).
+In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
+same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke in a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the
+same time as the <kbd>-</kbd> key) does the same in a Mac.
 
 
 
 
+### Configurando dicionários customizados
+
+Se você quer usar um diferente variação de dicionário ou algum dicionário customizado, siga as orientações disponibilizadas no [suporte do RStudio](https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries) e na vinheta do pacote [hunspell](https://docs.ropensci.org/hunspell/articles/intro.html#hunspell-dictionaries).
+
+
+A instalação do dicionário de Português-brasileiro no Debian ou Ubuntu requer o pacote `hunspell-pt-br`: 
+
+
+```bash
+> sudo apt-get install hunspell-pt-br
+```
+
+A verificação de que o dicionário foi instalado pode ser feita se ele aparece listado pelo comando abaixo.
+
+
+```bash
+> ll /usr/share/hunspell
+```
 
 
 

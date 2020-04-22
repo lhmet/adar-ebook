@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,11 +148,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -173,7 +172,9 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -347,47 +348,47 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="conversão-entre-tipos-de-dados" class="section level2">
 <h2><span class="header-section-number">6.3</span> Conversão entre tipos de dados</h2>
 <p>Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções <code>is.*()</code> possui uma função <code>as.*()</code> correspondente de conversão para aquele tipo de dado.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="co"># de character para numeric</span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="kw">as.numeric</span>(<span class="st">&quot;12.34&quot;</span>) </a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="co">#&gt; [1] 12.34</span></a>
-<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="co"># de factor para character</span></a>
-<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="kw">as.character</span>(charf)</a>
-<a class="sourceLine" id="cb107-6" data-line-number="6"><span class="co">#&gt; [1] &quot;Vai chover hoje?&quot;</span></a>
-<a class="sourceLine" id="cb107-7" data-line-number="7"><span class="co"># character para factor</span></a>
-<a class="sourceLine" id="cb107-8" data-line-number="8"><span class="kw">as.factor</span>(<span class="st">&quot;a&quot;</span>)</a>
-<a class="sourceLine" id="cb107-9" data-line-number="9"><span class="co">#&gt; [1] a</span></a>
-<a class="sourceLine" id="cb107-10" data-line-number="10"><span class="co">#&gt; Levels: a</span></a>
-<a class="sourceLine" id="cb107-11" data-line-number="11"><span class="co"># de double para integer</span></a>
-<a class="sourceLine" id="cb107-12" data-line-number="12"><span class="kw">typeof</span>(x)</a>
-<a class="sourceLine" id="cb107-13" data-line-number="13"><span class="co">#&gt; [1] &quot;double&quot;</span></a>
-<a class="sourceLine" id="cb107-14" data-line-number="14"><span class="kw">typeof</span>(<span class="kw">as.integer</span>(x))</a>
-<a class="sourceLine" id="cb107-15" data-line-number="15"><span class="co">#&gt; [1] &quot;integer&quot;</span></a>
-<a class="sourceLine" id="cb107-16" data-line-number="16"><span class="kw">as.integer</span>(x) <span class="op">==</span><span class="st"> </span>51L</a>
-<a class="sourceLine" id="cb107-17" data-line-number="17"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb107-18" data-line-number="18"><span class="kw">as.integer</span>(<span class="st">&quot;12.34&quot;</span>)</a>
-<a class="sourceLine" id="cb107-19" data-line-number="19"><span class="co">#&gt; [1] 12</span></a>
-<a class="sourceLine" id="cb107-20" data-line-number="20"><span class="co"># arredondamento</span></a>
-<a class="sourceLine" id="cb107-21" data-line-number="21"><span class="kw">as.integer</span>(<span class="fl">12.34</span>)</a>
-<a class="sourceLine" id="cb107-22" data-line-number="22"><span class="co">#&gt; [1] 12</span></a>
-<a class="sourceLine" id="cb107-23" data-line-number="23"><span class="co"># lógico para inteiro</span></a>
-<a class="sourceLine" id="cb107-24" data-line-number="24"><span class="kw">as.integer</span>(<span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb107-25" data-line-number="25"><span class="co">#&gt; [1] 1</span></a>
-<a class="sourceLine" id="cb107-26" data-line-number="26"><span class="co"># numérico para lógico</span></a>
-<a class="sourceLine" id="cb107-27" data-line-number="27"><span class="kw">as.logical</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb107-28" data-line-number="28"><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb107-29" data-line-number="29"><span class="co"># character para numérico?</span></a>
-<a class="sourceLine" id="cb107-30" data-line-number="30"><span class="kw">as.numeric</span>(<span class="st">&quot;a&quot;</span>)</a>
-<a class="sourceLine" id="cb107-31" data-line-number="31"><span class="co">#&gt; Warning: NAs introduced by coercion</span></a>
-<a class="sourceLine" id="cb107-32" data-line-number="32"><span class="co">#&gt; [1] NA</span></a>
-<a class="sourceLine" id="cb107-33" data-line-number="33"><span class="co"># de character para date</span></a>
-<a class="sourceLine" id="cb107-34" data-line-number="34">dt_char &lt;-<span class="st"> &quot;2016-03-17&quot;</span></a>
-<a class="sourceLine" id="cb107-35" data-line-number="35">dt &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)</a>
-<a class="sourceLine" id="cb107-36" data-line-number="36">dt</a>
-<a class="sourceLine" id="cb107-37" data-line-number="37"><span class="co">#&gt; [1] &quot;2016-03-17&quot;</span></a>
-<a class="sourceLine" id="cb107-38" data-line-number="38"><span class="co"># de character para date-time</span></a>
-<a class="sourceLine" id="cb107-39" data-line-number="39">data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)</a>
-<a class="sourceLine" id="cb107-40" data-line-number="40">data_hora</a>
-<a class="sourceLine" id="cb107-41" data-line-number="41"><span class="co">#&gt; [1] &quot;2016-03-17 15:30:00 -03&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="co"># de character para numeric</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">as.numeric</span>(<span class="st">&quot;12.34&quot;</span>) </a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="co">#&gt; [1] 12.34</span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="co"># de factor para character</span></a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="kw">as.character</span>(charf)</a>
+<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="co">#&gt; [1] &quot;Vai chover hoje?&quot;</span></a>
+<a class="sourceLine" id="cb109-7" data-line-number="7"><span class="co"># character para factor</span></a>
+<a class="sourceLine" id="cb109-8" data-line-number="8"><span class="kw">as.factor</span>(<span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb109-9" data-line-number="9"><span class="co">#&gt; [1] a</span></a>
+<a class="sourceLine" id="cb109-10" data-line-number="10"><span class="co">#&gt; Levels: a</span></a>
+<a class="sourceLine" id="cb109-11" data-line-number="11"><span class="co"># de double para integer</span></a>
+<a class="sourceLine" id="cb109-12" data-line-number="12"><span class="kw">typeof</span>(x)</a>
+<a class="sourceLine" id="cb109-13" data-line-number="13"><span class="co">#&gt; [1] &quot;double&quot;</span></a>
+<a class="sourceLine" id="cb109-14" data-line-number="14"><span class="kw">typeof</span>(<span class="kw">as.integer</span>(x))</a>
+<a class="sourceLine" id="cb109-15" data-line-number="15"><span class="co">#&gt; [1] &quot;integer&quot;</span></a>
+<a class="sourceLine" id="cb109-16" data-line-number="16"><span class="kw">as.integer</span>(x) <span class="op">==</span><span class="st"> </span>51L</a>
+<a class="sourceLine" id="cb109-17" data-line-number="17"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb109-18" data-line-number="18"><span class="kw">as.integer</span>(<span class="st">&quot;12.34&quot;</span>)</a>
+<a class="sourceLine" id="cb109-19" data-line-number="19"><span class="co">#&gt; [1] 12</span></a>
+<a class="sourceLine" id="cb109-20" data-line-number="20"><span class="co"># arredondamento</span></a>
+<a class="sourceLine" id="cb109-21" data-line-number="21"><span class="kw">as.integer</span>(<span class="fl">12.34</span>)</a>
+<a class="sourceLine" id="cb109-22" data-line-number="22"><span class="co">#&gt; [1] 12</span></a>
+<a class="sourceLine" id="cb109-23" data-line-number="23"><span class="co"># lógico para inteiro</span></a>
+<a class="sourceLine" id="cb109-24" data-line-number="24"><span class="kw">as.integer</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb109-25" data-line-number="25"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb109-26" data-line-number="26"><span class="co"># numérico para lógico</span></a>
+<a class="sourceLine" id="cb109-27" data-line-number="27"><span class="kw">as.logical</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb109-28" data-line-number="28"><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb109-29" data-line-number="29"><span class="co"># character para numérico?</span></a>
+<a class="sourceLine" id="cb109-30" data-line-number="30"><span class="kw">as.numeric</span>(<span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb109-31" data-line-number="31"><span class="co">#&gt; Warning: NAs introduced by coercion</span></a>
+<a class="sourceLine" id="cb109-32" data-line-number="32"><span class="co">#&gt; [1] NA</span></a>
+<a class="sourceLine" id="cb109-33" data-line-number="33"><span class="co"># de character para date</span></a>
+<a class="sourceLine" id="cb109-34" data-line-number="34">dt_char &lt;-<span class="st"> &quot;2016-03-17&quot;</span></a>
+<a class="sourceLine" id="cb109-35" data-line-number="35">dt &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)</a>
+<a class="sourceLine" id="cb109-36" data-line-number="36">dt</a>
+<a class="sourceLine" id="cb109-37" data-line-number="37"><span class="co">#&gt; [1] &quot;2016-03-17&quot;</span></a>
+<a class="sourceLine" id="cb109-38" data-line-number="38"><span class="co"># de character para date-time</span></a>
+<a class="sourceLine" id="cb109-39" data-line-number="39">data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)</a>
+<a class="sourceLine" id="cb109-40" data-line-number="40">data_hora</a>
+<a class="sourceLine" id="cb109-41" data-line-number="41"><span class="co">#&gt; [1] &quot;2016-03-17 15:30:00 -03&quot;</span></a></code></pre></div>
 
 </div>
 <!-- </div> -->

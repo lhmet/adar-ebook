@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2020-04-19"
+date: "2020-04-22"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -21,10 +21,10 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 <img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
 <p style="font-size: 11px; font-style: italic; background: whitesmoke; text-align="right"; color: gray; line-height: 12px;width: 650px;">Ilustração: The Project Twins</p> 
 
-Este material é uma composição das notas de aula da disciplina
-**Análise de Dados Ambientais com <img src="images/logo_r.png" width="20">** do curso de Graduação em [<span style="font-variant:small-caps;">meteorologia</span>](http://w3.ufsm.br/meteorologia/) oferecido no Departamento de Física da Universidade Federal de Santa Maria ([UFSM](http://site.ufsm.br/)). 
+Este livro é uma composição das notas de aula da disciplina
+**Análise de Dados Ambientais com <img src="images/logo_r.png" width="20">** do curso de Graduação em [<span style="font-variant:small-caps;">meteorologia</span>](http://w3.ufsm.br/meteorologia/) que eu ofereço no Departamento de Física da Universidade Federal de Santa Maria ([UFSM](http://site.ufsm.br/)). 
 
-O livro é designado para quem não tem experiência em programação, ou qualquer um com interesse em aprender o <img src="images/logo_r.png" width="20"> para manipular dados ambientais. O objetivo é prover uma material para ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional <img src="images/logo_r.png" width="20">. Estes procedimentos são potencializados com o uso do software RStudio, uma interface de desenvolvimento integrado (IDE) para o <img src="images/logo_r.png" width="20">.
+O livro pode ser útil para qualquer um com interesse em aprender o <img src="images/logo_r.png" width="20"> e que quer alavancar a etapa de processamento de dados ambientais no seu projeto. O objetivo é prover uma material para ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional <img src="images/logo_r.png" width="20">. Estes procedimentos são potencializados com o uso do software RStudio, uma interface de desenvolvimento integrado (IDE) para o <img src="images/logo_r.png" width="20">.
 
 Neste livro o leitor aprenderá a sintaxe básica da linguagem <img src="images/logo_r.png" width="20">, a importação e exportação de dados, a criação de gráficos, funções, a padronização e organização de conjunto de dados ambientais; e finalmente, a confecção de relatórios dinâmicos e reproduzíveis.
 

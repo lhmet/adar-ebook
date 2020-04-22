@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,11 +148,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -173,7 +172,9 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -348,16 +349,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <h1 class="title">Análise de Dados Ambientais com R</h1>
 <h2 class="subtitle"><em>Versão preliminar</em></h2>
 <p class="author"><em>Jônatan Tatsch</em></p>
-<p class="date"><em>2020-04-19</em></p>
+<p class="date"><em>2020-04-22</em></p>
 </div>
 <div id="apresentação" class="section level1 unnumbered">
 <h1>Apresentação</h1>
 <img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
 &lt;p style=“font-size: 11px; font-style: italic; background: whitesmoke; text-align=”right“; color: gray; line-height: 12px;width: 650px;”&gt;Ilustração: The Project Twins
 </p>
-<p>Este material é uma composição das notas de aula da disciplina
-<strong>Análise de Dados Ambientais com <img src="images/logo_r.png" width="20"></strong> do curso de Graduação em <a href="http://w3.ufsm.br/meteorologia/"><span class="smallcaps">meteorologia</span></a> oferecido no Departamento de Física da Universidade Federal de Santa Maria (<a href="http://site.ufsm.br/">UFSM</a>).</p>
-<p>O livro é designado para quem não tem experiência em programação, ou qualquer um com interesse em aprender o <img src="images/logo_r.png" width="20"> para manipular dados ambientais. O objetivo é prover uma material para ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional <img src="images/logo_r.png" width="20">. Estes procedimentos são potencializados com o uso do software RStudio, uma interface de desenvolvimento integrado (IDE) para o <img src="images/logo_r.png" width="20">.</p>
+<p>Este livro é uma composição das notas de aula da disciplina
+<strong>Análise de Dados Ambientais com <img src="images/logo_r.png" width="20"></strong> do curso de Graduação em <a href="http://w3.ufsm.br/meteorologia/"><span class="smallcaps">meteorologia</span></a> que eu ofereço no Departamento de Física da Universidade Federal de Santa Maria (<a href="http://site.ufsm.br/">UFSM</a>).</p>
+<p>O livro pode ser útil para qualquer um com interesse em aprender o <img src="images/logo_r.png" width="20"> e que quer alavancar a etapa de processamento de dados ambientais no seu projeto. O objetivo é prover uma material para ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional <img src="images/logo_r.png" width="20">. Estes procedimentos são potencializados com o uso do software RStudio, uma interface de desenvolvimento integrado (IDE) para o <img src="images/logo_r.png" width="20">.</p>
 <p>Neste livro o leitor aprenderá a sintaxe básica da linguagem <img src="images/logo_r.png" width="20">, a importação e exportação de dados, a criação de gráficos, funções, a padronização e organização de conjunto de dados ambientais; e finalmente, a confecção de relatórios dinâmicos e reproduzíveis.</p>
 <p>O material do livro inclui o uso de dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia, sensoriamento remoto) em exemplos práticos e em exercícios, para estimular a prática da programação.</p>
 <p>O texto é intercalado com trechos de códigos que podem ser reproduzidos e os resultados visualizados no computador do leitor.</p>
@@ -367,7 +368,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>O texto é organizado em 7 capítulos:</p>
 <ul>
 <li><p><a href="intro.html#intro">1</a> Introdução</p></li>
-<li><p><a href="install.html#install">2</a> Instalação do <img src="images/logo_r.png" width="20"> e Rstudio</p></li>
+<li><p><a href="install.html#install">2.1</a> Instalação do <img src="images/logo_r.png" width="20"> e Rstudio</p></li>
 <li><p><a href="iu.html#iu">3</a> Interface do Usuário</p></li>
 <li><p><a href="rstudio.html#rstudio">4</a> Rstudio</p></li>
 <li><p><a href="operbasic.html#operbasic">5</a> Operações Básicas</p></li>
