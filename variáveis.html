@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-20" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,11 +123,10 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.9" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.9</b> R não é perfeito!</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
-<li class="part"><span><b>II Configuração</b></span></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalando-o.html"><a href="instalando-o.html"><i class="fa fa-check"></i><b>2.1</b> Instalando o <img src="images/logo_r.png" width="20"></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalando-o.html"><a href="instalando-o.html#windows"><i class="fa fa-check"></i><b>2.1.1</b> Windows</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalando-o.html"><a href="instalando-o.html#linux"><i class="fa fa-check"></i><b>2.1.2</b> Linux</a></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
@@ -148,7 +147,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="correção-ortográfica.html"><a href="correção-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Correção ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -392,7 +393,7 @@ fev
 <p>Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a <a href="https://en.wikipedia.org/wiki/Tetens_equation">equação de Tetens</a>, podemos fazer:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(es &lt;-<span class="st"> </span><span class="fl">0.611</span> <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>((<span class="fl">17.269</span> <span class="op">*</span><span class="st"> </span>tar)<span class="op">/</span>(tar <span class="op">+</span><span class="st"> </span><span class="fl">237.3</span>)))
 <span class="co">#&gt; [1] 2.338865</span></code></pre></div>
-<p>Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função <code>ls()</code><a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> para verificar as variáveis existentes:</p>
+<p>Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função <code>ls()</code><a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a> para verificar as variáveis existentes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
 <span class="co">#&gt;  [1] &quot;abr&quot;        &quot;ago&quot;        &quot;dez&quot;        &quot;es&quot;         &quot;esp_num_df&quot;</span>
 <span class="co">#&gt;  [6] &quot;fev&quot;        &quot;jan&quot;        &quot;jul&quot;        &quot;jun&quot;        &quot;mai&quot;       </span>
@@ -509,8 +510,8 @@ Há limitações de interpretação do R para caracteres latinos como cedilha e 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="10">
-<li id="fn10"><p>Essa lista de variáveis também é mostrada no painel <em>Environment</em> do RStudio (canto direito superior, aba <em>Environment</em>).<a href="variáveis.html#fnref10">↩</a></p></li>
+<ol start="11">
+<li id="fn11"><p>Essa lista de variáveis também é mostrada no painel <em>Environment</em> do RStudio (canto direito superior, aba <em>Environment</em>).<a href="variáveis.html#fnref11">↩</a></p></li>
 </ol>
 </div>
             </section>

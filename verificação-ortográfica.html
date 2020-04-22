@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.8 Por que um meteorologista usaria o R? | Análise de Dados Ambientais com R</title>
+  <title>4.2 Verificação ortográfica | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.8 Por que um meteorologista usaria o R? | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="4.2 Verificação ortográfica | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.8 Por que um meteorologista usaria o R? | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="4.2 Verificação ortográfica | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pacotes-da-comunidade-do-r.html"/>
-<link rel="next" href="r-não-é-perfeito.html"/>
+<link rel="prev" href="visão-geral-do-rstudio.html"/>
+<link rel="next" href="operbasic.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -320,27 +320,45 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="por-que-um-meteorologista-usaria-o-r" class="section level2">
-<h2><span class="header-section-number">1.8</span> Por que um meteorologista usaria o R?</h2>
-<p>A meteorologia é 4D:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meteorologia &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z, t){
-  ...muita coisa para caber em um slide...
-}</code></pre></div>
-<p>Logo, requer ferramentas específicas para:</p>
-<ul>
-<li><p>manipulação de dados espacias</p></li>
-<li><p>análise de séries temporais</p></li>
-<li><p>importação e ferramentas de <a href="https://pt.wikipedia.org/wiki/Sistema_de_informa%C3%A7%C3%A3o_geogr%C3%A1fica">SIG</a></p></li>
-<li><p>leitura de dados em formatos específicos (<a href="https://en.wikipedia.org/wiki/NetCDF">netcdf</a>, <a href="https://en.wikipedia.org/wiki/Binary_file">binários</a>, <a href="https://en.wikipedia.org/wiki/GRIB">grib2</a>, …)</p></li>
-</ul>
+<div id="verificação-ortográfica" class="section level2">
+<h2><span class="header-section-number">4.2</span> Verificação ortográfica</h2>
+<p>O RStudio oferece o recurso de verificação ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em <code>Tools &gt; Global Options</code>, selecionando <code>Spelling</code> no painel à esquerda e <code>Install More Languages</code> na caixa de seleção dos dicionários de línguas (Figura <a href="verificação-ortográfica.html#fig:rstudio-spell-config">4.3</a>). Dessa forma, os dicionários de 28 linguagens serão instalados.</p>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-spell-config"></span>
+<img src="images/rstutio-spellcheck-more-langs.png" alt="Configuração do RStudio para instalar dicionários de outras línguas." width="80%" />
+<p class="caption">
+Figure 4.3: Configuração do RStudio para instalar dicionários de outras línguas.
+</p>
 </div>
+<p>Após a adição dos dicionários, acesse novamente a caixa de seleção de dicionários e selecione <code>Portuguese (Brazil)</code> e depois clique em <code>ok</code> (Figura <a href="verificação-ortográfica.html#fig:rstudio-set-dict">4.4</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:rstudio-set-dict"></span>
+<img src="images/rstudio-dictionarie-sel-ptbr.png" alt="Configuração do dicionário de Portugês-BR  no RStudio." width="80%" />
+<p class="caption">
+Figure 4.4: Configuração do dicionário de Portugês-BR no RStudio.
+</p>
+</div>
+<p>Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla <code>F7</code> (ou <code>Edit &gt; Check Spelling</code>).</p>
+<p>In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the same time as the <kbd>-</kbd> key) will write <code>&lt;-</code> in a single keystroke in a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the same time as the <kbd>-</kbd> key) does the same in a Mac.</p>
+<div id="configurando-dicionários-customizados" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Configurando dicionários customizados</h3>
+<p>Se você quer usar um diferente variação de dicionário ou algum dicionário customizado, siga as orientações disponibilizadas no <a href="https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries">suporte do RStudio</a> e na vinheta do pacote <a href="https://docs.ropensci.org/hunspell/articles/intro.html#hunspell-dictionaries">hunspell</a>.</p>
+<p>A instalação do dicionário de Português-brasileiro no Debian ou Ubuntu requer o pacote <code>hunspell-pt-br</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="op">&gt;</span> <span class="fu">sudo</span> apt-get install hunspell-pt-br</code></pre></div>
+<p>A verificação de que o dicionário foi instalado pode ser feita se ele aparece listado pelo comando abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="op">&gt;</span> <span class="ex">ll</span> /usr/share/hunspell</code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="pacotes-da-comunidade-do-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-não-é-perfeito.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visão-geral-do-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="operbasic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -371,7 +389,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/01-introducao.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/04-rstudio.Rmd",
 "text": "Edit"
 },
 "history": {

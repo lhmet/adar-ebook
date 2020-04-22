@@ -78,7 +78,10 @@ mat
 
 Operações algébricas, incluindo a multiplicação `*`, atuam elemento a elemento sobre matrizes. Mas se a intenção é fazer uma multiplicação matricial (Figura \@ref(fig:fig-multiplicacao-mat)) usamos o operador (`%*%`).
 
-
+<div class="figure" style="text-align: center">
+<img src="images/multilicacaoMatricial.png" alt="Multiplicação matricial." width="50%" />
+<p class="caption">(\#fig:fig-multiplicacao-mat)Multiplicação matricial.</p>
+</div>
 
 
 ```r
