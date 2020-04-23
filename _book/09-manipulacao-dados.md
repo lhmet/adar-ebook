@@ -56,12 +56,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ──────────────────────────────── tidyverse 1.3.0 ──
-#> ✓ ggplot2 3.2.1     ✓ purrr   0.3.4
+#> ── Attaching packages ────────────── tidyverse 1.3.0 ──
+#> ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
 #> ✓ tibble  3.0.1     ✓ dplyr   0.8.5
 #> ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-#> ✓ readr   1.3.1     ✓ forcats 0.4.0
-#> ── Conflicts ─────────────────────────────────── tidyverse_conflicts() ──
+#> ✓ readr   1.3.1     ✓ forcats 0.5.0
+#> ── Conflicts ───────────────── tidyverse_conflicts() ──
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
 ```
@@ -1548,4 +1548,29 @@ Estrutura da tabela de dados resultante:
 
 
 
+
+
+<!-- 
+
+Controle de qualidade e validação de dados
+
+# pacote útil para controle de qualidade e validação de dados
+https://github.com/data-cleaning/validate
+https://github.com/data-cleaning/validatetools 
+
+# pacote de verificação de qualidade de dados para R
+https://github.com/guhjy/doctr/blob/master/vignettes/vignette.Rmd
+
+# simple functions for examining and cleaning dirty data
+https://github.com/sfirke/janitor
+
+# dataPreparation
+https://cran.r-project.org/web/packages/dataPreparation/vignettes/dataPreparation.html
+-->
+
+
+<!--
+# dados meteorológicos gradeados
+https://eliocamp.github.io/codigo-r/en/2019/04/ecmwfr-global-warming/
+-->
 

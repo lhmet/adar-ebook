@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,13 +151,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
 <li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
-<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -172,9 +173,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
-</ul></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -348,38 +347,35 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos" class="section level2">
 <h2><span class="header-section-number">8.1</span> Pré-requisitos</h2>
 <p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb221-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
-<a class="sourceLine" id="cb221-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb221-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
-<a class="sourceLine" id="cb221-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
-<a class="sourceLine" id="cb221-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb221-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb221-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
-<a class="sourceLine" id="cb221-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb221-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
-<a class="sourceLine" id="cb221-11" data-line-number="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb215-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb215-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb215-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb215-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb215-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb215-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb215-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb215-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb215-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb215-11" data-line-number="11">)</a></code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">install.packages</span>(</a>
-<a class="sourceLine" id="cb222-2" data-line-number="2">   pacotes,</a>
-<a class="sourceLine" id="cb222-3" data-line-number="3">   <span class="dt">dependencies =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb222-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
-<a class="sourceLine" id="cb223-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb223-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
-<a class="sourceLine" id="cb223-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
-<a class="sourceLine" id="cb223-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb223-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb223-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
-<a class="sourceLine" id="cb223-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
-<a class="sourceLine" id="cb223-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb223-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb223-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
-<a class="sourceLine" id="cb223-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb223-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb223-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
-<a class="sourceLine" id="cb223-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb217-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb217-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb217-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb217-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb217-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb217-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb217-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
@@ -398,7 +394,7 @@ ou simplesmente
 </p>
 </div>
 <p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua instalação precisamos executar o comando abaixo.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 

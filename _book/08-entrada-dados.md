@@ -38,10 +38,7 @@ Para instalá-los já com as dependências utilize a instrução abaixo:
 
 
 ```r
-install.packages(
-   pacotes,
-   dependencies = TRUE
-)
+install.packages(pacotes)
 ```
 
 Agora você pode carregar os pacotes.

@@ -1,19 +1,42 @@
 # (PART) Configuração do Sistema {-}
 
 
-
 # O que você precisa 
 
 
+<!-- 
+# TOP formato de curso
+https://uomresearchit.github.io/r-tidyverse-intro/
+https://github.com/UoMResearchIT/r-tidyverse-intro
 
 
-Você precisará do [<img src="images/logo_r.png" width="20">](https://www.r-project.org/), [RStudio](https://rstudio.com/) e se estiver em SO Windows também do programa [Rtools]().
+http://ohi-science.org/data-science-training/
+https://github.com/lhmet-forks/data-science-training
+https://github.com/NCEAS/oss-lessons
+http://ohi-science.org/toolbox-training/index.html
+https://github.com/ohi-science/toolbox-training
+
+
+
+# Reproducible Analysis With R
+https://github.com/NCEAS/sasap-training/tree/master/materials/reproducible-analysis-in-r 
+https://datacarpentry.org/rr-workshop/
+
+https://ropensci.org/blog/2019/07/11/commcall-jul2019/
+
+
+https://github.com/lhmet-forks/r-eda-gapminder 
+https://github.com/cambiotraining/r-intro/tree/master 
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
+-->
+
+
+
+
+Você precisará do [<img src="images/logo_r.png" width="20">](https://www.r-project.org/), [RStudio](https://rstudio.com/) e se estiver em SO Windows também do programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html).
+
 
 ## Instalação do R e RStudio {#install}
-
-
-
-
 
 A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A interface da linha de comando tem suas vantagens, mas a sua vida ficará muito mais fácil com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
 
@@ -25,9 +48,9 @@ A seguir veremos como:
 
 - configurar um diretório para armazenar os pacotes do R instalados
 
-- instalar pacotes no <img src="images/logo_r.png" width="20">
+- instalar pacotes 
 
-- instalar o Rstudio *Desktop*
+- instalar o RStudio *Desktop*
 
 Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
 
@@ -38,10 +61,9 @@ A instalação no SO Windows é igual a instalação de qualquer outro *software
 <p>Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.</p>
 </div>
 
-### Instalando o <img src="images/logo_r.png" width="20">
+### Instalando o R
 
 O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Nós veremos a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.
-
 
 
 #### Windows 
@@ -57,16 +79,15 @@ No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma
 <p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
-Para instalar pacotes de plataformas diferentes da CRAN (veja seção [#install-github]) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). Nesta página você deve selecionar a versão do `Rtools` adequada (e.g [Rtools35.exe](https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe)) para sua versão do R (https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.3.html). 
+Para instalar pacotes de plataformas diferentes da CRAN (veja seção \@ref(install-github)) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html), selecionando a versão adequada para sua versão do <img src="images/logo_r.png" width="20">. 
 
 
-##### Atualização do <img src="images/logo_r.png" width="20"> no Windows
+##### Atualização do R no Windows
 
 Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.3.html).
 
 
-As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados na nova versão do <img src="images/logo_r.png" width="20">.
-
+As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
 
 Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
 
@@ -74,34 +95,97 @@ Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés 
 
 ##### Ubuntu
 
-Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso não for problema para você então basta executar:
+<!-- 
+link da cran sobre instalação do R no ubuntu
+https://cran.rstudio.com/bin/linux/ubuntu/README.html 
+
+# PPA
+https://rubuntu.netlify.app/post/2018-05-25-announcing-c2d4u3-5/
+
+# problemas com rjava
+https://askubuntu.com/questions/1053726/r-cannot-install-rjava-what-is-r-api-3-4
+
+sudo add-apt-repository ppa:marutter/c2d4u3.5
+sudo apt update
+sudo apt install r-cran-rjava
+
+-->
+
+Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu. Mas primeiro, caso você tenha alguma versão antiga do R, desinstale-a com:
 
 
-```r
-sudo apt-get install r-base
+```bash
+$ sudo apt-get remove r-base-core
 ```
 
-Entretanto, os pacotes do <img src="images/logo_r.png" width="20"> recém lançados são compilados para última versão do <img src="images/logo_r.png" width="20">. Então você pode ter restrições ao uso de pacotes novos, os quais geralmente incluem o estado da arte de análise de dados. Por esta razão, abaixo mostra-se como instalar o <img src="images/logo_r.png" width="20"> de forma que seja atualizado automaticamente pelo sistema.
+A forma mais fácil de instalar o <img src="images/logo_r.png" width="20"> é usar a versão compilada no repositório *default* do Ubuntu. 
 
-##### R sempre atualizado
+
+```bash
+$ sudo apt-get install r-base
+```
+
+Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes (ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
+
+[^rversion-recente]: A versão mais atual no período de elaboração deste texto foi a R 3.6.3.
+
+1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror] à lista de repositórios do sistema [^aviso-sudo].
+
+
+[^cran-mirror]: Usando https://cloud.r-project.org automaticamente redireciona para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
+
+[^aviso-sudo]: A execução destes comandos requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Caso não tenha, consulte o administrador do sistema.
+
+
+```bash
+$ sudo touch /etc/apt/sources.list.d/cran.list
+$ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
+```
+
+2. Adicionamos a chave de autenticação[^chave-pub] do repositório.
+
+[^chave-pub]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+
+
+```bash
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+```
+
+3. Atualizamos a lista de repositórios do sistema.
+
+
+```bash
+sudo apt-get update
+```
+
+4. Instalamos o R
+
+
+```bash
+$ sudo apt-get install -y r-base r-base-dev 
+```
+
+
+
+<!-- 
+##### R sempre atualizado 
 
 Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
 
-Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^versoesubuntu]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
 
-- 12.04: `precise`
 - 14.04: `trusty` 
 - 16.04: `xenial`
 - 18.04: `bionic`
 
-[^1]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
+[^versoesubuntu]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
 A versão mais atual é a 3.6.3. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
 ###### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
-O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^2] :
+O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^ubuntuname] :
 
 
 
@@ -112,8 +196,7 @@ $ lsb_release -sc
 bionic
 ```
 
-
-[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
+[^ubuntuname]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
 
 O endereço do espelho da CRAN e algumas configurações do sistema podem ser inseridas num arquivo em `/etc/apt/sources.list.d/cran.list`. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
@@ -123,11 +206,11 @@ Após o comando, informe a senha de superusuário e então vamos criar o arquivo
 
     # touch /etc/apt/sources.list.d/cran.list
 
-Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho[^3], o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter versões do R  3.6**. 
+Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho[^cran-mirrors], o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter a última versão do pacote R 3.6 para Ubuntu. 
 
     # repos="deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/"
     
-[^3]: Usando https://cloud.r-project.org automaticamente redireciona parao espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
+[^cran-mirrors]: Usando https://cloud.r-project.org automaticamente redireciona para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
 
 O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.
 
@@ -137,9 +220,9 @@ Adicionamos o conteúdo da `repos` ao arquivo cran.list usando o comando:
     # echo $repos >> /etc/apt/sources.list.d/cran.list
 
 Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^4] fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^wikiped-apt] fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.
 
-[^4]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+[^wikiped-apt]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
 
 Feito isso, você podemos retornar a sessão de usuário comum:
@@ -149,13 +232,13 @@ Feito isso, você podemos retornar a sessão de usuário comum:
 
 ###### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^5]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^pub-key]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
     $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
-[^5]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+[^pub-key]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
 Se aparecer uma mensagem **OK** a chave foi adicionada com sucesso e os comandos a seguir podem ignorados. Porém, se aparecer uma mensagem do tipo *keyserver error*, utilize o seguinte comando:
 
@@ -176,10 +259,17 @@ Após fazer as configurações da lista de repositórios e adicionar a chave é 
     
 Finalmente, instalamos o binário do R, a coleção de pacotes recomendados e ferramentas de desenvolvimento:
 
-    $ sudo apt-get -y install r-base-core r-recommended r-base-dev
+    $ sudo apt-get -y install r-base r-base-dev
+-->
+
 
 <!---
 referências
+
+https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04
+
+https://askubuntu.com/questions/218708/installing-latest-version-of-r-base
+
  https://stackoverflow.com/questions/46704247/upgrade-r-in-ubuntu-xenial
  https://gist.github.com/mGalarnyk/41c887e921e712baf86fecc507b3afc7
  https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r 
@@ -215,9 +305,7 @@ nlme > lattice > broom
 
 
 
-###### Testando o <img src="images/logo_r.png" width="20">
-
-Para iniciar o <img src="images/logo_r.png" width="20"> no Ubuntu, digite `R` no cursor do terminal:
+Para iniciar o <img src="images/logo_r.png" width="20"> no Linux, digite `R` no cursor do terminal:
 
     $ R
 
@@ -235,33 +323,44 @@ A partir desse momento já começamos uma sessão no <img src="images/logo_r.png
 <p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
 </div>
 
-Você pode sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com o código a seguir:
+Após este teste, podemos sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com a expressão abaixo:
 
 
 ```r
 > q(save = "no")
 ```
 
-##### Diretório para pacotes instalados pelo usuário
+#### Diretório para pacotes instalados pelo usuário
 
-Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^6] ou usando `sudo apt-get update && sudo apt-get upgrade`.
+Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^update-rbase] ou usando `sudo apt-get update && sudo apt-get upgrade`.
 
-[^6]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
+[^update-rbase]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
 
 Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
 
-    $ mkdir -p `echo $HOME`/.R/libs/
-    
+
+```bash
+$ mkdir -p `echo $HOME`/.R/libs/
+```
+
 Para informar ao <img src="images/logo_r.png" width="20"> onde procurar os pacotes instalados, você precisa criar um arquivo chamado `.Renviron`, no diretório `$HOME`, contendo a expressão `R_LIBS=/home/usuario/.R/libs/`. Você pode fazer isso em um terminal com os comandos:
 
-    $ R_LIBS=`echo $HOME/.R/libs/`
-    $ echo $R_LIBS >> `echo $HOME/.Renviron`
+
+```bash
+$ R_LIBS=`echo $HOME/.R/libs/`
+$ echo $R_LIBS >> `echo $HOME/.Renviron`
+```
+
+
 
 Esse caminho fica então visível ao <img src="images/logo_r.png" width="20">, o que pode ser verificado executando a função `.libPaths()` na linha de comando do <img src="images/logo_r.png" width="20">. 
 
 Abra o <img src="images/logo_r.png" width="20">:
 
-    $ R
+
+```bash
+$ R
+```
 
 e ao digitar:
 
@@ -272,16 +371,21 @@ e ao digitar:
 [3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
-o seu diretório `/home/usuario/.R/libs` [^7] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
+o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
 
-[^7]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
-
-
+[^rlibs]: Diretórios precedidos por "." no Linux são diretórios ocultos. O diretório `/home/usuario/.R` é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse *View > Show Hidden Files* (ou *Visualizar > Mostrar arquivos ocultos*). No terminal utilize `ls -a` para listar os arquivos ocultos.
 
 
-## Pacotes do R {#install-pck}
 
-Um pacote do R é uma coleção de funções, dados e documentação que estende as capacidades básicas do R.
+
+## Instalação de Pacotes {#install-pck}
+
+Um pacote do <img src="images/logo_r.png" width="20"> é uma coleção de funções, dados e documentação que estende as funcionalidades básicas do R, muito além do que se poderia imaginar. Os pacotes são desenvolvidos pela comunidade do <img src="images/logo_r.png" width="20"> formada por vários contribuidores. 
+
+<!-- 
+http://www.sthda.com/english/wiki/installing-and-using-r-packages 
+https://www.datacamp.com/community/tutorials/r-packages-guide
+-->
 
 ### Da internet
 
@@ -289,17 +393,26 @@ Um pacote do R é uma coleção de funções, dados e documentação que estende
 
 A forma mais fácil de instalar uma pacote do R é através da função `install.packages("nome_do_pacote")`.
 
-Por *default* o pacote informado é instalado a partir da ([CRAN](https://cran.r-project.org/))
+Por *default* o pacote informado é instalado a partir do repositório oficial de distribuição de pacotes: a ([CRAN](https://cran.r-project.org/)). A CRAN é uma rede de servidores e FTP distribuídas pelo mundo e mantida pela comunidade <img src="images/logo_r.png" width="20">. A [Fundação R](https://www.r-project.org/foundation/) coordena a CRAN e estabelece diversos testes para assegurar que os pacotes publicados sigam as [políticas da CRAN](https://cran.r-project.org/web/packages/policies.html).
 
-A seguir você verá como instalar um pacote. Como exemplo instalaremos o pacote **remotes** que dispões de funções para instalar pacotes de repositórios remotos, como por exemplo do [GitHub](https://github.com/).
+Agora veremos como instalar um pacote. Como exemplo instalaremos o pacote [remotes](https://cran.r-project.org/web/packages/remotes/index.html) que dispõe de funções para instalar pacotes de repositórios remotos, como por exemplo do [GitHub](https://github.com/).
 
 
 ```r
 install.packages("remotes")
 ```
 
-
-
+<!-- 
+Package Installation from Remote Repositories, Including 'GitHub'
+sudo apt-get libssl-dev 
+see https://www.rstudio.com/products/rpackages/devtools/ 
+  The OpenSSL library that is required to 
+  build git2r was not found. 
+  Please install: 
+libssl-dev    (package on e.g. Debian and Ubuntu) 
+openssl-devel (package on e.g. Fedora, CentOS) 
+openssl       (Homebrew package on OS X) 
+-->
 
 
 Para ter acesso as funções disponibilizadas com o pacote você precisa carregar o pacote:
@@ -320,13 +433,14 @@ Nem todos pacotes são disponíveis na CRAN. Muitos desenvolvedores disponibiliz
 Para instalar um pacote de um repositório do GitHub usa-se a função `install_github()` do pacote **remotes**. Portanto, o pacote **remotes** precisa ser sido instalado primeiro (ver seção \@ref(install-cran)). 
 
 
+<!-- 
+#Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
+-->
 
-A função para instalar um pacote do GitHub requer como argumento o nome do usuário e do repositório. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
+A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
 
 
 ```r
-# install.packages("devtools")
-# carrega o pacote devtools
 library(remotes)
 # instala o pacote inmetr do repositório 
 # https://github.com/lhmet/inmetr 
@@ -354,13 +468,13 @@ install.packages(
 
 #### Arquivo fonte local
 
-Códigos fonte de pacotes do R são armazenados como arquivos com a extensão `.tar.gz`. Binários compilados são armazenados com a extensão `.zip`. Exemplo de arquivos como estes podem ser baixados manualmente da CRAN (veja a seção Downloads em https://cran.r-project.org/web/packages/ggplot2/index.html), GitHub ou R-forge.
+Códigos fonte de pacotes do R são armazenados como arquivos com a extensão `.tar.gz`. Binários compilados são armazenados com a extensão `.zip`. Exemplo de arquivos como estes podem ser baixados manualmente da CRAN (veja a seção Downloads em por exemplo, https://cran.r-project.org/web/packages/remotes/index.html), no [GitHub](https://github.com/r-lib/remotes/releases) ou R-forge.
 
 Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito  com a função `install.packages()`, especificando o argumento `repos = NULL` e o argumento `pkgs` com o caminho do arquivo. Por exemplo:
 
 
 ```r
-install.packages("ggplot2_2.1.0.tar.gz", repos = NULL)
+install.packages("remotes_2.1.1.tar.gz", repos = NULL)
 ```
 
 
@@ -374,7 +488,7 @@ Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da 
 update.packages(checkBuilt=TRUE, ask=FALSE)
 ```
 
-Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilicitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
+Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
 
 
 ```r
@@ -459,57 +573,130 @@ update_all(check_R = TRUE)
 <p>Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.</p>
 </div>
 
+## Pacotes necessários e dependências
+
+Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.
+
+Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no <img src="images/logo_r.png" width="20">. 
+
+
+```bash
+$ sudo apt install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev
+```
+
+
+```r
+pcks <- c(
+  "easypackages",
+  "rmarkdown",
+  "knitr",
+  "pander", 
+  "htmlTable",
+  "styler",
+  "tidyverse", 
+  "rio",
+  "readr",
+  "feather",
+  "readxl",
+  "writexl",
+  "dplyr",
+  "microbenchmark",
+  "openxlsx",
+  "ncdf4",
+  "raster",
+  "openair",
+  "lubridate",
+  "fields",
+  "RColorBrewer",
+  "WriteXLS"
+  #"gdata",
+  #"XLConnect"
+  )
+
+pcks_dev <- c(
+  "vembedr",
+  "inmetr"
+)
+```
+
+
+```r
+install.packages(pcks) 
+```
+
+
+<!-- 
+# rJava
+https://github.com/hannarud/r-best-practices/wiki/Installing-RJava-(Ubuntu)
+# java -version
+# sudo R CMD javareconf
+$ sudo add-apt-repository ppa:marutter/c2d4u3.5
+$ sudo apt-get update
+$ sudo apt-get upgrade
+The following packages will be upgraded:
+  binutils binutils-common binutils-x86-64-linux-gnu gnome-software gnome-software-common gnome-software-plugin-snap libbinutils
+  libpulse-mainloop-glib0 libpulse0 libpulse0:i386 libpulsedsp openjdk-11-jdk openjdk-11-jdk-headless openjdk-11-jre
+  openjdk-11-jre-headless pulseaudio pulseaudio-module-bluetooth pulseaudio-utils r-cran-boot r-cran-class r-cran-codetools
+  r-cran-foreign r-cran-lattice r-cran-mass r-cran-matrix r-cran-mgcv r-cran-nlme r-cran-nnet r-cran-spatial r-cran-survival
+  ubuntu-software
+31 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+$ sudo apt-get install r-cran-rjava
+-->
+
+
+
+
+
 
 ## RStudio no Ubuntu {#install-rstudio}
 
-<img src="images/logo_rstudio.png" width="80"> é uma empresa que desenvolve ferramentas gratuitas para o <img src="images/logo_r.png" width="20"> e [produtos pagos](https://www.rstudio.com/products/) para empresas.
+RStudio é uma empresa que desenvolve ferramentas gratuitas para o <img src="images/logo_r.png" width="20"> e [produtos pagos](https://www.rstudio.com/products/) para empresas.
 
-Uma de suas ferramentas gratuitas é o software RStudio *Desktop* que consiste em um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o <img src="images/logo_r.png" width="20">, consequentemente, também é multiplataforma.
+Uma de suas ferramentas gratuitas é o software RStudio *Desktop* que consiste em um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o <img src="images/logo_r.png" width="20">. Ele funciona é multiplataforma (servidores inclusive) e fornece diversos recursos, como a integração com controle de versão e manejo de projetos.
 
 Para instalação da versão do [RStudio Desktop](https://rstudio.com/products/rstudio/#rstudio-desktop), você precisa saber se seu SO é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:
 
-    $ arch
+
+```bash
+$ arch
+```
 
 ```
 x86_64
 ```
-Se retornar **x86_64** sua máquina é 64-bit.
+Se retornar **x86_64** sua máquina é 64-bit[^32bit].
 
-    $ lsb_release --release | cut -f2
+[^32bit]: Se seu sistema for 32 bit, você pode usar [versões antigas do rstudio](https://rstudio.com/products/rstudio/older-versions/) 
+
+
+```bash
+$ lsb_release -sr
+```
 
 ```
-14.04
+18.04
 ```
 
-Com essas informações, siga os seguintes passos:
-
-  1. acesse [RStudio](https://www.rstudio.com/products/rstudio/download/)
-  2. clique em *Download* (Figura \@ref(fig:rstudio-choose))
+Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). Ao clicar sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se no seu sistema não houver esta opção, instale via **terminal**[^atalho-term] com os seguintes comandos:
 
 
-<div class="figure" style="text-align: center">
-<img src="images/rstudio-choose.png" alt="Opção para baixar o RStudio *Desktop*." width="100%" />
-<p class="caption">(\#fig:rstudio-choose)Opção para baixar o RStudio *Desktop*.</p>
-</div>
-
-  3. Clique na sua plataforma (de acordo com seu SO, arquitetura e versão da distribuição) (Figura \@ref(fig:rstudio-plat)), no exemplo deste livro *RStudio 1.2.5033 - Ubuntu 18.04.4 LTS (64-bit)*.
-  
-<div class="figure" style="text-align: center">
-<img src="images/rstudio-plataform-options.png" alt="Escolha da plataforma em que será o usada o RStudio *Desktop*." width="100%" />
-<p class="caption">(\#fig:rstudio-plat)Escolha da plataforma em que será o usada o RStudio *Desktop*.</p>
-</div>
-  
-
-  4. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu *Desktop* não há esta opção ao clicar com botão direito sobre o arquivo, instale via **terminal**[^8] com os seguintes comandos:
+[^atalho-term]: digite <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> para abrir um terminal no Linux Ubuntu
 
 
-[^8]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
 
 ```
-$ cd /local/do/arquivo/baixado
-$ sudo dpkg -i arquivoBaixado.deb
+$ cd /local/do/arquivo/baixado/rstudio-x.y.zzzz-amd64.deb
+$ sudo dpkg -i rstudio-x.y.zzzz-amd64.deb
 $ sudo apt-get install -f
 ```
+
+
+<div class="figure" style="text-align: center">
+<img src="images/rstudio-download-with-peek.gif" alt="Opção para baixar o RStudio *Desktop*." width="90%" />
+<p class="caption">(\#fig:rstudio-download)Opção para baixar o RStudio *Desktop*.</p>
+</div>
+
+
 
 
 Abra o RStudio digitando no terminal:

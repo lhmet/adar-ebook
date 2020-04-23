@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Exercícios | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Exercícios | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,13 +151,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
 <li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
-<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -172,9 +173,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
-</ul></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -348,73 +347,73 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="exercícios-3" class="section level2">
 <h2><span class="header-section-number">9.5</span> Exercícios</h2>
 <p><strong>Pacotes necessários</strong></p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
-<a class="sourceLine" id="cb329-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
+<a class="sourceLine" id="cb323-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
 <p><strong>Dados</strong></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb330-3" data-line-number="3">  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,</a>
-<a class="sourceLine" id="cb330-4" data-line-number="4">  <span class="dt">destfile =</span> arq_temp</a>
-<a class="sourceLine" id="cb330-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb330-6" data-line-number="6"><span class="co"># nome dos dados carregados para os exercícios</span></a>
-<a class="sourceLine" id="cb330-7" data-line-number="7"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb324-2" data-line-number="2"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb324-3" data-line-number="3">  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,</a>
+<a class="sourceLine" id="cb324-4" data-line-number="4">  <span class="dt">destfile =</span> arq_temp</a>
+<a class="sourceLine" id="cb324-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb324-6" data-line-number="6"><span class="co"># nome dos dados carregados para os exercícios</span></a>
+<a class="sourceLine" id="cb324-7" data-line-number="7"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato &quot;arrumado&quot; e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">soi </a></code></pre></div>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">soi_arrumado &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> soi, </a>
-<a class="sourceLine" id="cb332-2" data-line-number="2">                       <span class="dt">key =</span> <span class="st">&quot;mes&quot;</span>, </a>
-<a class="sourceLine" id="cb332-3" data-line-number="3">                       <span class="dt">value =</span> <span class="st">&quot;soi&quot;</span>,</a>
-<a class="sourceLine" id="cb332-4" data-line-number="4">                       <span class="op">-</span>YEAR) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb332-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">mes =</span> <span class="kw">as.integer</span>(mes)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb332-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(YEAR, mes) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb332-7" data-line-number="7"><span class="st">  </span><span class="kw">setNames</span>(., <span class="kw">tolower</span>(<span class="kw">names</span>(.)))</a>
-<a class="sourceLine" id="cb332-8" data-line-number="8">soi_arrumado</a></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">soi </a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">soi_arrumado &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> soi, </a>
+<a class="sourceLine" id="cb326-2" data-line-number="2">                       <span class="dt">key =</span> <span class="st">&quot;mes&quot;</span>, </a>
+<a class="sourceLine" id="cb326-3" data-line-number="3">                       <span class="dt">value =</span> <span class="st">&quot;soi&quot;</span>,</a>
+<a class="sourceLine" id="cb326-4" data-line-number="4">                       <span class="op">-</span>YEAR) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb326-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">mes =</span> <span class="kw">as.integer</span>(mes)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb326-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(YEAR, mes) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb326-7" data-line-number="7"><span class="st">  </span><span class="kw">setNames</span>(., <span class="kw">tolower</span>(<span class="kw">names</span>(.)))</a>
+<a class="sourceLine" id="cb326-8" data-line-number="8">soi_arrumado</a></code></pre></div>
 <p>A estrutura esperada dos dados arrumados é mostrada abaixo:</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o <em>tibble</em> fornecido abaixo para o &quot;formato arrumado&quot;. No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe <em>date</em> usando a função <code>as.Date()</code>.</li>
 </ol>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">precd_ncdf</a></code></pre></div>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1">precd_arrum &lt;-<span class="st"> </span><span class="kw">gather</span>(precd_ncdf,</a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">                      <span class="dt">key =</span>  date, </a>
-<a class="sourceLine" id="cb334-3" data-line-number="3">                      <span class="dt">value =</span> prec,</a>
-<a class="sourceLine" id="cb334-4" data-line-number="4">                      <span class="op">-</span><span class="kw">c</span>(x, y)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb334-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb334-6" data-line-number="6">    <span class="dt">date =</span> <span class="kw">gsub</span>(</a>
-<a class="sourceLine" id="cb334-7" data-line-number="7">      <span class="dt">pattern =</span> <span class="st">&quot;X&quot;</span>, </a>
-<a class="sourceLine" id="cb334-8" data-line-number="8">      <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>, </a>
-<a class="sourceLine" id="cb334-9" data-line-number="9">      <span class="dt">x =</span> date</a>
-<a class="sourceLine" id="cb334-10" data-line-number="10">      ),</a>
-<a class="sourceLine" id="cb334-11" data-line-number="11">    <span class="dt">date =</span> <span class="kw">as.Date</span>(date, <span class="st">&quot;%Y.%m.%d&quot;</span>)</a>
-<a class="sourceLine" id="cb334-12" data-line-number="12">  )</a>
-<a class="sourceLine" id="cb334-13" data-line-number="13">precd_arrum</a></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">precd_ncdf</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1">precd_arrum &lt;-<span class="st"> </span><span class="kw">gather</span>(precd_ncdf,</a>
+<a class="sourceLine" id="cb328-2" data-line-number="2">                      <span class="dt">key =</span>  date, </a>
+<a class="sourceLine" id="cb328-3" data-line-number="3">                      <span class="dt">value =</span> prec,</a>
+<a class="sourceLine" id="cb328-4" data-line-number="4">                      <span class="op">-</span><span class="kw">c</span>(x, y)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb328-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb328-6" data-line-number="6">    <span class="dt">date =</span> <span class="kw">gsub</span>(</a>
+<a class="sourceLine" id="cb328-7" data-line-number="7">      <span class="dt">pattern =</span> <span class="st">&quot;X&quot;</span>, </a>
+<a class="sourceLine" id="cb328-8" data-line-number="8">      <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>, </a>
+<a class="sourceLine" id="cb328-9" data-line-number="9">      <span class="dt">x =</span> date</a>
+<a class="sourceLine" id="cb328-10" data-line-number="10">      ),</a>
+<a class="sourceLine" id="cb328-11" data-line-number="11">    <span class="dt">date =</span> <span class="kw">as.Date</span>(date, <span class="st">&quot;%Y.%m.%d&quot;</span>)</a>
+<a class="sourceLine" id="cb328-12" data-line-number="12">  )</a>
+<a class="sourceLine" id="cb328-13" data-line-number="13">precd_arrum</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Coloque os dados de poluição (<em>tibble</em> <code>poluentes</code>) no formato &quot;arrumado&quot;.</li>
 </ol>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">poluentes</a></code></pre></div>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">poluentes_arrum &lt;-<span class="st"> </span>poluentes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb336-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(., poluente, duracao)</a>
-<a class="sourceLine" id="cb336-3" data-line-number="3">poluentes_arrum</a></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1">poluentes</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">poluentes_arrum &lt;-<span class="st"> </span>poluentes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(., poluente, duracao)</a>
+<a class="sourceLine" id="cb330-3" data-line-number="3">poluentes_arrum</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.</li>
 </ol>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">dados_sm</a></code></pre></div>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1">dados_sm_arrum &lt;-<span class="st"> </span>dados_sm <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb338-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(., </a>
-<a class="sourceLine" id="cb338-3" data-line-number="3">         <span class="dt">key =</span> day, </a>
-<a class="sourceLine" id="cb338-4" data-line-number="4">         <span class="dt">value =</span> valor, </a>
-<a class="sourceLine" id="cb338-5" data-line-number="5">         d1<span class="op">:</span>d31</a>
-<a class="sourceLine" id="cb338-6" data-line-number="6">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb338-7" data-line-number="7"><span class="st">  </span><span class="kw">spread</span>(., </a>
-<a class="sourceLine" id="cb338-8" data-line-number="8">         element, </a>
-<a class="sourceLine" id="cb338-9" data-line-number="9">         valor</a>
-<a class="sourceLine" id="cb338-10" data-line-number="10">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb338-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(.,</a>
-<a class="sourceLine" id="cb338-12" data-line-number="12">         <span class="dt">day =</span> <span class="kw">as.integer</span>(<span class="kw">str_replace_all</span>(day, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;&quot;</span>))</a>
-<a class="sourceLine" id="cb338-13" data-line-number="13">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb338-14" data-line-number="14"><span class="st">  </span><span class="kw">arrange</span>(year, month, day)</a></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">dados_sm</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">dados_sm_arrum &lt;-<span class="st"> </span>dados_sm <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb332-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(., </a>
+<a class="sourceLine" id="cb332-3" data-line-number="3">         <span class="dt">key =</span> day, </a>
+<a class="sourceLine" id="cb332-4" data-line-number="4">         <span class="dt">value =</span> valor, </a>
+<a class="sourceLine" id="cb332-5" data-line-number="5">         d1<span class="op">:</span>d31</a>
+<a class="sourceLine" id="cb332-6" data-line-number="6">         ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb332-7" data-line-number="7"><span class="st">  </span><span class="kw">spread</span>(., </a>
+<a class="sourceLine" id="cb332-8" data-line-number="8">         element, </a>
+<a class="sourceLine" id="cb332-9" data-line-number="9">         valor</a>
+<a class="sourceLine" id="cb332-10" data-line-number="10">         ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb332-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(.,</a>
+<a class="sourceLine" id="cb332-12" data-line-number="12">         <span class="dt">day =</span> <span class="kw">as.integer</span>(<span class="kw">str_replace_all</span>(day, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;&quot;</span>))</a>
+<a class="sourceLine" id="cb332-13" data-line-number="13">         ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb332-14" data-line-number="14"><span class="st">  </span><span class="kw">arrange</span>(year, month, day)</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <hr />
 <ol start="5" style="list-style-type: decimal">
@@ -423,62 +422,62 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>junte as colunas <code>year</code>, <code>month</code> e <code>day</code> em uma única coluna denominada <code>date</code> de forma que a classe dessa nova coluna seja <code>date</code>.</li>
 </ol></li>
 </ol>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">dados_sm_arrum_u &lt;-<span class="st"> </span>dados_sm_arrum <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(., </a>
-<a class="sourceLine" id="cb339-3" data-line-number="3">        <span class="dt">col =</span> date, </a>
-<a class="sourceLine" id="cb339-4" data-line-number="4">        <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>),</a>
-<a class="sourceLine" id="cb339-5" data-line-number="5">        <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span></a>
-<a class="sourceLine" id="cb339-6" data-line-number="6">        ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb339-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date))</a></code></pre></div>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1"><span class="kw">glimpse</span>(dados_sm_arrum_u)</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">dados_sm_arrum_u &lt;-<span class="st"> </span>dados_sm_arrum <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(., </a>
+<a class="sourceLine" id="cb333-3" data-line-number="3">        <span class="dt">col =</span> date, </a>
+<a class="sourceLine" id="cb333-4" data-line-number="4">        <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>),</a>
+<a class="sourceLine" id="cb333-5" data-line-number="5">        <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span></a>
+<a class="sourceLine" id="cb333-6" data-line-number="6">        ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb333-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date))</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="kw">glimpse</span>(dados_sm_arrum_u)</a></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Filtre os dados obtidos em <strong>(a)</strong> de forma a descobrir as datas em que as observações de <code>tmax</code> ou <code>tmin</code> são faltantes. Mostre o <em>tibble</em> filtrado com as datas e explique o porquê de seus valores.</li>
 </ol>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">dados_sm_arrum_u <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb341-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(., <span class="kw">is.na</span>(tmax) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(tmin))</a></code></pre></div>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1"><span class="co"># As datas faltantes de tmax e tmin também são NA, pq </span></a>
-<a class="sourceLine" id="cb342-2" data-line-number="2"><span class="co"># são datas inválidas ou inexistentes.</span></a>
-<a class="sourceLine" id="cb342-3" data-line-number="3"><span class="co"># O que pode ser mostrado com :</span></a>
-<a class="sourceLine" id="cb342-4" data-line-number="4">dados_sm_arrum <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb342-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(., <span class="kw">is.na</span>(tmax) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(tmin)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb342-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(., year, month, day)</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">dados_sm_arrum_u <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb335-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(., <span class="kw">is.na</span>(tmax) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(tmin))</a></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1"><span class="co"># As datas faltantes de tmax e tmin também são NA, pq </span></a>
+<a class="sourceLine" id="cb336-2" data-line-number="2"><span class="co"># são datas inválidas ou inexistentes.</span></a>
+<a class="sourceLine" id="cb336-3" data-line-number="3"><span class="co"># O que pode ser mostrado com :</span></a>
+<a class="sourceLine" id="cb336-4" data-line-number="4">dados_sm_arrum <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb336-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(., <span class="kw">is.na</span>(tmax) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(tmin)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb336-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(., year, month, day)</a></code></pre></div>
 <hr />
 <ol start="6" style="list-style-type: decimal">
 <li>A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato &quot;arrumado&quot; e as informações de data e horário agregadas em uma única variável da classe <em>POSIXct</em>.</li>
 </ol>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">dados_zorra</a></code></pre></div>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="co"># solucao</span></a>
-<a class="sourceLine" id="cb344-2" data-line-number="2">res &lt;-<span class="st"> </span>dados_zorra <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb344-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(., <span class="dt">key =</span> variavel, <span class="dt">value =</span> valor, <span class="op">-</span>date) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb344-4" data-line-number="4"><span class="st">  </span><span class="kw">separate</span>(</a>
-<a class="sourceLine" id="cb344-5" data-line-number="5">    .,</a>
-<a class="sourceLine" id="cb344-6" data-line-number="6">    <span class="dt">col =</span> variavel,</a>
-<a class="sourceLine" id="cb344-7" data-line-number="7">    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;varname&quot;</span>, <span class="st">&quot;hora&quot;</span>)</a>
-<a class="sourceLine" id="cb344-8" data-line-number="8">    <span class="co">#sep = &quot;\\.&quot;</span></a>
-<a class="sourceLine" id="cb344-9" data-line-number="9">    ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#.$hora %&gt;% unique()</span></a>
-<a class="sourceLine" id="cb344-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(.,</a>
-<a class="sourceLine" id="cb344-11" data-line-number="11">         <span class="dt">hora =</span> <span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb344-12" data-line-number="12">           <span class="kw">nchar</span>(hora) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb344-13" data-line-number="13">           <span class="kw">as.numeric</span>(hora)<span class="op">/</span><span class="dv">100</span>,</a>
-<a class="sourceLine" id="cb344-14" data-line-number="14">           <span class="kw">as.numeric</span>(hora)),</a>
-<a class="sourceLine" id="cb344-15" data-line-number="15">         <span class="dt">hora =</span> <span class="kw">paste0</span>(hora,<span class="st">&quot;:&quot;</span>, <span class="st">&quot;00:00&quot;</span>),</a>
-<a class="sourceLine" id="cb344-16" data-line-number="16">         <span class="dt">date =</span> <span class="kw">as.Date</span>(date, <span class="st">&quot;%d-%m-%Y&quot;</span>)</a>
-<a class="sourceLine" id="cb344-17" data-line-number="17">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb344-18" data-line-number="18"><span class="st">  </span><span class="kw">unite</span>(., <span class="dt">col =</span> date, date, hora, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb344-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">date =</span> <span class="kw">as.POSIXct</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb344-20" data-line-number="20"><span class="st">  </span><span class="kw">spread</span>(., varname, valor)</a>
-<a class="sourceLine" id="cb344-21" data-line-number="21">res</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">dados_zorra</a></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1"><span class="co"># solucao</span></a>
+<a class="sourceLine" id="cb338-2" data-line-number="2">res &lt;-<span class="st"> </span>dados_zorra <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(., <span class="dt">key =</span> variavel, <span class="dt">value =</span> valor, <span class="op">-</span>date) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-4" data-line-number="4"><span class="st">  </span><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb338-5" data-line-number="5">    .,</a>
+<a class="sourceLine" id="cb338-6" data-line-number="6">    <span class="dt">col =</span> variavel,</a>
+<a class="sourceLine" id="cb338-7" data-line-number="7">    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;varname&quot;</span>, <span class="st">&quot;hora&quot;</span>)</a>
+<a class="sourceLine" id="cb338-8" data-line-number="8">    <span class="co">#sep = &quot;\\.&quot;</span></a>
+<a class="sourceLine" id="cb338-9" data-line-number="9">    ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#.$hora %&gt;% unique()</span></a>
+<a class="sourceLine" id="cb338-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(.,</a>
+<a class="sourceLine" id="cb338-11" data-line-number="11">         <span class="dt">hora =</span> <span class="kw">ifelse</span>(</a>
+<a class="sourceLine" id="cb338-12" data-line-number="12">           <span class="kw">nchar</span>(hora) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb338-13" data-line-number="13">           <span class="kw">as.numeric</span>(hora)<span class="op">/</span><span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb338-14" data-line-number="14">           <span class="kw">as.numeric</span>(hora)),</a>
+<a class="sourceLine" id="cb338-15" data-line-number="15">         <span class="dt">hora =</span> <span class="kw">paste0</span>(hora,<span class="st">&quot;:&quot;</span>, <span class="st">&quot;00:00&quot;</span>),</a>
+<a class="sourceLine" id="cb338-16" data-line-number="16">         <span class="dt">date =</span> <span class="kw">as.Date</span>(date, <span class="st">&quot;%d-%m-%Y&quot;</span>)</a>
+<a class="sourceLine" id="cb338-17" data-line-number="17">         ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-18" data-line-number="18"><span class="st">  </span><span class="kw">unite</span>(., <span class="dt">col =</span> date, date, hora, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">date =</span> <span class="kw">as.POSIXct</span>(date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-20" data-line-number="20"><span class="st">  </span><span class="kw">spread</span>(., varname, valor)</a>
+<a class="sourceLine" id="cb338-21" data-line-number="21">res</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <hr />
 <ol start="7" style="list-style-type: decimal">
 <li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>etacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
 </ol>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">estacoes</a></code></pre></div>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">res7 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</a>
-<a class="sourceLine" id="cb346-2" data-line-number="2">  <span class="dt">x =</span> estacoes, </a>
-<a class="sourceLine" id="cb346-3" data-line-number="3">  <span class="dt">y =</span> poluentes, </a>
-<a class="sourceLine" id="cb346-4" data-line-number="4">  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span> =<span class="st"> &quot;estacao&quot;</span>)</a>
-<a class="sourceLine" id="cb346-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">estacoes</a></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">res7 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</a>
+<a class="sourceLine" id="cb340-2" data-line-number="2">  <span class="dt">x =</span> estacoes, </a>
+<a class="sourceLine" id="cb340-3" data-line-number="3">  <span class="dt">y =</span> poluentes, </a>
+<a class="sourceLine" id="cb340-4" data-line-number="4">  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span> =<span class="st"> &quot;estacao&quot;</span>)</a>
+<a class="sourceLine" id="cb340-5" data-line-number="5">)</a></code></pre></div>
 <p>Estrutura da tabela resultante:</p>
 <hr />
 <ol start="8" style="list-style-type: decimal">
@@ -487,75 +486,75 @@ code span.wa { color: #bf0303; } /* Warning */
 <ol style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="co"># datas completas</span></a>
-<a class="sourceLine" id="cb347-2" data-line-number="2">datas_comp</a>
-<a class="sourceLine" id="cb347-3" data-line-number="3"><span class="co"># datas das observações de theta</span></a>
-<a class="sourceLine" id="cb347-4" data-line-number="4">datas_obs</a></code></pre></div>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1">res8a &lt;-<span class="st"> </span><span class="kw">full_join</span>(</a>
-<a class="sourceLine" id="cb348-2" data-line-number="2">  <span class="dt">x =</span> datas_obs,</a>
-<a class="sourceLine" id="cb348-3" data-line-number="3">  <span class="dt">y =</span> datas_comp,</a>
-<a class="sourceLine" id="cb348-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb348-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(date)</a>
-<a class="sourceLine" id="cb348-6" data-line-number="6">res8a</a></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1"><span class="co"># datas completas</span></a>
+<a class="sourceLine" id="cb341-2" data-line-number="2">datas_comp</a>
+<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="co"># datas das observações de theta</span></a>
+<a class="sourceLine" id="cb341-4" data-line-number="4">datas_obs</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1">res8a &lt;-<span class="st"> </span><span class="kw">full_join</span>(</a>
+<a class="sourceLine" id="cb342-2" data-line-number="2">  <span class="dt">x =</span> datas_obs,</a>
+<a class="sourceLine" id="cb342-3" data-line-number="3">  <span class="dt">y =</span> datas_comp,</a>
+<a class="sourceLine" id="cb342-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb342-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(date)</a>
+<a class="sourceLine" id="cb342-6" data-line-number="6">res8a</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha exatamente as datas da tabela <code>data_comp</code> (em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1">res8b &lt;-<span class="st"> </span><span class="kw">right_join</span>(</a>
-<a class="sourceLine" id="cb349-2" data-line-number="2">  <span class="dt">x =</span> datas_obs,</a>
-<a class="sourceLine" id="cb349-3" data-line-number="3">  <span class="dt">y =</span> datas_comp,</a>
-<a class="sourceLine" id="cb349-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb349-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(date)</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">res8b &lt;-<span class="st"> </span><span class="kw">right_join</span>(</a>
+<a class="sourceLine" id="cb343-2" data-line-number="2">  <span class="dt">x =</span> datas_obs,</a>
+<a class="sourceLine" id="cb343-3" data-line-number="3">  <span class="dt">y =</span> datas_comp,</a>
+<a class="sourceLine" id="cb343-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb343-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(date)</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <hr />
 <p>Utilize os dados horários de estações meteorológicas automáticas (EMA) do RS (<code>dados_rs_08_16</code>) para solução das questões a seguir.</p>
 <ol start="10" style="list-style-type: decimal">
 <li>Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável <code>site</code>).</li>
 </ol>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">ini_fim &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(site, date) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb350-5" data-line-number="5">    <span class="dt">inicio =</span> <span class="kw">min</span>(date),</a>
-<a class="sourceLine" id="cb350-6" data-line-number="6">    <span class="dt">fim =</span> <span class="kw">max</span>(date),</a>
-<a class="sourceLine" id="cb350-7" data-line-number="7">    <span class="dt">periodo_err =</span> <span class="kw">time_length</span>(</a>
-<a class="sourceLine" id="cb350-8" data-line-number="8">      fim <span class="op">-</span><span class="st"> </span>inicio, <span class="dt">unit =</span> <span class="st">&quot;year&quot;</span></a>
-<a class="sourceLine" id="cb350-9" data-line-number="9">      )</a>
-<a class="sourceLine" id="cb350-10" data-line-number="10">    ) <span class="co">#%&gt;% glimpse()</span></a>
-<a class="sourceLine" id="cb350-11" data-line-number="11"><span class="co">#glimpse(ini_fim)</span></a>
-<a class="sourceLine" id="cb350-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb350-13" data-line-number="13">periodo &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-14" data-line-number="14"><span class="st">  </span><span class="kw">select</span>(site, date) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-15" data-line-number="15"><span class="st">  </span><span class="kw">group_by</span>(site, <span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-16" data-line-number="16"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-17" data-line-number="17"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ndays =</span> <span class="kw">ifelse</span>(year <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">366</span>, <span class="dv">365</span>),</a>
-<a class="sourceLine" id="cb350-18" data-line-number="18">         <span class="dt">n =</span> n<span class="op">/</span><span class="dv">24</span>,</a>
-<a class="sourceLine" id="cb350-19" data-line-number="19">         <span class="dt">periodo =</span> n<span class="op">/</span>ndays) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-20" data-line-number="20"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-21" data-line-number="21"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb350-22" data-line-number="22"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">periodo =</span> <span class="kw">sum</span>(periodo))</a>
-<a class="sourceLine" id="cb350-23" data-line-number="23"><span class="co">#glimpse(periodo)</span></a>
-<a class="sourceLine" id="cb350-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb350-25" data-line-number="25">per_ini_fim &lt;-<span class="st"> </span><span class="kw">full_join</span>(periodo, ini_fim, <span class="dt">by =</span> <span class="st">&quot;site&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">ini_fim &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(site, date) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb344-5" data-line-number="5">    <span class="dt">inicio =</span> <span class="kw">min</span>(date),</a>
+<a class="sourceLine" id="cb344-6" data-line-number="6">    <span class="dt">fim =</span> <span class="kw">max</span>(date),</a>
+<a class="sourceLine" id="cb344-7" data-line-number="7">    <span class="dt">periodo_err =</span> <span class="kw">time_length</span>(</a>
+<a class="sourceLine" id="cb344-8" data-line-number="8">      fim <span class="op">-</span><span class="st"> </span>inicio, <span class="dt">unit =</span> <span class="st">&quot;year&quot;</span></a>
+<a class="sourceLine" id="cb344-9" data-line-number="9">      )</a>
+<a class="sourceLine" id="cb344-10" data-line-number="10">    ) <span class="co">#%&gt;% glimpse()</span></a>
+<a class="sourceLine" id="cb344-11" data-line-number="11"><span class="co">#glimpse(ini_fim)</span></a>
+<a class="sourceLine" id="cb344-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb344-13" data-line-number="13">periodo &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-14" data-line-number="14"><span class="st">  </span><span class="kw">select</span>(site, date) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-15" data-line-number="15"><span class="st">  </span><span class="kw">group_by</span>(site, <span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-16" data-line-number="16"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-17" data-line-number="17"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ndays =</span> <span class="kw">ifelse</span>(year <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">366</span>, <span class="dv">365</span>),</a>
+<a class="sourceLine" id="cb344-18" data-line-number="18">         <span class="dt">n =</span> n<span class="op">/</span><span class="dv">24</span>,</a>
+<a class="sourceLine" id="cb344-19" data-line-number="19">         <span class="dt">periodo =</span> n<span class="op">/</span>ndays) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-20" data-line-number="20"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-21" data-line-number="21"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb344-22" data-line-number="22"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">periodo =</span> <span class="kw">sum</span>(periodo))</a>
+<a class="sourceLine" id="cb344-23" data-line-number="23"><span class="co">#glimpse(periodo)</span></a>
+<a class="sourceLine" id="cb344-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb344-25" data-line-number="25">per_ini_fim &lt;-<span class="st"> </span><span class="kw">full_join</span>(periodo, ini_fim, <span class="dt">by =</span> <span class="st">&quot;site&quot;</span>)</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <ol start="11" style="list-style-type: decimal">
 <li>Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.</li>
 </ol>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">perc_valid &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb351-2" data-line-number="2">  <span class="co">#if(all(is.na(x))) return(0)</span></a>
-<a class="sourceLine" id="cb351-3" data-line-number="3">  <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x))<span class="op">/</span><span class="kw">length</span>(x) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb351-4" data-line-number="4">} </a>
-<a class="sourceLine" id="cb351-5" data-line-number="5">validos &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb351-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb351-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise_at</span>(., <span class="kw">vars</span>(tair<span class="op">:</span>ws), perc_valid) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb351-8" data-line-number="8"><span class="st">  </span><span class="kw">mutate_at</span>(., <span class="kw">vars</span>(tair<span class="op">:</span>ws), as.integer)</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">perc_valid &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb345-2" data-line-number="2">  <span class="co">#if(all(is.na(x))) return(0)</span></a>
+<a class="sourceLine" id="cb345-3" data-line-number="3">  <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(x))<span class="op">/</span><span class="kw">length</span>(x) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb345-4" data-line-number="4">} </a>
+<a class="sourceLine" id="cb345-5" data-line-number="5">validos &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb345-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb345-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise_at</span>(., <span class="kw">vars</span>(tair<span class="op">:</span>ws), perc_valid) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb345-8" data-line-number="8"><span class="st">  </span><span class="kw">mutate_at</span>(., <span class="kw">vars</span>(tair<span class="op">:</span>ws), as.integer)</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <ol start="12" style="list-style-type: decimal">
 <li>Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações.</li>
 </ol>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">disp &lt;-<span class="st"> </span>validos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb352-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">disp_med =</span> <span class="kw">rowMeans</span>(.[,<span class="op">-</span><span class="dv">1</span>])) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb352-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(disp_med))</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">disp &lt;-<span class="st"> </span>validos <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb346-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">disp_med =</span> <span class="kw">rowMeans</span>(.[,<span class="op">-</span><span class="dv">1</span>])) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb346-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(disp_med))</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <ol start="13" style="list-style-type: decimal">
 <li>Para a EMA de Santa Maria (ver <code>info_emas_rs_08_16</code>) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a <code>tair</code> média de cada hora.</li>
@@ -563,14 +562,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <blockquote>
 <p>Dica: Para extrair as horas das datas use a função <code>lubridate::hour(date)</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">id_sm &lt;-<span class="st"> </span>info_emas_rs_<span class="dv">08</span>_<span class="dv">16</span><span class="op">$</span>site[info_emas_rs_<span class="dv">08</span>_<span class="dv">16</span><span class="op">$</span>name <span class="op">==</span><span class="st"> &quot;SANTA MARIA&quot;</span>]</a>
-<a class="sourceLine" id="cb353-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb353-3" data-line-number="3">sm_tar_ciclo_medio &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(site, date, tair) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb353-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> </span>id_sm) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb353-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">hour =</span> <span class="kw">hour</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb353-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair_med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb353-8" data-line-number="8">            <span class="dt">tair_disp =</span> <span class="kw">perc_valid</span>(tair)) <span class="co">#%&gt;% glimpse()</span></a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1">id_sm &lt;-<span class="st"> </span>info_emas_rs_<span class="dv">08</span>_<span class="dv">16</span><span class="op">$</span>site[info_emas_rs_<span class="dv">08</span>_<span class="dv">16</span><span class="op">$</span>name <span class="op">==</span><span class="st"> &quot;SANTA MARIA&quot;</span>]</a>
+<a class="sourceLine" id="cb347-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb347-3" data-line-number="3">sm_tar_ciclo_medio &lt;-<span class="st"> </span>dados_rs_<span class="dv">08</span>_<span class="dv">16</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb347-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(site, date, tair) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb347-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> </span>id_sm) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb347-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">hour =</span> <span class="kw">hour</span>(date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb347-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair_med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb347-8" data-line-number="8">            <span class="dt">tair_disp =</span> <span class="kw">perc_valid</span>(tair)) <span class="co">#%&gt;% glimpse()</span></a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <ol start="14" style="list-style-type: decimal">
 <li>Com os dados de temperatura do ar (<code>tair</code>) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.</li>
@@ -579,6 +578,27 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Dica: para obter o dia a partir da data e hora (coluna <code>date</code> do tipo <code>POSIXct</code>) use <code>lubridate::floor_date(date, unit = &quot;day&quot;)</code>.</p>
 </blockquote>
 <p>Estrutura da tabela de dados resultante:</p>
+<!-- 
+
+Controle de qualidade e validação de dados
+
+# pacote útil para controle de qualidade e validação de dados
+https://github.com/data-cleaning/validate
+https://github.com/data-cleaning/validatetools 
+
+# pacote de verificação de qualidade de dados para R
+https://github.com/guhjy/doctr/blob/master/vignettes/vignette.Rmd
+
+# simple functions for examining and cleaning dirty data
+https://github.com/sfirke/janitor
+
+# dataPreparation
+https://cran.r-project.org/web/packages/dataPreparation/vignettes/dataPreparation.html
+-->
+<!--
+# dados meteorológicos gradeados
+https://eliocamp.github.io/codigo-r/en/2019/04/ecmwfr-global-warming/
+-->
 
 </div>
 <!-- </div> -->
