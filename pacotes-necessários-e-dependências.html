@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 no modo interativo | Análise de Dados Ambientais com R</title>
+  <title>2.4 Pacotes necessários e dependências | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 no modo interativo | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="2.4 Pacotes necessários e dependências | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 no modo interativo | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="2.4 Pacotes necessários e dependências | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="iu.html"/>
-<link rel="next" href="no-modo-de-processamento-em-lote.html"/>
+<link rel="prev" href="atualização-de-pacotes.html"/>
+<link rel="next" href="install-rstudio.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -319,138 +319,68 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="no-modo-interativo" class="section level2">
-<h2><span class="header-section-number">3.1</span> <img src="images/logo_r.png" width="20"> no modo interativo</h2>
-<p>No Linux o <img src="images/logo_r.png" width="20"> pode ser aberto simplesmente digitando em um terminal a letra <code>R</code>.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">R</span></code></pre></div>
-<pre><code>R version 3.4.4 (2018-03-15) -- &quot;Someone to Lean On&quot;
-Copyright (C) 2018 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+<div id="pacotes-necessários-e-dependências" class="section level2">
+<h2><span class="header-section-number">2.4</span> Pacotes necessários e dependências</h2>
+<p>Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.</p>
+<p>Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no <img src="images/logo_r.png" width="20">.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> apt install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="st">&quot;easypackages&quot;</span>,
+  <span class="st">&quot;rmarkdown&quot;</span>,
+  <span class="st">&quot;knitr&quot;</span>,
+  <span class="st">&quot;pander&quot;</span>, 
+  <span class="st">&quot;htmlTable&quot;</span>,
+  <span class="st">&quot;styler&quot;</span>,
+  <span class="st">&quot;tidyverse&quot;</span>, 
+  <span class="st">&quot;rio&quot;</span>,
+  <span class="st">&quot;readr&quot;</span>,
+  <span class="st">&quot;feather&quot;</span>,
+  <span class="st">&quot;readxl&quot;</span>,
+  <span class="st">&quot;writexl&quot;</span>,
+  <span class="st">&quot;dplyr&quot;</span>,
+  <span class="st">&quot;microbenchmark&quot;</span>,
+  <span class="st">&quot;openxlsx&quot;</span>,
+  <span class="st">&quot;ncdf4&quot;</span>,
+  <span class="st">&quot;raster&quot;</span>,
+  <span class="st">&quot;openair&quot;</span>,
+  <span class="st">&quot;lubridate&quot;</span>,
+  <span class="st">&quot;fields&quot;</span>,
+  <span class="st">&quot;RColorBrewer&quot;</span>,
+  <span class="st">&quot;WriteXLS&quot;</span>
+  <span class="co">#&quot;gdata&quot;,</span>
+  <span class="co">#&quot;XLConnect&quot;</span>
+  )
 
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type &#39;license()&#39; or &#39;licence()&#39; for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type &#39;contributors()&#39; for more information and
-&#39;citation()&#39; on how to cite R or R packages in publications.
-
-Type &#39;demo()&#39; for some demos, &#39;help()&#39; for on-line help, or
-&#39;help.start()&#39; for an HTML browser interface to help.
-Type &#39;q()&#39; to quit R.
-
-&gt; </code></pre>
-<p>A janela com a linha de comando do <img src="images/logo_r.png" width="20"> apresenta o <em>prompt</em> do <img src="images/logo_r.png" width="20"> (<code>&gt;</code>). Após este símbolo digitamos os comandos, pressionamos a tecla <code>&lt;enter&gt;</code>, o <img src="images/logo_r.png" width="20"> interpreta o comando e retorna o resultado.</p>
-<p>Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do <img src="images/logo_r.png" width="20">. Portanto, a linha de comando é a mais importante ferramenta do <img src="images/logo_r.png" width="20">, pois todas expressões são avaliadas através dela.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">62</span> <span class="op">+</span><span class="st"> </span><span class="dv">38</span>
-[<span class="dv">1</span>] <span class="dv">100</span></code></pre></div>
-<p>A expressão é avaliada pelo <img src="images/logo_r.png" width="20">, o resultado é mostrado, mas o seu valor é perdido.</p>
-<p>O número entre colchetes que aparece como resultado da operação (“[1]” no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span><span class="op">:</span><span class="dv">1</span>
-  [<span class="dv">1</span>] <span class="dv">100</span>  <span class="dv">99</span>  <span class="dv">98</span>  <span class="dv">97</span>  <span class="dv">96</span>  <span class="dv">95</span>  <span class="dv">94</span>  <span class="dv">93</span>  <span class="dv">92</span>  <span class="dv">91</span>  <span class="dv">90</span>  <span class="dv">89</span>  <span class="dv">88</span>  <span class="dv">87</span>  <span class="dv">86</span>  <span class="dv">85</span>  <span class="dv">84</span>  <span class="dv">83</span>
- [<span class="dv">19</span>]  <span class="dv">82</span>  <span class="dv">81</span>  <span class="dv">80</span>  <span class="dv">79</span>  <span class="dv">78</span>  <span class="dv">77</span>  <span class="dv">76</span>  <span class="dv">75</span>  <span class="dv">74</span>  <span class="dv">73</span>  <span class="dv">72</span>  <span class="dv">71</span>  <span class="dv">70</span>  <span class="dv">69</span>  <span class="dv">68</span>  <span class="dv">67</span>  <span class="dv">66</span>  <span class="dv">65</span>
- [<span class="dv">37</span>]  <span class="dv">64</span>  <span class="dv">63</span>  <span class="dv">62</span>  <span class="dv">61</span>  <span class="dv">60</span>  <span class="dv">59</span>  <span class="dv">58</span>  <span class="dv">57</span>  <span class="dv">56</span>  <span class="dv">55</span>  <span class="dv">54</span>  <span class="dv">53</span>  <span class="dv">52</span>  <span class="dv">51</span>  <span class="dv">50</span>  <span class="dv">49</span>  <span class="dv">48</span>  <span class="dv">47</span>
- [<span class="dv">55</span>]  <span class="dv">46</span>  <span class="dv">45</span>  <span class="dv">44</span>  <span class="dv">43</span>  <span class="dv">42</span>  <span class="dv">41</span>  <span class="dv">40</span>  <span class="dv">39</span>  <span class="dv">38</span>  <span class="dv">37</span>  <span class="dv">36</span>  <span class="dv">35</span>  <span class="dv">34</span>  <span class="dv">33</span>  <span class="dv">32</span>  <span class="dv">31</span>  <span class="dv">30</span>  <span class="dv">29</span>
- [<span class="dv">73</span>]  <span class="dv">28</span>  <span class="dv">27</span>  <span class="dv">26</span>  <span class="dv">25</span>  <span class="dv">24</span>  <span class="dv">23</span>  <span class="dv">22</span>  <span class="dv">21</span>  <span class="dv">20</span>  <span class="dv">19</span>  <span class="dv">18</span>  <span class="dv">17</span>  <span class="dv">16</span>  <span class="dv">15</span>  <span class="dv">14</span>  <span class="dv">13</span>  <span class="dv">12</span>  <span class="dv">11</span>
- [<span class="dv">91</span>]  <span class="dv">10</span>   <span class="dv">9</span>   <span class="dv">8</span>   <span class="dv">7</span>   <span class="dv">6</span>   <span class="dv">5</span>   <span class="dv">4</span>   <span class="dv">3</span>   <span class="dv">2</span>   <span class="dv">1</span></code></pre></div>
-<p>O elemento <code>[18]</code> da sequência de 100 até 1 é o número <code>83</code>.</p>
-<p>Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o <img src="images/logo_r.png" width="20"> mostra um sinal de <code>+</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span>
-<span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
-[<span class="dv">1</span>] <span class="dv">3628800</span></code></pre></div>
-<p>Execute a expressão abaixo até o sinal de menos e tecle <code>&lt;enter&gt;</code>. Enquanto a instrução não estiver completa o sinal de <code>+</code> se repetirá. Você pode cancelar a execução digitando <code>Ctrl + c</code> ou <code>Esc</code>. No código abaixo isso acontecerá até que você digite o número que deseja subtrair de 4, no caso de o número 3.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">-</span>
-<span class="op">+</span><span class="st">   </span>
-<span class="op">+</span><span class="st">   </span><span class="dv">3</span>
-[<span class="dv">1</span>] <span class="dv">1</span></code></pre></div>
-<div id="expressInSeq" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Expressões em sequência</h3>
-<p>Podemos executar todas expressões anteriores em apenas uma linha, usando o ponto e vírgula <code>;</code> para separar as expressões:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">62</span> <span class="op">+</span><span class="st"> </span><span class="dv">38</span>; <span class="dv">100</span><span class="op">:</span><span class="dv">1</span>; <span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>; <span class="dv">4</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>
-[<span class="dv">1</span>] <span class="dv">100</span>
-  [<span class="dv">1</span>] <span class="dv">100</span>  <span class="dv">99</span>  <span class="dv">98</span>  <span class="dv">97</span>  <span class="dv">96</span>  <span class="dv">95</span>  <span class="dv">94</span>  <span class="dv">93</span>  <span class="dv">92</span>  <span class="dv">91</span>  <span class="dv">90</span>  <span class="dv">89</span>  <span class="dv">88</span>  <span class="dv">87</span>  <span class="dv">86</span>  <span class="dv">85</span>  <span class="dv">84</span>  <span class="dv">83</span>
- [<span class="dv">19</span>]  <span class="dv">82</span>  <span class="dv">81</span>  <span class="dv">80</span>  <span class="dv">79</span>  <span class="dv">78</span>  <span class="dv">77</span>  <span class="dv">76</span>  <span class="dv">75</span>  <span class="dv">74</span>  <span class="dv">73</span>  <span class="dv">72</span>  <span class="dv">71</span>  <span class="dv">70</span>  <span class="dv">69</span>  <span class="dv">68</span>  <span class="dv">67</span>  <span class="dv">66</span>  <span class="dv">65</span>
- [<span class="dv">37</span>]  <span class="dv">64</span>  <span class="dv">63</span>  <span class="dv">62</span>  <span class="dv">61</span>  <span class="dv">60</span>  <span class="dv">59</span>  <span class="dv">58</span>  <span class="dv">57</span>  <span class="dv">56</span>  <span class="dv">55</span>  <span class="dv">54</span>  <span class="dv">53</span>  <span class="dv">52</span>  <span class="dv">51</span>  <span class="dv">50</span>  <span class="dv">49</span>  <span class="dv">48</span>  <span class="dv">47</span>
- [<span class="dv">55</span>]  <span class="dv">46</span>  <span class="dv">45</span>  <span class="dv">44</span>  <span class="dv">43</span>  <span class="dv">42</span>  <span class="dv">41</span>  <span class="dv">40</span>  <span class="dv">39</span>  <span class="dv">38</span>  <span class="dv">37</span>  <span class="dv">36</span>  <span class="dv">35</span>  <span class="dv">34</span>  <span class="dv">33</span>  <span class="dv">32</span>  <span class="dv">31</span>  <span class="dv">30</span>  <span class="dv">29</span>
- [<span class="dv">73</span>]  <span class="dv">28</span>  <span class="dv">27</span>  <span class="dv">26</span>  <span class="dv">25</span>  <span class="dv">24</span>  <span class="dv">23</span>  <span class="dv">22</span>  <span class="dv">21</span>  <span class="dv">20</span>  <span class="dv">19</span>  <span class="dv">18</span>  <span class="dv">17</span>  <span class="dv">16</span>  <span class="dv">15</span>  <span class="dv">14</span>  <span class="dv">13</span>  <span class="dv">12</span>  <span class="dv">11</span>
- [<span class="dv">91</span>]  <span class="dv">10</span>   <span class="dv">9</span>   <span class="dv">8</span>   <span class="dv">7</span>   <span class="dv">6</span>   <span class="dv">5</span>   <span class="dv">4</span>   <span class="dv">3</span>   <span class="dv">2</span>   <span class="dv">1</span>
-[<span class="dv">1</span>] <span class="dv">3628800</span>
-[<span class="dv">1</span>] <span class="dv">1</span></code></pre></div>
-</div>
-<div id="navegação-entre-as-expressões-já-avaliadas" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Navegação entre as expressões já avaliadas</h3>
-<p>Você pode usar as teclas ↑ e ↓ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.</p>
-<p>Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle <code>Ctrl+l</code>. Assim o console aparece na parte superior do terminal.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span>
-[<span class="dv">1</span>] <span class="dv">19</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span><span class="op">:</span><span class="dv">1</span>
-  [<span class="dv">1</span>] <span class="dv">100</span>  <span class="dv">99</span>  <span class="dv">98</span>  <span class="dv">97</span>  <span class="dv">96</span>  <span class="dv">95</span>  <span class="dv">94</span>  <span class="dv">93</span>  <span class="dv">92</span>  <span class="dv">91</span>  <span class="dv">90</span>  <span class="dv">89</span>  <span class="dv">88</span>  <span class="dv">87</span>  <span class="dv">86</span>  <span class="dv">85</span>  <span class="dv">84</span>  <span class="dv">83</span>
- [<span class="dv">19</span>]  <span class="dv">82</span>  <span class="dv">81</span>  <span class="dv">80</span>  <span class="dv">79</span>  <span class="dv">78</span>  <span class="dv">77</span>  <span class="dv">76</span>  <span class="dv">75</span>  <span class="dv">74</span>  <span class="dv">73</span>  <span class="dv">72</span>  <span class="dv">71</span>  <span class="dv">70</span>  <span class="dv">69</span>  <span class="dv">68</span>  <span class="dv">67</span>  <span class="dv">66</span>  <span class="dv">65</span>
- [<span class="dv">37</span>]  <span class="dv">64</span>  <span class="dv">63</span>  <span class="dv">62</span>  <span class="dv">61</span>  <span class="dv">60</span>  <span class="dv">59</span>  <span class="dv">58</span>  <span class="dv">57</span>  <span class="dv">56</span>  <span class="dv">55</span>  <span class="dv">54</span>  <span class="dv">53</span>  <span class="dv">52</span>  <span class="dv">51</span>  <span class="dv">50</span>  <span class="dv">49</span>  <span class="dv">48</span>  <span class="dv">47</span>
- [<span class="dv">55</span>]  <span class="dv">46</span>  <span class="dv">45</span>  <span class="dv">44</span>  <span class="dv">43</span>  <span class="dv">42</span>  <span class="dv">41</span>  <span class="dv">40</span>  <span class="dv">39</span>  <span class="dv">38</span>  <span class="dv">37</span>  <span class="dv">36</span>  <span class="dv">35</span>  <span class="dv">34</span>  <span class="dv">33</span>  <span class="dv">32</span>  <span class="dv">31</span>  <span class="dv">30</span>  <span class="dv">29</span>
- [<span class="dv">73</span>]  <span class="dv">28</span>  <span class="dv">27</span>  <span class="dv">26</span>  <span class="dv">25</span>  <span class="dv">24</span>  <span class="dv">23</span>  <span class="dv">22</span>  <span class="dv">21</span>  <span class="dv">20</span>  <span class="dv">19</span>  <span class="dv">18</span>  <span class="dv">17</span>  <span class="dv">16</span>  <span class="dv">15</span>  <span class="dv">14</span>  <span class="dv">13</span>  <span class="dv">12</span>  <span class="dv">11</span>
- [<span class="dv">91</span>]  <span class="dv">10</span>   <span class="dv">9</span>   <span class="dv">8</span>   <span class="dv">7</span>   <span class="dv">6</span>   <span class="dv">5</span>   <span class="dv">4</span>   <span class="dv">3</span>   <span class="dv">2</span>   <span class="dv">1</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co">#tecle &lt;Ctr + l&gt;</span></code></pre></div>
-<p>Para parar ou cancelar a execução de uma expressão utilize as teclas <code>Ctrl + C</code>. As teclas <code>Ctrl + l</code> tem o efeito de limpar a tela.</p>
-</div>
-<div id="comentários" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Comentários</h3>
-<p>No <img src="images/logo_r.png" width="20">, a cerquilha <code>#</code> (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da <code>#</code> são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># comentário antes do código </span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">17</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="co"># comentário ao lado do código: adicionando 17 e 3</span>
-[<span class="dv">1</span>] <span class="dv">20</span></code></pre></div>
-</div>
-<div id="auto-preenchimento-de-funções" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Auto preenchimento de funções</h3>
-<p>O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla <code>&lt;tab&gt;</code>. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>read<span class="co">#&lt;tab&gt; pressione &lt;tab&gt; para ver as opções de comandos que iniciam com o termo read</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
-<p class="caption">
-Figure 3.1: Auto preenchimento de código na linha de comandos do R.
-</p>
-</div>
-</div>
-<div id="primeiro-script" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> Primeiro <em>script</em></h3>
-<p>O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <img src="images/logo_r.png" width="20"> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo <em>pdf</em>. Na última parte do trecho, define-se uma variável <code>x</code> que contém aquela mesma sequência numérica usada no gráfico.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Primeiro script no R</span>
-<span class="co">#----------------------------------------------------------------</span>
-<span class="co"># cálculos básicos</span>
-<span class="dv">15</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
-<span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
-<span class="dv">4</span><span class="op">-</span><span class="dv">3</span>
-<span class="co">#----------------------------------------------------------------</span>
-<span class="co"># salvando um gráfico em um arquivo pdf</span>
-arquivo_pdf &lt;-<span class="st"> &quot;plot-script1.pdf&quot;</span>
-<span class="kw">pdf</span>(arquivo_pdf)        <span class="co"># cria e abre um arquivo pdf</span>
-<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)             <span class="co"># faz o gráfico</span>
-<span class="kw">dev.off</span>()               <span class="co"># fecha o arquivo pdf</span>
-<span class="co">#----------------------------------------------------------------</span>
-<span class="co"># definindo uma variável x</span>
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
-x</code></pre></div>
-<p>Este conjunto de linhas de código, quando inseridos em um arquivo texto<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> formam um primeiro <em>script</em> <img src="images/logo_r.png" width="20">. Este <em>script</em> pode ser executado pelo <img src="images/logo_r.png" width="20"> através da função <code>source()</code>, usando como argumento o caminho para o local do <em>script</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">source</span>(<span class="st">&quot;/home/usuario/adar/script1.R&quot;</span>)</code></pre></div>
-<p>Este <em>script</em> produzirá como saída o arquivo <code>/home/usuario/adar/plot-script1.pdf</code>. Você pode visualizar o arquivo para conferir o gráficos de pontos gerado.</p>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="9">
-<li id="fn9"><p>Para fazer isso, você pode usar um editor de texto qualquer (p.ex.: <a href="https://help.gnome.org/users/gedit/stable/index.html.pt_BR">gedit</a> no SO Linux, ou <a href="https://pt.wikipedia.org/wiki/Bloco_de_Notas">Notepad</a> no SO Windows).<a href="no-modo-interativo.html#fnref9">↩</a></p></li>
-</ol>
+pcks_dev &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="st">&quot;vembedr&quot;</span>,
+  <span class="st">&quot;inmetr&quot;</span>
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(pcks) </code></pre></div>
+<!-- 
+# rJava
+https://github.com/hannarud/r-best-practices/wiki/Installing-RJava-(Ubuntu)
+# java -version
+# sudo R CMD javareconf
+$ sudo add-apt-repository ppa:marutter/c2d4u3.5
+$ sudo apt-get update
+$ sudo apt-get upgrade
+The following packages will be upgraded:
+  binutils binutils-common binutils-x86-64-linux-gnu gnome-software gnome-software-common gnome-software-plugin-snap libbinutils
+  libpulse-mainloop-glib0 libpulse0 libpulse0:i386 libpulsedsp openjdk-11-jdk openjdk-11-jdk-headless openjdk-11-jre
+  openjdk-11-jre-headless pulseaudio pulseaudio-module-bluetooth pulseaudio-utils r-cran-boot r-cran-class r-cran-codetools
+  r-cran-foreign r-cran-lattice r-cran-mass r-cran-matrix r-cran-mgcv r-cran-nlme r-cran-nnet r-cran-spatial r-cran-survival
+  ubuntu-software
+31 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+$ sudo apt-get install r-cran-rjava
+-->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="iu.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="no-modo-de-processamento-em-lote.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="atualização-de-pacotes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="install-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -481,7 +411,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lhmet/adar-ebook/edit/master/03-interface-usuario.Rmd",
+"link": "https://github.com/lhmet/adar-ebook/edit/master/02-intall-r-rstudio.Rmd",
 "text": "Edit"
 },
 "history": {

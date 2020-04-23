@@ -2,9 +2,14 @@
 
 # Motivação {#intro}
 
-
-
-
+<!-- #dados meteorológicos 
+#Importância e valor da informação meteorológica
+ aquisição de dados
+ preparação de dados
+ controle de qualidade
+ interpolação 
+ visualização
+-->
 
 
 
@@ -72,6 +77,11 @@
 
 ## <img src="images/logo_r.png" width="20"> 
 
+<!-- 
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html 
+
+-->
+
 * [R](https://www.r-project.org/) é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.
 
 
@@ -88,7 +98,11 @@
 
 ## Por que o R?
 
+<!-- 
+http://www.sthda.com/english/wiki/what-is-r-and-why-learning-r-programming
 
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
+-->
 
 * [R](https://www.r-project.org/) não é uma GUI (Interface gráfica do usuário) e isso é bom
 

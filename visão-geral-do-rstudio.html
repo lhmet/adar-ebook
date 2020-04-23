@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -126,13 +126,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="o-que-você-precisa.html"><a href="o-que-você-precisa.html"><i class="fa fa-check"></i><b>2</b> O que você precisa</a><ul>
 <li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Pacotes do R</a><ul>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
-<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -147,9 +148,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
-</ul></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -322,7 +321,7 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="visão-geral-do-rstudio" class="section level2">
 <h2><span class="header-section-number">4.1</span> Visão geral do RStudio</h2>
-<p>Assumindo que o RStudio tenha sido instalado (seção <a href="install-rstudio.html#install-rstudio">2.4</a>), ao abri-lo e clicar em <em>File &gt; New File &gt; R script</em> você verá uma tela com aspecto similar ao da Figura <a href="visão-geral-do-rstudio.html#fig:rstudio-fig">4.1</a>.</p>
+<p>Assumindo que o RStudio tenha sido instalado (seção <a href="install-rstudio.html#install-rstudio">2.5</a>), ao abri-lo e clicar em <em>File &gt; New File &gt; R script</em> você verá uma tela com aspecto similar ao da Figura <a href="visão-geral-do-rstudio.html#fig:rstudio-fig">4.1</a>.</p>
 <div class="figure"><span id="fig:rstudio-fig"></span>
 <img src="images/rstudio-panels.png" alt="Rstudio" width="960" />
 <p class="caption">
@@ -336,20 +335,17 @@ Figure 4.1: Rstudio
 <li>abrir e criar scripts</li>
 <li>rodar scripts</li>
 <li>código com sintaxe realçada</li>
-<li>rodar partes do código <code>&lt;Ctrl+enter&gt;</code></li>
-<li>rodar todo script <code>&lt;Ctrl+Shift+S&gt;</code></li>
-<li>autopreenchimento das funções <code>&lt;tab&gt;</code></li>
-<li>comentar linhas <code>&lt;Ctrl+Shift+C&gt;</code></li>
-<li>desfazer <code>&lt;Ctrl+Z&gt;</code></li>
-<li>refazer <code>&lt;Ctrl+Shift+Z&gt;</code></li>
-<li>referência para teclas de atalho <code>&lt;Alt+Shift+K&gt;</code></li>
-<li>abrir script com <code>&lt;Ctrl+Click&gt;</code></li>
-<li>encontrar e substituir <code>&lt;Ctrl+F&gt;</code></li>
-<li>comentar texto em R Markdown <kbd>SHIFT</kbd>+<kbd>CTRL</kbd>+<kbd>C</kbd></li>
+<li>rodar partes do código <kbd>Ctrl</kbd>+<kbd>Enter</kbd></li>
+<li>rodar todo script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></li>
+<li>autopreenchimento das funções <kbd>Tab</kbd></li>
+<li>comentar linhas <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></li>
+<li>desfazer <kbd>Ctrl</kbd>+<kbd>Z</kbd></li>
+<li>refazer <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></li>
+<li>referência para teclas de atalho <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd></li>
+<li>abrir script com <kbd>Ctrl</kbd>+<kbd>Click</kbd></li>
+<li>encontrar e substituir <kbd>Ctrl</kbd>+<kbd>F</kbd></li>
+<li>comentar texto em R Markdown <kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>c</kbd></li>
 </ul></li>
-</ol>
-<p>Nao</p>
-<ol start="2" style="list-style-type: decimal">
 <li><p>Console do R</p></li>
 <li><p>Navegador do espaço de trabalho e histórico de comandos</p></li>
 <li><p>Arquivos/Plots/Pacotes/Ajuda/Visualizador</p></li>
@@ -368,12 +364,11 @@ Figure 4.1: Rstudio
 </ul>
 <p>A <strong>Folha de referência do RStudio</strong> (Figura <a href="visão-geral-do-rstudio.html#fig:rstudio-cheat-sheet">4.2</a>)) fornece uma visão geral das suas principais funcionalidades.</p>
 <div class="figure" style="text-align: center"><span id="fig:rstudio-cheat-sheet"></span>
-<img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="100%" />
+<img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="90%" />
 <p class="caption">
 Figure 4.2: Folha de referência do RStudio, disponível em <a href="https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf</a>
 </p>
 </div>
-<p>Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo <em><a href="https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/">RStudio Essencials</a></em>. Isso o ajudará a usar mais efetivamente o RStudio.</p>
 </div>
             </section>
 

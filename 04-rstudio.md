@@ -1,5 +1,11 @@
 # RStudio {#rstudio}
 
+<!-- 
+
+https://itsfoss.com/install-r-ubuntu/ 
+
+-->
+
 
 
 O RStudio *Desktop* é um ambiente integrado de desenvolvimento (IDE) para o <img src="images/logo_r.png" width="20">. Portanto, o RStudio depende da instalação prévia do <img src="images/logo_r.png" width="20">. Ele funciona como uma interface gráfica do usuário (GUI), mas com muito mais potencialidades.
@@ -36,18 +42,16 @@ O RStudio possui 4 painéis principais:
      - abrir e criar scripts
      - rodar scripts
      - código com sintaxe realçada
-     - rodar partes do código `<Ctrl+enter>`
-     - rodar todo script `<Ctrl+Shift+S>`
-     - autopreenchimento das funções `<tab>`
-     - comentar linhas `<Ctrl+Shift+C>`
-     - desfazer `<Ctrl+Z>`
-     - refazer `<Ctrl+Shift+Z>`
-     - referência para teclas de atalho `<Alt+Shift+K>`
-     - abrir script com `<Ctrl+Click>`
-     - encontrar e substituir `<Ctrl+F>`
-     - comentar texto em R Markdown <kbd>SHIFT</kbd>+<kbd>CTRL</kbd>+<kbd>C</kbd>
-
-Nao
+     - rodar partes do código <kbd>Ctrl</kbd>+<kbd>Enter</kbd>
+     - rodar todo script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>
+     - autopreenchimento das funções <kbd>Tab</kbd>
+     - comentar linhas <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
+     - desfazer <kbd>Ctrl</kbd>+<kbd>Z</kbd>
+     - refazer <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>
+     - referência para teclas de atalho <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>
+     - abrir script com <kbd>Ctrl</kbd>+<kbd>Click</kbd>
+     - encontrar e substituir <kbd>Ctrl</kbd>+<kbd>F</kbd>
+     - comentar texto em R Markdown <kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>c</kbd>
 
 2. Console do R
 
@@ -70,11 +74,10 @@ Configuração de texto e painéis em:
 A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) fornece uma visão geral das suas principais funcionalidades.
 
 <div class="figure" style="text-align: center">
-<img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="100%" />
+<img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="90%" />
 <p class="caption">(\#fig:rstudio-cheat-sheet)Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf</p>
 </div>
 
-Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
 
 ## Verificação ortográfica
 
@@ -94,14 +97,9 @@ Após a adição dos dicionários, acesse novamente a caixa de seleção de dici
 
 Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla `F7` (ou `Edit > Check Spelling`).
 
-In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
-same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke in a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the
-same time as the <kbd>-</kbd> key) does the same in a Mac.
 
-
-
-
-### Configurando dicionários customizados
+<!--
+### Configurando dicionários customizados 
 
 Se você quer usar um diferente variação de dicionário ou algum dicionário customizado, siga as orientações disponibilizadas no [suporte do RStudio](https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries) e na vinheta do pacote [hunspell](https://docs.ropensci.org/hunspell/articles/intro.html#hunspell-dictionaries).
 
@@ -119,6 +117,6 @@ A verificação de que o dicionário foi instalado pode ser feita se ele aparece
 ```bash
 > ll /usr/share/hunspell
 ```
-
+-->
 
 
