@@ -9,6 +9,11 @@ output:
 # Visualização de dados {#data-vis}
 
 
+<!-- 
+earthdatascience.org/courses/earth-analytics/lidar-raster-data-r/ggmap-basemap/ 
+-->
+
+
 
 > \"Uma imagem vale mais que mil palavras\"
 

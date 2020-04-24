@@ -1,11 +1,5 @@
-# Referências {-}
 
-<!---
-#referências-chave
-https://b-rodrigues.github.io/modern_R
+# Referências 
+<div id="refs"></div>
 
-# curso de analise de dados e visualização para ecologistas
-# (boa estrutura)
-https://datacarpentry.org/R-ecology-lesson/index.html
 
---->
