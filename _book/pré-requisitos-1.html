@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.3 Boas práticas para importação e exportação de dados | Análise de Dados Ambientais com R</title>
+  <title>8.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.3 Boas práticas para importação e exportação de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="8.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.3 Boas práticas para importação e exportação de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="8.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="diretório-de-trabalho.html"/>
-<link rel="next" href="arquivos-texto.html"/>
+<link rel="prev" href="io.html"/>
+<link rel="next" href="diretório-de-trabalho.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -345,28 +345,65 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="boas-práticas-para-importação-e-exportação-de-dados" class="section level2">
-<h2><span class="header-section-number">8.3</span> Boas práticas para importação e exportação de dados</h2>
-<p>Para uma importação e exportação eficiente de dados recomenda-se <span class="citation">(Gillespie and Lovelace <a href="referências.html#ref-Gillespie2017">2017</a>)</span>:</p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Mantenha o nome original dos arquivos locais baixados da internet ou copiados da fonte provedora. Isso o ajudará a rastrear a proveniência dos dados no futuro.<br />
-</li>
-<li>Para um armazenamento eficinte utilize o formato binário nativo do R <em>.Rds</em> para importar (<code>readRDS()</code>) e exportar (<code>saveRDS()</code>) dados processados.<br />
-</li>
-<li>Use funções equivalentes a read.table() dos pacotes <strong>readr</strong> ou <strong>data.table</strong> para importar arquivos de texto grandes.<br />
-</li>
-<li>Use as funções <code>file.size()</code> e <code>object.size()</code> para saber o tamanho de arquivos e objetos no R e analisar como proceder se eles ficarem muito grandes.</li>
-</ol>
-</blockquote>
+<div id="pré-requisitos-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Pré-requisitos</h2>
+<p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb215-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb215-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb215-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb215-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb215-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb215-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb215-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb215-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb215-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb215-11" data-line-number="11">)</a></code></pre></div>
+<p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
+<p>Agora você pode carregar os pacotes.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb217-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb217-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb217-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb217-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb217-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb217-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb217-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb217-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
+<div class="rmdtip">
+<p>
+Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
+</p>
+<p>
+<code>library(easypackages)</code>
+</p>
+<p>
+<code>libraries(pacotes)</code>
+</p>
+<p>
+ou simplesmente
+</p>
+<p>
+<code>easypackages::libraries(pacotes)</code>
+</p>
+</div>
+<p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua instalação precisamos executar o comando abaixo.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="diretório-de-trabalho.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="arquivos-texto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="io.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diretório-de-trabalho.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

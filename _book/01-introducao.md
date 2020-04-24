@@ -36,6 +36,20 @@
 <img src="images/datascience.png" height="400px" width="500px" />
 </div>
 
+<!-- 
+Definitivamente pensando em 
+(1) 'Ciência de dados meteorológicos' 
+ou 
+(2) 'processamento de dados meteorológicos'
+
+Mas vem aí discussão sobre (1) Ciência de dados (dadoslogia), Estatística, Ciência da computação. 
+(ver a Introdução do Beginning Dara Science with R)
+
+
+
+asd 
+-->
+
 
 ## Etapas para abordagem de um problema 
 

@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2020-04-23"
+date: "2020-04-24"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -42,7 +42,7 @@ O texto é organizado em 7 capítulos:
 
 - \@ref(intro) Introdução
 
-- \@ref(install) Instalação do <img src="images/logo_r.png" width="20"> e Rstudio
+- \@ref(install) Instalação do <img src="images/logo_r.png" width="20"> e RStudio
 
 - \@ref(iu) Interface do Usuário
 

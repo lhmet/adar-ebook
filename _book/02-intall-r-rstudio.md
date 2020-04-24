@@ -1,7 +1,7 @@
 # (PART) Configuração do Sistema {-}
 
 
-# O que você precisa 
+# Pré-requisitos
 
 
 <!-- 
@@ -70,7 +70,7 @@ O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [bin�
 
 O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)) e pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
 
-Abra o executável e siga instruções de instalação do R mantendo todas as opções padrões.
+Abra o executável e siga instruções de instalação mantendo todas as opções padrões.
 
 No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.
 
@@ -84,7 +84,7 @@ Para instalar pacotes de plataformas diferentes da CRAN (veja seção \@ref(inst
 
 ##### Atualização do R no Windows
 
-Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-3.6.3.html).
+Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-4.0.0.html).
 
 
 As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
@@ -96,6 +96,9 @@ Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés 
 ##### Ubuntu
 
 <!-- 
+#install the automatically tuned Atlas or the multi-threaded OpenBlas library in order to get higher performance for linear algebra operations
+sudo apt-get install libatlas3-base libopenblas-base
+
 link da cran sobre instalação do R no ubuntu
 https://cran.rstudio.com/bin/linux/ubuntu/README.html 
 
@@ -127,7 +130,7 @@ $ sudo apt-get install r-base
 
 Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes (ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
 
-[^rversion-recente]: A versão mais atual no período de elaboração deste texto foi a R 3.6.3.
+[^rversion-recente]: A versão mais atual no período de elaboração deste texto foi a R 4.0.0.
 
 1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror] à lista de repositórios do sistema [^aviso-sudo].
 
@@ -181,7 +184,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^versoesubuntu]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a 3.6.3. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
+A versão mais atual é a 4.0.0. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
 ###### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
@@ -507,13 +510,13 @@ check_r()
 ## [1] "R-3.6.3"
 ## 
 ## $latest_version
-## [1] "R-3.6.3"
+## [1] "R-4.0.0"
 ## 
 ## $latest_url
-## [1] "https://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz"
+## [1] "https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz"
 ## 
 ## $up_to_date
-## [1] TRUE
+## [1] FALSE
 ```
 
 - checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor
