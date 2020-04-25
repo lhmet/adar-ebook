@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Diretório de trabalho | Análise de Dados Ambientais com R</title>
+  <title>C.4 Markdown | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.4 Markdown | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.4 Markdown | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pré-requisitos-1.html"/>
-<link rel="next" href="boas-práticas-para-importação-e-exportação-de-dados.html"/>
+<link rel="prev" href="inserir-código-r-no-documento-.html"/>
+<link rel="next" href="simulação-da-resolução-de-uma-lista-de-exercícios-.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,59 +370,236 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="diretório-de-trabalho" class="section level2">
-<h2><span class="header-section-number">8.2</span> Diretório de trabalho</h2>
-<p>Antes de lidar com arquivos locais, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual.</p>
-<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução abaixo:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
-<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
-<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
-<div class="rmdtip">
-<p>
-Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá as opções:
-</p>
+<div id="markdown" class="section level2">
+<h2><span class="header-section-number">C.4</span> Markdown</h2>
+<div id="cabeçalhos" class="section level3">
+<h3><span class="header-section-number">C.4.1</span> Cabeçalhos</h3>
+<p><strong>Cabeçalhos</strong> (ou <em>headers</em> em inglês) são definidos para construção do índice de seções ou capítulos do documento (<em>table of content, TOC</em>) que são ‘lincados’ às seções.</p>
+<pre><code> # Seção - nível 1
+ ## Subseção - nível 2 
+ ### Subsubseção - nível 3
+ e assim por diante
+ ...</code></pre>
+</div>
+<div id="parágrafos" class="section level3">
+<h3><span class="header-section-number">C.4.2</span> Parágrafos</h3>
+<p>Um parágrafo é uma ou mais linhas de texto, seguido de uma ou mais linha em branco.</p>
+<p><strong>Novas linhas são tratadas como espaços</strong>, para que possa organizar seus parágrafos como você gosta.</p>
+<p>Se você precisar de uma quebra de linha, insira <strong>dois ou mais espaços no final de uma linha</strong>.</p>
+<hr />
+</div>
+<div id="aparência" class="section level3">
+<h3><span class="header-section-number">C.4.3</span> Aparência</h3>
+<p>A aparência e formato do documento final impresso é definido por parâmetros definido no cabeçalho texto escrito no arquivo <code>.Rmd</code>. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb393-1" data-line-number="1">    <span class="op">---</span></a>
+<a class="sourceLine" id="cb393-2" data-line-number="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
+<a class="sourceLine" id="cb393-3" data-line-number="3">    author: Nome Sobrenome</a>
+<a class="sourceLine" id="cb393-4" data-line-number="4">    output:</a>
+<a class="sourceLine" id="cb393-5" data-line-number="5">         html_document:</a>
+<a class="sourceLine" id="cb393-6" data-line-number="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
+<a class="sourceLine" id="cb393-7" data-line-number="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
+<a class="sourceLine" id="cb393-8" data-line-number="8">            number_sections: true</a>
+<a class="sourceLine" id="cb393-9" data-line-number="9">            toc: true</a>
+<a class="sourceLine" id="cb393-10" data-line-number="10">            fig_width: <span class="dv">7</span></a>
+<a class="sourceLine" id="cb393-11" data-line-number="11">            fig_height: <span class="dv">6</span></a>
+<a class="sourceLine" id="cb393-12" data-line-number="12">            fig_caption: true</a>
+<a class="sourceLine" id="cb393-13" data-line-number="13">    <span class="op">---</span></a></code></pre></div>
+</div>
+<div id="blocos-de-códigos-sem-execução-verbatim" class="section level3">
+<h3><span class="header-section-number">C.4.4</span> Blocos de códigos sem execução (<em>Verbatim</em>)</h3>
+<p>Para inserir um trecho de código de uma linguagem de programação é preciso inserir 4 espaços antes das linhas de código.</p>
+<p><code></code>fortran
+if ( a .lt. 3) then
+write(<em>,</em>) y,w
+end if<br />
+<code></code></p>
+<p>O código impresso no <code>html</code> aparecerá da seguinte forma:</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb394-1" data-line-number="1">    <span class="kw">if</span> ( a <span class="op">.lt.</span> <span class="dv">3</span>) <span class="kw">then</span></a>
+<a class="sourceLine" id="cb394-2" data-line-number="2">      <span class="fu">write(*</span>,<span class="fu">*)</span> y,w</a>
+<a class="sourceLine" id="cb394-3" data-line-number="3">    <span class="kw">end if</span>  </a></code></pre></div>
+</div>
+<div id="listas" class="section level3">
+<h3><span class="header-section-number">C.4.5</span> Listas</h3>
+<p>Para produzir uma lista são usados os símbolos: <code>+</code> , <code>*</code> , <code>-</code>.
+Uma lista suporta vários níveis de subitens. Os subitens devem separados por quatro espaços ou um <em>tab</em>.</p>
+<pre><code> * um
+     - subitem
+ * dois
+     - subitem
+         - subsubitem
+ * três</code></pre>
 <ul>
-<li>
-<p>
-<em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
-</p>
-</li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
-</p>
-</li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
-</p>
-</li>
-<li>
-<p>
-<em>Choose Directory</em>: permite você navegar até o diretório de interesse
-</p>
-</li>
+<li>um
+<ul>
+<li>subitem</li>
+</ul></li>
+<li>dois
+<ul>
+<li>subitem
+<ul>
+<li>subsubitem</li>
+</ul></li>
+</ul></li>
+<li>três</li>
 </ul>
 </div>
-<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver usando o Rstudio você pode clicar na aba <em>Files</em> do painel de direito inferior e depois em <em>More &gt; Go To Working Directory</em>.</p>
+<div id="linhas-horizontais" class="section level3">
+<h3><span class="header-section-number">C.4.6</span> Linhas horizontais</h3>
+<p>Para inserir uma linha horizontal pode-se usar:</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb396-1" data-line-number="1"> </a>
+<a class="sourceLine" id="cb396-2" data-line-number="2"> * * *</a>
+<a class="sourceLine" id="cb396-3" data-line-number="3"> </a>
+<a class="sourceLine" id="cb396-4" data-line-number="4"> ou</a>
+<a class="sourceLine" id="cb396-5" data-line-number="5"> </a>
+<a class="sourceLine" id="cb396-6" data-line-number="6"> - - -</a>
+<a class="sourceLine" id="cb396-7" data-line-number="7"> </a></code></pre></div>
+<p>que será impresso como</p>
+<hr />
+<p>ou</p>
+<hr />
+<p>É importante notar a quebra de linha entre cada linha de caracteres.</p>
+</div>
+<div id="citações-diretas" class="section level3">
+<h3><span class="header-section-number">C.4.7</span> Citações diretas</h3>
+<blockquote>
+<p>É eRRando que se aprende R. (Jônatan Tatsch)
+## Tabelas</p>
+</blockquote>
+<p>As tabelas devem ter uma linha para cada fila, com alinhamento definido pela posição relativa a linha pontilhada dos nomes das colunas. A descrição da tabela precisa ter o formato <code>Table:</code> ou apenas <code>:</code>, a posição definida é acima da tabela.</p>
+<pre><code>  direita     esquerda   Centro    Default
+  -------     ------   ---------   -------
+       12     12          12           12
+      123     123         123         123
+        1     1            1            1
+  Table:  Tabela 1. Demonstração da sintaxe para uma tabela.</code></pre>
+<table>
+<caption>Tabela 1. Demonstração da sintaxe para uma tabela.</caption>
+<thead>
+<tr class="header">
+<th>direita</th>
+<th>esquerda</th>
+<th align="center">Centro</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12</td>
+<td>12</td>
+<td align="center">12</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>123</td>
+<td>123</td>
+<td align="center">123</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td align="center">1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre><code>#&gt; : Amostra de tabela com grades.
+#&gt;                                
+#&gt; +---------------+---------------+--------------------+
+#&gt; | Variável1     | Variável2     | descrição          |
+#&gt; +===============+===============+====================+
+#&gt; | 1             |  1.34         | - Observação 1     |
+#&gt; |               |               | - Observação 2     |
+#&gt; +---------------+---------------+--------------------+
+#&gt; | 2             |  2.10         | - Observação 2     |
+#&gt; |               |               | - Linha 2          |
+#&gt; +---------------+---------------+--------------------+</code></pre>
+<table style="width:74%;">
+<caption>Amostra de tabela com grades.</caption>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variável1</th>
+<th>Variável2</th>
+<th>descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1.34</td>
+<td><ul>
+<li>Observação 1</li>
+<li>Linha 1</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2.10</td>
+<td><ul>
+<li>Observação 2</li>
+<li>Linha 2</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>Um recurso para construir tabelas em Markdown é o <a href="http://www.tablesgenerator.com/markdown_tables">gerador de tabelas</a> que permite montar a tabela e criar o código para você colá-lo no seu documento <code>.Rmd</code>.</p>
+</div>
+<div id="ênfase-de-texto" class="section level3">
+<h3><span class="header-section-number">C.4.8</span> Ênfase de texto</h3>
+<p>Para destacar texto usa-se geralmente as palavras em <em>itálico</em> (<code>_itálico_</code> ou <code>*itálico*</code>) ou em <strong>negrito</strong> (<code>__negrito__</code> ou <code>**negrito**</code>).</p>
+<p>Um texto sobrescrito 2<sup>10</sup> é escrito <code>2^10^</code> e o subscrito (H<sub>2</sub>O) da forma <code>H~2~O</code>.</p>
+</div>
+<div id="links" class="section level3">
+<h3><span class="header-section-number">C.4.9</span> Links</h3>
+<p>Para incluir link de um site é só colocar o endereço web entre <code>&lt; &gt;</code>:</p>
+<pre><code>&lt;http://google.com&gt;
+&lt;sam@green.eggs.ham&gt;</code></pre>
+<p><a href="http://google.com" class="uri">http://google.com</a></p>
+<p><a href="mailto:sam@green.eggs.ham" class="email">sam@green.eggs.ham</a></p>
+<p>Podemos associar um link a uma sentença, da seguinte forma:</p>
+<p>“O <em>R Markdown</em> possui ampla documentação, veja o <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">cartão de referência</a> e o <a href="http://rmarkdown.rstudio.com/">site oficial</a>)”.</p>
+<pre><code>Podemos criar um link com rótulo, p.ex.: [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf &quot;Manter esse Cartão de referência para consultas&quot;) que aparecerá ao passarmos o *mouse* sobre o link.</code></pre>
+<p>Podemos criar um link com rótulo, p.ex.: <a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" title="Manter esse Cartão de referência para consultas">cartão de referência</a> que aparecerá ao passarmos o <em>mouse</em> sobre o link.</p>
+</div>
+<div id="figuras" class="section level3">
+<h3><span class="header-section-number">C.4.10</span> Figuras</h3>
+<p>Para a inserir figuras o procedimento é quase o mesmo de um link, só que precedido pelo símbolo <code>!</code>.</p>
+<p>Vamos criar um link para o endereço da imagem:</p>
+<pre><code>[Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</code></pre>
+<p><a href="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg">Cachoeira do Abade</a></p>
+<p>Ao acrescentarmos o símbolo <code>!</code> no início, obtemos a imagem no documento.</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="al">![Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</span></a></code></pre></div>
+<div class="figure">
+<img src="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg" alt="Figura 1. Cachoeira do Abade" />
+<p class="caption">Figura 1. Cachoeira do Abade</p>
+</div>
+<p>O procedimento para inserir figuras do seu computador é o mesmo, só altera-se o endereço pelo caminho até o arquivo.</p>
+</div>
+<div id="expressões-matemáticas" class="section level3">
+<h3><span class="header-section-number">C.4.11</span> Expressões matemáticas</h3>
+<p>Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no <em>R Markdown</em> é da mesma forma usada em <a href="http://pt.wikipedia.org/wiki/LaTeX">Latex</a>.</p>
+<p>Para expressões dentro de uma linha as equações são escritas entre os símbolos <code>$ $</code>, por exemplo, <span class="math inline">\(y=f(x)\)</span> foi gerada com <code>$y=f(x)$</code>.
+Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo <code>$$ $$</code>, exemplo:</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb403-1" data-line-number="1"> <span class="ss">$$</span><span class="sc">\psi</span><span class="ss"> = </span><span class="sc">\psi</span><span class="ss">_e </span><span class="sc">\left</span><span class="ss">(</span><span class="sc">\dfrac</span><span class="ss">{</span><span class="sc">\theta</span><span class="ss">}{</span><span class="sc">\theta</span><span class="ss">_s}</span><span class="sc">\right</span><span class="ss">)^{-b}$$</span></a>
+<a class="sourceLine" id="cb403-2" data-line-number="2"> </a></code></pre></div>
+<p>produz:</p>
+<p><span class="math display">\[\psi = \psi_e \left(\dfrac{\theta}{\theta_s}\right)^{-b}\]</span></p>
+<hr />
+<p>Há também um <a href="http://www.codecogs.com/latex/eqneditor.php?lang=pt-br">Editor online de equações</a> que fornece uma interface para escrever a equação e o código gerado pode ser colado no seu documento.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pré-requisitos-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="boas-práticas-para-importação-e-exportação-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="inserir-código-r-no-documento-.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulação-da-resolução-de-uma-lista-de-exercícios-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

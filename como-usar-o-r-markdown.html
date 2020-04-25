@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Diretório de trabalho | Análise de Dados Ambientais com R</title>
+  <title>C.2 Como usar o R Markdown | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.2 Como usar o R Markdown | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.2 Como usar o R Markdown | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pré-requisitos-1.html"/>
-<link rel="next" href="boas-práticas-para-importação-e-exportação-de-dados.html"/>
+<link rel="prev" href="a-essência-do-r-markdown.html"/>
+<link rel="next" href="inserir-código-r-no-documento-.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,59 +370,27 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="diretório-de-trabalho" class="section level2">
-<h2><span class="header-section-number">8.2</span> Diretório de trabalho</h2>
-<p>Antes de lidar com arquivos locais, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual.</p>
-<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução abaixo:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
-<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
-<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
-<div class="rmdtip">
-<p>
-Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá as opções:
-</p>
-<ul>
-<li>
-<p>
-<em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
-</p>
-</li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
-</p>
-</li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
-</p>
-</li>
-<li>
-<p>
-<em>Choose Directory</em>: permite você navegar até o diretório de interesse
-</p>
-</li>
-</ul>
-</div>
-<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver usando o Rstudio você pode clicar na aba <em>Files</em> do painel de direito inferior e depois em <em>More &gt; Go To Working Directory</em>.</p>
+<div id="como-usar-o-r-markdown" class="section level2">
+<h2><span class="header-section-number">C.2</span> Como usar o <em>R Markdown</em></h2>
+<p>A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.</p>
+<p>Por exemplo, para mostrar a expressão usada no R para instalar os pacotes <code>rmarkdown</code> e <code>gcookbook</code>, digitamos o seguinte trecho no corpo do texto do arquivo <code>.Rmd</code> criado no RStudio.</p>
+<pre><code>```{r}
+install.packages(&#39;rmarkdown&#39;)
+install.packages(&#39;gcookbook&#39;)
+```                                              </code></pre>
+<p>O texto acima aparecerá da seguinte forma no documento <code>html</code>:</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb385-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;gcookbook&#39;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Os trechos de código (<em>chuncks</em>) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um <em>chunck</em> permanecem disponíveis no ambiente para uso em <em>chuncks</em> posteriores. O código no <em>chunck</em> é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um <em>chunck</em> também são incorporados no documento.</p>
+<p>Nesse documento mostramos os principais elementos do <strong><em>Markdown</em></strong> e como construir os <strong><em>chunks</em></strong>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pré-requisitos-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="boas-práticas-para-importação-e-exportação-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="a-essência-do-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inserir-código-r-no-documento-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

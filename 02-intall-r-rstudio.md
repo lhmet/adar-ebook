@@ -370,8 +370,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -507,7 +507,7 @@ Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
 library(rvcheck)
 check_r()
 ## $installed_version
-## [1] "R-3.6.2"
+## [1] "R-3.6.3"
 ## 
 ## $latest_version
 ## [1] "R-4.0.0"
@@ -550,20 +550,18 @@ check_github('lhmet/inmetr')
 ## $up_to_date
 ## [1] TRUE
 check_bioc('EBImage')
-## ## EBImage is not installed...
-## install.packages("BiocManager")
-## BiocManager::install("EBImage")
+## package is up-to-date release version
 ## $package
 ## [1] "EBImage"
 ## 
 ## $installed_version
-## [1] NA
+## [1] "4.28.1"
 ## 
 ## $latest_version
 ## [1] "4.28.1"
 ## 
 ## $up_to_date
-## [1] NA
+## [1] TRUE
 ```
 
 Por fim, para atualizar todos os pacotes:
