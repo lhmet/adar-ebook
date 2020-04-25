@@ -25,8 +25,8 @@ $ R
 ```
 
 ```
-R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
-Copyright (C) 2018 The R Foundation for Statistical Computing
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -43,7 +43,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> 
+>
 ```
 
 A janela com a linha de comando do <img src="images/logo_r.png" width="20"> apresenta o *prompt* do <img src="images/logo_r.png" width="20"> (` > `). Após este símbolo digitamos os comandos, pressionamos a tecla `<enter>`, o <img src="images/logo_r.png" width="20"> interpreta o comando e retorna o resultado. 

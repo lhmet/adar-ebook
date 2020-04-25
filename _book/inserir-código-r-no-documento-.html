@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Diretório de trabalho | Análise de Dados Ambientais com R</title>
+  <title>C.3 Inserir código R no documento. | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.3 Inserir código R no documento. | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.3 Inserir código R no documento. | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pré-requisitos-1.html"/>
-<link rel="next" href="boas-práticas-para-importação-e-exportação-de-dados.html"/>
+<link rel="prev" href="como-usar-o-r-markdown.html"/>
+<link rel="next" href="markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,59 +370,196 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="diretório-de-trabalho" class="section level2">
-<h2><span class="header-section-number">8.2</span> Diretório de trabalho</h2>
-<p>Antes de lidar com arquivos locais, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual.</p>
-<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução abaixo:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
-<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
-<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
-<div class="rmdtip">
-<p>
-Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá as opções:
-</p>
+<div id="inserir-código-r-no-documento." class="section level2">
+<h2><span class="header-section-number">C.3</span> Inserir código R no documento.</h2>
+<p>Um <em>chunk</em> tem a seguinte estrutura:</p>
+<div id="opções-do-chunk" class="section level3">
+<h3><span class="header-section-number">C.3.1</span> Opções do <strong>Chunk</strong></h3>
+<p>Cada <em>chunk</em> possui parâmetros que permitem definir opções de execução para aquele <em>chunck</em>, as principais são as seguintes:</p>
 <ul>
-<li>
-<p>
-<em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
-</p>
+<li><code>chunk1</code> identificador (ID) do <em>chunk</em> que permite encontrar ele mais fácil se ocorrer algum erro (opcional) durante a geração do documento.<br />
 </li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
-</p>
+<li><code>eval = TRUE</code> opção para executar o <em>chunk</em> quando compilar o documento (<em>default</em> TRUE).<br />
 </li>
-<li>
-<p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
-</p>
+<li><code>cache=TRUE</code> opção que permite ao <em>chunk</em> guardar os dados uma vez calculados (<em>default</em> FALSE).<br />
 </li>
-<li>
-<p>
-<em>Choose Directory</em>: permite você navegar até o diretório de interesse
-</p>
+<li><code>message = TRUE</code> mostra as mensagens de erro (<em>default</em> TRUE).<br />
 </li>
+<li><code>echo = TRUE</code> se FALSE permite eliminar as saídas do chunk (<em>default</em> FALSE).</li>
+</ul>
+<p>O resto das opções são mostradas ao pressionar a tecla <code>tab</code> com o mouse posicionado dentro dos colchetes da linha do <strong>chunk</strong>. Para uma lista completa os parâmetros do <em>chunck</em> consulte <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+<pre><code>#&gt; ```{r chunk2, eval=TRUE, message = TRUE, echo = TRUE}
+#&gt; letters
+#&gt; ## letras em maiúsculo
+#&gt; LETRAS &lt;- toupper(letters)
+#&gt; LETRAS
+#&gt; x &lt;- LETRAS[LETRAS %in% c(&#39;U&#39;, &#39;F&#39;, &#39;S&#39;, &#39;M&#39;)]
+#&gt; x
+#&gt; ```</code></pre>
+<p>O <em>chunck2</em> será impresso da seguinte forma:</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">letters</a>
+<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;</span></a>
+<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="co">#&gt; [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></a>
+<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="co">## letras em maiúsculo</span></a>
+<a class="sourceLine" id="cb387-5" data-line-number="5">LETRAS &lt;-<span class="st"> </span><span class="kw">toupper</span>(letters)</a>
+<a class="sourceLine" id="cb387-6" data-line-number="6">LETRAS</a>
+<a class="sourceLine" id="cb387-7" data-line-number="7"><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;</span></a>
+<a class="sourceLine" id="cb387-8" data-line-number="8"><span class="co">#&gt; [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></a>
+<a class="sourceLine" id="cb387-9" data-line-number="9">x &lt;-<span class="st"> </span>LETRAS[LETRAS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;U&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;M&quot;</span>)]</a>
+<a class="sourceLine" id="cb387-10" data-line-number="10">x</a>
+<a class="sourceLine" id="cb387-11" data-line-number="11"><span class="co">#&gt; [1] &quot;F&quot; &quot;M&quot; &quot;S&quot; &quot;U&quot;</span></a></code></pre></div>
+</div>
+<div id="saídas-dos-chunks" class="section level3">
+<h3><span class="header-section-number">C.3.2</span> Saídas dos <strong>chunks</strong></h3>
+<p>Os resultados dos <em>chuncks</em> podem ser mostrados na forma de figuras, tabelas e textos.</p>
+<pre><code>#&gt; ```{r, warning=FALSE, message=FALSE,comment=&#39;&#39;}
+#&gt;     # carregando a pacote &#39;ggplot2&#39; para gráficos elegante
+#&gt;     library(ggplot2)
+#&gt;     # pacote que contém conjunto de dados de temperatura
+#&gt;     library(gcookbook)
+#&gt;     # Mostrando as primeiras linhas da tabela &#39;climate&#39; que pertenece ao pacote
+#&gt;     head(climate)
+#&gt;     # Usando a função qplot() para plotar a série de temperatura global
+#&gt;     qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
+#&gt;     # Usando apenas a função plot()
+#&gt;     plot(x = climate$Year, y = climate$Anomaly1)
+#&gt;     # regressão linear
+#&gt;     reg &lt;- lm(Anomaly1y ~ Year, data = climate)
+#&gt;     # extraindo o coeficiente angular (°C/ano) da reta
+#&gt;     # convertendo para °C/100 anos
+#&gt;     tendencia &lt;- coef(reg)[2] * 100
+#&gt; ```</code></pre>
+<p>O resultado do chunck acima será:</p>
+<pre><code>#&gt;     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+#&gt; 1 Berkeley 1800        NA        NA     -0.435  0.505
+#&gt; 2 Berkeley 1801        NA        NA     -0.453  0.493
+#&gt; 3 Berkeley 1802        NA        NA     -0.460  0.486
+#&gt; 4 Berkeley 1803        NA        NA     -0.493  0.489
+#&gt; 5 Berkeley 1804        NA        NA     -0.536  0.483
+#&gt; 6 Berkeley 1805        NA        NA     -0.541  0.475
+#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+#&gt; Warning: Removed 207 rows containing non-finite values (stat_smooth).
+#&gt; Warning: Removed 207 rows containing missing values (geom_point).</code></pre>
+<p><img src="images/chunck4-1.png" width="672" /><img src="images/chunck4-2.png" width="672" /></p>
+<pre><code>#&gt;      Year 
+#&gt; 0.5929518</code></pre>
+<p>Podemos fazer outro <em>chunk</em> para mostrar as tabelas.</p>
+<pre><code>#&gt; ```{r}
+#&gt;     # pacote com a função kable para saída de tabelas
+#&gt;     library(knitr)
+#&gt;     # Aplicando a função &#39;summary()&#39; ao dataframe airquality.
+#&gt;     s &lt;- summary(airquality)
+#&gt;     # Convertendo o formato da saída das tabelas
+#&gt;     kable(s, caption = &#39;Tabela 1: Resumo estatístico dos de qualidade do ar&#39;)
+#&gt; ```</code></pre>
+<table>
+<caption><span id="tab:chunck6">Tabela C.1: </span>Tabela 1: Resumo estatístico dos dados de ‘qualidade do ar’ de NY</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Ozone</th>
+<th align="center">Solar.R</th>
+<th align="center">Wind</th>
+<th align="center">Temp</th>
+<th align="center">Month</th>
+<th align="center">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="center">Min. : 1.00</td>
+<td align="center">Min. : 7.0</td>
+<td align="center">Min. : 1.700</td>
+<td align="center">Min. :56.00</td>
+<td align="center">Min. :5.000</td>
+<td align="center">Min. : 1.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">1st Qu.: 18.00</td>
+<td align="center">1st Qu.:115.8</td>
+<td align="center">1st Qu.: 7.400</td>
+<td align="center">1st Qu.:72.00</td>
+<td align="center">1st Qu.:6.000</td>
+<td align="center">1st Qu.: 8.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">Median : 31.50</td>
+<td align="center">Median :205.0</td>
+<td align="center">Median : 9.700</td>
+<td align="center">Median :79.00</td>
+<td align="center">Median :7.000</td>
+<td align="center">Median :16.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Mean : 42.13</td>
+<td align="center">Mean :185.9</td>
+<td align="center">Mean : 9.958</td>
+<td align="center">Mean :77.88</td>
+<td align="center">Mean :6.993</td>
+<td align="center">Mean :15.8</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">3rd Qu.: 63.25</td>
+<td align="center">3rd Qu.:258.8</td>
+<td align="center">3rd Qu.:11.500</td>
+<td align="center">3rd Qu.:85.00</td>
+<td align="center">3rd Qu.:8.000</td>
+<td align="center">3rd Qu.:23.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Max. :168.00</td>
+<td align="center">Max. :334.0</td>
+<td align="center">Max. :20.700</td>
+<td align="center">Max. :97.00</td>
+<td align="center">Max. :9.000</td>
+<td align="center">Max. :31.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">NA’s :37</td>
+<td align="center">NA’s :7</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="códigos-r-dentro-de-linhas" class="section level3">
+<h3><span class="header-section-number">C.3.3</span> Códigos R dentro de linhas</h3>
+<p>Podemos usar o R em expressões dentro de uma linha de texto, para mostrar o valor de uma variável ou efetuar um cálculo. Por exemplo, para obtermos o valor resultante de 2 + 2 escrevemos ` r 2 + 2 ` e o R colocará o resultado naquela posição do texto.</p>
+<p>Por exemplo, a sentença:</p>
+<ul>
+<li>A tendência da temperatura do ar média global é de ` r round(tendencia, 2) ` °C/100 anos.</li>
+</ul>
+<p>ficará</p>
+<ul>
+<li>A tendência da temperatura do ar média global é de 0.59 °C/100 anos.</li>
+</ul>
+<p>Assim como,</p>
+<ul>
+<li>A média de uma sequência de números inteiros 1 até 10 é ` r mean(1:10) `.</li>
+</ul>
+<p>ficará:</p>
+<ul>
+<li>A média de uma sequência de números inteiros de 1 até 10 é 5.5.</li>
 </ul>
 </div>
-<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver usando o Rstudio você pode clicar na aba <em>Files</em> do painel de direito inferior e depois em <em>More &gt; Go To Working Directory</em>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pré-requisitos-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="boas-práticas-para-importação-e-exportação-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="como-usar-o-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
