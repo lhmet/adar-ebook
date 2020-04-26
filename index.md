@@ -1,8 +1,9 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
+cover-image: TB1.jpg
 author: "Jônatan Tatsch"
-date: "2020-04-24"
+date: "2020-04-25"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -19,7 +20,12 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 
 <img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
+
 <p style="font-size: 11px; font-style: italic; background: whitesmoke; text-align="right"; color: gray; line-height: 12px;width: 650px;">Ilustração: The Project Twins</p> 
+
+<!-- <img src="images/TB1.jpg" style="position:absolute;top:200px;height:300px;align:center;" /> -->
+
+
 
 Este livro é uma composição das notas de aula da disciplina
 **Análise de Dados Ambientais com <img src="images/logo_r.png" width="20">** do curso de Graduação em [<span style="font-variant:small-caps;">meteorologia</span>](http://w3.ufsm.br/meteorologia/) que eu ofereço no Departamento de Física da Universidade Federal de Santa Maria ([UFSM](http://site.ufsm.br/)). 
@@ -57,6 +63,54 @@ O texto é organizado em 7 capítulos:
 - \@ref(io) Entrada de dados
 
 - \@ref(data-wrangle) Processamento de dados
+
+
+<!-- 
+# estrutura de conteúdo de livro ideal
+# para balancear R básico e tidyverse
+https://dzchilds.github.io/eda-for-bio/ 
+https://github.com/lhmet-forks/eda-for-bio
+-->
+
+<!-- 
+https://github.com/ELToulemonde/dataPreparation
+https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html
+-->
+
+
+<!--
+- EDA
+ https://www.udemy.com/course/automating-data-exploration-with-r/
+ 
+ # top demais!
+ https://github.com/mstaniak/autoEDA-resources
+ 
+  https://boxuancui.github.io/DataExplorer/
+ 
+-->
+
+<!-- - AUTOMAÇÂO COM R 
+https://datacarpentry.org/rr-automation/ 
+
+# The Automation of GitHub Processes in RStudio
+https://rpubs.com/chrimaho/GitHubAutomation
+
+https://towardsdatascience.com/automate-your-repetitive-reports-5ee60a53bda2
+
+https://stackoverflow.com/questions/10204483/i-want-to-run-a-r-code-at-a-specific-time
+
+https://stat545.com/automation-overview.html
+
+https://towardsdatascience.com/how-to-build-an-automated-trading-system-using-r-34892b6d3320
+
+https://nextjournal.com/eda/automated-eda
+
+https://www.r-bloggers.com/how-to-create-automated-analysis-using-r/
+
+
+https://medium.com/airbnb-engineering/using-googlesheets-and-mailr-packages-in-r-to-automate-reporting-c09579e0377f
+-->
+
 
 
 

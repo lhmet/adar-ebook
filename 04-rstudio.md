@@ -28,7 +28,7 @@ Nessa seção você terá uma visão geral do RStudio *Desktop*.
 
 ## Visão geral do RStudio
 
-Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em *File > New File > R script* você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
+Assumindo que o RStudio tenha sido instalado (seção \@ref(install-rstudio)), ao abri-lo e clicar em *`File ▶ New File ▶ R Script`* você verá uma tela com aspecto similar ao da Figura \@ref(fig:rstudio-fig).
 
 <div class="figure">
 <img src="images/rstudio-panels.png" alt="Rstudio" width="960" />
@@ -96,6 +96,9 @@ Após a adição dos dicionários, acesse novamente a caixa de seleção de dici
 </div>
 
 Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla `F7` (ou `Edit > Check Spelling`).
+
+
+<!-- rstudio.cloud -->
 
 
 <!--

@@ -8,6 +8,12 @@ output:
 
 # Processamento de dados {#data-wrangle}
 
+<!-- 
+Package for handling multiple imputations in a tidy format
+https://github.com/njtierney/mputr 
+-->
+
+
 
 
 Neste capítulo veremos:
