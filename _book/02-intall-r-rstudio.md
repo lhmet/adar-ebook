@@ -38,7 +38,7 @@ Você precisará do [<img src="images/logo_r.png" width="20">](https://www.r-pro
 
 ## Instalação do R e RStudio {#install}
 
-A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A interface da linha de comando tem suas vantagens, mas a sua vida ficará muito mais fácil com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
+A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A interface da linha de comando tem suas vantagens, mas você será mais produtivo com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
 
 A seguir veremos como:
 
@@ -680,18 +680,7 @@ $ lsb_release -sr
 18.04
 ```
 
-Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). Ao clicar sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se no seu sistema não houver esta opção, instale via **terminal**[^atalho-term] com os seguintes comandos:
-
-
-[^atalho-term]: digite <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> para abrir um terminal no Linux Ubuntu
-
-
-
-```
-$ cd /local/do/arquivo/baixado/rstudio-x.y.zzzz-amd64.deb
-$ sudo dpkg -i rstudio-x.y.zzzz-amd64.deb
-$ sudo apt-get install -f
-```
+Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). 
 
 
 <div class="figure" style="text-align: center">
@@ -700,7 +689,15 @@ $ sudo apt-get install -f
 </div>
 
 
+Ao clicar sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se no seu sistema não houver esta opção, instale via **terminal**[^atalho-term] com os seguintes comandos:
 
+[^atalho-term]: digite <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> para abrir um terminal no Linux Ubuntu
+
+```
+$ cd /local/do/arquivo/baixado/rstudio-x.y.zzzz-amd64.deb
+$ sudo dpkg -i rstudio-x.y.zzzz-amd64.deb
+$ sudo apt-get install -f
+```
 
 Abra o RStudio digitando no terminal:
 

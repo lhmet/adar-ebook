@@ -1,6 +1,27 @@
 # (PART) Fundamentos do R {-}
 
+<!--
+# Boas refrências
+http://swcarpentry.github.io/r-novice-gapminder/
+https://datacarpentry.org/R-ecology-lesson/
+https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
+https://github.com/swcarpentry/2013-10-09-canberra
+-->
+
+
+
+<!--
+NAO QUERO SER CHATO
+
+If there’s one piece of advice I wish I could communicate to my past self, it’s “You have permission not to be boring.” Something being boring doesn’t make it necessary: often material is boring because it’s not solving a problem the students have. Something being boring doesn’t make it reliable, either. If students forget what you taught them, they can’t be relied upon to use it well.
+
+In time, students will learn the “boring” material when they need to, during the thousands of hours it takes to become a proficient programmer. An introductory course has a different and important responsibility: to convince people that R is worth learning. And tidyverse packages are a powerful tool towards that goal.
+-->
+
+
 # Operações básicas {#operbasic}
+
+
 
 ```{r setup, include = FALSE}
 rm(list = ls())
@@ -43,141 +64,71 @@ O `r rblue` é uma calculadora turbinada com diversas funções matemáticas dis
 
 ### Aritmética básica
 
-Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do `r rblue`.
+Todas operações feitas em uma calculadora podem ser realizadas no painel com console do `r rblue` no RStudio. Podemos calcular diversas operações em uma expressão:
 
-```{r chunk1}
-10 + 2 + 4
-# Exemplo de divisao 
-(5 + 14)/2
-# exponenciação
-2^3
-4^0.5
-# operador artimético para se determinar o resto de uma divisao
-10 %% 2
-2001 %% 2
-# o inteiro do quociente 
-11 %/% 2
+```{r oper1}
+10 + 8^2/4 - pi
 ```
+
+Além de números e operadores artiméticos a expressão acima inclui a constante pré-definida ($\pi$): `pi` (=`r pi`).
 
 
 ```{block, note-virgulas, type='rmdwarning'}
 Note que no R, o separador decimal é o ponto \".\", ao invés da vírgula \",\" usada na notação brasileira.
-As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em `log(x = 10, base = 10)`.
+As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como `log(10, 10)`, que veremos na seção @ref(matfuns) .
 ```
 
- 
+As operações no `r rblue` seguem a mesma ordem de precedência que aprendemos em matemática na escola: 
 
-Conheça mais operadores aritméticos, digitando na linha de comando:
+- parênteses: `(` `)`
 
-```{r chunk12, eval = FALSE}
-?"Arithmetic"
+- expoentes: `^`ou `**`
+
+- multiplicação: `*`
+
+- divisão: `/`
+
+Então use os parênteses para forçar a ordem das operações acima de acordo com sua intenção:
+
+```{r oper2}
+10 + ((8^2)/4) - pi  # parênteses opcionais se você lembrar a regra
+(10 + 8^2)/4 - pi
+10 + 8^2/(4 - pi)
+10 + 8^(2/4) - pi
 ```
 
-A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do `r rblue`.
+Se você quer saber se um número é divisor exato de outro número (resto da divisão igual a zero), o operador `%%` determina o resto de uma divisão:
 
-### Constantes
-
-O R possui algumas constantes pré-definidas, como o a constante pi ($\pi$).
-
-```{r chunk13}
-pi
+```{r, oper3}
+10 %% 2
+11 %% 2
 ```
 
-O `r rblue` também tem vetores de caracteres pré-definidos, são eles:
+O operador `%/%` fornece a parte inteira do quociente da divisão entre 2 números.
 
-```{r chunk14}
-LETTERS
-letters
-month.abb
-month.name
-```
-
-Note que caracteres estão sempre entre aspas: `""`.
-
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> "caracteres são entre aspas"</p>
-
-```{r chunk15, error=TRUE}
-aeiou
-```
-
-```{r chunk15a}
-"aeiou"
+```{r, oper4}
+11 / 2
+11 %/% 2
 ```
 
 
-### Funções matemáticas internas
+Operações que resultam em números muito pequenos ou muito grandes são representados em notação científica.
 
-Existem diversas funções internas do `r rblue` que permitem, por exemplo, sortear números aleatoriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no `r rblue` é:
 
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
-
-Por exemplo:
-
-```{r chunk16}
-# funções trigonométricas
-sin(pi/6)
-cos(pi)
-# raiz quadrada
-sqrt(100)
-# exponencial
-exp(1)
-# fatorial
-factorial(4)
+```{r oper5}
+5/10000
 ```
 
-No `r rblue` você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
+Este mesmo valor pode ser escrito nas seguintes formas equivalentes:
 
-Para ver a lista completa de funções trigonométricas:
-```{r chunk17, render.args = list(help = list(sections = "usage")), eval = FALSE}
-?"Trig"
+```{r, oper6}
+5e-4
+5E-4
+5*10^-4
 ```
 
 
-### Valores numéricos especiais
-
-Um caso particular sobre operação aritméticas no `r rblue`, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
-
-A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
-
-```{r tab-num-esp, echo = FALSE, warning=FALSE}
-oper <- c("2/0", "-12/0", "log(0)", "(c(-3, 3))^Inf", "0*Inf", "log(-0.5)", "sqrt(-1)", "0/0", "Inf-Inf", "mean(c(NA, NA), na.rm = TRUE)")
-res <- as.character(c(2/0, -12/0, log(0), paste0((c(-3, 3))^Inf, collapse = ", "), 0*Inf, log(-0.5), sqrt(-1), 0/0, Inf-Inf, mean(c(NA, NA), na.rm = TRUE)))
-esp_num_df <- tibble::data_frame(`operação` = oper, resultado = res)
-kable(esp_num_df, caption = "Exemplos de operações que resultam em NaN ou $\\pm\\infty$ .", align = "c")
-```
-
-Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.
-
-```{r chunk18, message=FALSE}
-exp(-Inf)
-(0:1)^Inf
-0/Inf
-(c(-1, 1)*Inf)^0
-0^0
-```
-
-Outra constante especial do `r rblue` é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
-
-```{r tab-nas, echo=FALSE}
-oper_nas <- data.frame(
-    operação = c("NA + 5", "sqrt(NA)", "NA^2", "NA/NaN"),
-    resultado = c(NA + 5, sqrt(NA), NA ^ 2, NA / NaN)
-  )
-#tibble::as_tibble(oper_nas)
-kable(oper_nas, align = "c", caption = "Operações com NA.")
-```
-
-
-### Notação científica e número de dígitos
-
-Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No `r rblue` há diferentes formas de representar números com expoentes:
-
-```{r chunk20}
-1.2e-6
-# expressões equivalentes
-1.2E6; 1.2*10^6  
-```
-
+<!--
 Os resultados dos cálculos no `r rblue` são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 ```{r chunk21}
@@ -192,77 +143,164 @@ getOption("digits")
 options(digits = 7)
 getOption("digits")
 ```
+-->
+
+### Cálculos problemáticos
+
+Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) você se deparará com os valores numéricos especiais:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido). 
+
+```{r tab-num-esp, echo = FALSE, warning=FALSE}
+oper <- c("2/0", "-12/0", "log(0)", "(c(-3, 3))^Inf", "0*Inf", "log(-0.5)", "sqrt(-1)", "0/0", "Inf-Inf", "mean(c(NA, NA), na.rm = TRUE)")
+res <- as.character(c(2/0, -12/0, log(0), paste0((c(-3, 3))^Inf, collapse = ", "), 0*Inf, log(-0.5), sqrt(-1), 0/0, Inf-Inf, mean(c(NA, NA), na.rm = TRUE)))
+esp_num_df <- tibble::tibble(`operação` = oper, resultado = res)
+kable(esp_num_df, caption = "Exemplos de operações que resultam em NaN ou $\\pm\\infty$ .", align = "c")
+```
+
+A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
+
+Por outro lado, há operações válidas com estes valores especiais.
+
+```{r chunk18, message=FALSE}
+exp(-Inf)
+(0:1)^Inf
+0/Inf
+(c(-1, 1)*Inf)^0
+0^0
+```
+
+Outra constante especial do `r rblue` é o `NA` (*Not Available*) que representa **valor faltante**, um problema inerente a maioria dos conjuntos de dados ambientais. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+
+```{r tab-nas, echo=FALSE}
+oper_nas <- data.frame(
+    operação = c("NA + 5", "sqrt(NA)", "NA^2", "NA/NaN"),
+    resultado = c(NA + 5, sqrt(NA), NA ^ 2, NA / NaN)
+  )
+#tibble::as_tibble(oper_nas)
+kable(oper_nas, align = "c", caption = "Operações com NA.")
+```
+
+
+
+
+
+### Funções matemáticas
+
+O `r rblue` tem diversas funções internas. A sintaxe para chamar uma função é simplesmente:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
+
+Por exemplo:
+
+```{r fmats1}
+# cosseno de 60°
+cos(60*pi/180)
+# raiz quadrada de 100
+sqrt(100)
+# exponencial de 1
+exp(1)
+# fatorial de 4 (4*3*2*1)
+factorial(4) 
+```
+
+Por padrão a função logaritmo (`log()`) determina o logaritmo natural (logaritmo de base $e$). 
+
+```{r fmats2}
+# logaritmo natural de 10
+log(10)
+```
+
+Para obter o logaritmo de 10 na base 10, o segundo argumento da função `log()` deve ser especificado, ou pode-se usar a função `log10()`.
+
+```{r fmats3}
+log(10, base = 10) # logaritmo de 10 na base 10
+log10(10)          # forma equivalente
+```
+
+No `r rblue` você verá que parênteses são frequentemente utilizados. Em geral, uma palavra antecedendo um parênteses em uma expressão: é uma função.
+
+
+Você não precisa lembrar do nome de cada função do `r rblue`. Você pode ou buscar pelo termo em um site de busca, ou usar o auto-preenchimento de código (<tab> no RStudio)  após a parte inicial do nome da função.  
+
+Digitando `?` antes do nome de uma função ou operador abrirá a página de ajuda daquela função. 
+
+```{r chunk17, render.args = list(help = list(sections = "Details")), eval = TRUE}
+?atan2
+```
+
+
+
+
+
+
 
 ## Variáveis
 
-### Formas de atribuição 
-
-#### Variável recebe valor
-
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\". O resultado da \"atribuição\" é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. 
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. O resultado da \"atribuição\" é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. 
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
 
 ```{r chunk23}
-p <- 1013
+m <- 100
 # para mostrar a variável digite o nome da variável
-p
+m
 # ou use a função print()
-print(p)
+print(m)
 ```
 
-O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
+O R diferencia letras maiúsculas de minúsculas. 
 
 ```{r chunk24, error=TRUE}
-p
-P
+m
+M
 ```
 
-Como criamos apenas a variável `p`, `P` não foi encontrada. 
+Como criamos apenas a variável `m`, `M` não foi encontrada. 
 
-A variável `p` pode ser utilizado para criar outras variáveis.
+A variável `m` pode ser utilizado para criar outras variáveis.
 
 ```{r chunk25}
-p_pa <- p * 100
+p <- m * 9.8
 # pressão em Pascal
-p_pa
+p
 ```
 
+<!--
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
 
-```{r chunk26}
+```{r chunk26, eval = FALSE}
 7/3 + 0.6 -> y1
  y1
 7/(3 + 0.6) -> y2
  y2
 ```
+-->
 
 Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
 
 ```{r chunck27, eval = FALSE}
-x <- 1
-x < -1
-# atribuição ou menor que?
-x<-1 
+g <- 9.8  # g é igual a 9.8
+g < -9.8  # g é menor que -9.8 ?
+g<-9.8    # g é igual a 9.8 ou é menor que -9.8 ?
 ```
 
+<!--
 Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
 
-```{r chunck28}
+```{r chunck28, eval = FALSE}
 nd3 <- 31
 nd4 <- 30
 ```
 
 O total de dias nos meses de março e abril será armazenado na variável `totdias`:
 
-```{r chunck29}
+```{r chunck29, eval = FALSE}
 totd <- nd3 + nd4
 totd
 ```
 
 A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
 
-```{r chunck30}
+```{r chunck30, eval = FALSE}
 # número de dias em cada mês
 jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
 abr <- jun <- set <- nov <- 30
@@ -274,24 +312,32 @@ jun
 set
 fev
 ```
+-->
 
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
-```{r chunk31}
-# ao invés de 
-# tar <- 20
-# tar
-# é mais prático
-(tar <- 20) 
+```{r chunk31, eval = FALSE}
+g <- 10   # não imprime nada
+g         # digitando o nome da variável também mostra o valor de g
+(g <- 10) # a mesma chamada com parênteses define e mostra o valor de g
 ```
 
-Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a [equação de Tetens](https://en.wikipedia.org/wiki/Tetens_equation), podemos fazer:
+```{r, echo = FALSE, eval = TRUE}
+g <- 10   # não imprime nada
+```
+
+
+Se desejamos calcular e já visualizar o valor da variável peso (`p`) definida abaixo, podemos fazer:
 
 ```{r chunk31a}
-(es <- 0.611 * exp((17.269 * tar)/(tar + 237.3)))
+(p <- m * g)
 ```
 
 Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^11] para verificar as variáveis existentes:
+
+```{r, eval = TRUE, echo = FALSE}
+rm(esp_num_df, oper_nas, oper, pcks, res, rblue)
+```
 
 ```{r chunck32}
 ls()
@@ -300,7 +346,8 @@ ls()
 [^11]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
 
 
-```{r chunck33}
+<!--
+```{r chunck33, eval = FALSE}
 totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
 totd
 ```
@@ -310,8 +357,8 @@ totd
 
 Outra forma de atribuição é através da função `assign()`:
 
-```{r chunk34}
-es
+```{r chunk34, eval = FALSE}
+es <- 3
 assign(x = "es_hpa", value = es/10)
 es_hpa
 # usando função assign sem nome dos parâmetros
@@ -325,36 +372,31 @@ Um exemplo mais elaborado de uso da função `assign()` para criar várias vari�
 ```{block, uso-assign, type='rmdwarning'}
 Este método de atribuição é menos comum, por deixar o código menos legível que o método `variavel <- valor`. Mas em alguns casos de programação avançada envolvendo ambientes (especificado como 3° argumento da `assign()`) ele pode ser útil.
 ```
+-->
+
+
+
 
 
 ### Removendo variáveis
 
-Para remover variáveis usa-se a função `rm()`.
-
-```{r chunk36}
-# lista de variáveis existentes
-ls()
-```
-
-Vamos remover a variável `u` criada previamente e ver a lista de objetos no espaço de trabalho.
+Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` criada previamente e ver a lista de objetos no espaço de trabalho.
 
 ```{r chunk36a}
-rm(u)
-# lista de variáveis existentes, sem u
+rm(m)
 ls()
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
 
 ```{r chunk36b}
-rm(es_hpa, es, tar, y1, y2)
-# lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
+rm(g, p)
 ls()
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
 
-```{r chunk37}
+```{r chunk37, eval = FALSE}
 # apagando tudo
 rm(list = ls())
 ls()
@@ -364,7 +406,19 @@ ls()
 
 ### Nomeando variáveis
 
-É preciso ter cuidado ao nomear variáveis no R porque existem algumas regras:
+<!-- 
+# consultar para acrescentar o que for útil/complementar
+https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
+
+-->
+
+
+```{r, echo = FALSE, eval = TRUE}
+rblue <- '<img src="images/logo_r.png" width="20">'
+```
+
+
+É preciso ter cuidado ao nomear variáveis no  `r rblue` porque existem algumas regras:
 
 * não iniciar com um número e não conter espaços
 
@@ -434,6 +488,11 @@ knitr::include_graphics("images/styler_0.1.gif")
 
 
 ## Exercícios
+
+<!-- 
+equação de báskara para dados valores 
+-->
+
 
 1. Execute as seguintes expressões no R mostrando os resultados obtidos.
 
@@ -577,5 +636,6 @@ Sempre procure criar variáveis para cada etapa da resolução das questões. Ut
 
 4. (Opcional) `lista1-adar-NomedoAluno.html` arquivo html gerado pelo RStudio (botão knit na aba do painel do editor) a partir do arquivo `lista1-adar-NomedoAluno.Rmd`.
 ```
+
 
 

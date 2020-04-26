@@ -8,8 +8,17 @@
 
 O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). A extensão de um arquivo R Markdown é `.Rmd`. Um texto R Markdown pode ser facilmente criado no R Studio a partir de um *template* em `File > New File > R Markdown` no RStudio.  Clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio é gerado o documento HTML do arquivo `.Rmd` correspondente.
 
-Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados na internet por meio do [Rpubs](https://rpubs.com/), [Github](https://github.com) e [netlify](https://app.netlify.com/drop).
+Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados na internet por meio do [Rpubs](https://rpubs.com/)[^howto2rpubs], [Github](https://github.com)[^howto2github] e [netlify](https://app.netlify.com/drop)[^howto2netlify].
 
+[^howto2rpubs]: No RStudio, após gerar o documento HTML clicando em knit, clique em *Publish* no canto superior direito da aba Viewer e siga os passos apresentados.
+
+[^howto2github]: para publicar no GitHub você precisa criar seu arquivo HTML dentro de um projeto do RStudio usando o [git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) como sistema de versão de controle. Ao gerar o arquivo HTML, na aba *Git* do painel *Environmet*,  *Commit* o arquivo gerado e depois *Push*. O arquivo HTML no GitHub pode ser visualizado https://rawgit.com/nomedousuario/nomedorepositorio/master/nomedoarquivo.html.
+
+<!-- 
+
+-->
+
+[^howto2netlify]: Para publicar seu documento HTML no [netlify](https://app.netlify.com/drop) coloque-o em uma pasta qualquer, renomeie seu `arquivo.html` para `index.html` e arraste a pasta para área pontilhada indicada no site.   
 
 ## A essência do *R Markdown*
 

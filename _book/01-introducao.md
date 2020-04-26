@@ -11,6 +11,12 @@
  visualização
 -->
 
+<!--
+
+- pesquisa reproduzível, transparência
+
+-->
+
 
 
 
@@ -113,6 +119,8 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 ## Por que o R?
 
 <!-- 
+https://simplystatistics.org/2018/07/12/use-r-keynote-2018/
+
 http://www.sthda.com/english/wiki/what-is-r-and-why-learning-r-programming
 
 https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
@@ -140,7 +148,7 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 
    - [Relatório dinâmicos](https://rmarkdown.rstudio.com/articles_intro.html) e [interativos](http://shiny.rstudio.com/)
 
-- Acesso ao estado da arte da ciência de dados (*Big Data*, *Data Mining*, *Machine Leraning*)
+- Acesso ao estado da arte da ciência de dados (*Big Data*, *Data Mining*, *Machine Learning*)
 
 - é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
@@ -170,8 +178,9 @@ Evolução do nº de pacotes disponíveis no [CRAN](http://cran.r-project.org/mi
 
 
 
-## Por que um meteorologista usaria o R?
 
+
+<!--
 A meteorologia é 4D: 
 
 ```r
@@ -190,6 +199,7 @@ Logo, requer ferramentas específicas para:
 
 * leitura de dados em formatos específicos ([netcdf](https://en.wikipedia.org/wiki/NetCDF), [binários](https://en.wikipedia.org/wiki/Binary_file), [grib2](https://en.wikipedia.org/wiki/GRIB), ...)
 
+-->
 
 
 
@@ -220,6 +230,11 @@ Logo, requer ferramentas específicas para:
 
 - [Livros gratuitos](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r) (em inglês)
 
+
+
+<!-- 
+https://simplystatistics.org/2018/07/12/use-r-keynote-2018/ 
+-->
 
 
 

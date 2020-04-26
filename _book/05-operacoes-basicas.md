@@ -1,6 +1,27 @@
 # (PART) Fundamentos do R {-}
 
+<!--
+# Boas refrências
+http://swcarpentry.github.io/r-novice-gapminder/
+https://datacarpentry.org/R-ecology-lesson/
+https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
+https://github.com/swcarpentry/2013-10-09-canberra
+-->
+
+
+
+<!--
+NAO QUERO SER CHATO
+
+If there’s one piece of advice I wish I could communicate to my past self, it’s “You have permission not to be boring.” Something being boring doesn’t make it necessary: often material is boring because it’s not solving a problem the students have. Something being boring doesn’t make it reliable, either. If students forget what you taught them, they can’t be relied upon to use it well.
+
+In time, students will learn the “boring” material when they need to, during the thousands of hours it takes to become a proficient programmer. An introductory course has a different and important responsibility: to convince people that R is worth learning. And tidyverse packages are a powerful tool towards that goal.
+-->
+
+
 # Operações básicas {#operbasic}
+
+
 
 
 
@@ -34,190 +55,89 @@ O <img src="images/logo_r.png" width="20"> é uma calculadora turbinada com dive
 
 ### Aritmética básica
 
-Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do <img src="images/logo_r.png" width="20">.
+Todas operações feitas em uma calculadora podem ser realizadas no painel com console do <img src="images/logo_r.png" width="20"> no RStudio. Podemos calcular diversas operações em uma expressão:
 
 
 ```r
-10 + 2 + 4
-#> [1] 16
-# Exemplo de divisao 
-(5 + 14)/2
-#> [1] 9.5
-# exponenciação
-2^3
-#> [1] 8
-4^0.5
-#> [1] 2
-# operador artimético para se determinar o resto de uma divisao
+10 + 8^2/4 - pi
+#> [1] 22.85841
+```
+
+Além de números e operadores artiméticos a expressão acima inclui a constante pré-definida ($\pi$): `pi` (=3.1415927).
+
+
+<div class="rmdwarning">
+<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção <span class="citation">@ref</span>(matfuns) .</p>
+</div>
+
+As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem de precedência que aprendemos em matemática na escola: 
+
+- parênteses: `(` `)`
+
+- expoentes: `^`ou `**`
+
+- multiplicação: `*`
+
+- divisão: `/`
+
+Então use os parênteses para forçar a ordem das operações acima de acordo com sua intenção:
+
+
+```r
+10 + ((8^2)/4) - pi  # parênteses opcionais se você lembrar a regra
+#> [1] 22.85841
+(10 + 8^2)/4 - pi
+#> [1] 15.35841
+10 + 8^2/(4 - pi)
+#> [1] 84.55668
+10 + 8^(2/4) - pi
+#> [1] 9.686834
+```
+
+Se você quer saber se um número é divisor exato de outro número (resto da divisão igual a zero), o operador `%%` determina o resto de uma divisão:
+
+
+```r
 10 %% 2
 #> [1] 0
-2001 %% 2
+11 %% 2
 #> [1] 1
-# o inteiro do quociente 
+```
+
+O operador `%/%` fornece a parte inteira do quociente da divisão entre 2 números.
+
+
+```r
+11 / 2
+#> [1] 5.5
 11 %/% 2
 #> [1] 5
 ```
 
 
-<div class="rmdwarning">
-<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como em <code>log(x = 10, base = 10)</code>.</p>
-</div>
+Operações que resultam em números muito pequenos ou muito grandes são representados em notação científica.
 
- 
-
-Conheça mais operadores aritméticos, digitando na linha de comando:
 
 
 ```r
-?"Arithmetic"
+5/10000
+#> [1] 5e-04
 ```
 
-A janela que se abrirá mostrará o texto que faz parte do manual de ajuda do <img src="images/logo_r.png" width="20">.
-
-### Constantes
-
-O R possui algumas constantes pré-definidas, como o a constante pi ($\pi$).
+Este mesmo valor pode ser escrito nas seguintes formas equivalentes:
 
 
 ```r
-pi
-#> [1] 3.141593
-```
-
-O <img src="images/logo_r.png" width="20"> também tem vetores de caracteres pré-definidos, são eles:
-
-
-```r
-LETTERS
-#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
-#> [20] "T" "U" "V" "W" "X" "Y" "Z"
-letters
-#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-#> [20] "t" "u" "v" "w" "x" "y" "z"
-month.abb
-#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
-month.name
-#>  [1] "January"   "February"  "March"     "April"     "May"       "June"     
-#>  [7] "July"      "August"    "September" "October"   "November"  "December"
-```
-
-Note que caracteres estão sempre entre aspas: `""`.
-
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> "caracteres são entre aspas"</p>
-
-
-```r
-aeiou
-#> Error in eval(expr, envir, enclos): object 'aeiou' not found
+5e-4
+#> [1] 5e-04
+5E-4
+#> [1] 5e-04
+5*10^-4
+#> [1] 5e-04
 ```
 
 
-```r
-"aeiou"
-#> [1] "aeiou"
-```
-
-
-### Funções matemáticas internas
-
-Existem diversas funções internas do <img src="images/logo_r.png" width="20"> que permitem, por exemplo, sortear números aleatoriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no <img src="images/logo_r.png" width="20"> é:
-
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
-
-Por exemplo:
-
-
-```r
-# funções trigonométricas
-sin(pi/6)
-#> [1] 0.5
-cos(pi)
-#> [1] -1
-# raiz quadrada
-sqrt(100)
-#> [1] 10
-# exponencial
-exp(1)
-#> [1] 2.718282
-# fatorial
-factorial(4)
-#> [1] 24
-```
-
-No <img src="images/logo_r.png" width="20"> você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
-
-Para ver a lista completa de funções trigonométricas:
-
-```r
-?"Trig"
-```
-
-
-### Valores numéricos especiais
-
-Um caso particular sobre operação aritméticas no <img src="images/logo_r.png" width="20">, são os valores numéricos `Inf`(Infinito) e `NaN` que resultam de operações como as mostradas na Tabela \@ref(tab:tab-num-esp). `NaN` é a abreviação para valor indefinido (do termo em inglês *Not a Number*). Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
-
-A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
-
-
-Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
-
-           operação               resultado 
--------------------------------  -----------
-              2/0                    Inf    
-             -12/0                  -Inf    
-            log(0)                  -Inf    
-        (c(-3, 3))^Inf            NaN, Inf  
-             0*Inf                   NaN    
-           log(-0.5)                 NaN    
-           sqrt(-1)                  NaN    
-              0/0                    NaN    
-            Inf-Inf                  NaN    
- mean(c(NA, NA), na.rm = TRUE)       NaN    
-
-Por outro lado abaixo mostra-se alguns exemplos operações válidas com estes valores especiais.
-
-
-```r
-exp(-Inf)
-#> [1] 0
-(0:1)^Inf
-#> [1] 0 1
-0/Inf
-#> [1] 0
-(c(-1, 1)*Inf)^0
-#> [1] 1 1
-0^0
-#> [1] 1
-```
-
-Outra constante especial do <img src="images/logo_r.png" width="20"> é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
-
-
-Table: (\#tab:tab-nas)Operações com NA.
-
- operação    resultado 
-----------  -----------
-  NA + 5        NA     
- sqrt(NA)       NA     
-   NA^2         NA     
-  NA/NaN        NA     
-
-
-### Notação científica e número de dígitos
-
-Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No <img src="images/logo_r.png" width="20"> há diferentes formas de representar números com expoentes:
-
-
-```r
-1.2e-6
-#> [1] 1.2e-06
-# expressões equivalentes
-1.2E6; 1.2*10^6  
-#> [1] 1200000
-#> [1] 1200000
-```
-
+<!--
 Os resultados dos cálculos no <img src="images/logo_r.png" width="20"> são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 
@@ -238,72 +158,184 @@ options(digits = 7)
 getOption("digits")
 #> [1] 7
 ```
+-->
+
+### Cálculos problemáticos
+
+Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) você se deparará com os valores numéricos especiais:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido). 
+
+
+Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
+
+           operação               resultado 
+-------------------------------  -----------
+              2/0                    Inf    
+             -12/0                  -Inf    
+            log(0)                  -Inf    
+        (c(-3, 3))^Inf            NaN, Inf  
+             0*Inf                   NaN    
+           log(-0.5)                 NaN    
+           sqrt(-1)                  NaN    
+              0/0                    NaN    
+            Inf-Inf                  NaN    
+ mean(c(NA, NA), na.rm = TRUE)       NaN    
+
+A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
+
+Por outro lado, há operações válidas com estes valores especiais.
+
+
+```r
+exp(-Inf)
+#> [1] 0
+(0:1)^Inf
+#> [1] 0 1
+0/Inf
+#> [1] 0
+(c(-1, 1)*Inf)^0
+#> [1] 1 1
+0^0
+#> [1] 1
+```
+
+Outra constante especial do <img src="images/logo_r.png" width="20"> é o `NA` (*Not Available*) que representa **valor faltante**, um problema inerente a maioria dos conjuntos de dados ambientais. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+
+
+Table: (\#tab:tab-nas)Operações com NA.
+
+ operação    resultado 
+----------  -----------
+  NA + 5        NA     
+ sqrt(NA)       NA     
+   NA^2         NA     
+  NA/NaN        NA     
+
+
+
+
+
+### Funções matemáticas
+
+O <img src="images/logo_r.png" width="20"> tem diversas funções internas. A sintaxe para chamar uma função é simplesmente:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `funcão(argumento)` </p>
+
+Por exemplo:
+
+
+```r
+# cosseno de 60°
+cos(60*pi/180)
+#> [1] 0.5
+# raiz quadrada de 100
+sqrt(100)
+#> [1] 10
+# exponencial de 1
+exp(1)
+#> [1] 2.718282
+# fatorial de 4 (4*3*2*1)
+factorial(4) 
+#> [1] 24
+```
+
+Por padrão a função logaritmo (`log()`) determina o logaritmo natural (logaritmo de base $e$). 
+
+
+```r
+# logaritmo natural de 10
+log(10)
+#> [1] 2.302585
+```
+
+Para obter o logaritmo de 10 na base 10, o segundo argumento da função `log()` deve ser especificado, ou pode-se usar a função `log10()`.
+
+
+```r
+log(10, base = 10) # logaritmo de 10 na base 10
+#> [1] 1
+log10(10)          # forma equivalente
+#> [1] 1
+```
+
+No <img src="images/logo_r.png" width="20"> você verá que parênteses são frequentemente utilizados. Em geral, uma palavra antecedendo um parênteses em uma expressão: é uma função.
+
+
+Você não precisa lembrar do nome de cada função do <img src="images/logo_r.png" width="20">. Você pode ou buscar pelo termo em um site de busca, ou usar o auto-preenchimento de código (<tab> no RStudio)  após a parte inicial do nome da função.  
+
+Digitando `?` antes do nome de uma função ou operador abrirá a página de ajuda daquela função. 
+
+
+```r
+?atan2
+```
+
+
+
+
+
+
 
 ## Variáveis
 
-### Formas de atribuição 
-
-#### Variável recebe valor
-
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\". O resultado da \"atribuição\" é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. 
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. O resultado da \"atribuição\" é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. 
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
 
 
 ```r
-p <- 1013
+m <- 100
 # para mostrar a variável digite o nome da variável
-p
-#> [1] 1013
+m
+#> [1] 100
 # ou use a função print()
-print(p)
-#> [1] 1013
+print(m)
+#> [1] 100
 ```
 
-O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
+O R diferencia letras maiúsculas de minúsculas. 
 
 
 ```r
-p
-#> [1] 1013
-P
-#> Error in eval(expr, envir, enclos): object 'P' not found
+m
+#> [1] 100
+M
+#> Error in eval(expr, envir, enclos): object 'M' not found
 ```
 
-Como criamos apenas a variável `p`, `P` não foi encontrada. 
+Como criamos apenas a variável `m`, `M` não foi encontrada. 
 
-A variável `p` pode ser utilizado para criar outras variáveis.
+A variável `m` pode ser utilizado para criar outras variáveis.
 
 
 ```r
-p_pa <- p * 100
+p <- m * 9.8
 # pressão em Pascal
-p_pa
-#> [1] 101300
+p
+#> [1] 980
 ```
 
+<!--
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
 
 
 ```r
 7/3 + 0.6 -> y1
  y1
-#> [1] 2.933333
 7/(3 + 0.6) -> y2
  y2
-#> [1] 1.944444
 ```
+-->
 
 Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
 
 
 ```r
-x <- 1
-x < -1
-# atribuição ou menor que?
-x<-1 
+g <- 9.8  # g é igual a 9.8
+g < -9.8  # g é menor que -9.8 ?
+g<-9.8    # g é igual a 9.8 ou é menor que -9.8 ?
 ```
 
+<!--
 Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
 
 
@@ -318,7 +350,6 @@ O total de dias nos meses de março e abril será armazenado na variável `totdi
 ```r
 totd <- nd3 + nd4
 totd
-#> [1] 61
 ```
 
 A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
@@ -331,58 +362,51 @@ abr <- jun <- set <- nov <- 30
 fev <- 28
 # verificação
 jan
-#> [1] 31
 jul
-#> [1] 31
 jun
-#> [1] 30
 set
-#> [1] 30
 fev
-#> [1] 28
 ```
+-->
 
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
 
 ```r
-# ao invés de 
-# tar <- 20
-# tar
-# é mais prático
-(tar <- 20) 
-#> [1] 20
+g <- 10   # não imprime nada
+g         # digitando o nome da variável também mostra o valor de g
+(g <- 10) # a mesma chamada com parênteses define e mostra o valor de g
 ```
 
-Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a [equação de Tetens](https://en.wikipedia.org/wiki/Tetens_equation), podemos fazer:
+
+
+
+Se desejamos calcular e já visualizar o valor da variável peso (`p`) definida abaixo, podemos fazer:
 
 
 ```r
-(es <- 0.611 * exp((17.269 * tar)/(tar + 237.3)))
-#> [1] 2.338865
+(p <- m * g)
+#> [1] 1000
 ```
 
 Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^11] para verificar as variáveis existentes:
 
 
+
+
 ```r
 ls()
-#>  [1] "abr"        "ago"        "dez"        "es"         "esp_num_df"
-#>  [6] "fev"        "jan"        "jul"        "jun"        "mai"       
-#> [11] "mar"        "nd3"        "nd4"        "nov"        "oper"      
-#> [16] "oper_nas"   "out"        "p"          "p_pa"       "pcks"      
-#> [21] "rblue"      "res"        "set"        "tar"        "totd"      
-#> [26] "y1"         "y2"
+#> [1] "g" "m" "p"
 ```
 
 [^11]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
 
 
+<!--
 
 ```r
 totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
 totd
-#> [1] 365
 ```
 
 #### Atribuição com a função `assign()`
@@ -392,15 +416,12 @@ Outra forma de atribuição é através da função `assign()`:
 
 
 ```r
-es
-#> [1] 2.338865
+es <- 3
 assign(x = "es_hpa", value = es/10)
 es_hpa
-#> [1] 0.2338865
 # usando função assign sem nome dos parâmetros
 assign("u", 2.5)
 u
-#> [1] 2.5
 ```
 
 Um exemplo mais elaborado de uso da função `assign()` para criar várias variáveis pode ser visto [aqui](https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd).
@@ -409,51 +430,30 @@ Um exemplo mais elaborado de uso da função `assign()` para criar várias vari�
 <div class="rmdwarning">
 <p>Este método de atribuição é menos comum, por deixar o código menos legível que o método <code>variavel &lt;- valor</code>. Mas em alguns casos de programação avançada envolvendo ambientes (especificado como 3° argumento da <code>assign()</code>) ele pode ser útil.</p>
 </div>
+-->
+
+
+
 
 
 ### Removendo variáveis
 
-Para remover variáveis usa-se a função `rm()`.
+Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` criada previamente e ver a lista de objetos no espaço de trabalho.
 
 
 ```r
-# lista de variáveis existentes
+rm(m)
 ls()
-#>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
-#>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
-#> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
-#> [26] "totd"       "u"          "y1"         "y2"
-```
-
-Vamos remover a variável `u` criada previamente e ver a lista de objetos no espaço de trabalho.
-
-
-```r
-rm(u)
-# lista de variáveis existentes, sem u
-ls()
-#>  [1] "abr"        "ago"        "dez"        "es"         "es_hpa"    
-#>  [6] "esp_num_df" "fev"        "jan"        "jul"        "jun"       
-#> [11] "mai"        "mar"        "nd3"        "nd4"        "nov"       
-#> [16] "oper"       "oper_nas"   "out"        "p"          "p_pa"      
-#> [21] "pcks"       "rblue"      "res"        "set"        "tar"       
-#> [26] "totd"       "y1"         "y2"
+#> [1] "g" "p"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
 
 
 ```r
-rm(es_hpa, es, tar, y1, y2)
-# lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
+rm(g, p)
 ls()
-#>  [1] "abr"        "ago"        "dez"        "esp_num_df" "fev"       
-#>  [6] "jan"        "jul"        "jun"        "mai"        "mar"       
-#> [11] "nd3"        "nd4"        "nov"        "oper"       "oper_nas"  
-#> [16] "out"        "p"          "p_pa"       "pcks"       "rblue"     
-#> [21] "res"        "set"        "totd"
+#> character(0)
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
@@ -463,14 +463,23 @@ Para remover todas variáveis do espaço de trabalho (use com cautela):
 # apagando tudo
 rm(list = ls())
 ls()
-#> character(0)
 ```
 
 
 
 ### Nomeando variáveis
 
-É preciso ter cuidado ao nomear variáveis no R porque existem algumas regras:
+<!-- 
+# consultar para acrescentar o que for útil/complementar
+https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
+
+-->
+
+
+
+
+
+É preciso ter cuidado ao nomear variáveis no  <img src="images/logo_r.png" width="20"> porque existem algumas regras:
 
 * não iniciar com um número e não conter espaços
 
@@ -544,6 +553,11 @@ As funções são acessíveis Através do menu *Addins* do RStudio e incluem as 
 
 
 ## Exercícios
+
+<!-- 
+equação de báskara para dados valores 
+-->
+
 
 1. Execute as seguintes expressões no R mostrando os resultados obtidos.
 
@@ -683,5 +697,6 @@ $SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é
 <li>(Opcional) <code>lista1-adar-NomedoAluno.html</code> arquivo html gerado pelo RStudio (botão knit na aba do painel do editor) a partir do arquivo <code>lista1-adar-NomedoAluno.Rmd</code>.</li>
 </ol>
 </div>
+
 
 
