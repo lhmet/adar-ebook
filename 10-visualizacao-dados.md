@@ -26,7 +26,9 @@ Figura \@ref(fig:tidy-workflow)
 
 Neste capítulo veremos como produzir gráficos usando o pacote ggplot2 que baseia-se na [gramática de gráficos](http://amzn.to/2ef1eWp).
 
-Citando @Tufte2001 e @Wilkinson2005.
+<!-- 
+Citando @Tufte2001 e @Wilkinson2005. 
+-->
 
 
 ## Pré-requisitos
@@ -46,14 +48,9 @@ easypackages::libraries(pacotes)
 
 ### Dados 
 
-Neste capítulo utilizaremos os seguintes dados:
-
-1. dados meteorológicos diários de POA.
-
-
 
 
 ## *ggplot2*
 
-asd
+
 

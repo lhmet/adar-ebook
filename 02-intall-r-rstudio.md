@@ -613,7 +613,8 @@ pcks <- c(
   "lubridate",
   "fields",
   "RColorBrewer",
-  "WriteXLS"
+  "WriteXLS",
+  "gcookbook"
   #"gdata",
   #"XLConnect"
   )
