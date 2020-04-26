@@ -4,9 +4,14 @@
 
 
 
-[R Markdown](http://rmarkdown.rstudio.com/) é uma ferramenta de [programação literária]() que combina uma sintaxe de formatação de texto simples (o [Markdown](http://daringfireball.net/projects/markdown/)) com trechos de códigos [R](http://www.r-project.org) para gerar um documento final em formatos HTML, PDF ou Word. Essa peculiaridade do R Markdown faz dele um elemento chave para pesquisa reproduzível e colaborativa.
+[R Markdown](http://rmarkdown.rstudio.com/) é uma ferramenta de [programação literária](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_liter%C3%A1ria) que combina uma sintaxe de formatação de texto simples (o [Markdown](http://daringfireball.net/projects/markdown/)) com trechos de códigos [R](http://www.r-project.org) em um documento final em formatos HTML, PDF ou Word. Esta peculiaridade do R Markdown faz dele um elemento chave para pesquisa reproduzível[^pesq-reprod] e colaborativa.
 
-O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). A extensão de um arquivo R Markdown é `.Rmd`. Um texto R Markdown pode ser facilmente criado no R Studio a partir de um *template* em `File > New File > R Markdown` no RStudio.  Clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio é gerado o documento HTML do arquivo `.Rmd` correspondente.
+[^pesq-reprod]: Pesquisa reproduzível é o conceito de divulgar documentos científicos incluindo os dados e os códigos utilizados (além do texto e dos gráficos) para que qualquer pessoa possa reproduzir os resultados e assim aperfeiçoar ou construir novos resultados a partir deles.
+
+<!-- documento dinâmico reprodutível  = texto (descrição e interpretação dos resultados) + código (linguagem computacional)  -->
+  
+
+O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). A extensão de um arquivo R Markdown é `.Rmd`. Um texto R Markdown pode ser facilmente criado no RStudio a partir de um *template* em *`File ▶ New File ▶ R Markdown`*.  Ao clicar no ícone `Knit HTML` ou digitar o atalho `Ctr+Shift+K` é gerado o documento HTML do arquivo `.Rmd` correspondente.
 
 Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados na internet por meio do [Rpubs](https://rpubs.com/)[^howto2rpubs], [Github](https://github.com)[^howto2github] e [netlify](https://app.netlify.com/drop)[^howto2netlify].
 
@@ -20,27 +25,22 @@ Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados
 
 [^howto2netlify]: Para publicar seu documento HTML no [netlify](https://app.netlify.com/drop) coloque-o em uma pasta qualquer, renomeie seu `arquivo.html` para `index.html` e arraste a pasta para área pontilhada indicada no site.   
 
-## A essência do *R Markdown*
 
-Pesquisa reproduzível é o conceito de divulgar documentos científicos incluindo os dados e os códigos utilizados (além do texto e dos gráficos) para que qualquer pessoa possa reproduzir os resultados e assim aperfeiçoar ou construir novos resultados a partir deles.
-
-O R Markdown é um meio de fazer pesquisa reproduzível pela facilidade de se escrever textos que incorporam trechos de código R e de divulgar na internet . 
-
-  - documento dinâmico reprodutível  = texto (descrição e interpretação dos resultados) + código (linguagem computacional) 
 
 
 ## Como usar o *R Markdown*
 
-A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.
+A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular. A estrutura básica de um *chunk* é: 
 
-Por exemplo, para mostrar a expressão usada no R para instalar os pacotes `rmarkdown` e `gcookbook`, digitamos o seguinte trecho no corpo do texto do arquivo `.Rmd` criado no RStudio. 
+
+
+Por exemplo, para mostrar a expressão usada para instalar os pacotes `rmarkdown` e `gcookbook`, digitamos o seguinte trecho no corpo do texto do arquivo `.Rmd` criado no RStudio. 
 
 
 
 ````
 ```{r}
-install.packages('rmarkdown')
-install.packages('gcookbook')
+install.packages(c('rmarkdown', 'gcookbook'))
 ```                                              
 ````
 
@@ -48,8 +48,7 @@ O texto acima aparecerá da seguinte forma no documento `html`:
 
 
 ```r
-install.packages('rmarkdown', dependencies = TRUE)
-install.packages('gcookbook', dependencies = TRUE)
+install.packages(c('rmarkdown', 'gcookbook'))
 ```
 
 Os trechos de código (*chuncks*) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um *chunck* permanecem disponíveis no ambiente para uso em *chuncks* posteriores. O código no *chunck* é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um *chunck* também são incorporados no documento.
@@ -57,52 +56,36 @@ Os trechos de código (*chuncks*) são avaliados pelo R na ordem em que eles apa
 Nesse documento mostramos os principais elementos do ***Markdown*** e como construir os ***chunks***.
  
 
-## Inserir código R no documento.
-
-Um *chunk* tem a seguinte estrutura: 
 
 
 
-### Opções do **Chunk**
 
- Cada *chunk* possui parâmetros que permitem definir opções de execução para aquele *chunck*, as principais são as seguintes:
- 
-  *  `chunk1` identificador (ID) do *chunk* que permite encontrar ele mais fácil se ocorrer algum erro (opcional) durante a geração do documento.    
-  *  `eval = TRUE` opção para executar o *chunk* quando compilar o documento (*default* TRUE).     
-  *  `cache=TRUE`  opção que permite ao *chunk* guardar os dados uma vez calculados (*default* FALSE).    
-  *  `message = TRUE`  mostra as mensagens de erro (*default* TRUE).   
-  *  `echo = TRUE`  se FALSE permite eliminar as saídas do chunk (*default* FALSE).   
-  
-  O resto das opções são mostradas ao pressionar a tecla `tab` com o mouse posicionado dentro dos colchetes da linha do **chunk**. Para uma lista completa os parâmetros do *chunck* consulte <http://yihui.name/knitr/options/>.
+### Opções do **chunk**
+
+ Cada *chunk* possui parâmetros que permitem definir opções de execução para aquele *chunck*. Para o chunck de exemplo abaixo, as principais são as seguintes:
 
 
-```
-#> ```{r chunk2, eval=TRUE, message = TRUE, echo = TRUE}
-#> letters
-#> ## letras em maiúsculo
-#> LETRAS <- toupper(letters)
-#> LETRAS
-#> x <- LETRAS[LETRAS %in% c('U', 'F', 'S', 'M')]
-#> x
-#> ```
-```
 
-O *chunck2* será impresso da seguinte forma:
-
-
-```r
+````
+```{r letras-ufsm, eval=TRUE, echo = TRUE, message = TRUE, results = 'hide'}
 letters
-#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-#> [20] "t" "u" "v" "w" "x" "y" "z"
 ## letras em maiúsculo
 LETRAS <- toupper(letters)
 LETRAS
-#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
-#> [20] "T" "U" "V" "W" "X" "Y" "Z"
-x <- LETRAS[LETRAS %in% c("U", "F", "S", "M")]
+x <- LETRAS[LETRAS %in% c('U', 'F', 'S', 'M')]
 x
-#> [1] "F" "M" "S" "U"
 ```
+````
+
+
+  *  `letras-ufsm` identificador do *chunk* (opcional) que permite encontrar ele mais fácil se ocorrer algum erro durante a geração do documento.
+  *  `eval = TRUE` opção para executar o *chunk* quando compilar o documento (valor *default*: TRUE).     
+  *  `message = TRUE`  mostra as mensagens de erro (*default* TRUE).   
+  *  `results = 'hide'`  permite ocultar as saídas da avaliação do código do chunk (*default* 'hold', ou seja mantém os resultados).   
+  
+O resto das opções são mostradas ao pressionar a tecla `tab` com o mouse posicionado dentro dos colchetes da linha do **chunk**. Para uma lista completa os parâmetros do *chunck* consulte <http://yihui.name/knitr/options/>.
+
+
  
 
 ### Saídas dos **chunks**
@@ -110,25 +93,25 @@ x
 Os resultados dos *chuncks* podem ser mostrados na forma de figuras, tabelas e textos.
 
 
+````
+```{r, warning=FALSE, message=FALSE,comment=''}
+# carregando a pacote 'ggplot2' para gráficos elegante
+library(ggplot2)
+# pacote que contém conjunto de dados de temperatura
+library(gcookbook)
+# Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
+head(climate)
+# Usando a função qplot() para plotar a série de temperatura global
+qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
+# Usando apenas a função plot()
+plot(x = climate$Year, y = climate$Anomaly1)
+# regressão linear
+reg <- lm(Anomaly1y ~ Year, data = climate)
+# extraindo o coeficiente angular (°C/ano) da reta
+# convertendo para °C/100 anos
+tendencia <- coef(reg)[2] * 100
 ```
-#> ```{r, warning=FALSE, message=FALSE,comment=''}
-#>     # carregando a pacote 'ggplot2' para gráficos elegante
-#>     library(ggplot2)
-#>     # pacote que contém conjunto de dados de temperatura
-#>     library(gcookbook)
-#>     # Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
-#>     head(climate)
-#>     # Usando a função qplot() para plotar a série de temperatura global
-#>     qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
-#>     # Usando apenas a função plot()
-#>     plot(x = climate$Year, y = climate$Anomaly1)
-#>     # regressão linear
-#>     reg <- lm(Anomaly1y ~ Year, data = climate)
-#>     # extraindo o coeficiente angular (°C/ano) da reta
-#>     # convertendo para °C/100 anos
-#>     tendencia <- coef(reg)[2] * 100
-#> ```
-```
+````
 
 O resultado do chunck acima será:
 
@@ -159,12 +142,12 @@ Podemos fazer outro *chunk* para mostrar as tabelas.
 
 ```
 #> ```{r}
-#>     # pacote com a função kable para saída de tabelas
-#>     library(knitr)
-#>     # Aplicando a função 'summary()' ao dataframe airquality.
-#>     s <- summary(airquality)
-#>     # Convertendo o formato da saída das tabelas
-#>     kable(s, caption = 'Tabela 1: Resumo estatístico dos de qualidade do ar')
+#> # pacote com a função kable para saída de tabelas
+#> library(knitr)
+#> # Aplicando a função 'summary()' ao dataframe airquality.
+#> s <- summary(airquality)
+#> # Convertendo o formato da saída das tabelas
+#> kable(s, caption = 'Tabela 1: Resumo estatístico dos de qualidade do ar')
 #> ```
 ```
 
@@ -186,26 +169,17 @@ Table: (\#tab:chunck6)Tabela 1: Resumo estatístico dos dados de 'qualidade do a
  
 ### Códigos R dentro de linhas
 
-Podemos usar o R em expressões dentro de uma linha de texto, para mostrar o valor de uma variável ou efetuar um cálculo. Por exemplo, para obtermos o valor resultante de 2 + 2 escrevemos \` r 2 + 2 \` e o R colocará o resultado naquela posição do texto.
+Podemos usar o R em expressões dentro de uma linha de texto, para mostrar o valor de uma variável ou efetuar um cálculo. Por exemplo, para obtermos o valor resultante de 2 + 2 escrevemos \`<code>r 2 + 2</code>\` e o R colocará o resultado naquela posição do texto.
 
 Por exemplo, a sentença:
 
-* A tendência da temperatura do ar média global é de \` r round(tendencia, 2) \` °C/100 anos.
+* A tendência da temperatura do ar média global é de \`<code> r round(tendencia, 2)</code>\` °C/100 anos.
 
 ficará
 
 * A tendência da temperatura do ar média global é de 0.59 °C/100 anos.
 
-Assim como,
 
-* A média de uma sequência de números inteiros 1 até 10 é \` r mean(1:10) \`.
-
-ficará:
-
-* A média de uma sequência de números inteiros de 1 até 10 é 5.5.
- 
- 
-    
 ## Markdown
 
 ### Cabeçalhos
@@ -234,12 +208,12 @@ ficará:
 
 
  
-- - -
+
 
 
 ### Aparência
 
-A aparência e formato do documento final impresso é definido por parâmetros definido no cabeçalho texto escrito no arquivo `.Rmd`. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (`output: html_document`), a inclusão de índice (`toc = TRUE`), opções para figuras (`fig_width: 7`, `fig_height: 6`, `fig_caption: true`), a opção para realce da sintaxe do código R (`highlight: tango`), o tema do `html` (`theme: united`). Para mais informações consulte <http://rmarkdown.rstudio.com/markdown_document_format.html>.
+A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como **YAML** documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (`output: html_document`), a inclusão de índice (`toc = TRUE`), opções para figuras (`fig_width: 7`, `fig_height: 6`, `fig_caption: true`), a opção para realce da sintaxe do código R (`highlight: tango`), o tema do `html` (`theme: united`). Para mais informações consulte <http://rmarkdown.rstudio.com/markdown_document_format.html>.
 
 ```python   
     ---
@@ -259,29 +233,7 @@ A aparência e formato do documento final impresso é definido por parâmetros d
 
  
 
-### Blocos de códigos sem execução (*Verbatim*)
 
-Para inserir um trecho de código de uma linguagem de programação é preciso inserir 4 espaços antes das linhas de código.
-
-
-```
-  ```fortran
-          if ( a .lt. 3) then
-            write(*,*) y,w
-          end if  
-  ```
-```
-
-
-O código impresso no `html` aparecerá da seguinte forma:
-
-```fortran
-    if ( a .lt. 3) then
-      write(*,*) y,w
-    end if  
-```
-
- 
 
 ### Listas
 
@@ -319,20 +271,26 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
  
 ```
 
-que será impresso como
+Ambos serão impressos como:
 
 - - -
 
-ou
 
-***
 
 É importante notar a quebra de linha entre cada linha de caracteres.
 
 
 ### Citações diretas
 
-> É eRRando que se aprende R. (Jônatan Tatsch)
+Para fazer citações diretas é só acrescentar um `>` antes do texto da citação. Por exemplo: 
+
+\> É eRReando que se aprende R. (Jônatan Tatsch)\.
+
+será impresso no HTML assim:
+
+> É eRRando que se aprende R. (Jônatan Tatsch).
+
+
 ## Tabelas
 
  As tabelas devem ter uma linha para cada fila, com alinhamento definido pela posição relativa a linha pontilhada dos nomes das colunas. A descrição da tabela precisa ter o formato `Table:` ou apenas `:`, a posição definida é acima da tabela.
@@ -396,29 +354,28 @@ Um texto sobrescrito 2^10^ é escrito `2^10^` e o subscrito (H~2~O) da forma `H~
 
  
  
-### Links
+### Hyperlinks
 
-Para incluir link de um site é só colocar o endereço web entre `< >`:
+Para incluir link de um site é só colocar o endereço web entre `< >`. Por exemplo, o texto:
 
 ```
-<http://google.com>
-<sam@green.eggs.ham>
+<https://lhmet.github.io/adar-ebook/calculadora.html> 
 ```
-<http://google.com>
 
-<sam@green.eggs.ham>
+será mostrado como
 
- Podemos associar um link a uma sentença, da seguinte forma:
+<https://lhmet.github.io/adar-ebook/calculadora.html>
+
+
+Podemos associar um link a uma sentença, conforme sintaxe abaixo.
+
+```
+O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/)".
+``` 
+que resultará em
+
+O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/). 
  
- "O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/))". 
- 
- 
-```
-Podemos criar um link com rótulo, p.ex.: [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
-```
-
-Podemos criar um link com rótulo, p.ex.: [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
-
 
 ### Figuras
 
@@ -465,21 +422,7 @@ Há também um [Editor online de equações](http://www.codecogs.com/latex/eqned
  
 
 
-## Simulação da resolução de uma Lista de exercícios.
 
-As listas do curso deverão ser elaboradas com R Markdown. O arquivo `.html` deverá ser publicado no [Rpubs](https://rpubs.com/) e o link enviado por e-mail. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido da resolução que deve incluir o código utilizado, comentários, a descrição  e interpretação dos resultados quando for o caso.
-
-Vamos simular um documento `.Rmd` com a resolução da lista de exercícios abaixo.
-
-### Exemplo de solução de lista de exercícios.
-
-  1. Gere um vetor `x` que varia de -100 até 100, com intervalo de 0,5. 
-
-  2. Gere uma variável `A` que resulta do seno de uma sequência numérica de -1 até 1 com mesmo tamanho do vetor `x` da questão anterior. 
-
-  3. Calcule o vetor $y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))$. 
-
-  4. Faça um gráfico do tipo linha relacionando as duas variáveis.
 
 ## Referências para aprender mais sobre o R Markdown
  
