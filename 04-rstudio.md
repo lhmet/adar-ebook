@@ -65,10 +65,10 @@ O RStudio possui 4 painéis principais:
 Configuração de texto e painéis em:
 
 * Menus
-    * Tools > global Options > Appearance
+    *`Tools ▶ Global Options ▶ Appearance`*
         * mostrar linhas, alterar realce da sintaxe
-    * Session
-    * Plots
+        * Session
+        * Plots
 
 
 A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) fornece uma visão geral das suas principais funcionalidades.
@@ -81,7 +81,9 @@ A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) f
 
 ## Verificação ortográfica
 
-O RStudio oferece o recurso de verificação ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em `Tools > Global Options`, selecionando `Spelling` no painel à esquerda e `Install More Languages` na caixa de seleção dos dicionários de línguas (Figura \@ref(fig:rstudio-spell-config)). Dessa forma, os dicionários de 28 linguagens serão instalados.
+O RStudio oferece o recurso de verificação ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em *`Tools ▶ Global Options`*, selecionando *`Spelling`* no painel à esquerda e *`Install More Languages`* na caixa de seleção dos dicionários de línguas (Figura \@ref(fig:rstudio-spell-config)). Dessa forma, os dicionários de 28 linguagens serão instalados.
+
+
 
 <div class="figure" style="text-align: center">
 <img src="images/rstutio-spellcheck-more-langs.png" alt="Configuração do RStudio para instalar dicionários de outras línguas." width="80%" />
@@ -95,7 +97,8 @@ Após a adição dos dicionários, acesse novamente a caixa de seleção de dici
 <p class="caption">(\#fig:rstudio-set-dict)Configuração do dicionário de Portugês-BR  no RStudio.</p>
 </div>
 
-Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla `F7` (ou `Edit > Check Spelling`).
+Agora você pode evitar erros ortográficos nos seus relatórios e demais documentos escritos em R Markdown através da tecla `F7` (ou *`Edit ▶ Check Spelling`*).
+
 
 
 <!-- rstudio.cloud -->

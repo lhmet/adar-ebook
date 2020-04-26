@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>C.2 Como usar o R Markdown | Análise de Dados Ambientais com R</title>
+  <title>C.1 Como usar o R Markdown | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="C.2 Como usar o R Markdown | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.1 Como usar o R Markdown | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="C.2 Como usar o R Markdown | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.1 Como usar o R Markdown | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="TB1.jpg" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-25" />
+<meta name="date" content="2020-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-essência-do-r-markdown.html"/>
-<link rel="next" href="inserir-código-r-no-documento-.html"/>
+<link rel="prev" href="r-markdown.html"/>
+<link rel="next" href="markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,69 +53,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -321,30 +296,26 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
-<li class="chapter" data-level="C.1" data-path="a-essência-do-r-markdown.html"><a href="a-essência-do-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> A essência do <em>R Markdown</em></a></li>
-<li class="chapter" data-level="C.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.2</b> Como usar o <em>R Markdown</em></a></li>
-<li class="chapter" data-level="C.3" data-path="inserir-código-r-no-documento-.html"><a href="inserir-código-r-no-documento-.html"><i class="fa fa-check"></i><b>C.3</b> Inserir código R no documento.</a><ul>
-<li class="chapter" data-level="C.3.1" data-path="inserir-código-r-no-documento-.html"><a href="inserir-código-r-no-documento-.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.3.1</b> Opções do <strong>Chunk</strong></a></li>
-<li class="chapter" data-level="C.3.2" data-path="inserir-código-r-no-documento-.html"><a href="inserir-código-r-no-documento-.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.3.2</b> Saídas dos <strong>chunks</strong></a></li>
-<li class="chapter" data-level="C.3.3" data-path="inserir-código-r-no-documento-.html"><a href="inserir-código-r-no-documento-.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.3.3</b> Códigos R dentro de linhas</a></li>
+<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.4" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.4</b> Markdown</a><ul>
-<li class="chapter" data-level="C.4.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.4.1</b> Cabeçalhos</a></li>
-<li class="chapter" data-level="C.4.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.4.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.4.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.4.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.4.4" data-path="markdown.html"><a href="markdown.html#blocos-de-códigos-sem-execução-verbatim"><i class="fa fa-check"></i><b>C.4.4</b> Blocos de códigos sem execução (<em>Verbatim</em>)</a></li>
-<li class="chapter" data-level="C.4.5" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.4.5</b> Listas</a></li>
-<li class="chapter" data-level="C.4.6" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.4.6</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.4.7" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.4.7</b> Citações diretas</a></li>
-<li class="chapter" data-level="C.4.8" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.4.8</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.4.9" data-path="markdown.html"><a href="markdown.html#links"><i class="fa fa-check"></i><b>C.4.9</b> Links</a></li>
-<li class="chapter" data-level="C.4.10" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.4.10</b> Figuras</a></li>
-<li class="chapter" data-level="C.4.11" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.4.11</b> Expressões matemáticas</a></li>
+<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.5" data-path="simulação-da-resolução-de-uma-lista-de-exercícios-.html"><a href="simulação-da-resolução-de-uma-lista-de-exercícios-.html"><i class="fa fa-check"></i><b>C.5</b> Simulação da resolução de uma Lista de exercícios.</a><ul>
-<li class="chapter" data-level="C.5.1" data-path="simulação-da-resolução-de-uma-lista-de-exercícios-.html"><a href="simulação-da-resolução-de-uma-lista-de-exercícios-.html#exemplo-de-solução-de-lista-de-exercícios."><i class="fa fa-check"></i><b>C.5.1</b> Exemplo de solução de lista de exercícios.</a></li>
+<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
+<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
+<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.6" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.6</b> Referências para aprender mais sobre o R Markdown</a></li>
+<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
@@ -367,26 +338,180 @@ code span.wa { color: #bf0303; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="como-usar-o-r-markdown" class="section level2">
-<h2><span class="header-section-number">C.2</span> Como usar o <em>R Markdown</em></h2>
-<p>A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.</p>
-<p>Por exemplo, para mostrar a expressão usada no R para instalar os pacotes <code>rmarkdown</code> e <code>gcookbook</code>, digitamos o seguinte trecho no corpo do texto do arquivo <code>.Rmd</code> criado no RStudio.</p>
+<h2><span class="header-section-number">C.1</span> Como usar o <em>R Markdown</em></h2>
+<p>A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular. A estrutura básica de um <em>chunk</em> é:</p>
+<p>Por exemplo, para mostrar a expressão usada para instalar os pacotes <code>rmarkdown</code> e <code>gcookbook</code>, digitamos o seguinte trecho no corpo do texto do arquivo <code>.Rmd</code> criado no RStudio.</p>
 <pre><code>```{r}
-install.packages(&#39;rmarkdown&#39;)
-install.packages(&#39;gcookbook&#39;)
+install.packages(c(&#39;rmarkdown&#39;, &#39;gcookbook&#39;))
 ```                                              </code></pre>
 <p>O texto acima aparecerá da seguinte forma no documento <code>html</code>:</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb377-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;gcookbook&#39;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;gcookbook&#39;</span>))</code></pre></div>
 <p>Os trechos de código (<em>chuncks</em>) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um <em>chunck</em> permanecem disponíveis no ambiente para uso em <em>chuncks</em> posteriores. O código no <em>chunck</em> é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um <em>chunck</em> também são incorporados no documento.</p>
 <p>Nesse documento mostramos os principais elementos do <strong><em>Markdown</em></strong> e como construir os <strong><em>chunks</em></strong>.</p>
+<div id="opções-do-chunk" class="section level3">
+<h3><span class="header-section-number">C.1.1</span> Opções do <strong>chunk</strong></h3>
+<p>Cada <em>chunk</em> possui parâmetros que permitem definir opções de execução para aquele <em>chunck</em>. Para o chunck de exemplo abaixo, as principais são as seguintes:</p>
+<pre><code>```{r letras-ufsm, eval=TRUE, echo = TRUE, message = TRUE, results = &#39;hide&#39;}
+letters
+## letras em maiúsculo
+LETRAS &lt;- toupper(letters)
+LETRAS
+x &lt;- LETRAS[LETRAS %in% c(&#39;U&#39;, &#39;F&#39;, &#39;S&#39;, &#39;M&#39;)]
+x
+```</code></pre>
+<ul>
+<li><code>letras-ufsm</code> identificador do <em>chunk</em> (opcional) que permite encontrar ele mais fácil se ocorrer algum erro durante a geração do documento.</li>
+<li><code>eval = TRUE</code> opção para executar o <em>chunk</em> quando compilar o documento (valor <em>default</em>: TRUE).<br />
+</li>
+<li><code>message = TRUE</code> mostra as mensagens de erro (<em>default</em> TRUE).<br />
+</li>
+<li><code>results = 'hide'</code> permite ocultar as saídas da avaliação do código do chunk (<em>default</em> ‘hold’, ou seja mantém os resultados).</li>
+</ul>
+<p>O resto das opções são mostradas ao pressionar a tecla <code>tab</code> com o mouse posicionado dentro dos colchetes da linha do <strong>chunk</strong>. Para uma lista completa os parâmetros do <em>chunck</em> consulte <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+</div>
+<div id="saídas-dos-chunks" class="section level3">
+<h3><span class="header-section-number">C.1.2</span> Saídas dos <strong>chunks</strong></h3>
+<p>Os resultados dos <em>chuncks</em> podem ser mostrados na forma de figuras, tabelas e textos.</p>
+<pre><code>```{r, warning=FALSE, message=FALSE,comment=&#39;&#39;}
+# carregando a pacote &#39;ggplot2&#39; para gráficos elegante
+library(ggplot2)
+# pacote que contém conjunto de dados de temperatura
+library(gcookbook)
+# Mostrando as primeiras linhas da tabela &#39;climate&#39; que pertenece ao pacote
+head(climate)
+# Usando a função qplot() para plotar a série de temperatura global
+qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
+# Usando apenas a função plot()
+plot(x = climate$Year, y = climate$Anomaly1)
+# regressão linear
+reg &lt;- lm(Anomaly1y ~ Year, data = climate)
+# extraindo o coeficiente angular (°C/ano) da reta
+# convertendo para °C/100 anos
+tendencia &lt;- coef(reg)[2] * 100
+```</code></pre>
+<p>O resultado do chunck acima será:</p>
+<pre><code>#&gt;     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+#&gt; 1 Berkeley 1800        NA        NA     -0.435  0.505
+#&gt; 2 Berkeley 1801        NA        NA     -0.453  0.493
+#&gt; 3 Berkeley 1802        NA        NA     -0.460  0.486
+#&gt; 4 Berkeley 1803        NA        NA     -0.493  0.489
+#&gt; 5 Berkeley 1804        NA        NA     -0.536  0.483
+#&gt; 6 Berkeley 1805        NA        NA     -0.541  0.475
+#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+#&gt; Warning: Removed 207 rows containing non-finite values (stat_smooth).
+#&gt; Warning: Removed 207 rows containing missing values (geom_point).</code></pre>
+<p><img src="images/chunck4-1.png" width="672" /><img src="images/chunck4-2.png" width="672" /></p>
+<pre><code>#&gt;      Year 
+#&gt; 0.5929518</code></pre>
+<p>Podemos fazer outro <em>chunk</em> para mostrar as tabelas.</p>
+<pre><code>#&gt; ```{r}
+#&gt; # pacote com a função kable para saída de tabelas
+#&gt; library(knitr)
+#&gt; # Aplicando a função &#39;summary()&#39; ao dataframe airquality.
+#&gt; s &lt;- summary(airquality)
+#&gt; # Convertendo o formato da saída das tabelas
+#&gt; kable(s, caption = &#39;Tabela 1: Resumo estatístico dos de qualidade do ar&#39;)
+#&gt; ```</code></pre>
+<table>
+<caption><span id="tab:chunck6">Tabela C.1: </span>Tabela 1: Resumo estatístico dos dados de ‘qualidade do ar’ de NY</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Ozone</th>
+<th align="center">Solar.R</th>
+<th align="center">Wind</th>
+<th align="center">Temp</th>
+<th align="center">Month</th>
+<th align="center">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="center">Min. : 1.00</td>
+<td align="center">Min. : 7.0</td>
+<td align="center">Min. : 1.700</td>
+<td align="center">Min. :56.00</td>
+<td align="center">Min. :5.000</td>
+<td align="center">Min. : 1.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">1st Qu.: 18.00</td>
+<td align="center">1st Qu.:115.8</td>
+<td align="center">1st Qu.: 7.400</td>
+<td align="center">1st Qu.:72.00</td>
+<td align="center">1st Qu.:6.000</td>
+<td align="center">1st Qu.: 8.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">Median : 31.50</td>
+<td align="center">Median :205.0</td>
+<td align="center">Median : 9.700</td>
+<td align="center">Median :79.00</td>
+<td align="center">Median :7.000</td>
+<td align="center">Median :16.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Mean : 42.13</td>
+<td align="center">Mean :185.9</td>
+<td align="center">Mean : 9.958</td>
+<td align="center">Mean :77.88</td>
+<td align="center">Mean :6.993</td>
+<td align="center">Mean :15.8</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">3rd Qu.: 63.25</td>
+<td align="center">3rd Qu.:258.8</td>
+<td align="center">3rd Qu.:11.500</td>
+<td align="center">3rd Qu.:85.00</td>
+<td align="center">3rd Qu.:8.000</td>
+<td align="center">3rd Qu.:23.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Max. :168.00</td>
+<td align="center">Max. :334.0</td>
+<td align="center">Max. :20.700</td>
+<td align="center">Max. :97.00</td>
+<td align="center">Max. :9.000</td>
+<td align="center">Max. :31.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">NA’s :37</td>
+<td align="center">NA’s :7</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="códigos-r-dentro-de-linhas" class="section level3">
+<h3><span class="header-section-number">C.1.3</span> Códigos R dentro de linhas</h3>
+<p>Podemos usar o R em expressões dentro de uma linha de texto, para mostrar o valor de uma variável ou efetuar um cálculo. Por exemplo, para obtermos o valor resultante de 2 + 2 escrevemos `<code>r 2 + 2</code>` e o R colocará o resultado naquela posição do texto.</p>
+<p>Por exemplo, a sentença:</p>
+<ul>
+<li>A tendência da temperatura do ar média global é de `<code> r round(tendencia, 2)</code>` °C/100 anos.</li>
+</ul>
+<p>ficará</p>
+<ul>
+<li>A tendência da temperatura do ar média global é de 0.59 °C/100 anos.</li>
+</ul>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="a-essência-do-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="inserir-código-r-no-documento-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -441,7 +566,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R</title>
+  <title>C.3 Tabelas | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.3 Tabelas | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.3 Tabelas | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="classes-de-dados.html"/>
-<link rel="next" href="conversão-entre-tipos-de-dados.html"/>
+<link rel="prev" href="markdown.html"/>
+<link rel="next" href="referências-para-aprender-mais-sobre-o-r-markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -337,51 +337,140 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x; <span class="kw">typeof</span>(x)
-<span class="co">#&gt; [1] 51</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span>
-vl; <span class="kw">typeof</span>(vl)
-<span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span>
-<span class="co">#&gt; [1] &quot;logical&quot;</span>
-data1; <span class="kw">typeof</span>(data1)
-<span class="co">#&gt; [1] &quot;2012-06-28&quot;</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span>
-x; <span class="kw">is.numeric</span>(x)
-<span class="co">#&gt; [1] 51</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="co">#  num.real?</span>
-<span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.double</span>(5L)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
-<span class="co">#&gt; [1] TRUE</span>
-charf; <span class="kw">is.factor</span>(charf)
-<span class="co">#&gt; [1] Vai chover hoje?</span>
-<span class="co">#&gt; Levels: Vai chover hoje?</span>
-<span class="co">#&gt; [1] TRUE</span>
-i; <span class="kw">is.integer</span>(i)
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.function</span>(sqrt)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.finite</span>(i)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.nan</span>(x)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="kw">is.na</span>(x)
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<div id="tabelas" class="section level2">
+<h2><span class="header-section-number">C.3</span> Tabelas</h2>
+<p>As tabelas devem ter uma linha para cada fila, com alinhamento definido pela posição relativa a linha pontilhada dos nomes das colunas. A descrição da tabela precisa ter o formato <code>Table:</code> ou apenas <code>:</code>, a posição definida é acima da tabela.</p>
+<pre><code>  direita     esquerda   Centro    Default
+  -------     ------   ---------   -------
+       12     12          12           12
+      123     123         123         123
+        1     1            1            1
+  Table:  Tabela 1. Demonstração da sintaxe para uma tabela.</code></pre>
+<table>
+<caption>Tabela 1. Demonstração da sintaxe para uma tabela.</caption>
+<thead>
+<tr class="header">
+<th>direita</th>
+<th>esquerda</th>
+<th align="center">Centro</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12</td>
+<td>12</td>
+<td align="center">12</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>123</td>
+<td>123</td>
+<td align="center">123</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td align="center">1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre><code>#&gt; : Amostra de tabela com grades.
+#&gt;                                
+#&gt; +---------------+---------------+--------------------+
+#&gt; | Variável1     | Variável2     | descrição          |
+#&gt; +===============+===============+====================+
+#&gt; | 1             |  1.34         | - Observação 1     |
+#&gt; |               |               | - Observação 2     |
+#&gt; +---------------+---------------+--------------------+
+#&gt; | 2             |  2.10         | - Observação 2     |
+#&gt; |               |               | - Linha 2          |
+#&gt; +---------------+---------------+--------------------+</code></pre>
+<table style="width:74%;">
+<caption>Amostra de tabela com grades.</caption>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variável1</th>
+<th>Variável2</th>
+<th>descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>1</p></td>
+<td><p>1.34</p></td>
+<td><ul>
+<li>Observação 1</li>
+<li>Linha 1</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>2</p></td>
+<td><p>2.10</p></td>
+<td><ul>
+<li>Observação 2</li>
+<li>Linha 2</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>Um recurso para construir tabelas em Markdown é o <a href="http://www.tablesgenerator.com/markdown_tables">gerador de tabelas</a> que permite montar a tabela e criar o código para você colá-lo no seu documento <code>.Rmd</code>.</p>
+<div id="ênfase-de-texto" class="section level3">
+<h3><span class="header-section-number">C.3.1</span> Ênfase de texto</h3>
+<p>Para destacar texto usa-se geralmente as palavras em <em>itálico</em> (<code>_itálico_</code> ou <code>*itálico*</code>) ou em <strong>negrito</strong> (<code>__negrito__</code> ou <code>**negrito**</code>).</p>
+<p>Um texto sobrescrito 2<sup>10</sup> é escrito <code>2^10^</code> e o subscrito (H<sub>2</sub>O) da forma <code>H~2~O</code>.</p>
+</div>
+<div id="hyperlinks" class="section level3">
+<h3><span class="header-section-number">C.3.2</span> Hyperlinks</h3>
+<p>Para incluir link de um site é só colocar o endereço web entre <code>&lt; &gt;</code>. Por exemplo, o texto:</p>
+<pre><code>&lt;https://lhmet.github.io/adar-ebook/calculadora.html&gt; </code></pre>
+<p>será mostrado como</p>
+<p><a href="https://lhmet.github.io/adar-ebook/calculadora.html" class="uri">https://lhmet.github.io/adar-ebook/calculadora.html</a></p>
+<p>Podemos associar um link a uma sentença, conforme sintaxe abaixo.</p>
+<pre><code>O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/)&quot;.</code></pre>
+<p>que resultará em</p>
+<p>O <em>R Markdown</em> possui ampla documentação, veja o <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">cartão de referência</a> e o <a href="http://rmarkdown.rstudio.com/">site oficial</a>.</p>
+</div>
+<div id="figuras" class="section level3">
+<h3><span class="header-section-number">C.3.3</span> Figuras</h3>
+<p>Para a inserir figuras o procedimento é quase o mesmo de um link, só que precedido pelo símbolo <code>!</code>.</p>
+<p>Vamos criar um link para o endereço da imagem:</p>
+<pre><code>[Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</code></pre>
+<p><a href="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg">Cachoeira do Abade</a></p>
+<p>Ao acrescentarmos o símbolo <code>!</code> no início, obtemos a imagem no documento.</p>
+<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="al">![Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</span></code></pre></div>
+<div class="figure">
+<img src="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg" alt="Figura 1. Cachoeira do Abade" />
+<p class="caption">Figura 1. Cachoeira do Abade</p>
+</div>
+<p>O procedimento para inserir figuras do seu computador é o mesmo, só altera-se o endereço pelo caminho até o arquivo.</p>
+</div>
+<div id="expressões-matemáticas" class="section level3">
+<h3><span class="header-section-number">C.3.4</span> Expressões matemáticas</h3>
+<p>Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no <em>R Markdown</em> é da mesma forma usada em <a href="http://pt.wikipedia.org/wiki/LaTeX">Latex</a>.</p>
+<p>Para expressões dentro de uma linha as equações são escritas entre os símbolos <code>$ $</code>, por exemplo, <span class="math inline">\(y=f(x)\)</span> foi gerada com <code>$y=f(x)$</code>. Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo <code>$$ $$</code>, exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode tex"><code class="sourceCode latex"> <span class="ss">$$</span><span class="sc">\psi</span><span class="ss"> = </span><span class="sc">\psi</span><span class="ss">_e </span><span class="sc">\left</span><span class="ss">(</span><span class="sc">\dfrac</span><span class="ss">{</span><span class="sc">\theta</span><span class="ss">}{</span><span class="sc">\theta</span><span class="ss">_s}</span><span class="sc">\right</span><span class="ss">)^{-b}$$</span>
+ </code></pre></div>
+<p>produz:</p>
+<p><span class="math display">\[\psi = \psi_e \left(\dfrac{\theta}{\theta_s}\right)^{-b}\]</span></p>
+<hr />
+<p>Há também um <a href="http://www.codecogs.com/latex/eqneditor.php?lang=pt-br">Editor online de equações</a> que fornece uma interface para escrever a equação e o código gerado pode ser colado no seu documento.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversão-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências-para-aprender-mais-sobre-o-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
