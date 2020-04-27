@@ -31,6 +31,10 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 -->
 
 
+```
+## Warning in options(stringsAsFactors = TRUE): 'options(stringsAsFactors = TRUE)'
+## is deprecated and will be disabled
+```
 
 
 Para tirar melhor proveito deste livro, você precisará:
@@ -412,8 +416,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
-[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
+[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
+[3] "/home/travis/R-bin/lib/R/library"
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -549,7 +553,7 @@ Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
 library(rvcheck)
 check_r()
 ## $installed_version
-## [1] "R-3.6.3"
+## [1] "R-4.0.0"
 ## 
 ## $latest_version
 ## [1] "R-4.0.0"
@@ -558,7 +562,7 @@ check_r()
 ## [1] "https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz"
 ## 
 ## $up_to_date
-## [1] FALSE
+## [1] TRUE
 ```
 
 - checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor
@@ -592,18 +596,20 @@ check_github('lhmet/inmetr')
 ## $up_to_date
 ## [1] TRUE
 check_bioc('EBImage')
-## package is up-to-date release version
+## ## EBImage is not installed...
+## install.packages("BiocManager")
+## BiocManager::install("EBImage")
 ## $package
 ## [1] "EBImage"
 ## 
 ## $installed_version
-## [1] "4.28.1"
+## [1] NA
 ## 
 ## $latest_version
-## [1] "4.28.1"
+## [1] "4.29.2"
 ## 
 ## $up_to_date
-## [1] TRUE
+## [1] NA
 ```
 
 Por fim, para atualizar todos os pacotes:
