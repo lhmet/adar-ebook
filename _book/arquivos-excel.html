@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-26" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,6 +158,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
 <li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.6" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.6</b> Git e Github</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -364,19 +365,42 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="arquivos-excel" class="section level2">
 <h2><span class="header-section-number">8.6</span> Arquivos Excel</h2>
-<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e <code>.xlsx</code>) é uma prática muito popular, principalmente em empresas privadas. Entretanto, arquivos em formato Excel tem problemas de interação com <a href="https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es">sistemas de controle de versões</a>. Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com arquivo texto é uma boa opção. O formato CSV é facilmente importado no Excel e por isso é um formato texto amplamente utilizado. Uma solução é converter as planilhas Excel para <code>csv</code> usando algum programa.</p>
-<p>Mas caso isso não seja viável, você verá as opções mais eficientes para processar arquivos Excel no R.</p>
-<p>Importar ou exportar dados neste formato para o R era trabalhoso devido a dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas nos últimos esta tarefa deixou de ser um obstáculo.</p>
-<p>Há uma variedade de pacotes para processar dados em Excel, entre eles estão: <a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>,
-<a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>, <a href="https://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a>, <a href="https://cran.r-project.org/web/packages/openxlsx/index.html">openxlsx</a>, <a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://github.com/ropensci/writexl">writexl</a> e <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>.</p>
-<p>Na seção <a href="arquivos-texto.html#Rio">8.4.1</a> vimos que o pacote <strong>rio</strong> importa diversos formatos de arquivos, inclusive Excel (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). A função <code>import()</code> utiliza a função <code>read_excel()</code>do pacote <strong>readr</strong> para importar arquivos Excel. A função <code>export()</code>, por outro lado, utiliza a função <code>write.xlsx()</code> do pacote <strong>openxlsx</strong>.</p>
-<p>Além do uso do pacote <strong>rio</strong> para exportar arquivos <code>xlsx</code>, veremos também o pacote <a href="https://github.com/ropensci/writexl">writexl</a> por ter uma exportação mais rápida que a usada no pacote <strong>rio</strong>.</p>
+<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e
+<code>.xlsx</code>) é uma prática muito popular, principalmente em empresas privadas.
+Entretanto, arquivos em formato Excel tem problemas de interação com
+<a href="https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es">sistemas de controle de versões</a>.
+Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com
+arquivo texto é uma boa opção. O formato CSV é facilmente importado no Excel
+e por isso é um formato texto amplamente utilizado. Uma solução é converter as
+planilhas Excel para <code>csv</code> usando algum programa.</p>
+<p>Mas caso isso não seja viável, você verá as opções mais eficientes para
+processar arquivos Excel no R.</p>
+<p>Importar ou exportar dados neste formato para o R era trabalhoso devido a
+dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas
+nos últimos esta tarefa deixou de ser um obstáculo.</p>
+<p>Há uma variedade de pacotes para processar dados em Excel, entre eles estão:
+<a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>,
+<a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>, <a href="https://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a>, <a href="https://cran.r-project.org/web/packages/openxlsx/index.html">openxlsx</a>,
+<a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://github.com/ropensci/writexl">writexl</a>
+e <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>.</p>
+<p>Na seção <a href="arquivos-texto.html#Rio">8.4.1</a> vimos que o pacote <strong>rio</strong> importa diversos formatos de
+arquivos, inclusive Excel (Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). A função <code>import()</code>
+utiliza a função <code>read_excel()</code>do pacote <strong>readr</strong> para importar arquivos
+Excel. A função <code>export()</code>, por outro lado, utiliza a função <code>write.xlsx()</code>
+do pacote <strong>openxlsx</strong>.</p>
+<p>Além do uso do pacote <strong>rio</strong> para exportar arquivos <code>xlsx</code>, veremos também
+o pacote <a href="https://github.com/ropensci/writexl">writexl</a> por ter uma exportação
+mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <div id="como-usar-1" class="section level3">
 <h3><span class="header-section-number">8.6.1</span> Como usar</h3>
-<p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote <strong>rio</strong>.</p>
+<p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote
+<strong>rio</strong>.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb245-2" data-line-number="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span>)</a>
-<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
+<a class="sourceLine" id="cb245-2" data-line-number="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">  <span class="kw">tempdir</span>(), </a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
+<a class="sourceLine" id="cb245-5" data-line-number="5">  )</a>
+<a class="sourceLine" id="cb245-6" data-line-number="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
 <a class="sourceLine" id="cb246-2" data-line-number="2">  <span class="dt">file =</span> dest_file_excel,</a>
@@ -386,10 +410,14 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">8.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
-<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em> em novo arquivo <code>.xls</code>.</p>
+<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em>
+em novo arquivo <code>.xls</code>.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
 <a class="sourceLine" id="cb247-2" data-line-number="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
-<p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). Uma alternativa, caso você ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
+<p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato
+<code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). Uma alternativa, caso você
+ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no
+entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">library</span>(WriteXLS)</a>
 <a class="sourceLine" id="cb248-2" data-line-number="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
 <a class="sourceLine" id="cb248-3" data-line-number="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
@@ -404,24 +432,36 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">8.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
-<p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel, então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais eficiente.</p>
-<p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados da seção <a href="arquivos-excel.html#export-xls">8.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
+<p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel,
+então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais
+eficiente.</p>
+<p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados
+da seção <a href="arquivos-excel.html#export-xls">8.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a
+<code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
 <a class="sourceLine" id="cb249-2" data-line-number="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
 <a class="sourceLine" id="cb249-3" data-line-number="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
 <a class="sourceLine" id="cb249-4" data-line-number="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
 <a class="sourceLine" id="cb249-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb249-6" data-line-number="6">tempos_escrita_xlsx</a></code></pre></div>
-<p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
+<p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das
+expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <!---
 # substituição para teste +rápido de construção do livro no travis
-O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
+O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes
+mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 --->
-<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 5 vezes mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 5 vezes mais rápida
+na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-não-tabulares" class="section level3">
 <h3><span class="header-section-number">8.6.4</span> Estrutura de dados não tabulares</h3>
-<p>Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente de forma que sua estrutura pode não ser tabular, com mais de uma tabela por planilha, comentários em células vizinhas aos valores, células aninhadas, células formatadas e etc. Se você precisa arrumar dados nessas condições, vale a pena conferir os pacotes <a href="https://cran.r-project.org/web/packages/tidyxl/index.html">tidyxl</a> e
+<p>Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente
+de forma que sua estrutura pode não ser tabular, com mais de uma tabela por
+planilha, comentários em células vizinhas aos valores, células aninhadas,
+células formatadas e etc. Se você precisa arrumar dados nessas condições, vale
+a pena conferir os pacotes
+<a href="https://cran.r-project.org/web/packages/tidyxl/index.html">tidyxl</a> e
 <a href="https://cran.r-project.org/web/packages/unpivotr/index.html">unpivotr</a>.</p>
 </div>
 </div>

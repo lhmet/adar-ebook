@@ -3,7 +3,7 @@ title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
 cover-image: TB1.jpg
 author: "Jônatan Tatsch"
-date: "2020-04-26"
+date: "2020-04-27"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -68,8 +68,9 @@ O texto é organizado em 7 capítulos:
 <!-- 
 # estrutura de conteúdo de livro ideal
 # para balancear R básico e tidyverse
-https://dzchilds.github.io/eda-for-bio/ 
+https://dzchilds.github.io/eda-for-bio/
 https://github.com/lhmet-forks/eda-for-bio
+https://tavareshugo.github.io/r-eda-gapminder/
 -->
 
 <!-- 
@@ -79,7 +80,7 @@ https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html
 
 
 <!--
-- EDA
+- Para um futuro capítulo de EDA
  https://www.udemy.com/course/automating-data-exploration-with-r/
  
  # top demais!

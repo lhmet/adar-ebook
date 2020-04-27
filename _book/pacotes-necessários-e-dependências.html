@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-26" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,6 +158,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
 <li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.6" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.6</b> Git e Github</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -366,7 +367,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">2.4</span> Pacotes necessários e dependências</h2>
 <p>Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.</p>
 <p>Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb24-1" data-line-number="1">$ <span class="fu">sudo</span> apt install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb24-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev</a></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
 <a class="sourceLine" id="cb25-3" data-line-number="3">  <span class="st">&quot;rmarkdown&quot;</span>,</a>
@@ -375,30 +376,24 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb25-6" data-line-number="6">  <span class="st">&quot;htmlTable&quot;</span>,</a>
 <a class="sourceLine" id="cb25-7" data-line-number="7">  <span class="st">&quot;styler&quot;</span>,</a>
 <a class="sourceLine" id="cb25-8" data-line-number="8">  <span class="st">&quot;tidyverse&quot;</span>, </a>
-<a class="sourceLine" id="cb25-9" data-line-number="9">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb25-10" data-line-number="10">  <span class="st">&quot;readr&quot;</span>,</a>
-<a class="sourceLine" id="cb25-11" data-line-number="11">  <span class="st">&quot;feather&quot;</span>,</a>
-<a class="sourceLine" id="cb25-12" data-line-number="12">  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb25-13" data-line-number="13">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb25-14" data-line-number="14">  <span class="st">&quot;dplyr&quot;</span>,</a>
-<a class="sourceLine" id="cb25-15" data-line-number="15">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb25-16" data-line-number="16">  <span class="st">&quot;openxlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb25-17" data-line-number="17">  <span class="st">&quot;ncdf4&quot;</span>,</a>
-<a class="sourceLine" id="cb25-18" data-line-number="18">  <span class="st">&quot;raster&quot;</span>,</a>
-<a class="sourceLine" id="cb25-19" data-line-number="19">  <span class="st">&quot;openair&quot;</span>,</a>
-<a class="sourceLine" id="cb25-20" data-line-number="20">  <span class="st">&quot;lubridate&quot;</span>,</a>
-<a class="sourceLine" id="cb25-21" data-line-number="21">  <span class="st">&quot;fields&quot;</span>,</a>
-<a class="sourceLine" id="cb25-22" data-line-number="22">  <span class="st">&quot;RColorBrewer&quot;</span>,</a>
-<a class="sourceLine" id="cb25-23" data-line-number="23">  <span class="st">&quot;WriteXLS&quot;</span>,</a>
-<a class="sourceLine" id="cb25-24" data-line-number="24">  <span class="st">&quot;gcookbook&quot;</span></a>
-<a class="sourceLine" id="cb25-25" data-line-number="25">  <span class="co">#&quot;gdata&quot;,</span></a>
-<a class="sourceLine" id="cb25-26" data-line-number="26">  <span class="co">#&quot;XLConnect&quot;</span></a>
-<a class="sourceLine" id="cb25-27" data-line-number="27">  )</a>
-<a class="sourceLine" id="cb25-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb25-29" data-line-number="29">pcks_dev &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb25-30" data-line-number="30">  <span class="st">&quot;vembedr&quot;</span>,</a>
-<a class="sourceLine" id="cb25-31" data-line-number="31">  <span class="st">&quot;inmetr&quot;</span></a>
-<a class="sourceLine" id="cb25-32" data-line-number="32">)</a></code></pre></div>
+<a class="sourceLine" id="cb25-9" data-line-number="9">  <span class="st">&quot;rio&quot;</span>,   <span class="co"># instala readxl, openlxlsx, data.table, foreign, haven, feather, </span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10">           <span class="co"># readODS, jsonlite, rmatio</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb25-12" data-line-number="12">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">  <span class="st">&quot;ncdf4&quot;</span>,</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14">  <span class="st">&quot;raster&quot;</span>,</a>
+<a class="sourceLine" id="cb25-15" data-line-number="15">  <span class="st">&quot;openair&quot;</span>,</a>
+<a class="sourceLine" id="cb25-16" data-line-number="16">  <span class="st">&quot;lubridate&quot;</span>,</a>
+<a class="sourceLine" id="cb25-17" data-line-number="17">  <span class="st">&quot;fields&quot;</span>,</a>
+<a class="sourceLine" id="cb25-18" data-line-number="18">  <span class="st">&quot;viridis&quot;</span>,</a>
+<a class="sourceLine" id="cb25-19" data-line-number="19">  <span class="st">&quot;WriteXLS&quot;</span>,</a>
+<a class="sourceLine" id="cb25-20" data-line-number="20">  <span class="st">&quot;gcookbook&quot;</span></a>
+<a class="sourceLine" id="cb25-21" data-line-number="21">  )</a>
+<a class="sourceLine" id="cb25-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb25-23" data-line-number="23">pcks_dev &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb25-24" data-line-number="24">  <span class="st">&quot;vembedr&quot;</span>,</a>
+<a class="sourceLine" id="cb25-25" data-line-number="25">  <span class="st">&quot;inmetr&quot;</span></a>
+<a class="sourceLine" id="cb25-26" data-line-number="26">)</a></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">install.packages</span>(pcks) </a></code></pre></div>
 <!-- 
 # rJava

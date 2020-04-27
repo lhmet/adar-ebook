@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-26" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,6 +158,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
 <li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.6" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.6</b> Git e Github</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -364,39 +365,60 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="arquivos-binários" class="section level2">
 <h2><span class="header-section-number">8.5</span> Arquivos binários</h2>
-<p>Arquivo texto favorecem a legibilidade humana dos dados mas tem limitada precisão numérica limitada. Formatos binários diminuem substancialmente o tamanho, o tempo de leitura e escrita de arquivos. Por isso, vários softwares armazenam dados no formato binário.</p>
-<p>Após a leitura e o processamento de dados brutos você provavelmente os salvará para uso futuro. Este procedimento é recomendado para evitar de ter que repetir todo processamento novamente. Para dados que ocupam espaço significativo (por exemplo com mais de 1 milhão de linhas) é mais eficiente salvar os dados em um formato binário, uma vez que dessa forma os tempos de escrita e leitura dos dados é menor.</p>
+<p>Arquivo texto favorecem a legibilidade humana dos dados mas tem precisão
+numérica limitada. Formatos binários diminuem substancialmente o tamanho,
+o tempo de leitura e escrita de arquivos. Por isso, vários softwares armazenam dados no formato binário.</p>
+<p>Após a leitura e o processamento de dados brutos você provavelmente os salvará
+para uso futuro. Este procedimento é recomendado para evitar de ter que repetir
+todo processamento novamente. Para dados que ocupam espaço significativo (por
+exemplo com mais de 1 milhão de linhas) é mais eficiente salvar os dados em um
+formato binário, uma vez que dessa forma os tempos de escrita e leitura são
+menores.</p>
 <div id="formatos-binários-nativos-do-r" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> Formatos binários nativos do R</h3>
-<div id="rdata" class="section level4">
-<h4><span class="header-section-number">8.5.1.1</span> Rdata</h4>
-<p>Para mostrar como usar as funções <code>save()</code> e <code>load()</code> vamos utilizar os dados pluviométricos lidos anteriormente (<code>dprec</code>) e selecionar as colunas de interesse. O <em>data frame</em> será salvo em um arquivo binário do R com a extensão <code>.RData</code>.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># primeiras linhas</span></a>
+<div id="rddata" class="section level4">
+<h4><span class="header-section-number">8.5.1.1</span> RDdata</h4>
+<p>Para mostrar como usar as funções <code>save()</code> e <code>load()</code> vamos utilizar os dados
+pluviométricos lidos anteriormente (<code>dprec</code>) e selecionar as colunas de
+interesse. O <em>data frame</em> será salvo em um arquivo binário do R com a extensão
+<code>.RData</code>.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># início dos dados dprec</span></a>
 <a class="sourceLine" id="cb226-2" data-line-number="2"><span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a>
-<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="co"># selecionando somente dados diarios do dia 1 a 31 de cada ano</span></a>
+<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="co"># colunas referentes do dia 1 a 31 de cada ano</span></a>
 <a class="sourceLine" id="cb226-4" data-line-number="4">chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span><span class="op">:</span><span class="dv">44</span>)]</a>
-<a class="sourceLine" id="cb226-5" data-line-number="5"><span class="co"># arquivo binario do R</span></a>
-<a class="sourceLine" id="cb226-6" data-line-number="6">file_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb226-7" data-line-number="7"><span class="kw">save</span>(chuva_df, <span class="dt">file =</span> file_chuva_df)</a>
-<a class="sourceLine" id="cb226-8" data-line-number="8"><span class="co">#save(chuva_df, file = &quot;../output-adar/chuva_df.RData&quot;)</span></a>
-<a class="sourceLine" id="cb226-9" data-line-number="9"><span class="co"># verificando se arquivo foi salvo no diretório</span></a>
-<a class="sourceLine" id="cb226-10" data-line-number="10"><span class="kw">file.exists</span>(file_chuva_df)</a></code></pre></div>
-<p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
+<a class="sourceLine" id="cb226-5" data-line-number="5"><span class="co"># gerando arquivo em um diretório temporário</span></a>
+<a class="sourceLine" id="cb226-6" data-line-number="6">arq_chuva &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb226-7" data-line-number="7"><span class="kw">save</span>(chuva_df, <span class="dt">file =</span> arq_chuva)</a>
+<a class="sourceLine" id="cb226-8" data-line-number="8"><span class="co"># verificando se arquivo foi salvo no diretório</span></a>
+<a class="sourceLine" id="cb226-9" data-line-number="9"><span class="kw">file.exists</span>(arq_chuva)</a></code></pre></div>
+<p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então
+recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># apagando chuva_df do ambiente de trabalho</span></a>
 <a class="sourceLine" id="cb227-2" data-line-number="2"><span class="kw">rm</span>(chuva_df)</a>
 <a class="sourceLine" id="cb227-3" data-line-number="3"><span class="co"># verifica existência de objeto</span></a>
 <a class="sourceLine" id="cb227-4" data-line-number="4"><span class="kw">exists</span>(chuva_df)</a>
 <a class="sourceLine" id="cb227-5" data-line-number="5"><span class="co"># carregando chuva_df</span></a>
-<a class="sourceLine" id="cb227-6" data-line-number="6"><span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df)</a>
+<a class="sourceLine" id="cb227-6" data-line-number="6"><span class="kw">load</span>(<span class="dt">file =</span> arq_chuva)</a>
 <a class="sourceLine" id="cb227-7" data-line-number="7"><span class="kw">ls</span>()</a>
 <a class="sourceLine" id="cb227-8" data-line-number="8"><span class="co"># para carregar os dados e saber o nome com que foram salvos</span></a>
-<a class="sourceLine" id="cb227-9" data-line-number="9"><span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> file_chuva_df))</a>
+<a class="sourceLine" id="cb227-9" data-line-number="9"><span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> arq_chuva))</a>
 <a class="sourceLine" id="cb227-10" data-line-number="10"><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
-<p>Um <strong>vantagem desse formato</strong> é que os objetos criados podem ser lidos pelo R independente do sistema operacional e da arquitetura do computador, tornando muito prático o acesso aos dados.
-Cada vez que uma sessão do R é finalizada, uma janela surge perguntando se deseja salvar o espaço de trabalho (<code>save the workspace image</code>), que nada mais é do que um arquivo binário chamado <code>.RData</code> no diretório de trabalho. Assim quando iniciar a sessão se o arquivo <code>.RData</code> estiver no diretório de trabalho ele será automaticamente carregado tornando todos os objetos da última sessão disponíveis novamente.
-Se você deseja salvar o espaço de trabalho em outro momento use a função <code>save.image()</code>.</p>
-<p>Quando desejamos salvar só uma parte dos dados uma opção é usar a função <code>rm()</code> (uma abreviação de <strong>remove</strong>) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função <code>save()</code>permite salvar <em>mais de um objeto</em> em um mesmo arquivo.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">file_dados_prec &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.Rdata&quot;</span>)</a>
+<p>Um <strong>vantagem desse formato</strong> é que os objetos criados podem ser lidos pelo
+<img src="images/logo_r.png" width="20"> independente do sistema operacional e da arquitetura do computador,
+tornando muito prático o acesso aos dados.
+Cada vez que uma sessão do R é finalizada, uma janela surge perguntando se
+deseja salvar o espaço de trabalho (<code>save the workspace image</code>), que nada mais
+é do que um arquivo binário chamado <code>.RData</code> no diretório de trabalho. Assim
+quando iniciar a sessão se o arquivo <code>.RData</code> estiver no diretório de trabalho
+ele será automaticamente carregado tornando todos os objetos da última sessão
+disponíveis novamente.
+Se você deseja salvar o espaço de trabalho em outro momento use a função
+<code>save.image()</code>.</p>
+<p>Quando desejamos salvar só uma parte dos dados uma opção é usar a função <code>rm()</code>
+(uma abreviação de <strong>remove</strong>) para remover objetos que não são de interesse
+antes de finalizar a sessão do R. A função <code>save()</code>permite salvar <em>mais de um
+objeto</em> em um mesmo arquivo.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">file_dados_prec &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>) </a>
 <a class="sourceLine" id="cb228-2" data-line-number="2"><span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> file_dados_prec)</a>
 <a class="sourceLine" id="cb228-3" data-line-number="3"><span class="co">#save(cab, chuva_df, file = &quot;../output-adar/dados_prec.RData&quot;)</span></a>
 <a class="sourceLine" id="cb228-4" data-line-number="4"><span class="kw">ls</span>()</a>
@@ -408,16 +430,21 @@ Se você deseja salvar o espaço de trabalho em outro momento use a função <co
 </div>
 <div id="rds" class="section level4">
 <h4><span class="header-section-number">8.5.1.2</span> RDS</h4>
-<p>As funções <code>readRDS()</code> e <code>writeRDS()</code> são similares a <code>load()</code> e <code>save()</code>, respectivamente, exceto que elas lidam com <strong>um único objeto</strong>. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo.
-Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e salvá-lo no arquivo <code>chuva_df.rds</code>.</p>
+<p>As funções <code>readRDS()</code> e <code>writeRDS()</code> são similares a <code>load()</code> e <code>save()</code>,
+respectivamente, exceto que elas lidam com <strong>um único objeto</strong>. Em
+contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome
+diferente do qual ele foi salvo.
+Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e salvá-lo no
+arquivo <code>chuva_df.rds</code>.</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="co"># salvar dados em um arquivo rds</span></a>
 <a class="sourceLine" id="cb229-2" data-line-number="2"><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a>
 <a class="sourceLine" id="cb229-3" data-line-number="3"><span class="co"># alterando formato de datas da coluna Data</span></a>
 <a class="sourceLine" id="cb229-4" data-line-number="4">chuva_df<span class="op">$</span>Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="dt">x =</span> chuva_df<span class="op">$</span>Data, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</a>
-<a class="sourceLine" id="cb229-5" data-line-number="5">file_rds_chuva_df &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb229-5" data-line-number="5">file_rds_chuva_df &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>)</a>
 <a class="sourceLine" id="cb229-6" data-line-number="6"><span class="kw">saveRDS</span>(<span class="dt">object =</span> chuva_df, <span class="dt">file =</span> file_rds_chuva_df)</a>
 <a class="sourceLine" id="cb229-7" data-line-number="7"><span class="kw">file.exists</span>(file_rds_chuva_df)</a></code></pre></div>
-<p>Após salvar o <em>dataframe</em> <code>chuva_df</code> vamos removê-lo do ambiente da sessão e recuperá-lo com a função <code>readRDS()</code>.</p>
+<p>Após salvar o <em>dataframe</em> <code>chuva_df</code> vamos removê-lo do ambiente da sessão
+e recuperá-lo com a função <code>readRDS()</code>.</p>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co"># removendo chuva_df do ambiente</span></a>
 <a class="sourceLine" id="cb230-2" data-line-number="2"><span class="kw">rm</span>(chuva_df)</a>
 <a class="sourceLine" id="cb230-3" data-line-number="3"><span class="co"># recuperando dados do arquivo em uma variável com nome diferente do original</span></a>
@@ -427,12 +454,29 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 </div>
 <div id="netcdf-network-common-data-form" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> NetCDF (Network Common Data Form)</h3>
-<p>NetCDF é um formato binário, auto-descritivo e independente do SO criado para criar e distribuir arranjos multidimensionais de dados gradeados. Originalmente foi desenvolvido para o armazenamento e distribuição de dados climáticos, tais como os gerados por modelos climáticos e sistemas de assimilação de dados como as <a href="http://en.wikipedia.org/wiki/Meteorological_reanalysis">reanálises</a>.</p>
-<p>As bibliotecas NetCDF são mantidas pelo <a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato NetCDF são acessíveis no R pelos pacotes <a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> <span class="citation">(Pierce <a href="referências.html#ref-Pierce2017">2017</a>)</span> e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a> <span class="citation">(Hijmans <a href="referências.html#ref-Hijmans2017">2017</a>)</span>. Esses pacotes fornecem o suporte necessário para leitura e escrita de arquivos NetCDF.</p>
-<p>O pacote <a href="https://cran.r-project.org/src/contrib/Archive/ncdf/">ncdf</a> foi um dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente para versão 3. O pacote que o substituiu foi o <a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> e suporta tanto arquivos no formato NetCDF 3 como 4. O pacote <strong>raster</strong> baseia-se no <strong>ncdf4</strong> para fornecer através da função <code>brick()</code> uma importação e exportação fácil de dados NetCDF com o R.</p>
+<p>NetCDF é um formato binário, auto-descritivo e independente do SO criado para
+criar e distribuir arranjos multidimensionais de dados gradeados.
+Originalmente foi desenvolvido para o armazenamento e distribuição de dados
+climáticos, tais como os gerados por modelos climáticos e sistemas de
+assimilação de dados como as
+<a href="http://en.wikipedia.org/wiki/Meteorological_reanalysis">reanálises</a>.</p>
+<p>As bibliotecas NetCDF são mantidas pelo
+<a href="http://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. Dados no formato
+NetCDF são acessíveis no R pelos pacotes
+<a href="http://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> <span class="citation">(Pierce <a href="referências.html#ref-Pierce2017">2017</a>)</span> e <a href="http://cran.r-project.org/web/packages/raster/index.html">raster</a>
+<span class="citation">(Hijmans <a href="referências.html#ref-Hijmans2017">2017</a>)</span>. Esses pacotes fornecem o suporte necessário para leitura e
+escrita de arquivos NetCDF.</p>
+<p>O pacote <a href="https://cran.r-project.org/src/contrib/Archive/ncdf/">ncdf</a> foi um
+dos primeiros pacotes de interface com dados NetCDF, mas com suporte somente
+para versão 3. O pacote que o substituiu foi o
+<a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> e suporta
+tanto arquivos no formato NetCDF 3 como 4. O pacote <strong>raster</strong> baseia-se no
+<strong>ncdf4</strong> para fornecer através da função <code>brick()</code> uma importação e exportação
+fácil de dados NetCDF com o R.</p>
 <div id="pré-requisitos-2" class="section level4">
 <h4><span class="header-section-number">8.5.2.1</span> Pré-requisitos</h4>
-<p>Para utilizar o pacote <code>ncdf4</code> é necessário instalar os pacotes linux mostrados abaixo.</p>
+<p>Para utilizar o pacote <code>ncdf4</code> é necessário instalar os pacotes linux mostrados
+abaixo.</p>
 <div class="sourceCode" id="cb231"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="co">## Install pacotes NetCDF</span></a>
 <a class="sourceLine" id="cb231-2" data-line-number="2">$ <span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev</a></code></pre></div>
 <p>Pacotes necessários:</p>
@@ -443,7 +487,13 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 </div>
 <div id="arquivo-exemplo" class="section level4">
 <h4><span class="header-section-number">8.5.2.2</span> Arquivo exemplo</h4>
-<p>Os exemplos a seguir usam o pacote <a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> para ler arquivo NetCDF com dados climáticos do <em>Climate Research Unit <a href="http://www.cru.uea.ac.uk/data">CRU</a></em>, consistindo de valores médios de longo prazo (1961-1990) da temperatura do ar próximo à superfície com resolução espacial de 0,5 º na área continental. As dimensões da <em>array</em> são: 720 (longitudes) x 360 (latitudes) x 12 (meses).</p>
+<p>Os exemplos a seguir usam o pacote
+<a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> para ler
+arquivo NetCDF com dados climáticos do
+<em>Climate Research Unit <a href="http://www.cru.uea.ac.uk/data">CRU</a></em>, consistindo de
+valores médios de longo prazo (1961-1990) da temperatura do ar próximo à
+superfície com resolução espacial de 0,5 º na área continental.
+As dimensões da <em>array</em> são: 720 (longitudes) x 360 (latitudes) x 12 (meses).</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">dados_cru_url &lt;-<span class="st"> &quot;https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1&quot;</span></a>
 <a class="sourceLine" id="cb234-2" data-line-number="2">dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;cru10min30_tmp.nc&quot;</span>)</a>
 <a class="sourceLine" id="cb234-3" data-line-number="3"><span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</a></code></pre></div>
@@ -469,7 +519,8 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 <a class="sourceLine" id="cb237-5" data-line-number="5">nlat &lt;-<span class="st"> </span><span class="kw">dim</span>(lat)</a>
 <a class="sourceLine" id="cb237-6" data-line-number="6"><span class="kw">head</span>(lat)</a>
 <a class="sourceLine" id="cb237-7" data-line-number="7"><span class="kw">c</span>(nlon, nlat)</a></code></pre></div>
-<p>Vamos obter a variável temporal e seus atributos usando as funções <code>ncvarget()</code> e <code>ncatt_get</code>. Depois fechamos o acesso ao arquivo NetCDF.</p>
+<p>Vamos obter a variável temporal e seus atributos usando as funções <code>ncvarget()</code>
+e <code>ncatt_get</code>. Depois fechamos o acesso ao arquivo NetCDF.</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">tempo &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(ncin, <span class="st">&quot;time&quot;</span>)</a>
 <a class="sourceLine" id="cb238-2" data-line-number="2">(tunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(ncin, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;units&quot;</span>))</a>
 <a class="sourceLine" id="cb238-3" data-line-number="3">(nt &lt;-<span class="st"> </span><span class="kw">dim</span>(tempo))</a>
@@ -484,8 +535,13 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 <a class="sourceLine" id="cb238-12" data-line-number="12">(fillvalue &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(ncin, dname, <span class="st">&quot;_FillValue&quot;</span>))</a>
 <a class="sourceLine" id="cb238-13" data-line-number="13"><span class="co"># fechando arquivo</span></a>
 <a class="sourceLine" id="cb238-14" data-line-number="14"><span class="kw">nc_close</span>(ncin)</a></code></pre></div>
-<p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), <em>arrays</em> bidimensionais (matrizes, campo espacial de um momento), ou <em>arrays</em> multidimensionais (campos espaciais de uma variável em diversos tempos).</p>
-<p>Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um <em>data frame</em> onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura.</p>
+<p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.:
+longitudes), <em>arrays</em> bidimensionais (matrizes, campo espacial de um momento),
+ou <em>arrays</em> multidimensionais (campos espaciais de uma variável em diversos
+tempos).</p>
+<p>Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um
+<em>data frame</em> onde cada linha será um ponto de grade e a coluna representa
+uma variável, por exemplo: longitude, latitude e temperatura.</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb239-2" data-line-number="2"><span class="co"># campo espacial do primeiro dia de dados</span></a>
 <a class="sourceLine" id="cb239-3" data-line-number="3">tmp.slice &lt;-<span class="st"> </span>tmp.array[, , m]</a>
@@ -494,20 +550,42 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 <a class="sourceLine" id="cb239-6" data-line-number="6"><span class="kw">image.plot</span>(lon, lat, tmp.slice, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</a></code></pre></div>
 <div id="forma-fácil-de-importar-netcdf" class="section level5">
 <h5><span class="header-section-number">8.5.2.2.1</span> Forma fácil de importar NetCDF</h5>
-<p>O pacote <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> fornece uma função para fácil importação de arquivos NetCDF. Os dados importados são retornados no formato específico do pacote (classe de dados <em>RasterBrick</em>). Esta classe de dados, corresponde a uma estrutura de dados espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões.</p>
-<p>Quando o dados gradeados possuem somente uma variável em um único tempo, como por exemplo a altitude do terreno (z), temos 2 dimensões espaciais <em>x</em> (longitude), <em>y</em> (latitude) e <em>z</em>. Neste caso, o dado é um <a href="https://docs.qgis.org/2.8/pt_BR/docs/gentle_gis_introduction/raster_data.html">raster</a> e sua classe de dados é denominada <code>RasterLayer</code> no pacote <strong>raster</strong>, ou seja os dados possuem somente uma camada. Quando os dados possuem mais de uma camada, como no casos de campos espaciais de temperatura em diferentes meses (cada mês é uma camada) a classe de dados é denominada <code>Rasterbrick</code>.</p>
-<p>Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos a função <code>brick()</code> do pacote <strong>raster</strong>.</p>
+<p>O pacote <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a>
+fornece uma função para fácil importação de arquivos NetCDF. Os dados
+importados são retornados no formato específico do pacote (classe de dados
+<em>RasterBrick</em>). Esta classe de dados, corresponde a uma estrutura de dados
+espaciais gradeados, regularmente espaçados, podendo ter uma ou mais dimensões.</p>
+<p>Quando o dados gradeados possuem somente uma variável em um único tempo, como
+por exemplo a altitude do terreno (z), temos 2 dimensões espaciais <em>x</em>
+(longitude), <em>y</em> (latitude) e <em>z</em>. Neste caso, o dado é um <a href="https://docs.qgis.org/2.8/pt_BR/docs/gentle_gis_introduction/raster_data.html">raster</a>
+e sua classe de dados é denominada <code>RasterLayer</code> no pacote <strong>raster</strong>, ou seja
+os dados possuem somente uma camada. Quando os dados possuem mais de uma camada,
+como no casos de campos espaciais de temperatura em diferentes meses (cada mês
+é uma camada) a classe de dados é denominada <code>Rasterbrick</code>.</p>
+<p>Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos
+a função <code>brick()</code> do pacote <strong>raster</strong>.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">brick_tar_cru &lt;-<span class="st"> </span><span class="kw">brick</span>(dest_file_nc)</a>
 <a class="sourceLine" id="cb240-2" data-line-number="2">brick_tar_cru</a></code></pre></div>
-<p>O resultado da importação de um <code>RasterBrick</code> mostra no console do R informações sobre as dimensões dos dados, a resolução espacial, os limites do domínio espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados, o nome das camadas, eventualmente as datas e nome da variável importada do arquivo NetCDF.</p>
-<p>Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome da variável de interesse através do argumento <code>varname</code>. No exemplo acima poderíamos ter chamado a função <code>raster::brick()</code> com <code>brick(dest_file_nc, varname = &quot;tmp&quot;)</code>. Mas como há somente uma variável no arquivo NetCDF deste exemplo a especificação deste argumento é opcional.</p>
-<p>Os nomes das camadas, são acessados e alterados com função <code>names()</code>, da mesma forma que em <em>data frames</em>.</p>
+<p>O resultado da importação de um <code>RasterBrick</code> mostra no console do R informações
+sobre as dimensões dos dados, a resolução espacial, os limites do domínio
+espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados,
+o nome das camadas, eventualmente as datas e nome da variável importada do
+arquivo NetCDF.</p>
+<p>Quando o arquivo NetCDF possui mais de uma variável é necessário definir o nome
+da variável de interesse através do argumento <code>varname</code>. No exemplo acima
+poderíamos ter chamado a função <code>raster::brick()</code> com
+<code>brick(dest_file_nc, varname = &quot;tmp&quot;)</code>. Mas como há somente uma variável no
+arquivo NetCDF deste exemplo a especificação deste argumento é opcional.</p>
+<p>Os nomes das camadas, são acessados e alterados com função <code>names()</code>, da mesma
+forma que em <em>data frames</em>.</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="co"># substituindo a letra &quot;X&quot; dos nomes por &quot;Mes_&quot;</span></a>
 <a class="sourceLine" id="cb241-2" data-line-number="2"><span class="kw">names</span>(brick_tar_cru) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mes_&quot;</span>, <span class="kw">names</span>(brick_tar_cru))</a>
 <a class="sourceLine" id="cb241-3" data-line-number="3"><span class="kw">names</span>(brick_tar_cru)</a></code></pre></div>
-<p>Um gráfico pode ser gerado através da funções <code>plot()</code>. Por default são mostrados no máximo 16 camadas de um <code>RasteBrick</code>.</p>
+<p>Um gráfico pode ser gerado através da funções <code>plot()</code>. Por default são
+mostrados no máximo 16 camadas de um <code>RasteBrick</code>.</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1"><span class="kw">plot</span>(brick_tar_cru, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</a></code></pre></div>
-<p>Os dados em formato <code>RasterBrick</code>, <code>RasterStack</code> ou <code>RasterLayer</code> podem ser convertidos para <code>data frame</code> por meio da função <code>raster::as.data.frame()</code>.</p>
+<p>Os dados em formato <code>RasterBrick</code>, <code>RasterStack</code> ou <code>RasterLayer</code> podem ser
+convertidos para <code>data frame</code> por meio da função <code>raster::as.data.frame()</code>.</p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">df_tar_cru &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(</a>
 <a class="sourceLine" id="cb243-2" data-line-number="2">  <span class="dt">x =</span> brick_tar_cru,</a>
 <a class="sourceLine" id="cb243-3" data-line-number="3">  <span class="dt">xy =</span> <span class="ot">TRUE</span>, </a>
@@ -518,15 +596,27 @@ Vamos alterar o formato da data do <em>dataframe</em> <code>chuva_df</code> e sa
 <a class="sourceLine" id="cb243-8" data-line-number="8"><span class="kw">head</span>(df_tar_cru)</a></code></pre></div>
 <p>Os argumentos usados na função <code>as.dataframe()</code> correspondem a:</p>
 <ul>
-<li><p><code>x</code> é o objeto <code>Raster*</code> (onde * significa <code>RasterBrick</code>, <code>RasterStack</code> ou <code>RasterLayer</code>)</p></li>
-<li><p><code>xy</code> é um argumento lógico, se <code>TRUE</code> (verdadeiro) inclui as coordenadas espaciais (longitude e altitude) das células do <em>raster</em> como colunas no <em>data frame</em> de saída</p></li>
-<li><p><code>na.rm</code> é um argumento opcional lógico, tal que se for <code>TRUE</code> remove linhas com valores <code>NA</code>. Isto é particularmente útil para grandes conjuntos de dados com muitos valores <code>NA</code>s e em regiões oceânicas, como no arquivo de exemplo, onde não há dados medidos. Note que se <code>na.rm = FALSE</code> (<code>TRUE</code>) o <em>data frame</em> resultante terá (poderá ter) um número de linhas igual ao (menor que o) número de células do <code>RasterBrick</code>.</p></li>
+<li><p><code>x</code> é o objeto <code>Raster*</code> (onde * significa <code>RasterBrick</code>, <code>RasterStack</code>
+ou <code>RasterLayer</code>)</p></li>
+<li><p><code>xy</code> é um argumento lógico, se <code>TRUE</code> (verdadeiro) inclui as coordenadas
+espaciais (longitude e altitude) das células do <em>raster</em> como colunas no
+<em>data frame</em> de saída</p></li>
+<li><p><code>na.rm</code> é um argumento opcional lógico, tal que se for <code>TRUE</code> remove linhas
+com valores <code>NA</code>. Isto é particularmente útil para grandes conjuntos de dados
+com muitos valores <code>NA</code>s e em regiões oceânicas, como no arquivo de exemplo,
+onde não há dados medidos. Note que se <code>na.rm = FALSE</code> (<code>TRUE</code>) o <em>data frame</em>
+resultante terá (poderá ter) um número de linhas igual ao (menor que o) número
+de células do <code>RasterBrick</code>.</p></li>
 </ul>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">nrow</span>(df_tar_cru) <span class="op">&lt;</span><span class="st"> </span><span class="kw">ncell</span>(brick_tar_cru)</a></code></pre></div>
 <ul>
-<li><code>long</code> é um argumento opcional lógico. Se for <code>TRUE</code> (verdadeiro) os valores são reestruturados de um formato amplo para um formato longo (veja a seção <a href="restruturação-de-dados-retangulares.html#formatos-dados">9.3.2.1</a> para definição de dados no formato longo e amplo).</li>
+<li><code>long</code> é um argumento opcional lógico. Se for <code>TRUE</code> (verdadeiro) os valores
+são reestruturados de um formato amplo para um formato longo (veja a seção
+<a href="restruturação-de-dados-retangulares.html#formatos-dados">9.3.2.1</a> para definição de dados no formato longo e amplo).</li>
 </ul>
-<p>Como exercício, rode novamente o trecho de código anterior, mudando os valores dos argumentos lógicos e observe as mudanças nas dimensões do <code>data frame</code> resultante.</p>
+<p>Como exercício, rode novamente o trecho de código anterior, mudando os valores
+dos argumentos lógicos e observe as mudanças nas dimensões do <code>data frame</code>
+resultante.</p>
 </div>
 </div>
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-26" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,6 +158,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
 <li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.6" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.6</b> Git e Github</a></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -364,14 +365,26 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="diretório-de-trabalho" class="section level2">
 <h2><span class="header-section-number">8.2</span> Diretório de trabalho</h2>
-<p>Antes de lidar com arquivos locais, você precisa conhecer o seu diretório de trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório de trabalho atual.</p>
-<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho da sua sessão do <img src="images/logo_r.png" width="20">.</p>
+<p>Antes de lidar com arquivos locais, você precisa conhecer o seu diretório de
+trabalho; o local para o qual sua sessão do R importará ou exportará dados por <em>default</em>.</p>
+<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de funções para se obter informações do
+sistema, como arquivos, diretórios, e etc. Uma informação importante é diretório
+de trabalho atual.</p>
+<p>Importar ou exportar dados é mais fácil quando você não precisa digitar caminhos
+longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no
+<img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho
+(<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho
+da sua sessão do <img src="images/logo_r.png" width="20">.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução abaixo:</p>
+<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux
+e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução
+abaixo:</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
-<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos, ler e escrever dados, quando você não especificar o caminho completo para o arquivo de saída.</p>
-<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode usar a função <code>setwd()</code>.</p>
+<p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos,
+ler e escrever dados, quando você não especificar o caminho completo para o
+arquivo de saída.</p>
+<p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode
+usar a função <code>setwd()</code>.</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
 <a class="sourceLine" id="cb213-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
 <a class="sourceLine" id="cb213-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
@@ -381,32 +394,34 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb213-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
 <div class="rmdtip">
 <p>
-Você pode configurar o diretório de trabalho pelo menu do Rstudio <em>Session &gt; Set Working Directory</em>. Você terá as opções:
+Você pode configurar o diretório de trabalho pelo menu do Rstudio <em><code>Session ▶ Set Working Directory</code></em>. Você terá as opções:
 </p>
 <ul>
 <li>
 <p>
-<em>To Source File Location</em>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
+<code><em>To Source File Location</em></code>: definirá o diretório de trabalho como o mesmo do arquivo atualmente aberto no RStudio
 </p>
 </li>
 <li>
 <p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
+<code><em>To Files Pane Location</em></code>: definirá o diretório de trabalho como aquele atualmente aberto no painel de arquivos
 </p>
 </li>
 <li>
 <p>
-<em>To Files Pane Location</em>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
+<code><em>To Files Pane Location</em></code>: definirá o diretório de trabalho como o mesmo do projeto atualmente aberto no RStudio
 </p>
 </li>
 <li>
 <p>
-<em>Choose Directory</em>: permite você navegar até o diretório de interesse
+<code><em>Choose Directory</em></code>: permite você navegar até o diretório de interesse
 </p>
 </li>
 </ul>
 </div>
-<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver usando o Rstudio você pode clicar na aba <em>Files</em> do painel de direito inferior e depois em <em>More &gt; Go To Working Directory</em>.</p>
+<p>O conteúdo de um diretório pode ser listado com a função <code>dir()</code>, ou se estiver
+usando o Rstudio você pode clicar na aba <code>*Files*</code> do painel de direito inferior
+e depois em <code>*More  ▶  Go To Working Directory*</code>.</p>
 </div>
             </section>
 
