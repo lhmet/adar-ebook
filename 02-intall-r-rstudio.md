@@ -33,12 +33,31 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 
 
 
-Você precisará do [<img src="images/logo_r.png" width="20">](https://www.r-project.org/), [RStudio](https://rstudio.com/) e se estiver em SO Windows também do programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html).
+Para tirar melhor proveito deste livro, você precisará:
 
+1. Das **versões atualizadas** do
+
+    - <img src="images/logo_r.png" width="20">: https://cloud.r-project.org
+    
+      - se estiver em SO Windows também precisará do programa
+    [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html).
+
+    - RStudio: https://rstudio.com/download 
+
+    - Git: https://git-scm.com/downloads [^pos-inst-git] 
+
+[^pos-inst-git]: ao baixar e seguir o processo normal de instalação no seu computador, você não verá nenhum software instalado quando você tiver terminado.
+
+2. Criar uma conta GitHub: https://github.com [^githubtip].
+
+[^githubtip]: Procure escolher um nome curto para o seu usuário e que o 
+identifique melhor.
 
 ## Instalação do R e RStudio {#install}
 
-A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A interface da linha de comando tem suas vantagens, mas você será mais produtivo com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
+A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A 
+interface da linha de comando tem suas vantagens, mas você será mais produtivo 
+com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
 
 A seguir veremos como:
 
@@ -52,9 +71,13 @@ A seguir veremos como:
 
 - instalar o RStudio *Desktop*
 
-Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
+Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, 
+ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação 
+também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
 
-A instalação no SO Windows é igual a instalação de qualquer outro *software* e pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se o caminho de instalação.
+A instalação no SO Windows é igual a instalação de qualquer outro *software* e
+pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se 
+o caminho de instalação.
 
 
 <div class="rmdtip">
@@ -68,28 +91,35 @@ O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [bin�
 
 #### Windows 
 
-O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)) e pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
+O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)) e 
+pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
 
-Abra o executável e siga instruções de instalação mantendo todas as opções padrões.
+Abra o executável e siga instruções de instalação mantendo todas as opções 
+padrões.
 
-No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo do <img src="images/logo_r.png" width="20">.
+No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário 
+(GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo 
+do <img src="images/logo_r.png" width="20">.
 
 <div class="figure">
 <img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
 <p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
 </div>
 
-Para instalar pacotes de plataformas diferentes da CRAN (veja seção \@ref(install-github)) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html), selecionando a versão adequada para sua versão do <img src="images/logo_r.png" width="20">. 
+Para instalar pacotes de plataformas diferentes da CRAN (veja seção \@ref(install-github)) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html), 
+selecionando a versão adequada para sua versão do <img src="images/logo_r.png" width="20">. 
 
 
 ##### Atualização do R no Windows
 
-Novas versões do R são disponibilizadas em geral com frequência de 5 vezes por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-4.0.0.html).
+Novas versões do R são disponibilizadas em geral com frequência de 5 vezes 
+por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-4.0.0.html).
 
 
 As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
 
-Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
+Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a 
+cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
 
 #### Linux 
 
@@ -114,30 +144,38 @@ sudo apt install r-cran-rjava
 
 -->
 
-Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu. Mas primeiro, caso você tenha alguma versão antiga do R, desinstale-a com:
+Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu. Mas primeiro, caso você 
+tenha alguma versão antiga do R, desinstale-a com:
 
 
 ```bash
 $ sudo apt-get remove r-base-core
 ```
 
-A forma mais fácil de instalar o <img src="images/logo_r.png" width="20"> é usar a versão compilada no repositório *default* do Ubuntu. 
+A forma mais fácil de instalar o <img src="images/logo_r.png" width="20"> é usar a versão compilada no 
+repositório *default* do Ubuntu. 
 
 
 ```bash
 $ sudo apt-get install r-base
 ```
 
-Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes (ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
+Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes 
+(ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma 
+que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
 
-[^rversion-recente]: A versão mais atual no período de elaboração deste texto foi a R 4.0.0.
+[^rversion-recente]: A versão mais atual no período de elaboração deste texto 
+foi a R 4.0.0.
 
-1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror] à lista de repositórios do sistema [^aviso-sudo].
+1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror]
+à lista de repositórios do sistema [^aviso-sudo].
 
 
-[^cran-mirror]: Usando https://cloud.r-project.org automaticamente redireciona para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
+[^cran-mirror]: Usando https://cloud.r-project.org automaticamente redireciona 
+para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
 
-[^aviso-sudo]: A execução destes comandos requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Caso não tenha, consulte o administrador do sistema.
+[^aviso-sudo]: A execução destes comandos requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Caso não 
+tenha, consulte o administrador do sistema.
 
 
 ```bash
@@ -147,7 +185,11 @@ $ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_releas
 
 2. Adicionamos a chave de autenticação[^chave-pub] do repositório.
 
-[^chave-pub]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+[^chave-pub]: Chave pública de autenticação é um meio alternativo de se logar
+em um servidor ao invés de digitar uma senha. É uma forma mais segura e 
+flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer 
+login é importante se o computador está visível na internet. Para saber mais 
+veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
 
 ```bash
@@ -370,8 +412,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -507,7 +549,7 @@ Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
 library(rvcheck)
 check_r()
 ## $installed_version
-## [1] "R-3.6.2"
+## [1] "R-3.6.3"
 ## 
 ## $latest_version
 ## [1] "R-4.0.0"
@@ -550,20 +592,18 @@ check_github('lhmet/inmetr')
 ## $up_to_date
 ## [1] TRUE
 check_bioc('EBImage')
-## ## EBImage is not installed...
-## install.packages("BiocManager")
-## BiocManager::install("EBImage")
+## package is up-to-date release version
 ## $package
 ## [1] "EBImage"
 ## 
 ## $installed_version
-## [1] NA
+## [1] "4.28.1"
 ## 
 ## $latest_version
 ## [1] "4.28.1"
 ## 
 ## $up_to_date
-## [1] NA
+## [1] TRUE
 ```
 
 Por fim, para atualizar todos os pacotes:
@@ -586,7 +626,7 @@ Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes
 
 
 ```bash
-$ sudo apt install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev
+$ sudo apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev
 ```
 
 
@@ -599,24 +639,18 @@ pcks <- c(
   "htmlTable",
   "styler",
   "tidyverse", 
-  "rio",
-  "readr",
-  "feather",
-  "readxl",
+  "rio",   # instala readxl, openlxlsx, data.table, foreign, haven, feather, 
+           # readODS, jsonlite, rmatio
   "writexl",
-  "dplyr",
   "microbenchmark",
-  "openxlsx",
   "ncdf4",
   "raster",
   "openair",
   "lubridate",
   "fields",
-  "RColorBrewer",
+  "viridis",
   "WriteXLS",
   "gcookbook"
-  #"gdata",
-  #"XLConnect"
   )
 
 pcks_dev <- c(
@@ -707,4 +741,15 @@ Abra o RStudio digitando no terminal:
     $ rstudio &
     
 Agora você está pronto para começar a programar em <img src="images/logo_r.png" width="20"> aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. 
+
+## Git e Github
+
+<!-- 
+http://ohi-science.org/data-science-training/github.html 
+https://www.hostinger.com.br/tutoriais/o-que-github/
+-->
+
+[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser `.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`, mas as diferenças em arquivos de texto regular são mais facilmente visíveis (`.txt`, `.csv`, `.md`).
+
+[GitHub](https://github.com/) é um sistema de gerenciamento de projetos e versões de códigos assim como uma plataforma de rede social criado para desenvolvedores. O GitHub é permite que você trabalhe em projetos colaborativos com desenvolvedores de todo o mundo, planeje seus projetos e acompanhe o trabalho. O GitHub é um dos maiores depósitos online de trabalho colaborativo do mundo.
 
