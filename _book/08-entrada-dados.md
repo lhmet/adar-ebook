@@ -203,7 +203,7 @@ de caracteres pode ser feita através do menu:
 
 <!---
 #ABOUT Encoding
-# Como o computador só armazena bits, o texto do arquivo que está na nossa linguagem escrita precisa ser convertido em [bits](https://pt.wikipedia.org/wiki/Bit). Essa conversão é feita por meio de um esquema codificação ou simplesmente codificação. Tradicionalmente a codificação mais usada era o [ASCII](http://pt.wikipedia.org/wiki/ASCII]) (Padrão Americano de Codificação para Intercâmbio de Informação) de 8 bits (ou 1 *byte*) que codifica um conjunto de 128 símbolos (letras, números, sinais de pontuação e símbolos matemáticos) da língua Inglesa. Por exemplo a letra R corresponde a seguinte sequência 01010010.
+# Como o computador só armazena bits, o texto do arquivo que está na nossa linguagem escrita precisa ser convertido em [bits](https://pt.wikipedia.org/wiki/Bit). Essa conversão é feita por meio de um esquema codificação ou simplesmente codificação. Tradicionalmente a codificação mais usada era o [ASCII](http://pt.wikipedia.org/wiki/ASCII]) (Padrão Americano de Codificação para Intercâmbio de Informação) de 8 bits (ou 1 *byte*) que codifica um conjunto de 128 símbolos (letras, números, sinais de pontuação e símbolos matemáticos) da língua Inglesa. Por exemplo a letra R corresponde a seguinte sequência r pryr::bits("R").
 # 
 # Da necessidade de representar caracteres de outras linguagens surgiram [várias outras codificações](http://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings). O [ISO 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1) ou *Latin1* é um exemplo de codificação de 8 bits que permite representar 256 símbolos diferentes, sendo usada nas Americas, Oeste da Europa, Oceania e grande parte da África. 
 # 
