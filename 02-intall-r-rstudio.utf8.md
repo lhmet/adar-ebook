@@ -33,30 +33,14 @@ https://github.com/cambiotraining/r-intro/tree/master
 https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 -->
 
-```{r setup, echo = FALSE, message=FALSE}
-rm(list = ls())
-options(stringsAsFactors = TRUE)
-pcks <- c("knitr"
-          #, "tint"
-          )
-easypackages::libraries(pcks)
-opts_chunk$set(cache = FALSE, 
-               tidy = FALSE,
-               fig.path = "images/", 
-               #comment = "#>",
-               collapse = TRUE)
-#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
-rblue <- '<img src="images/logo_r.png" width="20">'
-#minirstudio <- '<img src="images/logo_rstudio.png" width="80">'
-source("R/utils.R")
-```
+
 
 
 Para tirar melhor proveito deste livro, você precisará:
 
 1. Das **versões atualizadas** do
 
-    - `r rblue`: https://cloud.r-project.org
+    - <img src="images/logo_r.png" width="20">: https://cloud.r-project.org
     
       - se estiver em SO Windows também precisará do programa
     [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html).
@@ -74,15 +58,15 @@ identifique melhor.
 
 ## Instalação do R e RStudio {#install}
 
-A interação do usuário com o `r rblue` é por meio da linha de comando. A 
+A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A 
 interface da linha de comando tem suas vantagens, mas você será mais produtivo 
 com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio *Desktop*.
 
 A seguir veremos como:
 
-- instalar o `r rblue` nos SO Windows e Linux Ubuntu
+- instalar o <img src="images/logo_r.png" width="20"> nos SO Windows e Linux Ubuntu
 
-- manter o `r rblue` sempre atualizado no Linux Ubuntu 
+- manter o <img src="images/logo_r.png" width="20"> sempre atualizado no Linux Ubuntu 
 
 - configurar um diretório para armazenar os pacotes do R instalados
 
@@ -90,7 +74,7 @@ A seguir veremos como:
 
 - instalar o RStudio *Desktop*
 
-Neste livro, o maior foco na instalação do `r rblue` é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, 
+Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu), pelo fato de assim como o R, 
 ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no [Debian](https://pt.wikipedia.org/wiki/Debian) o procedimento de instalação 
 também se estende a essa distribuição Linux e as [versões derivadas do Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados) oficialmente reconhecidas. 
 
@@ -99,47 +83,46 @@ pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se
 o caminho de instalação.
 
 
-```{block, note-text-climate-system, type='rmdtip'}
-Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na 
-internet para solucionar o problema. As chances de resolver o problema serão 
-muito maiores se sua pesquisa for realizada em inglês.
-```
+<div class="rmdtip">
+<p>Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.</p>
+</div>
 
 ### Instalando o R
 
-O `r rblue` pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Nós veremos a instalação do `r rblue` a partir dos arquivos binários.
+O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Nós veremos a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.
 
 
 #### Windows 
 
-O binário executável do `r rblue` para o Windows está disponível na **Rede Abrangente de Arquivos do `r rblue`** ([CRAN](https://cran.r-project.org/)) e 
+O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na **Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20">** ([CRAN](https://cran.r-project.org/)) e 
 pode ser baixado [aqui](http://cran.r-project.org/bin/windows/base/). 
 
 Abra o executável e siga instruções de instalação mantendo todas as opções 
 padrões.
 
-No Windows a instalação do `r rblue` inclui uma Interface Gráfica do Usuário 
+No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário 
 (GUI) acessível pelo executável `RGui.exe` (Figura \@ref(fig:r-gui)). Um atalho para esse executável é gerado por *default* na área de trabalho com o símbolo 
-do `r rblue`.
+do <img src="images/logo_r.png" width="20">.
 
-```{r r-gui, comment="", highlight=TRUE, out.width="100%", fig.cap="Interface gráfica do usuário no R para Windows.", echo = FALSE}
-knitr::include_graphics("images/rgui-windows.png")
-```
+<div class="figure">
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
+<p class="caption">(\#fig:r-gui)Interface gráfica do usuário no R para Windows.</p>
+</div>
 
 Para instalar pacotes de plataformas diferentes da CRAN (veja seção \@ref(install-github)) é necessário instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html), 
-selecionando a versão adequada para sua versão do `r rblue`. 
+selecionando a versão adequada para sua versão do <img src="images/logo_r.png" width="20">. 
 
 
 ##### Atualização do R no Windows
 
 Novas versões do R são disponibilizadas em geral com frequência de 5 vezes 
-por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](`r cran_news_windows()`).
+por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [aperfeiçoamentos e a correção de *bugs*](https://cran.r-project.org/bin/windows/base/NEWS.R-4.0.0.html).
 
 
-As novas versões do `r rblue` vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
+As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
 
-Para atualizar o `r rblue` no Windows, ao invés de baixar o executável a 
-cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no `r rblue` será vista na seção \@ref(install-pck).
+Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a 
+cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
 
 #### Linux 
 
@@ -164,26 +147,28 @@ sudo apt install r-cran-rjava
 
 -->
 
-Há várias formas de instalar o `r rblue` no Ubuntu. Mas primeiro, caso você 
+Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu. Mas primeiro, caso você 
 tenha alguma versão antiga do R, desinstale-a com:
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo apt-get remove r-base-core
 ```
 
-A forma mais fácil de instalar o `r rblue` é usar a versão compilada no 
+A forma mais fácil de instalar o <img src="images/logo_r.png" width="20"> é usar a versão compilada no 
 repositório *default* do Ubuntu. 
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo apt-get install r-base
 ```
 
 Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes 
-(ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do `r rblue` e de forma 
+(ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma 
 que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
 
 [^rversion-recente]: A versão mais atual no período de elaboração deste texto 
-foi a R `r stringr::str_extract(cran_news_windows(), "[0-9].[0-9].[0-9]")`.
+foi a R 4.0.0.
 
 1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror]
 à lista de repositórios do sistema [^aviso-sudo].
@@ -195,7 +180,8 @@ para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em h
 [^aviso-sudo]: A execução destes comandos requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Caso não 
 tenha, consulte o administrador do sistema.
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo touch /etc/apt/sources.list.d/cran.list
 $ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
 ```
@@ -208,19 +194,22 @@ flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer
 login é importante se o computador está visível na internet. Para saber mais 
 veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 ```
 
 3. Atualizamos a lista de repositórios do sistema.
 
-```{bash, eval  = FALSE}
+
+```bash
 sudo apt-get update
 ```
 
 4. Instalamos o R
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo apt-get install -y r-base r-base-dev 
 ```
 
@@ -229,7 +218,7 @@ $ sudo apt-get install -y r-base r-base-dev
 <!-- 
 ##### R sempre atualizado 
 
-Se você quer trabalhar sempre com a última versão estável do `r rblue`, é possível configurar o Linux Ubuntu para atualizar automaticamente o `r rblue`. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
+Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
 
 Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^versoesubuntu]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
 
@@ -240,9 +229,9 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^versoesubuntu]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a `r stringr::str_extract(cran_news_windows(), "[0-9].[0-9].[0-9]")`. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
+A versão mais atual é a 4.0.0. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
-###### Incluindo repositório do `r rblue` na Lista de repositórios do Ubuntu
+###### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
 O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^ubuntuname] :
 
@@ -279,7 +268,7 @@ Adicionamos o conteúdo da `repos` ao arquivo cran.list usando o comando:
     # echo $repos >> /etc/apt/sources.list.d/cran.list
 
 Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^wikiped-apt] fará a atualização do `r rblue` quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do `r rblue`.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^wikiped-apt] fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.
 
 [^wikiped-apt]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
@@ -291,7 +280,7 @@ Feito isso, você podemos retornar a sessão de usuário comum:
 
 ###### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do `r rblue` para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^pub-key]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^pub-key]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
@@ -310,7 +299,7 @@ Caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada par
     $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
 
 
-###### Atualização da lista de repositórios do Ubuntu e instalação do `r rblue`
+###### Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20">
 
 Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):
 
@@ -364,21 +353,29 @@ nlme > lattice > broom
 
 
 
-Para iniciar o `r rblue` no Linux, digite `R` no cursor do terminal:
+Para iniciar o <img src="images/logo_r.png" width="20"> no Linux, digite `R` no cursor do terminal:
 
     $ R
 
-A partir desse momento já começamos uma sessão no `r rblue`. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
+A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
 
-```{r Chunck4, comment="", fig.align='center', fig.cap="Gráfico da sequência de 10 números.", prompt=TRUE, collapse=TRUE}
-1:10
-plot(1:10)
+
+```r
+> 1:10
+ [1]  1  2  3  4  5  6  7  8  9 10
+> plot(1:10)
 ```
 
-Após este teste, podemos sair do `r rblue`, sem salvar os dados da seção, com a expressão abaixo:
+<div class="figure" style="text-align: center">
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
+<p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
+</div>
 
-```{r Chunck5, comment="", eval = FALSE, prompt=TRUE}
-q(save = "no")
+Após este teste, podemos sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com a expressão abaixo:
+
+
+```r
+> q(save = "no")
 ```
 
 #### Diretório para pacotes instalados pelo usuário
@@ -387,33 +384,39 @@ Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no 
 
 [^update-rbase]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
 
-Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do `r rblue` instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
+Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o `/home/usuario/.R/libs`. O seu `home` ou `pasta pessoal` pode ser obtido com o comando `echo $HOME`. Para criar o diretório você pode digitar o comando abaixo:
 
-```{bash, eval = FALSE}
+
+```bash
 $ mkdir -p `echo $HOME`/.R/libs/
 ```
 
-Para informar ao `r rblue` onde procurar os pacotes instalados, você precisa criar um arquivo chamado `.Renviron`, no diretório `$HOME`, contendo a expressão `R_LIBS=/home/usuario/.R/libs/`. Você pode fazer isso em um terminal com os comandos:
+Para informar ao <img src="images/logo_r.png" width="20"> onde procurar os pacotes instalados, você precisa criar um arquivo chamado `.Renviron`, no diretório `$HOME`, contendo a expressão `R_LIBS=/home/usuario/.R/libs/`. Você pode fazer isso em um terminal com os comandos:
 
-```{bash, eval = FALSE}
+
+```bash
 $ R_LIBS=`echo $HOME/.R/libs/`
 $ echo $R_LIBS >> `echo $HOME/.Renviron`
 ```
 
 
 
-Esse caminho fica então visível ao `r rblue`, o que pode ser verificado executando a função `.libPaths()` na linha de comando do `r rblue`. 
+Esse caminho fica então visível ao <img src="images/logo_r.png" width="20">, o que pode ser verificado executando a função `.libPaths()` na linha de comando do <img src="images/logo_r.png" width="20">. 
 
-Abra o `r rblue`:
+Abra o <img src="images/logo_r.png" width="20">:
 
-```{bash, eval = FALSE}
+
+```bash
 $ R
 ```
 
 e ao digitar:
 
-```{r, prompt=TRUE, comment=""}
-.libPaths()
+
+```r
+> .libPaths()
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -425,7 +428,7 @@ o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro luga
 
 ## Instalação de Pacotes {#install-pck}
 
-Um pacote do `r rblue` é uma coleção de funções, dados e documentação que estende as funcionalidades básicas do R, muito além do que se poderia imaginar. Os pacotes são desenvolvidos pela comunidade do `r rblue` formada por vários contribuidores. 
+Um pacote do <img src="images/logo_r.png" width="20"> é uma coleção de funções, dados e documentação que estende as funcionalidades básicas do R, muito além do que se poderia imaginar. Os pacotes são desenvolvidos pela comunidade do <img src="images/logo_r.png" width="20"> formada por vários contribuidores. 
 
 <!-- 
 http://www.sthda.com/english/wiki/installing-and-using-r-packages 
@@ -438,11 +441,12 @@ https://www.datacamp.com/community/tutorials/r-packages-guide
 
 A forma mais fácil de instalar uma pacote do R é através da função `install.packages("nome_do_pacote")`.
 
-Por *default* o pacote informado é instalado a partir do repositório oficial de distribuição de pacotes: a ([CRAN](https://cran.r-project.org/)). A CRAN é uma rede de servidores e FTP distribuídas pelo mundo e mantida pela comunidade `r rblue`. A [Fundação R](https://www.r-project.org/foundation/) coordena a CRAN e estabelece diversos testes para assegurar que os pacotes publicados sigam as [políticas da CRAN](https://cran.r-project.org/web/packages/policies.html).
+Por *default* o pacote informado é instalado a partir do repositório oficial de distribuição de pacotes: a ([CRAN](https://cran.r-project.org/)). A CRAN é uma rede de servidores e FTP distribuídas pelo mundo e mantida pela comunidade <img src="images/logo_r.png" width="20">. A [Fundação R](https://www.r-project.org/foundation/) coordena a CRAN e estabelece diversos testes para assegurar que os pacotes publicados sigam as [políticas da CRAN](https://cran.r-project.org/web/packages/policies.html).
 
 Agora veremos como instalar um pacote. Como exemplo instalaremos o pacote [remotes](https://cran.r-project.org/web/packages/remotes/index.html) que dispõe de funções para instalar pacotes de repositórios remotos, como por exemplo do [GitHub](https://github.com/).
 
-```{r, eval = FALSE}
+
+```r
 install.packages("remotes")
 ```
 
@@ -461,7 +465,8 @@ openssl       (Homebrew package on OS X)
 
 Para ter acesso as funções disponibilizadas com o pacote você precisa carregar o pacote:
 
-```{r, eval = FALSE}
+
+```r
 library(remotes)
 ```
 
@@ -482,7 +487,8 @@ Para instalar um pacote de um repositório do GitHub usa-se a função `install_
 
 A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
 
-```{r, eval = FALSE}
+
+```r
 library(remotes)
 # instala o pacote inmetr do repositório 
 # https://github.com/lhmet/inmetr 
@@ -490,19 +496,17 @@ install_github("lhmet/inmetr")
 ```
 
 
-```{block, dica-2ptos2ptos, type='rmdtip'}
-Você pode acessar uma função de um pacote instalado com a forma especial `pacote::funcao`. O trecho de código anterior poderia ser reduzido a: 
-
-`remotes::install_github("lhmet/inmetr")`
-
-Essa forma deixa explícito que estamos usando a função `install_github()` do pacote **remotes**.
-
-As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto, essa é a alternativa mais segura de avaliar funções afim de evitar conflitos. 
-```
+<div class="rmdtip">
+<p>Você pode acessar uma função de um pacote instalado com a forma especial <code>pacote::funcao</code>. O trecho de código anterior poderia ser reduzido a:</p>
+<p><code>remotes::install_github(&quot;lhmet/inmetr&quot;)</code></p>
+<p>Essa forma deixa explícito que estamos usando a função <code>install_github()</code> do pacote <strong>remotes</strong>.</p>
+<p>As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto, essa é a alternativa mais segura de avaliar funções afim de evitar conflitos.</p>
+</div>
 
 Para instalar um pacote num repositório do R-forge, por exemplo o repositório do pacote [raster](https://r-forge.r-project.org/projects/raster/), usa-se:
 
-```{r, eval = FALSE}
+
+```r
 install.packages(
   "raster",  
   repos = "http://R-Forge.R-project.org"
@@ -516,23 +520,26 @@ Códigos fonte de pacotes do R são armazenados como arquivos com a extensão `.
 
 Eventualmente um usuário pode instalar um pacote a partir desses arquivos localmente. Isto pode também ser feito  com a função `install.packages()`, especificando o argumento `repos = NULL` e o argumento `pkgs` com o caminho do arquivo. Por exemplo:
 
-```{r, eval = FALSE}
+
+```r
 install.packages("remotes_2.1.1.tar.gz", repos = NULL)
 ```
 
 
 ## Atualização de pacotes 
 
-Se o seu `r rblue` foi atualizado, os pacotes da versão prévia do `r rblue` devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do `r rblue` atual. 
+Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual. 
 
 
-```{r, eval = FALSE}
+
+```r
 update.packages(checkBuilt=TRUE, ask=FALSE)
 ```
 
 Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
 
-```{r, eval = FALSE}
+
+```r
 install.packages("rvcheck")
 ```
 
@@ -540,41 +547,93 @@ Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
 
 - checar a versão mais recente do R
 
-```{r}
+
+```r
 library(rvcheck)
 check_r()
+## $installed_version
+## [1] "R-3.6.3"
+## 
+## $latest_version
+## [1] "R-4.0.0"
+## 
+## $latest_url
+## [1] "https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz"
+## 
+## $up_to_date
+## [1] FALSE
 ```
 
 - checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor
 
-```{r}
+
+```r
 check_cran('dplyr')
+## package is up-to-date release version
+## $package
+## [1] "dplyr"
+## 
+## $installed_version
+## [1] "0.8.5"
+## 
+## $latest_version
+## [1] "0.8.5"
+## 
+## $up_to_date
+## [1] TRUE
 check_github('lhmet/inmetr')
+## package is up-to-date devel version
+## $package
+## [1] "lhmet/inmetr"
+## 
+## $installed_version
+## [1] '0.3.0.9000'
+## 
+## $latest_version
+## [1] "0.3.0.9000"
+## 
+## $up_to_date
+## [1] TRUE
 check_bioc('EBImage')
+## package is up-to-date release version
+## $package
+## [1] "EBImage"
+## 
+## $installed_version
+## [1] "4.28.1"
+## 
+## $latest_version
+## [1] "4.28.1"
+## 
+## $up_to_date
+## [1] TRUE
 ```
 
 Por fim, para atualizar todos os pacotes:
 
-```{r, eval = FALSE}
+
+```r
 update_all(check_R = TRUE)
 ```
 
 
-```{block, note-text-keep-pkg-version, type='rmdtip'}
-Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote [pkgsnap](https://github.com/MangoTheCat/pkgsnap) é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.
-```
+<div class="rmdtip">
+<p>Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.</p>
+</div>
 
 ## Pacotes necessários e dependências
 
-Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o `r rblue`.
+Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.
 
-Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no `r rblue`. 
+Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no <img src="images/logo_r.png" width="20">. 
 
-```{bash, eval = FALSE}
+
+```bash
 $ sudo apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev
 ```
 
-```{r, eval = TRUE}
+
+```r
 pcks <- c(
   "easypackages",
   "rmarkdown",
@@ -603,7 +662,8 @@ pcks_dev <- c(
 )
 ```
 
-```{r, eval = FALSE}
+
+```r
 install.packages(pcks) 
 ```
 
@@ -633,13 +693,14 @@ $ sudo apt-get install r-cran-rjava
 
 ## RStudio no Ubuntu {#install-rstudio}
 
-RStudio é uma empresa que desenvolve ferramentas gratuitas para o `r rblue` e [produtos pagos](https://www.rstudio.com/products/) para empresas.
+RStudio é uma empresa que desenvolve ferramentas gratuitas para o <img src="images/logo_r.png" width="20"> e [produtos pagos](https://www.rstudio.com/products/) para empresas.
 
-Uma de suas ferramentas gratuitas é o software RStudio *Desktop* que consiste em um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o `r rblue`. Ele funciona é multiplataforma (servidores inclusive) e fornece diversos recursos, como a integração com controle de versão e manejo de projetos.
+Uma de suas ferramentas gratuitas é o software RStudio *Desktop* que consiste em um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o <img src="images/logo_r.png" width="20">. Ele funciona é multiplataforma (servidores inclusive) e fornece diversos recursos, como a integração com controle de versão e manejo de projetos.
 
 Para instalação da versão do [RStudio Desktop](https://rstudio.com/products/rstudio/#rstudio-desktop), você precisa saber se seu SO é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:
 
-```{bash, eval = FALSE}
+
+```bash
 $ arch
 ```
 
@@ -650,7 +711,8 @@ Se retornar **x86_64** sua máquina é 64-bit[^32bit].
 
 [^32bit]: Se seu sistema for 32 bit, você pode usar [versões antigas do rstudio](https://rstudio.com/products/rstudio/older-versions/) 
 
-```{bash, eval = FALSE}
+
+```bash
 $ lsb_release -sr
 ```
 
@@ -661,9 +723,10 @@ $ lsb_release -sr
 Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). 
 
 
-```{r rstudio-download, echo = FALSE,  fig.align='center', out.width="90%", fig.cap="Opção para baixar o RStudio *Desktop*."}
-knitr::include_graphics('images/rstudio-download-with-peek.gif')
-```
+<div class="figure" style="text-align: center">
+<img src="images/rstudio-download-with-peek.gif" alt="Opção para baixar o RStudio *Desktop*." width="90%" />
+<p class="caption">(\#fig:rstudio-download)Opção para baixar o RStudio *Desktop*.</p>
+</div>
 
 
 Ao clicar sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se no seu sistema não houver esta opção, instale via **terminal**[^atalho-term] com os seguintes comandos:
@@ -680,7 +743,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar em `r rblue` aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. 
+Agora você está pronto para começar a programar em <img src="images/logo_r.png" width="20"> aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. 
 
 ## Git e Github
 

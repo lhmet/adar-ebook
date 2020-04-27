@@ -170,6 +170,10 @@ O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de
 O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <img src="images/logo_r.png" width="20"> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
 
 
+
+
+
+
 ```r
 # Primeiro script no R
 #----------------------------------------------------------------
