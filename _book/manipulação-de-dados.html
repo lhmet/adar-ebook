@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.4 Manipulação de dados | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.4 Manipulação de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="TB1.jpg" />
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.4 Manipulação de dados | Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="twitter:image" content="TB1.jpg" />
+
+<meta name="author" content="Jônatan Tatsch" />
+
+
+<meta name="date" content="2020-04-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="restruturação-de-dados-retangulares.html"/>
+<link rel="next" href="exercícios-3.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="part"><span><b>I Introdução</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Motivação</a><ul>
+<li class="chapter" data-level="1.1" data-path="análise-de-dados-meteorológicos.html"><a href="análise-de-dados-meteorológicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciência-de-dados.html"><a href="ciência-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programação-computacional.html"><a href="programação-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.5" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.5</b> Git e Github</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="git-e-github.html"><a href="git-e-github.html#instalação-do-git"><i class="fa fa-check"></i><b>2.5.1</b> Instalação do git</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Interação</b></span></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegação-entre-as-expressões-já-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentários"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="no-modo-de-processamento-em-lote.html"><a href="no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+</ul></li>
+<li class="part"><span><b>IV Fundamentos do R</b></span></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convenção.html"><a href="convenção.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#cálculos-problemáticos"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funções-matemáticas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variáveis.html"><a href="variáveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variáveis.html"><a href="variáveis.html#removendo-variáveis"><i class="fa fa-check"></i><b>5.3.1</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variáveis.html"><a href="variáveis.html#nomeando-variáveis"><i class="fa fa-check"></i><b>5.3.2</b> Nomeando variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#números"><i class="fa fa-check"></i><b>6.1.1</b> Números</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.2</b> Caractere</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> Lógico</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.1.4</b> Datas e horários</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.1</b> Vetor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vetor.html"><a href="vetor.html#vetores-atômicos"><i class="fa fa-check"></i><b>7.1.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vetor.html"><a href="vetor.html#operações-com-vetores"><i class="fa fa-check"></i><b>7.1.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.1.3" data-path="vetor.html"><a href="vetor.html#sequências"><i class="fa fa-check"></i><b>7.1.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.1.4" data-path="vetor.html"><a href="vetor.html#index-vetores"><i class="fa fa-check"></i><b>7.1.4</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="7.1.5" data-path="vetor.html"><a href="vetor.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.1.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.1.6" data-path="vetor.html"><a href="vetor.html#criação-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.1.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.1.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.1.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.1.8" data-path="vetor.html"><a href="vetor.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.1.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>7.2</b> Matriz</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="matriz.html"><a href="matriz.html#criação-de-matrizes"><i class="fa fa-check"></i><b>7.2.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.2.2" data-path="matriz.html"><a href="matriz.html#nomes-lin-col-mat"><i class="fa fa-check"></i><b>7.2.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.3" data-path="matriz.html"><a href="matriz.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>7.2.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.2.4" data-path="matriz.html"><a href="matriz.html#número-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.2.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.5" data-path="matriz.html"><a href="matriz.html#adição-de-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.2.5</b> Adição de linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.2.6" data-path="matriz.html"><a href="matriz.html#matriz-transposta-e-diagonal"><i class="fa fa-check"></i><b>7.2.6</b> Matriz transposta e diagonal</a></li>
+<li class="chapter" data-level="7.2.7" data-path="matriz.html"><a href="matriz.html#conversão-de-matriz-para-vetor"><i class="fa fa-check"></i><b>7.2.7</b> Conversão de matriz para vetor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="arranjo.html"><a href="arranjo.html"><i class="fa fa-check"></i><b>7.3</b> Arranjo</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="arranjo.html"><a href="arranjo.html#criação-1"><i class="fa fa-check"></i><b>7.3.1</b> Criação</a></li>
+<li class="chapter" data-level="7.3.2" data-path="arranjo.html"><a href="arranjo.html#indexação"><i class="fa fa-check"></i><b>7.3.2</b> Indexação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lista.html"><a href="lista.html"><i class="fa fa-check"></i><b>7.4</b> Lista</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lista.html"><a href="lista.html#criação-2"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="lista.html"><a href="lista.html#indexação-1"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.4.3" data-path="lista.html"><a href="lista.html#conversão-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.4.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.4.4" data-path="lista.html"><a href="lista.html#conversão-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.4.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>7.5</b> Dataframe</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="dataframe.html"><a href="dataframe.html#criação-3"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="dataframe.html"><a href="dataframe.html#atributos-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.2</b> Atributos de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.3" data-path="dataframe.html"><a href="dataframe.html#acesso-as-variáveis-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.3</b> Acesso as variáveis de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.4" data-path="dataframe.html"><a href="dataframe.html#indexação-seleção-e-substituição"><i class="fa fa-check"></i><b>7.5.4</b> Indexação, seleção e substituição</a></li>
+<li class="chapter" data-level="7.5.5" data-path="dataframe.html"><a href="dataframe.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.5.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.5.6" data-path="dataframe.html"><a href="dataframe.html#teste-e-coerção"><i class="fa fa-check"></i><b>7.5.6</b> Teste e Coerção</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
+<li class="chapter" data-level="8.1" data-path="pré-requisitos-1.html"><a href="pré-requisitos-1.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="8.2" data-path="diretório-de-trabalho.html"><a href="diretório-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.3" data-path="boas-práticas-para-importação-e-exportação-de-dados.html"><a href="boas-práticas-para-importação-e-exportação-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
+<li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-não-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="arquivos-binários.html"><a href="arquivos-binários.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="arquivos-binários.html"><a href="arquivos-binários.html#formatos-binários-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="arquivos-binários.html"><a href="arquivos-binários.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-não-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercícios-2.html"><a href="exercícios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
+</ul></li>
+<li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados retangulares</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#formatos-de-dados-mais-comuns"><i class="fa fa-check"></i><b>9.3.2</b> Formatos de dados mais comuns</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#funções-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#códigos-como-fluxogramas"><i class="fa fa-check"></i><b>9.4.1</b> Códigos como fluxogramas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>9.4.2</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-observações"><i class="fa fa-check"></i><b>9.4.3</b> Seleção de observações</a></li>
+<li class="chapter" data-level="9.4.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#reordenando-dados"><i class="fa fa-check"></i><b>9.4.4</b> Reordenando dados</a></li>
+<li class="chapter" data-level="9.4.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criando-e-renomeando-variáveis"><i class="fa fa-check"></i><b>9.4.5</b> Criando e renomeando variáveis</a></li>
+<li class="chapter" data-level="9.4.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agregando-observações"><i class="fa fa-check"></i><b>9.4.6</b> Agregando observações</a></li>
+<li class="chapter" data-level="9.4.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agrupando-observações"><i class="fa fa-check"></i><b>9.4.7</b> Agrupando observações</a></li>
+<li class="chapter" data-level="9.4.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#combinação-de-dados"><i class="fa fa-check"></i><b>9.4.8</b> Combinação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="exercícios-3.html"><a href="exercícios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-vis.html"><a href="data-vis.html"><i class="fa fa-check"></i><b>10</b> Visualização de dados</a><ul>
+<li class="chapter" data-level="10.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html#dados-1"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>10.2</b> <em>ggplot2</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>11</b> Referências</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
+<li class="chapter" data-level="A.1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="A.2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="A.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="A.3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="A.3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="A.3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
+<li class="chapter" data-level="A.3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="A.3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
+<li class="chapter" data-level="B.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>B.1</b> Amostras pequenas de dados</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>B.1.1</b> scan()</a></li>
+<li class="chapter" data-level="B.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>B.1.2</b> readline()</a></li>
+<li class="chapter" data-level="B.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>B.1.3</b> Impressão na tela</a></li>
+<li class="chapter" data-level="B.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>B.1.4</b> textConnection()</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>B.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
+<li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
+</ul></li>
+<li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
+<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
+<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
+<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulação-de-dados" class="section level2">
+<h2><span class="header-section-number">9.4</span> Manipulação de dados</h2>
+<p>Com os dados arrumados, a próxima etapa é a manipulação dos dados. O pacote <strong>dplyr</strong> oferece um conjunto de funções que facilita as operações mais comuns para lidar com dados retangulares de uma forma bem pensada.</p>
+<p>Os verbos fundamentais desta gramática de manipulação de dados são:</p>
+<ul>
+<li><code>select()</code>, para selecionar variáveis;</li>
+<li><code>filter()</code>, para filtrar observações;</li>
+<li><code>arrange()</code>, para classificar variáveis;</li>
+<li><code>mutate()</code>, para criar e transformar variáveis;</li>
+<li><code>group_by()</code>, para agrupar observações;</li>
+<li><code>summarise()</code>, para resumir os dados com medidas estatísticas descritivas;</li>
+</ul>
+<p>Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>verbo(sujeito, complemento)</code>
+</p>
+traduzindo de outra forma:
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>função(dados, z = x + y)</code>
+</p>
+<ul>
+<li>o <code>verbo</code> é a função do <strong>dplyr</strong>;</li>
+<li>o <code>sujeito</code> (dados) é quem sofre a ação e é <strong>sempre o primeiro argumento</strong>, nomeado (<code>.data</code>);</li>
+<li>o <code>complemento</code> são expressões que podem ser usadas como argumentos (o que é representado pela reticência <code>...</code> no segundo argumento); isso ficará mais claro nos exemplos mais a frente;</li>
+</ul>
+<div class="rmdtip">
+<p>
+Os verbos listados anteriormente possuem versões equivalentes na base do <code>r rblue</code>. Então, por que usar o <em>dplyr</em> ?
+</p>
+<ul>
+<li>
+<p>
+é muito mais rápido de se aprender, com poucas funções (ou verbos) nomeadas intuitivamente;
+</p>
+</li>
+<li>
+<p>
+as funções do <strong>dplyr</strong> são mais rápidas (parte dos códigos são programados em C++);
+</p>
+</li>
+<li>
+<p>
+trabalha bem com dados arrumados e também com sistemas de banco de dados
+</p>
+</li>
+<li>
+<p>
+as funções foram projetadas para trabalharem juntas na solução diversos problemas de processamento de dados;
+</p>
+</li>
+</ul>
+</div>
+<div id="códigos-como-fluxogramas" class="section level3">
+<h3><span class="header-section-number">9.4.1</span> Códigos como fluxogramas</h3>
+<p>A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento.</p>
+<p>Essa é justamente a ideia do operador <em>pipe</em> <code>%&gt;%</code>: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador <code>%&gt;%</code> está disponível no <img src="images/logo_r.png" width="20"> através do pacote <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a>.</p>
+<!---
+#{block, pipe-linux, type='rmdtip'}
+# O *pipe* pode ser familiar para quem já usou SO unix, onde o operador  é representado por `|`. No comando linux abaixo listamos os arquivos com a extensão `.txt` e o resultado é passado como entrada ao comando `wc` com o argumento `-l` que conta quantas linhas tem a lista de arquivos. Neste caso o número de linhas corresponderá ao número de arquivos com a extensão `.txt`.
+# `ls *.txt | wc -l`
+--->
+<p>Os pacotes <strong>tidyverse</strong> integram-se muito bem com o <code>%&gt;%</code>, por isso ele é automaticamente carregado com o <strong>tidyverse</strong>. Vamos ilustrar as vantagens de uso do %&gt;% com exemplos a seguir.</p>
+<div id="vantagens-do" class="section level4">
+<h4><span class="header-section-number">9.4.1.1</span> Vantagens do %&gt;%</h4>
+<p>O exemplo a baixo mostra uma aplicação simples do <code>%&gt;%</code> para extrair a raiz quadrada de um número com a função <code>base::sqrt()</code>e a extração do segundo elemento de um vetor com a função <code>dplyr::nth()</code> (uma função alternativa aos colchetes <code>[]</code>).</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># chamada tradicional de uma função </span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">sqrt</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="kw">nth</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="co"># chamada de uma função com %&gt;%</span></a>
+<a class="sourceLine" id="cb276-5" data-line-number="5"><span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb276-6" data-line-number="6"><span class="dv">5</span><span class="op">:</span><span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nth</span>(<span class="dv">2</span>)</a></code></pre></div>
+<p>Ambas formas realizam a mesma tarefa e com mesmo resultado e o benefício do <code>%&gt;%</code> não fica evidente. Entretanto, quando precisamos aplicar várias funções as vantagens ficam mais óbvias.</p>
+<p>No código abaixo tente decifrar o objetivo das operações no vetor x.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb277-2" data-line-number="2">x</a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="co">#&gt; [1]  1  3 -1  1  4  2  2 -3</span></a>
+<a class="sourceLine" id="cb277-4" data-line-number="4"><span class="kw">nth</span>(<span class="kw">sort</span>(<span class="kw">cos</span>(<span class="kw">unique</span>(x)), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dt">n =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb277-5" data-line-number="5"><span class="co">#&gt; [1] 0.5403023</span></a></code></pre></div>
+<p>Talvez com o código identado fique mais claro:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">nth</span>(            <span class="co"># 4</span></a>
+<a class="sourceLine" id="cb278-2" data-line-number="2">  <span class="kw">sort</span>(         <span class="co"># 3</span></a>
+<a class="sourceLine" id="cb278-3" data-line-number="3">    <span class="kw">cos</span>(        <span class="co"># 2</span></a>
+<a class="sourceLine" id="cb278-4" data-line-number="4">      <span class="kw">unique</span>(x) <span class="co"># 1</span></a>
+<a class="sourceLine" id="cb278-5" data-line-number="5">    ),</a>
+<a class="sourceLine" id="cb278-6" data-line-number="6">    <span class="dt">decreasing =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb278-7" data-line-number="7">  ),<span class="dt">n =</span>  <span class="dv">2</span></a>
+<a class="sourceLine" id="cb278-8" data-line-number="8">)</a></code></pre></div>
+<p>O código acima está aninhando funções e isso leva a uma dificuldade de ler por causa da desordem. Para interpretá-lo precisamos fazer a leitura de dentro para fora:</p>
+<ol style="list-style-type: decimal">
+<li>mantém somente os valores únicos de x</li>
+<li>calcula o cosseno do resultado de (1)</li>
+<li>coloca em ordem decrescente o resultado de (2)</li>
+<li>extrai o 2° elemento do resultado de (3)</li>
+</ol>
+<p>Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor numérico x.</p>
+<p>A versão usando pipe é:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># 1</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="st">  </span><span class="kw">cos</span>() <span class="op">%&gt;%</span><span class="st">                   </span><span class="co"># 2</span></a>
+<a class="sourceLine" id="cb279-4" data-line-number="4"><span class="st">  </span><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 3</span></a>
+<a class="sourceLine" id="cb279-5" data-line-number="5"><span class="st">  </span><span class="kw">nth</span>(<span class="dt">n =</span> <span class="dv">2</span>)                      <span class="co"># 4</span></a></code></pre></div>
+<p>Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador <code>%&gt;%</code> para ilustrar os verbos do <strong>dplyr</strong> e suas combinações.</p>
+<div class="rmdtip">
+<p>
+No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela é equivalente ao operador colchetes <code>[</code> da base do R. Se <code>a &lt;- 5:1</code> então as instruções abaixo produzem resultados equivalentes:
+</p>
+<p>
+<code>a[2]; nth(a, 2)</code>
+</p>
+<p>
+<code>#&gt; [1] 4</code> <code>#&gt; [1] 4</code>
+</p>
+</div>
+</div>
+<div id="o-operador-.-como-argumento" class="section level4">
+<h4><span class="header-section-number">9.4.1.2</span> O operador <code>.</code> como argumento</h4>
+<p>Uma representação mais explícita do código usado na cadeia de funções acima, seria com a inclusão do operador <code>.</code> e os nomes dos argumentos das funções:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="st">  </span><span class="kw">unique</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># 1</span></a>
+<a class="sourceLine" id="cb280-3" data-line-number="3"><span class="st">  </span><span class="kw">sort</span>(<span class="dt">x =</span> ., <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 2</span></a>
+<a class="sourceLine" id="cb280-4" data-line-number="4"><span class="st">  </span><span class="kw">cos</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                     </span><span class="co"># 3</span></a>
+<a class="sourceLine" id="cb280-5" data-line-number="5"><span class="st">  </span><span class="kw">nth</span>(<span class="dt">x =</span> ., <span class="dt">n =</span> <span class="dv">2</span>)                  <span class="co"># 4</span></a></code></pre></div>
+<p>O tempo a mais digitando é compensado posteriormente quando o você mesmo futuramente tiver que reler o código. Essa forma enfatiza com o <code>.</code> que o resultado à esquerda é usado como entrada para função à direita do <code>%&gt;%</code>.</p>
+<p>Mas nem todas funções do <img src="images/logo_r.png" width="20"> foram construídas com os dados de entrada no primeiro argumento. Essa é a deixa para outra funcionalidade do <code>.</code> que é redirecionar os dados de entrada para a posição adequada naquelas funções. Uma função que se encaixa neste caso é a <code>base::grep()</code> que detecta uma expressão regular num conjunto de caracteres (<em>strings</em>).</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">adverbs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ontem&quot;</span>, <span class="st">&quot;hoje&quot;</span>, <span class="st">&quot;amanhã&quot;</span>)</a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">grep</span>(</a>
+<a class="sourceLine" id="cb281-3" data-line-number="3">  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,</a>
+<a class="sourceLine" id="cb281-4" data-line-number="4">  <span class="dt">x =</span> adverbs,</a>
+<a class="sourceLine" id="cb281-5" data-line-number="5">  <span class="dt">value =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb281-6" data-line-number="6">)</a></code></pre></div>
+<p>O código acima seve para retornar os elementos do vetor <code>dias</code> que contenham a letra <code>h</code>. No entanto os dados de entrada da <code>base::grep()</code> são esperados no 2° argumento (<code>x</code>). Para redirecioná-los para essa posição dentro de uma cadeia de funções com <code>%&gt;%</code>, colocamos o operador <code>.</code> no 2° argumento da função:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">adverbs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb282-2" data-line-number="2"><span class="st">  </span><span class="kw">grep</span>(</a>
+<a class="sourceLine" id="cb282-3" data-line-number="3">  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,</a>
+<a class="sourceLine" id="cb282-4" data-line-number="4">  <span class="dt">x =</span> .,</a>
+<a class="sourceLine" id="cb282-5" data-line-number="5">  <span class="dt">value =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb282-6" data-line-number="6">)</a></code></pre></div>
+<!---
+# pipe forever?
+# No. ver http://r4ds.had.co.nz/pipes.html#When%20not%20to%20use%20the%20pipe
+--->
+</div>
+</div>
+<div id="seleção-de-variáveis" class="section level3">
+<h3><span class="header-section-number">9.4.2</span> Seleção de variáveis</h3>
+<p><img src="images/dplyr-select.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
+<p>Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função <code>dplyr::select(.data, ...)</code>. Nos dados <code>clima_rs_tbl</code> se desejamos selecionar apenas as colunas <code>estacao</code> e <code>tmax</code> aplicamos a <code>dplyr::select()</code> com o 2° argumento listando as colunas que desejamos selecionar:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">select</span>(clima_rs_tbl, estacao, tmax)</a></code></pre></div>
+<p>O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.</p>
+<p>A função <code>dplyr::select()</code> possui funções auxiliares para seleção de variáveis:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="co"># as variáveis entre uf e tmax</span></a>
+<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(., uf<span class="op">:</span>tmax) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb284-6" data-line-number="6">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-7" data-line-number="7"><span class="st">  </span><span class="co"># todas variáveis menos as entre codigo:uf</span></a>
+<a class="sourceLine" id="cb284-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>(codigo<span class="op">:</span>uf)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-9" data-line-number="9"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb284-11" data-line-number="11">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-12" data-line-number="12"><span class="st">  </span><span class="co"># ordem inversa das variáveis</span></a>
+<a class="sourceLine" id="cb284-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(., tmax<span class="op">:</span>codigo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-14" data-line-number="14"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb284-16" data-line-number="16">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-17" data-line-number="17"><span class="st">  </span><span class="co"># nomes que contenham a letra &quot;a&quot;</span></a>
+<a class="sourceLine" id="cb284-18" data-line-number="18"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;a&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-19" data-line-number="19"><span class="st">  </span><span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb284-21" data-line-number="21">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-22" data-line-number="22"><span class="st">  </span><span class="co"># variáveis que iniciam com &quot;c&quot;</span></a>
+<a class="sourceLine" id="cb284-23" data-line-number="23"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">starts_with</span>(<span class="st">&quot;c&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-24" data-line-number="24"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb284-26" data-line-number="26">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-27" data-line-number="27"><span class="st">  </span><span class="co"># usando um vetor de caracteres</span></a>
+<a class="sourceLine" id="cb284-28" data-line-number="28"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;estacao&quot;</span>, <span class="st">&quot;uf&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-29" data-line-number="29"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb284-31" data-line-number="31">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-32" data-line-number="32"><span class="st">  </span><span class="co"># combinações</span></a>
+<a class="sourceLine" id="cb284-33" data-line-number="33"><span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>uf, <span class="kw">ends_with</span>(<span class="st">&quot;o&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-34" data-line-number="34"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb284-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb284-36" data-line-number="36">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-37" data-line-number="37"><span class="st">  </span><span class="co"># variáveis que inciam com letras minúsculas e com 4 caracteres</span></a>
+<a class="sourceLine" id="cb284-38" data-line-number="38"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">matches</span>(<span class="st">&quot;^[a-z]{4}$&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-39" data-line-number="39"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p>O último exemplo usa uma expressão regular (<a href="https://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a>). <em>Regex</em> é uma linguagem para descrever e manipular caracteres de texto. Há <a href="http://aurelio.net/regex/guia/">livros sobre este assunto</a> e diversos <a href="https://stringr.tidyverse.org/articles/regular-expressions.html">tutorias</a> sobre <em>regex</em> no R. Para saber mais sobre isso veja o capítulo sobre <a href="http://r4ds.had.co.nz/strings.html">strings</a> do livro de <span class="citation">H. Wickham and Grolemund (<a href="referências.html#ref-Wickham2017">2017</a>)</span>. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.</p>
+<p>Veja mais funções úteis para seleção de variáveis em <code>?dplyr::select</code>.</p>
+</div>
+<div id="seleção-de-observações" class="section level3">
+<h3><span class="header-section-number">9.4.3</span> Seleção de observações</h3>
+<p><img src="images/dplyr-filter.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
+<p>A filtragem de observações geralmente envolve uma expressão que retorna valores lógicos ou as posições das linhas selecionadas (como a função <code>which()</code>).</p>
+<p>A função <code>dplyr::filter()</code> permite filtrar observações de um <em>data frame</em> correspondentes a alguns critérios lógicos. Estes critérios podem ser passados um de cada vez ou com um operador lógico (e: <code>&amp;</code>, ou: <code>|</code>). Veja abaixo alguns exemplos de filtragem de observações:</p>
+<ul>
+<li>linhas correspondentes ao <code>codigo</code> da estação 83936.</li>
+</ul>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(codigo <span class="op">==</span><span class="st"> </span><span class="dv">83936</span>)</a></code></pre></div>
+<ul>
+<li>linhas da variável <code>estacao</code> que contenham o vetor caractere <code>litoraneas</code>.</li>
+</ul>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1">litoraneas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Torres&quot;</span>, </a>
+<a class="sourceLine" id="cb286-2" data-line-number="2">                <span class="st">&quot;Guaporé&quot;</span>)</a>
+<a class="sourceLine" id="cb286-3" data-line-number="3">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(estacao <span class="op">%in%</span><span class="st"> </span>litoraneas)</a></code></pre></div>
+<ul>
+<li>observações com <code>tmax</code> acima de 10% da média</li>
+</ul>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">filter</span>(clima_rs_tbl,  tmax <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.1</span><span class="op">*</span><span class="kw">mean</span>(tmax))</a></code></pre></div>
+<ul>
+<li>observações com <code>tmax</code> e <code>prec</code> acima de suas médias</li>
+</ul>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">filter</span>(</a>
+<a class="sourceLine" id="cb288-3" data-line-number="3">  tmax <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(tmax),  </a>
+<a class="sourceLine" id="cb288-4" data-line-number="4">  prec <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb288-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb288-6" data-line-number="6"><span class="co"># equivalente a</span></a>
+<a class="sourceLine" id="cb288-7" data-line-number="7"><span class="co">#clima_rs %&gt;% </span></a>
+<a class="sourceLine" id="cb288-8" data-line-number="8"><span class="co">#  filter(tmax &gt; mean(tmax) &amp; prec &gt; mean(prec))</span></a></code></pre></div>
+<ul>
+<li>observações cuja variável <code>estacao</code> tem a palavra &quot;Sul&quot;</li>
+</ul>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="co"># estações com &quot;Sul&quot; no nome</span></a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb289-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(estacao, <span class="st">&quot;Sul&quot;</span>))</a></code></pre></div>
+<div class="rmdtip">
+<p>
+O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo “Sul”. O pacote <strong>stringr</strong> <span class="citation"><span class="citation">(Wickham <a href="referências.html#ref-Wickham-stringr">2018</a>)</span></span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:
+</p>
+<p>
+<code>str_replace_all(</code>
+</p>
+<p>
+<code>string = c(“abc”, “lca”),</code>
+</p>
+<p>
+<code>pattern = “a”,</code>
+</p>
+<p>
+<code>replacement = “A”</code>
+</p>
+<p>
+<code>)</code>
+</p>
+<p>
+<code>#&gt; [1] “Abc” “lcA”</code>
+</p>
+</div>
+<p>A seleção de observações também pode ser baseada em índices passados para função <code>dplyr::slice()</code> que retorna o subconjunto de observações correspondentes. Abaixo vejamos alguns exemplos de filtragem de linhas baseada em índices ou posições:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co">#linhas 2 e 4 </span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb290-4" data-line-number="4"><span class="co">#última linha</span></a>
+<a class="sourceLine" id="cb290-5" data-line-number="5">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-6" data-line-number="6"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb290-7" data-line-number="7"><span class="co"># exlui da última à 3a linha</span></a>
+<a class="sourceLine" id="cb290-8" data-line-number="8">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-9" data-line-number="9"><span class="st">  </span><span class="kw">slice</span>(., <span class="op">-</span>(<span class="kw">n</span>()<span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="co"># linhas com tmax &gt; 26</span></a>
+<a class="sourceLine" id="cb290-11" data-line-number="11">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-12" data-line-number="12"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which</span>(tmax <span class="op">&gt;</span><span class="st"> </span><span class="dv">26</span>))</a>
+<a class="sourceLine" id="cb290-13" data-line-number="13"><span class="co"># linhas com tmax mais próxima a média de tmax</span></a>
+<a class="sourceLine" id="cb290-14" data-line-number="14">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-15" data-line-number="15"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which.min</span>(<span class="kw">abs</span>(tmax <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tmax))))</a></code></pre></div>
+</div>
+<div id="reordenando-dados" class="section level3">
+<h3><span class="header-section-number">9.4.4</span> Reordenando dados</h3>
+<p><img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
+<p>As vezes é útil reordenar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados <code>clima_rs_tbl</code> podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(., <span class="kw">desc</span>(prec)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb291-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p>A função <code>dplyr::arrange()</code> por padrão ordena os dados em ordem crescente. A função <code>dplyr::desc()</code> ordena os valores da variável em ordem descendente.</p>
+<p>Os dados ordenados pela <code>tmax</code>, ficam da seguinte forma:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(., tmax) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+</div>
+<div id="criando-e-renomeando-variáveis" class="section level3">
+<h3><span class="header-section-number">9.4.5</span> Criando e renomeando variáveis</h3>
+<p><img src="images/dplyr-mutate-rename.png" width="50%" height="55%" style="display: block; margin: auto;" /></p>
+<p>Uma nova variável pode ser adicionada aos dados através da função <code>dplyr::mutate()</code>. A <code>tmax</code> expressa em Kelvin pode ser adicionada aos dados <code>clima_rs_tbl</code>, com:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="st">  </span><span class="co"># tmax em Kelvin</span></a>
+<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">tmaxK =</span> tmax <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb293-4" data-line-number="4"><span class="st">  </span><span class="co"># só as colunas de interesse</span></a>
+<a class="sourceLine" id="cb293-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;tmax&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb293-6" data-line-number="6"><span class="st">  </span><span class="co"># 3 primeiras linhas</span></a>
+<a class="sourceLine" id="cb293-7" data-line-number="7"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p>Podemos renomear variáveis com a função <code>dplyr::rename()</code>.</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="kw">rename</span>(., </a>
+<a class="sourceLine" id="cb294-3" data-line-number="3">       <span class="st">&quot;id&quot;</span> =<span class="st"> </span>codigo,</a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">       <span class="st">&quot;site&quot;</span> =<span class="st"> </span>estacao,</a>
+<a class="sourceLine" id="cb294-5" data-line-number="5">       <span class="st">&quot;temp_max&quot;</span> =<span class="st"> </span>tmax,</a>
+<a class="sourceLine" id="cb294-6" data-line-number="6">       <span class="st">&quot;precip&quot;</span> =<span class="st"> </span>prec</a>
+<a class="sourceLine" id="cb294-7" data-line-number="7">       ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb294-8" data-line-number="8"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p>Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável <code>site</code> será corrigida, de forma os valores iguais a “A803” sejam substituídos por “A003”.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">prec_anual_corr &lt;-<span class="st"> </span>prec_anual <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb295-3" data-line-number="3">  <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>)</a>
+<a class="sourceLine" id="cb295-4" data-line-number="4">) </a>
+<a class="sourceLine" id="cb295-5" data-line-number="5"><span class="kw">tail</span>(prec_anual_corr, <span class="dt">n =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p>Podemos preencher os valores faltantes de uma variável por um valor prescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da <code>dplyr::mutate()</code>.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="co"># preenchendo prec faltante pela média</span></a>
+<a class="sourceLine" id="cb296-2" data-line-number="2">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(., </a>
+<a class="sourceLine" id="cb296-4" data-line-number="4">         <span class="dt">prec =</span> <span class="kw">replace_na</span>(prec,</a>
+<a class="sourceLine" id="cb296-5" data-line-number="5">                           <span class="kw">mean</span>(prec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb296-6" data-line-number="6">                           ),</a>
+<a class="sourceLine" id="cb296-7" data-line-number="7">         <span class="dt">ndias =</span> <span class="kw">ifelse</span>(ano <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb296-8" data-line-number="8">                      <span class="dv">366</span>, </a>
+<a class="sourceLine" id="cb296-9" data-line-number="9">                      <span class="dv">365</span>),</a>
+<a class="sourceLine" id="cb296-10" data-line-number="10">         <span class="co"># intensidade de ndias, criada na linha acima</span></a>
+<a class="sourceLine" id="cb296-11" data-line-number="11">         <span class="dt">intensidade =</span> prec <span class="op">/</span><span class="st"> </span>ndias</a>
+<a class="sourceLine" id="cb296-12" data-line-number="12">         )</a>
+<a class="sourceLine" id="cb296-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb296-14" data-line-number="14">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-15" data-line-number="15"><span class="st">  </span><span class="co"># preenche com  a observação prévia</span></a>
+<a class="sourceLine" id="cb296-16" data-line-number="16"><span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;down&quot;</span>)</a>
+<a class="sourceLine" id="cb296-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb296-18" data-line-number="18">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-19" data-line-number="19"><span class="st">  </span><span class="co"># preenche com  a observação posterior</span></a>
+<a class="sourceLine" id="cb296-20" data-line-number="20"><span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)</a></code></pre></div>
+</div>
+<div id="agregando-observações" class="section level3">
+<h3><span class="header-section-number">9.4.6</span> Agregando observações</h3>
+<p><img src="images/dplyr-summarise-count.png" width="40%" height="50%" style="display: block; margin: auto;" /></p>
+<p>A função <code>dplyr::summarise()</code> (ou <code>dplyr::sumarize()</code>) agrega valores de uma variável e os fornece para uma função que retorna um único resultado. O resultado será armazenado em um <code>data frame</code>.</p>
+<p>Por exemplo, qual a <code>prec</code> média anual do RS?</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb297-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb297-3" data-line-number="3">    .,</a>
+<a class="sourceLine" id="cb297-4" data-line-number="4">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb297-5" data-line-number="5">  )</a></code></pre></div>
+<p>Se você só quer o valor (ou o vetor), ao invés de um <code>data frame</code>, pode usar a função <code>dplyr::pull()</code>:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb298-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb298-3" data-line-number="3">    .,</a>
+<a class="sourceLine" id="cb298-4" data-line-number="4">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb298-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb298-6" data-line-number="6"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
+<p>Podemos aplicar uma ou mais funções a mais de uma variável usando <code>dplyr::summarise_at()</code>:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb299-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise_at</span>(</a>
+<a class="sourceLine" id="cb299-3" data-line-number="3">    .,</a>
+<a class="sourceLine" id="cb299-4" data-line-number="4">    <span class="dt">.vars =</span> <span class="kw">vars</span>(prec, tmax),</a>
+<a class="sourceLine" id="cb299-5" data-line-number="5">    <span class="dt">.funs =</span> <span class="kw">funs</span>(min, median, max),</a>
+<a class="sourceLine" id="cb299-6" data-line-number="6">    <span class="dt">na.rm =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb299-7" data-line-number="7">  )</a></code></pre></div>
+<p>Observações repetidas devem ser removidas dos dados antes de qualquer cálculo. Suponha os dados abaixo:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">prec_anual_comp_rep &lt;-</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="st">  </span>prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb300-4" data-line-number="4">    <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>),</a>
+<a class="sourceLine" id="cb300-5" data-line-number="5">    <span class="dt">ano =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb300-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb300-7" data-line-number="7"><span class="st">  </span><span class="co"># preenche com  a observação posterior</span></a>
+<a class="sourceLine" id="cb300-8" data-line-number="8"><span class="st">  </span><span class="kw">fill</span>(., prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)</a>
+<a class="sourceLine" id="cb300-9" data-line-number="9">prec_anual_comp_rep</a></code></pre></div>
+<p>Para desconsiderar linhas duplicadas nos dados usamos a função <code>dplyr::distinct()</code>:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="co"># remove observações repetidas</span></a>
+<a class="sourceLine" id="cb301-2" data-line-number="2">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb301-3" data-line-number="3"><span class="st">  </span><span class="kw">distinct</span>(site, prec)</a></code></pre></div>
+<p>A função <code>dplyr::count()</code> é útil para obter a frequência de ocorrência de uma variável ou da combinação de variáveis.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(site)</a>
+<a class="sourceLine" id="cb302-3" data-line-number="3">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb302-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(site, prec)</a></code></pre></div>
+</div>
+<div id="agrupando-observações" class="section level3">
+<h3><span class="header-section-number">9.4.7</span> Agrupando observações</h3>
+<p><img src="images/dplyr-group-by-summarise.png" width="40%" height="50%" style="display: block; margin: auto;" /></p>
+<p>Frequentemente temos que agrupar observações em categorias ou grupos para realizar uma análise estatística. A função
+<code>dplyr::group_by()</code> é uma função silenciosa que separa (invisivelmente) as observações em categorias ou grupos.
+A única mudança ao aplicar a <code>dplyr::group_by()</code> à um <em>data frame</em> é a indicação da variável agrupada e o seu número de grupos na saída do console. No exemplo a seguir vamos agrupar os dados <code>prec_anual_tbl</code> por <code>site</code> e teremos 4 grupos para esta variável.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site)</a></code></pre></div>
+<p>A grande funcionalidade da <code>dplyr::group_by()</code> surge quando combinada com a função <code>dplyr::summarise()</code>, o que nos permite obter resumos estatísticos para cada grupo da variável.</p>
+<p>Por exemplo a chuva anual média por <code>site</code> é obtida com o seguinte código:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(., site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(., <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec))</a></code></pre></div>
+<p>A <code>prec</code> média para cada ano e o número de anos utilizados em seu cálculo é obtida por:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(., ano) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb305-4" data-line-number="4">    .,</a>
+<a class="sourceLine" id="cb305-5" data-line-number="5">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec),</a>
+<a class="sourceLine" id="cb305-6" data-line-number="6">    <span class="dt">nobs =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb305-7" data-line-number="7">  )</a></code></pre></div>
+<p>A função <code>n()</code> conta quantas observações temos em um subconjunto dos dados.</p>
+<p>Os grupos podem ser compostos de mais de uma variável. Para o exemplo com os dados <code>prec_anual_long</code>;</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">prec_anual_long</a></code></pre></div>
+<p>podemos obter a média por <code>variavel</code> e <code>site</code>, fazendo:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">estats_por_site_var &lt;-<span class="st"> </span>prec_anual_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb307-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, variavel) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb307-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb307-4" data-line-number="4">    <span class="dt">media =</span> <span class="kw">mean</span>(medida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb307-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb307-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(variavel, site)</a>
+<a class="sourceLine" id="cb307-7" data-line-number="7">estats_por_site_var</a></code></pre></div>
+<p>Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.</p>
+<p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubrí-las.</p>
+<!---
+#faltando 
+# - non standard evaluation
+# - ...
+--->
+</div>
+<div id="combinação-de-dados" class="section level3">
+<h3><span class="header-section-number">9.4.8</span> Combinação de dados</h3>
+<p>O processamento de dados frequentemente envolve a manipulação de diversas tabelas de dados. Ás vezes precisamos juntar dados de diferentes fontes, formar uma tabela única de dados com o período em comum à elas, ou combiná-las para compará-las.</p>
+<p>A combinação de 2 <em>data frames</em>, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de <strong>junção</strong> (do termo em inglês <em>join</em>) de tabelas . O pacote <strong>dplyr</strong> possui uma gama de funções do tipo <em>join</em> para combinar <em>data frames</em>, genericamente representadas por <code>&lt;tipo&gt;_join()</code>, onde <code>&lt;tipo&gt;</code> pode ser substituído por <code>dplyr::full_join()</code>, <code>dplyr::inner_join()</code>, <code>dplyr::left_join()</code>, <code>dplyr::right_join()</code>.</p>
+<p>Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham.</p>
+<p>Vamos considerar os dados <code>clima_rs_tbl</code> e <code>metadados_rs</code>. Para melhor compreensão do exemplo vamos remover algumas variáveis.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="co"># normais climatológicas das estaçõess</span></a>
+<a class="sourceLine" id="cb308-2" data-line-number="2">clima_rs_tbl &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb308-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(estacao<span class="op">:</span>uf))</a>
+<a class="sourceLine" id="cb308-4" data-line-number="4"><span class="kw">head</span>(clima_rs_tbl)</a>
+<a class="sourceLine" id="cb308-5" data-line-number="5"><span class="co"># metadados das estações convertidos para tibble</span></a>
+<a class="sourceLine" id="cb308-6" data-line-number="6">metadados_rs &lt;-<span class="st"> </span>metadados_rs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb308-7" data-line-number="7"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb308-8" data-line-number="8"><span class="kw">head</span>(metadados_rs)</a></code></pre></div>
+<p>A variável comum às duas tabelas é:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">var_comum &lt;-<span class="st"> </span><span class="kw">names</span>(clima_rs_tbl) <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(metadados_rs)</a>
+<a class="sourceLine" id="cb309-2" data-line-number="2"><span class="kw">names</span>(clima_rs_tbl)[var_comum]</a></code></pre></div>
+<p>Vamos comparar os valores da variável <code>codigo</code> em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa.</p>
+<p>Para saber se algum valor da variável <code>codigo</code> da tabela <code>clima_rs_tbl</code> não está contido na tabela <code>metadados_rs</code> podemos usar o seguinte código:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="co"># algum codigo não está presente na tabela metadados_rs</span></a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb310-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>metadados_rs<span class="op">$</span>codigo ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb310-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(., codigo)</a></code></pre></div>
+<p>Não há nenhum caso.</p>
+<p>Analogamente, vamos verificar se algum valor da variável <code>codigo</code> dos <code>metadados_rs</code> não está contido em <code>clima_rs_tbl</code>.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="co"># algum codigo não está presente na tabela metadados_rs</span></a>
+<a class="sourceLine" id="cb311-2" data-line-number="2">metadados_rs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>clima_rs_tbl<span class="op">$</span>codigo )<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(., codigo)</a></code></pre></div>
+<p>Obtemos que 7 valores da variável <code>codigo</code> dos <code>metadados_rs</code> que não estão presentes na tabela <code>clima_rs_tbl</code>. Portanto, não há valores de <code>tmax</code> e <code>prec</code> para essas observações.</p>
+<p>Suponha agora que desejássemos visualizar a variação espacial da precipitação (<code>prec</code>) ou da temperatura máxima do ar (<code>tmax</code>) climatológica. Precisaríamos além dessas variáveis, as coordenadas geográficas das estações meteorológicas para plotar sua localização espacial. As coordenadas <code>lon</code> e <code>lat</code> da <code>metadados_rs</code> podem ser combinadas com <code>clima_rs_tbl</code> em uma nova tabela (<code>clima_rs_comb</code>), usando a função <code>dplyr::full_join()</code>:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1">clima_rs_comb &lt;-<span class="st"> </span><span class="kw">full_join</span>(</a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">  <span class="dt">x =</span> clima_rs_tbl, </a>
+<a class="sourceLine" id="cb312-3" data-line-number="3">  <span class="dt">y =</span> metadados_rs,</a>
+<a class="sourceLine" id="cb312-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>)</a>
+<a class="sourceLine" id="cb312-5" data-line-number="5">clima_rs_comb</a></code></pre></div>
+<p>Da inspeção das últimas linhas de <code>clima_rs_comb</code> verificamos que o resultado é uma tabela que contém todos valores da variável <code>codigo</code> das duas tabelas. Os valores das variáveis <code>prec</code> e <code>tmax</code>, para as observações da variável <code>codigo</code> sem valores ( na <code>metadados_rs</code>) são preenchidos com <code>NA</code>.</p>
+<p>Se a combinação de interesse for nas observações em comum entre as tabelas, usaríamos:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">clima_rs_intersec &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</a>
+<a class="sourceLine" id="cb313-2" data-line-number="2">  <span class="dt">x =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb313-3" data-line-number="3">  <span class="dt">y =</span> clima_rs_tbl,</a>
+<a class="sourceLine" id="cb313-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb313-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb313-6" data-line-number="6">clima_rs_intersec</a></code></pre></div>
+<p>Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">clima_rs_disj &lt;-<span class="st"> </span><span class="kw">anti_join</span>(</a>
+<a class="sourceLine" id="cb314-2" data-line-number="2">  <span class="dt">x =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">  <span class="dt">y =</span> clima_rs_tbl,</a>
+<a class="sourceLine" id="cb314-4" data-line-number="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb314-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb314-6" data-line-number="6">clima_rs_disj</a></code></pre></div>
+<p>O exemplo abaixo demonstram os resultados das funções <code>dplyr::left_join()</code> e <code>dplyr::right_join()</code> para um versão reduzida dos dados <code>clima_rs_tbl</code>.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">clima_rs_tbl_mini &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="st">  </span><span class="kw">slice</span>(., <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb315-3" data-line-number="3">clima_rs_tbl_mini</a>
+<a class="sourceLine" id="cb315-4" data-line-number="4"><span class="co"># combina os dados baseado nas observações dos dados à esquerda (x)</span></a>
+<a class="sourceLine" id="cb315-5" data-line-number="5"><span class="kw">left_join</span>(</a>
+<a class="sourceLine" id="cb315-6" data-line-number="6">  <span class="dt">x =</span> clima_rs_tbl_mini, </a>
+<a class="sourceLine" id="cb315-7" data-line-number="7">  <span class="dt">y =</span>metadados_rs, </a>
+<a class="sourceLine" id="cb315-8" data-line-number="8">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb315-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb315-10" data-line-number="10"><span class="co"># combina os dados baseado nas observações dos dados à direita (y)</span></a>
+<a class="sourceLine" id="cb315-11" data-line-number="11"><span class="kw">right_join</span>(</a>
+<a class="sourceLine" id="cb315-12" data-line-number="12">  <span class="dt">x =</span> clima_rs_tbl_mini, </a>
+<a class="sourceLine" id="cb315-13" data-line-number="13">  <span class="dt">y =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb315-14" data-line-number="14">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb315-15" data-line-number="15">)</a></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="restruturação-de-dados-retangulares.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

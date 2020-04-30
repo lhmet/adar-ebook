@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B.4 Leitura de arquivos texto com funções da base do R | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="B.4 Leitura de arquivos texto com funções da base do R | Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="TB1.jpg" />
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="B.4 Leitura de arquivos texto com funções da base do R | Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="twitter:image" content="TB1.jpg" />
+
+<meta name="author" content="Jônatan Tatsch" />
+
+
+<meta name="date" content="2020-04-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dados-de-pacotes-do-r.html"/>
+<link rel="next" href="r-markdown.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="part"><span><b>I Introdução</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Motivação</a><ul>
+<li class="chapter" data-level="1.1" data-path="análise-de-dados-meteorológicos.html"><a href="análise-de-dados-meteorológicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciência-de-dados.html"><a href="ciência-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programação-computacional.html"><a href="programação-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.5" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.5</b> Git e Github</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="git-e-github.html"><a href="git-e-github.html#instalação-do-git"><i class="fa fa-check"></i><b>2.5.1</b> Instalação do git</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Interação</b></span></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegação-entre-as-expressões-já-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentários"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="no-modo-de-processamento-em-lote.html"><a href="no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+</ul></li>
+<li class="part"><span><b>IV Fundamentos do R</b></span></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convenção.html"><a href="convenção.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#cálculos-problemáticos"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funções-matemáticas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variáveis.html"><a href="variáveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variáveis.html"><a href="variáveis.html#removendo-variáveis"><i class="fa fa-check"></i><b>5.3.1</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variáveis.html"><a href="variáveis.html#nomeando-variáveis"><i class="fa fa-check"></i><b>5.3.2</b> Nomeando variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#números"><i class="fa fa-check"></i><b>6.1.1</b> Números</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.2</b> Caractere</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> Lógico</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.1.4</b> Datas e horários</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.1</b> Vetor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vetor.html"><a href="vetor.html#vetores-atômicos"><i class="fa fa-check"></i><b>7.1.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vetor.html"><a href="vetor.html#operações-com-vetores"><i class="fa fa-check"></i><b>7.1.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.1.3" data-path="vetor.html"><a href="vetor.html#sequências"><i class="fa fa-check"></i><b>7.1.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.1.4" data-path="vetor.html"><a href="vetor.html#index-vetores"><i class="fa fa-check"></i><b>7.1.4</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="7.1.5" data-path="vetor.html"><a href="vetor.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.1.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.1.6" data-path="vetor.html"><a href="vetor.html#criação-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.1.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.1.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.1.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.1.8" data-path="vetor.html"><a href="vetor.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.1.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>7.2</b> Matriz</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="matriz.html"><a href="matriz.html#criação-de-matrizes"><i class="fa fa-check"></i><b>7.2.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.2.2" data-path="matriz.html"><a href="matriz.html#nomes-lin-col-mat"><i class="fa fa-check"></i><b>7.2.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.3" data-path="matriz.html"><a href="matriz.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>7.2.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.2.4" data-path="matriz.html"><a href="matriz.html#número-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.2.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.5" data-path="matriz.html"><a href="matriz.html#adição-de-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.2.5</b> Adição de linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.2.6" data-path="matriz.html"><a href="matriz.html#matriz-transposta-e-diagonal"><i class="fa fa-check"></i><b>7.2.6</b> Matriz transposta e diagonal</a></li>
+<li class="chapter" data-level="7.2.7" data-path="matriz.html"><a href="matriz.html#conversão-de-matriz-para-vetor"><i class="fa fa-check"></i><b>7.2.7</b> Conversão de matriz para vetor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="arranjo.html"><a href="arranjo.html"><i class="fa fa-check"></i><b>7.3</b> Arranjo</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="arranjo.html"><a href="arranjo.html#criação-1"><i class="fa fa-check"></i><b>7.3.1</b> Criação</a></li>
+<li class="chapter" data-level="7.3.2" data-path="arranjo.html"><a href="arranjo.html#indexação"><i class="fa fa-check"></i><b>7.3.2</b> Indexação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lista.html"><a href="lista.html"><i class="fa fa-check"></i><b>7.4</b> Lista</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lista.html"><a href="lista.html#criação-2"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="lista.html"><a href="lista.html#indexação-1"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.4.3" data-path="lista.html"><a href="lista.html#conversão-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.4.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.4.4" data-path="lista.html"><a href="lista.html#conversão-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.4.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>7.5</b> Dataframe</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="dataframe.html"><a href="dataframe.html#criação-3"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="dataframe.html"><a href="dataframe.html#atributos-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.2</b> Atributos de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.3" data-path="dataframe.html"><a href="dataframe.html#acesso-as-variáveis-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.3</b> Acesso as variáveis de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.4" data-path="dataframe.html"><a href="dataframe.html#indexação-seleção-e-substituição"><i class="fa fa-check"></i><b>7.5.4</b> Indexação, seleção e substituição</a></li>
+<li class="chapter" data-level="7.5.5" data-path="dataframe.html"><a href="dataframe.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.5.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.5.6" data-path="dataframe.html"><a href="dataframe.html#teste-e-coerção"><i class="fa fa-check"></i><b>7.5.6</b> Teste e Coerção</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
+<li class="chapter" data-level="8.1" data-path="pré-requisitos-1.html"><a href="pré-requisitos-1.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="8.2" data-path="diretório-de-trabalho.html"><a href="diretório-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.3" data-path="boas-práticas-para-importação-e-exportação-de-dados.html"><a href="boas-práticas-para-importação-e-exportação-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
+<li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-não-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="arquivos-binários.html"><a href="arquivos-binários.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="arquivos-binários.html"><a href="arquivos-binários.html#formatos-binários-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="arquivos-binários.html"><a href="arquivos-binários.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-não-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercícios-2.html"><a href="exercícios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
+</ul></li>
+<li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados retangulares</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#formatos-de-dados-mais-comuns"><i class="fa fa-check"></i><b>9.3.2</b> Formatos de dados mais comuns</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#funções-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#códigos-como-fluxogramas"><i class="fa fa-check"></i><b>9.4.1</b> Códigos como fluxogramas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>9.4.2</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-observações"><i class="fa fa-check"></i><b>9.4.3</b> Seleção de observações</a></li>
+<li class="chapter" data-level="9.4.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#reordenando-dados"><i class="fa fa-check"></i><b>9.4.4</b> Reordenando dados</a></li>
+<li class="chapter" data-level="9.4.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criando-e-renomeando-variáveis"><i class="fa fa-check"></i><b>9.4.5</b> Criando e renomeando variáveis</a></li>
+<li class="chapter" data-level="9.4.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agregando-observações"><i class="fa fa-check"></i><b>9.4.6</b> Agregando observações</a></li>
+<li class="chapter" data-level="9.4.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agrupando-observações"><i class="fa fa-check"></i><b>9.4.7</b> Agrupando observações</a></li>
+<li class="chapter" data-level="9.4.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#combinação-de-dados"><i class="fa fa-check"></i><b>9.4.8</b> Combinação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="exercícios-3.html"><a href="exercícios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-vis.html"><a href="data-vis.html"><i class="fa fa-check"></i><b>10</b> Visualização de dados</a><ul>
+<li class="chapter" data-level="10.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html#dados-1"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>10.2</b> <em>ggplot2</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>11</b> Referências</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
+<li class="chapter" data-level="A.1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="A.2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="A.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="A.3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="A.3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="A.3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
+<li class="chapter" data-level="A.3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="A.3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
+<li class="chapter" data-level="B.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>B.1</b> Amostras pequenas de dados</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>B.1.1</b> scan()</a></li>
+<li class="chapter" data-level="B.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>B.1.2</b> readline()</a></li>
+<li class="chapter" data-level="B.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>B.1.3</b> Impressão na tela</a></li>
+<li class="chapter" data-level="B.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>B.1.4</b> textConnection()</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>B.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
+<li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
+</ul></li>
+<li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
+<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
+<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
+<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="readtable" class="section level2">
+<h2><span class="header-section-number">B.4</span> Leitura de arquivos texto com funções da base do R</h2>
+<p>A função nativa do <img src="images/logo_r.png" width="20"> mais usada para leitura de dados de um arquivo texto é a <code>read.table()</code>. Os dados lidos são armazenados em um dataframe.</p>
+<p>Essa função possui diversos parâmetros para especificar a importação de acordo com as peculiaridades do formato de dados do arquivo.</p>
+<p>O valor <em>default</em> do parâmetro <code>sep</code> é um ou mais caracteres de <code>espaço</code> e <code>tabs</code>. Devido as diversas opções de separadores existem outras funções envelopes da <code>read.table()</code>, com a diferença no separador, por exemplo as funções: <code>read.csv(), read.csv2(), read.delim()</code> que chamam a <code>read.table()</code>, dentro corpo da função, com o argumento <code>sep</code> definido como <code>,</code>, <code>;</code> e <code>\t</code>, respectivamente. Para detalhes sobre essas funções o <em>help</em> de cada uma. Uma vez que essas funções aceitam qualquer argumento da <code>read.table()</code> elas são mais convenientes que usar a <code>read.table()</code> e configurar os argumentos apropriados manualmente.</p>
+<p>Alguns argumentos da função <code>read.table()</code> são:</p>
+<ul>
+<li><code>file</code> nome do arquivo</li>
+<li><code>header</code> lógico (TRUE ou FALSE) indicando se o arquivo tem ou não linha de cabeçalho</li>
+<li><code>sep</code> um caractere indicando como as colunas são separadas</li>
+<li><code>colClasses</code>, um vetor caractere indicando as classes de cada coluna no conjunto de dados</li>
+<li><code>nrows</code>, número de linhas no conjunto de dados</li>
+<li><code>comment.char</code>, um caractere indicando o caractere usado como comentário (para ignorar essas linhas)</li>
+<li><code>skip</code>, o número de linhas que devem ser “puladas” desde o início do arquivo</li>
+<li><code>stringsAsFactors</code>, lógico, as variáveis do tipo <code>character</code> devem ser codificadas como <code>factor</code>?</li>
+</ul>
+<p>Esse último argumento pode ser definido também através da configuração global de opções no R pelo comando: <code>options(stringsAsFactors=FALSE)</code>.</p>
+<p>Quando se faz a leitura de dados com <code>read.table(&quot;nome_do_arquivo&quot;)</code> o R automaticamente:</p>
+<ul>
+<li>pula linhas que começam com ‘#’</li>
+<li>descobre quantas linhas tem o arquivo e quanta memória precisa ser alocada</li>
+<li>descobre qual o tipo de variável em cada coluna</li>
+</ul>
+<p>Vamos ver alguns exemplos de leitura de dados hidrometeorológicos no formato texto amplamente usados em aplicações da Meteorologia.</p>
+<div id="dados-hidrometeorológicos-brasileiros" class="section level3">
+<h3><span class="header-section-number">B.4.1</span> Dados hidrometeorológicos brasileiros</h3>
+<div id="hidroweb-ana" class="section level4">
+<h4><span class="header-section-number">B.4.1.1</span> <a href="http://hidroweb.ana.gov.br/">hidroweb-ANA</a></h4>
+<p>O sistema hidroweb é o maior base de dados hidrológicos brasileira. No trecho de código a seguir baixamos um arquivo de dados de precipitação obtidos no sistema hidroweb que foi salvo no site do livro.</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb362-2" data-line-number="2">hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb362-4" data-line-number="4">hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb362-5" data-line-number="5"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb362-6" data-line-number="6">  <span class="dt">url =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb362-7" data-line-number="7">  <span class="dt">destfile =</span> hidroweb_dest_file</a>
+<a class="sourceLine" id="cb362-8" data-line-number="8">)</a></code></pre></div>
+<p>Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="co"># caracteres não devem tratados como fatores</span></a>
+<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb363-3" data-line-number="3"><span class="co"># leitura de dados da ANA</span></a>
+<a class="sourceLine" id="cb363-4" data-line-number="4">dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb363-5" data-line-number="5">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
+<a class="sourceLine" id="cb363-6" data-line-number="6">                   <span class="dt">head =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb363-7" data-line-number="7">                   <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb363-8" data-line-number="8"><span class="co"># primeiras linhas</span></a>
+<a class="sourceLine" id="cb363-9" data-line-number="9"><span class="kw">head</span>(dprec)</a>
+<a class="sourceLine" id="cb363-10" data-line-number="10"><span class="co"># últimas linhas</span></a>
+<a class="sourceLine" id="cb363-11" data-line-number="11"><span class="kw">tail</span>(dprec)</a>
+<a class="sourceLine" id="cb363-12" data-line-number="12"> <span class="co"># corrigindo nome da primeira coluna</span></a>
+<a class="sourceLine" id="cb363-13" data-line-number="13"> <span class="kw">names</span>(dprec)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;EstacaoCodigo&quot;</span></a>
+<a class="sourceLine" id="cb363-14" data-line-number="14"> <span class="co"># removendo última coluna que só tem NAs</span></a>
+<a class="sourceLine" id="cb363-15" data-line-number="15"> dprec &lt;-<span class="st"> </span>dprec[ , <span class="op">-</span><span class="kw">ncol</span>(dprec)]</a>
+<a class="sourceLine" id="cb363-16" data-line-number="16">  <span class="co"># estrutura dos dados</span></a>
+<a class="sourceLine" id="cb363-17" data-line-number="17">  <span class="kw">str</span>(dprec)</a>
+<a class="sourceLine" id="cb363-18" data-line-number="18"><span class="co"># Fazendo a mesma leitura com read.table</span></a>
+<a class="sourceLine" id="cb363-19" data-line-number="19">dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb363-20" data-line-number="20">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
+<a class="sourceLine" id="cb363-21" data-line-number="21">                   <span class="dt">head =</span> T, </a>
+<a class="sourceLine" id="cb363-22" data-line-number="22">                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb363-23" data-line-number="23">                   <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb363-24" data-line-number="24">                   <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</a>
+<a class="sourceLine" id="cb363-25" data-line-number="25">                   <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb363-26" data-line-number="26"><span class="kw">head</span>(dprec2)</a></code></pre></div>
+</div>
+<div id="bdmep-inmet" class="section level4">
+<h4><span class="header-section-number">B.4.1.2</span> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></h4>
+<p>O Banco de Dados Meteorológicos para Ensino e Pesquisa do INMET é uma das principais fonte de dados climáticos brasileiros. Abaixo veremos como importar um arquivo de dados diários de uma estação meteorológica convencional. Os dados foram obtidos no BDMEP e salvos no site do livro.</p>
+<p>No trecho de código a seguir baixamos o arquivo de dados da estação 83004.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb364-2" data-line-number="2">bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span></a>
+<a class="sourceLine" id="cb364-3" data-line-number="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb364-4" data-line-number="4">bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb364-5" data-line-number="5"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb364-6" data-line-number="6">  <span class="dt">url =</span> bdmep_url_file, </a>
+<a class="sourceLine" id="cb364-7" data-line-number="7">  <span class="dt">destfile =</span> bdmep_dest_file</a>
+<a class="sourceLine" id="cb364-8" data-line-number="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> bdmep_dest_file, </a>
+<a class="sourceLine" id="cb365-2" data-line-number="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb365-3" data-line-number="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb365-4" data-line-number="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb365-5" data-line-number="5">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb365-6" data-line-number="6">               )</a>
+<a class="sourceLine" id="cb365-7" data-line-number="7"><span class="kw">head</span>(x)</a>
+<a class="sourceLine" id="cb365-8" data-line-number="8"><span class="kw">str</span>(x)</a></code></pre></div>
+<p>Os dados lidos não incluíram a linha de cabeçalho com os nomes das variáveis. Nós pulamos essa linha porque o nome das variáveis está de acordo como número de colunas do arquivo. Então se tentarmos ler um arquivo de dados que contém linhas com número de registros diferentes ocorrerá um erro pois os dados não são tabulares.</p>
+<p>Outro aspecto nos dados lidos é que aparecem vários <code>&lt;NA&gt;</code>, que é o símbolo para dados do tipo <code>character</code> faltantes. A razão dos terem sido interpretados dessa forma deve-se a um caractere (<code>&lt;/pre&gt;</code>) encontrado na última linha do arquivo.</p>
+<p>Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função <code>read.table(..., nrows = 5878)</code>, que ignoraria a última linha do arquivo e os dados seriam interpretados como <code>numeric</code>.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
+<a class="sourceLine" id="cb366-2" data-line-number="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb366-3" data-line-number="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb366-4" data-line-number="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb366-5" data-line-number="5">               <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb366-6" data-line-number="6">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb366-7" data-line-number="7">               <span class="dt">nrows =</span> <span class="dv">5878</span> </a>
+<a class="sourceLine" id="cb366-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb366-9" data-line-number="9"><span class="kw">head</span>(x1)</a>
+<a class="sourceLine" id="cb366-10" data-line-number="10"><span class="kw">str</span>(x1)</a></code></pre></div>
+<p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1"><span class="co"># corrigindo classe dos dados</span></a>
+<a class="sourceLine" id="cb367-2" data-line-number="2"><span class="co"># convertendo de character para numeric</span></a>
+<a class="sourceLine" id="cb367-3" data-line-number="3">x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)</a>
+<a class="sourceLine" id="cb367-4" data-line-number="4"><span class="kw">str</span>(x)</a>
+<a class="sourceLine" id="cb367-5" data-line-number="5"><span class="co"># razão dos avisos</span></a>
+<a class="sourceLine" id="cb367-6" data-line-number="6"><span class="co">#as.numeric(&quot;NA&quot;)</span></a></code></pre></div>
+<p>Mas e o nome das variáveis? Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas. Vamos fazer essa adequação aos dados.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="co"># lendo somente o nome das variaveis</span></a>
+<a class="sourceLine" id="cb368-2" data-line-number="2">vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
+<a class="sourceLine" id="cb368-3" data-line-number="3">                    <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb368-4" data-line-number="4">                    <span class="dt">skip =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb368-5" data-line-number="5">                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb368-6" data-line-number="6">                    <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb368-7" data-line-number="7">                    <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb368-8" data-line-number="8">                    <span class="dt">nrows =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb368-9" data-line-number="9"><span class="co"># convertendo de dataframe para vetor</span></a>
+<a class="sourceLine" id="cb368-10" data-line-number="10">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))</a>
+<a class="sourceLine" id="cb368-11" data-line-number="11">vnames</a>
+<a class="sourceLine" id="cb368-12" data-line-number="12"><span class="co"># número de variáveis é diferente do número de colunas do arquivo</span></a>
+<a class="sourceLine" id="cb368-13" data-line-number="13"><span class="kw">length</span>(vnames) <span class="op">==</span><span class="st"> </span><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb368-14" data-line-number="14"><span class="co"># corrigindo nomes das variaveis</span></a>
+<a class="sourceLine" id="cb368-15" data-line-number="15"><span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span></a>
+<a class="sourceLine" id="cb368-16" data-line-number="16">vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span></a>
+<a class="sourceLine" id="cb368-17" data-line-number="17"><span class="co"># acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e</span></a>
+<a class="sourceLine" id="cb368-18" data-line-number="18"><span class="co"># desloca os elementos orginais do vetor </span></a>
+<a class="sourceLine" id="cb368-19" data-line-number="19">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span><span class="op">:</span><span class="kw">length</span>(vnames)])</a>
+<a class="sourceLine" id="cb368-20" data-line-number="20"><span class="kw">length</span>(vnames)</a>
+<a class="sourceLine" id="cb368-21" data-line-number="21"><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb368-22" data-line-number="22"><span class="kw">names</span>(x) &lt;-<span class="st"> </span>vnames</a>
+<a class="sourceLine" id="cb368-23" data-line-number="23"><span class="kw">head</span>(x)</a></code></pre></div>
+<p>Finalmente vamos escrever os dados do INMET corretamente organizados.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">write.csv2</span>(x,</a>
+<a class="sourceLine" id="cb369-3" data-line-number="3">           <span class="dt">file =</span> bdmep_dest_file_clean, </a>
+<a class="sourceLine" id="cb369-4" data-line-number="4">           <span class="dt">na =</span> <span class="st">&quot;-9999&quot;</span>,</a>
+<a class="sourceLine" id="cb369-5" data-line-number="5">           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="arquivos-formatados-com-largura-fixa" class="section level3">
+<h3><span class="header-section-number">B.4.2</span> Arquivos formatados com largura fixa</h3>
+<p>Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que aumenta a legibilidade dos dados em editor de texto.</p>
+<p>Nesses casos a função <code>read.fwf()</code> é conveniente. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># link para os dados do SOI</span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2">noaa_url_file &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></a></code></pre></div>
+<p>Abrindo o link dos dados no navegador para visualização dos dados.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="kw">browseURL</span>(<span class="dt">url =</span> noaa_url_file)</a></code></pre></div>
+<p>Leitura dos dados:</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span></a>
+<a class="sourceLine" id="cb372-2" data-line-number="2">soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="dt">file =</span> noaa_url_file,                       <span class="co"># sem internet, usar esse arquivo</span></a>
+<a class="sourceLine" id="cb372-3" data-line-number="3">                <span class="dt">skip =</span> <span class="dv">4</span>,                               <span class="co"># pula 4 linhas</span></a>
+<a class="sourceLine" id="cb372-4" data-line-number="4">                <span class="dt">header =</span> <span class="ot">FALSE</span>,                             <span class="co"># sem cabeçalho</span></a>
+<a class="sourceLine" id="cb372-5" data-line-number="5">                <span class="dt">nrows =</span> <span class="dv">70</span>,                             <span class="co"># num. de linhas</span></a>
+<a class="sourceLine" id="cb372-6" data-line-number="6">                <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>,<span class="dv">12</span>)),                <span class="co"># largura dos campos das variáveis</span></a>
+<a class="sourceLine" id="cb372-7" data-line-number="7">                <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>,                  <span class="co"># string para dados faltantes</span></a>
+<a class="sourceLine" id="cb372-8" data-line-number="8">                <span class="dt">col.names =</span> <span class="kw">scan</span>(noaa_url_file,             <span class="co"># varredura do arquivo</span></a>
+<a class="sourceLine" id="cb372-9" data-line-number="9">                <span class="co">#col.names = scan(link,             # varredura do arquivo</span></a>
+<a class="sourceLine" id="cb372-10" data-line-number="10">                                 <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>,    <span class="co"># tipo dos dados a serem lidos</span></a>
+<a class="sourceLine" id="cb372-11" data-line-number="11">                                 <span class="dt">skip =</span> <span class="dv">3</span>,              <span class="co"># pula 3 linhas</span></a>
+<a class="sourceLine" id="cb372-12" data-line-number="12">                                 <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span></a>
+<a class="sourceLine" id="cb372-13" data-line-number="13">                )</a>
+<a class="sourceLine" id="cb372-14" data-line-number="14"><span class="kw">head</span>(soi)</a></code></pre></div>
+<p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2">soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="dv">-1</span>]))</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="co"># criando um dataframe com valores de SOI, mes e ano</span></a>
+<a class="sourceLine" id="cb373-4" data-line-number="4">soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb373-5" data-line-number="5">                     <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),</a>
+<a class="sourceLine" id="cb373-6" data-line-number="6">                     <span class="dt">soi =</span> soi_v)</a>
+<a class="sourceLine" id="cb373-7" data-line-number="7"><span class="co"># escrevendo dados SOI em um arquivo CSV</span></a>
+<a class="sourceLine" id="cb373-8" data-line-number="8">soi_csv_file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb373-9" data-line-number="9"><span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, </a>
+<a class="sourceLine" id="cb373-10" data-line-number="10">          <span class="dt">file =</span> soi_csv_file, </a>
+<a class="sourceLine" id="cb373-11" data-line-number="11">          <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, </a>
+<a class="sourceLine" id="cb373-12" data-line-number="12">          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># leitura de dados com escolha interativa do arquivo</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),</a>
+<a class="sourceLine" id="cb374-3" data-line-number="3">                   <span class="co"># file.choose só é válido em sistema *unix</span></a>
+<a class="sourceLine" id="cb374-4" data-line-number="4">                   <span class="co"># no windows é choose.file()</span></a>
+<a class="sourceLine" id="cb374-5" data-line-number="5">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb374-6" data-line-number="6">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
+<p>Navegue até o diretório do arquivo <code>SOI.csv</code> e clique duas vezes sobre ele.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> soi_csv_file,</a>
+<a class="sourceLine" id="cb375-2" data-line-number="2">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb375-3" data-line-number="3">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">head</span>(soi.df)</a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">str</span>(soi.df)</a></code></pre></div>
+<p>A função <code>read.fortran()</code> é uma função similar à <code>read.fwf()</code> e permite usar especificações de colunas no estilo <a href="http://en.wikipedia.org/wiki/Fortran">Fortran</a>.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dados-de-pacotes-do-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.1 Instalação do R e RStudio | Análise de Dados Ambientais com R</title>
+  <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.1 Instalação do R e RStudio | Análise de Dados Ambientais com R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="TB1.jpg" />
+  <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="github-repo" content="lhmet/adar-ebook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.1 Instalação do R e RStudio | Análise de Dados Ambientais com R" />
+  
+  <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
+  <meta name="twitter:image" content="TB1.jpg" />
+
+<meta name="author" content="Jônatan Tatsch" />
+
+
+<meta name="date" content="2020-04-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pré-requisitos.html"/>
+<link rel="next" href="install-pck.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Ambientais com R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a></li>
+<li class="part"><span><b>I Introdução</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Motivação</a><ul>
+<li class="chapter" data-level="1.1" data-path="análise-de-dados-meteorológicos.html"><a href="análise-de-dados-meteorológicos.html"><i class="fa fa-check"></i><b>1.1</b> Análise de dados meteorológicos</a></li>
+<li class="chapter" data-level="1.2" data-path="ciência-de-dados.html"><a href="ciência-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
+<li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
+<li class="chapter" data-level="1.4" data-path="programação-computacional.html"><a href="programação-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
+<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
+<li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
+<li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
+</ul></li>
+<li class="part"><span><b>II Configuração do Sistema</b></span></li>
+<li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2.1</b> Instalação do R e RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#instalando-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalando o R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.5" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.5</b> Git e Github</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="git-e-github.html"><a href="git-e-github.html#instalação-do-git"><i class="fa fa-check"></i><b>2.5.1</b> Instalação do git</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Interação</b></span></li>
+<li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
+<li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
+<li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegação-entre-as-expressões-já-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentários"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
+<li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="no-modo-de-processamento-em-lote.html"><a href="no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> <img src="images/logo_r.png" width="20"> no modo de processamento em lote</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
+<li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+</ul></li>
+<li class="part"><span><b>IV Fundamentos do R</b></span></li>
+<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="convenção.html"><a href="convenção.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
+<li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
+<li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#cálculos-problemáticos"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#funções-matemáticas"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="variáveis.html"><a href="variáveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variáveis.html"><a href="variáveis.html#removendo-variáveis"><i class="fa fa-check"></i><b>5.3.1</b> Removendo variáveis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="variáveis.html"><a href="variáveis.html#nomeando-variáveis"><i class="fa fa-check"></i><b>5.3.2</b> Nomeando variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html#números"><i class="fa fa-check"></i><b>6.1.1</b> Números</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classes-de-dados.html"><a href="classes-de-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.2</b> Caractere</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classes-de-dados.html"><a href="classes-de-dados.html#logico"><i class="fa fa-check"></i><b>6.1.3</b> Lógico</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classes-de-dados.html"><a href="classes-de-dados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.1.4</b> Datas e horários</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
+<li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
+<li class="chapter" data-level="7.1" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.1</b> Vetor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vetor.html"><a href="vetor.html#vetores-atômicos"><i class="fa fa-check"></i><b>7.1.1</b> Vetores atômicos</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vetor.html"><a href="vetor.html#operações-com-vetores"><i class="fa fa-check"></i><b>7.1.2</b> Operações com vetores</a></li>
+<li class="chapter" data-level="7.1.3" data-path="vetor.html"><a href="vetor.html#sequências"><i class="fa fa-check"></i><b>7.1.3</b> Sequências</a></li>
+<li class="chapter" data-level="7.1.4" data-path="vetor.html"><a href="vetor.html#index-vetores"><i class="fa fa-check"></i><b>7.1.4</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="7.1.5" data-path="vetor.html"><a href="vetor.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.1.5</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.1.6" data-path="vetor.html"><a href="vetor.html#criação-de-vetores-com-vector"><i class="fa fa-check"></i><b>7.1.6</b> Criação de vetores com <code>vector</code></a></li>
+<li class="chapter" data-level="7.1.7" data-path="vetor.html"><a href="vetor.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.1.7</b> Vetores nulos e elementos faltantes</a></li>
+<li class="chapter" data-level="7.1.8" data-path="vetor.html"><a href="vetor.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.1.8</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>7.2</b> Matriz</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="matriz.html"><a href="matriz.html#criação-de-matrizes"><i class="fa fa-check"></i><b>7.2.1</b> Criação de matrizes</a></li>
+<li class="chapter" data-level="7.2.2" data-path="matriz.html"><a href="matriz.html#nomes-lin-col-mat"><i class="fa fa-check"></i><b>7.2.2</b> Nomes das linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.3" data-path="matriz.html"><a href="matriz.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>7.2.3</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="7.2.4" data-path="matriz.html"><a href="matriz.html#número-de-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>7.2.4</b> Número de linhas e colunas de uma matriz</a></li>
+<li class="chapter" data-level="7.2.5" data-path="matriz.html"><a href="matriz.html#adição-de-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>7.2.5</b> Adição de linhas e colunas a uma matriz</a></li>
+<li class="chapter" data-level="7.2.6" data-path="matriz.html"><a href="matriz.html#matriz-transposta-e-diagonal"><i class="fa fa-check"></i><b>7.2.6</b> Matriz transposta e diagonal</a></li>
+<li class="chapter" data-level="7.2.7" data-path="matriz.html"><a href="matriz.html#conversão-de-matriz-para-vetor"><i class="fa fa-check"></i><b>7.2.7</b> Conversão de matriz para vetor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="arranjo.html"><a href="arranjo.html"><i class="fa fa-check"></i><b>7.3</b> Arranjo</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="arranjo.html"><a href="arranjo.html#criação-1"><i class="fa fa-check"></i><b>7.3.1</b> Criação</a></li>
+<li class="chapter" data-level="7.3.2" data-path="arranjo.html"><a href="arranjo.html#indexação"><i class="fa fa-check"></i><b>7.3.2</b> Indexação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lista.html"><a href="lista.html"><i class="fa fa-check"></i><b>7.4</b> Lista</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lista.html"><a href="lista.html#criação-2"><i class="fa fa-check"></i><b>7.4.1</b> Criação</a></li>
+<li class="chapter" data-level="7.4.2" data-path="lista.html"><a href="lista.html#indexação-1"><i class="fa fa-check"></i><b>7.4.2</b> Indexação</a></li>
+<li class="chapter" data-level="7.4.3" data-path="lista.html"><a href="lista.html#conversão-de-lista-para-vetor-e-vice-versa."><i class="fa fa-check"></i><b>7.4.3</b> Conversão de lista para vetor e vice-versa.</a></li>
+<li class="chapter" data-level="7.4.4" data-path="lista.html"><a href="lista.html#conversão-de-list-para-data.frame"><i class="fa fa-check"></i><b>7.4.4</b> Conversão de <code>list</code> para <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>7.5</b> Dataframe</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="dataframe.html"><a href="dataframe.html#criação-3"><i class="fa fa-check"></i><b>7.5.1</b> Criação</a></li>
+<li class="chapter" data-level="7.5.2" data-path="dataframe.html"><a href="dataframe.html#atributos-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.2</b> Atributos de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.3" data-path="dataframe.html"><a href="dataframe.html#acesso-as-variáveis-de-um-dataframe"><i class="fa fa-check"></i><b>7.5.3</b> Acesso as variáveis de um <em>dataframe</em></a></li>
+<li class="chapter" data-level="7.5.4" data-path="dataframe.html"><a href="dataframe.html#indexação-seleção-e-substituição"><i class="fa fa-check"></i><b>7.5.4</b> Indexação, seleção e substituição</a></li>
+<li class="chapter" data-level="7.5.5" data-path="dataframe.html"><a href="dataframe.html#combinando-dataframes"><i class="fa fa-check"></i><b>7.5.5</b> Combinando <em>dataframes</em></a></li>
+<li class="chapter" data-level="7.5.6" data-path="dataframe.html"><a href="dataframe.html#teste-e-coerção"><i class="fa fa-check"></i><b>7.5.6</b> Teste e Coerção</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>8</b> Entrada e saída de dados</a><ul>
+<li class="chapter" data-level="8.1" data-path="pré-requisitos-1.html"><a href="pré-requisitos-1.html"><i class="fa fa-check"></i><b>8.1</b> Pré-requisitos</a></li>
+<li class="chapter" data-level="8.2" data-path="diretório-de-trabalho.html"><a href="diretório-de-trabalho.html"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.3" data-path="boas-práticas-para-importação-e-exportação-de-dados.html"><a href="boas-práticas-para-importação-e-exportação-de-dados.html"><i class="fa fa-check"></i><b>8.3</b> Boas práticas para importação e exportação de dados</a></li>
+<li class="chapter" data-level="8.4" data-path="arquivos-texto.html"><a href="arquivos-texto.html"><i class="fa fa-check"></i><b>8.4</b> Arquivos texto</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="arquivos-texto.html"><a href="arquivos-texto.html#Rio"><i class="fa fa-check"></i><b>8.4.1</b> <strong>rio</strong></a></li>
+<li class="chapter" data-level="8.4.2" data-path="arquivos-texto.html"><a href="arquivos-texto.html#arquivos-texto-não-estruturados"><i class="fa fa-check"></i><b>8.4.2</b> Arquivos texto não estruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="arquivos-binários.html"><a href="arquivos-binários.html"><i class="fa fa-check"></i><b>8.5</b> Arquivos binários</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="arquivos-binários.html"><a href="arquivos-binários.html#formatos-binários-nativos-do-r"><i class="fa fa-check"></i><b>8.5.1</b> Formatos binários nativos do R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="arquivos-binários.html"><a href="arquivos-binários.html#netcdf-network-common-data-form"><i class="fa fa-check"></i><b>8.5.2</b> NetCDF (Network Common Data Form)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="arquivos-excel.html"><a href="arquivos-excel.html"><i class="fa fa-check"></i><b>8.6</b> Arquivos Excel</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="arquivos-excel.html"><a href="arquivos-excel.html#como-usar-1"><i class="fa fa-check"></i><b>8.6.1</b> Como usar</a></li>
+<li class="chapter" data-level="8.6.2" data-path="arquivos-excel.html"><a href="arquivos-excel.html#export-xls"><i class="fa fa-check"></i><b>8.6.2</b> Escrita de arquivos excel no formato <code>.xls</code></a></li>
+<li class="chapter" data-level="8.6.3" data-path="arquivos-excel.html"><a href="arquivos-excel.html#escrita-de-arquivos-excel-no-formato-.xlsx"><i class="fa fa-check"></i><b>8.6.3</b> Escrita de arquivos excel no formato <code>.xlsx</code></a></li>
+<li class="chapter" data-level="8.6.4" data-path="arquivos-excel.html"><a href="arquivos-excel.html#estrutura-de-dados-não-tabulares"><i class="fa fa-check"></i><b>8.6.4</b> Estrutura de dados não tabulares</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="para-saber-mais.html"><a href="para-saber-mais.html"><i class="fa fa-check"></i><b>8.7</b> Para saber mais</a></li>
+<li class="chapter" data-level="8.8" data-path="exercícios-2.html"><a href="exercícios-2.html"><i class="fa fa-check"></i><b>8.8</b> Exercícios</a></li>
+</ul></li>
+<li class="part"><span><b>V Ferramentas modernas do R</b></span></li>
+<li class="chapter" data-level="9" data-path="data-wrangle.html"><a href="data-wrangle.html"><i class="fa fa-check"></i><b>9</b> Processamento de dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>9.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>9.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>9.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>9.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>9.3</b> Restruturação de dados retangulares</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>9.3.1</b> Dados arrumados</a></li>
+<li class="chapter" data-level="9.3.2" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#formatos-de-dados-mais-comuns"><i class="fa fa-check"></i><b>9.3.2</b> Formatos de dados mais comuns</a></li>
+<li class="chapter" data-level="9.3.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#funções-adicionais-do-tidyr"><i class="fa fa-check"></i><b>9.3.3</b> Funções adicionais do <strong>tidyr</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>9.4</b> Manipulação de dados</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#códigos-como-fluxogramas"><i class="fa fa-check"></i><b>9.4.1</b> Códigos como fluxogramas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>9.4.2</b> Seleção de variáveis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-observações"><i class="fa fa-check"></i><b>9.4.3</b> Seleção de observações</a></li>
+<li class="chapter" data-level="9.4.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#reordenando-dados"><i class="fa fa-check"></i><b>9.4.4</b> Reordenando dados</a></li>
+<li class="chapter" data-level="9.4.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criando-e-renomeando-variáveis"><i class="fa fa-check"></i><b>9.4.5</b> Criando e renomeando variáveis</a></li>
+<li class="chapter" data-level="9.4.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agregando-observações"><i class="fa fa-check"></i><b>9.4.6</b> Agregando observações</a></li>
+<li class="chapter" data-level="9.4.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#agrupando-observações"><i class="fa fa-check"></i><b>9.4.7</b> Agrupando observações</a></li>
+<li class="chapter" data-level="9.4.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#combinação-de-dados"><i class="fa fa-check"></i><b>9.4.8</b> Combinação de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="exercícios-3.html"><a href="exercícios-3.html"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-vis.html"><a href="data-vis.html"><i class="fa fa-check"></i><b>10</b> Visualização de dados</a><ul>
+<li class="chapter" data-level="10.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="pré-requisitos-4.html"><a href="pré-requisitos-4.html#dados-1"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>10.2</b> <em>ggplot2</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>11</b> Referências</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
+<li class="chapter" data-level="A.1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="A.2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="A.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="A.3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="A.3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="A.3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
+<li class="chapter" data-level="A.3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="A.3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
+<li class="chapter" data-level="B.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>B.1</b> Amostras pequenas de dados</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>B.1.1</b> scan()</a></li>
+<li class="chapter" data-level="B.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>B.1.2</b> readline()</a></li>
+<li class="chapter" data-level="B.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>B.1.3</b> Impressão na tela</a></li>
+<li class="chapter" data-level="B.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>B.1.4</b> textConnection()</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>B.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
+<li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
+</ul></li>
+<li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
+<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
+<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
+<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
+<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Ambientais com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="install" class="section level2">
+<h2><span class="header-section-number">2.1</span> Instalação do R e RStudio</h2>
+<p>A interação do usuário com o <img src="images/logo_r.png" width="20"> é por meio da linha de comando. A
+interface da linha de comando tem suas vantagens, mas você será mais produtivo
+com o uso de uma Interface de Desenvolvimento Integrado (IDE) como o RStudio <em>Desktop</em>.</p>
+<p>A seguir veremos como:</p>
+<ul>
+<li><p>instalar o <img src="images/logo_r.png" width="20"> nos SO Windows e Linux Ubuntu</p></li>
+<li><p>manter o <img src="images/logo_r.png" width="20"> sempre atualizado no Linux Ubuntu</p></li>
+<li><p>configurar um diretório para armazenar os pacotes do R instalados</p></li>
+<li><p>instalar pacotes</p></li>
+<li><p>instalar o RStudio <em>Desktop</em></p></li>
+</ul>
+<p>Neste livro, o maior foco na instalação do <img src="images/logo_r.png" width="20"> é dada para o SO Linux <a href="https://pt.wikipedia.org/wiki/Ubuntu">Ubuntu</a>, pelo fato de assim como o R,
+ser um software livre e de código aberto. Como o Linux Ubuntu é baseado no <a href="https://pt.wikipedia.org/wiki/Debian">Debian</a> o procedimento de instalação
+também se estende a essa distribuição Linux e as <a href="https://pt.wikipedia.org/wiki/Ubuntu#Projetos_derivados">versões derivadas do Ubuntu</a> oficialmente reconhecidas.</p>
+<p>A instalação no SO Windows é igual a instalação de qualquer outro <em>software</em> e
+pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se
+o caminho de instalação.</p>
+<div class="rmdtip">
+<p>
+Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.
+</p>
+</div>
+<div id="instalando-o-r" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Instalando o R</h3>
+<p>O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos <a href="https://cran.r-project.org/bin/">binários pré-compilados</a> ou do <a href="https://cran.r-project.org/sources.html">código fonte</a>. Nós veremos a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.</p>
+<div id="windows" class="section level4">
+<h4><span class="header-section-number">2.1.1.1</span> Windows</h4>
+<p>O binário executável do <img src="images/logo_r.png" width="20"> para o Windows está disponível na <strong>Rede Abrangente de Arquivos do <img src="images/logo_r.png" width="20"></strong> (<a href="https://cran.r-project.org/">CRAN</a>) e
+pode ser baixado <a href="http://cran.r-project.org/bin/windows/base/">aqui</a>.</p>
+<p>Abra o executável e siga instruções de instalação mantendo todas as opções
+padrões.</p>
+<p>No Windows a instalação do <img src="images/logo_r.png" width="20"> inclui uma Interface Gráfica do Usuário
+(GUI) acessível pelo executável <code>RGui.exe</code> (Figura <a href="install.html#fig:r-gui">2.1</a>). Um atalho para esse executável é gerado por <em>default</em> na área de trabalho com o símbolo
+do <img src="images/logo_r.png" width="20">.</p>
+<div class="figure"><span id="fig:r-gui"></span>
+<img src="images/rgui-windows.png" alt="Interface gráfica do usuário no R para Windows." width="100%" />
+<p class="caption">
+Figura 2.1: Interface gráfica do usuário no R para Windows.
+</p>
+</div>
+<p>Para instalar pacotes de plataformas diferentes da CRAN (veja seção <a href="install-pck.html#install-github">2.2.1.2</a>) é necessário instalar o programa <a href="https://cran.r-project.org/bin/windows/Rtools/index.html">Rtools</a>,
+selecionando a versão adequada para sua versão do <img src="images/logo_r.png" width="20">.</p>
+<div id="atualização-do-r-no-windows" class="section level5">
+<h5><span class="header-section-number">2.1.1.1.1</span> Atualização do R no Windows</h5>
+<p>Novas versões do R são disponibilizadas em geral com frequência de 5 vezes
+por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem <a href="https://cran.r-project.org/bin/windows/base/NEWS.R-4.0.0.html">aperfeiçoamentos e a correção de <em>bugs</em></a>.</p>
+<p>As novas versões do <img src="images/logo_r.png" width="20"> vem com os <a href="https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f">pacotes padrões do R</a>. Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.</p>
+<p>Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a
+cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote <a href="https://cran.r-project.org/web/packages/installr/index.html"><strong>installr</strong></a>. A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção <a href="install-pck.html#install-pck">2.2</a>.</p>
+</div>
+</div>
+<div id="linux" class="section level4">
+<h4><span class="header-section-number">2.1.1.2</span> Linux</h4>
+<div id="ubuntu" class="section level5">
+<h5><span class="header-section-number">2.1.1.2.1</span> Ubuntu</h5>
+<!-- 
+#install the automatically tuned Atlas or the multi-threaded OpenBlas library in order to get higher performance for linear algebra operations
+sudo apt-get install libatlas3-base libopenblas-base
+
+link da cran sobre instalação do R no ubuntu
+https://cran.rstudio.com/bin/linux/ubuntu/README.html 
+
+# PPA
+https://rubuntu.netlify.app/post/2018-05-25-announcing-c2d4u3-5/
+
+# problemas com rjava
+https://askubuntu.com/questions/1053726/r-cannot-install-rjava-what-is-r-api-3-4
+
+sudo add-apt-repository ppa:marutter/c2d4u3.5
+sudo apt update
+sudo apt install r-cran-rjava
+
+-->
+<p>Há várias formas de instalar o <img src="images/logo_r.png" width="20"> no Ubuntu. Mas primeiro, caso você
+tenha alguma versão antiga do R, desinstale-a com:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get remove r-base-core</a></code></pre></div>
+<p>A forma mais fácil de instalar o <img src="images/logo_r.png" width="20"> é usar a versão compilada no
+repositório <em>default</em> do Ubuntu.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get install r-base</a></code></pre></div>
+<p>Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes
+(ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma
+que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.</p>
+<ol style="list-style-type: decimal">
+<li>Incluímos o endereço do repositório externo mantido pelo CRAN<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>
+à lista de repositórios do sistema.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="fu">sudo</span> touch /etc/apt/sources.list.d/cran.list</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">$ <span class="fu">sudo</span> sh -c <span class="st">&quot;echo &#39;deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="kw">`</span><span class="ex">lsb_release</span> -sc<span class="kw">`</span><span class="st">-cran35/&#39; &gt;&gt; /etc/apt/sources.list.d/cran.list&quot;</span> </a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Adicionamos a chave de autenticação<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> do repositório.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="fu">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Atualizamos a lista de repositórios do sistema.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">sudo</span> apt-get update</a></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Instalamos o R</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get install -y r-base r-base-dev </a></code></pre></div>
+<!-- 
+##### R sempre atualizado 
+
+Se você quer trabalhar sempre com a última versão estável do <img src="images/logo_r.png" width="20">, é possível configurar o Linux Ubuntu para atualizar automaticamente o <img src="images/logo_r.png" width="20">. O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
+
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^versoesubuntu]. As versões de Suporte de Longo Prazo (LTS) mais recentes são:
+
+- 14.04: `trusty` 
+- 16.04: `xenial`
+- 18.04: `bionic`
+
+[^versoesubuntu]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
+
+ 
+A versão mais atual é a 4.0.0. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
+
+###### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
+
+O primeiro passo é descobrir o nome da versão UBUNTU instalada. Para isso, você pode utilizar o seguinte comando[^ubuntuname] :
+
+
+
+```
+$ lsb_release -sc
+```
+```
+bionic
+```
+
+[^ubuntuname]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso, digite no terminal Linux `sudo apt-get install lsb-release`.
+
+O endereço do espelho da CRAN e algumas configurações do sistema podem ser inseridas num arquivo em `/etc/apt/sources.list.d/cran.list`. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
+
+    $ sudo su
+
+Após o comando, informe a senha de superusuário e então vamos criar o arquivo `/etc/apt/sources.list.d/cran.list`.
+
+    # touch /etc/apt/sources.list.d/cran.list
+
+Vamos definir no terminal uma variável chamada `repos` que será composta pelo endereço do espelho[^cran-mirrors], o nome da versão do Ubuntu e o sufixo `-cran35`. Este sufixo é para obter a última versão do pacote R 3.6 para Ubuntu. 
+
+    # repos="deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/"
+    
+[^cran-mirrors]: Usando https://cloud.r-project.org automaticamente redireciona para o espelho da CRAN mais próximo. A lista de espelhos atual encontra-se em https://cran.r-project.org/mirrors.html.
+
+O valor da variável `repos` é mostrado pelo comando: `echo $repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu.
+
+
+Adicionamos o conteúdo da `repos` ao arquivo cran.list usando o comando:
+
+    # echo $repos >> /etc/apt/sources.list.d/cran.list
+
+Assim o gerenciador de pacotes 
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool)[^wikiped-apt] fará a atualização do <img src="images/logo_r.png" width="20"> quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do <img src="images/logo_r.png" width="20">.
+
+[^wikiped-apt]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+
+
+Feito isso, você podemos retornar a sessão de usuário comum:
+
+    # exit
+
+
+###### [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
+
+Os arquivos binários do <img src="images/logo_r.png" width="20"> para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^pub-key]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+
+    $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+    $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
+
+[^pub-key]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+
+Se aparecer uma mensagem **OK** a chave foi adicionada com sucesso e os comandos a seguir podem ignorados. Porém, se aparecer uma mensagem do tipo *keyserver error*, utilize o seguinte comando:
+
+    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+Caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:
+
+    $ gpg --keyserver keyserver.ubuntu.com --recv-key E298A3A825C0D65DFD57CBB651716619E084DAB9
+    
+    $ gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
+
+
+###### Atualização da lista de repositórios do Ubuntu e instalação do <img src="images/logo_r.png" width="20">
+
+Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):
+
+    $ sudo apt-get update
+    
+Finalmente, instalamos o binário do R, a coleção de pacotes recomendados e ferramentas de desenvolvimento:
+
+    $ sudo apt-get -y install r-base r-base-dev
+-->
+<!---
+referências
+
+https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04
+
+https://askubuntu.com/questions/218708/installing-latest-version-of-r-base
+
+ https://stackoverflow.com/questions/46704247/upgrade-r-in-ubuntu-xenial
+ https://gist.github.com/mGalarnyk/41c887e921e712baf86fecc507b3afc7
+ https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r 
+ https://rtask.thinkr.fr/installation-of-r-3-5-on-ubuntu-18-04-lts-and-tips-for-spatial-packages/
+ https://yiweiniu.github.io/blog/2019/07/Install-Update-R-and-R-packages/
+ https://shiny.rstudio.com/articles/upgrade-R.html
+
+# for r dev packages
+sudo add-apt-repository ppa:marutter/rrutter3.5
+sudo add-apt-repository ppa:marutter/c2d4u
+sudo apt-get update
+sudo apt-get -y install r-base-core r-recommended r-base-dev
+
+# run apt-get update and then check via apt-cache policy r-base-core
+apt-cache policy r-base-core
+
+sudo apt install r-cran-rgl r-cran-rjags r-cran-snow r-cran-ggplot2 r-cran-igraph r-cran-lme4 r-cran-rjava r-cran-devtools r-cran-roxygen2 r-cran-rjava r-cran-xlsx
+
+# pacotes mais usados
+c("tidyverse", 
+  "data.table",
+  "knitr",
+  "rstudioapi",
+  
+  )
+
+rlang > Rcpp > backports > vctrs > glue > tibble > tidyselect> dplyr > purrr
+nlme > lattice > broom
+
+‘broom’, ‘dbplyr’, ‘haven’, ‘hms’, ‘modelr’, ‘reprex’, ‘rvest’, ‘tidyr’
+--->
+<p>Para iniciar o <img src="images/logo_r.png" width="20"> no Linux, digite <code>R</code> no cursor do terminal:</p>
+<pre><code>$ R</code></pre>
+<p>A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Chunck4"></span>
+<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
+<p class="caption">
+Figura 2.2: Gráfico da sequência de 10 números.
+</p>
+</div>
+<p>Após este teste, podemos sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com a expressão abaixo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">q</span>(<span class="dt">save =</span> <span class="st">&quot;no&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="diretório-para-pacotes-instalados-pelo-usuário" class="section level4">
+<h4><span class="header-section-number">2.1.1.3</span> Diretório para pacotes instalados pelo usuário</h4>
+<p>Os pacotes que vem com os pacotes <em>r-base</em> e <em>r-recommended</em> são instalados no diretório <code>/usr/lib/R/library</code>. Estes pacotes são atualizados pelo sistema<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> ou usando <code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code>.</p>
+<p>Uma boa prática para os pacotes R instalados pelo usuário é definir um diretório específico. Isso lhe dá mais controle sobre os pacotes do <img src="images/logo_r.png" width="20"> instalados no sistema. Um local sugerido é o <code>/home/usuario/.R/libs</code>. O seu <code>home</code> ou <code>pasta pessoal</code> pode ser obtido com o comando <code>echo $HOME</code>. Para criar o diretório você pode digitar o comando abaixo:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="fu">mkdir</span> -p <span class="kw">`</span><span class="bu">echo</span> <span class="va">$HOME</span><span class="kw">`</span>/.R/libs/</a></code></pre></div>
+<p>Para informar ao <img src="images/logo_r.png" width="20"> onde procurar os pacotes instalados, você precisa criar um arquivo chamado <code>.Renviron</code>, no diretório <code>$HOME</code>, contendo a expressão <code>R_LIBS=/home/usuario/.R/libs/</code>. Você pode fazer isso em um terminal com os comandos:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="va">R_LIBS=</span><span class="kw">`</span><span class="bu">echo</span> <span class="va">$HOME</span>/.R/libs/<span class="kw">`</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">$ <span class="bu">echo</span> <span class="va">$R_LIBS</span> <span class="op">&gt;&gt;</span> <span class="kw">`</span><span class="bu">echo</span> <span class="va">$HOME</span>/.Renviron<span class="kw">`</span></a></code></pre></div>
+<p>Esse caminho fica então visível ao <img src="images/logo_r.png" width="20">, o que pode ser verificado executando a função <code>.libPaths()</code> na linha de comando do <img src="images/logo_r.png" width="20">.</p>
+<p>Abra o <img src="images/logo_r.png" width="20">:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1">$ <span class="ex">R</span></a></code></pre></div>
+<p>e ao digitar:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">.libPaths</span>()</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">&quot;/home/hidrometeorologista/.R/libs&quot;</span> <span class="st">&quot;/usr/local/lib/R/site-library&quot;</span>    </a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">[<span class="dv">3</span>] <span class="st">&quot;/usr/lib/R/site-library&quot;</span>           <span class="st">&quot;/usr/lib/R/library&quot;</span>               </a></code></pre></div>
+<p>o seu diretório <code>/home/usuario/.R/libs</code><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes serão usados.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.<a href="install.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>Diretórios precedidos por “.” no Linux são diretórios ocultos. O diretório <code>/home/usuario/.R</code> é um diretório oculto, para visualizá-lo no Ubuntu, na interface gráfica do sistema, acesse <em>View &gt; Show Hidden Files</em> (ou <em>Visualizar &gt; Mostrar arquivos ocultos</em>). No terminal utilize <code>ls -a</code> para listar os arquivos ocultos.<a href="install.html#fnref9" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pré-requisitos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="install-pck.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
