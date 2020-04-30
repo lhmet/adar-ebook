@@ -214,7 +214,7 @@ Table: (\#tab:tab-nas)Operações com NA.
 
 
 
-### Funções matemáticas
+### Funções matemáticas {#matfuns}
 
 O <img src="images/logo_r.png" width="20"> tem diversas funções internas. A sintaxe para chamar uma função é simplesmente:
 
