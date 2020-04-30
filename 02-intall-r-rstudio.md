@@ -3,6 +3,9 @@
 
 # Pré-requisitos
 
+<!-- 
+/home/hidrometeorologista/Dropbox/ufsm/ensino/1-semestre-2020/ADAR/material-r/r-base-ref/workingwithr.pdf
+-->
 
 <!-- 
 # TOP formato de curso
@@ -56,6 +59,10 @@ Para tirar melhor proveito deste livro, você precisará:
 
 [^githubtip]: Procure escolher um nome curto para o seu usuário e que o 
 identifique melhor.
+
+3. Criar uma conta no https://rstudio.cloud/ [^rstudio-cloud]
+
+[^rstudio-cloud]: O RStudio Cloud será usado para você realizar atividades práticas no RStudio diretamente no seu navegador (sem ter que instalar ou configurar nada). 
 
 ## Instalação do R e RStudio {#install}
 
@@ -527,7 +534,7 @@ install.packages("remotes_2.1.1.tar.gz", repos = NULL)
 ```
 
 
-## Atualização de pacotes 
+### Atualização de pacotes 
 
 Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual. 
 
@@ -606,7 +613,7 @@ check_bioc('EBImage')
 ## [1] NA
 ## 
 ## $latest_version
-## [1] "4.29.2"
+## [1] "4.30.0"
 ## 
 ## $up_to_date
 ## [1] NA
@@ -758,4 +765,55 @@ https://www.hostinger.com.br/tutoriais/o-que-github/
 [Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser `.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`, mas as diferenças em arquivos de texto regular são mais facilmente visíveis (`.txt`, `.csv`, `.md`).
 
 [GitHub](https://github.com/) é um sistema de gerenciamento de projetos e versões de códigos assim como uma plataforma de rede social criado para desenvolvedores. O GitHub é permite que você trabalhe em projetos colaborativos com desenvolvedores de todo o mundo, planeje seus projetos e acompanhe o trabalho. O GitHub é um dos maiores depósitos online de trabalho colaborativo do mundo.
+
+### Instalação do git
+
+Acesse https://git-scm.com/downloads e selecione para baixar a opção do **`git`** adequada para seu SO.
+
+#### Windows
+
+Para instalar o **`git`** proceda a instalação como a de qualquer outro programa, aceitando as opções padrão. Ao terminar, verifique a instalação abrindo o **`gitbash`** (acessível no menu iniciar) e digitando `git --version`.
+
+#### Ubuntu
+
+
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install git
+```
+
+
+Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Ubuntu 16.04.6 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
+
+
+#### Git no RStudio
+
+Nesta seção vamos usar a funcionalidade do git através do RStudio. Um procedimento muito comum em um projeto com controle de versão é clonar um repositório do github (repositório remoto) para o seu computador (repositório local). Neste exemplo será usado o repositório remoto `lhmet/gittutor-adar`. Siga as instruções a seguir para reproduzir este processo.
+
+Abra o RStudio, acesse *`File ▶ New Project ▶ Version Control`* .
+
+- Em *Repository URL* insira `https://github.com/lhmet/gittutor-adar` 
+
+- Em *Create project as subdirectory of:*: navegue até a pasta onde deseja salvar o diretório que conterá o repositório [^pasta-adar]. 
+
+[^pasta-adar]: Sugere-se salvar o projeto numa subpasta nomeado **github** localizado na pasta com o material do curso de ADAR ;)
+
+- Clique em *Create Project* e siga os passos indicados na Figura \@ref(fig:git-proj-rstudio).
+
+
+
+<div class="figure" style="text-align: center">
+<img src="images/anim-setup-git-win.gif" alt="Procedimentos para clonar um repositório do github no seu computador." width="100%" />
+<p class="caption">(\#fig:git-proj-rstudio)Procedimentos para clonar um repositório do github no seu computador.</p>
+</div>
+
+
+Após estes procedimentos você tem o git instalado e já sabe como clonar um repositório do github em um diretório do seu computador. 
+
+
+
+
+
+
 

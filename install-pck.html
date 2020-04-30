@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-27" />
+<meta name="date" content="2020-04-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="install.html"/>
-<link rel="next" href="atualização-de-pacotes.html"/>
+<link rel="next" href="pacotes-necessários-e-dependências.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -129,11 +129,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="atualização-de-pacotes.html"><a href="atualização-de-pacotes.html"><i class="fa fa-check"></i><b>2.3</b> Atualização de pacotes</a></li>
-<li class="chapter" data-level="2.4" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.4</b> Pacotes necessários e dependências</a></li>
-<li class="chapter" data-level="2.5" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.5</b> RStudio no Ubuntu</a></li>
-<li class="chapter" data-level="2.6" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.6</b> Git e Github</a></li>
+<li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
+<li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
+<li class="chapter" data-level="2.5" data-path="git-e-github.html"><a href="git-e-github.html"><i class="fa fa-check"></i><b>2.5</b> Git e Github</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="git-e-github.html"><a href="git-e-github.html#instalação-do-git"><i class="fa fa-check"></i><b>2.5.1</b> Instalação do git</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>III Interação</b></span></li>
 <li class="chapter" data-level="3" data-path="iu.html"><a href="iu.html"><i class="fa fa-check"></i><b>3</b> Interface do Usuário</a><ul>
@@ -408,6 +410,81 @@ As vezes você pode estar com diversos pacotes carregados e eles podem ter funç
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;remotes_2.1.1.tar.gz&quot;</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>)</code></pre></div>
 </div>
 </div>
+<div id="atualização-de-pacotes" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Atualização de pacotes</h3>
+<p>Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção <code>checkbuild = TRUE</code> reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update.packages</span>(<span class="dt">checkBuilt=</span><span class="ot">TRUE</span>, <span class="dt">ask=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o <a href="https://github.com/GuangchuangYu/rvcheck">rvcheck</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvcheck&quot;</span>)</code></pre></div>
+<p>Com o <a href="https://github.com/GuangchuangYu/rvcheck">rvcheck</a> podemos:</p>
+<ul>
+<li>checar a versão mais recente do R</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvcheck)
+<span class="kw">check_r</span>()
+## $installed_version
+## [1] &quot;R-4.0.0&quot;
+## 
+## $latest_version
+## [1] &quot;R-4.0.0&quot;
+## 
+## $latest_url
+## [1] &quot;https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz&quot;
+## 
+## $up_to_date
+## [1] TRUE</code></pre></div>
+<ul>
+<li>checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">check_cran</span>(<span class="st">&#39;dplyr&#39;</span>)
+## package is up-to-date release version
+## $package
+## [1] &quot;dplyr&quot;
+## 
+## $installed_version
+## [1] &quot;0.8.5&quot;
+## 
+## $latest_version
+## [1] &quot;0.8.5&quot;
+## 
+## $up_to_date
+## [1] TRUE
+<span class="kw">check_github</span>(<span class="st">&#39;lhmet/inmetr&#39;</span>)
+## package is up-to-date devel version
+## $package
+## [1] &quot;lhmet/inmetr&quot;
+## 
+## $installed_version
+## [1] &#39;0.3.0.9000&#39;
+## 
+## $latest_version
+## [1] &quot;0.3.0.9000&quot;
+## 
+## $up_to_date
+## [1] TRUE
+<span class="kw">check_bioc</span>(<span class="st">&#39;EBImage&#39;</span>)
+## ## EBImage is not installed...
+## install.packages(&quot;BiocManager&quot;)
+## BiocManager::install(&quot;EBImage&quot;)
+## $package
+## [1] &quot;EBImage&quot;
+## 
+## $installed_version
+## [1] NA
+## 
+## $latest_version
+## [1] &quot;4.30.0&quot;
+## 
+## $up_to_date
+## [1] NA</code></pre></div>
+<p>Por fim, para atualizar todos os pacotes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_all</span>(<span class="dt">check_R =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="rmdtip">
+<p>
+Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.
+</p>
+</div>
+</div>
 </div>
             </section>
 
@@ -415,7 +492,7 @@ As vezes você pode estar com diversos pacotes carregados e eles podem ter funç
         </div>
       </div>
 <a href="install.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="atualização-de-pacotes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pacotes-necessários-e-dependências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

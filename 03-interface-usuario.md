@@ -170,6 +170,10 @@ O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de
 O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do <img src="images/logo_r.png" width="20"> executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
 
 
+
+
+
+
 ```r
 # Primeiro script no R
 #----------------------------------------------------------------
@@ -234,7 +238,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200427.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200430.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 
