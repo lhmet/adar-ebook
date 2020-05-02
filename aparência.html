@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R</title>
+  <title>C.3 Aparência | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="classes-de-dados.html"/>
-<link rel="next" href="conversão-entre-tipos-de-dados.html"/>
+<link rel="prev" href="markdown.html"/>
+<link rel="next" href="referências-para-aprender-mais-sobre-o-r-markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -342,51 +342,30 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x; <span class="kw">typeof</span>(x)
-<span class="co">#&gt; [1] 51</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span>
-vl; <span class="kw">typeof</span>(vl)
-<span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span>
-<span class="co">#&gt; [1] &quot;logical&quot;</span>
-data1; <span class="kw">typeof</span>(data1)
-<span class="co">#&gt; [1] &quot;2012-06-28&quot;</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span>
-x; <span class="kw">is.numeric</span>(x)
-<span class="co">#&gt; [1] 51</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="co">#  num.real?</span>
-<span class="kw">is.double</span>(x<span class="op">/</span><span class="dv">5</span>)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.double</span>(5L)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="kw">is.character</span>(<span class="st">&quot;12.34&quot;</span>)
-<span class="co">#&gt; [1] TRUE</span>
-charf; <span class="kw">is.factor</span>(charf)
-<span class="co">#&gt; [1] Vai chover hoje?</span>
-<span class="co">#&gt; Levels: Vai chover hoje?</span>
-<span class="co">#&gt; [1] TRUE</span>
-i; <span class="kw">is.integer</span>(i)
-<span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.function</span>(sqrt)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.finite</span>(i)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.nan</span>(x)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="kw">is.na</span>(x)
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<div id="aparência" class="section level2">
+<h2><span class="header-section-number">C.3</span> Aparência</h2>
+<p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="op">---</span>
+    title: <span class="st">&quot;Meu novo projeto&quot;</span>
+    author: Nome Sobrenome
+    output:
+         html_document:
+            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]
+            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]
+            number_sections: true
+            toc: true
+            fig_width: <span class="dv">7</span>
+            fig_height: <span class="dv">6</span>
+            fig_caption: true
+    <span class="op">---</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classes-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversão-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências-para-aprender-mais-sobre-o-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -131,24 +131,58 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
  [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
  [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
  [91]  10   9   8   7   6   5   4   3   2   1
-> # tecle <Ctr + l>
 ```
 
 Para parar ou cancelar a execução de uma expressão utilize <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
 ### Comentários {#comentarios}
 
-No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
+No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Com esse símbolo podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
 
 
 ```r
-> # comentário antes do código 
+> # Comentários de novatos
+> # o operador + adiociona o num. da esquerda ao da direita 
 ```
 
 ```r
-> 17 + 3 # comentário ao lado do código
+> 17 + 3 # como somar números
 [1] 20
 ```
+
+> Comentários que não desejo ver você fazendo após este curso:
+
+<!-- 
+https://medium.com/javascript-in-plain-english/part-2-the-most-hilarious-code-comments-ever-9586592e3bec 
+-->
+
+
+```r
+# Não sei por que isso funciona, mas resolve o problema.
+
+# rm(list = ls()) # Se esta linha for descomentada o programa explodirá
+
+# Este código é péssimo, você sabe e eu sei, mas são 3 horas da manhã e preciso que isso funcione.
+
+# Se, futuramente, ler isso, voltarei no tempo e me matarei.
+
+# Isto é magia negra de algum link do stackoverflow. Não brinque com magia, ela pode te arrancar pedaço.
+
+# Este código funcionou antes, mas meu gato decidiu fazer uma viagem pelo meu teclado ...
+
+# Se você está lendo isso, significa que você foi encarregado 
+# do meu projeto anterior. Eu sinto muito por você. Boa Sorte 
+# Vá com Deus.
+
+# Quando eu escrevi isso, somente Deus e eu entendemos o que estava fazendo. Agora, somente Deus sabe.
+
+# Haleluya eu posso ir para casa!
+
+# Traduzido e adaptado de
+# https://medium.com/javascript-in-plain-english/part-2-the-most-hilarious-code-comments-ever-9586592e3bec 
+```
+
+
 
 
 ### Auto preenchimento de funções
@@ -163,7 +197,7 @@ O <img src="images/logo_r.png" width="20"> inclui o preenchimento automático de
 
 <div class="figure" style="text-align: center">
 <img src="images/screenscast-autocomplete-r.gif" alt="Auto preenchimento de código na linha de comandos do R." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Auto preenchimento de código na linha de comandos do R.</p>
+<p class="caption">(\#fig:unnamed-chunk-4)Auto preenchimento de código na linha de comandos do R.</p>
 </div>
 
 ### Primeiro *script* {#primeiro-script}
