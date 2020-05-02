@@ -40,18 +40,31 @@ O RStudio possui 4 painéis principais:
   1. Editor para scripts e visualização de dados
 
      - abrir e criar scripts
+     
      - rodar scripts
+     
      - código com sintaxe realçada
-     - rodar partes do código <kbd>Ctrl</kbd>+<kbd>Enter</kbd>
-     - rodar todo script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>
-     - autopreenchimento das funções <kbd>Tab</kbd>
-     - comentar linhas <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
-     - desfazer <kbd>Ctrl</kbd>+<kbd>Z</kbd>
-     - refazer <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>
-     - referência para teclas de atalho <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>
-     - abrir script com <kbd>Ctrl</kbd>+<kbd>Click</kbd>
-     - encontrar e substituir <kbd>Ctrl</kbd>+<kbd>F</kbd>
-     - comentar texto em R Markdown <kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>c</kbd>
+     
+     - rodar partes do código  <kbd>Ctrl</kbd>+<kbd>Enter</kbd>
+     
+     - rodar todo script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> 
+     
+     - autopreenchimento das funções <kbd>Tab</kbd> 
+     
+     - comentar linhas de um script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>c</kbd>  
+     
+     - desfazer <kbd>Ctrl</kbd>+<kbd>z</kbd>  
+     
+     - refazer <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>z</kbd>  
+     
+     - referência para teclas de atalho <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>k</kbd>  
+     
+     - abrir script cujo nome aparece no código em visualização no painel *Source* <kbd>Ctrl</kbd>+<kbd>click</kbd>
+     
+     - buscar e substituir termos <kbd>Ctrl</kbd>+<kbd>f</kbd>
+     
+     - comentar texto em R Markdown <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>c</kbd>
+     
 
 2. Console do R
 
@@ -77,6 +90,7 @@ A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) f
 <img src="images/print-screen-folha-ref-rstudio.png" alt="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf" width="90%" />
 <p class="caption">(\#fig:rstudio-cheat-sheet)Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf</p>
 </div>
+
 
 
 ## Verificação ortográfica

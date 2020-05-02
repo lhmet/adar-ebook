@@ -1,9 +1,8 @@
 --- 
 title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
-cover-image: TB1.jpg
 author: "Jônatan Tatsch"
-date: "2020-04-30"
+date: "2020-05-02"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -11,6 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: lhmet/adar-ebook
+cover-image: "images/TB1.jpg"
 description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM."
 ---
 
@@ -19,9 +19,15 @@ description: "Livro baseado nas notas de aula da disciplina FSC1104 do curso de 
 
 
 
-<img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
+<img src="images/TB1.jpg" width="549px" class="cover" style="display: block; margin: auto;" />
 
 <p style="font-size: 11px; font-style: italic; background: whitesmoke; text-align="right"; color: gray; line-height: 12px;width: 650px;">Ilustração: The Project Twins</p> 
+
+<!---
+<img src="images/TB1.jpg" width="90%" style="display: block; margin: auto;" />
+--->
+
+
 
 <!-- <img src="images/TB1.jpg" style="position:absolute;top:200px;height:300px;align:center;" /> -->
 

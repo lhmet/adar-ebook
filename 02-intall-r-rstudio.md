@@ -51,18 +51,18 @@ Para tirar melhor proveito deste livro, você precisará:
 
     - RStudio: https://rstudio.com/download 
 
-    - Git: https://git-scm.com/downloads [^pos-inst-git] 
+    - Git: https://git-scm.com/downloads [^git-aviso] 
 
-[^pos-inst-git]: ao baixar e seguir o processo normal de instalação no seu computador, você não verá nenhum software instalado quando você tiver terminado.
+[^git-aviso]: ao baixar e seguir o processo normal de instalação no seu computador, você não verá nenhum software instalado quando você tiver terminado.  
 
-2. Criar uma conta GitHub: https://github.com [^githubtip].
+2. Criar uma conta GitHub: https://github.com [^github-dica].
 
-[^githubtip]: Procure escolher um nome curto para o seu usuário e que o 
-identifique melhor.
+[^github-dica]: Procure escolher um nome curto para o seu usuário e que o identifique melhor.  
 
-3. Criar uma conta no https://rstudio.cloud/ [^rstudio-cloud]
+3. Criar uma conta no https://rstudio.cloud [^rstcloud-pq].
 
-[^rstudio-cloud]: O RStudio Cloud será usado para você realizar atividades práticas no RStudio diretamente no seu navegador (sem ter que instalar ou configurar nada). 
+[^rstcloud-pq]: O RStudio Cloud será usado para você realizar atividades práticas no RStudio diretamente no seu navegador (sem ter que instalar ou configurar nada).  
+
 
 ## Instalação do R e RStudio {#install}
 
@@ -171,14 +171,14 @@ repositório *default* do Ubuntu.
 $ sudo apt-get install r-base
 ```
 
-Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente[^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes 
+Entretanto, como o R é um projeto de evolução rápida, a versão estável mais recente [^rversion-recente] não está disponível nos repositórios do Ubuntu. Dessa forma, não conseguimos usufruir dos pacotes mais recentes 
 (ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma 
 que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
 
 [^rversion-recente]: A versão mais atual no período de elaboração deste texto 
 foi a R 4.0.0.
 
-1. Incluímos o endereço do repositório externo mantido pelo CRAN[^cran-mirror]
+1. Incluímos o endereço do repositório externo mantido pelo CRAN [^cran-mirror]
 à lista de repositórios do sistema [^aviso-sudo].
 
 
@@ -194,12 +194,14 @@ $ sudo touch /etc/apt/sources.list.d/cran.list
 $ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
 ```
 
-2. Adicionamos a chave de autenticação[^chave-pub] do repositório.
 
-[^chave-pub]: Chave pública de autenticação é um meio alternativo de se logar
+
+2. Adicionamos a chave de autenticação [^chavePub] do repositório.
+
+
+[^chavePub]: Chave pública de autenticação é um meio alternativo de se logar
 em um servidor ao invés de digitar uma senha. É uma forma mais segura e 
-flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer 
-login é importante se o computador está visível na internet. Para saber mais 
+flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais 
 veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
 
@@ -220,7 +222,6 @@ sudo apt-get update
 ```bash
 $ sudo apt-get install -y r-base r-base-dev 
 ```
-
 
 
 <!-- 
@@ -388,7 +389,7 @@ Após este teste, podemos sair do <img src="images/logo_r.png" width="20">, sem 
 
 #### Diretório para pacotes instalados pelo usuário
 
-Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema[^update-rbase] ou usando `sudo apt-get update && sudo apt-get upgrade`.
+Os pacotes que vem com os pacotes *r-base* e *r-recommended* são instalados no diretório `/usr/lib/R/library`. Estes pacotes são atualizados pelo sistema [^update-rbase] ou usando `sudo apt-get update && sudo apt-get upgrade`.
 
 [^update-rbase]: Por ser atualizado automaticamente pelo sistema, às vezes o usuário nem percebe que a versão do R mudou.
 
@@ -717,7 +718,7 @@ $ arch
 ```
 x86_64
 ```
-Se retornar **x86_64** sua máquina é 64-bit[^32bit].
+Se retornar **x86_64** sua máquina é 64-bit [^32bit].
 
 [^32bit]: Se seu sistema for 32 bit, você pode usar [versões antigas do rstudio](https://rstudio.com/products/rstudio/older-versions/) 
 
@@ -762,7 +763,9 @@ http://ohi-science.org/data-science-training/github.html
 https://www.hostinger.com.br/tutoriais/o-que-github/
 -->
 
-[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser `.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`, mas as diferenças em arquivos de texto regular são mais facilmente visíveis (`.txt`, `.csv`, `.md`).
+[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser de qualquer tipo (`.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`), mas a visualização das diferenças em arquivos texto é mais fácil (`.txt`, `.csv`, `.md`). Na prática, você verá o Git como um conjunto de comando que você executa na shell [^whatishell]. 
+
+[^whatishell]: Shell é um programa que roda outros programas, sendo popularmente chamado de \"linha de comando"\, \"console\" ou \"terminal\".
 
 [GitHub](https://github.com/) é um sistema de gerenciamento de projetos e versões de códigos assim como uma plataforma de rede social criado para desenvolvedores. O GitHub é permite que você trabalhe em projetos colaborativos com desenvolvedores de todo o mundo, planeje seus projetos e acompanhe o trabalho. O GitHub é um dos maiores depósitos online de trabalho colaborativo do mundo.
 
@@ -776,7 +779,7 @@ Para instalar o **`git`** proceda a instalação como a de qualquer outro progra
 
 #### Ubuntu
 
-
+A instalação do git no Ubuntu 
 
 ```bash
 $ sudo apt-get update

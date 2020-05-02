@@ -117,7 +117,8 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 Você pode usar as teclas ↑ e ↓ para navegar entre as expressões já avaliadas pelo <img src="images/logo_r.png" width="20">. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.
 
-Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
+Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle  <kbd>Ctrl</kbd>+<kbd>l</kbd>. Assim o console aparece na parte superior do terminal.
+
 
 
 ```r
@@ -130,12 +131,12 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
  [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
  [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
  [91]  10   9   8   7   6   5   4   3   2   1
-> #tecle <Ctr + l>
+> # tecle <Ctr + l>
 ```
 
-Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + C`. As teclas `Ctrl + l` tem o efeito de limpar a tela.
+Para parar ou cancelar a execução de uma expressão utilize <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
-### Comentários
+### Comentários {#comentarios}
 
 No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo <img src="images/logo_r.png" width="20">. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo <img src="images/logo_r.png" width="20">.
 
@@ -145,7 +146,7 @@ No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um car
 ```
 
 ```r
-> 17 + 3 # comentário ao lado do código: adicionando 17 e 3
+> 17 + 3 # comentário ao lado do código
 [1] 20
 ```
 
@@ -171,22 +172,19 @@ O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do
 
 
 
-
-
-
 ```r
 # Primeiro script no R
 #----------------------------------------------------------------
 # cálculos básicos
 15 + 4
 1:100
-1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
-4-3
+1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+4 - 3
 #----------------------------------------------------------------
 # salvando um gráfico em um arquivo pdf
 arquivo_pdf <- "plot-script1.pdf"
 pdf(arquivo_pdf)        # cria e abre um arquivo pdf
-plot(1:100)             # faz o gráfico
+plot(1:100)             # gera o gráfico
 dev.off()               # fecha o arquivo pdf
 #----------------------------------------------------------------
 # definindo uma variável x
@@ -238,7 +236,7 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200430.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200502.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
 

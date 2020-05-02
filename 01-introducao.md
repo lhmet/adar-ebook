@@ -99,7 +99,7 @@ asd
 <img src="images/errando_aprende.png" height="50px" width="550px" />
 </div>
 
-## <img src="images/logo_r.png" width="20"> 
+## R
 
 <!-- 
 https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html 
