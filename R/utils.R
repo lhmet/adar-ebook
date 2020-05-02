@@ -1,4 +1,24 @@
 
+
+#' Format hotkey string
+#'
+#' @param ... character
+#'
+#' @return a scalar character with <kbd>item_1</kbd>+...+<kbd>item_n</kbd>
+#' @export
+#'
+#' @examples
+format_hotkey <- function(...) {
+  # <kbd>Ctrl</kbd>+<kbd>l</kbd>
+  sep_keys <- lapply(
+    list(...),
+    function(x) paste0("<kbd>", x, "</kbd>")
+  )
+  paste(unlist(sep_keys), collapse = "+")
+}
+
+
+
 #' Get R version for Windows from CRAN
 #'
 #' @return R version string for Windows ("R-x.x.x")

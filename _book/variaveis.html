@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.5 Git e Github | Análise de Dados Ambientais com R</title>
+  <title>5.3 Variáveis | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.5 Git e Github | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="5.3 Variáveis | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.5 Git e Github | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="5.3 Variáveis | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="install-rstudio.html"/>
-<link rel="next" href="iu.html"/>
+<link rel="prev" href="calculadora.html"/>
+<link rel="next" href="boas-práticas-para-códigos-de-boa-qualidade.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -368,59 +368,140 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="git-e-github" class="section level2">
-<h2><span class="header-section-number">2.5</span> Git e Github</h2>
-<!-- 
-http://ohi-science.org/data-science-training/github.html 
-https://www.hostinger.com.br/tutoriais/o-que-github/
--->
-<p><a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o">Git</a> é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser de qualquer tipo (<code>.R</code>, <code>.Rmd</code>, <code>.doc</code>, <code>.pdf</code>, <code>.xls</code>), mas a visualização das diferenças em arquivos texto é mais fácil (<code>.txt</code>, <code>.csv</code>, <code>.md</code>). Na prática, você verá o Git como um conjunto de comando que você executa na shell.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
-<p><a href="https://github.com/">GitHub</a> é um sistema de gerenciamento de projetos e versões de códigos assim como uma plataforma de rede social criado para desenvolvedores. O GitHub é permite que você trabalhe em projetos colaborativos com desenvolvedores de todo o mundo, planeje seus projetos e acompanhe o trabalho. O GitHub é um dos maiores depósitos online de trabalho colaborativo do mundo.</p>
-<div id="instalação-do-git" class="section level3">
-<h3><span class="header-section-number">2.5.1</span> Instalação do git</h3>
-<p>Acesse <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a> e selecione para baixar a opção do <strong><code>git</code></strong> adequada para seu SO.</p>
-<div id="windows-1" class="section level4">
-<h4><span class="header-section-number">2.5.1.1</span> Windows</h4>
-<p>Para instalar o <strong><code>git</code></strong> proceda a instalação como a de qualquer outro programa, aceitando as opções padrão. Ao terminar, verifique a instalação abrindo o <strong><code>gitbash</code></strong> (acessível no menu iniciar) e digitando <code>git --version</code>.</p>
-</div>
-<div id="ubuntu-1" class="section level4">
-<h4><span class="header-section-number">2.5.1.2</span> Ubuntu</h4>
-<p>A instalação do git no Ubuntu</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb33-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get update</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">$ <span class="fu">sudo</span> apt-get install git</a></code></pre></div>
-<p>Ao terminar, verifique a instalação digitando num terminal o comando <code>git --version</code>. A versão disponível nos repositórios do Ubuntu 18.04.4 quando este livro foi escrito era a <code>gsub(&quot;git version &quot;, &quot;&quot;, system(&quot;git --version&quot;, intern = TRUE))</code>.</p>
-</div>
-<div id="git-no-rstudio" class="section level4">
-<h4><span class="header-section-number">2.5.1.3</span> Git no RStudio</h4>
-<p>Nesta seção vamos usar a funcionalidade do git através do RStudio. Um procedimento muito comum em um projeto com controle de versão é clonar um repositório do github (repositório remoto) para o seu computador (repositório local). Neste exemplo será usado o repositório remoto <code>lhmet/gittutor-adar</code>. Siga as instruções a seguir para reproduzir este processo.</p>
-<p>Abra o RStudio, acesse <em><code>File ▶ New Project ▶ Version Control</code></em> .</p>
-<ul>
-<li><p>Em <em>Repository URL</em> insira <code>https://github.com/lhmet/gittutor-adar</code></p></li>
-<li><p>Em <em>Create project as subdirectory of:</em>: navegue até a pasta onde deseja salvar o diretório que conterá o repositório.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p></li>
-</ul>
-<ul>
-<li>Clique em <em>Create Project</em> e siga os passos indicados na Figura <a href="git-e-github.html#fig:git-proj-rstudio">2.4</a>.</li>
-</ul>
-<div class="figure" style="text-align: center"><span id="fig:git-proj-rstudio"></span>
-<img src="images/anim-setup-git-win.gif" alt="Procedimentos para clonar um repositório do github no seu computador." width="100%" />
-<p class="caption">
-Figura 2.4: Procedimentos para clonar um repositório do github no seu computador.
+<div id="variaveis" class="section level2">
+<h2><span class="header-section-number">5.3</span> Variáveis</h2>
+<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo &quot;expressão&quot; significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador <code>&lt;-</code>, esta combinação é chamada de operador <strong>atribuição</strong>. O resultado da &quot;atribuição&quot; é armazenado em uma <strong>variável</strong><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. Então a expressão geral para definir uma variável é:</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>variavel &lt;- valor</code>
 </p>
-</div>
-<p>Após estes procedimentos você tem o git instalado e já sabe como clonar um repositório do github em um diretório do seu computador.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="co"># para mostrar a variável digite o nome da variável</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">m</a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="co">#&gt; [1] 100</span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="co"># ou use a função print()</span></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="kw">print</span>(m)</a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="co">#&gt; [1] 100</span></a></code></pre></div>
+<p>O R diferencia letras maiúsculas de minúsculas.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">m</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="co">#&gt; [1] 100</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">M</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;M&#39; not found</span></a></code></pre></div>
+<p>Como criamos apenas a variável <code>m</code>, <code>M</code> não foi encontrada.</p>
+<p>A variável <code>m</code> pode ser utilizado para criar outras variáveis.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">p &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span><span class="fl">9.8</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="co"># pressão em Pascal</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">p</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
+<!--
+A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
 
-</div>
-</div>
-</div>
-<!-- </div> -->
+
+```r
+7/3 + 0.6 -> y1
+ y1
+7/(3 + 0.6) -> y2
+ y2
+```
+-->
+<p>Os espaços em torno do operador de atribuição (<code>&lt;-</code>) não são obrigatórios mas eles ajudam na legibilidade do código. Veja as diferentes interpretações que as expressões abaixo podem ter, dependendo de como os espaços são posicionados.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="fl">9.8</span>  <span class="co"># g é igual a 9.8</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">g <span class="op">&lt;</span><span class="st"> </span><span class="fl">-9.8</span>  <span class="co"># g é menor que -9.8 ?</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">g&lt;-<span class="fl">9.8</span>    <span class="co"># g é igual a 9.8 ou é menor que -9.8 ?</span></a></code></pre></div>
+<!--
+Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
 
 
+```r
+nd3 <- 31
+nd4 <- 30
+```
 
+O total de dias nos meses de março e abril será armazenado na variável `totdias`:
+
+
+```r
+totd <- nd3 + nd4
+totd
+```
+
+A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
+
+
+```r
+# número de dias em cada mês
+jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
+abr <- jun <- set <- nov <- 30
+fev <- 28
+# verificação
+jan
+jul
+jun
+set
+fev
+```
+-->
+<p>Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="dv">10</span> <span class="co"># não imprime nada</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">g <span class="co"># digitando o nome da variável também mostra o valor de g</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">(g &lt;-<span class="st"> </span><span class="dv">10</span>) <span class="co"># a mesma chamada com parênteses define e mostra o valor de g</span></a></code></pre></div>
+<p>Se desejamos calcular e já visualizar o valor da variável peso (<code>p</code>) definida abaixo, podemos fazer:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">(p &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>g)</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">#&gt; [1] 1000</span></a></code></pre></div>
+<p>Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função <code>ls()</code><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> para verificar as variáveis existentes:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">#&gt; [4] &quot;m&quot;                  &quot;p&quot;                  &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<!--
+
+```r
+totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
+totd
+```
+
+#### Atribuição com a função `assign()`
+
+
+Outra forma de atribuição é através da função `assign()`:
+
+
+```r
+es <- 3
+assign(x = "es_hpa", value = es/10)
+es_hpa
+# usando função assign sem nome dos parâmetros
+assign("u", 2.5)
+u
+```
+
+Um exemplo mais elaborado de uso da função `assign()` para criar várias variáveis pode ser visto [aqui](https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd).
+
+
+<div class="rmdwarning">
+<p>Este método de atribuição é menos comum, por deixar o código menos legível que o método <code>variavel &lt;- valor</code>. Mas em alguns casos de programação avançada envolvendo ambientes (especificado como 3° argumento da <code>assign()</code>) ele pode ser útil.</p>
+</div>
+-->
+<div id="removendo-variáveis" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Removendo variáveis</h3>
+<p>Para remover variáveis usa-se a função <code>rm()</code>. Vamos remover a variável <code>m</code> criada previamente e ver a lista de objetos no espaço de trabalho.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">rm</span>(m)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co">#&gt; [4] &quot;p&quot;                  &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<p>Podemos remover mais de uma variável ao mesmo tempo.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">rm</span>(g, p)</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<p>Para remover todas variáveis do espaço de trabalho (use com cautela):</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># apagando tudo</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="kw">ls</span>()</a></code></pre></div>
+</div>
+</div>
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>Shell é um programa que roda outros programas, sendo popularmente chamado de &quot;linha de comando&quot;, &quot;console&quot; ou &quot;terminal&quot;.<a href="git-e-github.html#fnref12" class="footnote-back">↩</a></p></li>
-<li id="fn13"><p>Sugere-se salvar o projeto numa subpasta nomeado <strong>github</strong> localizado na pasta com o material do curso de ADAR ;)<a href="git-e-github.html#fnref13" class="footnote-back">↩</a></p></li>
+<ol start="17">
+<li id="fn17"><p>Uma variável é um nome que podemos usar para nos referirmos a um local específico na memória do computador, onde nós armazenamos dados enquanto nosso programa está rodando.<a href="variaveis.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p>A saída da <code>ls()</code> é a lista de variáveis ou objetos criadas na sessão do R atual. Ela também é mostrada no painel <em>Environment</em> do RStudio.<a href="variaveis.html#fnref18" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -428,8 +509,8 @@ Figura 2.4: Procedimentos para clonar um repositório do github no seu computado
           </div>
         </div>
       </div>
-<a href="install-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="iu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="calculadora.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="boas-práticas-para-códigos-de-boa-qualidade.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,6 +1,6 @@
 # -------------------------------------------------
 # Testar se um objeto é da classe Date
-is.date <- function(x){
+is.date <- function(x) {
   return(class(x) == "Date")
 }
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5  | Análise de Dados Ambientais com R</title>
+  <title>5.4 Boas práticas para códigos de boa qualidade | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5  | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="5.4 Boas práticas para códigos de boa qualidade | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5  | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="5.4 Boas práticas para códigos de boa qualidade | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-04-30" />
+<meta name="date" content="2020-05-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="programação-computacional.html"/>
-<link rel="next" href="por-que-o-r.html"/>
+<link rel="prev" href="variaveis.html"/>
+<link rel="next" href="exercícios.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -141,7 +141,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.2" data-path="ciência-de-dados.html"><a href="ciência-de-dados.html"><i class="fa fa-check"></i><b>1.2</b> Ciência de dados</a></li>
 <li class="chapter" data-level="1.3" data-path="etapas-para-abordagem-de-um-problema.html"><a href="etapas-para-abordagem-de-um-problema.html"><i class="fa fa-check"></i><b>1.3</b> Etapas para abordagem de um problema</a></li>
 <li class="chapter" data-level="1.4" data-path="programação-computacional.html"><a href="programação-computacional.html"><i class="fa fa-check"></i><b>1.4</b> Programação computacional</a></li>
-<li class="chapter" data-level="1.5" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>1.5</b> <img src="images/logo_r.png" width="20"></a></li>
+<li class="chapter" data-level="1.5" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>1.5</b> R</a></li>
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
@@ -167,7 +167,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html"><i class="fa fa-check"></i><b>3.1</b> <img src="images/logo_r.png" width="20"> no modo interativo</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#expressInSeq"><i class="fa fa-check"></i><b>3.1.1</b> Expressões em sequência</a></li>
 <li class="chapter" data-level="3.1.2" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#navegação-entre-as-expressões-já-avaliadas"><i class="fa fa-check"></i><b>3.1.2</b> Navegação entre as expressões já avaliadas</a></li>
-<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentários"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
+<li class="chapter" data-level="3.1.3" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#comentarios"><i class="fa fa-check"></i><b>3.1.3</b> Comentários</a></li>
 <li class="chapter" data-level="3.1.4" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="no-modo-interativo.html"><a href="no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
@@ -183,13 +183,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#cálculos-problemáticos"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.3</b> Funções matemáticas</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="variáveis.html"><a href="variáveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="variáveis.html"><a href="variáveis.html#removendo-variáveis"><i class="fa fa-check"></i><b>5.3.1</b> Removendo variáveis</a></li>
-<li class="chapter" data-level="5.3.2" data-path="variáveis.html"><a href="variáveis.html#nomeando-variáveis"><i class="fa fa-check"></i><b>5.3.2</b> Nomeando variáveis</a></li>
+<li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="variaveis.html"><a href="variaveis.html#removendo-variáveis"><i class="fa fa-check"></i><b>5.3.1</b> Removendo variáveis</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
+<li class="chapter" data-level="5.4" data-path="boas-práticas-para-códigos-de-boa-qualidade.html"><a href="boas-práticas-para-códigos-de-boa-qualidade.html"><i class="fa fa-check"></i><b>5.4</b> Boas práticas para códigos de boa qualidade</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="boas-práticas-para-códigos-de-boa-qualidade.html"><a href="boas-práticas-para-códigos-de-boa-qualidade.html#nomes-de-variáveis"><i class="fa fa-check"></i><b>5.4.1</b> Nomes de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.5</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="classes-de-dados.html"><a href="classes-de-dados.html"><i class="fa fa-check"></i><b>6.1</b> Classes de dados</a><ul>
@@ -365,31 +368,107 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section" class="section level2">
-<h2><span class="header-section-number">1.5</span> <img src="images/logo_r.png" width="20"></h2>
+<div id="boas-práticas-para-códigos-de-boa-qualidade" class="section level2">
+<h2><span class="header-section-number">5.4</span> Boas práticas para códigos de boa qualidade</h2>
 <!-- 
-https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html 
+# consultar para acrescentar o que for útil/complementar
+https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
+
+https://style.tidyverse.org/syntax.html#object-names
+
+https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140
 
 -->
+<blockquote>
+<p>O bom código não é aquele só tem alta performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.</p>
+<p>— <a href="https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140">Silvio Henrique Ferreira</a></p>
+</blockquote>
+<p>A medida que você for evoluindo em programação você perceberá que a organização de seus códigos é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Para deixar seu código legível uma boa referência é o <a href="https://style.tidyverse.org/">Guia de estilo de codificação <strong><code>tidyverse</code></strong></a>, bastante utilizado pela comunidade de usuários <img src="images/logo_r.png" width="20">.</p>
+<p>A aplicação de todas as regras de formatação de código do <strong><code>tidyverse</code></strong> podem ser difíceis de ser lembradas. Mas este problema pode ser amenizado com o pacote <a href="http://styler.r-lib.org/">styler</a> que fornece funções para estilizar o seu código no padrão <strong><code>tidyverse</code></strong>. Para utilizá-lo, instale o pacote <strong><code>styler</code></strong>.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;styler&quot;</span>)</a></code></pre></div>
+<p>As funções são acessíveis Através do menu <em><code>Addins</code></em> do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código (Figura <a href="boas-práticas-para-códigos-de-boa-qualidade.html#fig:styler-addin">5.1</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:styler-addin"></span>
+<img src="images/styler_0.1.gif" alt="Exemplo de aplicação do Estilo de codificação tidyverse."  />
+<p class="caption">
+Figura 5.1: Exemplo de aplicação do Estilo de codificação tidyverse.
+</p>
+</div>
+<div id="nomes-de-variáveis" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Nomes de variáveis</h3>
+<p>Nós já sabemos como inserir comentários (<a href="no-modo-interativo.html#comentarios">3.1.3</a>), o que é um script (<a href="no-modo-interativo.html#primeiro-script">3.1.5</a>) e na seção anterior (<a href="variaveis.html#variaveis">5.3</a>), vimos como criar variáveis. Este último procedimento, implica em definir um nome para variável. Isso parece trivial, mas como disse Phil Karlton:</p>
+<blockquote>
+<p>“Há somente duas coisas difíceis em Ciência da Computação: invalidação de cache e escolher nomes para as coisas.”</p>
+<p>— Phil Karlton</p>
+</blockquote>
+<p>Dar nomes claros e objetivos para funções, argumentos e variáveis é difícil. A falta de clareza as vezes é compensada por excesso de comentários no código. Porém, hoje em dia, a prática de comentar o máximo possível está obsoleta e danosa.</p>
+<blockquote>
+<p>O bom código é sua própria melhor documentação. Quando você for a adicionar um comentário, se pergunte, “Como eu posso melhorar o código para que o este comentário não seja necessário?” Melhore o código e então o documente para torná-lo ainda mais claro.</p>
+<p>— Steve McConnell</p>
+</blockquote>
+<p>De forma geral podemos listar os seguintes cuidados ao nomear variáveis no <img src="images/logo_r.png" width="20">:</p>
 <ul>
-<li><p><a href="https://www.r-project.org/">R</a> é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.</p></li>
-<li><p>Comunidade fantástica</p>
-<ul>
-<li><p><a href="https://www.r-project.org/contributors.html">Contribuidores</a> (<span class="citation">R Core Team (<a href="referências.html#ref-R-base">2020</a>)</span>)</p></li>
-<li><p>milhares de pessoas usam o R diariamente e ajudam outras pessoas</p></li>
-</ul></li>
-<li><strong>Software Livre</strong> (GPL), <a href="https://github.com/wch/r-source">Código aberto</a> e multiplataforma
-<br/></li>
-<li><p>Ambiente para Análise de dados interativa</p></li>
+<li><p>usar nomes claros, objetivos e coerentes</p></li>
+<li><p>não iniciar com um número e não conter espaços</p></li>
+<li><p>não usar acentos e caracteres especiais</p>
+<pre><code>  ^, !, $, @, +, -, /, ou *</code></pre></li>
+<li><p>usar somente letras minúsculas, números (após a primeira letra do nome) e <code>_</code>. Use o <em>underscore</em> para separar palavras dentro de um nome (<a href="https://pt.qwe.wiki/wiki/Snake_case">caso cobra</a>).</p></li>
+<li><p>evitar o uso de nomes reservados do <img src="images/logo_r.png" width="20"> (funções internas, constantes e etc):</p>
+<pre><code>  c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
+
+  FALSE  Inf  NA  NaN  NULL TRUE 
+
+  break  else  for  function  if  in  next  repeat  while</code></pre></li>
+<li><p>use <code>&lt;-</code> para atribuição (colocar um espaço antes e depois) e deixe o <code>=</code> para argumentos de funções.</p></li>
+<li><p>não coloque <code>;</code> no final de uma linha e evite vários comandos na mesma linha.</p></li>
 </ul>
+<!---
+; do operador igual ` = ` na chamada de função com argumentos.
+
+- usar identação de código
+
+   - Código sem identação:
+
+
+```r
+mydf <- cbind.data.frame(do.call(rbind, lapply(strsplit(myfile[!seq(length(myfile))%%2], 
+    ", "), function(x) gsub(".*\\=", "", x))), lca = gsub(".*\\:\\s+", "", myfile[seq(length(myfile))%%2]))
+```
+
+   - Código com identação:
+
+
+```r
+mydf <-
+  cbind.data.frame(
+    do.call(
+      rbind,
+      lapply(
+        strsplit(
+          x = myfile[!seq(length(myfile)) %% 2],
+          split = ", "
+        ),
+        function(x) {
+          gsub(".*\\=", "", x)
+        }
+      )
+    ),
+    lca = gsub(
+      pattern = ".*\\:\\s+",
+      replacement = "",
+      x = myfile[seq(length(myfile)) %% 2]
+    )
+  )
+```
+-->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="programação-computacional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="por-que-o-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="variaveis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

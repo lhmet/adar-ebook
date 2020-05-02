@@ -59,11 +59,6 @@ Para tirar melhor proveito deste livro, você precisará:
 
 [^rstcloud-pq]: O RStudio Cloud será usado para você realizar atividades práticas no RStudio diretamente no seu navegador (sem ter que instalar ou configurar nada).  
 
-<!--
-asd [^teste]
-
-[^teste]: asd
--->
 
 ## Instalação do R e RStudio {#install}
 
@@ -195,6 +190,8 @@ $ sudo touch /etc/apt/sources.list.d/cran.list
 $ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
 ```
 
+
+
 2. Adicionamos a chave de autenticação [^chavePub] do repositório.
 
 
@@ -221,7 +218,6 @@ sudo apt-get update
 ```bash
 $ sudo apt-get install -y r-base r-base-dev 
 ```
-
 
 
 <!-- 
@@ -761,7 +757,9 @@ http://ohi-science.org/data-science-training/github.html
 https://www.hostinger.com.br/tutoriais/o-que-github/
 -->
 
-[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser `.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`, mas as diferenças em arquivos de texto regular são mais facilmente visíveis (`.txt`, `.csv`, `.md`).
+[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o) é um sistema de controle de versão que permite você rastrear as mudanças feitas em arquivos. Estes arquivos podem ser de qualquer tipo (`.R`, `.Rmd`, `.doc`, `.pdf`, `.xls`), mas a visualização das diferenças em arquivos texto é mais fácil (`.txt`, `.csv`, `.md`). Na prática, você verá o Git como um conjunto de comando que você executa na shell [^whatishell]. 
+
+[^whatishell]: Shell é um programa que roda outros programas, sendo popularmente chamado de \"linha de comando"\, \"console\" ou \"terminal\".
 
 [GitHub](https://github.com/) é um sistema de gerenciamento de projetos e versões de códigos assim como uma plataforma de rede social criado para desenvolvedores. O GitHub é permite que você trabalhe em projetos colaborativos com desenvolvedores de todo o mundo, planeje seus projetos e acompanhe o trabalho. O GitHub é um dos maiores depósitos online de trabalho colaborativo do mundo.
 

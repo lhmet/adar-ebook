@@ -36,7 +36,12 @@ Nesta seção veremos:
 
 
 
+
 ## Convenção
+
+<!-- 
+tenho que trocar isso de lugar 
+-->
 
 A partir deste capítulo, os códigos a serem avaliadas no <img src="images/logo_r.png" width="20"> terão o *prompt* do <img src="images/logo_r.png" width="20"> (`>`) omitidos. Essa convenção é para tornar mais fácil a ação de copiar e colar os códigos na linha de comando do <img src="images/logo_r.png" width="20">. O resultado da avaliação das expressões será mostrado precedido do símbolo (`#>`). Esses valores são os resultados que esperam-se sejam reproduzidos pelo leitor na sessão do <img src="images/logo_r.png" width="20"> em seu computador. Por exemplo:
 
@@ -59,7 +64,7 @@ Todas operações feitas em uma calculadora podem ser realizadas no painel com c
 
 
 ```r
-10 + 8^2/4 - pi
+10 + 8^2 / 4 - pi
 #> [1] 22.85841
 ```
 
@@ -67,7 +72,7 @@ Além de números e operadores artiméticos a expressão acima inclui a constant
 
 
 <div class="rmdwarning">
-<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção <span class="citation">@ref</span>(matfuns) .</p>
+<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção @ref(matfuns) .</p>
 </div>
 
 As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem de precedência que aprendemos em matemática na escola: 
@@ -80,17 +85,17 @@ As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem 
 
 - divisão: `/`
 
-Então use os parênteses para forçar a ordem das operações acima de acordo com sua intenção:
+Então os parênteses podem ser usados para forçar a ordem das operações acima conforme nossa intenção:
 
 
 ```r
-10 + ((8^2)/4) - pi  # parênteses opcionais se você lembrar a regra
+10 + ((8^2) / 4) - pi # parênteses opcionais se você lembrar a regra
 #> [1] 22.85841
-(10 + 8^2)/4 - pi
+(10 + 8^2) / 4 - pi
 #> [1] 15.35841
-10 + 8^2/(4 - pi)
+10 + 8^2 / (4 - pi)
 #> [1] 84.55668
-10 + 8^(2/4) - pi
+10 + 8^(2 / 4) - pi
 #> [1] 9.686834
 ```
 
@@ -162,7 +167,7 @@ getOption("digits")
 
 ### Cálculos problemáticos
 
-Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) você se deparará com os valores numéricos especiais:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido). 
+Quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) surgirão alguns valores numéricos especiais na sua frente, como:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido).
 
 
 Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
@@ -180,7 +185,7 @@ Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\in
             Inf-Inf                  NaN    
  mean(c(NA, NA), na.rm = TRUE)       NaN    
 
-A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
+A demonstração das diferentes formas de se obter essas constantes especiais é importante para, por exemplo, entender a origem delas ao rodar um script longo.
 
 Por outro lado, há operações válidas com estes valores especiais.
 
@@ -190,15 +195,26 @@ exp(-Inf)
 #> [1] 0
 (0:1)^Inf
 #> [1] 0 1
-0/Inf
+0 / Inf
 #> [1] 0
-(c(-1, 1)*Inf)^0
+(c(-1, 1) * Inf)^0
 #> [1] 1 1
 0^0
 #> [1] 1
 ```
 
-Outra constante especial do <img src="images/logo_r.png" width="20"> é o `NA` (*Not Available*) que representa **valor faltante**, um problema inerente a maioria dos conjuntos de dados ambientais. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+### Dados faltantes
+
+<!-- 
+https://medium.com/coinmonks/dealing-with-missing-data-using-r-3ae428da2d17 
+https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4
+-->
+Antes do que você imagina, na sua jornada pelo mundo real dos dados ambientais, você irá se deparar com os \"NAs\". `NA` é a abreviação do termo em inglês  *Not Available*, uma constante especial do <img src="images/logo_r.png" width="20"> que representa **dado faltante**. Geralmente dados faltantes são representados por um código [^codNA] como \"-999.99\" ou qualquer outro valor fora do intervalo de variação possível da variável. 
+
+A coisa mais importante a saber sobre `NA` é que qualquer operação envolvendo `NA` resultará em `NA` (Tabela \@ref(tab:tab-nas)). 
+
+[^codNA]: Valores não numéricos também podem ser encontrados por aí, como por exemplo \"---\", \"na\", \"N/A\", \"None\", \" \".
+
 
 
 Table: (\#tab:tab-nas)Operações com NA.
@@ -209,7 +225,6 @@ Table: (\#tab:tab-nas)Operações com NA.
  sqrt(NA)       NA     
    NA^2         NA     
   NA/NaN        NA     
-
 
 
 
@@ -225,7 +240,7 @@ Por exemplo:
 
 ```r
 # cosseno de 60°
-cos(60*pi/180)
+cos(60 * pi / 180)
 #> [1] 0.5
 # raiz quadrada de 100
 sqrt(100)
@@ -234,7 +249,7 @@ sqrt(100)
 exp(1)
 #> [1] 2.718282
 # fatorial de 4 (4*3*2*1)
-factorial(4) 
+factorial(4)
 #> [1] 24
 ```
 
@@ -253,7 +268,7 @@ Para obter o logaritmo de 10 na base 10, o segundo argumento da função `log()`
 ```r
 log(10, base = 10) # logaritmo de 10 na base 10
 #> [1] 1
-log10(10)          # forma equivalente
+log10(10) # forma equivalente
 #> [1] 1
 ```
 
@@ -270,14 +285,11 @@ Digitando `?` antes do nome de uma função ou operador abrirá a página de aju
 ```
 
 
+## Variáveis {#variaveis}
 
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. O resultado da \"atribuição\" é armazenado em uma **variável**[^var-def] e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. Então a expressão geral para definir uma variável é:
 
-
-
-
-## Variáveis
-
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. O resultado da \"atribuição\" é armazenado em uma variável e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. 
+[^var-def]: Uma variável é um nome que podemos usar para nos referirmos a um local específico na memória do computador, onde nós armazenamos dados enquanto nosso programa está rodando.
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
 
@@ -326,7 +338,7 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de
 ```
 -->
 
-Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
+Os espaços em torno do operador de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código. Veja as diferentes interpretações que as expressões abaixo podem ter, dependendo de como os espaços são posicionados.
 
 
 ```r
@@ -373,8 +385,8 @@ Nós estamos definindo a variável, digitando o nome dela na linha de comando e 
 
 
 ```r
-g <- 10   # não imprime nada
-g         # digitando o nome da variável também mostra o valor de g
+g <- 10 # não imprime nada
+g # digitando o nome da variável também mostra o valor de g
 (g <- 10) # a mesma chamada com parênteses define e mostra o valor de g
 ```
 
@@ -396,10 +408,11 @@ Quando usamos a mesma variável numa sequência de atribuições o seu valor é 
 
 ```r
 ls()
-#> [1] "g" "m" "p"
+#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
+#> [4] "m"                  "p"                  "r_cran_version_win"
 ```
 
-[^11]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
+[^11]: A saída da `ls()` é a lista de variáveis ou objetos criadas na sessão do R atual. Ela também é mostrada no painel *Environment* do RStudio.
 
 
 <!--
@@ -444,7 +457,8 @@ Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` 
 ```r
 rm(m)
 ls()
-#> [1] "g" "p"
+#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
+#> [4] "p"                  "r_cran_version_win"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
@@ -453,7 +467,7 @@ Podemos remover mais de uma variável ao mesmo tempo.
 ```r
 rm(g, p)
 ls()
-#> character(0)
+#> [1] "cran_news_windows"  "format_hotkey"      "r_cran_version_win"
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
@@ -467,50 +481,74 @@ ls()
 
 
 
-### Nomeando variáveis
+## Boas práticas para códigos de boa qualidade
 
 <!-- 
 # consultar para acrescentar o que for útil/complementar
 https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
 
+https://style.tidyverse.org/syntax.html#object-names
+
+https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140
+
 -->
 
 
 
+> O bom código não é aquele só tem alta performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.
+>
+>— [Silvio Henrique Ferreira](https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140)
 
 
-É preciso ter cuidado ao nomear variáveis no  <img src="images/logo_r.png" width="20"> porque existem algumas regras:
+A medida que você for evoluindo em programação você perceberá que a organização de seus códigos é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Para deixar seu código legível uma boa referência é o [Guia de estilo de codificação **`tidyverse`**](https://style.tidyverse.org/), bastante utilizado pela comunidade de usuários <img src="images/logo_r.png" width="20">. 
 
-* não iniciar com um número e não conter espaços
-
-
-```r
-1oAno <- 1990
-raizDe10 <- srt(2)
-variavel teste <- 67
-```
+A aplicação de todas as regras de formatação de código do **`tidyverse`** podem ser difíceis de ser lembradas. Mas este problema pode ser amenizado com o pacote [styler](http://styler.r-lib.org/) que fornece funções para estilizar o seu código no padrão **`tidyverse`**. Para utilizá-lo, instale o pacote **`styler`**.
 
 
 ```r
-# nomes alternativos para as variaveis
-ano1 <- 1990
-variavel_teste <- 67
-variavel.teste <- 68
+install.packages("styler")
 ```
 
-* não conter símbolos especiais: 
-    
+As funções são acessíveis Através do menu  *`Addins`* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código (Figura \@ref(fig:styler-addin)).
+
+
+<div class="figure" style="text-align: center">
+<img src="images/styler_0.1.gif" alt="Exemplo de aplicação do Estilo de codificação tidyverse."  />
+<p class="caption">(\#fig:styler-addin)Exemplo de aplicação do Estilo de codificação tidyverse.</p>
+</div>
+
+
+
+### Nomes de variáveis
+
+Nós já sabemos como inserir comentários (\@ref(comentarios)), o que é um script (\@ref(primeiro-script)) e na seção anterior (\@ref(variaveis)), vimos como criar variáveis. Este último procedimento, implica em definir um nome para variável. Isso parece trivial, mas como disse Phil Karlton:  
+
+
+>“Há somente duas coisas difíceis em Ciência da Computação: invalidação de cache e escolher nomes para as coisas.”
+>
+>— Phil Karlton
+
+
+
+Dar nomes claros e objetivos para funções, argumentos e variáveis é difícil. A falta de clareza as vezes é compensada por excesso de comentários no código. Porém, hoje em dia, a prática de comentar o máximo possível está obsoleta e danosa. 
+
+>O bom código é sua própria melhor documentação. Quando você for a adicionar um comentário, se pergunte, “Como eu posso melhorar o código para que o este comentário não seja necessário?” Melhore o código e então o documente para torná-lo ainda mais claro.
+>
+>— Steve McConnell
+
+De forma geral podemos listar os seguintes cuidados ao nomear variáveis no <img src="images/logo_r.png" width="20">: 
+
+- usar nomes claros, objetivos e coerentes
+
+- não iniciar com um número e não conter espaços
+
+- não usar acentos e caracteres especiais
+
         ^, !, $, @, +, -, /, ou *
 
+- usar somente letras minúsculas, números (após a primeira letra do nome) e `_`. Use o *underscore* para separar palavras dentro de um nome ([caso cobra](https://pt.qwe.wiki/wiki/Snake_case)).
 
-```r
-dia-1 <- 2
-#> Error in dia - 1 <- 2: object 'dia' not found
-# alternativa
-dia_1 <- 2
-```
-
-* evitar o uso de nomes usados em objetos do sistema (funções internas do R ou constantes como o número $\pi$):
+- evitar o uso de nomes reservados do <img src="images/logo_r.png" width="20"> (funções internas, constantes e etc):
 
         c q  s  t  C  D  F  I  T  diff  exp  log  mean  pi  range  rank  var
 
@@ -519,37 +557,51 @@ dia_1 <- 2
         break  else  for  function  if  in  next  repeat  while
 
 
-* variáveis com acento são permitidas mas não recomendadas.
+- use ` <- ` para atribuição (colocar um espaço antes e depois) e deixe o ` = ` para argumentos de funções.
+
+- não coloque ` ; ` no final de uma linha e evite vários comandos na mesma linha.
+
+
+
+<!---
+; do operador igual ` = ` na chamada de função com argumentos.
+
+- usar identação de código
+
+   - Código sem identação:
 
 
 ```r
-verão <- "DJF"
-verão
-#> [1] "DJF"
+mydf <- cbind.data.frame(do.call(rbind, lapply(strsplit(myfile[!seq(length(myfile))%%2], 
+    ", "), function(x) gsub(".*\\=", "", x))), lca = gsub(".*\\:\\s+", "", myfile[seq(length(myfile))%%2]))
 ```
 
-<div class="rmdtip">
-<p>Há limitações de interpretação do R para caracteres latinos como cedilha e acentos. Por isso não recomenda-se o uso destes caracteres para nomear variáveis.</p>
-</div>
-
-Uma boa prática de programação é dar nomes informativos às variáveis para maior legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
-
-Apesar do ganho de legibilidade do código com a aplicação das regras de formatação de código do *tidyverse* é difícil de lembrar de todas elas. 
-
-Mas este não é mais um problema, pois o pacote [styler](http://styler.r-lib.org/) fornece funções para estilizar o seu código padrão *tidyverse*. 
+   - Código com identação:
 
 
 ```r
-install.packages("styler")
-library(styler)
+mydf <-
+  cbind.data.frame(
+    do.call(
+      rbind,
+      lapply(
+        strsplit(
+          x = myfile[!seq(length(myfile)) %% 2],
+          split = ", "
+        ),
+        function(x) {
+          gsub(".*\\=", "", x)
+        }
+      )
+    ),
+    lca = gsub(
+      pattern = ".*\\:\\s+",
+      replacement = "",
+      x = myfile[seq(length(myfile)) %% 2]
+    )
+  )
 ```
-
-As funções são acessíveis Através do menu *Addins* do RStudio e incluem as opções de: estilizar um arquivo e uma região destacada do código.
-
-
-![](images/styler_0.1.gif)<!-- -->
-
-
+-->
 
 
 ## Exercícios

@@ -16,8 +16,8 @@ opts_chunk$set(prompt = TRUE,
                fig.path = "images/", 
                comment = "",
                collapse = TRUE)
-#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
+source("R/utils.R")
 ```
 
 O RStudio *Desktop* é um ambiente integrado de desenvolvimento (IDE) para o `r rblue`. Portanto, o RStudio depende da instalação prévia do `r rblue`. Ele funciona como uma interface gráfica do usuário (GUI), mas com muito mais potencialidades.
@@ -51,18 +51,31 @@ O RStudio possui 4 painéis principais:
   1. Editor para scripts e visualização de dados
 
      - abrir e criar scripts
+     
      - rodar scripts
+     
      - código com sintaxe realçada
-     - rodar partes do código <kbd>Ctrl</kbd>+<kbd>Enter</kbd>
-     - rodar todo script <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>
-     - autopreenchimento das funções <kbd>Tab</kbd>
-     - comentar linhas <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
-     - desfazer <kbd>Ctrl</kbd>+<kbd>Z</kbd>
-     - refazer <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>
-     - referência para teclas de atalho <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>
-     - abrir script com <kbd>Ctrl</kbd>+<kbd>Click</kbd>
-     - encontrar e substituir <kbd>Ctrl</kbd>+<kbd>F</kbd>
-     - comentar texto em R Markdown <kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>c</kbd>
+     
+     - rodar partes do código  `r format_hotkey("Ctrl", "Enter")`
+     
+     - rodar todo script `r format_hotkey("Ctrl", "Shift", "s")` 
+     
+     - autopreenchimento das funções `r format_hotkey("Tab")` 
+     
+     - comentar linhas de um script `r format_hotkey("Ctrl", "Shift", "c")`  
+     
+     - desfazer `r format_hotkey("Ctrl", "z")`  
+     
+     - refazer `r format_hotkey("Ctrl", "Shift", "z")`  
+     
+     - referência para teclas de atalho `r format_hotkey("Alt", "Shift", "k")`  
+     
+     - abrir script cujo nome aparece no código em visualização no painel *Source* `r format_hotkey("Ctrl", "click")`
+     
+     - buscar e substituir termos `r format_hotkey("Ctrl", "f")`
+     
+     - comentar texto em R Markdown `r format_hotkey("Ctrl", "Shift", "c")`
+     
 
 2. Console do R
 
@@ -87,6 +100,7 @@ A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) f
 ```{r rstudio-cheat-sheet, ref.label='rstudio-cheat-sheet', echo = FALSE, fig.align='center', fig.cap="Folha de referência do RStudio, disponível em https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf", out.width = '90%'}
 knitr::include_graphics('images/print-screen-folha-ref-rstudio.png')
 ```
+
 
 
 ## Verificação ortográfica
