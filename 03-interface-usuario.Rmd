@@ -13,8 +13,8 @@ opts_chunk$set(prompt = TRUE,
                fig.path = "images/", 
                comment = "",
                collapse = TRUE)
-#rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
+source("R/utils.R")
 ```
 
 
@@ -105,17 +105,18 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 Você pode usar as teclas ↑ e ↓ para navegar entre as expressões já avaliadas pelo `r rblue`. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parênteses.
 
-Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle `Ctrl+l`. Assim o console aparece na parte superior do terminal.
+Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle  `r format_hotkey("Ctrl", "l")`. Assim o console aparece na parte superior do terminal.
+
 
 ```{r Chunk7}
 15 + 4
 100:1
-#tecle <Ctr + l>
+# tecle <Ctr + l>
 ```
 
-Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + C`. As teclas `Ctrl + l` tem o efeito de limpar a tela.
+Para parar ou cancelar a execução de uma expressão utilize `r format_hotkey("Ctrl", "c")`.
 
-### Comentários
+### Comentários {#comentarios}
 
 No `r rblue`, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa após esse caractere será ignorada pelo `r rblue`. Somente as expressões antes da `#` são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo `r rblue`.
 
@@ -123,7 +124,7 @@ No `r rblue`, a cerquilha `#` (hashtag) é um caractere especial. Qualquer coisa
 # comentário antes do código 
 ```
 ```{r Chunk8, collapse=TRUE}
-17 + 3 # comentário ao lado do código: adicionando 17 e 3
+17 + 3 # comentário ao lado do código
 ```
 
 
@@ -145,22 +146,19 @@ knitr::include_graphics('images/screenscast-autocomplete-r.gif')
 O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do `r rblue` executadas anteriormente. Mas há também, na segunda parte, códigos para salvar um gráfico de pontos num arquivo *pdf*. Na última parte do trecho, define-se uma variável `x` que contém aquela mesma sequência numérica usada no gráfico.
 
 
-
-
-
 ```{r, eval = FALSE, prompt=FALSE}
 # Primeiro script no R
 #----------------------------------------------------------------
 # cálculos básicos
 15 + 4
 1:100
-1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
-4-3
+1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+4 - 3
 #----------------------------------------------------------------
 # salvando um gráfico em um arquivo pdf
 arquivo_pdf <- "plot-script1.pdf"
 pdf(arquivo_pdf)        # cria e abre um arquivo pdf
-plot(1:100)             # faz o gráfico
+plot(1:100)             # gera o gráfico
 dev.off()               # fecha o arquivo pdf
 #----------------------------------------------------------------
 # definindo uma variável x
