@@ -1,3 +1,5 @@
+# logo R para inserir em linha
+rblue <- '<img src="images/logo_r.png" width="20">'
 
 
 #' Format hotkey string
