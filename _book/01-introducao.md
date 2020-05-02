@@ -37,6 +37,8 @@
 ## Ciência de dados
 
 
+
+
 </style>
 <div class="midcenter" style="margin-left:50px; margin-top:50px;">
 <img src="images/datascience.png" height="400px" width="500px" />
@@ -48,12 +50,13 @@ Definitivamente pensando em
 ou 
 (2) 'processamento de dados meteorológicos'
 
+
 Mas vem aí discussão sobre (1) Ciência de dados (dadoslogia), Estatística, Ciência da computação. 
 (ver a Introdução do Beginning Dara Science with R)
 
 
 
-asd 
+O objetivo da ciência de dados não é coletar dados e criar bons gráficos, é tomar melhores decisões e melhorar processos através dos dados.
 -->
 
 

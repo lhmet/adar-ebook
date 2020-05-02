@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-01" />
+<meta name="date" content="2020-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -335,17 +335,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
-<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
+<li class="chapter" data-level="C.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.2.7</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>C.2.8</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.2.9</b> Figuras</a></li>
+<li class="chapter" data-level="C.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.2.10</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
-<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
-<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
-<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
-</ul></li>
+<li class="chapter" data-level="C.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>C.3</b> Aparência</a></li>
 <li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -371,35 +370,35 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-1" class="section level2">
 <h2><span class="header-section-number">8.1</span> Pré-requisitos</h2>
 <p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb204-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
-<a class="sourceLine" id="cb204-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb204-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
-<a class="sourceLine" id="cb204-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
-<a class="sourceLine" id="cb204-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb204-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb204-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
-<a class="sourceLine" id="cb204-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb204-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
-<a class="sourceLine" id="cb204-11" data-line-number="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb205-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb205-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb205-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb205-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb205-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb205-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb205-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb205-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb205-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb205-11" data-line-number="11">)</a></code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
-<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb206-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
-<a class="sourceLine" id="cb206-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
-<a class="sourceLine" id="cb206-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb206-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb206-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
-<a class="sourceLine" id="cb206-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
-<a class="sourceLine" id="cb206-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb206-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb206-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
-<a class="sourceLine" id="cb206-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb206-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb206-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
-<a class="sourceLine" id="cb206-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb207-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb207-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb207-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb207-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb207-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb207-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb207-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb207-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb207-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb207-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb207-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb207-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb207-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb207-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
@@ -419,7 +418,7 @@ ou simplesmente
 </div>
 <p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua
 instalação precisamos executar o comando abaixo.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 

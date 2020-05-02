@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-01" />
+<meta name="date" content="2020-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -335,17 +335,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
-<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
+<li class="chapter" data-level="C.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.2.7</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>C.2.8</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.2.9</b> Figuras</a></li>
+<li class="chapter" data-level="C.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.2.10</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
-<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
-<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
-<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
-</ul></li>
+<li class="chapter" data-level="C.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>C.3</b> Aparência</a></li>
 <li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -374,65 +373,65 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="funcionalidades-do-tibble" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Funcionalidades do <em>tibble</em></h3>
 <p>Para ilustrar algumas vantagens do <em>tibble</em>, vamos usar o <em>data frame</em> <code>prec_anual</code>. A criação destes dados como <em>tibble</em> é feita com a função de mesmo nome do pacote: <code>tibble::tibble()</code>.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb253-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
-<a class="sourceLine" id="cb253-4" data-line-number="4">  ),</a>
-<a class="sourceLine" id="cb253-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
-<a class="sourceLine" id="cb253-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
-<a class="sourceLine" id="cb253-7" data-line-number="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb254-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb254-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
+<a class="sourceLine" id="cb254-4" data-line-number="4">  ),</a>
+<a class="sourceLine" id="cb254-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
+<a class="sourceLine" id="cb254-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
+<a class="sourceLine" id="cb254-7" data-line-number="7">)</a></code></pre></div>
 <p>O exemplo acima é ilustrativo, pois um <em>data frame</em> pode ser convertido em um <em>tibble</em> simplesmente com a função <code>tibble::as_tibble()</code>:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2">prec_anual_tbl</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)</a>
+<a class="sourceLine" id="cb255-2" data-line-number="2">prec_anual_tbl</a></code></pre></div>
 <p>Com o <em>tibble</em> acima, as principais diferenças entre um <em>tibble</em> e um <em>data frame</em> podem ser enfatizadas.</p>
 <ul>
 <li><p>quando impresso no console do R, o <em>tibble</em> já mostra a classe de cada variável.</p></li>
 <li><p>vetores caracteres não são interpretados como <em>factors</em> em um <em>tibble</em>, em contraste a <code>base::data.frame()</code> que faz a coerção para <em>factor</em> e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores.</p></li>
 </ul>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">str</span>(<span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">str</span>(<span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>))</a></code></pre></div>
 <ul>
 <li>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>; veja o exemplo abaixo, onde a <code>int prec</code>(intensidade da precipitação) é baseada na razão da precipitação (<code>prec</code>) pelo número de dias no ano.</li>
 </ul>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb256-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
-<a class="sourceLine" id="cb256-4" data-line-number="4">  ),</a>
-<a class="sourceLine" id="cb256-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
-<a class="sourceLine" id="cb256-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>),</a>
-<a class="sourceLine" id="cb256-7" data-line-number="7">  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="fl">365.25</span></a>
-<a class="sourceLine" id="cb256-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb256-9" data-line-number="9">prec_anual_tbl</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb257-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb257-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
+<a class="sourceLine" id="cb257-4" data-line-number="4">  ),</a>
+<a class="sourceLine" id="cb257-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
+<a class="sourceLine" id="cb257-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>),</a>
+<a class="sourceLine" id="cb257-7" data-line-number="7">  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="fl">365.25</span></a>
+<a class="sourceLine" id="cb257-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb257-9" data-line-number="9">prec_anual_tbl</a></code></pre></div>
 <ul>
 <li>nunca adiciona nomes às linhas (<code>row.names</code>)</li>
 </ul>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co"># nomes das linhas de um data frame são carregados adiante</span></a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">subset</span>(prec_anual, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)</a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="co"># tibble não possui nome de linhas (rownames)</span></a>
-<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="kw">subset</span>(prec_anual_tbl, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="co"># nomes das linhas de um data frame são carregados adiante</span></a>
+<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">subset</span>(prec_anual, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)</a>
+<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="co"># tibble não possui nome de linhas (rownames)</span></a>
+<a class="sourceLine" id="cb258-4" data-line-number="4"><span class="kw">subset</span>(prec_anual_tbl, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)</a></code></pre></div>
 <ul>
 <li>a impressão de um <em>tibble</em> mostra as dez primeiras linhas e a quantidade de colunas mostradas é ajustada ao tamanho da janela do console.</li>
 </ul>
 <p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> no console pode ser configuradas através da função de opções de configuração global do R:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">15</span></a>
-<a class="sourceLine" id="cb258-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="kw">options</span>(</a>
-<a class="sourceLine" id="cb258-4" data-line-number="4">  <span class="dt">tibble.print_max =</span> m,</a>
-<a class="sourceLine" id="cb258-5" data-line-number="5">  <span class="dt">tibble.print_min =</span> n</a>
-<a class="sourceLine" id="cb258-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb259-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="kw">options</span>(</a>
+<a class="sourceLine" id="cb259-4" data-line-number="4">  <span class="dt">tibble.print_max =</span> m,</a>
+<a class="sourceLine" id="cb259-5" data-line-number="5">  <span class="dt">tibble.print_min =</span> n</a>
+<a class="sourceLine" id="cb259-6" data-line-number="6">)</a></code></pre></div>
 <p>Com a configuração acima, será impresso no console do R <code>n = 3</code> linhas do <em>tibble</em> se ele tiver mais de <code>m = 15</code> linhas.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="co"># coersão do data.frame clima_rs para tibble</span></a>
-<a class="sourceLine" id="cb259-3" data-line-number="3">clima_rs_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(clima_rs)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="co"># coersão do data.frame clima_rs para tibble</span></a>
+<a class="sourceLine" id="cb260-3" data-line-number="3">clima_rs_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(clima_rs)</a></code></pre></div>
 <p>Para restaurar as opções <em>default</em> use:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">options</span>(</a>
-<a class="sourceLine" id="cb260-2" data-line-number="2">  <span class="dt">tibble.print_max =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb260-3" data-line-number="3">  <span class="dt">tibble.print_min =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb260-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb260-5" data-line-number="5">clima_rs_tbl</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">options</span>(</a>
+<a class="sourceLine" id="cb261-2" data-line-number="2">  <span class="dt">tibble.print_max =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb261-3" data-line-number="3">  <span class="dt">tibble.print_min =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb261-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb261-5" data-line-number="5">clima_rs_tbl</a></code></pre></div>
 <p>Uma alternativa útil para inspecionar mais detalhadamente os dados é a função <code>tibble::glimpse()</code>.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">glimpse</span>(clima_rs)</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">glimpse</span>(clima_rs)</a></code></pre></div>
 <p>Lembre-se também, da função <code>utils::View()</code> para visualizar os dados no RStudio.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">View</span>(clima_rs)</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">View</span>(clima_rs)</a></code></pre></div>
 <p>Outros aspectos diferencias do <em>tibble</em> podem consultados na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
 </div>
 </div>

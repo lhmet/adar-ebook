@@ -443,18 +443,19 @@ https://style.tidyverse.org/syntax.html#object-names
 
 https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140
 
+https://towardsdatascience.com/data-scientists-your-variable-names-are-awful-heres-how-to-fix-them-89053d2855be
 -->
 
 ```{r, echo = FALSE, eval = TRUE}
 rblue <- '<img src="images/logo_r.png" width="20">'
 ```
 
-> O bom código não é aquele só tem alta performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.
+> O bom código não deve focar apenas na performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.
 >
 >— [Silvio Henrique Ferreira](https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140)
 
 
-A medida que você for evoluindo em programação você perceberá que a organização de seus códigos é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Para deixar seu código legível uma boa referência é o [Guia de estilo de codificação **`tidyverse`**](https://style.tidyverse.org/), bastante utilizado pela comunidade de usuários `r rblue`. 
+A medida evoluímos em programação, nossos códigos crescem e você perceberá que a organização de seus códigos é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Para deixar seu código legível e compreensível uma boa referência é o [Guia de estilo de codificação **`tidyverse`**](https://style.tidyverse.org/). Um guia bastante utilizado pela comunidade `r rblue` e adotado pela [Google](https://google.github.io/styleguide/Rguide.html). 
 
 A aplicação de todas as regras de formatação de código do **`tidyverse`** podem ser difíceis de ser lembradas. Mas este problema pode ser amenizado com o pacote [styler](http://styler.r-lib.org/) que fornece funções para estilizar o seu código no padrão **`tidyverse`**. Para utilizá-lo, instale o pacote **`styler`**.
 
@@ -483,13 +484,23 @@ Nós já sabemos como inserir comentários (\@ref(comentarios)), o que é um scr
 
 
 
-Dar nomes claros e objetivos para funções, argumentos e variáveis é difícil. A falta de clareza as vezes é compensada por excesso de comentários no código. Porém, hoje em dia, a prática de comentar o máximo possível está obsoleta e danosa. 
+Dar nomes claros, objetivos e coerentes para variáveis, funções, e argumentos é difícil. 
+
+```{r meanningfull-vnames, ref.label='meanningfull-vnames', echo = FALSE, fig.align='center', fig.cap="Nomes de variáveis com significado.", out.width="70%"} 
+ #![](images/styler_0.1.gif) 
+ knitr::include_graphics("images/5-meaningfull-var-names.jpg") 
+```
+
+
+A falta de clareza as vezes é compensada por excesso de comentários no código. Porém, hoje em dia, a prática de comentar o máximo possível está obsoleta e danosa. 
 
 >O bom código é sua própria melhor documentação. Quando você for a adicionar um comentário, se pergunte, “Como eu posso melhorar o código para que o este comentário não seja necessário?” Melhore o código e então o documente para torná-lo ainda mais claro.
 >
 >— Steve McConnell
 
-De forma geral podemos listar os seguintes cuidados ao nomear variáveis no `r rblue`: 
+
+
+De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no `r rblue`: 
 
 - usar nomes claros, objetivos e coerentes
 

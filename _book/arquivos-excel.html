@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-01" />
+<meta name="date" content="2020-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -335,17 +335,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#aparência"><i class="fa fa-check"></i><b>C.2.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.4</b> Listas</a></li>
-<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.5</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.6</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
+<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
+<li class="chapter" data-level="C.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.2.7</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="C.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>C.2.8</b> Hyperlinks</a></li>
+<li class="chapter" data-level="C.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.2.9</b> Figuras</a></li>
+<li class="chapter" data-level="C.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.2.10</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>C.3</b> Tabelas</a><ul>
-<li class="chapter" data-level="C.3.1" data-path="tabelas.html"><a href="tabelas.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.3.1</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.3.2" data-path="tabelas.html"><a href="tabelas.html#hyperlinks"><i class="fa fa-check"></i><b>C.3.2</b> Hyperlinks</a></li>
-<li class="chapter" data-level="C.3.3" data-path="tabelas.html"><a href="tabelas.html#figuras"><i class="fa fa-check"></i><b>C.3.3</b> Figuras</a></li>
-<li class="chapter" data-level="C.3.4" data-path="tabelas.html"><a href="tabelas.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.3.4</b> Expressões matemáticas</a></li>
-</ul></li>
+<li class="chapter" data-level="C.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>C.3</b> Aparência</a></li>
 <li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -400,40 +399,40 @@ mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <h3><span class="header-section-number">8.6.1</span> Como usar</h3>
 <p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote
 <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
-<a class="sourceLine" id="cb242-3" data-line-number="3">  <span class="kw">tempdir</span>(), </a>
-<a class="sourceLine" id="cb242-4" data-line-number="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
-<a class="sourceLine" id="cb242-5" data-line-number="5">  )</a>
-<a class="sourceLine" id="cb242-6" data-line-number="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
+<a class="sourceLine" id="cb243-3" data-line-number="3">  <span class="kw">tempdir</span>(), </a>
+<a class="sourceLine" id="cb243-4" data-line-number="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
+<a class="sourceLine" id="cb243-5" data-line-number="5">  )</a>
+<a class="sourceLine" id="cb243-6" data-line-number="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb243-2" data-line-number="2">  <span class="dt">file =</span> dest_file_excel,</a>
-<a class="sourceLine" id="cb243-3" data-line-number="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb243-4" data-line-number="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb243-5" data-line-number="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb244-2" data-line-number="2">  <span class="dt">file =</span> dest_file_excel,</a>
+<a class="sourceLine" id="cb244-3" data-line-number="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb244-4" data-line-number="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb244-5" data-line-number="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">8.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
 <p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em>
 em novo arquivo <code>.xls</code>.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
-<a class="sourceLine" id="cb244-2" data-line-number="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
+<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 <p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato
 <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">8.1</a>). Uma alternativa, caso você
 ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no
 entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">library</span>(WriteXLS)</a>
-<a class="sourceLine" id="cb245-2" data-line-number="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
-<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
-<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
-<a class="sourceLine" id="cb245-5" data-line-number="5"><span class="co"># conferindo</span></a>
-<a class="sourceLine" id="cb245-6" data-line-number="6"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb245-7" data-line-number="7">  <span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb245-8" data-line-number="8">    <span class="dt">file =</span> arq_xls_temp,</a>
-<a class="sourceLine" id="cb245-9" data-line-number="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb245-10" data-line-number="10">  )</a>
-<a class="sourceLine" id="cb245-11" data-line-number="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw">library</span>(WriteXLS)</a>
+<a class="sourceLine" id="cb246-2" data-line-number="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
+<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
+<a class="sourceLine" id="cb246-4" data-line-number="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
+<a class="sourceLine" id="cb246-5" data-line-number="5"><span class="co"># conferindo</span></a>
+<a class="sourceLine" id="cb246-6" data-line-number="6"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb246-7" data-line-number="7">  <span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb246-8" data-line-number="8">    <span class="dt">file =</span> arq_xls_temp,</a>
+<a class="sourceLine" id="cb246-9" data-line-number="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb246-10" data-line-number="10">  )</a>
+<a class="sourceLine" id="cb246-11" data-line-number="11">)</a></code></pre></div>
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">8.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
@@ -443,12 +442,12 @@ eficiente.</p>
 <p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados
 da seção <a href="arquivos-excel.html#export-xls">8.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a
 <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb246-3" data-line-number="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb246-4" data-line-number="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb246-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb246-6" data-line-number="6">tempos_escrita_xlsx</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
+<a class="sourceLine" id="cb247-2" data-line-number="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb247-3" data-line-number="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb247-4" data-line-number="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb247-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb247-6" data-line-number="6">tempos_escrita_xlsx</a></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das
 expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <!---
