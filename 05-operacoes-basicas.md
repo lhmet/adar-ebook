@@ -534,6 +534,7 @@ As funções são acessíveis Através do menu  *`Addins`* do RStudio e incluem 
 </div>
 
 
+A convenção de estilo dos seus códigos é uma escolha sua.  Eu indico o estilo tidyverse, mas você pode optar por outro. O mais importante é ser consistente.
 
 ### Nomes de variáveis
 
@@ -572,13 +573,11 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no <im
 
 - usar nomes claros, objetivos e coerentes
 
-- não iniciar com um número ou ponto `.` e não conter espaços
+- não iniciar com um número, ponto `.` ou `_` e não conter espaços
 
 - não usar acentos e caracteres especiais
 
         ^, !, $, @, +, -, /, ou *
-
-- usar somente letras minúsculas, números (após a primeira letra do nome) e `_`. Use o *underscore* para separar palavras dentro de um nome ([caso cobra](https://pt.qwe.wiki/wiki/Snake_case)).
 
 - evitar o uso de nomes reservados do <img src="images/logo_r.png" width="20"> (funções internas, constantes e etc):
 
@@ -589,11 +588,11 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no <im
         break  else  for  function  if  in  next  repeat  while
 
 
-- use ` <- ` para atribuição (colocar um espaço antes e depois) e deixe o ` = ` para argumentos de funções.
+- usar ` <- ` para atribuição (colocar um espaço antes e depois) e deixe o ` = ` para argumentos de funções.
 
-- não coloque ` ; ` no final de uma linha e evite vários comandos na mesma linha.
+- não colocar ` ; ` no final de uma linha e evite vários comandos na mesma linha.
 
-
+- usar somente letras minúsculas, números (após a primeira letra do nome). Use o *underscore* ou sublinhado para separar palavras dentro de um nome de variável longo([caso cobra](https://pt.qwe.wiki/wiki/Snake_case)).
 
 <!---
 ; do operador igual ` = ` na chamada de função com argumentos.
