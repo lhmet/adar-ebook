@@ -165,7 +165,7 @@ getOption("digits")
 ```
 -->
 
-### Cálculos problemáticos
+### Cálculos problemáticos {#nans}
 
 Quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) surgirão alguns valores numéricos especiais na sua frente, como:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido).
 
@@ -185,7 +185,7 @@ Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\in
             Inf-Inf                  NaN    
  mean(c(NA, NA), na.rm = TRUE)       NaN    
 
-A demonstração das diferentes formas de se obter essas constantes especiais é importante para, por exemplo, entender a origem delas ao rodar um script longo.
+A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas ao rodar um script longo.
 
 Por outro lado, há operações válidas com estes valores especiais.
 
@@ -293,52 +293,46 @@ Até agora nós usamos expressões para fazer uma operação e obter um resultad
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
 
+Quando uma variável recebe um valor, o <img src="images/logo_r.png" width="20"> não imprime nada no console.
+
 
 ```r
-m <- 100
-# para mostrar a variável digite o nome da variável
-m
+m_kg <- 100
+```
+
+Para visualizar o valor de uma variável, apenas digite o nome da variável, ou imprima seu valor com a função `print()`.
+
+
+```r
+m_kg
 #> [1] 100
-# ou use a função print()
-print(m)
+print(m_kg)
 #> [1] 100
 ```
 
-O R diferencia letras maiúsculas de minúsculas. 
+
+O <img src="images/logo_r.png" width="20"> diferencia letras maiúsculas de minúsculas. 
 
 
 ```r
-m
+m_kg
 #> [1] 100
-M
-#> Error in eval(expr, envir, enclos): object 'M' not found
+M_KG
+#> Error in eval(expr, envir, enclos): object 'M_KG' not found
 ```
 
-Como criamos apenas a variável `m`, `M` não foi encontrada. 
+Como criamos apenas a variável `m_kg`, `M_kg` não foi encontrada. 
 
-A variável `m` pode ser utilizado para criar outras variáveis.
+A variável `m_kg` pode ser utilizado para criar outras variáveis.
 
 
 ```r
-p <- m * 9.8
-# pressão em Pascal
-p
+peso_kg <- m_kg * 9.8
+peso_kg
 #> [1] 980
 ```
 
-<!--
-A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
-
-
-```r
-7/3 + 0.6 -> y1
- y1
-7/(3 + 0.6) -> y2
- y2
-```
--->
-
-Os espaços em torno do operador de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código. Veja as diferentes interpretações que as expressões abaixo podem ter, dependendo de como os espaços são posicionados.
+Os espaços em torno do operador de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código. Veja as diferentes interpretações que as expressões abaixo podem ter dependendo de como os espaços são posicionados em torno da variável `g`.
 
 
 ```r
@@ -347,61 +341,40 @@ g < -9.8  # g é menor que -9.8 ?
 g<-9.8    # g é igual a 9.8 ou é menor que -9.8 ?
 ```
 
-<!--
-Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
+
+Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso. Para criar e já mostrar o resultado da variável, podemos colocar parênteses em torno da atribuição:
 
 
 ```r
-nd3 <- 31
-nd4 <- 30
+g <- 9.8 # cria
+g        # imprime
+#> [1] 9.8
+(g <- 9.8) # cria e imprime
+#> [1] 9.8
 ```
 
-O total de dias nos meses de março e abril será armazenado na variável `totdias`:
+Podemos criar uma variável baseado em variáveis criadas previamente. Por exemplo, vamos definir a variável peso, como $p_{kg} = m_{kg}.g$:
 
 
 ```r
-totd <- nd3 + nd4
-totd
+(peso_kg <- m_kg * g)
+#> [1] 980
 ```
 
-A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
+Se alterarmos o valor de uma das variáveis isso não mudará o valor da outra:
 
 
 ```r
-# número de dias em cada mês
-jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
-abr <- jun <- set <- nov <- 30
-fev <- 28
-# verificação
-jan
-jul
-jun
-set
-fev
-```
--->
-
-Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
-
-
-```r
-g <- 10 # não imprime nada
-g # digitando o nome da variável também mostra o valor de g
-(g <- 10) # a mesma chamada com parênteses define e mostra o valor de g
+(m_kg <- 10)
+#> [1] 10
+peso_kg
+#> [1] 980
 ```
 
+O antigo valor de `m_kg` será sobrescrito. Mas, embora `p_kg` tenha sido definida a partir de `m_kg`, seu valor permanecerá o mesmo. Esse comportamento que nos permite compreender o que acontece quando temos várias expressões em sequência num *script*. 
 
 
-
-Se desejamos calcular e já visualizar o valor da variável peso (`p`) definida abaixo, podemos fazer:
-
-
-```r
-(p <- m * g)
-#> [1] 1000
-```
-
-Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^11] para verificar as variáveis existentes:
+Para saber as variáveis já criadas numa sessão  <img src="images/logo_r.png" width="20">, use a função `ls()`[^11] para verificar as variáveis existentes:
 
 
 
@@ -409,7 +382,7 @@ Quando usamos a mesma variável numa sequência de atribuições o seu valor é 
 ```r
 ls()
 #> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "m"                  "p"                  "r_cran_version_win"
+#> [4] "m_kg"               "peso_kg"            "r_cran_version_win"
 ```
 
 [^11]: A saída da `ls()` é a lista de variáveis ou objetos criadas na sessão do R atual. Ela também é mostrada no painel *Environment* do RStudio.
@@ -455,17 +428,17 @@ Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` 
 
 
 ```r
-rm(m)
+rm(m_kg)
 ls()
 #> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "p"                  "r_cran_version_win"
+#> [4] "peso_kg"            "r_cran_version_win"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
 
 
 ```r
-rm(g, p)
+rm(g, peso_kg)
 ls()
 #> [1] "cran_news_windows"  "format_hotkey"      "r_cran_version_win"
 ```
@@ -478,6 +451,49 @@ Para remover todas variáveis do espaço de trabalho (use com cautela):
 rm(list = ls())
 ls()
 ```
+
+## Erros comuns
+
+As expressões abaixo ilustram o que acontece quando geramos erros:
+
+
+```r
+srt(2)
+#> Error in srt(2): could not find function "srt"
+m * g
+#> Error in eval(expr, envir, enclos): object 'm' not found
+peso_kg <- 10
+save(peso_kg, file = "algum/caminho/no/alem")
+#> Warning in gzfile(file, "wb"): cannot open compressed file 'algum/caminho/no/
+#> alem', probable reason 'No such file or directory'
+#> Error in gzfile(file, "wb"): cannot open the connection
+```
+
+
+
+
+Sabemos que é um erro porque a mensagem está destacada em vermelha ou laranja, dependendo de como o RStudio está configurado, e contém a palavra **Error**. O que tem depois do \":\" é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado. **As mensagens de erro são suas amigas. Sempre leia as mensagens de erro**. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar. 
+
+No trecho de código acima, na avaliação da expressão com a função `save()` surge primeiro um **Warning** (aviso). Avisos surgem quando algo inesperado ocorreu, mas que as coisas ainda podem dar certo. Outro exemplo de mensagem de aviso é:
+
+
+```r
+sqrt(-1)
+#> Warning in sqrt(-1): NaNs produced
+#> [1] NaN
+```
+
+Na expressão acima foi possível obter um resultado, mas o R avisa que foi produzido `NaN`. Como visto na seção \@ref(nans), qualquer operação derivada deste resultado produzirá `NaN`. 
+
+
+Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura \@ref(fig:google-it)).
+
+<div class="figure" style="text-align: center">
+<img src="images/practicalDev_googleErrorMessage.jpg" alt="Aprenda como descobrir qual o significado das mensagens de erro." width="50%" />
+<p class="caption">(\#fig:google-it)Aprenda como descobrir qual o significado das mensagens de erro.</p>
+</div>
+
+
 
 
 
@@ -493,7 +509,6 @@ https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%
 
 https://towardsdatascience.com/data-scientists-your-variable-names-are-awful-heres-how-to-fix-them-89053d2855be
 -->
-
 
 
 > O bom código não deve focar apenas na performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.
@@ -521,6 +536,12 @@ As funções são acessíveis Através do menu  *`Addins`* do RStudio e incluem 
 
 
 ### Nomes de variáveis
+
+<!-- 
+Sobre boas práticas:
+- falta inserir limite de largura de códigos num lugar mais adequado 
+- falta falar sobre comentário de forma eficaz
+-->
 
 Nós já sabemos como inserir comentários (\@ref(comentarios)), o que é um script (\@ref(primeiro-script)) e na seção anterior (\@ref(variaveis)), vimos como criar variáveis. Este último procedimento, implica em definir um nome para variável. Isso parece trivial, mas como disse Phil Karlton:  
 
@@ -551,7 +572,7 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no <im
 
 - usar nomes claros, objetivos e coerentes
 
-- não iniciar com um número e não conter espaços
+- não iniciar com um número ou ponto `.` e não conter espaços
 
 - não usar acentos e caracteres especiais
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
+  <title>5.4 Erros comuns | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.1 Pré-requisitos | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="5.4 Erros comuns | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.1 Pré-requisitos | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="5.4 Erros comuns | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-vis.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="prev" href="variaveis.html"/>
+<link rel="next" href="boas-práticas-para-códigos-de-boa-qualidade.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -344,17 +344,30 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pré-requisitos-4" class="section level2">
-<h2><span class="header-section-number">10.1</span> Pré-requisitos</h2>
-<p>O pacote <strong>ggplot2</strong> faz parte do <strong>tidyverse</strong>, mas além dele precisaremos de outros pacotes com funcionalidades que complementam o <strong>ggplot2</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>,
-             <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>, 
-             <span class="st">&quot;tidyverse&quot;</span>, 
-             <span class="st">&quot;ggrepel&quot;</span>, <span class="st">&quot;ggthemes&quot;</span>,
-             <span class="st">&quot;viridis&quot;</span>)
-easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre></div>
-<div id="dados-1" class="section level3">
-<h3><span class="header-section-number">10.1.1</span> Dados</h3>
+<div id="erros-comuns" class="section level2">
+<h2><span class="header-section-number">5.4</span> Erros comuns</h2>
+<p>As expressões abaixo ilustram o que acontece quando geramos erros:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">srt</span>(<span class="dv">2</span>)
+<span class="co">#&gt; Error in srt(2): could not find function &quot;srt&quot;</span>
+m <span class="op">*</span><span class="st"> </span>g
+<span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;m&#39; not found</span>
+peso_kg &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">save</span>(peso_kg, <span class="dt">file =</span> <span class="st">&quot;algum/caminho/no/alem&quot;</span>)
+<span class="co">#&gt; Warning in gzfile(file, &quot;wb&quot;): cannot open compressed file &#39;algum/caminho/no/</span>
+<span class="co">#&gt; alem&#39;, probable reason &#39;No such file or directory&#39;</span>
+<span class="co">#&gt; Error in gzfile(file, &quot;wb&quot;): cannot open the connection</span></code></pre></div>
+<p>Sabemos que é um erro porque a mensagem está destacada em vermelha ou laranja, dependendo de como o RStudio está configurado, e contém a palavra <strong>Error</strong>. O que tem depois do &quot;:&quot; é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado. <strong>As mensagens de erro são suas amigas. Sempre leia as mensagens de erro</strong>. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar.</p>
+<p>No trecho de código acima, na avaliação da expressão com a função <code>save()</code> surge primeiro um <strong>Warning</strong> (aviso). Avisos surgem quando algo inesperado ocorreu, mas que as coisas ainda podem dar certo. Outro exemplo de mensagem de aviso é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">1</span>)
+<span class="co">#&gt; Warning in sqrt(-1): NaNs produced</span>
+<span class="co">#&gt; [1] NaN</span></code></pre></div>
+<p>Na expressão acima foi possível obter um resultado, mas o R avisa que foi produzido <code>NaN</code>. Como visto na seção <a href="calculadora.html#nans">5.2.2</a>, qualquer operação derivada deste resultado produzirá <code>NaN</code>.</p>
+<p>Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura <a href="erros-comuns.html#fig:google-it">5.1</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:google-it"></span>
+<img src="images/practicalDev_googleErrorMessage.jpg" alt="Aprenda como descobrir qual o significado das mensagens de erro." width="50%" />
+<p class="caption">
+Figura 5.1: Aprenda como descobrir qual o significado das mensagens de erro.
+</p>
 </div>
 </div>
             </section>
@@ -362,8 +375,8 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)
           </div>
         </div>
       </div>
-<a href="data-vis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="variaveis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="boas-práticas-para-códigos-de-boa-qualidade.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

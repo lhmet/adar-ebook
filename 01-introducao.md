@@ -141,6 +141,9 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 
     - scripts favorecem a **automatização** e **reprodutibilidade**
 
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</center>
 
     - força você a ter um conhecimneto mais aprofundado do que está fazendo
 
@@ -225,6 +228,12 @@ Logo, requer ferramentas específicas para:
  
 * Há muito o que melhorar
 
+## No final deste curso ...
+
+<div class="figure" style="text-align: center">
+<img src="images/practical_dev_both.png" alt="Livros para maestria em programação." width="100%" />
+<p class="caption">(\#fig:books-joke)Livros para maestria em programação.</p>
+</div>
 
 
 ## Para saber mais sobre o R
