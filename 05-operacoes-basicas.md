@@ -93,11 +93,21 @@ Então os parênteses podem ser usados para forçar a ordem das operações acim
 #> [1] 22.85841
 (10 + 8^2) / 4 - pi
 #> [1] 15.35841
-10 + 8^2 / (4 - pi)
+(10 + 8)^2 / 4 - pi
+#> [1] 77.85841
+(10 + 8^2 / 4) - pi
+#> [1] 22.85841
+10 + (8^2) / (4 - pi)
 #> [1] 84.55668
 10 + 8^(2 / 4) - pi
 #> [1] 9.686834
+10 + 8^(2 / 4 - pi)
+#> [1] 10.00412
 ```
+
+<!-- 
+-1^2 = ?
+-->
 
 Se você quer saber se um número é divisor exato de outro número (resto da divisão igual a zero), o operador `%%` determina o resto de uma divisão:
 
@@ -197,8 +207,8 @@ exp(-Inf)
 #> [1] 0 1
 0 / Inf
 #> [1] 0
-(c(-1, 1) * Inf)^0
-#> [1] 1 1
+(-1 * Inf)^0
+#> [1] 1
 0^0
 #> [1] 1
 ```
@@ -253,12 +263,12 @@ factorial(4)
 #> [1] 24
 ```
 
-Por padrão a função logaritmo (`log()`) determina o logaritmo natural (logaritmo de base $e$). 
+Por padrão a função logaritmo (`log()`) determina o logaritmo natural (logaritmo na base $e$). 
 
 
 ```r
 # logaritmo natural de 10
-log(10)
+log(x = 10)
 #> [1] 2.302585
 ```
 
@@ -266,7 +276,7 @@ Para obter o logaritmo de 10 na base 10, o segundo argumento da função `log()`
 
 
 ```r
-log(10, base = 10) # logaritmo de 10 na base 10
+log(x = 10, base = 10) # logaritmo de 10 na base 10
 #> [1] 1
 log10(10) # forma equivalente
 #> [1] 1
@@ -287,11 +297,14 @@ Digitando `?` antes do nome de uma função ou operador abrirá a página de aju
 
 ## Variáveis {#variaveis}
 
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. O resultado da \"atribuição\" é armazenado em uma **variável**[^var-def] e pode ser utilizado posteriormente. Então uma variável é um nome usado para guardar os dados. Então a expressão geral para definir uma variável é:
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada de operador **atribuição**. A expressão geral para definir uma variável é:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
+
+Uma atribuição armazena o valor (no lado direita da atribuição) em uma **variável**[^var-def] (no lado esquerdo da atribuição). Então uma variável é um nome usado para guardar os dados. Os valores dos dados podem ser de diferentes tipos, como veremos na seção \@ref(tipos-dados). 
 
 [^var-def]: Uma variável é um nome que podemos usar para nos referirmos a um local específico na memória do computador, onde nós armazenamos dados enquanto nosso programa está rodando.
 
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `variavel <- valor` </p>
 
 Quando uma variável recebe um valor, o <img src="images/logo_r.png" width="20"> não imprime nada no console.
 
@@ -300,7 +313,8 @@ Quando uma variável recebe um valor, o <img src="images/logo_r.png" width="20">
 m_kg <- 100
 ```
 
-Para visualizar o valor de uma variável, apenas digite o nome da variável, ou imprima seu valor com a função `print()`.
+
+Para visualizar o valor de uma variável, digite o nome da variável na linha de comando, ou imprima seu valor com a função `print()`.
 
 
 ```r
@@ -452,9 +466,11 @@ rm(list = ls())
 ls()
 ```
 
+
+
 ## Erros comuns
 
-As expressões abaixo ilustram o que acontece quando geramos erros:
+As expressões abaixo ilustram o que acontece quando cometemos alguns erros bem comuns ao trabalhar com <img src="images/logo_r.png" width="20">:
 
 
 ```r
@@ -462,17 +478,24 @@ srt(2)
 #> Error in srt(2): could not find function "srt"
 m * g
 #> Error in eval(expr, envir, enclos): object 'm' not found
-peso_kg <- 10
-save(peso_kg, file = "algum/caminho/no/alem")
-#> Warning in gzfile(file, "wb"): cannot open compressed file 'algum/caminho/no/
-#> alem', probable reason 'No such file or directory'
+setwd("algum/caminho/no/alem")
+#> Error in setwd("algum/caminho/no/alem"): cannot change working directory
+save(file = "algum/outro/caminho/no/alem")
+#> Warning in save(file = "algum/outro/caminho/no/alem"): nothing specified to be
+#> save()d
+#> Warning in gzfile(file, "wb"): cannot open compressed file 'algum/outro/caminho/
+#> no/alem', probable reason 'No such file or directory'
 #> Error in gzfile(file, "wb"): cannot open the connection
 ```
 
 
 
+Reconhecemos um erro pela presença da palavra **`Error`** na mensagem e por estar destacada em vermelha ou laranja, dependendo de como o RStudio está configurado. O que tem depois do \":\" na mensagem é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado. 
 
-Sabemos que é um erro porque a mensagem está destacada em vermelha ou laranja, dependendo de como o RStudio está configurado, e contém a palavra **Error**. O que tem depois do \":\" é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado. **As mensagens de erro são suas amigas. Sempre leia as mensagens de erro**. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar. 
+
+<div class="rmdtip">
+<p><strong>As mensagens de erro são suas amigas. Sempre leia as mensagens de erro</strong>. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar.</p>
+</div>
 
 No trecho de código acima, na avaliação da expressão com a função `save()` surge primeiro um **Warning** (aviso). Avisos surgem quando algo inesperado ocorreu, mas que as coisas ainda podem dar certo. Outro exemplo de mensagem de aviso é:
 
@@ -493,7 +516,9 @@ Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo p
 <p class="caption">(\#fig:google-it)Aprenda como descobrir qual o significado das mensagens de erro.</p>
 </div>
 
-
+<!--
+https://br.pinterest.com/marcusoh/funny/
+-->
 
 
 
@@ -510,13 +535,22 @@ https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%
 https://towardsdatascience.com/data-scientists-your-variable-names-are-awful-heres-how-to-fix-them-89053d2855be
 -->
 
+> Uma codificação em bom estilo é como usar a pontuação corretamente. Você pode até escrever sem usá-la, mas ela certamente deixa as coisas mais fáceis de ler.
+>
+>— Hadley Wickham
 
-> O bom código não deve focar apenas na performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros programadores.
+
+
+
+<!--
+> O bom código não deve focar apenas na performance de execução, mas também em sua simplicidade, legibilidade e facilidade de manutenção por outros contribuidores.
 >
 >— [Silvio Henrique Ferreira](https://medium.com/experience-valley/ser%C3%A1-que-seus-coment%C3%A1rios-est%C3%A3o-deixando-seu-c%C3%B3digo-pior-5a961d5f4140)
+-->
 
+A medida que a complexidade dos códigos aumenta, você perceberá que a organização é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Um bom código não deve focar somente no desempenho de execução, mas também em sua simplicidade, legibilidade, o que inerentemente facilita sua manutenção por outros contribuidores.
 
-A medida evoluímos em programação, nossos códigos crescem e você perceberá que a organização de seus códigos é imprescindível para rápida compreensão dele por você mesmo no futuro, pelos usuários e colaboradores. Para deixar seu código legível e compreensível uma boa referência é o [Guia de estilo de codificação **`tidyverse`**](https://style.tidyverse.org/). Um guia bastante utilizado pela comunidade <img src="images/logo_r.png" width="20"> e adotado pela [Google](https://google.github.io/styleguide/Rguide.html). 
+Para deixar seu código compreensível uma boa referência é o [Guia de estilo de codificação **`tidyverse`**](https://style.tidyverse.org/). Um guia bastante utilizado pela comunidade <img src="images/logo_r.png" width="20"> e adotado pela [Google](https://google.github.io/styleguide/Rguide.html). 
 
 A aplicação de todas as regras de formatação de código do **`tidyverse`** podem ser difíceis de ser lembradas. Mas este problema pode ser amenizado com o pacote [styler](http://styler.r-lib.org/) que fornece funções para estilizar o seu código no padrão **`tidyverse`**. Para utilizá-lo, instale o pacote **`styler`**.
 
@@ -544,16 +578,12 @@ Sobre boas práticas:
 - falta falar sobre comentário de forma eficaz
 -->
 
-Nós já sabemos como inserir comentários (\@ref(comentarios)), o que é um script (\@ref(primeiro-script)) e na seção anterior (\@ref(variaveis)), vimos como criar variáveis. Este último procedimento, implica em definir um nome para variável. Isso parece trivial, mas como disse Phil Karlton:  
-
-
 >“Há somente duas coisas difíceis em Ciência da Computação: invalidação de cache e escolher nomes para as coisas.”
 >
 >— Phil Karlton
 
 
-
-Dar nomes claros, objetivos e coerentes para variáveis, funções, e argumentos é difícil. 
+Na seção (\@ref(variaveis)), vimos como criar variáveis. Este procedimento, implica em definir um nome para variável. Dar nomes claros, objetivos e coerentes para variáveis, funções, e argumentos é difícil. 
 
 <div class="figure" style="text-align: center">
 <img src="images/5-meaningfull-var-names.jpg" alt="Nomes de variáveis com significado." width="70%" />
@@ -563,7 +593,7 @@ Dar nomes claros, objetivos e coerentes para variáveis, funções, e argumentos
 
 A falta de clareza as vezes é compensada por excesso de comentários no código. Porém, hoje em dia, a prática de comentar o máximo possível está obsoleta e danosa. 
 
->O bom código é sua própria melhor documentação. Quando você for a adicionar um comentário, se pergunte, “Como eu posso melhorar o código para que o este comentário não seja necessário?” Melhore o código e então o documente para torná-lo ainda mais claro.
+> O bom código é sua própria melhor documentação. Quando você for a adicionar um comentário, se pergunte, “Como eu posso melhorar o código para que o este comentário não seja necessário?” Melhore o código e então o documente para torná-lo ainda mais claro.
 >
 >— Steve McConnell
 
@@ -573,7 +603,7 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no <im
 
 - usar nomes claros, objetivos e coerentes
 
-- não iniciar com um número, ponto `.` ou `_` e não conter espaços
+- não iniciar com um número, ponto (`.`) ou sublinhado (`_`) e não conter espaços
 
 - não usar acentos e caracteres especiais
 
@@ -592,7 +622,7 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no <im
 
 - não colocar ` ; ` no final de uma linha e evite vários comandos na mesma linha.
 
-- usar somente letras minúsculas, números (após a primeira letra do nome). Use o *underscore* ou sublinhado para separar palavras dentro de um nome de variável longo([caso cobra](https://pt.qwe.wiki/wiki/Snake_case)).
+- usar somente letras minúsculas, números (após a primeira letra do nome). Use o `_` ou sublinhado para separar palavras dentro de um nome de variável longo([caso cobra](https://pt.qwe.wiki/wiki/Snake_case)).
 
 <!---
 ; do operador igual ` = ` na chamada de função com argumentos.
