@@ -23,17 +23,11 @@ O <img src="images/logo_r.png" width="20"> possui uma variedade de estruturas (F
 
 ## Vetor
 
-Um vetor é uma coleção de elementos. Os vetores são amplamente usados e compõem a estrutura básica de dados do R, por ser uma linguagem vetorizada. 
-
 Os vetores podem ser de dois tipos: **vetores atômicos** e **listas**. 
 
 ### Vetores atômicos 
 
-Os **vetores atômicos** são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos `double`, ou `integer`, ou `logical`, etc). 
-
-Como linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou *loopings*) ao longo do vetor. Esse conceito pode ser estranho para quem vem de outras linguagens, mas é uma das grandes vantagens do R.
-
-Vetores não tem dimensões, ou seja não existem é um vetor linha ou vetor coluna. 
+Os **vetores atômicos** são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). 
 
 #### Propriedades
 
@@ -201,6 +195,8 @@ names(a_sn)
 
 
 ### Operações com vetores
+
+Como o `R` é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou *loopings*) ao longo do vetor. Esta é uma das grandes vantagens do  <img src="images/logo_r.png" width="20">.
 
 Para multiplicar cada elemento de um vetor por um valor é usar o operador de multiplicação  (*). O mesmo procedimento se aplica as demais operações de soma, subtração, divisão, exponenciação e etc.
 
@@ -2052,7 +2048,7 @@ mat_temp
 #> [120,]   3     20      19     12
 ```
 
-## Lista
+## Lista {#listas}
 
 Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os **vetores atômicos**, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:
 

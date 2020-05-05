@@ -4,7 +4,6 @@
 # Pré-requisitos
 
 <!-- 
-/home/hidrometeorologista/Dropbox/ufsm/ensino/1-semestre-2020/ADAR/material-r/r-base-ref/workingwithr.pdf
 -->
 
 <!-- 
