@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-05" />
+<meta name="date" content="2020-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,16 +196,18 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i><b>5.6</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos de dados</a><ul>
+<li class="chapter" data-level="6" data-path="datatype.html"><a href="datatype.html"><i class="fa fa-check"></i><b>6</b> Tipos básicos de dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="tipos-dados.html"><a href="tipos-dados.html"><i class="fa fa-check"></i><b>6.1</b> Vetores e tipos de dados</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="tipos-dados.html"><a href="tipos-dados.html#build-vectors"><i class="fa fa-check"></i><b>6.1.1</b> Construindo vetores</a></li>
 <li class="chapter" data-level="6.1.2" data-path="tipos-dados.html"><a href="tipos-dados.html#números"><i class="fa fa-check"></i><b>6.1.2</b> Números</a></li>
 <li class="chapter" data-level="6.1.3" data-path="tipos-dados.html"><a href="tipos-dados.html#caractere"><i class="fa fa-check"></i><b>6.1.3</b> Caractere</a></li>
 <li class="chapter" data-level="6.1.4" data-path="tipos-dados.html"><a href="tipos-dados.html#logico"><i class="fa fa-check"></i><b>6.1.4</b> Lógico</a></li>
-<li class="chapter" data-level="6.1.5" data-path="tipos-dados.html"><a href="tipos-dados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.1.5</b> Datas e horários</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
+<li class="chapter" data-level="6.4" data-path="outros-tipos-de-dados.html"><a href="outros-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.4</b> Outros tipos de dados</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados.html"><a href="outros-tipos-de-dados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.1</b> Datas e horários</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="7.1" data-path="vetor.html"><a href="vetor.html"><i class="fa fa-check"></i><b>7.1</b> Vetor</a><ul>
@@ -373,26 +375,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="atribuição-por-indexação" class="section level2">
 <h2><span class="header-section-number">A.2</span> Atribuição por indexação</h2>
 <p>Uma matriz <code>mat</code> poderia ser criada especificando os valores de cada elemento :</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1"><span class="co"># criando a matriz gerada com dim</span></a>
-<a class="sourceLine" id="cb348-2" data-line-number="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb348-3" data-line-number="3">mat</a>
-<a class="sourceLine" id="cb348-4" data-line-number="4">mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb348-5" data-line-number="5">mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb348-6" data-line-number="6">mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb348-7" data-line-number="7">mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb348-8" data-line-number="8">mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb348-9" data-line-number="9">mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb348-10" data-line-number="10">mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb348-11" data-line-number="11">mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></a>
-<a class="sourceLine" id="cb348-12" data-line-number="12">mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb348-13" data-line-number="13">mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb348-14" data-line-number="14">mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></a>
-<a class="sourceLine" id="cb348-15" data-line-number="15">mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb348-16" data-line-number="16">mat</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="co"># criando a matriz gerada com dim</span></a>
+<a class="sourceLine" id="cb352-2" data-line-number="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb352-3" data-line-number="3">mat</a>
+<a class="sourceLine" id="cb352-4" data-line-number="4">mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb352-5" data-line-number="5">mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb352-6" data-line-number="6">mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb352-7" data-line-number="7">mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb352-8" data-line-number="8">mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb352-9" data-line-number="9">mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb352-10" data-line-number="10">mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb352-11" data-line-number="11">mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb352-12" data-line-number="12">mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb352-13" data-line-number="13">mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb352-14" data-line-number="14">mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></a>
+<a class="sourceLine" id="cb352-15" data-line-number="15">mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb352-16" data-line-number="16">mat</a></code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1">vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb349-2" data-line-number="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb349-3" data-line-number="3">mat</a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb353-2" data-line-number="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb353-3" data-line-number="3">mat</a></code></pre></div>
 </div>
             </section>
 

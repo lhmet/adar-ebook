@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R</title>
+  <title>6.4 Outros tipos de dados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="6.4 Outros tipos de dados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="6.4 Outros tipos de dados | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="referências.html"/>
-<link rel="next" href="função-dim.html"/>
+<link rel="prev" href="conversão-entre-tipos-de-dados.html"/>
+<link rel="next" href="estrutura-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -372,17 +372,52 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="oper-mat" class="section level1">
-<h1><span class="header-section-number">Apêndice A</span> Operações adicionais com matrizes</h1>
-<p>Há outras formas de se construir uma matriz além daquela usando a função <code>matrix()</code>. Há também diveras operações matriciais que podem ser realizadas no <img src="images/logo_r.png" width="20">. Aqui apresentam-se esse conteúdo complementar sobre matrizes.</p>
+<div id="outros-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">6.4</span> Outros tipos de dados</h2>
+<ul>
+<li><p><strong>factor</strong></p></li>
+<li><p><strong><code>date</code></strong> (datas)</p></li>
+<li><p><strong><code>POSIX</code></strong> (data e horários).</p></li>
+</ul>
+<div id="datas-e-horários" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Datas e horários</h3>
+<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:</p>
+<ul>
+<li><p><code>Date</code></p></li>
+<li><p><code>POSIXct</code></p></li>
+</ul>
+<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (<em>Date</em>) ou segundos (<em>POSIXct</em>) decorridos desde 1 de Janeiro de 1970.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">data1</a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="kw">class</span>(data1)</a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="kw">as.numeric</span>(data1)</a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="co">#&gt; [1] 15519</span></a>
+<a class="sourceLine" id="cb100-8" data-line-number="8">data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
+<a class="sourceLine" id="cb100-9" data-line-number="9">data2</a>
+<a class="sourceLine" id="cb100-10" data-line-number="10"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
+<a class="sourceLine" id="cb100-11" data-line-number="11"><span class="kw">class</span>(data2)</a>
+<a class="sourceLine" id="cb100-12" data-line-number="12"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
+<a class="sourceLine" id="cb100-13" data-line-number="13"><span class="kw">as.numeric</span>(data2)</a>
+<a class="sourceLine" id="cb100-14" data-line-number="14"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
+<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através dos pacotes <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente no curso.</p>
+<p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">class</span>(data1)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="referências.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="função-dim.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conversão-entre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estrutura-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

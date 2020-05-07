@@ -54,7 +54,7 @@ Os **vetores atômicos** são constituem a estrutura de dados mais simples do R 
 
 ```{r chunk7, message=FALSE   }
 # vetor numérico
-vetor_num <- c(5, 2.5, 4.5)
+vetor_dbl <- c(5, 2.5, 4.5)
 # Note o sufixo L que distingue variaveis "double" de "integers"
 vetor_int <- c(1L, 6L, 10L)
 # Vetor logico
@@ -76,7 +76,7 @@ Formas diferentes para criação de vetor que resultam num mesmo vetor:
 ```{r, message=FALSE  , tidy=FALSE}
 (v_123 <- c(v1, v2, v3))
 (v_123a <- c(1, c(v2, v3)))
-(v_123b <- c(vetor_num, c(v1, v2), v3))
+(v_123b <- c(vetor_dbl, c(v1, v2), v3))
 v <- c(1, 2, 4, 6)
 v
 ```
@@ -234,6 +234,68 @@ v1 <- c(3, 5, 88, 90)
 srt(v1)
 sqrt(-v1)
 ```
+
+
+- - - 
+SOLTO 
+
+Valores lógicos resultam da comparação de números ou caracteres.
+A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos para comparações.
+
+```{r oper-logic, echo = FALSE, warning=FALSE}
+#<a name="tab-oper-logic"></a>
+oper <- c("<", "<=", ">", ">=", "==", "!=", "!x", "x | y", "x & y", "isTRUE(x)", "%in%")
+desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico", "diferente", "não é x (negação)", "x ou y", "x e y", "teste se x é verdadeiro", "está contido em")
+oper_logic <- data.frame(
+  Operador = oper,
+  Descrição = desc,
+  stringsAsFactors = FALSE
+)
+kable(oper_logic, caption = "Operadores Lógicos", align = "c")
+```
+
+Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
+
+- quais elementos do `vetor_dbl` (da seção \@ref(build-vectors)) são negativos?
+
+```{r}
+vetor_dbl < 0
+```
+
+outros exemplos ÚTEIS ...
+
+
+PAREI AQUI -------------------------------------------------
+
+podem ser usados em operações aritméticas. Neste caso, serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
+
+```{r chunk10, eval = FALSE}
+vl * 5
+TRUE * 4
+TRUE + TRUE
+FALSE - TRUE
+```
+
+
+
+
+
+
+```{r chunk13}
+4 == 3 # 4 é idêntico a 3?
+teste2i2 <- 2 * 2 == 2 + 2
+teste2i2
+teste2d2 <- 2 * 2 != 2 + 2 # operador: diferente de
+teste2d2
+4 < 3
+4 > 3
+4 >= 3 & 4 <= 5
+4 <= 3 | 4 <= 5
+"abc" == "defg"
+"abc" < "defg"
+nchar("abc") < nchar("defg")
+```
+
 
 Comparações também funcionam com vetores.
 
@@ -1177,7 +1239,7 @@ str(lst)
 length(lst)
 # atribuindo nomes a lista
 names(lst)
-names(lst) <- c("vetor_int", "vetor_num", "logico", "char", "lista")
+names(lst) <- c("vetor_int", "vetor_dbl", "logico", "char", "lista")
 ```
 
 Os índices em colchetes duplos `[[]]` identificam o elemento ou a componente da lista. Os índices em colchete simples `[]` indicam qual sub-elemento da lista está sendo mostrado. Por exemplo `1.1` é o primeiro sub-elemento do segundo elemento da lista `lst`. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.

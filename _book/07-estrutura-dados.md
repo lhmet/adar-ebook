@@ -44,7 +44,7 @@ Os **vetores atômicos** são constituem a estrutura de dados mais simples do R 
 
 ```r
 # vetor numérico
-vetor_num <- c(5, 2.5, 4.5)
+vetor_dbl <- c(5, 2.5, 4.5)
 # Note o sufixo L que distingue variaveis "double" de "integers"
 vetor_int <- c(1L, 6L, 10L)
 # Vetor logico
@@ -70,7 +70,7 @@ Formas diferentes para criação de vetor que resultam num mesmo vetor:
 #> [1] 1 2 4 6
 (v_123a <- c(1, c(v2, v3)))
 #> [1] 1 2 4 6
-(v_123b <- c(vetor_num, c(v1, v2), v3))
+(v_123b <- c(vetor_dbl, c(v1, v2), v3))
 #> [1] 5.0 2.5 4.5 1.0 2.0 4.0 6.0
 v <- c(1, 2, 4, 6)
 v
@@ -297,6 +297,87 @@ sqrt(-v1)
 #> Warning in sqrt(-v1): NaNs produced
 #> [1] NaN NaN NaN NaN
 ```
+
+
+- - - 
+SOLTO 
+
+Valores lógicos resultam da comparação de números ou caracteres.
+A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos para comparações.
+
+
+Table: (\#tab:oper-logic)Operadores Lógicos
+
+ Operador            Descrição        
+-----------  -------------------------
+     <               menor que        
+    <=           menor ou igual a     
+     >               maior que        
+    >=            maior ou igual      
+    ==               idêntico         
+    !=               diferente        
+    !x           não é x (negação)    
+   x | y              x ou y          
+   x & y               x e y          
+ isTRUE(x)    teste se x é verdadeiro 
+   %in%           está contido em     
+
+Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
+
+- quais elementos do `vetor_dbl` (da seção \@ref(build-vectors)) são negativos?
+
+
+```r
+vetor_dbl < 0
+#> [1] FALSE FALSE FALSE
+```
+
+outros exemplos ÚTEIS ...
+
+
+PAREI AQUI -------------------------------------------------
+
+podem ser usados em operações aritméticas. Neste caso, serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
+
+
+```r
+vl * 5
+TRUE * 4
+TRUE + TRUE
+FALSE - TRUE
+```
+
+
+
+
+
+
+
+```r
+4 == 3 # 4 é idêntico a 3?
+#> [1] FALSE
+teste2i2 <- 2 * 2 == 2 + 2
+teste2i2
+#> [1] TRUE
+teste2d2 <- 2 * 2 != 2 + 2 # operador: diferente de
+teste2d2
+#> [1] FALSE
+4 < 3
+#> [1] FALSE
+4 > 3
+#> [1] TRUE
+4 >= 3 & 4 <= 5
+#> [1] TRUE
+4 <= 3 | 4 <= 5
+#> [1] TRUE
+"abc" == "defg"
+#> [1] FALSE
+"abc" < "defg"
+#> [1] TRUE
+nchar("abc") < nchar("defg")
+#> [1] TRUE
+```
+
 
 Comparações também funcionam com vetores.
 
@@ -1005,23 +1086,24 @@ ls()
 #> [19] "frac_d30mn"         "horas"              "k"                 
 #> [22] "meses"              "months"             "new_temp"          
 #> [25] "night_below20"      "old_temp"           "oper"              
-#> [28] "pcks"               "pent"               "pos"               
-#> [31] "prec"               "prec_cond1"         "prec_dez"          
-#> [34] "prec_jan"           "prec_jja"           "prec_med"          
-#> [37] "prect_jja_tot"      "quais"              "r_cran_version_win"
-#> [40] "rblue"              "rep_e31"            "rep_t13"           
-#> [43] "rep_t13_t4"         "rep_t4"             "s5by"              
-#> [46] "s5len"              "seco"               "seco01"            
-#> [49] "sel"                "sel_prec"           "sel_temp"          
-#> [52] "seqn"               "si_dec"             "snum_b"            
-#> [55] "tar_hor"            "temp"               "temp_dez"          
-#> [58] "temp_djf"           "temp_djf_med"       "temp_jan"          
-#> [61] "v"                  "v_123"              "v_123a"            
-#> [64] "v_123b"             "v1"                 "v2"                
-#> [67] "v3"                 "vetor"              "vetor_char"        
-#> [70] "vetor_int"          "vetor_l"            "vetor_log"         
-#> [73] "vetor_num"          "x"                  "y"                 
-#> [76] "z"
+#> [28] "oper_logic"         "pcks"               "pent"              
+#> [31] "pos"                "prec"               "prec_cond1"        
+#> [34] "prec_dez"           "prec_jan"           "prec_jja"          
+#> [37] "prec_med"           "prect_jja_tot"      "quais"             
+#> [40] "r_cran_version_win" "rblue"              "rep_e31"           
+#> [43] "rep_t13"            "rep_t13_t4"         "rep_t4"            
+#> [46] "s5by"               "s5len"              "seco"              
+#> [49] "seco01"             "sel"                "sel_prec"          
+#> [52] "sel_temp"           "seqn"               "si_dec"            
+#> [55] "snum_b"             "tar_hor"            "temp"              
+#> [58] "temp_dez"           "temp_djf"           "temp_djf_med"      
+#> [61] "temp_jan"           "teste2d2"           "teste2i2"          
+#> [64] "v"                  "v_123"              "v_123a"            
+#> [67] "v_123b"             "v1"                 "v2"                
+#> [70] "v3"                 "vetor"              "vetor_char"        
+#> [73] "vetor_dbl"          "vetor_int"          "vetor_l"           
+#> [76] "vetor_log"          "x"                  "y"                 
+#> [79] "z"
 # alocando o valor 45 no 3º elemento de k
 k[3] <- 45
 k
@@ -1156,24 +1238,25 @@ ls()
 #> [19] "format_hotkey"      "frac_d30mn"         "horas"             
 #> [22] "k"                  "meses"              "months"            
 #> [25] "new_temp"           "night_below20"      "old_temp"          
-#> [28] "onde_falta"         "oper"               "pcks"              
-#> [31] "pent"               "pos"                "prec"              
-#> [34] "prec_cond1"         "prec_dez"           "prec_jan"          
-#> [37] "prec_jja"           "prec_med"           "prect_jja_tot"     
-#> [40] "quais"              "r_cran_version_win" "rblue"             
-#> [43] "rep_e31"            "rep_t13"            "rep_t13_t4"        
-#> [46] "rep_t4"             "s5by"               "s5len"             
-#> [49] "seco"               "seco01"             "sel"               
-#> [52] "sel_prec"           "sel_temp"           "seqn"              
-#> [55] "si_dec"             "snum_b"             "tar_hor"           
-#> [58] "temp"               "temp_dez"           "temp_djf"          
-#> [61] "temp_djf_med"       "temp_jan"           "temp_orig"         
-#> [64] "umvetor"            "v"                  "v_123"             
-#> [67] "v_123a"             "v_123b"             "v1"                
-#> [70] "v2"                 "v3"                 "vetor"             
-#> [73] "vetor_char"         "vetor_int"          "vetor_l"           
-#> [76] "vetor_log"          "vetor_num"          "x"                 
-#> [79] "y"                  "z"
+#> [28] "onde_falta"         "oper"               "oper_logic"        
+#> [31] "pcks"               "pent"               "pos"               
+#> [34] "prec"               "prec_cond1"         "prec_dez"          
+#> [37] "prec_jan"           "prec_jja"           "prec_med"          
+#> [40] "prect_jja_tot"      "quais"              "r_cran_version_win"
+#> [43] "rblue"              "rep_e31"            "rep_t13"           
+#> [46] "rep_t13_t4"         "rep_t4"             "s5by"              
+#> [49] "s5len"              "seco"               "seco01"            
+#> [52] "sel"                "sel_prec"           "sel_temp"          
+#> [55] "seqn"               "si_dec"             "snum_b"            
+#> [58] "tar_hor"            "temp"               "temp_dez"          
+#> [61] "temp_djf"           "temp_djf_med"       "temp_jan"          
+#> [64] "temp_orig"          "teste2d2"           "teste2i2"          
+#> [67] "umvetor"            "v"                  "v_123"             
+#> [70] "v_123a"             "v_123b"             "v1"                
+#> [73] "v2"                 "v3"                 "vetor"             
+#> [76] "vetor_char"         "vetor_dbl"          "vetor_int"         
+#> [79] "vetor_l"            "vetor_log"          "x"                 
+#> [82] "y"                  "z"
 exists("v1")
 #> [1] TRUE
 # vamos anular todo v1
@@ -1188,24 +1271,25 @@ ls()
 #> [19] "format_hotkey"      "frac_d30mn"         "horas"             
 #> [22] "k"                  "meses"              "months"            
 #> [25] "new_temp"           "night_below20"      "old_temp"          
-#> [28] "onde_falta"         "oper"               "pcks"              
-#> [31] "pent"               "pos"                "prec"              
-#> [34] "prec_cond1"         "prec_dez"           "prec_jan"          
-#> [37] "prec_jja"           "prec_med"           "prect_jja_tot"     
-#> [40] "quais"              "r_cran_version_win" "rblue"             
-#> [43] "rep_e31"            "rep_t13"            "rep_t13_t4"        
-#> [46] "rep_t4"             "s5by"               "s5len"             
-#> [49] "seco"               "seco01"             "sel"               
-#> [52] "sel_prec"           "sel_temp"           "seqn"              
-#> [55] "si_dec"             "snum_b"             "tar_hor"           
-#> [58] "temp"               "temp_dez"           "temp_djf"          
-#> [61] "temp_djf_med"       "temp_jan"           "temp_orig"         
-#> [64] "umvetor"            "v"                  "v_123"             
-#> [67] "v_123a"             "v_123b"             "v1"                
-#> [70] "v2"                 "v3"                 "vetor"             
-#> [73] "vetor_char"         "vetor_int"          "vetor_l"           
-#> [76] "vetor_log"          "vetor_num"          "x"                 
-#> [79] "y"                  "z"
+#> [28] "onde_falta"         "oper"               "oper_logic"        
+#> [31] "pcks"               "pent"               "pos"               
+#> [34] "prec"               "prec_cond1"         "prec_dez"          
+#> [37] "prec_jan"           "prec_jja"           "prec_med"          
+#> [40] "prect_jja_tot"      "quais"              "r_cran_version_win"
+#> [43] "rblue"              "rep_e31"            "rep_t13"           
+#> [46] "rep_t13_t4"         "rep_t4"             "s5by"              
+#> [49] "s5len"              "seco"               "seco01"            
+#> [52] "sel"                "sel_prec"           "sel_temp"          
+#> [55] "seqn"               "si_dec"             "snum_b"            
+#> [58] "tar_hor"            "temp"               "temp_dez"          
+#> [61] "temp_djf"           "temp_djf_med"       "temp_jan"          
+#> [64] "temp_orig"          "teste2d2"           "teste2i2"          
+#> [67] "umvetor"            "v"                  "v_123"             
+#> [70] "v_123a"             "v_123b"             "v1"                
+#> [73] "v2"                 "v3"                 "vetor"             
+#> [76] "vetor_char"         "vetor_dbl"          "vetor_int"         
+#> [79] "vetor_l"            "vetor_log"          "x"                 
+#> [82] "y"                  "z"
 v1
 #> NULL
 # NULL
@@ -2103,7 +2187,7 @@ length(lst)
 # atribuindo nomes a lista
 names(lst)
 #> NULL
-names(lst) <- c("vetor_int", "vetor_num", "logico", "char", "lista")
+names(lst) <- c("vetor_int", "vetor_dbl", "logico", "char", "lista")
 ```
 
 Os índices em colchetes duplos `[[]]` identificam o elemento ou a componente da lista. Os índices em colchete simples `[]` indicam qual sub-elemento da lista está sendo mostrado. Por exemplo `1.1` é o primeiro sub-elemento do segundo elemento da lista `lst`. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos.
@@ -2920,7 +3004,7 @@ with(dados,
 )
 ```
 
-<img src="images/unnamed-chunk-7-1.png" width="672" />
+<img src="images/unnamed-chunk-8-1.png" width="672" />
 
 
 ### Indexação, seleção e substituição 

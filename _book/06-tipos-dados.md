@@ -1,4 +1,4 @@
-# Tipos de dados {#datatype}
+# Tipos básicos de dados {#datatype}
 
 
 Neste capítulo vamos:
@@ -24,20 +24,34 @@ factor
 
 ## Vetores e tipos de dados {#tipos-dados}
 
-Vetor é a estrutura básica de dados do <img src="images/logo_r.png" width="20"> e consiste em uma coleção de elementos. Vetores podem ser de dois tipos: **vetores atômicos** e **listas**[^listas]. Um vetor atômico é uma coleção de elementos do mesmo tipo de dado. Os tipos de dados mais usados (tabela \@ref(tab:classes-r)) em vetores atômicos são: **`numeric`** (numérico), **`character`** (caracteres), **`logical`** (lógico), **`date`** (datas), **`POSIX`** (data e horários). A relação entre estes tipos de dados é mostrada na Figura \@ref(fig:data-types-rel). 
+Uma conjunto de um ou elementos formam um vetor[^vetor-escalar]  (**`vector`** no idioma <img src="images/logo_r.png" width="20">). Vetor é a estrutura básica de dados do <img src="images/logo_r.png" width="20"> e podem ser de dois tipos: **vetores atômicos** e **listas**[^listas]. 
+
+[^vetor-escalar]: Diferente de outras linguagens de programação no R, um **escalar** é um vetor com um elemento. Então, vetores são o menor tipo de dados no R.
+
+Um vetor atômico tem elementos só de um mesmo tipo de dado. Os quatro tipos básicos de vetores atômicos (tabela \@ref(tab:classes-r)) são: 
+
+- **`double`** (real)
+
+- **`integer`** (inteiro)
+
+- **`character`** (caracteres)
+
+- **`logical`** (lógico)
+ 
+
+A relação entre estes tipos de dados é mostrada na Figura \@ref(fig:data-types-rel). 
 
 [^listas]: Lista é um tipo de vetor chamado `list` que é capaz de armazenar dados de diferentes tipos (heterogêneos), o que será visto na seção \@ref(listas). 
 
 
 Table: (\#tab:classes-r)Principais tipos de dados do R.
 
-  Tipo de dados      Classe no R          exemplo       
-------------------  -------------  ---------------------
-     Números           numeric            2.5, 2        
-    Caracteres        character           "adar"        
-     Lógicos           logical          TRUE, FALSE     
-      Datas             Date            2010-01-01      
- Datas e horários       POSIX       2010-01-01 00:00:00 
+  Tipo de dados      Classe no R       exemplo     
+------------------  -------------  ----------------
+ Números inteiros      integer          2, 11      
+  Números reais        double       0.1234, 1.23e4 
+    Caracteres        character         "adar"     
+     Lógicos           logical       TRUE, FALSE   
 
 
 
@@ -48,7 +62,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 
 
 <div class="rmdtip">
-<p>Embora existam dois tipos de vetores o termo “vetor” é em geral usado para se referir ao do tipo atômico.</p>
+<p>Embora existam dois tipos de vetores o termo &quot;vetor&quot; é em geral usado para se referir ao do tipo atômico.</p>
 </div>
 
 
@@ -56,7 +70,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 ### Construindo vetores {#build-vectors}
 
 
-**Vetores atômicos** são geralmente criados com a função `c()`, abreviatura para **combinar ou concatenar**. Os argumentos podem ser especificados separados por vírgula. Por exemplo, para criar um vetor com números reais chamado `vetor_dbl`, escrevemos:
+**Vetores atômicos** são geralmente criados com a função `c()`, abreviatura para **combinar ou concatenar**. Os argumentos dessa função podem ser especificados separados por vírgula. Por exemplo, para criar um vetor com números reais chamado `vetor_dbl`, escrevemos:
 
 
 
@@ -83,13 +97,19 @@ class(vetor_dbl)
 
 ### Números
 
-O tipo de dados mais usado no <img src="images/logo_r.png" width="20"> é chamado *numeric*. Este tipo inclui números inteiros, decimais, positivos, negativos e zero. Um dado do tipo numérico pode ser real (`double`) ou inteiro (`integer`) (\@ref(fig:data-types-rel)).
+O tipo de dados mais usado no <img src="images/logo_r.png" width="20"> é chamado *numeric*. Este tipo inclui números inteiros, decimais, positivos, negativos e zero. Um dado do tipo numérico pode ser real (`double`) ou inteiro (`integer`) (Figura \@ref(fig:data-types-rel)).
 
 **Números inteiros**: são geralmente usados para contagem (n° habitantes, n° de palavras, quantidade de eventos de um dado fenômeno). São números sem a parte fracionária.  
 
 **Números reais**: podem ter uma parte fracionária e uma inteira. Estes resultam de medidas que podem assumir qualquer valor: 3.5 horas, 10.4 mm, 18.1 °C.
 
-Como todo n° inteiro pode ser representado como real, no <img src="images/logo_r.png" width="20"> por padrão números (ou operações envolvendo números) são definidos como **`double`** ([dupla precisão no formato de ponto flutuante](https://pt.wikipedia.org/wiki/Dupla_precis%C3%A3o_no_formato_de_ponto_flutuante)). Por exemplo o vetor `vetor_num` é numérico:
+
+<div class="rmdimportant">
+<p>Medidas são compostas de um número e uma escala. Você pode estar trabalhando com valores de poluação na escala de milhões de habitantes, mas o valor pode ser apenas 1.7. Para garantir consistência nos seus cálculos, em termos de unidades, é recomendado nomear sua variável com alguma referência à sua unidade de medida. Erros de unidades podem ter consequências catastróficas como o exemplo do <a href="https://pt.wikipedia.org/wiki/Mars_Climate_Orbiter#Resultados">Caso do Orbitador Climático de Marte</a>.</p>
+</div>
+
+
+Como todo n° inteiro pode ser representado como real, por padrão números (ou operações envolvendo números) são definidos como **`double`** ([dupla precisão no formato de ponto flutuante](https://pt.wikipedia.org/wiki/Dupla_precis%C3%A3o_no_formato_de_ponto_flutuante)) no <img src="images/logo_r.png" width="20">. Por exemplo o vetor `vetor_num` é numérico:
 
 
 ```r
@@ -99,7 +119,7 @@ class(vetor_num)
 #> [1] "numeric"
 ```
 
-Mas para sabermos se ele é real ou inteiro, usamos a função `typeof()`:
+Podemos determinar se uma variável é do tipo real ou inteiro com a função `typeof()`:
 
 
 ```r
@@ -108,7 +128,7 @@ typeof(vetor_num)
 ```
 
 
-Para definirmos um vetor como inteiro é necessário usar o sufixo `L` em cada elemento numérico. 
+Para definirmos um vetor como do tipo **`integer`** é necessário usar o sufixo `L` em cada elemento numérico do vetor. 
 
 
 
@@ -120,24 +140,16 @@ typeof(vetor_int)
 ```
  
 
-O R converte inteiros para numéricos automaticamete quando necessário. Vamos verificar essas conversões usar a função `typeof()` para determinar o tipo de dado e as conversões que o R faz. Por exemplo:
+Há outra forma, bem mais prática, de criar vetores de inteiros: a partir da conversão de uma variável do tipo real (`double`) usando a função `as.integer()`:
 
 
 ```r
-typeof(5L)
+vetor_num_fi <- as.integer(vetor_num)
+typeof(vetor_num_fi)
 #> [1] "integer"
-typeof(4.5)
-#> [1] "double"
-typeof(5L * 4.5)
-#> [1] "double"
-typeof(10L/3L)
-#> [1] "double"
 ```
 
-
-
-
-
+Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo real para inteiro e vericamos qual seu tipo.
 
 ### Caractere
 
@@ -160,7 +172,7 @@ class(vetor_char)
 `char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
 -->
 
-Para obter o tamanho de caracters usamos a função `nchar()`.
+O número de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
         
 
 ```r
@@ -218,7 +230,7 @@ message(texto_citado_2)
 
 ### Lógico {#logico}
    
-Valores lógicos são um tipo de vetores atômicos extremamente úteis simples, pois só podem assumir os valores `TRUE` (verdadeiro), `FALSE` (falso) e `NA`.  Eles são dados do tipo `logical` no <img src="images/logo_r.png" width="20">.
+Valores lógicos são um tipo de vetores atômicos extremamente úteis simples, pois só podem assumir os valores `TRUE` (verdadeiro), `FALSE` (falso) e `NA`. No <img src="images/logo_r.png" width="20"> eles são da classe de dados do tipo `logical`.
 
 
 ```r
@@ -232,7 +244,7 @@ class(vetor_log)
 
 
 
-O <img src="images/logo_r.png" width="20"> aceita as abreviaturas `T` e `F` para representar `TRUE` e `FALSE`. Entretanto, esta não é uma prática recomendável, conforme exemplo abaixo.
+O <img src="images/logo_r.png" width="20"> aceita as abreviaturas `T` e `F` para representar `TRUE` e `FALSE`. Entretanto, esta não é uma prática recomendável, pois `T` e `F` não fazem parte das palavras reservadas do <img src="images/logo_r.png" width="20">. Consequentemente isso pode levar a confusão, como no exemplo abaixo.
 
 
 ```r
@@ -245,106 +257,112 @@ class(T)
 T <- 10
 class(T)
 #> [1] "numeric"
+c(T, F)
+#> [1] 10  0
 ```
 
-Vetores lógicos resultam de comparações e são amplamente usados em estruturas de controle em programação (como por exemplo nas funções `while()` e `if()`). A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos para comparações.
+Vetores lógicos resultam de comparações e são amplamente usados em estruturas de controle condicional do código (como por exemplo nas funções `if()` e `ifelse()`). 
 
 
-Table: (\#tab:oper-logic)Operadores Lógicos
+## Testes sobre tipos de dados
 
- Operador            Descrição        
------------  -------------------------
-     <               menor que        
-    <=           menor ou igual a     
-     >               maior que        
-    >=            maior ou igual      
-    ==               idêntico         
-    !=               diferente        
-    !x           não é x (negação)    
-   x | y              x ou y          
-   x & y               x e y          
- isTRUE(x)    teste se x é verdadeiro 
-   %in%           está contido em     
-
-Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
-
-- quais elementos do `vetor_dbl` (da seção \@ref{build-vectors}) são negativos?
+Além função `typeof()`, a família de funções `is.**{tipo_de_dados}**()` também permite descobrir o tipo de dado de uma variável. Por exemplo, para testar se a variável `vetor_num` é do tipo `character`, substituímos `{tipo_de_dados}` por `character`: 
 
 
 ```r
-vetor_dbl < 0
-#> [1]  TRUE FALSE FALSE FALSE
-```
-
-outros exemplos ÚTEIS ...
-
-
-PAREI AQUI -------------------------------------------------
-
-podem ser usados em operações aritméticas. Neste caso, serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
-
-
-```r
-vl * 5
-TRUE * 4
-TRUE + TRUE
-FALSE - TRUE
-```
-
-Assim como as outras classes de dados, existem funções para verificar a classe de dados lógicos.
-
-
-```r
-class(vl)
-is.logical(vl)
-```
-
-
-Valores lógicos resultam da comparação de números ou caracteres.
-
-
-```r
-4 == 3 # 4 é idêntico a 3?
+is.character(vetor_num)
 #> [1] FALSE
-teste2i2 <- 2 * 2 == 2 + 2
-teste2i2
-#> [1] TRUE
-teste2d2 <- 2 * 2 != 2 + 2 # operador: diferente de
-teste2d2
-#> [1] FALSE
-4 < 3
-#> [1] FALSE
-4 > 3
-#> [1] TRUE
-4 >= 3 & 4 <= 5
-#> [1] TRUE
-4 <= 3 | 4 <= 5
-#> [1] TRUE
-"abc" == "defg"
-#> [1] FALSE
-"abc" < "defg"
-#> [1] TRUE
-nchar("abc") < nchar("defg")
-#> [1] TRUE
 ```
 
-
-
-
-
+O mesmo processo vale para `integer`, `numeric`, `double`, `logical`.
 
 
 ```r
-# vetor numérico
-vetor_num <- c(5, 2.5, 4.5)
-# Note o sufixo L que distingue variaveis "double" de "integers"
-vetor_int <- c(1L, 6L, 10L)
-# Vetor logico
-vetor_log <- c(TRUE, FALSE, TRUE, FALSE)
+is.integer(vetor_num)
+is.numeric(vetor_num)
+is.double(vetor_num)
+is.logical(vetor_num)
 ```
 
-Generalizar is.{tipo_de_dados}
+Essa é uma forma de verificação do tipo de uma variável mais legível que `typeof(vetor_num) == "double"`. O operador `==` é um operador relacional para verificar se dois objetos são iguais.
 
+## Conversão entre tipos de dados
+
+Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.{tipo_de_dados}()` possui uma função `as.{tipo_de_dados}()` correspondente que faz a conversão para aquele tipo de dado. No este tipo de operação é chamada de **coersão**.
+
+<!-- 
+COLOCAR TUDO EM UMA TABELA SÓ 
+-->
+
+Então, a coersão da variável `vetor_num` para inteiro pode ser feita com:
+
+
+```r
+vetor_num
+#> [1] -1  0  1  2 NA
+as.integer(vetor_num)
+#> [1] -1  0  1  2 NA
+# verificação do resultado
+typeof(as.integer(vetor_num))
+#> [1] "integer"
+```
+
+Já a sua coersão para lógico 
+
+
+```r
+as.logical(vetor_num)
+#> [1]  TRUE FALSE  TRUE  TRUE    NA
+# verificação do resultado
+typeof(as.logical(vetor_num))
+#> [1] "logical"
+```
+
+converte `0` para `FALSE` e os números $\geq \; 1$  para `TRUE`.
+
+
+A coersão da variável `vetor_log` para numérica 
+
+
+```r
+vetor_log
+#> [1] FALSE    NA FALSE  TRUE
+as.numeric(vetor_log)
+#> [1]  0 NA  0  1
+# verificação do resultado
+typeof(as.numeric(vetor_log))
+#> [1] "double"
+```
+
+converte os valores `FALSE` para `0` e `TRUE` para `1`. 
+
+
+A coersão da variável `vetor_char` para numérica ou inteiro
+
+
+```r
+vetor_char
+#> [1] "ae" NA   "ou"
+as.integer(vetor_char)
+#> Warning: NAs introduced by coercion
+#> [1] NA NA NA
+# verificação do resultado
+typeof(as.integer(vetor_char))
+#> Warning in typeof(as.integer(vetor_char)): NAs introduced by coercion
+#> [1] "integer"
+```
+
+gera `NA`.
+
+
+
+## Outros tipos de dados
+
+- **factor**
+
+- **`date`** (datas)
+
+- **`POSIX`** (data e horários).
 
 ### Datas e horários
 
@@ -385,75 +403,6 @@ class(data1)
 #> [1] "Date"
 class(as.numeric(data1))
 #> [1] "numeric"
-```
-
-
-
-## Testes sobre tipos de dados
-
-Além função `typeof()`, a família `is.*()` também permite descobrir o tipo de dado, p.ex.: `is.numeric()`, `is.character()` e etc.
-
-
-```r
-#x; typeof(x)
-vl; typeof(vl)
-data1; typeof(data1)
-#x; is.numeric(x)
-#  num.real?
-#is.double(x/5)
-is.double(5L)
-is.character("12.34")
-charf; is.factor(charf)
-i; is.integer(i)
-is.function(sqrt)
-is.finite(i)
-#is.nan(x)
-#is.na(x)
-```
-
-## Conversão entre tipos de dados
-
-Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
-
-
-```r
-# de character para numeric
-as.numeric("12.34") 
-#> [1] 12.34
-# de factor para character
-#as.character(charf)
-# character para factor
-as.factor("a")
-#> [1] a
-#> Levels: a
-# de double para integer
-#typeof(x)
-#typeof(as.integer(x))
-#as.integer(x) == 51L
-as.integer("12.34")
-#> [1] 12
-# arredondamento
-as.integer(12.34)
-#> [1] 12
-# lógico para inteiro
-as.integer(TRUE)
-#> [1] 1
-# numérico para lógico
-as.logical(0:2)
-#> [1] FALSE  TRUE  TRUE
-# character para numérico?
-as.numeric("a")
-#> Warning: NAs introduced by coercion
-#> [1] NA
-# de character para date
-dt_char <- "2016-03-17"
-dt <- as.Date(dt_char)
-dt
-#> [1] "2016-03-17"
-# de character para date-time
-data_hora <- as.POSIXct("2016-03-17 15:30:00")
-data_hora
-#> [1] "2016-03-17 15:30:00 -03"
 ```
 
 
