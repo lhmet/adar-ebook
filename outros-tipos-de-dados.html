@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Estrutura de dados | Análise de Dados Ambientais com R</title>
+  <title>6.4 Outros tipos de dados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Estrutura de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="6.4 Outros tipos de dados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Estrutura de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="6.4 Outros tipos de dados | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="outros-tipos-de-dados.html"/>
-<link rel="next" href="vetor.html"/>
+<link rel="prev" href="conversão-entre-tipos-de-dados.html"/>
+<link rel="next" href="estrutura-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -347,30 +347,52 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estrutura-dados" class="section level1">
-<h1><span class="header-section-number">Capítulo 7</span> Estrutura de dados</h1>
-<p>Existem diferentes formas de armazenar dados no <img src="images/logo_r.png" width="20">. Algumas vezes os dados precisam ser armazenados de forma mais complexa do que por exemplo vetores.</p>
-<p>O <img src="images/logo_r.png" width="20"> possui uma variedade de estruturas (Figura <a href="estrutura-dados.html#fig:fig-estrut-dados">7.1</a>). Dentre elas as fundamentais que serão vistas neste capítulo são:</p>
+<div id="outros-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">6.4</span> Outros tipos de dados</h2>
 <ul>
-<li><p><em>dataframe</em> (tabela de dados)</p></li>
-<li><p><em>matrix</em> (matriz)</p></li>
-<li><p><em>list</em> (lista)</p></li>
-<li><p><em>array</em> e <em>vector</em> (vetor)</p></li>
+<li><p><strong>factor</strong></p></li>
+<li><p><strong><code>date</code></strong> (datas)</p></li>
+<li><p><strong><code>POSIX</code></strong> (data e horários).</p></li>
 </ul>
-<div class="figure"><span id="fig:fig-estrut-dados"></span>
-<img src="images/dataStructuresR.png" alt="Principais estruturas de dados no R." width="100%" />
-<p class="caption">
-Figura 7.1: Principais estruturas de dados no R.
-</p>
+<div id="datas-e-horários" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Datas e horários</h3>
+<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:</p>
+<ul>
+<li><p><code>Date</code></p></li>
+<li><p><code>POSIXct</code></p></li>
+</ul>
+<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (<em>Date</em>) ou segundos (<em>POSIXct</em>) decorridos desde 1 de Janeiro de 1970.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)
+data1
+<span class="co">#&gt; [1] &quot;2012-06-28&quot;</span>
+<span class="kw">class</span>(data1)
+<span class="co">#&gt; [1] &quot;Date&quot;</span>
+<span class="kw">as.numeric</span>(data1)
+<span class="co">#&gt; [1] 15519</span>
+data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)
+data2
+<span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 UTC&quot;</span>
+<span class="kw">class</span>(data2)
+<span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span>
+<span class="kw">as.numeric</span>(data2)
+<span class="co">#&gt; [1] 1340905320</span></code></pre></div>
+<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através dos pacotes <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente no curso.</p>
+<p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(data1)
+<span class="co">#&gt; [1] &quot;Date&quot;</span>
+<span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))
+<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
+
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="outros-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="vetor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conversão-entre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estrutura-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

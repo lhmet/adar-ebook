@@ -175,6 +175,17 @@ getOption("digits")
 ```
 -->
 
+O valor absoluto e o sinal de um número podem ser obtidos pelas seguintes expressões:
+
+
+```r
+abs(-6)
+#> [1] 6
+sign(-6)
+#> [1] -1
+```
+
+
 ### Cálculos problemáticos {#nans}
 
 Quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela \@ref(tab:tab-num-esp)) surgirão alguns valores numéricos especiais na sua frente, como:  `Inf`(Infinito) e `NaN` (abreviação do termo em inglês *Not a Number* - valor indefinido).
