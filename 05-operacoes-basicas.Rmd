@@ -269,7 +269,7 @@ Você não precisa lembrar do nome de cada função do `r rblue`. Você pode ou 
 
 Digitando `?` antes do nome de uma função ou operador abrirá a página de ajuda daquela função. 
 
-```{r chunk17, render.args = list(help = list(sections = "Details")), eval = TRUE}
+```{r chunk17, render.args = list(help = list(sections = "Details")), eval = FALSE}
 ?atan2
 ```
 
@@ -572,7 +572,7 @@ De forma geral, podemos listar os seguintes cuidados ao nomear variáveis no `r 
 
    - Código sem identação:
 
-```{r, eval = FALSE, tidy=TRUE}
+```{r, eval = FALSE}
 mydf <- cbind.data.frame(do.call(rbind, lapply(strsplit(myfile[!seq(length(myfile)) %% 2], ", "),function(x)gsub(".*\\=", "", x))), lca = gsub(".*\\:\\s+", "", myfile[seq(length(myfile)) %% 2]))
 ```
 
