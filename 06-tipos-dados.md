@@ -224,10 +224,10 @@ A função `print()` imprime um caracter incluindo a barra invertida para maior 
 <div class="rmdnote">
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
 <ul>
-<li><p><code>\'</code> aspas simples</p></li>
-<li><p><code>\&quot;</code> aspas duplas</p></li>
-<li><p><code>\n</code> quebra de lina ou nova linha</p></li>
-<li><p><code>\\</code> a própria barra invertida</p></li>
+<li><p><code>\\'</code> aspas simples</p></li>
+<li><p><code>\\&quot;</code> aspas duplas</p></li>
+<li><p><code>\\n</code> quebra de lina ou nova linha</p></li>
+<li><p><code>\\\\</code> a própria barra invertida</p></li>
 </ul>
 </div>
 
