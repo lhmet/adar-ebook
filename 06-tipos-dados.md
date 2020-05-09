@@ -105,7 +105,7 @@ O tipo de dados mais usado no <img src="images/logo_r.png" width="20"> é chamad
 
 
 <div class="rmdimportant">
-<p>Medidas são compostas de um número e uma escala. Você pode estar trabalhando com valores de poluação na escala de milhões de habitantes, mas o valor pode ser apenas 1.7. Para garantir consistência nos seus cálculos, em termos de unidades, é recomendado nomear sua variável com alguma referência à sua unidade de medida. Erros de unidades podem ter consequências catastróficas como o exemplo do <a href="https://pt.wikipedia.org/wiki/Mars_Climate_Orbiter#Resultados">Caso do Orbitador Climático de Marte</a>.</p>
+<p>Medidas são compostas de um número e uma escala. Você pode estar trabalhando com valores de população na escala de milhões de habitantes, mas o valor pode ser apenas 1.7. Para garantir consistência nos seus cálculos, em termos de unidades, é recomendado nomear sua variável com alguma referência à sua unidade de medida. Erros de unidades podem ter consequências catastróficas como o exemplo do <a href="https://pt.wikipedia.org/wiki/Mars_Climate_Orbiter#Resultados">Caso do Orbitador Climático de Marte</a>.</p>
 </div>
 
 
@@ -149,7 +149,7 @@ typeof(vetor_num_fi)
 #> [1] "integer"
 ```
 
-Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo real para inteiro e vericamos qual seu tipo.
+Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo real para inteiro e verificamos qual seu tipo.
 
 ### Caractere
 
@@ -266,7 +266,7 @@ Vetores lógicos resultam de comparações e são amplamente usados em estrutura
 
 ## Testes sobre tipos de dados
 
-Além função `typeof()`, a família de funções `is.**{tipo_de_dados}**()` também permite descobrir o tipo de dado de uma variável. Por exemplo, para testar se a variável `vetor_num` é do tipo `character`, substituímos `{tipo_de_dados}` por `character`: 
+Além função `typeof()`, a família de funções `is.{tipo_de_dados}()` também permite descobrir o tipo de dado de uma variável. Por exemplo, para testar se a variável `vetor_num` é do tipo `character`, substituímos `{tipo_de_dados}` por `character`: 
 
 
 ```r
@@ -279,16 +279,23 @@ O mesmo processo vale para `integer`, `numeric`, `double`, `logical`.
 
 ```r
 is.integer(vetor_num)
+#> [1] FALSE
 is.numeric(vetor_num)
+#> [1] TRUE
 is.double(vetor_num)
+#> [1] TRUE
 is.logical(vetor_num)
+#> [1] FALSE
 ```
 
-Essa é uma forma de verificação do tipo de uma variável mais legível que `typeof(vetor_num) == "double"`. O operador `==` é um operador relacional para verificar se dois objetos são iguais.
+Essa é uma forma de verificação mais direta do tipo de uma variável. Outra possível forma seria combinar o uso do operador relacional[^relacionais] idêntico (`==`) e a mais legível que `typeof(vetor_num) == "double"`. O operador `==` é um operador relacional para verificar se dois objetos são iguais.
+
+[^relacionais]: Operadores relacionais será visto na seção Operações com Vetores. 
 
 ## Conversão entre tipos de dados
 
-Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.{tipo_de_dados}()` possui uma função `as.{tipo_de_dados}()` correspondente que faz a conversão para aquele tipo de dado. No este tipo de operação é chamada de **coersão**.
+
+Em algumas circunstâncias precisamos alterar o tipo de uma variável para o tipo que queremos. Para isso há o grupo de funções `as.{tipo_de_dados}()`, semelhante ao grupo de funções `is.{tipo_de_dados}()`. Este tipo de operação é chamada de **coersão** no <img src="images/logo_r.png" width="20">.
 
 <!-- 
 COLOCAR TUDO EM UMA TABELA SÓ 
@@ -318,7 +325,7 @@ typeof(as.logical(vetor_num))
 #> [1] "logical"
 ```
 
-converte `0` para `FALSE` e os números $\geq \; 1$  para `TRUE`.
+converte **0** para `FALSE` e **qualquer outro número** para `TRUE`.
 
 
 A coersão da variável `vetor_log` para numérica 
@@ -334,7 +341,7 @@ typeof(as.numeric(vetor_log))
 #> [1] "double"
 ```
 
-converte os valores `FALSE` para `0` e `TRUE` para `1`. 
+converte os valores `FALSE` para **0** e **TRUE** para `1`. 
 
 
 A coersão da variável `vetor_char` para numérica ou inteiro
@@ -347,16 +354,74 @@ as.integer(vetor_char)
 #> Warning: NAs introduced by coercion
 #> [1] NA NA NA
 # verificação do resultado
-typeof(as.integer(vetor_char))
-#> Warning in typeof(as.integer(vetor_char)): NAs introduced by coercion
-#> [1] "integer"
+typeof(as.numeric(vetor_char))
+#> Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion
+#> [1] "double"
 ```
 
 gera `NA`.
 
 
+Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coersão automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.
 
-## Outros tipos de dados
+Misturando `numeric` com `character` resulta:
+
+
+```r
+(vmix_num_char <- c(vetor_num, vetor_char))
+#> [1] "-1" "0"  "1"  "2"  NA   "ae" NA   "ou"
+typeof(vmix_num_char)
+#> [1] "character"
+```
+
+Misturando `logical` com `numeric` resulta:
+
+
+```r
+(vmix_log_num <- c(vetor_log, vetor_num))
+#> [1]  0 NA  0  1 -1  0  1  2 NA
+typeof(vmix_log_num)
+#> [1] "double"
+```
+
+Misturando `double` com `integer` resulta:
+
+
+```r
+(vmix_dbl_int <- c(vetor_dbl, vetor_int))
+#> [1] -1.51  0.33  1.46  2.04  1.00  6.00 10.00    NA
+typeof(vmix_dbl_int)
+#> [1] "double"
+```
+
+Misturando `lógical` com `character` resulta:
+
+
+```r
+(vmix_log_char <- c(vetor_log, vetor_char))
+#> [1] "FALSE" NA      "FALSE" "TRUE"  "ae"    NA      "ou"
+typeof(vmix_log_char)
+#> [1] "character"
+```
+
+A regra de coerção segue a relação hierárquica: 
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `logical < integer < numeric <  character` </p>
+
+A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável `vetor_num` podemos fazer:
+
+
+```r
+# vetor lógico
+vetor_num > 0 
+#> [1] FALSE FALSE  TRUE  TRUE    NA
+sum(vetor_num > 0, na.rm = TRUE)
+#> [1] 2
+```
+
+Neste exemplo, os valores lógicos obtidos com o operador `>` foram implicitamente convertidos para numéricos (`TRUE` para `1`, `FALSE` para `0`) antes de se obter a soma dos casos verdadeiros. O argumento `na.rm = TRUE` habilita a funcionalidade de realizar a soma ignorando os itens faltantes.
+
+## Outros tipos de dados derivados
 
 - **factor**
 
@@ -393,7 +458,7 @@ as.numeric(data2)
 #> [1] 1340905320
 ```
 
-A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriormente no curso.
+A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através de pacotes específicos, como o `lubridate` e `chron`, o que será visto posteriormente.
 
 Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
 
