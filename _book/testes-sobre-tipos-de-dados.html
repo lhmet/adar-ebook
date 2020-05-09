@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-08" />
+<meta name="date" content="2020-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,7 +206,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
 <li class="chapter" data-level="6.4" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html"><i class="fa fa-check"></i><b>6.4</b> Outros tipos de dados derivados</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.1</b> Datas e horários</a></li>
+<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#fator"><i class="fa fa-check"></i><b>6.4.1</b> Fator</a></li>
+<li class="chapter" data-level="6.4.2" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.2</b> Datas e horários</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="manip-vectors.html"><a href="manip-vectors.html"><i class="fa fa-check"></i><b>7</b> Manipulação de Vetores</a><ul>
@@ -388,17 +389,17 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="testes-sobre-tipos-de-dados" class="section level2">
 <h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
 <p>Além função <code>typeof()</code>, a família de funções <code>is.{tipo_de_dados}()</code> também permite descobrir o tipo de dado de uma variável. Por exemplo, para testar se a variável <code>vetor_num</code> é do tipo <code>character</code>, substituímos <code>{tipo_de_dados}</code> por <code>character</code>:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">is.character</span>(vetor_num)</a>
-<a class="sourceLine" id="cb94-2" title="2"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="kw">is.character</span>(vetor_num)</a>
+<a class="sourceLine" id="cb96-2" title="2"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <p>O mesmo processo vale para <code>integer</code>, <code>numeric</code>, <code>double</code>, <code>logical</code>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">is.integer</span>(vetor_num)</a>
-<a class="sourceLine" id="cb95-2" title="2"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb95-3" title="3"><span class="kw">is.numeric</span>(vetor_num)</a>
-<a class="sourceLine" id="cb95-4" title="4"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb95-5" title="5"><span class="kw">is.double</span>(vetor_num)</a>
-<a class="sourceLine" id="cb95-6" title="6"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb95-7" title="7"><span class="kw">is.logical</span>(vetor_num)</a>
-<a class="sourceLine" id="cb95-8" title="8"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">is.integer</span>(vetor_num)</a>
+<a class="sourceLine" id="cb97-2" title="2"><span class="co">#&gt; [1] FALSE</span></a>
+<a class="sourceLine" id="cb97-3" title="3"><span class="kw">is.numeric</span>(vetor_num)</a>
+<a class="sourceLine" id="cb97-4" title="4"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb97-5" title="5"><span class="kw">is.double</span>(vetor_num)</a>
+<a class="sourceLine" id="cb97-6" title="6"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb97-7" title="7"><span class="kw">is.logical</span>(vetor_num)</a>
+<a class="sourceLine" id="cb97-8" title="8"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <p>Essa é uma forma de verificação mais direta do tipo de uma variável. Outra possível forma seria combinar o uso do operador relacional<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> idêntico (<code>==</code>) e a mais legível que <code>typeof(vetor_num) == "double"</code>. O operador <code>==</code> é um operador relacional para verificar se dois objetos são iguais.</p>
 </div>
 <div class="footnotes">

@@ -6,7 +6,6 @@ Neste capítulo vamos:
 - aprender a criar vetores
 - conhecer os tipos de dados mais usados no R
 - descobrir qual é o tipo de dado de uma variável
-- aprender a fazer testes com operadores lógicos
 - saber como converter uma variável de um tipo para outro
 
 
@@ -151,27 +150,22 @@ typeof(vetor_num_fi)
 
 Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo real para inteiro e verificamos qual seu tipo.
 
+```{block, note-more-num, type='rmdnote'}
+Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
+```
+
 ### Caractere
 
-Um grupo de caracteres (ou *strings*), letras ou qualquer forma de texto são dados do tipo **`character`**. Eles são identificados por aspas dupla, por exemplo:  
+Um grupo de caracteres (ou *strings*), letras ou qualquer forma de texto são dados do tipo **`character`**. Eles são identificados por aspas dupla (`"`) ou simples (`'`) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caracter:
 
-<!---
-qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
--->
-
-
-```{r char-1}
-(vetor_char <- c("ae", NA_character_, "ou"))
+```{r}
+(vetor_char <- c('ae', NA_character_, "ou"))
 class(vetor_char)
 ```
 
-<!--
-`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
--->
-
-O número de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
+úmero de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
         
-```{r, char-2}
+```{r}
 nchar(vetor_char)
 ```       
 
@@ -188,26 +182,38 @@ month.name
 month.abb
 ```
 
+Se você precisar incluir aspas duplas ou apóstrofe em um caracter usando os dois delimitadores juntos, como nos dois exemplos, respectivamente:
 
+```{r char-1}
+citacao <- 'Me diga o que é pior: "Desistir do que quer ou se contentar com o que nunca quiz?" - Reverb Poesia.'
+citacao
 
-<!---
-Se você precisar incluir aspas duplas em um caracter, como por exemplo, uma frase citada, você tem duas formas de fazer isso:
-
-- Usar aspas simples no início e fim do caracter e aspas duplas em torno da parte de texto citada.
-
-```{r}
-(texto_citado_1 <- 'Ela disse: "Escrever na verdade é reescrever."')
-message(texto_citado_1)
+sentenca_apos <- "Marca d'água"
+sentenca_apos
 ```
 
-- Usar aspas dupla no início e fim do caracter e aspas duplas precedidas por contrabarra (`\`) entre texto citado.
+Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (`\`) antes daquele delimitador que deseja desconsiderar.
 
-```{r}
-(texto_citado_2 <- "Ela disse: \"Escrever na verdade é reescrever\".")
-message(texto_citado_2)
+```{r char-2}
+sentenca_aspas <- "Eles diseram: \"Marca d'água\""
+cat(sentenca_aspas, "\n")
+print(sentenca_aspas)
 ```
--->
 
+A função `print()` imprime um caracter incluindo a barra invertida para maior clareza. Já a função `cat()`, converte seu argumentos em caracteres (se necessário), concatena eles e interpreta caracteres especiais (como `\` e `\n`), para então dar saída na tela.
+
+```{block, escape, type='rmdnote'}
+Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (*escape*). Os mais comuns são:
+
+- `\'` aspas simples
+
+- `\"` aspas duplas
+
+- `\n` quebra de lina ou nova linha
+
+- `\\` a própria barra invertida
+
+```
 
 ### Lógico {#logico}
    
@@ -340,7 +346,7 @@ Misturando `lógical` com `character` resulta:
 typeof(vmix_log_char)
 ```
 
-A regra de coerção segue a relação hierárquica: 
+A hierarquia usada na coerção entre tipos de dadps segue a relação: 
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `logical < integer < numeric <  character` </p>
 
@@ -356,11 +362,21 @@ Neste exemplo, os valores lógicos obtidos com o operador `>` foram implicitamen
 
 ## Outros tipos de dados derivados
 
-- **factor**
+- **factor** (categorias)
 
 - **`date`** (datas)
 
 - **`POSIX`** (data e horários).
+
+
+### Fator
+
+
+<!---
+qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
+
+`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
+-->
 
 ### Datas e horários
 
@@ -393,8 +409,4 @@ class(data1)
 class(as.numeric(data1))
 ```
 
-```{r, include = FALSE}
-# inserir hierarquia de flexibilidade dos dados
-# usada na coerção
-# character > numeric > integer > logical
-```
+

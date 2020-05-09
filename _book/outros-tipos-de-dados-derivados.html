@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-08" />
+<meta name="date" content="2020-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,7 +206,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
 <li class="chapter" data-level="6.4" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html"><i class="fa fa-check"></i><b>6.4</b> Outros tipos de dados derivados</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.1</b> Datas e horários</a></li>
+<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#fator"><i class="fa fa-check"></i><b>6.4.1</b> Fator</a></li>
+<li class="chapter" data-level="6.4.2" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.2</b> Datas e horários</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="manip-vectors.html"><a href="manip-vectors.html"><i class="fa fa-check"></i><b>7</b> Manipulação de Vetores</a><ul>
@@ -388,38 +389,46 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="outros-tipos-de-dados-derivados" class="section level2">
 <h2><span class="header-section-number">6.4</span> Outros tipos de dados derivados</h2>
 <ul>
-<li><p><strong>factor</strong></p></li>
+<li><p><strong>factor</strong> (categorias)</p></li>
 <li><p><strong><code>date</code></strong> (datas)</p></li>
 <li><p><strong><code>POSIX</code></strong> (data e horários).</p></li>
 </ul>
+<div id="fator" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Fator</h3>
+<!---
+qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
+
+`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
+-->
+</div>
 <div id="datas-e-horários" class="section level3">
-<h3><span class="header-section-number">6.4.1</span> Datas e horários</h3>
+<h3><span class="header-section-number">6.4.2</span> Datas e horários</h3>
 <p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:</p>
 <ul>
 <li><p><code>Date</code></p></li>
 <li><p><code>POSIXct</code></p></li>
 </ul>
 <p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (<em>Date</em>) ou segundos (<em>POSIXct</em>) decorridos desde 1 de Janeiro de 1970.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
-<a class="sourceLine" id="cb105-2" title="2">data1</a>
-<a class="sourceLine" id="cb105-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
-<a class="sourceLine" id="cb105-4" title="4"><span class="kw">class</span>(data1)</a>
-<a class="sourceLine" id="cb105-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
-<a class="sourceLine" id="cb105-6" title="6"><span class="kw">as.numeric</span>(data1)</a>
-<a class="sourceLine" id="cb105-7" title="7"><span class="co">#&gt; [1] 15519</span></a>
-<a class="sourceLine" id="cb105-8" title="8">data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
-<a class="sourceLine" id="cb105-9" title="9">data2</a>
-<a class="sourceLine" id="cb105-10" title="10"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
-<a class="sourceLine" id="cb105-11" title="11"><span class="kw">class</span>(data2)</a>
-<a class="sourceLine" id="cb105-12" title="12"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
-<a class="sourceLine" id="cb105-13" title="13"><span class="kw">as.numeric</span>(data2)</a>
-<a class="sourceLine" id="cb105-14" title="14"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
+<a class="sourceLine" id="cb107-2" title="2">data1</a>
+<a class="sourceLine" id="cb107-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
+<a class="sourceLine" id="cb107-4" title="4"><span class="kw">class</span>(data1)</a>
+<a class="sourceLine" id="cb107-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb107-6" title="6"><span class="kw">as.numeric</span>(data1)</a>
+<a class="sourceLine" id="cb107-7" title="7"><span class="co">#&gt; [1] 15519</span></a>
+<a class="sourceLine" id="cb107-8" title="8">data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
+<a class="sourceLine" id="cb107-9" title="9">data2</a>
+<a class="sourceLine" id="cb107-10" title="10"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
+<a class="sourceLine" id="cb107-11" title="11"><span class="kw">class</span>(data2)</a>
+<a class="sourceLine" id="cb107-12" title="12"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
+<a class="sourceLine" id="cb107-13" title="13"><span class="kw">as.numeric</span>(data2)</a>
+<a class="sourceLine" id="cb107-14" title="14"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
 <p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através de pacotes específicos, como o <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente.</p>
 <p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">class</span>(data1)</a>
-<a class="sourceLine" id="cb106-2" title="2"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
-<a class="sourceLine" id="cb106-3" title="3"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</a>
-<a class="sourceLine" id="cb106-4" title="4"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="kw">class</span>(data1)</a>
+<a class="sourceLine" id="cb108-2" title="2"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb108-3" title="3"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</a>
+<a class="sourceLine" id="cb108-4" title="4"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
 
 </div>
 </div>
