@@ -181,7 +181,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="6.2" data-path="testes-sobre-tipos-de-dados.html"><a href="testes-sobre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.2</b> Testes sobre tipos de dados</a></li>
 <li class="chapter" data-level="6.3" data-path="conversão-entre-tipos-de-dados.html"><a href="conversão-entre-tipos-de-dados.html"><i class="fa fa-check"></i><b>6.3</b> Conversão entre tipos de dados</a></li>
 <li class="chapter" data-level="6.4" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html"><i class="fa fa-check"></i><b>6.4</b> Outros tipos de dados derivados</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.1</b> Datas e horários</a></li>
+<li class="chapter" data-level="6.4.1" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#fator"><i class="fa fa-check"></i><b>6.4.1</b> Fator</a></li>
+<li class="chapter" data-level="6.4.2" data-path="outros-tipos-de-dados-derivados.html"><a href="outros-tipos-de-dados-derivados.html#datas-e-horários"><i class="fa fa-check"></i><b>6.4.2</b> Datas e horários</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="manip-vectors.html"><a href="manip-vectors.html"><i class="fa fa-check"></i><b>7</b> Manipulação de Vetores</a><ul>
@@ -456,21 +457,20 @@ Medidas são compostas de um número e uma escala. Você pode estar trabalhando 
 <span class="kw">typeof</span>(vetor_num_fi)
 <span class="co">#&gt; [1] &quot;integer&quot;</span></code></pre></div>
 <p>Na exemplo acima nós forçamos a conversão da variável <code>vetor_num</code> do tipo real para inteiro e verificamos qual seu tipo.</p>
+<div class="rmdnote">
+<p>
+Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
+</p>
+</div>
 </div>
 <div id="caractere" class="section level3">
 <h3><span class="header-section-number">6.1.3</span> Caractere</h3>
-<p>Um grupo de caracteres (ou <em>strings</em>), letras ou qualquer forma de texto são dados do tipo <strong><code>character</code></strong>. Eles são identificados por aspas dupla, por exemplo:</p>
-<!---
-qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
--->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ae&quot;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;ou&quot;</span>))
+<p>Um grupo de caracteres (ou <em>strings</em>), letras ou qualquer forma de texto são dados do tipo <strong><code>character</code></strong>. Eles são identificados por aspas dupla (<code>&quot;</code>) ou simples (<code>'</code>) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caracter:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ae&#39;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;ou&quot;</span>))
 <span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span>
 <span class="kw">class</span>(vetor_char)
 <span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<!--
-`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
--->
-<p>O número de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
+<p>úmero de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(vetor_char)
 <span class="co">#&gt; [1]  2 NA  2</span></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> vem com alguns vetores de caracteres pré-definidos:</p>
@@ -489,29 +489,48 @@ month.name
 <span class="co"># abreviatura dos nomes dos meses em inglês</span>
 month.abb
 <span class="co">#&gt;  [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; &quot;May&quot; &quot;Jun&quot; &quot;Jul&quot; &quot;Aug&quot; &quot;Sep&quot; &quot;Oct&quot; &quot;Nov&quot; &quot;Dec&quot;</span></code></pre></div>
-<!---
-Se você precisar incluir aspas duplas em um caracter, como por exemplo, uma frase citada, você tem duas formas de fazer isso:
+<p>Se você precisar incluir aspas duplas ou apóstrofe em um caracter usando os dois delimitadores juntos, como nos dois exemplos, respectivamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">citacao &lt;-<span class="st"> &#39;Me diga o que é pior: &quot;Desistir do que quer ou se contentar com o que nunca quiz?&quot; - Reverb Poesia.&#39;</span>
+citacao
+<span class="co">#&gt; [1] &quot;Me diga o que é pior: \&quot;Desistir do que quer ou se contentar com o que nunca quiz?\&quot; - Reverb Poesia.&quot;</span>
 
-- Usar aspas simples no início e fim do caracter e aspas duplas em torno da parte de texto citada.
-
-
-```r
-(texto_citado_1 <- 'Ela disse: "Escrever na verdade é reescrever."')
-#> [1] "Ela disse: \"Escrever na verdade é reescrever.\""
-message(texto_citado_1)
-#> Ela disse: "Escrever na verdade é reescrever."
-```
-
-- Usar aspas dupla no início e fim do caracter e aspas duplas precedidas por contrabarra (`\`) entre texto citado.
-
-
-```r
-(texto_citado_2 <- "Ela disse: \"Escrever na verdade é reescrever\".")
-#> [1] "Ela disse: \"Escrever na verdade é reescrever\"."
-message(texto_citado_2)
-#> Ela disse: "Escrever na verdade é reescrever".
-```
--->
+sentenca_apos &lt;-<span class="st"> &quot;Marca d&#39;água&quot;</span>
+sentenca_apos
+<span class="co">#&gt; [1] &quot;Marca d&#39;água&quot;</span></code></pre></div>
+<p>Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (<code>\</code>) antes daquele delimitador que deseja desconsiderar.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sentenca_aspas &lt;-<span class="st"> &quot;Eles diseram: </span><span class="ch">\&quot;</span><span class="st">Marca d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>
+<span class="kw">cat</span>(sentenca_aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="co">#&gt; Eles diseram: &quot;Marca d&#39;água&quot;</span>
+<span class="kw">print</span>(sentenca_aspas)
+<span class="co">#&gt; [1] &quot;Eles diseram: \&quot;Marca d&#39;água\&quot;&quot;</span></code></pre></div>
+<p>A função <code>print()</code> imprime um caracter incluindo a barra invertida para maior clareza. Já a função <code>cat()</code>, converte seu argumentos em caracteres (se necessário), concatena eles e interpreta caracteres especiais (como <code>\</code> e <code>\n</code>), para então dar saída na tela.</p>
+<div class="rmdnote">
+<p>
+Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:
+</p>
+<ul>
+<li>
+<p>
+<code>'</code> aspas simples
+</p>
+</li>
+<li>
+<p>
+<code>&amp;quot;</code> aspas duplas
+</p>
+</li>
+<li>
+<p>
+<code> quebra de lina ou nova linha
+</p>
+</li>
+<li>
+<p>
+<code>\</code> a própria barra invertida
+</p>
+</li>
+</ul>
+</div>
 </div>
 <div id="logico" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Lógico</h3>
