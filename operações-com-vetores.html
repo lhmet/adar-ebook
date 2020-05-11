@@ -204,7 +204,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="7.4.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.4.3</b> Indexação por vetores lógicos</a></li>
 <li class="chapter" data-level="7.4.4" data-path="index-vetores.html"><a href="index-vetores.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.4.4</b> Substituição de elementos de um vetor</a></li>
 <li class="chapter" data-level="7.4.5" data-path="index-vetores.html"><a href="index-vetores.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.4.5</b> Vetores nulos e elementos faltantes</a></li>
-<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.4.6</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos-null"><i class="fa fa-check"></i><b>7.4.6</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.4.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.4.7</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
@@ -373,7 +373,7 @@ x <span class="op">+</span><span class="st"> </span>y
 <span class="co">#&gt;  [1] -4 -2  0  2  4  6  8 10 12 14</span>
 x <span class="op">/</span><span class="st"> </span>y
 <span class="co">#&gt;  [1] -0.2 -0.5 -1.0 -2.0 -5.0  Inf  7.0  4.0  3.0  2.5</span>
-<span class="dv">2</span> <span class="op">^</span><span class="st"> </span>x
+<span class="dv">2</span><span class="op">^</span>x
 <span class="co">#&gt;  [1]    2    4    8   16   32   64  128  256  512 1024</span>
 x <span class="op">%%</span><span class="st"> </span>y
 <span class="co">#&gt;  [1] -4 -2  0  0  0 NA  0  0  0  2</span>
@@ -386,7 +386,7 @@ cte &lt;-<span class="st"> </span><span class="dv">4</span>
 vetor_dbl <span class="op">*</span><span class="st"> </span>cte
 <span class="co">#&gt; [1] -6.0  1.2  5.6  8.0</span>
 quatros &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)
-vetor_dbl <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
+vetor_dbl <span class="op">*</span><span class="st"> </span>quatros
 <span class="co">#&gt; [1] -6.0  1.2  5.6  8.0</span></code></pre></div>
 <p>O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento de <code>vetor_dbl</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)
@@ -495,7 +495,7 @@ vetor_dbl <span class="op">+</span><span class="st"> </span>v3
 <li><p><code>|</code> e <code>||</code> (&quot;ou“)</p></li>
 </ul>
 <p>A ordem das operações pode ser controladas por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 24 horas </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 24 horas</span>
 horas &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">23</span>
 <span class="co"># noite</span>
 horas <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>horas <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>

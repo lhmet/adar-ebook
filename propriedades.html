@@ -204,7 +204,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="7.4.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.4.3</b> Indexação por vetores lógicos</a></li>
 <li class="chapter" data-level="7.4.4" data-path="index-vetores.html"><a href="index-vetores.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.4.4</b> Substituição de elementos de um vetor</a></li>
 <li class="chapter" data-level="7.4.5" data-path="index-vetores.html"><a href="index-vetores.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.4.5</b> Vetores nulos e elementos faltantes</a></li>
-<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.4.6</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos-null"><i class="fa fa-check"></i><b>7.4.6</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.4.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.4.7</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
@@ -400,17 +400,17 @@ x
 z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
 <span class="kw">names</span>(z)
 <span class="co">#&gt; NULL</span></code></pre></div>
-<p>Podemos criar um vetor sem nomes usando a função <code>unname(x)</code>, ou remover <code>names</code> com <code>names(x) &lt;- NULL</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">dia1 =</span> <span class="dv">12</span>, <span class="dt">dia2 =</span> <span class="dv">20</span>, <span class="dt">dia3 =</span> <span class="dv">10</span>)
-a
+<p>Para remover os nomes de um vetor usamos a função <code>unname(x)</code>, ou remover <code>names</code> com <code>names(x) &lt;- NULL</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alguns_dias &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">dia1 =</span> <span class="dv">12</span>, <span class="dt">dia2 =</span> <span class="dv">20</span>, <span class="dt">dia3 =</span> <span class="dv">10</span>)
+alguns_dias
 <span class="co">#&gt; dia1 dia2 dia3 </span>
 <span class="co">#&gt;   12   20   10</span>
-<span class="kw">names</span>(a)
+<span class="kw">names</span>(alguns_dias)
 <span class="co">#&gt; [1] &quot;dia1&quot; &quot;dia2&quot; &quot;dia3&quot;</span>
-a_sn &lt;-<span class="st"> </span><span class="kw">unname</span>(a)
-a_sn
+alguns_dias_sn &lt;-<span class="st"> </span><span class="kw">unname</span>(alguns_dias)
+alguns_dias_sn
 <span class="co">#&gt; [1] 12 20 10</span>
-<span class="kw">names</span>(a_sn)
+<span class="kw">names</span>(alguns_dias_sn)
 <span class="co">#&gt; NULL</span></code></pre></div>
 </div>
 </div>
