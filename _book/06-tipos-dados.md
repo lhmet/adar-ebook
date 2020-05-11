@@ -538,8 +538,10 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 Sys.Date()
 #> [1] "2020-05-11"
 Sys.time()
-#> [1] "2020-05-11 12:36:52 -03"
+#> [1] "2020-05-11 13:34:20 -03"
 ```
+
+Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich).
 
 As datas seguem o formato padrão de representação [ISO-8601](https://pt.wikipedia.org/wiki/ISO_8601), ou seja o formato `YYYY-MM-DD` para `ano-mês-dia`, independente do local onde você mora.
 
