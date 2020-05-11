@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-09" />
+<meta name="date" content="2020-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -388,47 +388,129 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="outros-tipos-de-dados-derivados" class="section level2">
 <h2><span class="header-section-number">6.4</span> Outros tipos de dados derivados</h2>
-<ul>
-<li><p><strong>factor</strong> (categorias)</p></li>
-<li><p><strong><code>date</code></strong> (datas)</p></li>
-<li><p><strong><code>POSIX</code></strong> (data e horários).</p></li>
-</ul>
 <div id="fator" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Fator</h3>
-<!---
-qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
-
-`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
--->
+<p>Em alguns casos variáveis do tipo caracter possuem uma ordem implícita. Este tipo de variável é geralmente chamada de <strong>categórica</strong>. Então qualquer variável que pode ser ordenada ou classificada em grupos pode ser representada como <code>factor</code> no <img src="images/logo_r.png" width="20">.</p>
+<p>Podemos por exemplo classificar eventos de ocorrência de chuva por classe de intensidade:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">intensidade &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
+<a class="sourceLine" id="cb109-2" title="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>)</a>
+<a class="sourceLine" id="cb109-3" title="3">  )</a>
+<a class="sourceLine" id="cb109-4" title="4">intensidade</a>
+<a class="sourceLine" id="cb109-5" title="5"><span class="co">#&gt; [1] baixa    moderada alta    </span></a>
+<a class="sourceLine" id="cb109-6" title="6"><span class="co">#&gt; Levels: alta baixa moderada</span></a></code></pre></div>
+<p>Note que a impressão de um fator na tela é diferente da deum vetor do tipo <code>character</code>. Ele é impresso sem as aspas e há uma segunda linha de informação sobre os níveis (<em>levels</em>) da variável <code>intensidade</code>. Um fator possui o atributo adicional: níveis. Os níveis de um fator são obtidos com a função <code>levels()</code>:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">levels</span>(intensidade)</a>
+<a class="sourceLine" id="cb110-2" title="2"><span class="co">#&gt; [1] &quot;alta&quot;     &quot;baixa&quot;    &quot;moderada&quot;</span></a></code></pre></div>
+<p>Por padrão os níveis são definidos em ordem alfabética. Então <code>"alta"</code> recebeu o índice <code>1</code>, <code>"baixa"</code> o índice <code>2</code> e <code>moderada</code> o índice <code>3</code>. Estes índices são mostrados com a função <code>str()</code> ou convertendo um fator para numérico:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">str</span>(intensidade)</a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="co">#&gt;  Factor w/ 3 levels &quot;alta&quot;,&quot;baixa&quot;,..: 2 3 1</span></a>
+<a class="sourceLine" id="cb111-3" title="3"><span class="kw">as.numeric</span>(intensidade)</a>
+<a class="sourceLine" id="cb111-4" title="4"><span class="co">#&gt; [1] 2 3 1</span></a></code></pre></div>
+<p>A função <code>str()</code> é uma abreviação para <code>structure</code> e serve para nos fornecer um resumo da estrutura dos dados.</p>
+<p>No caso das intensidade, seria melhor que os níveis fossem ordenados como: <code>baixa &lt; moderada &lt; alta</code>. Nós podemos especificar um <strong>fator ordenado</strong> ao <img src="images/logo_r.png" width="20">, especificando no argumento <code>levels</code>:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">intensidade_o &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
+<a class="sourceLine" id="cb112-2" title="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),</a>
+<a class="sourceLine" id="cb112-3" title="3">  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),</a>
+<a class="sourceLine" id="cb112-4" title="4">  <span class="dt">ordered =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb112-5" title="5">  )</a>
+<a class="sourceLine" id="cb112-6" title="6">intensidade_o</a>
+<a class="sourceLine" id="cb112-7" title="7"><span class="co">#&gt; [1] baixa    moderada alta    </span></a>
+<a class="sourceLine" id="cb112-8" title="8"><span class="co">#&gt; Levels: baixa &lt; moderada &lt; alta</span></a></code></pre></div>
+<p>Fatores são úteis em alguns processos analíticos e gráficos. Para ilustrar um exemplo simples, suponha que o número de casos registrados em cada intensidade tenha sido:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">n_casos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">30</span>, <span class="dv">5</span>)</a></code></pre></div>
+<p>Podeíamos representar graficamente estas informações. Veja abaixo a diferença na ordem do eixo x, ao usar o fator <code>intensidade</code>(ordem alfabética) e <code>intensidade_o</code> (ordenado):</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</a></code></pre></div>
+<p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade_o, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</a></code></pre></div>
+<p><img src="images/unnamed-chunk-23-2.png" width="672" /></p>
 </div>
 <div id="datas-e-horários" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Datas e horários</h3>
-<p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:</p>
+<p>Lidar com datas e horários pode ser difícil se não for usad uma estrutura de dados específica para isso. Entre as classes mais úteis para armazenar este tipo de informação, estão:</p>
 <ul>
-<li><p><code>Date</code></p></li>
-<li><p><code>POSIXct</code></p></li>
+<li><p><code>Date</code>: para combinar datas (anos, meses e dias)</p></li>
+<li><p><code>POSIXct</code>: para combinar datas e horas (horas, minutos e segundos)</p></li>
 </ul>
-<p><code>Date</code> armazena apenas a data enquanto <code>POSIXct</code> armazena a data e o horário. Ambos dados são representados como o número de dias (<em>Date</em>) ou segundos (<em>POSIXct</em>) decorridos desde 1 de Janeiro de 1970.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">data1 &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
-<a class="sourceLine" id="cb107-2" title="2">data1</a>
-<a class="sourceLine" id="cb107-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
-<a class="sourceLine" id="cb107-4" title="4"><span class="kw">class</span>(data1)</a>
-<a class="sourceLine" id="cb107-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
-<a class="sourceLine" id="cb107-6" title="6"><span class="kw">as.numeric</span>(data1)</a>
-<a class="sourceLine" id="cb107-7" title="7"><span class="co">#&gt; [1] 15519</span></a>
-<a class="sourceLine" id="cb107-8" title="8">data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
-<a class="sourceLine" id="cb107-9" title="9">data2</a>
-<a class="sourceLine" id="cb107-10" title="10"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
-<a class="sourceLine" id="cb107-11" title="11"><span class="kw">class</span>(data2)</a>
-<a class="sourceLine" id="cb107-12" title="12"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
-<a class="sourceLine" id="cb107-13" title="13"><span class="kw">as.numeric</span>(data2)</a>
-<a class="sourceLine" id="cb107-14" title="14"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
-<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através de pacotes específicos, como o <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente.</p>
-<p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="kw">class</span>(data1)</a>
-<a class="sourceLine" id="cb108-2" title="2"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
-<a class="sourceLine" id="cb108-3" title="3"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</a>
-<a class="sourceLine" id="cb108-4" title="4"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
+<p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
+<p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">Sys.Date</span>()</a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="co">#&gt; [1] &quot;2020-05-11&quot;</span></a>
+<a class="sourceLine" id="cb116-3" title="3"><span class="kw">Sys.time</span>()</a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="co">#&gt; [1] &quot;2020-05-11 12:36:52 -03&quot;</span></a></code></pre></div>
+<p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
+<p>Datas são criadas a partir da coersão de dados do tipo <code>character</code> para <code>date</code>:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
+<a class="sourceLine" id="cb117-2" title="2">amd</a>
+<a class="sourceLine" id="cb117-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
+<a class="sourceLine" id="cb117-4" title="4"><span class="kw">class</span>(amd)</a>
+<a class="sourceLine" id="cb117-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb117-6" title="6"><span class="co"># num. de dias de 1971</span></a>
+<a class="sourceLine" id="cb117-7" title="7"><span class="kw">as.numeric</span>(amd)</a>
+<a class="sourceLine" id="cb117-8" title="8"><span class="co">#&gt; [1] 15519</span></a></code></pre></div>
+<p>Datas com horários são criados a partir da coersão de dados do tipo <code>character</code> para <code>POSIXct</code>:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
+<a class="sourceLine" id="cb118-2" title="2">amd_hms</a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
+<a class="sourceLine" id="cb118-4" title="4"><span class="kw">class</span>(amd_hms)</a>
+<a class="sourceLine" id="cb118-5" title="5"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
+<a class="sourceLine" id="cb118-6" title="6"><span class="kw">as.numeric</span>(amd_hms)</a>
+<a class="sourceLine" id="cb118-7" title="7"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
+<p>A manipulação de dados da classe de datas com horários (<code>POSIXct</code>) torna-se mais versátil através do pacote <code>lubridate</code>, específico para manipulaçãode datas, o que será visto posteriormente.</p>
+<p>O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a <code>%</code> e outros códigos que são descritos no manual de ajuda da função <code>?strptime</code>. O formato padrão assumido pelo R para caracteres contendo datas com horas é <code>%Y-%m-%d %H:%M:%S</code>.</p>
+<table>
+<caption><span id="tab:format-dates">Tabela 6.2: </span>Códigos de formato de datas e horas.</caption>
+<thead>
+<tr class="header">
+<th align="center">código</th>
+<th align="center">Significado</th>
+<th align="center">Intervalo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">%Y</td>
+<td align="center">ano (incluindo século)</td>
+<td align="center">1 - 9999</td>
+</tr>
+<tr class="even">
+<td align="center">%m</td>
+<td align="center">mês</td>
+<td align="center">01 - 12</td>
+</tr>
+<tr class="odd">
+<td align="center">%d</td>
+<td align="center">dia</td>
+<td align="center">01 - 31</td>
+</tr>
+<tr class="even">
+<td align="center">%H</td>
+<td align="center">hora</td>
+<td align="center">00 - 23</td>
+</tr>
+<tr class="odd">
+<td align="center">%M</td>
+<td align="center">minuto</td>
+<td align="center">00 - 59</td>
+</tr>
+<tr class="even">
+<td align="center">%S</td>
+<td align="center">segundo</td>
+<td align="center">00 - 59</td>
+</tr>
+</tbody>
+</table>
+<p>Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como <code>Jan</code> (<code>%b</code>), e estes códigos são listados em <code>?strptime</code>.</p>
+<p>Para extrair informações de uma data, como por exemplo o ano, podemos usar a função <code>format()</code> passando o código de formato ao argumento <code>format</code>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</a>
+<a class="sourceLine" id="cb119-2" title="2"><span class="co">#&gt; [1] &quot;2020&quot;</span></a></code></pre></div>
+<p>O argumento format também pode ser specificado nas funções <code>as.Date()</code> e <code>as.POSIXct()</code>, assim provendo grande versatilidade para ler datas em diferentes formatos. No exmplo a seguir, vamos converter um caracter com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">as.POSIXct</span>(</a>
+<a class="sourceLine" id="cb120-2" title="2">  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,</a>
+<a class="sourceLine" id="cb120-3" title="3">  <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>, </a>
+<a class="sourceLine" id="cb120-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;prec%d%m%Y%H%M.grib&quot;</span></a>
+<a class="sourceLine" id="cb120-5" title="5">  )</a>
+<a class="sourceLine" id="cb120-6" title="6"><span class="co">#&gt; [1] &quot;2000-01-01 19:42:00 UTC&quot;</span></a></code></pre></div>
 
 </div>
 </div>

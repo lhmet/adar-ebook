@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-09" />
+<meta name="date" content="2020-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -495,7 +495,8 @@ Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
 <a class="sourceLine" id="cb89-2" title="2"><span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span></a>
 <a class="sourceLine" id="cb89-3" title="3"><span class="kw">class</span>(vetor_char)</a>
 <a class="sourceLine" id="cb89-4" title="4"><span class="co">#&gt; [1] &quot;character&quot;</span></a></code></pre></div>
-<p>úmero de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
+<p>Dados do tipo caracter são usados para descrição qualitativa de uma variável, como no caso de identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).</p>
+<p>O número de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="kw">nchar</span>(vetor_char)</a>
 <a class="sourceLine" id="cb90-2" title="2"><span class="co">#&gt; [1]  2 NA  2</span></a></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> vem com alguns vetores de caracteres pré-definidos:</p>
@@ -522,13 +523,15 @@ Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
 <a class="sourceLine" id="cb92-5" title="5">sentenca_apos &lt;-<span class="st"> &quot;Marca d&#39;água&quot;</span></a>
 <a class="sourceLine" id="cb92-6" title="6">sentenca_apos</a>
 <a class="sourceLine" id="cb92-7" title="7"><span class="co">#&gt; [1] &quot;Marca d&#39;água&quot;</span></a></code></pre></div>
-<p>Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (<code>\</code>) antes daquele delimitador que deseja desconsiderar.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">sentenca_aspas &lt;-<span class="st"> &quot;Eles diseram: </span><span class="ch">\&quot;</span><span class="st">Marca d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb93-2" title="2"><span class="kw">cat</span>(sentenca_aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb93-3" title="3"><span class="co">#&gt; Eles diseram: &quot;Marca d&#39;água&quot;</span></a>
-<a class="sourceLine" id="cb93-4" title="4"><span class="kw">print</span>(sentenca_aspas)</a>
-<a class="sourceLine" id="cb93-5" title="5"><span class="co">#&gt; [1] &quot;Eles diseram: \&quot;Marca d&#39;água\&quot;&quot;</span></a></code></pre></div>
-<p>A função <code>print()</code> imprime um caracter incluindo a barra invertida para maior clareza. Já a função <code>cat()</code>, converte seu argumentos em caracteres (se necessário), concatena eles e interpreta caracteres especiais (como <code>\</code> e <code>\n</code>), para então dar saída na tela.</p>
+<p>Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (<code>\</code>) antes do delimitador que deseja desconsiderar.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">(sentenca_2aspas &lt;-<span class="st"> &quot;Ele disse: </span><span class="ch">\&quot;</span><span class="st">Me sinto como um peixe fora d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb93-2" title="2"><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></a></code></pre></div>
+<p>Note que a impressão de caracteres no console inclui a barra invertida para maior clareza. Esse padrão também ocorre com a função <code>print()</code>:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">print</span>(sentenca_2aspas)</a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></a></code></pre></div>
+<p>Já a função <code>cat()</code><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, interpreta caracteres especiais (como a barra invertida <code>\</code> e a quebra de linha <code>\n</code>), para então dar saída na tela.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">cat</span>(sentenca_2aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb95-2" title="2"><span class="co">#&gt; Ele disse: &quot;Me sinto como um peixe fora d&#39;água&quot;</span></a></code></pre></div>
 <div class="rmdnote">
 <p>
 Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:
@@ -560,24 +563,24 @@ Há diversos caracteres especiais com interpretação especial dentro de caracte
 <div id="logico" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Lógico</h3>
 <p>Valores lógicos são um tipo de vetores atômicos extremamente úteis simples, pois só podem assumir os valores <code>TRUE</code> (verdadeiro), <code>FALSE</code> (falso) e <code>NA</code>. No <img src="images/logo_r.png" width="20"> eles são da classe de dados do tipo <code>logical</code>.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co"># variável lógica</span></a>
-<a class="sourceLine" id="cb94-2" title="2">vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb94-3" title="3">vetor_log</a>
-<a class="sourceLine" id="cb94-4" title="4"><span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb94-5" title="5"><span class="kw">class</span>(vetor_log)</a>
-<a class="sourceLine" id="cb94-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># variável lógica</span></a>
+<a class="sourceLine" id="cb96-2" title="2">vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb96-3" title="3">vetor_log</a>
+<a class="sourceLine" id="cb96-4" title="4"><span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb96-5" title="5"><span class="kw">class</span>(vetor_log)</a>
+<a class="sourceLine" id="cb96-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> aceita as abreviaturas <code>T</code> e <code>F</code> para representar <code>TRUE</code> e <code>FALSE</code>. Entretanto, esta não é uma prática recomendável, pois <code>T</code> e <code>F</code> não fazem parte das palavras reservadas do <img src="images/logo_r.png" width="20">. Consequentemente isso pode levar a confusão, como no exemplo abaixo.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb95-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb95-3" title="3">T</a>
-<a class="sourceLine" id="cb95-4" title="4"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb95-5" title="5"><span class="kw">class</span>(T)</a>
-<a class="sourceLine" id="cb95-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a>
-<a class="sourceLine" id="cb95-7" title="7">T &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb95-8" title="8"><span class="kw">class</span>(T)</a>
-<a class="sourceLine" id="cb95-9" title="9"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb95-10" title="10"><span class="kw">c</span>(T, F)</a>
-<a class="sourceLine" id="cb95-11" title="11"><span class="co">#&gt; [1] 10  0</span></a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb97-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb97-3" title="3">T</a>
+<a class="sourceLine" id="cb97-4" title="4"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb97-5" title="5"><span class="kw">class</span>(T)</a>
+<a class="sourceLine" id="cb97-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a>
+<a class="sourceLine" id="cb97-7" title="7">T &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb97-8" title="8"><span class="kw">class</span>(T)</a>
+<a class="sourceLine" id="cb97-9" title="9"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb97-10" title="10"><span class="kw">c</span>(T, F)</a>
+<a class="sourceLine" id="cb97-11" title="11"><span class="co">#&gt; [1] 10  0</span></a></code></pre></div>
 <p>Vetores lógicos resultam de comparações e são amplamente usados em estruturas de controle condicional do código (como por exemplo nas funções <code>if()</code> e <code>ifelse()</code>).</p>
 </div>
 </div>
@@ -586,6 +589,7 @@ Há diversos caracteres especiais com interpretação especial dentro de caracte
 <ol start="19">
 <li id="fn19"><p>Diferente de outras linguagens de programação no R, um <strong>escalar</strong> é um vetor com um elemento. Então, vetores são o menor tipo de dados no R.<a href="tipos-dados.html#fnref19" class="footnote-back">↩</a></p></li>
 <li id="fn20"><p>Lista é um tipo de vetor chamado <code>list</code> que é capaz de armazenar dados de diferentes tipos (heterogêneos), o que será visto na seção <a href="listas.html#listas">8.3</a>.<a href="tipos-dados.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>Em comparação a função <code>print()</code>, a função <code>cat()</code> tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a coersão deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.<a href="tipos-dados.html#fnref21" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

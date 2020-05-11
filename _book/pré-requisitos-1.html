@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-09" />
+<meta name="date" content="2020-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,35 +389,35 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-1" class="section level2">
 <h2><span class="header-section-number">9.1</span> Pré-requisitos</h2>
 <p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb233-2" title="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
-<a class="sourceLine" id="cb233-3" title="3">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb233-4" title="4">  <span class="st">&quot;readr&quot;</span>,</a>
-<a class="sourceLine" id="cb233-5" title="5">  <span class="st">&quot;feather&quot;</span>,</a>
-<a class="sourceLine" id="cb233-6" title="6">  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb233-7" title="7">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb233-8" title="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
-<a class="sourceLine" id="cb233-9" title="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb233-10" title="10">  <span class="st">&quot;openxlsx&quot;</span></a>
-<a class="sourceLine" id="cb233-11" title="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb245-2" title="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb245-3" title="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb245-4" title="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb245-5" title="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb245-6" title="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb245-7" title="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb245-8" title="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb245-9" title="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb245-10" title="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb245-11" title="11">)</a></code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
-<a class="sourceLine" id="cb235-2" title="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb235-3" title="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
-<a class="sourceLine" id="cb235-4" title="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
-<a class="sourceLine" id="cb235-5" title="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb235-6" title="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb235-7" title="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
-<a class="sourceLine" id="cb235-8" title="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
-<a class="sourceLine" id="cb235-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb235-10" title="10"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb235-11" title="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
-<a class="sourceLine" id="cb235-12" title="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb235-13" title="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb235-14" title="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
-<a class="sourceLine" id="cb235-15" title="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb247-2" title="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb247-3" title="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb247-4" title="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb247-5" title="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb247-6" title="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb247-7" title="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb247-8" title="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb247-9" title="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb247-10" title="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb247-11" title="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb247-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb247-13" title="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb247-14" title="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb247-15" title="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
@@ -437,7 +437,7 @@ ou simplesmente
 </div>
 <p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua
 instalação precisamos executar o comando abaixo.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">install_formats</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 

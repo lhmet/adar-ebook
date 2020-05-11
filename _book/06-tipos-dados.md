@@ -156,6 +156,7 @@ Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo re
 
 ### Caractere
 
+
 Um grupo de caracteres (ou *strings*), letras ou qualquer forma de texto são dados do tipo **`character`**. Eles são identificados por aspas dupla (`"`) ou simples (`'`) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caracter:
 
 
@@ -166,7 +167,9 @@ class(vetor_char)
 #> [1] "character"
 ```
 
-úmero de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
+Dados do tipo caracter são usados para descrição qualitativa de uma variável, como no caso de  identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).
+
+O número de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
         
 
 ```r
@@ -208,18 +211,32 @@ sentenca_apos
 #> [1] "Marca d'água"
 ```
 
-Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (`\`) antes daquele delimitador que deseja desconsiderar.
+
+Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (`\`) antes do delimitador que deseja desconsiderar.
 
 
 ```r
-sentenca_aspas <- "Eles diseram: \"Marca d'água\""
-cat(sentenca_aspas, "\n")
-#> Eles diseram: "Marca d'água"
-print(sentenca_aspas)
-#> [1] "Eles diseram: \"Marca d'água\""
+(sentenca_2aspas <- "Ele disse: \"Me sinto como um peixe fora d'água\"")
+#> [1] "Ele disse: \"Me sinto como um peixe fora d'água\""
 ```
 
-A função `print()` imprime um caracter incluindo a barra invertida para maior clareza. Já a função `cat()`, converte seu argumentos em caracteres (se necessário), concatena eles e interpreta caracteres especiais (como `\` e `\n`), para então dar saída na tela.
+Note que a impressão de caracteres no console inclui a barra invertida para maior clareza. Esse padrão também ocorre com a função `print()`:
+
+
+```r
+print(sentenca_2aspas)
+#> [1] "Ele disse: \"Me sinto como um peixe fora d'água\""
+```
+
+Já a função `cat()`[^cat], interpreta caracteres especiais (como a barra invertida `\` e a quebra de linha `\n`), para então dar saída na tela.
+
+
+```r
+cat(sentenca_2aspas, "\n")
+#> Ele disse: "Me sinto como um peixe fora d'água"
+```
+
+[^cat]: Em comparação a função `print()`, a função `cat()` tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a  coersão deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.
 
 <div class="rmdnote">
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
@@ -407,11 +424,11 @@ typeof(vmix_log_char)
 #> [1] "character"
 ```
 
-A hierarquia usada na coerção entre tipos de dadps segue a relação: 
+A hierarquia usada na coerção entre tipos de dados segue a relação: 
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `logical < integer < numeric <  character` </p>
 
-A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável `vetor_num` podemos fazer:
+A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável `vetor_num`, podemos fazer:
 
 
 ```r
@@ -424,63 +441,171 @@ sum(vetor_num > 0, na.rm = TRUE)
 
 Neste exemplo, os valores lógicos obtidos com o operador `>` foram implicitamente convertidos para numéricos (`TRUE` para `1`, `FALSE` para `0`) antes de se obter a soma dos casos verdadeiros. O argumento `na.rm = TRUE` habilita a funcionalidade de realizar a soma ignorando os itens faltantes.
 
+
 ## Outros tipos de dados derivados
-
-- **factor** (categorias)
-
-- **`date`** (datas)
-
-- **`POSIX`** (data e horários).
 
 
 ### Fator
 
+Em alguns casos variáveis do tipo caracter possuem uma ordem implícita. Este tipo de variável é geralmente chamada de **categórica**. Então qualquer variável que pode ser ordenada ou classificada em grupos pode ser representada como `factor` no <img src="images/logo_r.png" width="20">. 
 
-<!---
-qualquer Dados caractere (do termo em inglês *character* ) é bastante utilizado e deve ser manipulado com cuidado. Há duas principais formas de lidar com caracteres: a função `character()` e a `factor()`. Embora pareçam similares eles são tratados de forma diferente.
+Podemos por exemplo classificar eventos de ocorrência de chuva por classe de intensidade:
 
-`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
--->
+
+```r
+intensidade <- factor(
+  x = c("baixa", "moderada", "alta")
+  )
+intensidade
+#> [1] baixa    moderada alta    
+#> Levels: alta baixa moderada
+```
+
+Note que a impressão de um fator na tela é diferente da deum vetor do tipo `character`. Ele é impresso sem as aspas e há uma segunda linha de informação sobre os níveis (*levels*) da variável `intensidade`. Um fator possui o atributo adicional: níveis. Os níveis de um fator são obtidos com a função `levels()`: 
+
+
+```r
+levels(intensidade)
+#> [1] "alta"     "baixa"    "moderada"
+```
+
+Por padrão os níveis são definidos em ordem alfabética. Então `"alta"` recebeu o índice `1`, `"baixa"` o índice `2` e `moderada` o índice `3`. Estes índices são mostrados com a função `str()` ou convertendo um fator para numérico:
+
+
+```r
+str(intensidade)
+#>  Factor w/ 3 levels "alta","baixa",..: 2 3 1
+as.numeric(intensidade)
+#> [1] 2 3 1
+```
+
+A função `str()` é uma abreviação para `structure` e serve para nos fornecer um resumo da estrutura dos dados.
+
+No caso das intensidade, seria melhor que os níveis fossem ordenados como: `baixa < moderada < alta`. Nós podemos especificar um **fator ordenado** ao <img src="images/logo_r.png" width="20">, especificando no argumento `levels`: 
+
+
+```r
+intensidade_o <- factor(
+  x = c("baixa", "moderada", "alta"),
+  levels = c("baixa", "moderada", "alta"),
+  ordered = TRUE
+  )
+intensidade_o
+#> [1] baixa    moderada alta    
+#> Levels: baixa < moderada < alta
+```
+
+Fatores são úteis em alguns processos analíticos e gráficos. Para ilustrar um exemplo simples, suponha que o número de casos registrados em cada intensidade tenha sido:
+
+
+```r
+n_casos <- c(90, 30, 5)
+```
+
+Podeíamos representar graficamente estas informações. Veja abaixo a diferença na ordem do eixo x, ao usar o fator `intensidade`(ordem alfabética) e `intensidade_o` (ordenado):
+
+
+```r
+library(ggplot2)
+qplot(x = intensidade, y = n_casos, geom = "col")
+```
+
+<img src="images/unnamed-chunk-23-1.png" width="672" />
+
+```r
+qplot(x = intensidade_o, y = n_casos, geom = "col")
+```
+
+<img src="images/unnamed-chunk-23-2.png" width="672" />
+
+
 
 ### Datas e horários
 
-Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no <img src="images/logo_r.png" width="20">. Entre as classes mais convenientes para este tipo de informação consideram-se:
+Lidar com datas e horários pode ser difícil se não for usad uma estrutura de dados específica para isso. Entre as classes mais úteis para armazenar este tipo de informação, estão:
 
-  * `Date`
+  * `Date`: para combinar datas (anos, meses e dias)
   
-  * `POSIXct`
+  * `POSIXct`: para combinar datas e horas (horas, minutos e segundos)
   
 
-`Date` armazena apenas a data enquanto `POSIXct` armazena a data e o horário. Ambos dados são representados como o número de dias (*Date*) ou segundos (*POSIXct*) decorridos  desde 1 de Janeiro de 1970.
+`Date` armazena apenas datas, enquanto `POSIXct` armazena a datas associadas com horários. Ambos dados são representados como o número de dias (**`Date`**) ou de segundos (**`POSIXct`**) decorridos  desde 1 de Janeiro de 1970.
+
+Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas `Sys.Date()` e `Sys.time()` que informam a data e a hora atual: 
 
 
 ```r
-data1 <- as.Date("2012-06-28")
-data1
+Sys.Date()
+#> [1] "2020-05-11"
+Sys.time()
+#> [1] "2020-05-11 12:36:52 -03"
+```
+
+As datas seguem o formato padrão de representação [ISO-8601](https://pt.wikipedia.org/wiki/ISO_8601), ou seja o formato `YYYY-MM-DD` para `ano-mês-dia`, independente do local onde você mora.
+
+Datas são criadas a partir da coersão de dados do tipo `character` para `date`:
+
+
+```r
+amd <- as.Date("2012-06-28")
+amd
 #> [1] "2012-06-28"
-class(data1)
+class(amd)
 #> [1] "Date"
-as.numeric(data1)
+# num. de dias de 1971
+as.numeric(amd)
 #> [1] 15519
-data2 <- as.POSIXct("2012-06-28 17:42")
-data2
+```
+
+Datas com horários são criados a partir da coersão de dados do tipo `character` para `POSIXct`:
+
+
+```r
+amd_hms <- as.POSIXct("2012-06-28 17:42")
+amd_hms
 #> [1] "2012-06-28 17:42:00 -03"
-class(data2)
+class(amd_hms)
 #> [1] "POSIXct" "POSIXt"
-as.numeric(data2)
+as.numeric(amd_hms)
 #> [1] 1340916120
 ```
 
-A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através de pacotes específicos, como o `lubridate` e `chron`, o que será visto posteriormente.
+A manipulação de dados da classe de datas com horários (`POSIXct`) torna-se mais versátil através do pacote `lubridate`, específico para manipulaçãode datas, o que será visto posteriormente.
 
-Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
+O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a `%` e outros códigos que são descritos no manual de ajuda da função `?strptime`. O formato padrão assumido pelo R para caracteres contendo datas com horas é `%Y-%m-%d %H:%M:%S`.
+
+
+Table: (\#tab:format-dates)Códigos de formato de datas e horas.
+
+ código         Significado          Intervalo 
+--------  ------------------------  -----------
+   %Y      ano (incluindo século)    1 - 9999  
+   %m               mês               01 - 12  
+   %d               dia               01 - 31  
+   %H               hora              00 - 23  
+   %M              minuto             00 - 59  
+   %S             segundo             00 - 59  
+
+
+Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como `Jan` (`%b`), e estes códigos são listados em `?strptime`. 
+
+Para extrair informações de uma data, como por exemplo o ano, podemos usar a função `format()` passando o código de formato ao argumento `format`.
 
 
 ```r
-class(data1)
-#> [1] "Date"
-class(as.numeric(data1))
-#> [1] "numeric"
+format(x = Sys.Date(), format = "%Y")
+#> [1] "2020"
 ```
 
+O argumento format também pode ser specificado nas funções `as.Date()` e `as.POSIXct()`, assim provendo grande versatilidade para ler datas em diferentes formatos. No exmplo a seguir, vamos converter um caracter com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.
+
+
+```r
+as.POSIXct(
+  x = "prec010120001942.grib",
+  tz = "UTC", 
+  format = "prec%d%m%Y%H%M.grib"
+  )
+#> [1] "2000-01-01 19:42:00 UTC"
+```
 
