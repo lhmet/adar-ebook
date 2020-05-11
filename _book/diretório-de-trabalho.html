@@ -229,7 +229,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.4.3</b> Indexação por vetores lógicos</a></li>
 <li class="chapter" data-level="7.4.4" data-path="index-vetores.html"><a href="index-vetores.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.4.4</b> Substituição de elementos de um vetor</a></li>
 <li class="chapter" data-level="7.4.5" data-path="index-vetores.html"><a href="index-vetores.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.4.5</b> Vetores nulos e elementos faltantes</a></li>
-<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#diferença-entre-na-e-null"><i class="fa fa-check"></i><b>7.4.6</b> Diferença entre <code>NA</code> e <code>NULL</code></a></li>
+<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos-null"><i class="fa fa-check"></i><b>7.4.6</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.4.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.4.7</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
@@ -398,23 +398,23 @@ longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no
 <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho
 (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho
 da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
 <p>O local <em>default</em> geralmente é o home do usuário "/home/usuario" no linux
 e "C:\Users\usuario\" no Windows. Você obtém essa informação com a instrução
 abaixo:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
 <p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos,
 ler e escrever dados, quando você não especificar o caminho completo para o
 arquivo de saída.</p>
 <p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode
 usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb251-2" title="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb251-3" title="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb251-4" title="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb251-5" title="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb251-6" title="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb251-7" title="7"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb248-2" title="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
+<a class="sourceLine" id="cb248-3" title="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
+<a class="sourceLine" id="cb248-4" title="4"><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb248-5" title="5"><span class="co"># volta para o wd original</span></a>
+<a class="sourceLine" id="cb248-6" title="6"><span class="kw">setwd</span>(wd)</a>
+<a class="sourceLine" id="cb248-7" title="7"><span class="kw">getwd</span>()</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Você pode configurar o diretório de trabalho pelo menu do Rstudio <em><code>Session ▶ Set Working Directory</code></em>. Você terá as opções:

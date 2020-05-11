@@ -9,9 +9,10 @@ Neste capítulo veremos como manipular vetores, incluindo:
 
 - operação entre vetores
 
+- gerar sequências
+
 - a indexação de vetores
 
-- 
 
 ## Propriedades
 
@@ -64,20 +65,20 @@ names(z)
 #> NULL
 ```
 
-Podemos criar um vetor sem nomes usando a função `unname(x)`, ou remover `names` com `names(x) <- NULL`.
+Para remover os nomes de um vetor usamos a função `unname(x)`, ou remover `names` com `names(x) <- NULL`.
 
 
 ```r
-a <- c(dia1 = 12, dia2 = 20, dia3 = 10)
-a
+alguns_dias <- c(dia1 = 12, dia2 = 20, dia3 = 10)
+alguns_dias
 #> dia1 dia2 dia3 
 #>   12   20   10
-names(a)
+names(alguns_dias)
 #> [1] "dia1" "dia2" "dia3"
-a_sn <- unname(a)
-a_sn
+alguns_dias_sn <- unname(alguns_dias)
+alguns_dias_sn
 #> [1] 12 20 10
-names(a_sn)
+names(alguns_dias_sn)
 #> NULL
 ```
 
@@ -99,7 +100,7 @@ x + y
 #>  [1] -4 -2  0  2  4  6  8 10 12 14
 x / y
 #>  [1] -0.2 -0.5 -1.0 -2.0 -5.0  Inf  7.0  4.0  3.0  2.5
-2 ^ x
+2^x
 #>  [1]    2    4    8   16   32   64  128  256  512 1024
 x %% y
 #>  [1] -4 -2  0  0  0 NA  0  0  0  2
@@ -117,7 +118,7 @@ cte <- 4
 vetor_dbl * cte
 #> [1] -6.0  1.2  5.6  8.0
 quatros <- c(4, 4, 4, 4)
-vetor_dbl * 4
+vetor_dbl * quatros
 #> [1] -6.0  1.2  5.6  8.0
 ```
 
@@ -227,7 +228,7 @@ A ordem das operações pode ser controladas por parênteses. Os operadores `&` 
 
 
 ```r
-# 24 horas 
+# 24 horas
 horas <- 0:23
 # noite
 horas < 6 | horas > 18
@@ -331,11 +332,6 @@ dda
 #> [325] 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
 #> [343] 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360
 #> [361] 361 362 363 364 365
-# sequencia de anos
-anos <- 1961:1990
-anos
-#>  [1] 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975
-#> [16] 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990
 # sequencia de inteiros decrescente
 si_dec <- 10:-10
 si_dec
@@ -351,11 +347,16 @@ c(seqn, 10)
 
 ### Sequências de números não inteiros
 
-Mas para gerar uma sequencia de números não inteiros há uma função específica para tal tarefa.
+Para gerar uma sequencia de números reias há a função `seq()`.
+
 
 ```r
 # igual a c(snum, 10), mas usando o seq
-(snum_b <- seq(from = 1.5, to = 10, by = 0.5))
+(snum_b <- seq(
+  from = 1.5,
+  to = 10,
+  by = 0.5
+))
 #>  [1]  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0  8.5
 #> [16]  9.0  9.5 10.0
 ```
@@ -629,24 +630,24 @@ prec > 80
 #>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 #>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
 # salvando resultado do teste
-above80 <- prec > 80
+prec_alta <- prec > 80
 # extraindo valores atendidos ao teste
-prec[above80]
+prec[prec_alta]
 #> Jan Fev Mar Out Dez 
 #> 300 150 210 100 280
 # teste para meses com chuva abaixo da média mensal
 (prec_med <- mean(prec))
 #> [1] 97.1667
 # salvando resultado do teste
-(below_avg <- prec < prec_med)
+(prec_baixa <- prec < prec_med)
 #>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 #> FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 # extraindo valores que atendem a condição
-prec[below_avg]
+prec[prec_baixa]
 #> Abr Mai Jun Jul Ago Set Nov 
 #>  12   0   0  12  22  80   0
 # extraindo os 3 primeiros meses com prec abaixo da média
-prec[below_avg][1:3]
+prec[prec_baixa][1:3]
 #> Abr Mai Jun 
 #>  12   0   0
 # forma equivalente em uma linha só
@@ -666,10 +667,10 @@ Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça u
 # prec sem nomes
 names(prec) <- NULL
 # combinação de operador lógico e relacional
-above80
+prec_alta
 #>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 #>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-which(above80)
+which(prec_alta)
 #> Jan Fev Mar Out Dez 
 #>   1   2   3  10  12
 # qual os meses em que a chuva foi acima da media
@@ -677,19 +678,6 @@ which(prec > prec_med)
 #> [1]  1  2  3 10 12
 prec[which(prec > prec_med)]
 #> [1] 300 150 210 100 280
-# # Qual a temp quando a chuva ou a temp foi acima da media?
-# sel <- which(prec > prec_med | !temp < mean(temp))
-# sel
-# prec[sel]
-# # quais posições do vetor prec não choveu
-# which(prec == 0)
-# # quando ocorreu a prec max
-# which(prec == max(prec))
-# # equivalente a ...
-# which.max(prec)
-# # seleciona só a primeira ocorrência!
-# which.min(prec)
-# prec
 ```
 
 
@@ -702,16 +690,16 @@ prec[which(prec > prec_med)]
 # posição a ser alterada
 pos <- 10
 # valor da prec naquela posição
-old_prec <- prec[pos]
-old_prec
+prec_velha <- prec[pos]
+prec_velha
 #> [1] 100
 # vetor de prec
 prec
 #>  [1] 300 150 210  12   0   0  12  22  80 100   0 280
 # substituição do valor original por um novo valor
-new_prec <- 30
+prec_nova <- 30
 # alterando prec do mês de outubro
-prec[pos] <- new_prec
+prec[pos] <- prec_nova
 prec
 #>  [1] 300 150 210  12   0   0  12  22  80  30   0 280
 ```
@@ -748,14 +736,6 @@ v1[-faltante]
 # ou
 v1[!onde_falta]
 #> [1] 1 2 3 4 5 6 7 8
-# vamos calcular a média de v1
-sum(v1) / length(v1)
-#> [1] NA
-# vamos remover valores NA
-sum(v1[-faltante]) / length(v1[-faltante])
-#> [1] 4.5
-sum(v1[!onde_falta]) / length(v1[!onde_falta])
-#> [1] 4.5
 # mas o R possui a função mean
 mean(v1)
 #> [1] NA
@@ -774,65 +754,67 @@ length(v1)
 #> [1] 9
 # vetor com dados faltantes indicados por -999
 # substituir onde é -999 por NA
-x <- c(-999, 10, 15, -999, 50)
-x == -999
+x_falt <- c(-999, 10, 15, -999, 50)
+x_falt == -999
 #> [1]  TRUE FALSE FALSE  TRUE FALSE
-x[x == -999] <- NA
+x_falt[x_falt == -999] <- NA
 # total de dados faltantes
-sum(!is.na(x))
+sum(!is.na(x_falt))
 #> [1] 3
 ```
 
 
-### Diferença entre `NA` e `NULL`
+### Dados Nulos (`NULL`)
 
-O `NULL` é um tipo de dado especial do R.
+O `NULL` é um tipo de dado especial de dado no R. Ele é um vetor de tamnho zero.
 
 
 ```r
 # v1 existe ?
 ls()
-#>  [1] "a"                  "a_sn"               "above80"           
-#>  [4] "an"                 "anos"               "anos_dec"          
-#>  [7] "b"                  "below_avg"          "cran_news_windows" 
-#> [10] "cte"                "dda"                "decd"              
-#> [13] "desc"               "faltante"           "format_hotkey"     
-#> [16] "frac_d30mn"         "horas"              "meses"             
-#> [19] "new_prec"           "old_prec"           "onde_falta"        
-#> [22] "oper"               "oper_logic"         "pcks"              
-#> [25] "pent"               "pos"                "prec"              
-#> [28] "prec_dez"           "prec_jan"           "prec_jja"          
-#> [31] "prec_med"           "prect_jja_tot"      "quatros"           
+#>  [1] "a"                  "alguns_dias"        "alguns_dias_sn"    
+#>  [4] "an"                 "anos_dec"           "b"                 
+#>  [7] "cran_news_windows"  "cte"                "dda"               
+#> [10] "decd"               "desc"               "faltante"          
+#> [13] "format_hotkey"      "frac_d30mn"         "horas"             
+#> [16] "meses"              "onde_falta"         "oper"              
+#> [19] "oper_logic"         "pcks"               "pent"              
+#> [22] "pos"                "prec"               "prec_alta"         
+#> [25] "prec_baixa"         "prec_dez"           "prec_jan"          
+#> [28] "prec_jja"           "prec_med"           "prec_nova"         
+#> [31] "prec_velha"         "prect_jja_tot"      "quatros"           
 #> [34] "r_cran_version_win" "rblue"              "rep_e31"           
 #> [37] "rep_t13"            "rep_t13_t4"         "rep_t4"            
 #> [40] "s5by"               "s5len"              "sel_prec"          
 #> [43] "seqn"               "si_dec"             "snum_b"            
 #> [46] "v1"                 "v2"                 "v3"                
 #> [49] "vetor"              "vetor_dbl"          "vetor_l"           
-#> [52] "x"                  "y"                  "z"
+#> [52] "x"                  "x_falt"             "y"                 
+#> [55] "z"
 exists("v1")
 #> [1] TRUE
 # vamos anular todo v1
 v1 <- NULL
 ls()
-#>  [1] "a"                  "a_sn"               "above80"           
-#>  [4] "an"                 "anos"               "anos_dec"          
-#>  [7] "b"                  "below_avg"          "cran_news_windows" 
-#> [10] "cte"                "dda"                "decd"              
-#> [13] "desc"               "faltante"           "format_hotkey"     
-#> [16] "frac_d30mn"         "horas"              "meses"             
-#> [19] "new_prec"           "old_prec"           "onde_falta"        
-#> [22] "oper"               "oper_logic"         "pcks"              
-#> [25] "pent"               "pos"                "prec"              
-#> [28] "prec_dez"           "prec_jan"           "prec_jja"          
-#> [31] "prec_med"           "prect_jja_tot"      "quatros"           
+#>  [1] "a"                  "alguns_dias"        "alguns_dias_sn"    
+#>  [4] "an"                 "anos_dec"           "b"                 
+#>  [7] "cran_news_windows"  "cte"                "dda"               
+#> [10] "decd"               "desc"               "faltante"          
+#> [13] "format_hotkey"      "frac_d30mn"         "horas"             
+#> [16] "meses"              "onde_falta"         "oper"              
+#> [19] "oper_logic"         "pcks"               "pent"              
+#> [22] "pos"                "prec"               "prec_alta"         
+#> [25] "prec_baixa"         "prec_dez"           "prec_jan"          
+#> [28] "prec_jja"           "prec_med"           "prec_nova"         
+#> [31] "prec_velha"         "prect_jja_tot"      "quatros"           
 #> [34] "r_cran_version_win" "rblue"              "rep_e31"           
 #> [37] "rep_t13"            "rep_t13_t4"         "rep_t4"            
 #> [40] "s5by"               "s5len"              "sel_prec"          
 #> [43] "seqn"               "si_dec"             "snum_b"            
 #> [46] "v1"                 "v2"                 "v3"                
 #> [49] "vetor"              "vetor_dbl"          "vetor_l"           
-#> [52] "x"                  "y"                  "z"
+#> [52] "x"                  "x_falt"             "y"                 
+#> [55] "z"
 v1
 #> NULL
 # NULL
@@ -893,7 +875,6 @@ length(b)
 2. Crie os seguintes vetores.
     a. $(0.1^{3}\times0.2^{1}, 0.1^{6}\times0.2^{4}, ..., 0.1^{36}\times0.2^{34})$  
     
-
  
     b. $(2, \frac{2^{2}}{2}, \frac{2^{3}}{3}, ..., \frac{2^{25}}{25})$  
     
@@ -903,13 +884,6 @@ length(b)
 
 3. Reproduza a criação do vetor dias da semana (`dds`) mostrado abaixo.
 
-
-```
-      Domingo Segunda-feira   Terca-feira  Quarta-feira  Quinta-feira 
-            1             2             3             4             5 
-  Sexta-feira        Sabado 
-            6             7 
-```
 
 - - -
 
@@ -953,32 +927,12 @@ length(b)
 
   f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
   
-
-```
-     [,1] [,2] [,3] [,4]
-[1,]    1    1    2    2
-[2,]    1    1    2    2
-[3,]    3    3    4    4
-[4,]    3    3    4    4
-```
-
   g. Como a partir da matriz gerada na letra *f* você pode obter a matriz abaixo?
   
 
-```
-     [,1] [,2] [,3] [,4]
-[1,]    1    1    3    3
-[2,]    1    1    3    3
-[3,]    2    2    4    4
-[4,]    2    2    4    4
-```
 
   h. Qual o código para converter a matriz gerada na letra *g* no vetor abaixo?
   
-
-```
- [1] 1 1 3 3 1 1 3 3 2 2 4 4 2 2 4 4
-```
 
 - - - 
 
@@ -1024,8 +978,6 @@ integer(0)
 - - -
 
 7. (a) Calcule a soma cumulativa dos números 2, 3, 4, 5, 6. Dica: ver a função `cumsum()`. (b) Calcule a soma cumulativa destes números mas na ordem reversa. Dica: ver a função `rev()`.
-
-
 
 
 - - -
@@ -1075,8 +1027,8 @@ Um possível código para chegar a esse resultado seria:
 
 ```r
 x <- c(
-  11, 10, 15, 2, 6, -15, -10, -22, -8,  5,
-   7,  2, 12, 8, 4,   1,   3,  -3, -1, 30, 14
+  11, 10, 15, 2, 6, -15, -10, -22, -8, 5,
+  7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14
 )
 # x1 <- ifelse(x > 0, 1, 0)
 # cópia de x
@@ -1145,6 +1097,18 @@ O resultado esperado é um vetor que identifique o evento e sua duração.
 
 
 ```r
+duracao <- c(evento1 = 1, evento2 = 1, evento3 = 1, evento4 = 1, evento5 = 2, 
+evento6 = 1, evento7 = 2, evento8 = 1, evento9 = 4, evento10 = 1, 
+evento11 = 1, evento12 = 1, evento13 = 1, evento14 = 1, evento15 = 1, 
+evento16 = 1, evento17 = 1, evento18 = 1, evento19 = 2, evento20 = 1, 
+evento21 = 1, evento22 = 1, evento23 = 2, evento24 = 3, evento25 = 1, 
+evento26 = 1, evento27 = 2, evento28 = 1, evento29 = 2, evento30 = 3, 
+evento31 = 2, evento32 = 1, evento33 = 1, evento34 = 1, evento35 = 1, 
+evento36 = 1, evento37 = 1, evento38 = 1, evento39 = 3)
+```
+
+
+```r
 duracao
 #>  evento1  evento2  evento3  evento4  evento5  evento6  evento7  evento8 
 #>        1        1        1        1        2        1        2        1 
@@ -1157,6 +1121,7 @@ duracao
 #> evento33 evento34 evento35 evento36 evento37 evento38 evento39 
 #>        1        1        1        1        1        1        3
 ```
+
 
 - - -
 
@@ -1247,8 +1212,6 @@ $$
 $$
 
 
-
-
 Como resultado monte um dataframe com todas variáveis derivadas.
 
 
@@ -1263,6 +1226,7 @@ Como resultado monte um dataframe com todas variáveis derivadas.
  -10    10   14.142   135     135  Sudeste  
  -10   -10   14.142    45      45  Nordeste 
    0     0    0.000     0       0  Calmo    
+
 
 
 > Dica: ver figura abaixo.
@@ -1297,8 +1261,6 @@ prec_sim <- c(
 ```
 
 
-
-
 - - -
 
 14. Escreva o código para calcular o coeficiente de correlação de Pearson (`r`) entre os vetores `obs` e `prev`. 
@@ -1320,8 +1282,6 @@ prev <- c(
   -0.49, -0.04, -0.11, 0.46, 2.02
 )
 ```
-
-
 
 
 

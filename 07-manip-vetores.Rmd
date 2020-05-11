@@ -67,15 +67,15 @@ z <- c(1, 2, 3)
 names(z)
 ```
 
-Podemos criar um vetor sem nomes usando a função `unname(x)`, ou remover `names` com `names(x) <- NULL`.
+Para remover os nomes de um vetor usamos a função `unname(x)`, ou remover `names` com `names(x) <- NULL`.
 
 ```{r chunk76, message=FALSE   }
-a <- c(dia1 = 12, dia2 = 20, dia3 = 10)
-a
-names(a)
-a_sn <- unname(a)
-a_sn
-names(a_sn)
+alguns_dias <- c(dia1 = 12, dia2 = 20, dia3 = 10)
+alguns_dias
+names(alguns_dias)
+alguns_dias_sn <- unname(alguns_dias)
+alguns_dias_sn
+names(alguns_dias_sn)
 ```
 
 
@@ -93,7 +93,7 @@ y <- -5:4
 # somando-os
 x + y
 x / y
-2 ^ x
+2^x
 x %% y
 length(x + y)
 ```
@@ -105,7 +105,7 @@ Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos di
 cte <- 4
 vetor_dbl * cte
 quatros <- c(4, 4, 4, 4)
-vetor_dbl * 4
+vetor_dbl * quatros
 ```
 
 O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento de `vetor_dbl`.
@@ -139,7 +139,7 @@ FALSE - TRUE
 Vetores lógicos resultam da comparação de números ou caracteres. A Tabela \@ref(tab:oper-logic) apresenta os principais operadores lógicos para comparações.
 
 ```{r oper-logic, echo = FALSE, warning=FALSE}
-#<a name="tab-oper-logic"></a>
+# <a name="tab-oper-logic"></a>
 oper <- c("<", "<=", ">", ">=", "==", "!=", "!x", "x | y", "x & y", "isTRUE(x)", "%in%")
 desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico", "diferente", "não é x (negação)", "x ou y", "x e y", "teste se x é verdadeiro", "está contido em")
 oper_logic <- data.frame(
@@ -190,7 +190,7 @@ A ordem das operações pode ser controladas por parênteses. Os operadores `&` 
 
 
 ```{r}
-# 24 horas 
+# 24 horas
 horas <- 0:23
 # noite
 horas < 6 | horas > 18
@@ -260,9 +260,6 @@ Sequências de números formam um vetor. Há diversas formas de se gerar sequên
 # dias do ano
 dda <- 1:365
 dda
-# sequencia de anos
-anos <- 1961:1990
-anos
 # sequencia de inteiros decrescente
 si_dec <- 10:-10
 si_dec
@@ -274,10 +271,15 @@ c(seqn, 10)
 
 ### Sequências de números não inteiros
 
-Mas para gerar uma sequencia de números não inteiros há uma função específica para tal tarefa.
+Para gerar uma sequencia de números reias há a função `seq()`.
+
 ```{r chunk717, message=FALSE  }
 # igual a c(snum, 10), mas usando o seq
-(snum_b <- seq(from = 1.5, to = 10, by = 0.5))
+(snum_b <- seq(
+  from = 1.5,
+  to = 10,
+  by = 0.5
+))
 ```
 
 Exemplos de sequência de anos, meses e dias.
@@ -449,17 +451,17 @@ prec
 # teste para chuva > 80 mm/mês
 prec > 80
 # salvando resultado do teste
-above80 <- prec > 80
+prec_alta <- prec > 80
 # extraindo valores atendidos ao teste
-prec[above80]
+prec[prec_alta]
 # teste para meses com chuva abaixo da média mensal
 (prec_med <- mean(prec))
 # salvando resultado do teste
-(below_avg <- prec < prec_med)
+(prec_baixa <- prec < prec_med)
 # extraindo valores que atendem a condição
-prec[below_avg]
+prec[prec_baixa]
 # extraindo os 3 primeiros meses com prec abaixo da média
-prec[below_avg][1:3]
+prec[prec_baixa][1:3]
 # forma equivalente em uma linha só
 prec[prec < mean(prec)][1:3]
 # teste para meses com prec diferente de zero
@@ -472,24 +474,11 @@ Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça u
 # prec sem nomes
 names(prec) <- NULL
 # combinação de operador lógico e relacional
-above80
-which(above80)
+prec_alta
+which(prec_alta)
 # qual os meses em que a chuva foi acima da media
 which(prec > prec_med)
 prec[which(prec > prec_med)]
-# # Qual a temp quando a chuva ou a temp foi acima da media?
-# sel <- which(prec > prec_med | !temp < mean(temp))
-# sel
-# prec[sel]
-# # quais posições do vetor prec não choveu
-# which(prec == 0)
-# # quando ocorreu a prec max
-# which(prec == max(prec))
-# # equivalente a ...
-# which.max(prec)
-# # seleciona só a primeira ocorrência!
-# which.min(prec)
-# prec
 ``` 
 
 
@@ -501,14 +490,14 @@ prec[which(prec > prec_med)]
 # posição a ser alterada
 pos <- 10
 # valor da prec naquela posição
-old_prec <- prec[pos]
-old_prec
+prec_velha <- prec[pos]
+prec_velha
 # vetor de prec
 prec
 # substituição do valor original por um novo valor
-new_prec <- 30
+prec_nova <- 30
 # alterando prec do mês de outubro
-prec[pos] <- new_prec
+prec[pos] <- prec_nova
 prec
 ```
   
@@ -537,11 +526,6 @@ faltante <- which(is.na(v1))
 v1[-faltante]
 # ou
 v1[!onde_falta]
-# vamos calcular a média de v1
-sum(v1) / length(v1)
-# vamos remover valores NA
-sum(v1[-faltante]) / length(v1[-faltante])
-sum(v1[!onde_falta]) / length(v1[!onde_falta])
 # mas o R possui a função mean
 mean(v1)
 # não retornou o que desejamos, removendo as posicoes dos dados faltantes
@@ -555,17 +539,17 @@ v1
 length(v1)
 # vetor com dados faltantes indicados por -999
 # substituir onde é -999 por NA
-x <- c(-999, 10, 15, -999, 50)
-x == -999
-x[x == -999] <- NA
+x_falt <- c(-999, 10, 15, -999, 50)
+x_falt == -999
+x_falt[x_falt == -999] <- NA
 # total de dados faltantes
-sum(!is.na(x))
+sum(!is.na(x_falt))
 ```
 
 
-### Diferença entre `NA` e `NULL`
+### Dados Nulos (`NULL`)
 
-O `NULL` é um tipo de dado especial do R.
+O `NULL` é um tipo de dado especial de dado no R. Ele é um vetor de tamnho zero.
 
 ```{r chunk738, message=FALSE, error=TRUE}
 # v1 existe ?
@@ -611,11 +595,7 @@ length(b)
 ### Exercícios
 
 1. Crie um vetor com os valores de $e^{x}cos{x}$ para os valores de $x = (3, 3.1, 3.2, ..., 6$).
-```{r, include = FALSE}
-x <- seq(3, 6, by = 0.1)
-exp(x) * cos(x)
-# (exp(1)^x)*cos(x)
-```
+
 
 - - - 
 
@@ -623,30 +603,15 @@ exp(x) * cos(x)
 2. Crie os seguintes vetores.
     a. $(0.1^{3}\times0.2^{1}, 0.1^{6}\times0.2^{4}, ..., 0.1^{36}\times0.2^{34})$  
     
-```{r, include = FALSE}
-0.1 ^ (seq(3, 36, by = 3)) * (0.2 ^ (seq(1, 34, by = 3)))
-```
 `r paste(" ")`
     b. $(2, \frac{2^{2}}{2}, \frac{2^{3}}{3}, ..., \frac{2^{25}}{25})$  
     
-```{r, include = FALSE}
-2^(1:25)/(1:25)
-#paste(2^(1:25), 1:25, sep = "/")
-```
+
 
 - - -
 
 3. Reproduza a criação do vetor dias da semana (`dds`) mostrado abaixo.
 
-```{r , message=FALSE, eval=TRUE, echo = FALSE, comment=""}
-dds <- 1:7
-names(dds) <- c(
-  "Domingo", "Segunda-feira", "Terca-feira", 
-  "Quarta-feira", "Quinta-feira", "Sexta-feira", 
-  "Sabado"
-)
-dds
-```
 
 - - -
 
@@ -656,26 +621,18 @@ dds
 
 `r paste("  ")`b. Se um ano é bissexto. Verifique os resultados de seu código para os anos `r set.seed(2); paste( (anos <- sample(1890:2015, 10)) , collapse = ", ")`. Calcule o total de anos com 365 dias.
 
-```{r, include = FALSE}
-set.seed(2)
-# (a)
-(eh_par <- nums %% 2 == 0)
-(n_pares <- sum(eh_par))
-# (b)
-(eh_biss <- anos %% 4 == 0)
-(n_biss <- sum(!eh_biss))
-```
+
 
 - - -
 
 5. Quais códigos para gerar os seguintes dados:
   a.
 ```{r, eval=TRUE,echo=FALSE,comment=""}
-(tar0 <- c(-20, seq(0,40, by = 10)))
+(tar0 <- c(-20, seq(0, 40, by = 10)))
 ```
   b.
 ```{r, eval=TRUE,echo=FALSE,comment=""}
-(seq(-1, 1, by = 1/4))
+(seq(-1, 1, by = 1 / 4))
 ```
   c.
 ```{r , eval=TRUE,echo=FALSE,comment=""}
@@ -692,25 +649,12 @@ rep(c(1:5, 4:1), times = c(5:1, 2:5))
 
   f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
   
-```{r, eval=TRUE,echo=FALSE,comment=""}
-vetor_f <- c(
-  rep(rep(1:2, each = 2), times = 2),
-  rep(rep(3:4, each = 2), times = 2)
-)
-(m <- matrix(vetor_f, byrow = TRUE, ncol = 4))
-```
-
   g. Como a partir da matriz gerada na letra *f* você pode obter a matriz abaixo?
   
-```{r, eval=TRUE,echo=FALSE,comment=""}
-(mat_g <- t(m))
-```
+
 
   h. Qual o código para converter a matriz gerada na letra *g* no vetor abaixo?
   
-```{r, eval=TRUE,echo=FALSE,comment=""}
-c(t(mat_g))
-```
 
 - - - 
 
@@ -754,18 +698,13 @@ v0 <- c()
 
 
 ```{r Chunk7d_sol, eval=TRUE,echo=FALSE,comment=""}
-#1:length(v0)
+# 1:length(v0)
 seq_along(v0)
 ```
 
 - - -
 
 7. (a) Calcule a soma cumulativa dos números `r 2:6`. Dica: ver a função `cumsum()`. (b) Calcule a soma cumulativa destes números mas na ordem reversa. Dica: ver a função `rev()`.
-
-```{r, echo = FALSE, results='hide'}
-cumsum(2:6)
-cumsum(rev(2:6))
-```
 
 
 - - -
@@ -820,8 +759,8 @@ Um possível código para chegar a esse resultado seria:
 
 ```{r}
 x <- c(
-  11, 10, 15, 2, 6, -15, -10, -22, -8,  5,
-   7,  2, 12, 8, 4,   1,   3,  -3, -1, 30, 14
+  11, 10, 15, 2, 6, -15, -10, -22, -8, 5,
+  7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14
 )
 # x1 <- ifelse(x > 0, 1, 0)
 # cópia de x
@@ -1003,9 +942,21 @@ names(duracao) <- paste("evento", 1:length(duracao), sep = "")
 
 O resultado esperado é um vetor que identifique o evento e sua duração.
 
-```{r Chunk10f1}
+```{r Chunk10f1, eval=TRUE, results = 'hide'}
+duracao <- c(evento1 = 1, evento2 = 1, evento3 = 1, evento4 = 1, evento5 = 2, 
+evento6 = 1, evento7 = 2, evento8 = 1, evento9 = 4, evento10 = 1, 
+evento11 = 1, evento12 = 1, evento13 = 1, evento14 = 1, evento15 = 1, 
+evento16 = 1, evento17 = 1, evento18 = 1, evento19 = 2, evento20 = 1, 
+evento21 = 1, evento22 = 1, evento23 = 2, evento24 = 3, evento25 = 1, 
+evento26 = 1, evento27 = 2, evento28 = 1, evento29 = 2, evento30 = 3, 
+evento31 = 2, evento32 = 1, evento33 = 1, evento34 = 1, evento35 = 1, 
+evento36 = 1, evento37 = 1, evento38 = 1, evento39 = 3)
+```
+
+```{r}
 duracao
 ```
+
 
 - - -
 
@@ -1085,12 +1036,7 @@ $\theta$ = `r paste0("(", paste(wd , collapse = ", "), ")")`
    $$u = -V_{h} \cdot sin(\theta_{rad})$$
    $$v = -V_{h} \cdot cos(\theta_{rad})$$
 
-```{r Chunk12_a, echo=FALSE, eval=TRUE, results = FALSE}
-u <- round(-ws * sin(wd * pi / 180), 3)
-u
-v <- round(-ws * cos(wd * pi / 180), 3)
-v
-```
+
 
    b. Faça os cálculos necessários para reconstruir $V_h$ e $\theta$ a partir de $u$ e $v$ determinados no item **a**. Por convenção, a direção do vento $\theta$ em condições calmas ($V_h$ < 0.5 m s^-1^) é assumida como 0°.
 
@@ -1104,30 +1050,20 @@ $$
 $$
 
 
-```{r Chunk12_b, echo=FALSE, eval=TRUE, results = FALSE}
-# velocidade horizontal do vento a partir de u e v
-(ws_uv <- round(sqrt(u^2 + v^2), 3))
-# direção do vento
-(wd_uv <- atan2(-u, -v) * 180/pi)
-# ajuste para dir <= 0 do angulo matemático para meteorológico
-wd_uv[wd_uv <= 0] <- wd_uv[wd_uv <= 0] + 360
-wd_uv[u == 0 & v == 0] <- 0
-wd_uv
-wd
-identical(wd, wd_uv)
-all.equal(wd, wd_uv)
-```
-
 Como resultado monte um dataframe com todas variáveis derivadas.
 
-```{r, echo=FALSE}
-knitr::kable(data.frame(u, v, ws, 
-           wd, wd_uv, 
-           dir = c("Oeste", "Sul", "Norte", 
-                   "Leste", "Sudoeste", "Noroeste",
-                   "Sudeste", "Nordeste", "Calmo")
-           ))
+```{r, eval = TRUE, echo = FALSE}
+uv_df <- structure(list(u = c(10, 0, 0, -10, 10, 10, -10, -10, 0), v = c(0, 
+10, -10, 0, 10, -10, 10, -10, 0), ws = c(10, 10, 10, 10, 14.142, 
+14.142, 14.142, 14.142, 0), wd = c(270, 180, 360, 90, 225, 315, 
+135, 45, 0), wd_uv = c(270, 180, 360, 90, 225, 315, 135, 45, 
+0), dir = structure(c(6L, 9L, 5L, 2L, 8L, 4L, 7L, 3L, 1L), .Label = c("Calmo", 
+"Leste", "Nordeste", "Noroeste", "Norte", "Oeste", "Sudeste", 
+"Sudoeste", "Sul"), class = "factor")), class = "data.frame", row.names = c(NA, 
+-9L))
+knitr::kable(uv_df)
 ```
+
 
 
 > Dica: ver figura abaixo.
@@ -1161,18 +1097,6 @@ prec_sim <- c(
 ```
 
 
-```{r , include=FALSE}
-wc <- sum((prec_obs > 0.25) & (prec_sim > 0.25))
-dc <- sum((prec_obs <= 0.25) & (prec_sim <= 0.25))
-n <- length(prec_obs)
-wi <- sum((prec_obs <= 0.25) & (prec_sim > 0.25))
-di <- sum((prec_obs > 0.25) & (prec_sim <= 0.25))
-PC <- (wc + dc) / n
-PC
-CSI <- wc / (wc + wi + di)
-CSI
-```
-
 - - -
 
 14. Escreva o código para calcular o coeficiente de correlação de Pearson (`r`) entre os vetores `obs` e `prev`. 
@@ -1196,26 +1120,8 @@ prev <- c(
 
 
 
-```{r , include = FALSE}
-ok <- !(is.na(obs) | is.na(prev))
-obs <- obs[ok]
-prev <- prev[ok]
-n <- length(prev)
-# cálculo da correlação
-(r <- sum((obs - mean(obs)) * (prev - mean(prev))) /
-  sqrt(sum((obs - mean(obs)) ^ 2) * sum((prev - mean(prev)) ^ 2)))
-cor(obs, prev)
-```
-
 - - - 
 
 15. Construa uma função para converter valores de temperatura em K para °C e outra para converter ângulos de radianos para graus. Utilize dois exemplos para mostrar que suas funções funcionam corretamente.
 
-```{r , include=FALSE}
-k2c <- function(tk) tk - 273.15
-k2c(300)
-k2c(273)
-rad2graus <- function(rad) rad / pi * 180
-rad2graus(pi)
-rad2graus(pi / 2)
-```
+
