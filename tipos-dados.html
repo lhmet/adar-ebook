@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-09" />
+<meta name="date" content="2020-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -470,7 +470,8 @@ Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
 <span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span>
 <span class="kw">class</span>(vetor_char)
 <span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<p>úmero de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
+<p>Dados do tipo caracter são usados para descrição qualitativa de uma variável, como no caso de identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).</p>
+<p>O número de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(vetor_char)
 <span class="co">#&gt; [1]  2 NA  2</span></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> vem com alguns vetores de caracteres pré-definidos:</p>
@@ -497,13 +498,15 @@ citacao
 sentenca_apos &lt;-<span class="st"> &quot;Marca d&#39;água&quot;</span>
 sentenca_apos
 <span class="co">#&gt; [1] &quot;Marca d&#39;água&quot;</span></code></pre></div>
-<p>Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (<code>\</code>) antes daquele delimitador que deseja desconsiderar.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sentenca_aspas &lt;-<span class="st"> &quot;Eles diseram: </span><span class="ch">\&quot;</span><span class="st">Marca d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>
-<span class="kw">cat</span>(sentenca_aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-<span class="co">#&gt; Eles diseram: &quot;Marca d&#39;água&quot;</span>
-<span class="kw">print</span>(sentenca_aspas)
-<span class="co">#&gt; [1] &quot;Eles diseram: \&quot;Marca d&#39;água\&quot;&quot;</span></code></pre></div>
-<p>A função <code>print()</code> imprime um caracter incluindo a barra invertida para maior clareza. Já a função <code>cat()</code>, converte seu argumentos em caracteres (se necessário), concatena eles e interpreta caracteres especiais (como <code>\</code> e <code>\n</code>), para então dar saída na tela.</p>
+<p>Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (<code>\</code>) antes do delimitador que deseja desconsiderar.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(sentenca_2aspas &lt;-<span class="st"> &quot;Ele disse: </span><span class="ch">\&quot;</span><span class="st">Me sinto como um peixe fora d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)
+<span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></code></pre></div>
+<p>Note que a impressão de caracteres no console inclui a barra invertida para maior clareza. Esse padrão também ocorre com a função <code>print()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(sentenca_2aspas)
+<span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></code></pre></div>
+<p>Já a função <code>cat()</code><a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>, interpreta caracteres especiais (como a barra invertida <code>\</code> e a quebra de linha <code>\n</code>), para então dar saída na tela.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(sentenca_2aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="co">#&gt; Ele disse: &quot;Me sinto como um peixe fora d&#39;água&quot;</span></code></pre></div>
 <div class="rmdnote">
 <p>
 Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:
@@ -561,6 +564,7 @@ T &lt;-<span class="st"> </span><span class="dv">10</span>
 <ol start="19">
 <li id="fn19"><p>Diferente de outras linguagens de programação no R, um <strong>escalar</strong> é um vetor com um elemento. Então, vetores são o menor tipo de dados no R.<a href="tipos-dados.html#fnref19">↩</a></p></li>
 <li id="fn20"><p>Lista é um tipo de vetor chamado <code>list</code> que é capaz de armazenar dados de diferentes tipos (heterogêneos), o que será visto na seção <a href="listas.html#listas">8.3</a>.<a href="tipos-dados.html#fnref20">↩</a></p></li>
+<li id="fn21"><p>Em comparação a função <code>print()</code>, a função <code>cat()</code> tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a coersão deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.<a href="tipos-dados.html#fnref21">↩</a></p></li>
 </ol>
 </div>
             </section>

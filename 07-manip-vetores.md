@@ -9,9 +9,10 @@ Neste capítulo veremos como manipular vetores, incluindo:
 
 - operação entre vetores
 
+- gerar sequências
+
 - a indexação de vetores
 
-- 
 
 ## Propriedades
 
