@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,7 +159,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -399,6 +399,20 @@ intensidade_o
 <p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade_o, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</code></pre></div>
 <p><img src="images/unnamed-chunk-23-2.png" width="672" /></p>
+<p>Para verificar se uma variável é um <strong>fator</strong> e se esse fator é ordenado usamos, respectivamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.factor</span>(intensidade)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">is.ordered</span>(intensidade)
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p>A coersão para <strong>fator</strong> é feita pela função <code>as.factor</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(intensidade_no &lt;-<span class="st"> </span><span class="kw">as.factor</span>(
+  <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>)
+))
+<span class="co">#&gt; [1] baixa    moderada alta     baixa    baixa    moderada</span>
+<span class="co">#&gt; Levels: alta baixa moderada</span></code></pre></div>
+<!-- 
+summary(intensidade_no)
+-->
 </div>
 <div id="datas-e-horários" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Datas e horários</h3>
@@ -410,10 +424,10 @@ intensidade_o
 <p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
 <p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()
-<span class="co">#&gt; [1] &quot;2020-05-11&quot;</span>
+<span class="co">#&gt; [1] &quot;2020-05-15&quot;</span>
 <span class="kw">Sys.time</span>()
-<span class="co">#&gt; [1] &quot;2020-05-11 17:10:37 UTC&quot;</span></code></pre></div>
-<p>Na saída da <code>Sys.time()</code> a última parte (<code>03</code>) refere-se ao fuso horário (3h antes do meriadiano de Greenwich).</p>
+<span class="co">#&gt; [1] &quot;2020-05-15 15:40:48 UTC&quot;</span></code></pre></div>
+<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->
 <p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
 <p>Datas são criadas a partir da coersão de dados do tipo <code>character</code> para <code>date</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)

@@ -312,6 +312,16 @@ Essa é uma forma de verificação mais direta do tipo de uma variável. Outra p
 
 [^relacionais]: Operadores relacionais será visto na seção Operações com Vetores. 
 
+<div class="rmdtip">
+<p>O grupo de funções <code>is.{tipo_de_dados}()</code> inclui também opções para verificar se a variável tem valores:</p>
+<ul>
+<li><code>NA</code>: <code>is.na()</code></li>
+<li><code>NaN</code>: <code>is.nan()</code></li>
+<li><code>Inf</code>: <code>is.infinite</code></li>
+<li>valores finitos: <code>is.finite()</code></li>
+</ul>
+</div>
+
 ## Conversão entre tipos de dados
 
 
@@ -518,7 +528,30 @@ qplot(x = intensidade_o, y = n_casos, geom = "col")
 
 <img src="images/unnamed-chunk-23-2.png" width="672" />
 
+Para verificar se uma variável é um **fator** e se esse fator é ordenado usamos, respectivamente:
 
+
+```r
+is.factor(intensidade)
+#> [1] TRUE
+is.ordered(intensidade)
+#> [1] FALSE
+```
+
+A coersão para **fator** é feita pela função `as.factor`:
+
+
+```r
+(intensidade_no <- as.factor(
+  c("baixa", "moderada", "alta", "baixa", "baixa", "moderada")
+))
+#> [1] baixa    moderada alta     baixa    baixa    moderada
+#> Levels: alta baixa moderada
+```
+
+<!-- 
+summary(intensidade_no)
+-->
 
 ### Datas e horários
 
@@ -536,12 +569,12 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-05-11"
+#> [1] "2020-05-15"
 Sys.time()
-#> [1] "2020-05-11 17:10:37 UTC"
+#> [1] "2020-05-15 15:40:48 UTC"
 ```
 
-Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich).
+<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->
 
 As datas seguem o formato padrão de representação [ISO-8601](https://pt.wikipedia.org/wiki/ISO_8601), ou seja o formato `YYYY-MM-DD` para `ano-mês-dia`, independente do local onde você mora.
 

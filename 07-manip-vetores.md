@@ -25,61 +25,94 @@ Neste capítulo veremos como manipular vetores, incluindo:
 
 ### Nomeando vetores
 
-Nós podemos nomear um vetor de 3 formas:
 
-+ Durante a criação
+As 3 formas equivalentes mais comuns de criar vetores com nomes são demostradas abaixo com um exemplo de dados mensais de precipitação.
 
-+ Modificando um vetor
++ Durante a criação, com a função `c()` incluindo os nomes nos argumentos
+
+
+```r
+# vetor de chuva mensal para um dado ano
+prec <- c(
+  jan = 300, 
+  fev = 150,
+  mar = 210,
+  abr = 12, 
+  mai = 0, 
+  jun = 0, 
+  jul = 12, 
+  ago = 22, 
+  set = 80, 
+  out = 100, 
+  nov = 10,  
+  dez = 280
+  )
+```
+
++ Modificando um vetor com a função `names()<-`
+
+
+```r
+prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 10, 280)
+meses <- c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+names(prec) <- meses
+prec
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 150 210  12   0   0  12  22  80 100  10 280
+```
+
 
 + Criando um vetor modificado
 
-Nomes devem ser únicos (sem repetições), porque para filtragem de elementos de um vetor ou a seleção de um subconjunto (razão pela qual usam-se os `names`) retornará somente o primeiro elemento que tiver nome repetido.
 
 ```r
-# Durante a criação:
-x <- c(a = 1, b = 2, c = 3)
-x
-#> a b c 
-#> 1 2 3
-# Modificando um vetor:
-x <- 1:3
-names(x) <- c("a", "b", "c")
-x
-#> a b c 
-#> 1 2 3
-# Criando um vetor modificado
-x <- setNames(1:3, c("a", "b", "c"))
-x
-#> a b c 
-#> 1 2 3
+prec <- setNames(
+  object = c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 10, 280),
+  nm = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+)
+prec
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 150 210  12   0   0  12  22  80 100  10 280
 ```
 
-Nem todos elementos precisam ter nomes. Se os nomes são faltantes, `names()` retornará um string vazia ("") para aqueles elementos. Se todos forem faltantes, `names()` retornará `NULL`.
+Nomes não podem ser repetidos entre os elementos, porque a seleção de um subconjunto do vetor baseada nos nomes retornará somente o primeiro elemento que tiver nome repetido.
+
+Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função `names()` retornará um vetor caracter vazio (\"\") para aqueles elementos sem nomes especificados. 
+
 
 ```r
-y <- c(a = 1, 2, 3)
-names(y)
-#> [1] "a" ""  ""
-z <- c(1, 2, 3)
-names(z)
+(meses_pnm <- c(jan = 1, 2, 3))
+#> jan         
+#>   1   2   3
+names(meses_pnm)
+#> [1] "jan" ""    ""
+```
+
+Quando nenhum nome é especificado, `names()` retornará `NULL`.
+
+
+```r
+(meses_snm <- c(1, 2, 3))
+#> [1] 1 2 3
+names(meses_snm)
 #> NULL
 ```
 
-Para remover os nomes de um vetor usamos a função `unname(x)`, ou remover `names` com `names(x) <- NULL`.
+
+Para remover os nomes de um vetor, usamos a função `unname()` ou `names() <- NULL`.
 
 
 ```r
-alguns_dias <- c(dia1 = 12, dia2 = 20, dia3 = 10)
-alguns_dias
-#> dia1 dia2 dia3 
-#>   12   20   10
-names(alguns_dias)
-#> [1] "dia1" "dia2" "dia3"
-alguns_dias_sn <- unname(alguns_dias)
-alguns_dias_sn
-#> [1] 12 20 10
-names(alguns_dias_sn)
-#> NULL
+prec_clim <- c(230, 205, 160, 100, 60, 30, 40, 60, 110, 165, 200, 220)
+names(prec_clim) <- names(prec)
+prec_clim
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 230 205 160 100  60  30  40  60 110 165 200 220
+unname(prec_clim)
+#>  [1] 230 205 160 100  60  30  40  60 110 165 200 220
+names(prec_clim) <- NULL
+prec_clim
+#>  [1] 230 205 160 100  60  30  40  60 110 165 200 220
 ```
 
 
@@ -92,23 +125,30 @@ Operações aritméticas podem ser aplicadas diretamente entre vetores.
 
 
 ```r
-# criando 2 vetores de mesmo tamanho
-x <- 1:10
-y <- -5:4
-# somando-os
-x + y
-#>  [1] -4 -2  0  2  4  6  8 10 12 14
-x / y
-#>  [1] -0.2 -0.5 -1.0 -2.0 -5.0  Inf  7.0  4.0  3.0  2.5
-2^x
-#>  [1]    2    4    8   16   32   64  128  256  512 1024
-x %% y
-#>  [1] -4 -2  0  0  0 NA  0  0  0  2
-length(x + y)
-#> [1] 10
+# desvios da prec em relação a média climatológica
+prec - prec_clim
+#>  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez 
+#>   70  -55   50  -88  -60  -30  -28  -38  -30  -65 -190   60
+# % do total anual
+prec/prec_clim * 100
+#>       jan       fev       mar       abr       mai       jun       jul       ago 
+#> 130.43478  73.17073 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 
+#>       set       out       nov       dez 
+#>  72.72727  60.60606   5.00000 127.27273
+# transformação boxcox da prec com alpha = 0.2
+(prec ^ 0.2 - 1)/0.2
+#>       jan       fev       mar       abr       mai       jun       jul       ago 
+#> 10.645673  8.620350  9.568467  3.218759 -5.000000 -5.000000  3.218759  4.278004 
+#>       set       out       nov       dez 
+#>  7.011244  7.559432  2.924466 10.431268
+prec %% 10
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#>   0   0   0   2   0   0   2   2   0   0   0   0
 ```
 
-Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação. 
+--- PAREI AQUI
+
+Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação. 
 
 
 ```r
@@ -186,16 +226,18 @@ Este conjunto de operadores permite diversas comparações entre vetores, por ex
 
 
 ```r
-vetor_dbl < 0
-#> [1]  TRUE FALSE FALSE FALSE
+prec - mean(prec) < 0
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#> FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 ```
 
-- quais elementos de `x` são maior que os de `y`?
+- quais elementos de `prec` são maior que os de `prec_clim`?
 
 
 ```r
-x > y
-#>  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+prec > 100
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
 ```
 
 O operador `%in%` serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.
@@ -203,18 +245,18 @@ O operador `%in%` serve para verificar se um vetor está contido parcial ou tota
 
 ```r
 # operador está contido em
-2:4 %in% x
-#> [1] TRUE TRUE TRUE
+c(200, 150, 100) %in% prec
+#> [1] FALSE  TRUE  TRUE
 # 2:4 são elementos de x?
-is.element(2:4, x)
-#> [1] TRUE TRUE TRUE
+is.element(c(200, 150, 100), prec)
+#> [1] FALSE  TRUE  TRUE
 ```
 
 
 Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:
 
-- $0.5 < x \leq 100$ 
-- $x < 5$  ou $x \geq 25$ 
+- $0 < prec \leq 100$ 
+- $x < 50$  ou $x \geq 150$ 
 
 precisamos usar os operadores relacionais:
 
@@ -228,7 +270,6 @@ A ordem das operações pode ser controladas por parênteses. Os operadores `&` 
 
 
 ```r
-# 24 horas
 horas <- 0:23
 # noite
 horas < 6 | horas > 18
@@ -487,7 +528,7 @@ rep_t13_t4
 
 ## Indexação de vetores {#index-vetores}
 
-Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. 
+Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. 
 
 Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos. 
 
@@ -497,13 +538,9 @@ Considere os seguintes vetores como exemplo:
 
 
 ```r
-# vetor de chuva mensal para um dado ano
-prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 0, 280)
-meses <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez")
-names(prec) <- meses
 prec
-#> Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
-#> 300 150 210  12   0   0  12  22  80 100   0 280
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 150 210  12   0   0  12  22  80 100  10 280
 ```
 
 Como selecionar o valor de chuva e temperatura só para janeiro?
@@ -524,7 +561,7 @@ Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:
 ```r
 prec_jan <- prec[1]
 prec_jan
-#> Jan 
+#> jan 
 #> 300
 ```
 
@@ -534,7 +571,7 @@ Como selecionar os últimos valores do vetor de chuva?
 ```r
 prec_dez <- prec[length(prec)]
 prec_dez
-#> Dez 
+#> dez 
 #> 280
 ```
 
@@ -546,7 +583,7 @@ sel_prec <- c(6, 7, 8)
 # vetor de chuva JJA
 prec_jja <- prec[sel_prec]
 prec_jja
-#> Jun Jul Ago 
+#> jun jul ago 
 #>   0  12  22
 # total de chuva trimestral nesse ano
 prect_jja_tot <- sum(prec_jja)
@@ -562,8 +599,8 @@ Como selecionar todos valores menos o primeiro e o último?
 ```r
 # exceto o primeiro e ultimo
 prec[-c(1, length(prec))]
-#> Fev Mar Abr Mai Jun Jul Ago Set Out Nov 
-#> 150 210  12   0   0  12  22  80 100   0
+#> fev mar abr mai jun jul ago set out nov 
+#> 150 210  12   0   0  12  22  80 100  10
 ```
 
 ###  Indexação por nomes
@@ -571,11 +608,11 @@ prec[-c(1, length(prec))]
 
 ```r
 prec["Jan"]
-#> Jan 
-#> 300
+#> <NA> 
+#>   NA
 prec[c("Dez", "Fev", "Jun")]
-#> Dez Fev Jun 
-#> 280 150   0
+#> <NA> <NA> <NA> 
+#>   NA   NA   NA
 ```
 
 ### Indexação por vetores lógicos
@@ -590,7 +627,7 @@ vetor_l <- c(
   TRUE, FALSE, FALSE, TRUE
 )
 meses[vetor_l]
-#> [1] "Jan" "Abr" "Mai" "Jul" "Set" "Dez"
+#> [1] "jan" "abr" "mai" "jul" "set" "dez"
 ```
 
 Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando-se a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
@@ -608,13 +645,13 @@ Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar
 # vetor lógico
 vetor_l <- c(TRUE, FALSE)
 meses[vetor_l]
-#> [1] "Jan" "Mar" "Mai" "Jul" "Set" "Nov"
+#> [1] "jan" "mar" "mai" "jul" "set" "nov"
 vetor_l <- c(TRUE, FALSE, FALSE)
 meses[vetor_l]
-#> [1] "Jan" "Abr" "Jul" "Out"
+#> [1] "jan" "abr" "jul" "out"
 prec[c(TRUE, FALSE)]
-#> Jan Mar Mai Jul Set Nov 
-#> 300 210   0  12  80   0
+#> jan mar mai jul set nov 
+#> 300 210   0  12  80  10
 ```
 
 A indexação pode ser feita também por comparações:
@@ -623,41 +660,41 @@ A indexação pode ser feita também por comparações:
 ```r
 # vetor prec
 prec
-#> Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
-#> 300 150 210  12   0   0  12  22  80 100   0 280
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 150 210  12   0   0  12  22  80 100  10 280
 # teste para chuva > 80 mm/mês
 prec > 80
-#>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
 #>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
 # salvando resultado do teste
 prec_alta <- prec > 80
 # extraindo valores atendidos ao teste
 prec[prec_alta]
-#> Jan Fev Mar Out Dez 
+#> jan fev mar out dez 
 #> 300 150 210 100 280
 # teste para meses com chuva abaixo da média mensal
 (prec_med <- mean(prec))
-#> [1] 97.1667
+#> [1] 98
 # salvando resultado do teste
 (prec_baixa <- prec < prec_med)
-#>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
 #> FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 # extraindo valores que atendem a condição
 prec[prec_baixa]
-#> Abr Mai Jun Jul Ago Set Nov 
-#>  12   0   0  12  22  80   0
+#> abr mai jun jul ago set nov 
+#>  12   0   0  12  22  80  10
 # extraindo os 3 primeiros meses com prec abaixo da média
 prec[prec_baixa][1:3]
-#> Abr Mai Jun 
+#> abr mai jun 
 #>  12   0   0
 # forma equivalente em uma linha só
 prec[prec < mean(prec)][1:3]
-#> Abr Mai Jun 
+#> abr mai jun 
 #>  12   0   0
 # teste para meses com prec diferente de zero
 prec[prec != 0]
-#> Jan Fev Mar Abr Jul Ago Set Out Dez 
-#> 300 150 210  12  12  22  80 100 280
+#> jan fev mar abr jul ago set out nov dez 
+#> 300 150 210  12  12  22  80 100  10 280
 ```
 
 Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira Nós podemos localizar essas ocorrências usando a função `which()`:
@@ -668,10 +705,10 @@ Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça u
 names(prec) <- NULL
 # combinação de operador lógico e relacional
 prec_alta
-#>   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
 #>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
 which(prec_alta)
-#> Jan Fev Mar Out Dez 
+#> jan fev mar out dez 
 #>   1   2   3  10  12
 # qual os meses em que a chuva foi acima da media
 which(prec > prec_med)
@@ -695,13 +732,13 @@ prec_velha
 #> [1] 100
 # vetor de prec
 prec
-#>  [1] 300 150 210  12   0   0  12  22  80 100   0 280
+#>  [1] 300 150 210  12   0   0  12  22  80 100  10 280
 # substituição do valor original por um novo valor
 prec_nova <- 30
 # alterando prec do mês de outubro
 prec[pos] <- prec_nova
 prec
-#>  [1] 300 150 210  12   0   0  12  22  80  30   0 280
+#>  [1] 300 150 210  12   0   0  12  22  80  30  10 280
 ```
   
 A substituição também pode ser feita também pelo nome das variáveis.
@@ -709,7 +746,7 @@ A substituição também pode ser feita também pelo nome das variáveis.
 
 ```r
 prec
-#>  [1] 300 150 210  12   0   0  12  22  80  30   0 280
+#>  [1] 300 150 210  12   0   0  12  22  80  30  10 280
 prec["Mai"] <- 5
 ```
 
@@ -772,49 +809,47 @@ O `NULL` é um tipo de dado especial de dado no R. Ele é um vetor de tamnho zer
 ```r
 # v1 existe ?
 ls()
-#>  [1] "a"                  "alguns_dias"        "alguns_dias_sn"    
-#>  [4] "an"                 "anos_dec"           "b"                 
-#>  [7] "cran_news_windows"  "cte"                "dda"               
-#> [10] "decd"               "desc"               "faltante"          
-#> [13] "format_hotkey"      "frac_d30mn"         "horas"             
-#> [16] "meses"              "onde_falta"         "oper"              
+#>  [1] "a"                  "an"                 "anos_dec"          
+#>  [4] "b"                  "cran_news_windows"  "cte"               
+#>  [7] "dda"                "decd"               "desc"              
+#> [10] "faltante"           "format_hotkey"      "frac_d30mn"        
+#> [13] "horas"              "meses"              "meses_pnm"         
+#> [16] "meses_snm"          "onde_falta"         "oper"              
 #> [19] "oper_logic"         "pcks"               "pent"              
 #> [22] "pos"                "prec"               "prec_alta"         
-#> [25] "prec_baixa"         "prec_dez"           "prec_jan"          
-#> [28] "prec_jja"           "prec_med"           "prec_nova"         
-#> [31] "prec_velha"         "prect_jja_tot"      "quatros"           
-#> [34] "r_cran_version_win" "rblue"              "rep_e31"           
-#> [37] "rep_t13"            "rep_t13_t4"         "rep_t4"            
-#> [40] "s5by"               "s5len"              "sel_prec"          
-#> [43] "seqn"               "si_dec"             "snum_b"            
-#> [46] "v1"                 "v2"                 "v3"                
-#> [49] "vetor"              "vetor_dbl"          "vetor_l"           
-#> [52] "x"                  "x_falt"             "y"                 
-#> [55] "z"
+#> [25] "prec_baixa"         "prec_clim"          "prec_dez"          
+#> [28] "prec_jan"           "prec_jja"           "prec_med"          
+#> [31] "prec_nova"          "prec_velha"         "prect_jja_tot"     
+#> [34] "quatros"            "r_cran_version_win" "rblue"             
+#> [37] "rep_e31"            "rep_t13"            "rep_t13_t4"        
+#> [40] "rep_t4"             "s5by"               "s5len"             
+#> [43] "sel_prec"           "seqn"               "si_dec"            
+#> [46] "snum_b"             "v1"                 "v2"                
+#> [49] "v3"                 "vetor"              "vetor_dbl"         
+#> [52] "vetor_l"            "x_falt"
 exists("v1")
 #> [1] TRUE
 # vamos anular todo v1
 v1 <- NULL
 ls()
-#>  [1] "a"                  "alguns_dias"        "alguns_dias_sn"    
-#>  [4] "an"                 "anos_dec"           "b"                 
-#>  [7] "cran_news_windows"  "cte"                "dda"               
-#> [10] "decd"               "desc"               "faltante"          
-#> [13] "format_hotkey"      "frac_d30mn"         "horas"             
-#> [16] "meses"              "onde_falta"         "oper"              
+#>  [1] "a"                  "an"                 "anos_dec"          
+#>  [4] "b"                  "cran_news_windows"  "cte"               
+#>  [7] "dda"                "decd"               "desc"              
+#> [10] "faltante"           "format_hotkey"      "frac_d30mn"        
+#> [13] "horas"              "meses"              "meses_pnm"         
+#> [16] "meses_snm"          "onde_falta"         "oper"              
 #> [19] "oper_logic"         "pcks"               "pent"              
 #> [22] "pos"                "prec"               "prec_alta"         
-#> [25] "prec_baixa"         "prec_dez"           "prec_jan"          
-#> [28] "prec_jja"           "prec_med"           "prec_nova"         
-#> [31] "prec_velha"         "prect_jja_tot"      "quatros"           
-#> [34] "r_cran_version_win" "rblue"              "rep_e31"           
-#> [37] "rep_t13"            "rep_t13_t4"         "rep_t4"            
-#> [40] "s5by"               "s5len"              "sel_prec"          
-#> [43] "seqn"               "si_dec"             "snum_b"            
-#> [46] "v1"                 "v2"                 "v3"                
-#> [49] "vetor"              "vetor_dbl"          "vetor_l"           
-#> [52] "x"                  "x_falt"             "y"                 
-#> [55] "z"
+#> [25] "prec_baixa"         "prec_clim"          "prec_dez"          
+#> [28] "prec_jan"           "prec_jja"           "prec_med"          
+#> [31] "prec_nova"          "prec_velha"         "prect_jja_tot"     
+#> [34] "quatros"            "r_cran_version_win" "rblue"             
+#> [37] "rep_e31"            "rep_t13"            "rep_t13_t4"        
+#> [40] "rep_t4"             "s5by"               "s5len"             
+#> [43] "sel_prec"           "seqn"               "si_dec"            
+#> [46] "snum_b"             "v1"                 "v2"                
+#> [49] "v3"                 "vetor"              "vetor_dbl"         
+#> [52] "vetor_l"            "x_falt"
 v1
 #> NULL
 # NULL
