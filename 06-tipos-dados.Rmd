@@ -277,6 +277,15 @@ Essa é uma forma de verificação mais direta do tipo de uma variável. Outra p
 
 [^relacionais]: Operadores relacionais será visto na seção Operações com Vetores. 
 
+```{block, note-isdotstar, type='rmdtip'}
+O grupo de funções `is.{tipo_de_dados}()` inclui também opções para verificar se a variável tem valores:
+
+- `NA`: `is.na()`
+- `NaN`: `is.nan()`
+- `Inf`: `is.infinite`
+- valores finitos: `is.finite()`
+```
+
 ## Conversão entre tipos de dados
 
 
@@ -431,7 +440,24 @@ qplot(x = intensidade, y = n_casos, geom = "col")
 qplot(x = intensidade_o, y = n_casos, geom = "col")
 ```
 
+Para verificar se uma variável é um **fator** e se esse fator é ordenado usamos, respectivamente:
 
+```{r}
+is.factor(intensidade)
+is.ordered(intensidade)
+```
+
+A coersão para **fator** é feita pela função `as.factor`:
+
+```{r}
+(intensidade_no <- as.factor(
+  c("baixa", "moderada", "alta", "baixa", "baixa", "moderada")
+))
+```
+
+<!-- 
+summary(intensidade_no)
+-->
 
 ### Datas e horários
 
@@ -451,7 +477,7 @@ Sys.Date()
 Sys.time()
 ```
 
-Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich).
+<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->
 
 As datas seguem o formato padrão de representação [ISO-8601](https://pt.wikipedia.org/wiki/ISO_8601), ou seja o formato `YYYY-MM-DD` para `ano-mês-dia`, independente do local onde você mora.
 

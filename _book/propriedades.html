@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -395,48 +395,67 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul>
 <div id="nomeando-vetores" class="section level3">
 <h3><span class="header-section-number">7.1.1</span> Nomeando vetores</h3>
-<p>Nós podemos nomear um vetor de 3 formas:</p>
+<p>As 3 formas equivalentes mais comuns de criar vetores com nomes são demostradas abaixo com um exemplo de dados mensais de precipitação.</p>
 <ul>
-<li><p>Durante a criação</p></li>
-<li><p>Modificando um vetor</p></li>
-<li><p>Criando um vetor modificado</p></li>
+<li>Durante a criação, com a função <code>c()</code> incluindo os nomes nos argumentos</li>
 </ul>
-<p>Nomes devem ser únicos (sem repetições), porque para filtragem de elementos de um vetor ou a seleção de um subconjunto (razão pela qual usam-se os <code>names</code>) retornará somente o primeiro elemento que tiver nome repetido.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="co"># Durante a criação:</span></a>
-<a class="sourceLine" id="cb121-2" title="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">c =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb121-3" title="3">x</a>
-<a class="sourceLine" id="cb121-4" title="4"><span class="co">#&gt; a b c </span></a>
-<a class="sourceLine" id="cb121-5" title="5"><span class="co">#&gt; 1 2 3</span></a>
-<a class="sourceLine" id="cb121-6" title="6"><span class="co"># Modificando um vetor:</span></a>
-<a class="sourceLine" id="cb121-7" title="7">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb121-8" title="8"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</a>
-<a class="sourceLine" id="cb121-9" title="9">x</a>
-<a class="sourceLine" id="cb121-10" title="10"><span class="co">#&gt; a b c </span></a>
-<a class="sourceLine" id="cb121-11" title="11"><span class="co">#&gt; 1 2 3</span></a>
-<a class="sourceLine" id="cb121-12" title="12"><span class="co"># Criando um vetor modificado</span></a>
-<a class="sourceLine" id="cb121-13" title="13">x &lt;-<span class="st"> </span><span class="kw">setNames</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</a>
-<a class="sourceLine" id="cb121-14" title="14">x</a>
-<a class="sourceLine" id="cb121-15" title="15"><span class="co">#&gt; a b c </span></a>
-<a class="sourceLine" id="cb121-16" title="16"><span class="co">#&gt; 1 2 3</span></a></code></pre></div>
-<p>Nem todos elementos precisam ter nomes. Se os nomes são faltantes, <code>names()</code> retornará um string vazia ("") para aqueles elementos. Se todos forem faltantes, <code>names()</code> retornará <code>NULL</code>.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb122-2" title="2"><span class="kw">names</span>(y)</a>
-<a class="sourceLine" id="cb122-3" title="3"><span class="co">#&gt; [1] &quot;a&quot; &quot;&quot;  &quot;&quot;</span></a>
-<a class="sourceLine" id="cb122-4" title="4">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb122-5" title="5"><span class="kw">names</span>(z)</a>
-<a class="sourceLine" id="cb122-6" title="6"><span class="co">#&gt; NULL</span></a></code></pre></div>
-<p>Para remover os nomes de um vetor usamos a função <code>unname(x)</code>, ou remover <code>names</code> com <code>names(x) &lt;- NULL</code>.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">alguns_dias &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">dia1 =</span> <span class="dv">12</span>, <span class="dt">dia2 =</span> <span class="dv">20</span>, <span class="dt">dia3 =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb123-2" title="2">alguns_dias</a>
-<a class="sourceLine" id="cb123-3" title="3"><span class="co">#&gt; dia1 dia2 dia3 </span></a>
-<a class="sourceLine" id="cb123-4" title="4"><span class="co">#&gt;   12   20   10</span></a>
-<a class="sourceLine" id="cb123-5" title="5"><span class="kw">names</span>(alguns_dias)</a>
-<a class="sourceLine" id="cb123-6" title="6"><span class="co">#&gt; [1] &quot;dia1&quot; &quot;dia2&quot; &quot;dia3&quot;</span></a>
-<a class="sourceLine" id="cb123-7" title="7">alguns_dias_sn &lt;-<span class="st"> </span><span class="kw">unname</span>(alguns_dias)</a>
-<a class="sourceLine" id="cb123-8" title="8">alguns_dias_sn</a>
-<a class="sourceLine" id="cb123-9" title="9"><span class="co">#&gt; [1] 12 20 10</span></a>
-<a class="sourceLine" id="cb123-10" title="10"><span class="kw">names</span>(alguns_dias_sn)</a>
-<a class="sourceLine" id="cb123-11" title="11"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="co"># vetor de chuva mensal para um dado ano</span></a>
+<a class="sourceLine" id="cb123-2" title="2">prec &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb123-3" title="3">  <span class="dt">jan =</span> <span class="dv">300</span>, </a>
+<a class="sourceLine" id="cb123-4" title="4">  <span class="dt">fev =</span> <span class="dv">150</span>,</a>
+<a class="sourceLine" id="cb123-5" title="5">  <span class="dt">mar =</span> <span class="dv">210</span>,</a>
+<a class="sourceLine" id="cb123-6" title="6">  <span class="dt">abr =</span> <span class="dv">12</span>, </a>
+<a class="sourceLine" id="cb123-7" title="7">  <span class="dt">mai =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb123-8" title="8">  <span class="dt">jun =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb123-9" title="9">  <span class="dt">jul =</span> <span class="dv">12</span>, </a>
+<a class="sourceLine" id="cb123-10" title="10">  <span class="dt">ago =</span> <span class="dv">22</span>, </a>
+<a class="sourceLine" id="cb123-11" title="11">  <span class="dt">set =</span> <span class="dv">80</span>, </a>
+<a class="sourceLine" id="cb123-12" title="12">  <span class="dt">out =</span> <span class="dv">100</span>, </a>
+<a class="sourceLine" id="cb123-13" title="13">  <span class="dt">nov =</span> <span class="dv">10</span>,  </a>
+<a class="sourceLine" id="cb123-14" title="14">  <span class="dt">dez =</span> <span class="dv">280</span></a>
+<a class="sourceLine" id="cb123-15" title="15">  )</a></code></pre></div>
+<ul>
+<li>Modificando um vetor com a função <code>names()&lt;-</code></li>
+</ul>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">280</span>)</a>
+<a class="sourceLine" id="cb124-2" title="2">meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
+<a class="sourceLine" id="cb124-3" title="3"><span class="kw">names</span>(prec) &lt;-<span class="st"> </span>meses</a>
+<a class="sourceLine" id="cb124-4" title="4">prec</a>
+<a class="sourceLine" id="cb124-5" title="5"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb124-6" title="6"><span class="co">#&gt; 300 150 210  12   0   0  12  22  80 100  10 280</span></a></code></pre></div>
+<ul>
+<li>Criando um vetor modificado</li>
+</ul>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">prec &lt;-<span class="st"> </span><span class="kw">setNames</span>(</a>
+<a class="sourceLine" id="cb125-2" title="2">  <span class="dt">object =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">280</span>),</a>
+<a class="sourceLine" id="cb125-3" title="3">  <span class="dt">nm =</span> <span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
+<a class="sourceLine" id="cb125-4" title="4">)</a>
+<a class="sourceLine" id="cb125-5" title="5">prec</a>
+<a class="sourceLine" id="cb125-6" title="6"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb125-7" title="7"><span class="co">#&gt; 300 150 210  12   0   0  12  22  80 100  10 280</span></a></code></pre></div>
+<p>Nomes não podem ser repetidos entre os elementos, porque a seleção de um subconjunto do vetor baseada nos nomes retornará somente o primeiro elemento que tiver nome repetido.</p>
+<p>Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função <code>names()</code> retornará um vetor caracter vazio ("") para aqueles elementos sem nomes especificados.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">(meses_pnm &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">jan =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb126-2" title="2"><span class="co">#&gt; jan         </span></a>
+<a class="sourceLine" id="cb126-3" title="3"><span class="co">#&gt;   1   2   3</span></a>
+<a class="sourceLine" id="cb126-4" title="4"><span class="kw">names</span>(meses_pnm)</a>
+<a class="sourceLine" id="cb126-5" title="5"><span class="co">#&gt; [1] &quot;jan&quot; &quot;&quot;    &quot;&quot;</span></a></code></pre></div>
+<p>Quando nenhum nome é especificado, <code>names()</code> retornará <code>NULL</code>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">(meses_snm &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb127-2" title="2"><span class="co">#&gt; [1] 1 2 3</span></a>
+<a class="sourceLine" id="cb127-3" title="3"><span class="kw">names</span>(meses_snm)</a>
+<a class="sourceLine" id="cb127-4" title="4"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<p>Para remover os nomes de um vetor, usamos a função <code>unname()</code> ou <code>names() &lt;- NULL</code>.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">prec_clim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">230</span>, <span class="dv">205</span>, <span class="dv">160</span>, <span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">110</span>, <span class="dv">165</span>, <span class="dv">200</span>, <span class="dv">220</span>)</a>
+<a class="sourceLine" id="cb128-2" title="2"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)</a>
+<a class="sourceLine" id="cb128-3" title="3">prec_clim</a>
+<a class="sourceLine" id="cb128-4" title="4"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb128-5" title="5"><span class="co">#&gt; 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
+<a class="sourceLine" id="cb128-6" title="6"><span class="kw">unname</span>(prec_clim)</a>
+<a class="sourceLine" id="cb128-7" title="7"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
+<a class="sourceLine" id="cb128-8" title="8"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb128-9" title="9">prec_clim</a>
+<a class="sourceLine" id="cb128-10" title="10"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a></code></pre></div>
 </div>
 </div>
             </section>

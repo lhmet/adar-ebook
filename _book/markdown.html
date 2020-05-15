@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -431,13 +431,13 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
 <div id="linhas-horizontais" class="section level3">
 <h3><span class="header-section-number">C.2.4</span> Linhas horizontais</h3>
 <p>Para inserir uma linha horizontal pode-se usar:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb420-1" title="1"> </a>
-<a class="sourceLine" id="cb420-2" title="2"> * * *</a>
-<a class="sourceLine" id="cb420-3" title="3"> </a>
-<a class="sourceLine" id="cb420-4" title="4"> ou</a>
-<a class="sourceLine" id="cb420-5" title="5"> </a>
-<a class="sourceLine" id="cb420-6" title="6"> - - -</a>
-<a class="sourceLine" id="cb420-7" title="7"> </a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb425-1" title="1"> </a>
+<a class="sourceLine" id="cb425-2" title="2"> * * *</a>
+<a class="sourceLine" id="cb425-3" title="3"> </a>
+<a class="sourceLine" id="cb425-4" title="4"> ou</a>
+<a class="sourceLine" id="cb425-5" title="5"> </a>
+<a class="sourceLine" id="cb425-6" title="6"> - - -</a>
+<a class="sourceLine" id="cb425-7" title="7"> </a></code></pre></div>
 <p>Ambos serão impressos como:</p>
 <hr />
 <p>É importante notar a quebra de linha entre cada linha de caracteres.</p>
@@ -560,7 +560,7 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
 <pre><code>[Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</code></pre>
 <p><a href="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg">Cachoeira do Abade</a></p>
 <p>Ao acrescentarmos o símbolo <code>!</code> no início, obtemos a imagem no documento.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb426-1" title="1"><span class="al">![Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</span></a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb431-1" title="1"><span class="al">![Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)</span></a></code></pre></div>
 <div class="figure">
 <img src="http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg" alt="Figura 1. Cachoeira do Abade" />
 <p class="caption">Figura 1. Cachoeira do Abade</p>
@@ -572,8 +572,8 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
 <p>Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no <em>R Markdown</em> é da mesma forma usada em <a href="http://pt.wikipedia.org/wiki/LaTeX">Latex</a>.</p>
 <p>Para expressões dentro de uma linha as equações são escritas entre os símbolos <code>$ $</code>, por exemplo, <span class="math inline">\(y=f(x)\)</span> foi gerada com <code>$y=f(x)$</code>.
 Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo <code>$$ $$</code>, exemplo:</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb427-1" title="1"> <span class="ss">$$</span><span class="sc">\psi</span><span class="ss"> = </span><span class="sc">\psi</span><span class="ss">_e </span><span class="sc">\left</span><span class="ss">(</span><span class="sc">\dfrac</span><span class="ss">{</span><span class="sc">\theta</span><span class="ss">}{</span><span class="sc">\theta</span><span class="ss">_s}</span><span class="sc">\right</span><span class="ss">)^{-b}$$</span></a>
-<a class="sourceLine" id="cb427-2" title="2"> </a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb432-1" title="1"> <span class="ss">$$</span><span class="sc">\psi</span><span class="ss"> = </span><span class="sc">\psi</span><span class="ss">_e </span><span class="sc">\left</span><span class="ss">(</span><span class="sc">\dfrac</span><span class="ss">{</span><span class="sc">\theta</span><span class="ss">}{</span><span class="sc">\theta</span><span class="ss">_s}</span><span class="sc">\right</span><span class="ss">)^{-b}$$</span></a>
+<a class="sourceLine" id="cb432-2" title="2"> </a></code></pre></div>
 <p>produz:</p>
 <p><span class="math display">\[\psi = \psi_e \left(\dfrac{\theta}{\theta_s}\right)^{-b}\]</span></p>
 <hr />

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -424,6 +424,20 @@ code span.wa { color: #bf0303; } /* Warning */
 <p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade_o, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</a></code></pre></div>
 <p><img src="images/unnamed-chunk-23-2.png" width="672" /></p>
+<p>Para verificar se uma variável é um <strong>fator</strong> e se esse fator é ordenado usamos, respectivamente:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">is.factor</span>(intensidade)</a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb116-3" title="3"><span class="kw">is.ordered</span>(intensidade)</a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<p>A coersão para <strong>fator</strong> é feita pela função <code>as.factor</code>:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">(intensidade_no &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
+<a class="sourceLine" id="cb117-2" title="2">  <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>)</a>
+<a class="sourceLine" id="cb117-3" title="3">))</a>
+<a class="sourceLine" id="cb117-4" title="4"><span class="co">#&gt; [1] baixa    moderada alta     baixa    baixa    moderada</span></a>
+<a class="sourceLine" id="cb117-5" title="5"><span class="co">#&gt; Levels: alta baixa moderada</span></a></code></pre></div>
+<!-- 
+summary(intensidade_no)
+-->
 </div>
 <div id="datas-e-horários" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Datas e horários</h3>
@@ -434,29 +448,29 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul>
 <p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
 <p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">Sys.Date</span>()</a>
-<a class="sourceLine" id="cb116-2" title="2"><span class="co">#&gt; [1] &quot;2020-05-11&quot;</span></a>
-<a class="sourceLine" id="cb116-3" title="3"><span class="kw">Sys.time</span>()</a>
-<a class="sourceLine" id="cb116-4" title="4"><span class="co">#&gt; [1] &quot;2020-05-11 14:05:13 -03&quot;</span></a></code></pre></div>
-<p>Na saída da <code>Sys.time()</code> a última parte (<code>03</code>) refere-se ao fuso horário (3h antes do meriadiano de Greenwich).</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">Sys.Date</span>()</a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="co">#&gt; [1] &quot;2020-05-15&quot;</span></a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="kw">Sys.time</span>()</a>
+<a class="sourceLine" id="cb118-4" title="4"><span class="co">#&gt; [1] &quot;2020-05-15 12:31:28 -03&quot;</span></a></code></pre></div>
+<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->
 <p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
 <p>Datas são criadas a partir da coersão de dados do tipo <code>character</code> para <code>date</code>:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
-<a class="sourceLine" id="cb117-2" title="2">amd</a>
-<a class="sourceLine" id="cb117-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
-<a class="sourceLine" id="cb117-4" title="4"><span class="kw">class</span>(amd)</a>
-<a class="sourceLine" id="cb117-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
-<a class="sourceLine" id="cb117-6" title="6"><span class="co"># num. de dias de 1971</span></a>
-<a class="sourceLine" id="cb117-7" title="7"><span class="kw">as.numeric</span>(amd)</a>
-<a class="sourceLine" id="cb117-8" title="8"><span class="co">#&gt; [1] 15519</span></a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
+<a class="sourceLine" id="cb119-2" title="2">amd</a>
+<a class="sourceLine" id="cb119-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
+<a class="sourceLine" id="cb119-4" title="4"><span class="kw">class</span>(amd)</a>
+<a class="sourceLine" id="cb119-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb119-6" title="6"><span class="co"># num. de dias de 1971</span></a>
+<a class="sourceLine" id="cb119-7" title="7"><span class="kw">as.numeric</span>(amd)</a>
+<a class="sourceLine" id="cb119-8" title="8"><span class="co">#&gt; [1] 15519</span></a></code></pre></div>
 <p>Datas com horários são criados a partir da coersão de dados do tipo <code>character</code> para <code>POSIXct</code>:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
-<a class="sourceLine" id="cb118-2" title="2">amd_hms</a>
-<a class="sourceLine" id="cb118-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
-<a class="sourceLine" id="cb118-4" title="4"><span class="kw">class</span>(amd_hms)</a>
-<a class="sourceLine" id="cb118-5" title="5"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
-<a class="sourceLine" id="cb118-6" title="6"><span class="kw">as.numeric</span>(amd_hms)</a>
-<a class="sourceLine" id="cb118-7" title="7"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
+<a class="sourceLine" id="cb120-2" title="2">amd_hms</a>
+<a class="sourceLine" id="cb120-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
+<a class="sourceLine" id="cb120-4" title="4"><span class="kw">class</span>(amd_hms)</a>
+<a class="sourceLine" id="cb120-5" title="5"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
+<a class="sourceLine" id="cb120-6" title="6"><span class="kw">as.numeric</span>(amd_hms)</a>
+<a class="sourceLine" id="cb120-7" title="7"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
 <p>A manipulação de dados da classe de datas com horários (<code>POSIXct</code>) torna-se mais versátil através do pacote <code>lubridate</code>, específico para manipulaçãode datas, o que será visto posteriormente.</p>
 <p>O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a <code>%</code> e outros códigos que são descritos no manual de ajuda da função <code>?strptime</code>. O formato padrão assumido pelo R para caracteres contendo datas com horas é <code>%Y-%m-%d %H:%M:%S</code>.</p>
 <table>
@@ -503,15 +517,15 @@ code span.wa { color: #bf0303; } /* Warning */
 </table>
 <p>Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como <code>Jan</code> (<code>%b</code>), e estes códigos são listados em <code>?strptime</code>.</p>
 <p>Para extrair informações de uma data, como por exemplo o ano, podemos usar a função <code>format()</code> passando o código de formato ao argumento <code>format</code>.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</a>
-<a class="sourceLine" id="cb119-2" title="2"><span class="co">#&gt; [1] &quot;2020&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</a>
+<a class="sourceLine" id="cb121-2" title="2"><span class="co">#&gt; [1] &quot;2020&quot;</span></a></code></pre></div>
 <p>O argumento format também pode ser specificado nas funções <code>as.Date()</code> e <code>as.POSIXct()</code>, assim provendo grande versatilidade para ler datas em diferentes formatos. No exmplo a seguir, vamos converter um caracter com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">as.POSIXct</span>(</a>
-<a class="sourceLine" id="cb120-2" title="2">  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,</a>
-<a class="sourceLine" id="cb120-3" title="3">  <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>, </a>
-<a class="sourceLine" id="cb120-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;prec%d%m%Y%H%M.grib&quot;</span></a>
-<a class="sourceLine" id="cb120-5" title="5">  )</a>
-<a class="sourceLine" id="cb120-6" title="6"><span class="co">#&gt; [1] &quot;2000-01-01 19:42:00 UTC&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">as.POSIXct</span>(</a>
+<a class="sourceLine" id="cb122-2" title="2">  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,</a>
+<a class="sourceLine" id="cb122-3" title="3">  <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>, </a>
+<a class="sourceLine" id="cb122-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;prec%d%m%Y%H%M.grib&quot;</span></a>
+<a class="sourceLine" id="cb122-5" title="5">  )</a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="co">#&gt; [1] &quot;2000-01-01 19:42:00 UTC&quot;</span></a></code></pre></div>
 
 </div>
 </div>

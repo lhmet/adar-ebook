@@ -224,7 +224,7 @@ exp(-Inf)
 #> [1] 1
 ```
 
-### Dados faltantes
+### Dados faltantes {#NAs}
 
 <!-- 
 https://medium.com/coinmonks/dealing-with-missing-data-using-r-3ae428da2d17 

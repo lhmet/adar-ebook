@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -582,29 +582,29 @@ esperadas pelo <strong>rio</strong>. Mas se você visualizar o arquivo no navega
 perceberá que os dados estão estruturados como CSV2, ou seja, com valores
 delimitados por ";" e o separador decimal ",".</p>
 <p>Vamos então baixar o arquivo e salvá-lo em diretório temporário do computador.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
-<a class="sourceLine" id="cb249-2" title="2">hw_url &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span></a>
-<a class="sourceLine" id="cb249-3" title="3"><span class="co"># arquivo temporário para salvar o aquivo baixado</span></a>
-<a class="sourceLine" id="cb249-4" title="4">(hw_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb249-5" title="5"><span class="co"># você pode substituir tempfile() por um caminho do seu</span></a>
-<a class="sourceLine" id="cb249-6" title="6"><span class="co"># computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
-<a class="sourceLine" id="cb249-7" title="7"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb249-8" title="8">  <span class="dt">url =</span> hw_url_file, </a>
-<a class="sourceLine" id="cb249-9" title="9">  <span class="dt">destfile =</span> hw_file</a>
-<a class="sourceLine" id="cb249-10" title="10">)</a>
-<a class="sourceLine" id="cb249-11" title="11">hw_file</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb254-2" title="2">hw_url &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb254-3" title="3"><span class="co"># arquivo temporário para salvar o aquivo baixado</span></a>
+<a class="sourceLine" id="cb254-4" title="4">(hw_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb254-5" title="5"><span class="co"># você pode substituir tempfile() por um caminho do seu</span></a>
+<a class="sourceLine" id="cb254-6" title="6"><span class="co"># computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb254-7" title="7"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb254-8" title="8">  <span class="dt">url =</span> hw_url_file, </a>
+<a class="sourceLine" id="cb254-9" title="9">  <span class="dt">destfile =</span> hw_file</a>
+<a class="sourceLine" id="cb254-10" title="10">)</a>
+<a class="sourceLine" id="cb254-11" title="11">hw_file</a></code></pre></div>
 <p>Agora podemos importar os dados de precipitação baixados.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="co"># Importa o arquivo </span></a>
-<a class="sourceLine" id="cb250-2" title="2">dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hw_file, </a>
-<a class="sourceLine" id="cb250-3" title="3">                <span class="co"># se fread = TRUE (default usa função fread do pacote data.table)</span></a>
-<a class="sourceLine" id="cb250-4" title="4">                <span class="dt">fread =</span> <span class="ot">FALSE</span>,  </a>
-<a class="sourceLine" id="cb250-5" title="5">                <span class="dt">skip =</span> <span class="dv">15</span>, <span class="co"># pula linhas com metadados</span></a>
-<a class="sourceLine" id="cb250-6" title="6">                <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># com cabeçalho</span></a>
-<a class="sourceLine" id="cb250-7" title="7">                <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="co"># delimitador entre os valores</span></a>
-<a class="sourceLine" id="cb250-8" title="8">                <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="co"># separador decimal</span></a>
-<a class="sourceLine" id="cb250-9" title="9">                <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>) <span class="co"># rótulo para dados faltantes</span></a>
-<a class="sourceLine" id="cb250-10" title="10"><span class="co"># primeiras 10 colunas e linhas dos dados</span></a>
-<a class="sourceLine" id="cb250-11" title="11"><span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="co"># Importa o arquivo </span></a>
+<a class="sourceLine" id="cb255-2" title="2">dprec &lt;-<span class="st"> </span><span class="kw">import</span>(hw_file, </a>
+<a class="sourceLine" id="cb255-3" title="3">                <span class="co"># se fread = TRUE (default usa função fread do pacote data.table)</span></a>
+<a class="sourceLine" id="cb255-4" title="4">                <span class="dt">fread =</span> <span class="ot">FALSE</span>,  </a>
+<a class="sourceLine" id="cb255-5" title="5">                <span class="dt">skip =</span> <span class="dv">15</span>, <span class="co"># pula linhas com metadados</span></a>
+<a class="sourceLine" id="cb255-6" title="6">                <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># com cabeçalho</span></a>
+<a class="sourceLine" id="cb255-7" title="7">                <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="co"># delimitador entre os valores</span></a>
+<a class="sourceLine" id="cb255-8" title="8">                <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="co"># separador decimal</span></a>
+<a class="sourceLine" id="cb255-9" title="9">                <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>) <span class="co"># rótulo para dados faltantes</span></a>
+<a class="sourceLine" id="cb255-10" title="10"><span class="co"># primeiras 10 colunas e linhas dos dados</span></a>
+<a class="sourceLine" id="cb255-11" title="11"><span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
 <p>Para saber quais argumentos devem ser especificados na função <code>import()</code> você
 precisar ler a documentação de ajuda da função (<code>?import</code>), principalmente a
 sessão <em>Details</em>. Os argumentos usados no exemplo acima, estão implícitos no a
@@ -625,10 +625,10 @@ situação você deve especificar o formato do arquivo através do argumento
 salvar o arquivo com a função <code>export()</code>. Vamos salvá-lo usando um formato
 diferente do original, como <em>tsv</em> (valores separados por <em>tab</em>), para explorar
 a funcionalidade do <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="co"># exporta para arquivo texto separado por tab</span></a>
-<a class="sourceLine" id="cb251-2" title="2">(arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
-<a class="sourceLine" id="cb251-3" title="3">(dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))</a>
-<a class="sourceLine" id="cb251-4" title="4"><span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="co"># exporta para arquivo texto separado por tab</span></a>
+<a class="sourceLine" id="cb256-2" title="2">(arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb256-3" title="3">(dprec_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(arq_temp, <span class="st">&quot;.tsv&quot;</span>))</a>
+<a class="sourceLine" id="cb256-4" title="4"><span class="kw">export</span>(dprec, <span class="dt">file =</span> dprec_file, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</a></code></pre></div>
 </div>
 <div id="arquivos-fwf" class="section level4">
 <h4><span class="header-section-number">9.4.1.2</span> Arquivos formatados com largura fixa</h4>
@@ -639,10 +639,10 @@ dos dados.</p>
 <p>Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI)
 obtido no site do
 <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="co"># link para os dados do SOI</span></a>
-<a class="sourceLine" id="cb252-2" title="2">link_soi &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="co"># link para os dados do SOI</span></a>
+<a class="sourceLine" id="cb257-2" title="2">link_soi &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></a></code></pre></div>
 <p>Vamos visualizar os dados SOI no navegador para reconhecer o formato.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">browseURL</span>(<span class="dt">url =</span> link_soi)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">browseURL</span>(<span class="dt">url =</span> link_soi)</a></code></pre></div>
 <p>Ao inspecionar cuidadosamente os dados até o fim da página no navegador,
 percebe-se os seguintes aspectos sobre estes dados:</p>
 <ul>
@@ -658,28 +658,28 @@ valores de SOI (note o sinal de menos que antecede os valores)</p></li>
 </ul>
 <p>Nosso interesse é na 1ª tabela de dados. Uma estratégia possível de importar
 estes dados é começar lendo o cabeçalho.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1">nome_vars &lt;-<span class="st"> </span><span class="kw">scan</span>(</a>
-<a class="sourceLine" id="cb254-2" title="2">    link_soi, <span class="co"># varredura do arquivo</span></a>
-<a class="sourceLine" id="cb254-3" title="3">    <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>, <span class="co"># tipo dos dados</span></a>
-<a class="sourceLine" id="cb254-4" title="4">    <span class="dt">skip =</span> <span class="dv">3</span>, <span class="co"># pula 3 linhas</span></a>
-<a class="sourceLine" id="cb254-5" title="5">    <span class="dt">nmax =</span> <span class="dv">13</span> <span class="co"># num. max. de campos a serem lidos</span></a>
-<a class="sourceLine" id="cb254-6" title="6">)</a>
-<a class="sourceLine" id="cb254-7" title="7">nome_vars</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1">nome_vars &lt;-<span class="st"> </span><span class="kw">scan</span>(</a>
+<a class="sourceLine" id="cb259-2" title="2">    link_soi, <span class="co"># varredura do arquivo</span></a>
+<a class="sourceLine" id="cb259-3" title="3">    <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>, <span class="co"># tipo dos dados</span></a>
+<a class="sourceLine" id="cb259-4" title="4">    <span class="dt">skip =</span> <span class="dv">3</span>, <span class="co"># pula 3 linhas</span></a>
+<a class="sourceLine" id="cb259-5" title="5">    <span class="dt">nmax =</span> <span class="dv">13</span> <span class="co"># num. max. de campos a serem lidos</span></a>
+<a class="sourceLine" id="cb259-6" title="6">)</a>
+<a class="sourceLine" id="cb259-7" title="7">nome_vars</a></code></pre></div>
 <p>A seguir, podemos usar o cabeçalho obtido acima, como argumento na <code>import()</code>
 através do argumento <code>col.names</code>. As informações da inspeção dos dados são
 utilizadas para definir os outros argumentos.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1">soi &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb255-2" title="2">  <span class="dt">file =</span> link_soi,</a>
-<a class="sourceLine" id="cb255-3" title="3">  <span class="dt">format =</span> <span class="st">&quot;fwf&quot;</span>, <span class="co"># formato de largura fixa</span></a>
-<a class="sourceLine" id="cb255-4" title="4">  <span class="dt">skip =</span> <span class="dv">4</span>, <span class="co"># pula 4 linhas</span></a>
-<a class="sourceLine" id="cb255-5" title="5">  <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="co"># sem cabeçalho</span></a>
-<a class="sourceLine" id="cb255-6" title="6">  <span class="dt">nrows =</span> <span class="dv">70</span>, <span class="co"># num. de linhas</span></a>
-<a class="sourceLine" id="cb255-7" title="7">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>, <span class="dv">12</span>)), <span class="co"># largura dos campos das variáveis</span></a>
-<a class="sourceLine" id="cb255-8" title="8">  <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>, <span class="co"># string para dados faltantes</span></a>
-<a class="sourceLine" id="cb255-9" title="9">  <span class="dt">col.names =</span> nome_vars</a>
-<a class="sourceLine" id="cb255-10" title="10">)</a>
-<a class="sourceLine" id="cb255-11" title="11"><span class="kw">str</span>(soi)</a>
-<a class="sourceLine" id="cb255-12" title="12"><span class="kw">tail</span>(soi)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">soi &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb260-2" title="2">  <span class="dt">file =</span> link_soi,</a>
+<a class="sourceLine" id="cb260-3" title="3">  <span class="dt">format =</span> <span class="st">&quot;fwf&quot;</span>, <span class="co"># formato de largura fixa</span></a>
+<a class="sourceLine" id="cb260-4" title="4">  <span class="dt">skip =</span> <span class="dv">4</span>, <span class="co"># pula 4 linhas</span></a>
+<a class="sourceLine" id="cb260-5" title="5">  <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="co"># sem cabeçalho</span></a>
+<a class="sourceLine" id="cb260-6" title="6">  <span class="dt">nrows =</span> <span class="dv">70</span>, <span class="co"># num. de linhas</span></a>
+<a class="sourceLine" id="cb260-7" title="7">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>, <span class="dv">12</span>)), <span class="co"># largura dos campos das variáveis</span></a>
+<a class="sourceLine" id="cb260-8" title="8">  <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>, <span class="co"># string para dados faltantes</span></a>
+<a class="sourceLine" id="cb260-9" title="9">  <span class="dt">col.names =</span> nome_vars</a>
+<a class="sourceLine" id="cb260-10" title="10">)</a>
+<a class="sourceLine" id="cb260-11" title="11"><span class="kw">str</span>(soi)</a>
+<a class="sourceLine" id="cb260-12" title="12"><span class="kw">tail</span>(soi)</a></code></pre></div>
 <p>A documentação de ajuda da função <code>import()</code> do <strong>rio</strong> nos diz que no arquivo
 acima foi usada a função <code>read.fwf()</code> do <img src="images/logo_r.png" width="20"> para ler os dados. Os
 argumentos usados foram:</p>
@@ -697,28 +697,28 @@ arquivo</li>
 no <em>data frame</em>.</li>
 </ul>
 <p>Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="co"># nome para o arquivo CSV</span></a>
-<a class="sourceLine" id="cb256-2" title="2">(soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb256-3" title="3"><span class="co"># exportação com rio</span></a>
-<a class="sourceLine" id="cb256-4" title="4"><span class="kw">export</span>(soi,</a>
-<a class="sourceLine" id="cb256-5" title="5">  <span class="dt">file =</span> soi_file,</a>
-<a class="sourceLine" id="cb256-6" title="6">  <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span></a>
-<a class="sourceLine" id="cb256-7" title="7">)</a>
-<a class="sourceLine" id="cb256-8" title="8"><span class="co"># verificar se o arquivo foi gerado</span></a>
-<a class="sourceLine" id="cb256-9" title="9"><span class="kw">file.exists</span>(soi_file)</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="co"># nome para o arquivo CSV</span></a>
+<a class="sourceLine" id="cb261-2" title="2">(soi_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb261-3" title="3"><span class="co"># exportação com rio</span></a>
+<a class="sourceLine" id="cb261-4" title="4"><span class="kw">export</span>(soi,</a>
+<a class="sourceLine" id="cb261-5" title="5">  <span class="dt">file =</span> soi_file,</a>
+<a class="sourceLine" id="cb261-6" title="6">  <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span></a>
+<a class="sourceLine" id="cb261-7" title="7">)</a>
+<a class="sourceLine" id="cb261-8" title="8"><span class="co"># verificar se o arquivo foi gerado</span></a>
+<a class="sourceLine" id="cb261-9" title="9"><span class="kw">file.exists</span>(soi_file)</a></code></pre></div>
 <p>Vamos importar o arquivo <code>SOI.csv</code> através da função <code>file.choose()</code>
 (ou <code>choose.file()</code> no Windows) que permite selecionar o arquivo de
 forma iterativa.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="co"># leitura de dados com escolha interativa do arquivo</span></a>
-<a class="sourceLine" id="cb257-2" title="2">soi.df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="kw">file.choose</span>(),</a>
-<a class="sourceLine" id="cb257-3" title="3">  <span class="co"># file.choose só é válido em sistema *unix</span></a>
-<a class="sourceLine" id="cb257-4" title="4">  <span class="co"># no windows é choose.file()</span></a>
-<a class="sourceLine" id="cb257-5" title="5">  <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb257-6" title="6">  <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span></a>
-<a class="sourceLine" id="cb257-7" title="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="co"># leitura de dados com escolha interativa do arquivo</span></a>
+<a class="sourceLine" id="cb262-2" title="2">soi.df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="kw">file.choose</span>(),</a>
+<a class="sourceLine" id="cb262-3" title="3">  <span class="co"># file.choose só é válido em sistema *unix</span></a>
+<a class="sourceLine" id="cb262-4" title="4">  <span class="co"># no windows é choose.file()</span></a>
+<a class="sourceLine" id="cb262-5" title="5">  <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb262-6" title="6">  <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span></a>
+<a class="sourceLine" id="cb262-7" title="7">)</a></code></pre></div>
 <p>Navegue até o diretório do arquivo <code>SOI.csv</code> e clique duas vezes sobre o
 arquivo ele.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">head</span>(soi.df)</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="kw">head</span>(soi.df)</a></code></pre></div>
 </div>
 </div>
 <div id="arquivos-texto-não-estruturados" class="section level3">
@@ -732,30 +732,30 @@ elemento de um vetor do tipo <code>character</code>.</p>
 <p>Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde
 estão as informações da estação meteorológica.</p>
 <p>Obtendo os dados</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
-<a class="sourceLine" id="cb259-2" title="2">bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span></a>
-<a class="sourceLine" id="cb259-3" title="3"><span class="co"># leitura do cabecalho do arquivo de dados de uma estação do inmet</span></a>
-<a class="sourceLine" id="cb259-4" title="4">cab &lt;-<span class="st"> </span><span class="kw">readLines</span>(bdmep_url_file)</a>
-<a class="sourceLine" id="cb259-5" title="5"><span class="kw">head</span>(cab)</a>
-<a class="sourceLine" id="cb259-6" title="6"><span class="co"># somente linhas com coordenadas da estação</span></a>
-<a class="sourceLine" id="cb259-7" title="7">cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>]</a>
-<a class="sourceLine" id="cb259-8" title="8"><span class="kw">is.vector</span>(cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</a>
-<a class="sourceLine" id="cb259-9" title="9"><span class="co"># arranjando em coluna</span></a>
-<a class="sourceLine" id="cb259-10" title="10"><span class="kw">cbind</span>(cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</a>
-<a class="sourceLine" id="cb259-11" title="11"><span class="co"># selecionando somente os dados e o nome das variáveis</span></a>
-<a class="sourceLine" id="cb259-12" title="12">cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)][<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb264-2" title="2">bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span></a>
+<a class="sourceLine" id="cb264-3" title="3"><span class="co"># leitura do cabecalho do arquivo de dados de uma estação do inmet</span></a>
+<a class="sourceLine" id="cb264-4" title="4">cab &lt;-<span class="st"> </span><span class="kw">readLines</span>(bdmep_url_file)</a>
+<a class="sourceLine" id="cb264-5" title="5"><span class="kw">head</span>(cab)</a>
+<a class="sourceLine" id="cb264-6" title="6"><span class="co"># somente linhas com coordenadas da estação</span></a>
+<a class="sourceLine" id="cb264-7" title="7">cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>]</a>
+<a class="sourceLine" id="cb264-8" title="8"><span class="kw">is.vector</span>(cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</a>
+<a class="sourceLine" id="cb264-9" title="9"><span class="co"># arranjando em coluna</span></a>
+<a class="sourceLine" id="cb264-10" title="10"><span class="kw">cbind</span>(cab[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</a>
+<a class="sourceLine" id="cb264-11" title="11"><span class="co"># selecionando somente os dados e o nome das variáveis</span></a>
+<a class="sourceLine" id="cb264-12" title="12">cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)][<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <p>A função <code>writeLines()</code> escreve os elementos do vetor de caracteres em um
 arquivo texto. Essa é uma forma de escrever os dados mantendo a formatação
 original dos dados.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="co"># dados sem as linhas com metadados</span></a>
-<a class="sourceLine" id="cb260-2" title="2">dados_limpos &lt;-<span class="st"> </span>cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)]</a>
-<a class="sourceLine" id="cb260-3" title="3"><span class="co"># arquivo para salvar os dados limpos</span></a>
-<a class="sourceLine" id="cb260-4" title="4">file_<span class="dv">83004</span>_limpo &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb260-5" title="5"><span class="co"># escrevendo dados limpos</span></a>
-<a class="sourceLine" id="cb260-6" title="6"><span class="kw">writeLines</span>(</a>
-<a class="sourceLine" id="cb260-7" title="7">  <span class="dt">text =</span>  dados_limpos, </a>
-<a class="sourceLine" id="cb260-8" title="8">  <span class="dt">con =</span> file_<span class="dv">83004</span>_limpo</a>
-<a class="sourceLine" id="cb260-9" title="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="co"># dados sem as linhas com metadados</span></a>
+<a class="sourceLine" id="cb265-2" title="2">dados_limpos &lt;-<span class="st"> </span>cab[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)]</a>
+<a class="sourceLine" id="cb265-3" title="3"><span class="co"># arquivo para salvar os dados limpos</span></a>
+<a class="sourceLine" id="cb265-4" title="4">file_<span class="dv">83004</span>_limpo &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">tempfile</span>(), <span class="st">&quot;.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb265-5" title="5"><span class="co"># escrevendo dados limpos</span></a>
+<a class="sourceLine" id="cb265-6" title="6"><span class="kw">writeLines</span>(</a>
+<a class="sourceLine" id="cb265-7" title="7">  <span class="dt">text =</span>  dados_limpos, </a>
+<a class="sourceLine" id="cb265-8" title="8">  <span class="dt">con =</span> file_<span class="dv">83004</span>_limpo</a>
+<a class="sourceLine" id="cb265-9" title="9">)</a></code></pre></div>
 </div>
 </div>
             </section>

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-11" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
 <li class="chapter" data-level="5.2.2" data-path="calculadora.html"><a href="calculadora.html#nans"><i class="fa fa-check"></i><b>5.2.2</b> Cálculos problemáticos</a></li>
-<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#dados-faltantes"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
+<li class="chapter" data-level="5.2.3" data-path="calculadora.html"><a href="calculadora.html#NAs"><i class="fa fa-check"></i><b>5.2.3</b> Dados faltantes</a></li>
 <li class="chapter" data-level="5.2.4" data-path="calculadora.html"><a href="calculadora.html#matfuns"><i class="fa fa-check"></i><b>5.2.4</b> Funções matemáticas</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="variaveis.html"><a href="variaveis.html"><i class="fa fa-check"></i><b>5.3</b> Variáveis</a><ul>
@@ -415,163 +415,163 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="hidroweb-ana" class="section level4">
 <h4><span class="header-section-number">B.4.1.1</span> <a href="http://hidroweb.ana.gov.br/">hidroweb-ANA</a></h4>
 <p>O sistema hidroweb é o maior base de dados hidrológicos brasileira. No trecho de código a seguir baixamos um arquivo de dados de precipitação obtidos no sistema hidroweb que foi salvo no site do livro.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
-<a class="sourceLine" id="cb396-2" title="2">hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span></a>
-<a class="sourceLine" id="cb396-3" title="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
-<a class="sourceLine" id="cb396-4" title="4">hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
-<a class="sourceLine" id="cb396-5" title="5"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb396-6" title="6">  <span class="dt">url =</span> hidroweb_url_file, </a>
-<a class="sourceLine" id="cb396-7" title="7">  <span class="dt">destfile =</span> hidroweb_dest_file</a>
-<a class="sourceLine" id="cb396-8" title="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb401-2" title="2">hidroweb_url_file &lt;-<span class="st"> &quot;https://raw.github.com/lhmet/adar-ufsm/master/data/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb401-3" title="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb401-4" title="4">hidroweb_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb401-5" title="5"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb401-6" title="6">  <span class="dt">url =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb401-7" title="7">  <span class="dt">destfile =</span> hidroweb_dest_file</a>
+<a class="sourceLine" id="cb401-8" title="8">)</a></code></pre></div>
 <p>Antes de importar os dados você precisa visualizar o arquivo para extrair as informações básicas necessárias para sua importação. Você pode abri-lo em um editor de texto.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="co"># caracteres não devem tratados como fatores</span></a>
-<a class="sourceLine" id="cb397-2" title="2"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb397-3" title="3"><span class="co"># leitura de dados da ANA</span></a>
-<a class="sourceLine" id="cb397-4" title="4">dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
-<a class="sourceLine" id="cb397-5" title="5">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
-<a class="sourceLine" id="cb397-6" title="6">                   <span class="dt">head =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb397-7" title="7">                   <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb397-8" title="8"><span class="co"># primeiras linhas</span></a>
-<a class="sourceLine" id="cb397-9" title="9"><span class="kw">head</span>(dprec)</a>
-<a class="sourceLine" id="cb397-10" title="10"><span class="co"># últimas linhas</span></a>
-<a class="sourceLine" id="cb397-11" title="11"><span class="kw">tail</span>(dprec)</a>
-<a class="sourceLine" id="cb397-12" title="12"> <span class="co"># corrigindo nome da primeira coluna</span></a>
-<a class="sourceLine" id="cb397-13" title="13"> <span class="kw">names</span>(dprec)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;EstacaoCodigo&quot;</span></a>
-<a class="sourceLine" id="cb397-14" title="14"> <span class="co"># removendo última coluna que só tem NAs</span></a>
-<a class="sourceLine" id="cb397-15" title="15"> dprec &lt;-<span class="st"> </span>dprec[ , <span class="op">-</span><span class="kw">ncol</span>(dprec)]</a>
-<a class="sourceLine" id="cb397-16" title="16">  <span class="co"># estrutura dos dados</span></a>
-<a class="sourceLine" id="cb397-17" title="17">  <span class="kw">str</span>(dprec)</a>
-<a class="sourceLine" id="cb397-18" title="18"><span class="co"># Fazendo a mesma leitura com read.table</span></a>
-<a class="sourceLine" id="cb397-19" title="19">dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
-<a class="sourceLine" id="cb397-20" title="20">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
-<a class="sourceLine" id="cb397-21" title="21">                   <span class="dt">head =</span> T, </a>
-<a class="sourceLine" id="cb397-22" title="22">                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb397-23" title="23">                   <span class="dt">fill =</span> T,</a>
-<a class="sourceLine" id="cb397-24" title="24">                   <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</a>
-<a class="sourceLine" id="cb397-25" title="25">                   <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
-<a class="sourceLine" id="cb397-26" title="26"><span class="kw">head</span>(dprec2)</a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1"><span class="co"># caracteres não devem tratados como fatores</span></a>
+<a class="sourceLine" id="cb402-2" title="2"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb402-3" title="3"><span class="co"># leitura de dados da ANA</span></a>
+<a class="sourceLine" id="cb402-4" title="4">dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb402-5" title="5">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
+<a class="sourceLine" id="cb402-6" title="6">                   <span class="dt">head =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb402-7" title="7">                   <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb402-8" title="8"><span class="co"># primeiras linhas</span></a>
+<a class="sourceLine" id="cb402-9" title="9"><span class="kw">head</span>(dprec)</a>
+<a class="sourceLine" id="cb402-10" title="10"><span class="co"># últimas linhas</span></a>
+<a class="sourceLine" id="cb402-11" title="11"><span class="kw">tail</span>(dprec)</a>
+<a class="sourceLine" id="cb402-12" title="12"> <span class="co"># corrigindo nome da primeira coluna</span></a>
+<a class="sourceLine" id="cb402-13" title="13"> <span class="kw">names</span>(dprec)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;EstacaoCodigo&quot;</span></a>
+<a class="sourceLine" id="cb402-14" title="14"> <span class="co"># removendo última coluna que só tem NAs</span></a>
+<a class="sourceLine" id="cb402-15" title="15"> dprec &lt;-<span class="st"> </span>dprec[ , <span class="op">-</span><span class="kw">ncol</span>(dprec)]</a>
+<a class="sourceLine" id="cb402-16" title="16">  <span class="co"># estrutura dos dados</span></a>
+<a class="sourceLine" id="cb402-17" title="17">  <span class="kw">str</span>(dprec)</a>
+<a class="sourceLine" id="cb402-18" title="18"><span class="co"># Fazendo a mesma leitura com read.table</span></a>
+<a class="sourceLine" id="cb402-19" title="19">dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> hidroweb_url_file, </a>
+<a class="sourceLine" id="cb402-20" title="20">                   <span class="dt">skip =</span> <span class="dv">15</span>, </a>
+<a class="sourceLine" id="cb402-21" title="21">                   <span class="dt">head =</span> T, </a>
+<a class="sourceLine" id="cb402-22" title="22">                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb402-23" title="23">                   <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb402-24" title="24">                   <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</a>
+<a class="sourceLine" id="cb402-25" title="25">                   <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb402-26" title="26"><span class="kw">head</span>(dprec2)</a></code></pre></div>
 </div>
 <div id="bdmep-inmet" class="section level4">
 <h4><span class="header-section-number">B.4.1.2</span> <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">BDMEP-INMET</a></h4>
 <p>O Banco de Dados Meteorológicos para Ensino e Pesquisa do INMET é uma das principais fonte de dados climáticos brasileiros. Abaixo veremos como importar um arquivo de dados diários de uma estação meteorológica convencional. Os dados foram obtidos no BDMEP e salvos no site do livro.</p>
 <p>No trecho de código a seguir baixamos o arquivo de dados da estação 83004.</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
-<a class="sourceLine" id="cb398-2" title="2">bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span></a>
-<a class="sourceLine" id="cb398-3" title="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
-<a class="sourceLine" id="cb398-4" title="4">bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
-<a class="sourceLine" id="cb398-5" title="5"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb398-6" title="6">  <span class="dt">url =</span> bdmep_url_file, </a>
-<a class="sourceLine" id="cb398-7" title="7">  <span class="dt">destfile =</span> bdmep_dest_file</a>
-<a class="sourceLine" id="cb398-8" title="8">)</a></code></pre></div>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> bdmep_dest_file, </a>
-<a class="sourceLine" id="cb399-2" title="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb399-3" title="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb399-4" title="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb399-5" title="5">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb399-6" title="6">               )</a>
-<a class="sourceLine" id="cb399-7" title="7"><span class="kw">head</span>(x)</a>
-<a class="sourceLine" id="cb399-8" title="8"><span class="kw">str</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="co"># arquivo de exemplo disponível no GitHub</span></a>
+<a class="sourceLine" id="cb403-2" title="2">bdmep_url_file &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/83004.txt&quot;</span></a>
+<a class="sourceLine" id="cb403-3" title="3"><span class="co">#arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads/CHUVAS.TXT&quot;</span></a>
+<a class="sourceLine" id="cb403-4" title="4">bdmep_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb403-5" title="5"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb403-6" title="6">  <span class="dt">url =</span> bdmep_url_file, </a>
+<a class="sourceLine" id="cb403-7" title="7">  <span class="dt">destfile =</span> bdmep_dest_file</a>
+<a class="sourceLine" id="cb403-8" title="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">x &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> bdmep_dest_file, </a>
+<a class="sourceLine" id="cb404-2" title="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb404-3" title="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb404-4" title="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb404-5" title="5">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb404-6" title="6">               )</a>
+<a class="sourceLine" id="cb404-7" title="7"><span class="kw">head</span>(x)</a>
+<a class="sourceLine" id="cb404-8" title="8"><span class="kw">str</span>(x)</a></code></pre></div>
 <p>Os dados lidos não incluíram a linha de cabeçalho com os nomes das variáveis. Nós pulamos essa linha porque o nome das variáveis está de acordo como número de colunas do arquivo. Então se tentarmos ler um arquivo de dados que contém linhas com número de registros diferentes ocorrerá um erro pois os dados não são tabulares.</p>
 <p>Outro aspecto nos dados lidos é que aparecem vários <code>&lt;NA&gt;</code>, que é o símbolo para dados do tipo <code>character</code> faltantes. A razão dos terem sido interpretados dessa forma deve-se a um caractere (<code>&lt;/pre&gt;</code>) encontrado na última linha do arquivo.</p>
 <p>Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função <code>read.table(..., nrows = 5878)</code>, que ignoraria a última linha do arquivo e os dados seriam interpretados como <code>numeric</code>.</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
-<a class="sourceLine" id="cb400-2" title="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb400-3" title="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb400-4" title="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb400-5" title="5">               <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
-<a class="sourceLine" id="cb400-6" title="6">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb400-7" title="7">               <span class="dt">nrows =</span> <span class="dv">5878</span> </a>
-<a class="sourceLine" id="cb400-8" title="8">)</a>
-<a class="sourceLine" id="cb400-9" title="9"><span class="kw">head</span>(x1)</a>
-<a class="sourceLine" id="cb400-10" title="10"><span class="kw">str</span>(x1)</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1">x1 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
+<a class="sourceLine" id="cb405-2" title="2">               <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb405-3" title="3">               <span class="dt">skip =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb405-4" title="4">               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb405-5" title="5">               <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb405-6" title="6">               <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb405-7" title="7">               <span class="dt">nrows =</span> <span class="dv">5878</span> </a>
+<a class="sourceLine" id="cb405-8" title="8">)</a>
+<a class="sourceLine" id="cb405-9" title="9"><span class="kw">head</span>(x1)</a>
+<a class="sourceLine" id="cb405-10" title="10"><span class="kw">str</span>(x1)</a></code></pre></div>
 <p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="co"># corrigindo classe dos dados</span></a>
-<a class="sourceLine" id="cb401-2" title="2"><span class="co"># convertendo de character para numeric</span></a>
-<a class="sourceLine" id="cb401-3" title="3">x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)</a>
-<a class="sourceLine" id="cb401-4" title="4"><span class="kw">str</span>(x)</a>
-<a class="sourceLine" id="cb401-5" title="5"><span class="co"># razão dos avisos</span></a>
-<a class="sourceLine" id="cb401-6" title="6"><span class="co">#as.numeric(&quot;NA&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1"><span class="co"># corrigindo classe dos dados</span></a>
+<a class="sourceLine" id="cb406-2" title="2"><span class="co"># convertendo de character para numeric</span></a>
+<a class="sourceLine" id="cb406-3" title="3">x[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)</a>
+<a class="sourceLine" id="cb406-4" title="4"><span class="kw">str</span>(x)</a>
+<a class="sourceLine" id="cb406-5" title="5"><span class="co"># razão dos avisos</span></a>
+<a class="sourceLine" id="cb406-6" title="6"><span class="co">#as.numeric(&quot;NA&quot;)</span></a></code></pre></div>
 <p>Mas e o nome das variáveis? Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas. Vamos fazer essa adequação aos dados.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1"><span class="co"># lendo somente o nome das variaveis</span></a>
-<a class="sourceLine" id="cb402-2" title="2">vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
-<a class="sourceLine" id="cb402-3" title="3">                    <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb402-4" title="4">                    <span class="dt">skip =</span> <span class="dv">15</span>,</a>
-<a class="sourceLine" id="cb402-5" title="5">                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb402-6" title="6">                    <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
-<a class="sourceLine" id="cb402-7" title="7">                    <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb402-8" title="8">                    <span class="dt">nrows =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb402-9" title="9"><span class="co"># convertendo de dataframe para vetor</span></a>
-<a class="sourceLine" id="cb402-10" title="10">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))</a>
-<a class="sourceLine" id="cb402-11" title="11">vnames</a>
-<a class="sourceLine" id="cb402-12" title="12"><span class="co"># número de variáveis é diferente do número de colunas do arquivo</span></a>
-<a class="sourceLine" id="cb402-13" title="13"><span class="kw">length</span>(vnames) <span class="op">==</span><span class="st"> </span><span class="kw">ncol</span>(x)</a>
-<a class="sourceLine" id="cb402-14" title="14"><span class="co"># corrigindo nomes das variaveis</span></a>
-<a class="sourceLine" id="cb402-15" title="15"><span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span></a>
-<a class="sourceLine" id="cb402-16" title="16">vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span></a>
-<a class="sourceLine" id="cb402-17" title="17"><span class="co"># acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e</span></a>
-<a class="sourceLine" id="cb402-18" title="18"><span class="co"># desloca os elementos orginais do vetor </span></a>
-<a class="sourceLine" id="cb402-19" title="19">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span><span class="op">:</span><span class="kw">length</span>(vnames)])</a>
-<a class="sourceLine" id="cb402-20" title="20"><span class="kw">length</span>(vnames)</a>
-<a class="sourceLine" id="cb402-21" title="21"><span class="kw">ncol</span>(x)</a>
-<a class="sourceLine" id="cb402-22" title="22"><span class="kw">names</span>(x) &lt;-<span class="st"> </span>vnames</a>
-<a class="sourceLine" id="cb402-23" title="23"><span class="kw">head</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="co"># lendo somente o nome das variaveis</span></a>
+<a class="sourceLine" id="cb407-2" title="2">vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span>bdmep_dest_file, </a>
+<a class="sourceLine" id="cb407-3" title="3">                    <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb407-4" title="4">                    <span class="dt">skip =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb407-5" title="5">                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb407-6" title="6">                    <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb407-7" title="7">                    <span class="dt">na.strings =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb407-8" title="8">                    <span class="dt">nrows =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb407-9" title="9"><span class="co"># convertendo de dataframe para vetor</span></a>
+<a class="sourceLine" id="cb407-10" title="10">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))</a>
+<a class="sourceLine" id="cb407-11" title="11">vnames</a>
+<a class="sourceLine" id="cb407-12" title="12"><span class="co"># número de variáveis é diferente do número de colunas do arquivo</span></a>
+<a class="sourceLine" id="cb407-13" title="13"><span class="kw">length</span>(vnames) <span class="op">==</span><span class="st"> </span><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb407-14" title="14"><span class="co"># corrigindo nomes das variaveis</span></a>
+<a class="sourceLine" id="cb407-15" title="15"><span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span></a>
+<a class="sourceLine" id="cb407-16" title="16">vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span></a>
+<a class="sourceLine" id="cb407-17" title="17"><span class="co"># acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e</span></a>
+<a class="sourceLine" id="cb407-18" title="18"><span class="co"># desloca os elementos orginais do vetor </span></a>
+<a class="sourceLine" id="cb407-19" title="19">vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span><span class="op">:</span><span class="kw">length</span>(vnames)])</a>
+<a class="sourceLine" id="cb407-20" title="20"><span class="kw">length</span>(vnames)</a>
+<a class="sourceLine" id="cb407-21" title="21"><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb407-22" title="22"><span class="kw">names</span>(x) &lt;-<span class="st"> </span>vnames</a>
+<a class="sourceLine" id="cb407-23" title="23"><span class="kw">head</span>(x)</a></code></pre></div>
 <p>Finalmente vamos escrever os dados do INMET corretamente organizados.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb403-2" title="2"><span class="kw">write.csv2</span>(x,</a>
-<a class="sourceLine" id="cb403-3" title="3">           <span class="dt">file =</span> bdmep_dest_file_clean, </a>
-<a class="sourceLine" id="cb403-4" title="4">           <span class="dt">na =</span> <span class="st">&quot;-9999&quot;</span>,</a>
-<a class="sourceLine" id="cb403-5" title="5">           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1">bdmep_dest_file_clean &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;83004_clean.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb408-2" title="2"><span class="kw">write.csv2</span>(x,</a>
+<a class="sourceLine" id="cb408-3" title="3">           <span class="dt">file =</span> bdmep_dest_file_clean, </a>
+<a class="sourceLine" id="cb408-4" title="4">           <span class="dt">na =</span> <span class="st">&quot;-9999&quot;</span>,</a>
+<a class="sourceLine" id="cb408-5" title="5">           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="arquivos-formatados-com-largura-fixa" class="section level3">
 <h3><span class="header-section-number">B.4.2</span> Arquivos formatados com largura fixa</h3>
 <p>Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que aumenta a legibilidade dos dados em editor de texto.</p>
 <p>Nesses casos a função <code>read.fwf()</code> é conveniente. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1"><span class="co"># link para os dados do SOI</span></a>
-<a class="sourceLine" id="cb404-2" title="2">noaa_url_file &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1"><span class="co"># link para os dados do SOI</span></a>
+<a class="sourceLine" id="cb409-2" title="2">noaa_url_file &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></a></code></pre></div>
 <p>Abrindo o link dos dados no navegador para visualização dos dados.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">browseURL</span>(<span class="dt">url =</span> noaa_url_file)</a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="kw">browseURL</span>(<span class="dt">url =</span> noaa_url_file)</a></code></pre></div>
 <p>Leitura dos dados:</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span></a>
-<a class="sourceLine" id="cb406-2" title="2">soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="dt">file =</span> noaa_url_file,                       <span class="co"># sem internet, usar esse arquivo</span></a>
-<a class="sourceLine" id="cb406-3" title="3">                <span class="dt">skip =</span> <span class="dv">4</span>,                               <span class="co"># pula 4 linhas</span></a>
-<a class="sourceLine" id="cb406-4" title="4">                <span class="dt">header =</span> <span class="ot">FALSE</span>,                             <span class="co"># sem cabeçalho</span></a>
-<a class="sourceLine" id="cb406-5" title="5">                <span class="dt">nrows =</span> <span class="dv">70</span>,                             <span class="co"># num. de linhas</span></a>
-<a class="sourceLine" id="cb406-6" title="6">                <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>,<span class="dv">12</span>)),                <span class="co"># largura dos campos das variáveis</span></a>
-<a class="sourceLine" id="cb406-7" title="7">                <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>,                  <span class="co"># string para dados faltantes</span></a>
-<a class="sourceLine" id="cb406-8" title="8">                <span class="dt">col.names =</span> <span class="kw">scan</span>(noaa_url_file,             <span class="co"># varredura do arquivo</span></a>
-<a class="sourceLine" id="cb406-9" title="9">                <span class="co">#col.names = scan(link,             # varredura do arquivo</span></a>
-<a class="sourceLine" id="cb406-10" title="10">                                 <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>,    <span class="co"># tipo dos dados a serem lidos</span></a>
-<a class="sourceLine" id="cb406-11" title="11">                                 <span class="dt">skip =</span> <span class="dv">3</span>,              <span class="co"># pula 3 linhas</span></a>
-<a class="sourceLine" id="cb406-12" title="12">                                 <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span></a>
-<a class="sourceLine" id="cb406-13" title="13">                )</a>
-<a class="sourceLine" id="cb406-14" title="14"><span class="kw">head</span>(soi)</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1"><span class="co">#soi &lt;- read.fwf(file = link,                           # nome do arquivo ou link</span></a>
+<a class="sourceLine" id="cb411-2" title="2">soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="dt">file =</span> noaa_url_file,                       <span class="co"># sem internet, usar esse arquivo</span></a>
+<a class="sourceLine" id="cb411-3" title="3">                <span class="dt">skip =</span> <span class="dv">4</span>,                               <span class="co"># pula 4 linhas</span></a>
+<a class="sourceLine" id="cb411-4" title="4">                <span class="dt">header =</span> <span class="ot">FALSE</span>,                             <span class="co"># sem cabeçalho</span></a>
+<a class="sourceLine" id="cb411-5" title="5">                <span class="dt">nrows =</span> <span class="dv">70</span>,                             <span class="co"># num. de linhas</span></a>
+<a class="sourceLine" id="cb411-6" title="6">                <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="kw">rep</span>(<span class="dv">6</span>,<span class="dv">12</span>)),                <span class="co"># largura dos campos das variáveis</span></a>
+<a class="sourceLine" id="cb411-7" title="7">                <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>,                  <span class="co"># string para dados faltantes</span></a>
+<a class="sourceLine" id="cb411-8" title="8">                <span class="dt">col.names =</span> <span class="kw">scan</span>(noaa_url_file,             <span class="co"># varredura do arquivo</span></a>
+<a class="sourceLine" id="cb411-9" title="9">                <span class="co">#col.names = scan(link,             # varredura do arquivo</span></a>
+<a class="sourceLine" id="cb411-10" title="10">                                 <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>,    <span class="co"># tipo dos dados a serem lidos</span></a>
+<a class="sourceLine" id="cb411-11" title="11">                                 <span class="dt">skip =</span> <span class="dv">3</span>,              <span class="co"># pula 3 linhas</span></a>
+<a class="sourceLine" id="cb411-12" title="12">                                 <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span></a>
+<a class="sourceLine" id="cb411-13" title="13">                )</a>
+<a class="sourceLine" id="cb411-14" title="14"><span class="kw">head</span>(soi)</a></code></pre></div>
 <p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span></a>
-<a class="sourceLine" id="cb407-2" title="2">soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="dv">-1</span>]))</a>
-<a class="sourceLine" id="cb407-3" title="3"><span class="co"># criando um dataframe com valores de SOI, mes e ano</span></a>
-<a class="sourceLine" id="cb407-4" title="4">soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),</a>
-<a class="sourceLine" id="cb407-5" title="5">                     <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),</a>
-<a class="sourceLine" id="cb407-6" title="6">                     <span class="dt">soi =</span> soi_v)</a>
-<a class="sourceLine" id="cb407-7" title="7"><span class="co"># escrevendo dados SOI em um arquivo CSV</span></a>
-<a class="sourceLine" id="cb407-8" title="8">soi_csv_file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb407-9" title="9"><span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, </a>
-<a class="sourceLine" id="cb407-10" title="10">          <span class="dt">file =</span> soi_csv_file, </a>
-<a class="sourceLine" id="cb407-11" title="11">          <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, </a>
-<a class="sourceLine" id="cb407-12" title="12">          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" title="1"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span></a>
+<a class="sourceLine" id="cb412-2" title="2">soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, <span class="dv">-1</span>]))</a>
+<a class="sourceLine" id="cb412-3" title="3"><span class="co"># criando um dataframe com valores de SOI, mes e ano</span></a>
+<a class="sourceLine" id="cb412-4" title="4">soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi<span class="op">$</span>YEAR, <span class="dt">each =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb412-5" title="5">                     <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),</a>
+<a class="sourceLine" id="cb412-6" title="6">                     <span class="dt">soi =</span> soi_v)</a>
+<a class="sourceLine" id="cb412-7" title="7"><span class="co"># escrevendo dados SOI em um arquivo CSV</span></a>
+<a class="sourceLine" id="cb412-8" title="8">soi_csv_file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;SOI.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb412-9" title="9"><span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, </a>
+<a class="sourceLine" id="cb412-10" title="10">          <span class="dt">file =</span> soi_csv_file, </a>
+<a class="sourceLine" id="cb412-11" title="11">          <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, </a>
+<a class="sourceLine" id="cb412-12" title="12">          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1"><span class="co"># leitura de dados com escolha interativa do arquivo</span></a>
-<a class="sourceLine" id="cb408-2" title="2">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),</a>
-<a class="sourceLine" id="cb408-3" title="3">                   <span class="co"># file.choose só é válido em sistema *unix</span></a>
-<a class="sourceLine" id="cb408-4" title="4">                   <span class="co"># no windows é choose.file()</span></a>
-<a class="sourceLine" id="cb408-5" title="5">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb408-6" title="6">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1"><span class="co"># leitura de dados com escolha interativa do arquivo</span></a>
+<a class="sourceLine" id="cb413-2" title="2">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),</a>
+<a class="sourceLine" id="cb413-3" title="3">                   <span class="co"># file.choose só é válido em sistema *unix</span></a>
+<a class="sourceLine" id="cb413-4" title="4">                   <span class="co"># no windows é choose.file()</span></a>
+<a class="sourceLine" id="cb413-5" title="5">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb413-6" title="6">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
 <p>Navegue até o diretório do arquivo <code>SOI.csv</code> e clique duas vezes sobre ele.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> soi_csv_file,</a>
-<a class="sourceLine" id="cb409-2" title="2">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb409-3" title="3">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="kw">head</span>(soi.df)</a>
-<a class="sourceLine" id="cb410-2" title="2"><span class="kw">str</span>(soi.df)</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1">soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> soi_csv_file,</a>
+<a class="sourceLine" id="cb414-2" title="2">                   <span class="dt">header =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb414-3" title="3">                   <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="kw">head</span>(soi.df)</a>
+<a class="sourceLine" id="cb415-2" title="2"><span class="kw">str</span>(soi.df)</a></code></pre></div>
 <p>A função <code>read.fortran()</code> é uma função similar à <code>read.fwf()</code> e permite usar especificações de colunas no estilo <a href="http://en.wikipedia.org/wiki/Fortran">Fortran</a>.</p>
 
 </div>

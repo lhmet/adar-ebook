@@ -14,6 +14,12 @@ https://moderndive.com/preface.html
 
 Package for handling multiple imputations in a tidy format
 https://github.com/njtierney/mputr 
+
+
+https://blog.rstudio.com/2020/05/05/wrangling-unruly-data/?utm_content=buffer24dbf&utm_medium=social&utm_source=linkedin&utm_campaign=buffer
+
+https://rstudio.com/resources/webinars/reproducibility-in-production/
+
 -->
 
 
