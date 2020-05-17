@@ -61,7 +61,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 
 
 <div class="rmdtip">
-<p>Embora existam dois tipos de vetores o termo "vetor" é em geral usado para se referir ao do tipo atômico.</p>
+<p>Embora existam dois tipos de vetores o termo &quot;vetor&quot; é em geral usado para se referir ao do tipo atômico.</p>
 </div>
 
 
@@ -242,7 +242,7 @@ cat(sentenca_2aspas, "\n")
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
 <ul>
 <li><p><code>\\'</code> aspas simples</p></li>
-<li><p><code>\\"</code> aspas duplas</p></li>
+<li><p><code>\\&quot;</code> aspas duplas</p></li>
 <li><p><code>\\n</code> quebra de lina ou nova linha</p></li>
 <li><p><code>\\\\</code> a própria barra invertida</p></li>
 </ul>
@@ -310,7 +310,7 @@ is.logical(vetor_num)
 
 Essa é uma forma de verificação mais direta do tipo de uma variável. Outra possível forma seria combinar o uso do operador relacional[^relacionais] idêntico (`==`) e a mais legível que `typeof(vetor_num) == "double"`. O operador `==` é um operador relacional para verificar se dois objetos são iguais.
 
-[^relacionais]: Operadores relacionais será visto na seção Operações com Vetores. 
+[^relacionais]: Operadores relacionais será visto na seção \@ref(oper-vect). 
 
 <div class="rmdtip">
 <p>O grupo de funções <code>is.{tipo_de_dados}()</code> inclui também opções para verificar se a variável tem valores:</p>
@@ -381,11 +381,11 @@ A coersão da variável `vetor_char` para numérica ou inteiro
 vetor_char
 #> [1] "ae" NA   "ou"
 as.integer(vetor_char)
-#> Warning: NAs introduzidos por coerção
+#> Warning: NAs introduced by coercion
 #> [1] NA NA NA
 # verificação do resultado
 typeof(as.numeric(vetor_char))
-#> Warning in typeof(as.numeric(vetor_char)): NAs introduzidos por coerção
+#> Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion
 #> [1] "double"
 ```
 
@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-05-15"
+#> [1] "2020-05-16"
 Sys.time()
-#> [1] "2020-05-15 12:31:28 -03"
+#> [1] "2020-05-16 22:01:26 -03"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.2 Operações com vetores | Análise de Dados Ambientais com R</title>
+  <title>7.2 Atributos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.2 Operações com vetores | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.2 Atributos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.2 Operações com vetores | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.2 Atributos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2020-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="propriedades.html"/>
-<link rel="next" href="sequências.html"/>
+<link rel="next" href="oper-vect.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -214,23 +214,24 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.1" data-path="propriedades.html"><a href="propriedades.html"><i class="fa fa-check"></i><b>7.1</b> Propriedades</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="propriedades.html"><a href="propriedades.html#nomeando-vetores"><i class="fa fa-check"></i><b>7.1.1</b> Nomeando vetores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="operações-com-vetores.html"><a href="operações-com-vetores.html"><i class="fa fa-check"></i><b>7.2</b> Operações com vetores</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="operações-com-vetores.html"><a href="operações-com-vetores.html#comparações"><i class="fa fa-check"></i><b>7.2.1</b> Comparações</a></li>
-<li class="chapter" data-level="7.2.2" data-path="operações-com-vetores.html"><a href="operações-com-vetores.html#funções-any-e-all"><i class="fa fa-check"></i><b>7.2.2</b> Funções <code>any</code> e <code>all</code></a></li>
+<li class="chapter" data-level="7.2" data-path="atributos.html"><a href="atributos.html"><i class="fa fa-check"></i><b>7.2</b> Atributos</a></li>
+<li class="chapter" data-level="7.3" data-path="oper-vect.html"><a href="oper-vect.html"><i class="fa fa-check"></i><b>7.3</b> Operações com vetores</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="oper-vect.html"><a href="oper-vect.html#comparações"><i class="fa fa-check"></i><b>7.3.1</b> Comparações</a></li>
+<li class="chapter" data-level="7.3.2" data-path="oper-vect.html"><a href="oper-vect.html#funções-any-e-all"><i class="fa fa-check"></i><b>7.3.2</b> Funções <code>any</code> e <code>all</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="sequências.html"><a href="sequências.html"><i class="fa fa-check"></i><b>7.3</b> Sequências</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="sequências.html"><a href="sequências.html#sequências-de-números-inteiros"><i class="fa fa-check"></i><b>7.3.1</b> Sequências de números inteiros</a></li>
-<li class="chapter" data-level="7.3.2" data-path="sequências.html"><a href="sequências.html#sequências-de-números-não-inteiros"><i class="fa fa-check"></i><b>7.3.2</b> Sequências de números não inteiros</a></li>
-<li class="chapter" data-level="7.3.3" data-path="sequências.html"><a href="sequências.html#sequências-de-números-repetidos"><i class="fa fa-check"></i><b>7.3.3</b> Sequências de números repetidos</a></li>
+<li class="chapter" data-level="7.4" data-path="sequências.html"><a href="sequências.html"><i class="fa fa-check"></i><b>7.4</b> Sequências</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="sequências.html"><a href="sequências.html#sequências-de-números-inteiros"><i class="fa fa-check"></i><b>7.4.1</b> Sequências de números inteiros</a></li>
+<li class="chapter" data-level="7.4.2" data-path="sequências.html"><a href="sequências.html#sequências-de-números-reais"><i class="fa fa-check"></i><b>7.4.2</b> Sequências de números reais</a></li>
+<li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.4</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.4.1</b> Indexação por vetores inteiros</a></li>
-<li class="chapter" data-level="7.4.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.4.2</b> Indexação por nomes</a></li>
-<li class="chapter" data-level="7.4.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.4.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.4.4" data-path="index-vetores.html"><a href="index-vetores.html#substituição-de-elementos-de-um-vetor"><i class="fa fa-check"></i><b>7.4.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.4.5" data-path="index-vetores.html"><a href="index-vetores.html#vetores-nulos-e-elementos-faltantes"><i class="fa fa-check"></i><b>7.4.5</b> Vetores nulos e elementos faltantes</a></li>
-<li class="chapter" data-level="7.4.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos-null"><i class="fa fa-check"></i><b>7.4.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.4.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.4.7</b> Exercícios</a></li>
+<li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
+<li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
+<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
+<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -386,241 +387,26 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="operações-com-vetores" class="section level2">
-<h2><span class="header-section-number">7.2</span> Operações com vetores</h2>
-<p>Como o <code>R</code> é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esta é uma das grandes vantagens do <img src="images/logo_r.png" width="20">.</p>
-<p>Operações aritméticas podem ser aplicadas diretamente entre vetores.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="co"># desvios da prec em relação a média climatológica</span></a>
-<a class="sourceLine" id="cb129-2" title="2">prec <span class="op">-</span><span class="st"> </span>prec_clim</a>
-<a class="sourceLine" id="cb129-3" title="3"><span class="co">#&gt;  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez </span></a>
-<a class="sourceLine" id="cb129-4" title="4"><span class="co">#&gt;   70  -55   50  -88  -60  -30  -28  -38  -30  -65 -190   60</span></a>
-<a class="sourceLine" id="cb129-5" title="5"><span class="co"># % do total anual</span></a>
-<a class="sourceLine" id="cb129-6" title="6">prec<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb129-7" title="7"><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></a>
-<a class="sourceLine" id="cb129-8" title="8"><span class="co">#&gt; 130.43478  73.17073 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 </span></a>
-<a class="sourceLine" id="cb129-9" title="9"><span class="co">#&gt;       set       out       nov       dez </span></a>
-<a class="sourceLine" id="cb129-10" title="10"><span class="co">#&gt;  72.72727  60.60606   5.00000 127.27273</span></a>
-<a class="sourceLine" id="cb129-11" title="11"><span class="co"># transformação boxcox da prec com alpha = 0.2</span></a>
-<a class="sourceLine" id="cb129-12" title="12">(prec <span class="op">^</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb129-13" title="13"><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></a>
-<a class="sourceLine" id="cb129-14" title="14"><span class="co">#&gt; 10.645673  8.620350  9.568467  3.218759 -5.000000 -5.000000  3.218759  4.278004 </span></a>
-<a class="sourceLine" id="cb129-15" title="15"><span class="co">#&gt;       set       out       nov       dez </span></a>
-<a class="sourceLine" id="cb129-16" title="16"><span class="co">#&gt;  7.011244  7.559432  2.924466 10.431268</span></a>
-<a class="sourceLine" id="cb129-17" title="17">prec <span class="op">%%</span><span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb129-18" title="18"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb129-19" title="19"><span class="co">#&gt;   0   0   0   2   0   0   2   2   0   0   0   0</span></a></code></pre></div>
-<p>— PAREI AQUI</p>
-<p>Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">(vetor_dbl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">0.3</span>, <span class="fl">1.4</span>, <span class="fl">2.0</span>))</a>
-<a class="sourceLine" id="cb130-2" title="2"><span class="co">#&gt; [1] -1.5  0.3  1.4  2.0</span></a>
-<a class="sourceLine" id="cb130-3" title="3">cte &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb130-4" title="4">vetor_dbl <span class="op">*</span><span class="st"> </span>cte</a>
-<a class="sourceLine" id="cb130-5" title="5"><span class="co">#&gt; [1] -6.0  1.2  5.6  8.0</span></a>
-<a class="sourceLine" id="cb130-6" title="6">quatros &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb130-7" title="7">vetor_dbl <span class="op">*</span><span class="st"> </span>quatros</a>
-<a class="sourceLine" id="cb130-8" title="8"><span class="co">#&gt; [1] -6.0  1.2  5.6  8.0</span></a></code></pre></div>
-<p>O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento de <code>vetor_dbl</code>.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb131-2" title="2">vetor_dbl <span class="op">+</span><span class="st"> </span>v2</a>
-<a class="sourceLine" id="cb131-3" title="3"><span class="co">#&gt; [1] 0.5 1.3 3.4 3.0</span></a></code></pre></div>
-<p>Se o vetor mais longo não é múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> imprime um aviso.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">v3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb132-2" title="2">vetor_dbl <span class="op">+</span><span class="st"> </span>v3</a>
-<a class="sourceLine" id="cb132-3" title="3"><span class="co">#&gt; Warning in vetor_dbl + v3: comprimento do objeto maior não é múltiplo do</span></a>
-<a class="sourceLine" id="cb132-4" title="4"><span class="co">#&gt; comprimento do objeto menor</span></a>
-<a class="sourceLine" id="cb132-5" title="5"><span class="co">#&gt; [1] 0.5 1.3 4.4 4.0</span></a></code></pre></div>
-<p>A reciclagem é intrinsecamente usada em operações envolvendo vetores.</p>
-<p>Operações aritméticas podem ser feitas com vetores lógicos, como nos exemplos abaixo:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb133-2" title="2"><span class="co">#&gt; [1] 5 5 0</span></a>
-<a class="sourceLine" id="cb133-3" title="3"><span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb133-4" title="4"><span class="co">#&gt; [1] 4</span></a>
-<a class="sourceLine" id="cb133-5" title="5"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb133-6" title="6"><span class="co">#&gt; [1] 2</span></a>
-<a class="sourceLine" id="cb133-7" title="7"><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb133-8" title="8"><span class="co">#&gt; [1] -1</span></a></code></pre></div>
-<div id="comparações" class="section level3">
-<h3><span class="header-section-number">7.2.1</span> Comparações</h3>
-<p>Vetores lógicos resultam da comparação de números ou caracteres. A Tabela <a href="operações-com-vetores.html#tab:oper-logic">7.1</a> apresenta os principais operadores lógicos para comparações.</p>
-<table>
-<caption><span id="tab:oper-logic">Tabela 7.1: </span>Operadores Lógicos</caption>
-<thead>
-<tr class="header">
-<th align="center">Operador</th>
-<th align="center">Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">&lt;</td>
-<td align="center">menor que</td>
-</tr>
-<tr class="even">
-<td align="center">&lt;=</td>
-<td align="center">menor ou igual a</td>
-</tr>
-<tr class="odd">
-<td align="center">&gt;</td>
-<td align="center">maior que</td>
-</tr>
-<tr class="even">
-<td align="center">&gt;=</td>
-<td align="center">maior ou igual</td>
-</tr>
-<tr class="odd">
-<td align="center">==</td>
-<td align="center">idêntico</td>
-</tr>
-<tr class="even">
-<td align="center">!=</td>
-<td align="center">diferente</td>
-</tr>
-<tr class="odd">
-<td align="center">!x</td>
-<td align="center">não é x (negação)</td>
-</tr>
-<tr class="even">
-<td align="center">x | y</td>
-<td align="center">x ou y</td>
-</tr>
-<tr class="odd">
-<td align="center">x &amp; y</td>
-<td align="center">x e y</td>
-</tr>
-<tr class="even">
-<td align="center">isTRUE(x)</td>
-<td align="center">teste se x é verdadeiro</td>
-</tr>
-<tr class="odd">
-<td align="center">%in%</td>
-<td align="center">está contido em</td>
-</tr>
-</tbody>
-</table>
-<p>Este conjunto de operadores permite diversas comparações entre vetores, por exemplo:</p>
-<ul>
-<li>quais elementos do <code>vetor_dbl</code> (da seção <a href="tipos-dados.html#build-vectors">6.1.1</a>) são negativos?</li>
-</ul>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">prec <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(prec) <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb134-2" title="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
-<a class="sourceLine" id="cb134-3" title="3"><span class="co">#&gt; FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></a></code></pre></div>
-<ul>
-<li>quais elementos de <code>prec</code> são maior que os de <code>prec_clim</code>?</li>
-</ul>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb135-2" title="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
-<a class="sourceLine" id="cb135-3" title="3"><span class="co">#&gt;  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</span></a></code></pre></div>
-<p>O operador <code>%in%</code> serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="co"># operador está contido em</span></a>
-<a class="sourceLine" id="cb136-2" title="2"><span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec</a>
-<a class="sourceLine" id="cb136-3" title="3"><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb136-4" title="4"><span class="co"># 2:4 são elementos de x?</span></a>
-<a class="sourceLine" id="cb136-5" title="5"><span class="kw">is.element</span>(<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>), prec)</a>
-<a class="sourceLine" id="cb136-6" title="6"><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></a></code></pre></div>
-<p>Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:</p>
-<ul>
-<li><span class="math inline">\(0 &lt; prec \leq 100\)</span></li>
-<li><span class="math inline">\(x &lt; 50\)</span> ou <span class="math inline">\(x \geq 150\)</span></li>
-</ul>
-<p>precisamos usar os operadores relacionais:</p>
-<ul>
-<li><p><code>&amp;</code> e <code>&amp;&amp;</code> ("e")</p></li>
-<li><p><code>|</code> e <code>||</code> ("ou")</p></li>
-</ul>
-<p>A ordem das operações pode ser controladas por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">horas &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">23</span></a>
-<a class="sourceLine" id="cb137-2" title="2"><span class="co"># noite</span></a>
-<a class="sourceLine" id="cb137-3" title="3">horas <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>horas <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span></a>
-<a class="sourceLine" id="cb137-4" title="4"><span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb137-5" title="5"><span class="co">#&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb137-6" title="6"><span class="co"># dia</span></a>
-<a class="sourceLine" id="cb137-7" title="7">horas <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>horas <span class="op">&lt;=</span><span class="st"> </span><span class="dv">18</span></a>
-<a class="sourceLine" id="cb137-8" title="8"><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb137-9" title="9"><span class="co">#&gt; [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb137-10" title="10"><span class="co"># dia</span></a>
-<a class="sourceLine" id="cb137-11" title="11"><span class="op">!</span>(horas <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>horas <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb137-12" title="12"><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb137-13" title="13"><span class="co">#&gt; [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></a></code></pre></div>
-<p>A forma dupla (<code>&amp;&amp;</code> ou <code>||</code>) compara somente um elemento de cada lado, enquanto a forma normal (<code>&amp;</code> e <code>|</code>), compara cada elemento dos vetores em cada lado.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb138-2" title="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb138-3" title="3"><span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span></a>
-<a class="sourceLine" id="cb138-4" title="4">a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb138-5" title="5"><span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb138-6" title="6"><span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b</span></a>
-<a class="sourceLine" id="cb138-7" title="7"><span class="co"># retornando somente um resultado</span></a>
-<a class="sourceLine" id="cb138-8" title="8">a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb138-9" title="9"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
-<table style="width:85%;">
-<caption>Demostração da diferença entre &amp; e &amp;&amp;.</caption>
-<colgroup>
-<col width="5%" />
-<col width="5%" />
-<col width="11%" />
-<col width="11%" />
-<col width="25%" />
-<col width="26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">a</th>
-<th align="center">b</th>
-<th align="center">a==1</th>
-<th align="center">b==1</th>
-<th align="center">a == 1 &amp; b == 1</th>
-<th align="center">a == 1 &amp;&amp; b == 1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">TRUE</td>
-<td align="center">FALSE</td>
-<td align="center">FALSE</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">TRUE</td>
-<td align="center">TRUE</td>
-<td align="center">TRUE</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">FALSE</td>
-<td align="center">FALSE</td>
-<td align="center">FALSE</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">TRUE</td>
-<td align="center">TRUE</td>
-<td align="center">TRUE</td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
-<p>Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos <code>&amp;</code> ou <code>|</code>. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas.</p>
-</div>
-<div id="funções-any-e-all" class="section level3">
-<h3><span class="header-section-number">7.2.2</span> Funções <code>any</code> e <code>all</code></h3>
-<p>Estas funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
-<a class="sourceLine" id="cb139-2" title="2"><span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># todas as posições são maiores que 0 ?</span></a>
-<a class="sourceLine" id="cb139-3" title="3"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb139-4" title="4"><span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># alguma posição é maior que 0?</span></a>
-<a class="sourceLine" id="cb139-5" title="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
-<ul>
-<li><code>all()</code> verifica se a condição avaliada é válida para todos elementos de um vetor;</li>
-<li><code>any()</code> verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;</li>
-</ul>
-</div>
+<div id="atributos" class="section level2">
+<h2><span class="header-section-number">7.2</span> Atributos</h2>
+<p>Nós podemos adicionar atributos a um vetor, como por exemplo alguma informação sobre os valores daquela variável. A variável <code>prec</code> possui um atributo (<code>names</code>). A função <code>attributes()</code> lista qualquer atributo de uma variável. Vamos criar uma variável para mostrar como podemos adicionar um atributo a um vetor.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">28</span>)</a>
+<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="kw">attributes</span>(temp)</a>
+<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<p>Podemos adicionar um atributo chamado <code>metadados</code> à <code>temp</code> e fornecer um vetor caracter com a função de atribuição de atributo <code>attr()&lt;-</code></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">attr</span>(temp, <span class="st">&quot;metadados&quot;</span>) &lt;-<span class="st"> &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2">temp</a>
+<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="co">#&gt; [1] 27 23 21 18 19 28</span></a>
+<a class="sourceLine" id="cb130-4" data-line-number="4"><span class="co">#&gt; attr(,&quot;metadados&quot;)</span></a>
+<a class="sourceLine" id="cb130-5" data-line-number="5"><span class="co">#&gt; [1] &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span></a></code></pre></div>
+<p>Algumas funções carregarão este atributo adiante, mas outras não, conforme exemplo a seguir.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">(temp_inc &lt;-<span class="st"> </span>temp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="co">#&gt; [1] 28 24 22 19 20 29</span></a>
+<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="co">#&gt; attr(,&quot;metadados&quot;)</span></a>
+<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="co">#&gt; [1] &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span></a>
+<a class="sourceLine" id="cb131-5" data-line-number="5">(temp_inc &lt;-<span class="st"> </span><span class="kw">c</span>(temp_inc, <span class="dv">18</span>))</a>
+<a class="sourceLine" id="cb131-6" data-line-number="6"><span class="co">#&gt; [1] 28 24 22 19 20 29 18</span></a></code></pre></div>
+<p>Há situações de uso válido deste recurso, mas inicialmente é melhor não confiar nele.</p>
 </div>
             </section>
 
@@ -628,7 +414,7 @@ code span.wa { color: #bf0303; } /* Warning */
         </div>
       </div>
 <a href="propriedades.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sequências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="oper-vect.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

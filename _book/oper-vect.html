@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
+  <title>7.3 Operações com vetores | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.1 Pré-requisitos | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.1 Pré-requisitos | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangle.html"/>
-<link rel="next" href="tibble-um-data-frame-aperfeiçoado.html"/>
+<link rel="prev" href="atributos.html"/>
+<link rel="next" href="sequências.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -387,56 +387,253 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pré-requisitos-3" class="section level2">
-<h2><span class="header-section-number">10.1</span> Pré-requisitos</h2>
-<p>O pacote <strong>tidyverse</strong> torna fácil de instalar e carregar os pacotes do <em>tidyverse</em> com apenas uma chamada à função:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
-<p>E da mesma forma carregamos o conjunto de pacotes com:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ──────────────────────────────────────── tidyverse 1.3.0 ──</span></a>
-<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="co">#&gt; ✓ ggplot2 3.3.0     ✓ purrr   0.3.4</span></a>
-<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="co">#&gt; ✓ tibble  3.0.1     ✓ dplyr   0.8.5</span></a>
-<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="co">#&gt; ✓ tidyr   1.0.2     ✓ stringr 1.4.0</span></a>
-<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="co">#&gt; ✓ readr   1.3.1     ✓ forcats 0.5.0</span></a>
-<a class="sourceLine" id="cb317-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ─────────────────────────────────────────── tidyverse_conflicts() ──</span></a>
-<a class="sourceLine" id="cb317-8" data-line-number="8"><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb317-9" data-line-number="9"><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></a></code></pre></div>
-<div class="rmdnote">
-<p>
-Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacotes que foram carregados. À direita são mostradas as configurações e informações sobre o seu sistema operacional. Na parte inferior, há uma mensagem sobre os conflitos entre as funções da base do R (ou de outros pacotes) que tem mesmo nome que as de algum pacote do <em>tidyverse</em>. A função do pacote carregado mais recentemente terá prioridade de uso. No caso acima, a função <code>filter()</code> do <strong>dplyr</strong> sobrepôs a função <code>filter()</code> do pacote <strong>stats</strong> da base do R. Em situações como esta é melhor deixar explícito no seu código a chamada à função usando <code>pacote::funcao()</code>.
-</p>
+<div id="oper-vect" class="section level2">
+<h2><span class="header-section-number">7.3</span> Operações com vetores</h2>
+<p>Como o <code>R</code> é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esta é uma das grandes vantagens do <img src="images/logo_r.png" width="20">.</p>
+<p>Operações aritméticas podem ser aplicadas diretamente entre vetores.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="co"># desvios da prec em relação a média climatológica</span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2">prec <span class="op">-</span><span class="st"> </span>prec_clim</a>
+<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="co">#&gt;  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez </span></a>
+<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="co">#&gt;   70   -5   50  -88  -60  -30  -28  -38  -10  -45 -190   60</span></a>
+<a class="sourceLine" id="cb132-5" data-line-number="5"><span class="co"># anomalia em % relativa</span></a>
+<a class="sourceLine" id="cb132-6" data-line-number="6">prec<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb132-7" data-line-number="7"><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></a>
+<a class="sourceLine" id="cb132-8" data-line-number="8"><span class="co">#&gt; 130.43478  97.56098 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 </span></a>
+<a class="sourceLine" id="cb132-9" data-line-number="9"><span class="co">#&gt;       set       out       nov       dez </span></a>
+<a class="sourceLine" id="cb132-10" data-line-number="10"><span class="co">#&gt;  90.90909  72.72727   5.00000 127.27273</span></a>
+<a class="sourceLine" id="cb132-11" data-line-number="11"><span class="co"># transformação boxcox da prec com alpha = 0.335</span></a>
+<a class="sourceLine" id="cb132-12" data-line-number="12">((prec<span class="op">^</span><span class="fl">0.335</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="fl">0.335</span>)</a>
+<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></a>
+<a class="sourceLine" id="cb132-14" data-line-number="14"><span class="co">#&gt; 17.188869 14.626583 14.916806  3.877403 -2.985075 -2.985075  3.877403  5.422424 </span></a>
+<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="co">#&gt;       set       out       nov       dez </span></a>
+<a class="sourceLine" id="cb132-16" data-line-number="16"><span class="co">#&gt; 10.977168 11.856532  3.470802 16.727944</span></a>
+<a class="sourceLine" id="cb132-17" data-line-number="17"><span class="co"># cte^intervalo</span></a>
+<a class="sourceLine" id="cb132-18" data-line-number="18"><span class="kw">mean</span>(prec)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb132-19" data-line-number="19"><span class="co">#&gt; [1] 10.271319  4.725171  3.204890  2.538929</span></a></code></pre></div>
+<p>Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># velocidades em m s-1</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">(vel_ms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">0.3</span>, <span class="fl">1.4</span>, <span class="fl">2.0</span>))</a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="co">#&gt; [1] 1.5 0.3 1.4 2.0</span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="co"># fator de conversão para km h-1</span></a>
+<a class="sourceLine" id="cb133-5" data-line-number="5">fator_conv &lt;-<span class="st"> </span><span class="fl">3.6</span></a>
+<a class="sourceLine" id="cb133-6" data-line-number="6">vel_ms <span class="op">*</span><span class="st"> </span>fator_conv</a>
+<a class="sourceLine" id="cb133-7" data-line-number="7"><span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></a>
+<a class="sourceLine" id="cb133-8" data-line-number="8"><span class="co"># equivalência</span></a>
+<a class="sourceLine" id="cb133-9" data-line-number="9">fator_conv &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>)</a>
+<a class="sourceLine" id="cb133-10" data-line-number="10">vel_ms <span class="op">*</span><span class="st"> </span>fator_conv</a>
+<a class="sourceLine" id="cb133-11" data-line-number="11"><span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></a></code></pre></div>
+<p>A constante <code>fator_conv = 3.6</code> nesse caso é reciclada 4 vezes (tamanho do vetor <code>vel_ms</code>) e então multiplicada por cada elemento de <code>vetor_dbl</code>. Por isso os resultados no código acima são idênticos. Essa funcionalidade de fazer um vetor do mesmo tamanho de outro é conhecida como <strong>reciclagem</strong>. Se o vetor mais longo não tem tamanho múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> realiza a operação com uma mensagem de aviso.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="co">#&gt;  [1]  1  4  3  8  5 12  7 16  9 20</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#&gt; Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object</span></a>
+<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; length</span></a>
+<a class="sourceLine" id="cb134-6" data-line-number="6"><span class="co">#&gt;  [1]  1  4  9  4 10 18  7 16 27 10</span></a></code></pre></div>
+<p>A reciclagem é um recurso útil, mas também perigoso. Seu código pode ficar mais elegante ou gerar resultados inesperados.</p>
+<p>Operações aritméticas podem ser feitas com vetores lógicos, como nos exemplos abaixo:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="co">#&gt; [1] -1</span></a>
+<a class="sourceLine" id="cb135-3" data-line-number="3">prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb135-4" data-line-number="4"><span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb135-5" data-line-number="5">(prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb135-6" data-line-number="6"><span class="co">#&gt;  [1]  1  2  3  4  0  0  0  0  9 10 11 12</span></a></code></pre></div>
+<div id="comparações" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Comparações</h3>
+<p>Vetores lógicos resultam da comparação de números ou caracteres. A Tabela <a href="oper-vect.html#tab:oper-logic">7.1</a> apresenta os principais operadores lógicos para comparações.</p>
+<table>
+<caption><span id="tab:oper-logic">Tabela 7.1: </span>Operadores Lógicos</caption>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="center">menor que</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="center">menor ou igual a</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="center">maior que</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;=</td>
+<td align="center">maior ou igual</td>
+</tr>
+<tr class="odd">
+<td align="center">==</td>
+<td align="center">idêntico</td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="center">diferente</td>
+</tr>
+<tr class="odd">
+<td align="center">!x</td>
+<td align="center">não é x (negação)</td>
+</tr>
+<tr class="even">
+<td align="center">x | y</td>
+<td align="center">x ou y</td>
+</tr>
+<tr class="odd">
+<td align="center">x &amp; y</td>
+<td align="center">x e y</td>
+</tr>
+<tr class="even">
+<td align="center">isTRUE(x)</td>
+<td align="center">teste se x é verdadeiro</td>
+</tr>
+<tr class="odd">
+<td align="center">%in%</td>
+<td align="center">está contido em</td>
+</tr>
+</tbody>
+</table>
+<p>Este conjunto de operadores permite diversas comparações entre vetores, por exemplo:</p>
+<ul>
+<li>em quais meses <code>prec</code> foram abaixo do normal?</li>
+</ul>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">prec</a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4">prec_clim</a>
+<a class="sourceLine" id="cb136-5" data-line-number="5"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co"># nomeando vetor prec_clim com os nomes do vetor prec</span></a>
+<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)</a>
+<a class="sourceLine" id="cb136-8" data-line-number="8">prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb136-9" data-line-number="9"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
+<a class="sourceLine" id="cb136-10" data-line-number="10"><span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></a></code></pre></div>
+<p>O operador <code>%in%</code> serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># operador está contido em</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="co"># 2:4 são elementos de x?</span></a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="kw">is.element</span>(<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>), prec)</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></a></code></pre></div>
+<p>Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:</p>
+<ul>
+<li><span class="math inline">\(0 &lt; prec \leq 100\)</span></li>
+<li><span class="math inline">\(prec &lt; 50\)</span> ou <span class="math inline">\(prec \geq 150\)</span></li>
+</ul>
+<p>precisamos usar os operadores relacionais:</p>
+<ul>
+<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e&quot;)</p></li>
+<li><p><code>|</code> e <code>||</code> (&quot;ou&quot;)</p></li>
+</ul>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co"># prec entre 0 e 100 mm</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>prec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="co">#&gt; FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="co"># prec abaixo de 50 e acima de 150 mm</span></a>
+<a class="sourceLine" id="cb138-6" data-line-number="6">prec <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">|</span><span class="st"> </span>prec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">150</span></a>
+<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="co">#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE</span></a></code></pre></div>
+<p>A ordem das operações pode ser controlada por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
+<p>A forma dupla (<code>&amp;&amp;</code> ou <code>||</code>) compara somente um elemento de cada lado, enquanto a forma normal (<code>&amp;</code> e <code>|</code>), compara cada elemento dos vetores em cada lado.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span></a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co"># retornando somente um resultado</span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8">a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<table style="width:85%;">
+<caption>Demostração da diferença entre &amp; e &amp;&amp;.</caption>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="11%" />
+<col width="11%" />
+<col width="25%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">a==1</th>
+<th align="center">b==1</th>
+<th align="center">a == 1 &amp; b == 1</th>
+<th align="center">a == 1 &amp;&amp; b == 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos <code>&amp;</code> ou <code>|</code>. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas.</p>
+<div id="testes-de-igualdade" class="section level4">
+<h4><span class="header-section-number">7.3.1.1</span> Testes de igualdade</h4>
+<p>A comparação de igualdade no <img src="images/logo_r.png" width="20"> pode ser meio confusa devido as forma de armazenamento diferentes dos números.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="co">#&gt; [1] 0.3</span></a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="co">#&gt; [1] 0.3</span></a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="fl">0.3</span> <span class="op">==</span><span class="st"> </span><span class="fl">0.3</span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>Tudo normal, mas ao comparar operações com valores decimais, você pode se surpreender:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">(<span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>) <span class="op">==</span><span class="st"> </span>(<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<p>Isso ocorre por imprecisão no final da parte decimal que pode ser arrendondada incorretamente. Isso não acarreta problema na maioria dos cálculos. Para evitar esse problema é melhor comparar os resultados usando a função <code>all.equal()</code>.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">all.equal</span>(</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">  <span class="dt">target =</span> <span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3">  <span class="dt">current =</span> <span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>A <code>all.equal()</code> inclui uma tolerância na comparação (<span class="math inline">\(1,5\times10^{-8}\)</span>) fazendo com aquela imprecisão seja ignorada. Para mais detalhes consulte <code>?all.equal</code>.</p>
 </div>
-<p>Neste capítulo além do <strong>tidyverse</strong> usaremos outros pacotes que já podemos instalar:</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb318-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
-<div id="dados" class="section level3">
-<h3><span class="header-section-number">10.1.1</span> Dados</h3>
-<p>Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de manipulação de dados do <em>tidyverse</em>.</p>
-<ol style="list-style-type: decimal">
-<li>Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> localizadas no estado do Rio Grande do Sul.</li>
-</ol>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb319-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
-<a class="sourceLine" id="cb319-3" data-line-number="3">clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb319-4" data-line-number="4">clima_rs</a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Metadados das estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> relacionadas a tabela de dados <code>clima_rs</code>.</li>
-</ol>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb320-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
-<a class="sourceLine" id="cb320-3" data-line-number="3">metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb320-4" data-line-number="4">metadados_rs</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.</li>
-</ol>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb321-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb321-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
-<a class="sourceLine" id="cb321-4" data-line-number="4">  ),</a>
-<a class="sourceLine" id="cb321-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
-<a class="sourceLine" id="cb321-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
-<a class="sourceLine" id="cb321-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb321-8" data-line-number="8">prec_anual</a></code></pre></div>
+</div>
+<div id="funções-any-e-all" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Funções <code>any</code> e <code>all</code></h3>
+<p>Estas funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># todas as posições são maiores que 0 ?</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="co">#&gt; [1] FALSE</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># alguma posição é maior que 0?</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<ul>
+<li><code>all()</code> verifica se a condição avaliada é válida para todos elementos de um vetor;</li>
+<li><code>any()</code> verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;</li>
+</ul>
 </div>
 </div>
             </section>
@@ -444,8 +641,8 @@ Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacote
           </div>
         </div>
       </div>
-<a href="data-wrangle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tibble-um-data-frame-aperfeiçoado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="atributos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sequências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
