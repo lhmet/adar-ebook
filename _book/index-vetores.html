@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-16" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="sequências.html"/>
-<link rel="next" href="estrutura-dados.html"/>
+<link rel="next" href="replace-vect.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -225,13 +225,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-numéricos"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores numéricos</a></li>
 <li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -389,27 +390,31 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="index-vetores" class="section level2">
 <h2><span class="header-section-number">7.5</span> Indexação de vetores</h2>
-<p>Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. Para extrair ou filtrar elementos de um vetor usamos o operador colchetes, seguindo a sintaxe:</p>
+<p>Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. Para extrair ou filtrar elementos de um vetor usamos o operador colchetes <strong><code>[ ]</code></strong>, seguindo a sintaxe:</p>
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
 <code>vetor[indices]</code>
 </p>
-<p>onde <strong><code>indices</code></strong> representa os índices dos elementos da variável <code>vetor</code> a serem selecionados. O operador <code>[</code> quando aplicado a um vetor retornará sempre um vetor.</p>
-<p>Podemos selecionar partes de um vetor especificando o índice de diferentes formas:</p>
+<p>onde <strong><code>indices</code></strong> representa o vetor com os índices dos elementos da variável <code>vetor</code> a serem selecionados. O operador <strong><code>[</code></strong> quando aplicado a um vetor retornará sempre um vetor.</p>
+<p>Para acessar partes um elemento de um vetor o vetor <code>indices</code> dentro dos colchetes pode ser especificado de diferentes formas:</p>
 <ul>
-<li><p>por posições (números inteiros)</p></li>
-<li><p>por caracteres (nomes dos elementos)</p></li>
-<li><p>por vetores lógicos (testes ou comparações)</p></li>
+<li><p>por posições (vetor numérico)</p></li>
+<li><p>por nomes (vetor de caracteres)</p></li>
+<li><p>por comparações, testes ou condições (vetor lógico)</p></li>
 </ul>
-<div id="indexação-por-vetores-inteiros" class="section level3">
-<h3><span class="header-section-number">7.5.1</span> Indexação por vetores inteiros</h3>
+<div id="indexação-por-vetores-numéricos" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Indexação por vetores numéricos</h3>
 <div id="positivos" class="section level4">
 <h4><span class="header-section-number">7.5.1.1</span> Positivos</h4>
 <p>Para extrairmos a precipitação de janeiro e dezembro do vetor <code>prec</code> podemos usar o seguinte código:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">prec_jd &lt;-<span class="st"> </span>prec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))]</a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">prec_jd</a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">#&gt; jan dez </span></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">#&gt; 300 280</span></a></code></pre></div>
-<p>Similarmente a precipitação dos meses de inverno (JJA) podem ser selecionadas com:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co"># vetor com as posições dos meses de janeiro e dezembro</span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">#&gt; [1]  1 12</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co"># acesso aos valores localizados nas posições 1 e 12 </span></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5">prec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))]</a>
+<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co">#&gt; jan dez </span></a>
+<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="co">#&gt; 300 280</span></a></code></pre></div>
+<p>Passando um vetor numérico entre os colchetes retorna a parte do vetor contendo os elementos daquelas posições.</p>
+<p>Similarmente a precipitação dos meses de inverno (Junho, Julho e Agosto) podem ser selecionadas usando um vetor definido com os índices das posições daqueles meses:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">inds_jja &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span></a>
 <a class="sourceLine" id="cb152-2" data-line-number="2"><span class="co"># vetor de chuva JJA</span></a>
 <a class="sourceLine" id="cb152-3" data-line-number="3">prec[inds_jja]</a>
@@ -418,672 +423,100 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="negativos" class="section level4">
 <h4><span class="header-section-number">7.5.1.2</span> Negativos</h4>
-<p>Se quiséssemos selecionar a precipitação de todos os meses exceto as de janeiro e dezembro poderíamos usar os índices correspondentes aqueles meses, precedidos do sinal negativo.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># exceto o primeiro e ultimo</span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2">prec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))]</a>
-<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">#&gt; fev mar abr mai jun jul ago set out nov </span></a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">#&gt; 200 210  12   0   0  12  22 100 120  10</span></a></code></pre></div>
-<p>Para remover os meses de inverno de <code>prec</code>, faríamos:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"> prec[<span class="op">-</span>inds_jja]</a>
-<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai set out nov dez </span></a>
-<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0 100 120  10 280</span></a></code></pre></div>
+<p>O acesso aos dados de precipitação de janeiro e dezembro do vetor <code>prec</code> poderia ser feita uma lógica complementar. Poderíamos selecionar todos elementos de <code>prec</code> exceto aqueles entre Fevereiro (posição 2) e Novembro (posição 11). Esta frase poderia ser transcrita em código <code>R</code>, simplesmente como <code>-(2:11)</code>. O sinal <code>-</code> precedendo o vetor numérico, exclui o acesso aquelas posições quando usado entre o operador <strong><code>[</code></strong>.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">prec[<span class="op">-</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>)]</a>
+<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="co">#&gt; jan dez </span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">#&gt; 300 280</span></a></code></pre></div>
+<p>Analogamente, os meses de inverno poderiam ser selecionados com:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"> prec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">12</span>)]</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="co">#&gt; jun jul ago </span></a>
+<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="co">#&gt;   0  12  22</span></a></code></pre></div>
 </div>
 </div>
 <div id="indexação-por-nomes" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Indexação por nomes</h3>
-<p>A seleção de partes e um vetor pode ser feita também usando os nomes de seus elementos. As precipitações de janeiro e dezembro poderiam ser extraídas usando:</p>
+<p>A seleção de partes e um vetor pode ser feita também usando os nomes de seus elementos. As precipitações de janeiro e dezembro poderiam ser extraídas usando os nomes daqueles elementos:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">prec[<span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;dez&quot;</span>)]</a>
 <a class="sourceLine" id="cb155-2" data-line-number="2"><span class="co">#&gt; jan dez </span></a>
 <a class="sourceLine" id="cb155-3" data-line-number="3"><span class="co">#&gt; 300 280</span></a></code></pre></div>
+<p>Assim como as precipitações de inverno.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">prec[<span class="kw">c</span>(<span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>)]</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="co">#&gt; jun jul ago </span></a>
+<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="co">#&gt;   0  12  22</span></a></code></pre></div>
 </div>
 <div id="indexação-por-vetores-lógicos" class="section level3">
 <h3><span class="header-section-number">7.5.3</span> Indexação por vetores lógicos</h3>
-<p>Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">inds_log &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb156-2" data-line-number="2">  <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb156-3" data-line-number="3">  <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb156-4" data-line-number="4">  <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb156-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb156-6" data-line-number="6">prec[inds_log]</a>
-<a class="sourceLine" id="cb156-7" data-line-number="7"><span class="co">#&gt; jan abr mai jul set dez </span></a>
-<a class="sourceLine" id="cb156-8" data-line-number="8"><span class="co">#&gt; 300  12   0  12 100 280</span></a></code></pre></div>
+<p>Vamos criar um vetor lógico e usá-lo para a seleção com um vetor lógico dos elementos de <code>prec</code> para Janiro e Dezembro.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">inds_log &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">  <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3">  <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb157-4" data-line-number="4">  <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb157-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb157-6" data-line-number="6">prec[inds_log]</a>
+<a class="sourceLine" id="cb157-7" data-line-number="7"><span class="co">#&gt; jan dez </span></a>
+<a class="sourceLine" id="cb157-8" data-line-number="8"><span class="co">#&gt; 300 280</span></a></code></pre></div>
 <p>Somente os elementos de <code>inds_log</code> correspondentes a <code>TRUE</code> foram selecionados.</p>
-<p>Vamos considerar um vetor lógico (<code>inds_log</code>) para demonstrar como a funcionalidade de <strong>coerção</strong> pode ser útil. Imagine que você queira extrair de <code>prec</code> o primeiro elemento, mas o segundo não, o terceiro elemento sim, o quarto não e assim sucessivamente. Essa seleção intercalada pode ser simplesmente feita com:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">inds_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb157-2" data-line-number="2">prec[inds_log]</a>
-<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="co">#&gt; jan mar mai jul set nov </span></a>
-<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="co">#&gt; 300 210   0  12 100  10</span></a></code></pre></div>
-<p>Uma forma mais prática de filtrar vetores é por comparações. Por exemplo, quando houve precipitação acima de 80 mm?</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">inds_prec_alta &lt;-<span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">80</span></a>
-<a class="sourceLine" id="cb158-2" data-line-number="2">prec[inds_prec_alta]</a>
-<a class="sourceLine" id="cb158-3" data-line-number="3"><span class="co">#&gt; jan fev mar set out dez </span></a>
-<a class="sourceLine" id="cb158-4" data-line-number="4"><span class="co">#&gt; 300 200 210 100 120 280</span></a></code></pre></div>
-<p>Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira. Nós podemos localizar essas ocorrências usando a função <code>which()</code>. Por exemplo, qual a posição dos elementos do vetor <code>inds_prec_alta</code> que são verdadeiros.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">which</span>(inds_prec_alta)</a>
-<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="co">#&gt; jan fev mar set out dez </span></a>
-<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co">#&gt;   1   2   3   9  10  12</span></a></code></pre></div>
-<p>Esses índices também podem ser usados para extrair os valores de precipitação dos meses correspondentes.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">prec[<span class="kw">which</span>(inds_prec_alta)]</a>
+<p>Vetores lógicos são muito úteis quando aproveitamos a funcionalidade de <strong>coerção</strong>. Imagine que você queira extrair de <code>prec</code> o primeiro elemento, mas o segundo não, o terceiro elemento sim, o quarto não e assim sucessivamente. Essa seleção intercalada pode ser simplesmente feita com:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">inds_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">prec[inds_log]</a>
+<a class="sourceLine" id="cb158-3" data-line-number="3"><span class="co">#&gt; jan mar mai jul set nov </span></a>
+<a class="sourceLine" id="cb158-4" data-line-number="4"><span class="co">#&gt; 300 210   0  12 100  10</span></a></code></pre></div>
+<p>Uma forma mais prática de filtrar vetores é por comparações. Por exemplo, quais valores de precipitação foram acima de 80 mm?</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">inds_prec_alta &lt;-<span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">80</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">prec[inds_prec_alta]</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co">#&gt; jan fev mar set out dez </span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="co">#&gt; 300 200 210 100 120 280</span></a></code></pre></div>
+<p>Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma ou várias condições. Entretanto, em alguns casos, o interesse está nas posições do vetor que atendem a condição (onde ela é verdadeira). Nós podemos localizar essas ocorrências usando a função <code>which()</code>. Por exemplo, qual a posição dos elementos do vetor <code>inds_prec_alta</code> que são verdadeiros?</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">which</span>(inds_prec_alta)</a>
 <a class="sourceLine" id="cb160-2" data-line-number="2"><span class="co">#&gt; jan fev mar set out dez </span></a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="co">#&gt; 300 200 210 100 120 280</span></a></code></pre></div>
-<p>FALTANDO
-<code>which.max()</code> e <code>which.min()</code></p>
-</div>
-<div id="replace-vect" class="section level3">
-<h3><span class="header-section-number">7.5.4</span> Substituição de elementos de um vetor</h3>
-<p>Podemos substituir os valores de um vetor usando os mesmos esquemas de indexação vistos na seção anterior. A sintaxe geral para substituir elementos de um vetor por novos valores é:</p>
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
-<code>vetor[indices] &lt;- novos_valores</code>
+<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="co">#&gt;   1   2   3   9  10  12</span></a></code></pre></div>
+<p>A função <code>which()</code> converte um vetor lógico em numérico, somente os índices em que a condição é <code>TRUE</code>.</p>
+<p>A utilidade da <code>which()</code> é mais evidente quando usada para, por exemplo, sabermos qual o mês do 4° caso mais chuvoso.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">which</span>(inds_prec_alta)[<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="co">#&gt; set </span></a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="co">#&gt;   9</span></a>
+<a class="sourceLine" id="cb161-4" data-line-number="4"><span class="kw">names</span>(<span class="kw">which</span>(inds_prec_alta)[<span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="co">#&gt; [1] &quot;set&quot;</span></a>
+<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="co"># ou</span></a>
+<a class="sourceLine" id="cb161-7" data-line-number="7"><span class="kw">names</span>(prec)[<span class="kw">which</span>(inds_prec_alta)[<span class="dv">4</span>]]</a>
+<a class="sourceLine" id="cb161-8" data-line-number="8"><span class="co">#&gt; [1] &quot;set&quot;</span></a></code></pre></div>
+<div class="rmdtip">
+<p>
+A resultado da <code>which()</code> é um vetor numérico e portanto equivale a indexação numérica. Então a selecões abaixo são equivalentes:
 </p>
-<p>Vamos fazer uma cópia do vetor <code>prec</code> para então alterá-lo, fazendo substituição de seus elementos usando as diferentes formas de indexação.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">(prec_alt &lt;-<span class="st"> </span>prec)</a>
-<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
-<ul>
-<li>Por posições: suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.</li>
-</ul>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">inds_jja</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="co">#&gt; [1] 6 7 8</span></a>
-<a class="sourceLine" id="cb162-3" data-line-number="3">prec_alt[inds_jja] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">21</span>, <span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb162-4" data-line-number="4">prec</a>
-<a class="sourceLine" id="cb162-5" data-line-number="5"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb162-6" data-line-number="6"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
-<a class="sourceLine" id="cb162-7" data-line-number="7">prec_alt</a>
-<a class="sourceLine" id="cb162-8" data-line-number="8"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb162-9" data-line-number="9"><span class="co">#&gt; 300 200 210  12   0  NA  21  42 100 120  10 280</span></a></code></pre></div>
-<ul>
-<li>Por nomes: suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.</li>
-</ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1">prec_jd_corr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">250</span>, <span class="dv">208</span>)</a>
-<a class="sourceLine" id="cb163-2" data-line-number="2">prec_alt[<span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;dez&quot;</span>)] &lt;-<span class="st"> </span>prec_jd_corr</a>
-<a class="sourceLine" id="cb163-3" data-line-number="3">prec</a>
-<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
-<a class="sourceLine" id="cb163-6" data-line-number="6">prec_alt</a>
-<a class="sourceLine" id="cb163-7" data-line-number="7"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb163-8" data-line-number="8"><span class="co">#&gt; 250 200 210  12   0  NA  21  42 100 120  10 208</span></a></code></pre></div>
-<ul>
-<li>Por comparação: imagine que você precisa substituir os valores de <code>prec_alt</code> que ficaram em torno de <span class="math inline">\(\pm10 \%\)</span> da média mensal climatológica pelos valores climatológicos.</li>
-</ul>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="co"># limiar em % da normal climatológica</span></a>
-<a class="sourceLine" id="cb164-2" data-line-number="2">limiar &lt;-<span class="st"> </span><span class="dv">10</span> </a>
-<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="co"># anomalias relativas em %</span></a>
-<a class="sourceLine" id="cb164-4" data-line-number="4">(anom_perc &lt;-<span class="st">  </span>(<span class="kw">abs</span>(prec <span class="op">-</span><span class="st"> </span>prec_clim)<span class="op">/</span>prec_clim) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb164-5" data-line-number="5"><span class="co">#&gt;        jan        fev        mar        abr        mai        jun        jul </span></a>
-<a class="sourceLine" id="cb164-6" data-line-number="6"><span class="co">#&gt;  30.434783   2.439024  31.250000  88.000000 100.000000 100.000000  70.000000 </span></a>
-<a class="sourceLine" id="cb164-7" data-line-number="7"><span class="co">#&gt;        ago        set        out        nov        dez </span></a>
-<a class="sourceLine" id="cb164-8" data-line-number="8"><span class="co">#&gt;  63.333333   9.090909  27.272727  95.000000  27.272727</span></a>
-<a class="sourceLine" id="cb164-9" data-line-number="9"><span class="co"># meses com prec em torno de +-10% da média climatol.</span></a>
-<a class="sourceLine" id="cb164-10" data-line-number="10">prec_alt[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb164-11" data-line-number="11"><span class="co">#&gt; fev set </span></a>
-<a class="sourceLine" id="cb164-12" data-line-number="12"><span class="co">#&gt; 200 100</span></a>
-<a class="sourceLine" id="cb164-13" data-line-number="13"><span class="co"># substituição pela prec mensal climatol. </span></a>
-<a class="sourceLine" id="cb164-14" data-line-number="14">prec_alt[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>] &lt;-<span class="st"> </span>prec_clim[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb164-15" data-line-number="15">prec_clim</a>
-<a class="sourceLine" id="cb164-16" data-line-number="16"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb164-17" data-line-number="17"><span class="co">#&gt; 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
-<a class="sourceLine" id="cb164-18" data-line-number="18">prec_alt</a>
-<a class="sourceLine" id="cb164-19" data-line-number="19"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb164-20" data-line-number="20"><span class="co">#&gt; 250 205 210  12   0  NA  21  42 110 120  10 208</span></a></code></pre></div>
-<p>A função <code>abs()</code> obém o valor absoluto ou módulo de um vetor.</p>
+<p>
+<code>prec[which(inds_prec_alta)]</code>
+</p>
+<p>
+<code>prec[inds_prec_alta]</code>
+</p>
+<p>
+Quando é melhor usar uma ou outra opção? Note que o resultado de <code>which(inds_prec_alta)</code> armazena somente os índices que satisfazem a condição, enquanto que o resultado de <code>inds_prec_alta</code> é um vetor lógico de mesmo tamanho que <code>prec</code>. Então, se estiver trabalhando com <strong>big data</strong> (p.ex.: um vetor com milhões de elementos) em termos de eficiência de uso da memória a <code>which()</code> é melhor opção.
+</p>
 </div>
-<div id="lidando-com-com-dados-faltantes" class="section level3">
-<h3><span class="header-section-number">7.5.5</span> Lidando com com dados faltantes</h3>
-<p>Dados faltantes (<code>NA</code>s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituílos se necessários.</p>
-<p>Vamos substituir alguns valores da <code>prec_alt</code> por <code>NA</code> para poder tratar de dados faltantes usando as diferentes funcionalidades que o <img src="images/logo_r.png" width="20"> oferece para isso.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1">prec_alt[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">11</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2">prec_alt</a>
-<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="co">#&gt; 250 205  NA  NA   0  NA  21  42 110 120  NA 208</span></a></code></pre></div>
-<div id="identificação-e-remoção-de-nas" class="section level4">
-<h4><span class="header-section-number">7.5.5.1</span> Identificação e remoção de <code>NA</code>s</h4>
-<p>Para identificar <code>NA</code>s em um vetor, a função específica para isso é a <code>is.na()</code>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">is.na</span>(prec_alt)</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="co">#&gt; FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE</span></a></code></pre></div>
-<p>Também podemos usá-la em combinaçãocom a função <code>which()</code> para obter os índices dos elementos faltantes.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">which</span>(<span class="kw">is.na</span>(prec_alt))</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co">#&gt; mar abr jun nov </span></a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt;   3   4   6  11</span></a></code></pre></div>
-<p>Novos usuários do R tentam identificar dados faltantes com a expressão:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">prec_alt <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co">#&gt;  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA</span></a></code></pre></div>
-<p>O que produzirá somente <code>NA</code>s mesmo que o vetor testado possua algum <code>NA</code>. Isso ocorre pela regra de qualquer operação com <code>NA</code>s resulta em <code>NA</code>s.</p>
-<p>Para verificar se há algum dado faltante em um vetor usamos a função <code>anyNA()</code> e para quantificar o total de observações faltantes combinamos as expressões <code>sum()</code> e <code>is.na()</code>:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">anyNA</span>(prec_alt)</a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="kw">sum</span>(<span class="kw">is.na</span>(prec_alt))</a>
-<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
-<p>A remoção dos elementos faltantes de um vetor é moleza. É só usar indexação lógica:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1">prec_alt[<span class="op">!</span><span class="kw">is.na</span>(prec_alt)]</a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="co">#&gt; jan fev mai jul ago set out dez </span></a>
-<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="co">#&gt; 250 205   0  21  42 110 120 208</span></a>
-<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="co"># outra forma equivalente</span></a>
-<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="co">#prec_alt[-which(is.na(prec_alt))]</span></a></code></pre></div>
-<p>Uma a alternativa mais sofisticada é <code>na.omit()</code> que não só remove os valores faltantes, mas como também guarda onde haviam dados faltantes. Esta informação é armazenada na lista de atributos.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">prec_alt_sem_falt &lt;-<span class="st"> </span><span class="kw">na.omit</span>(prec_alt)</a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="kw">attributes</span>(prec_alt_sem_falt)</a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="co">#&gt; $names</span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="co">#&gt; [1] &quot;jan&quot; &quot;fev&quot; &quot;mai&quot; &quot;jul&quot; &quot;ago&quot; &quot;set&quot; &quot;out&quot; &quot;dez&quot;</span></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb171-6" data-line-number="6"><span class="co">#&gt; $na.action</span></a>
-<a class="sourceLine" id="cb171-7" data-line-number="7"><span class="co">#&gt; mar abr jun nov </span></a>
-<a class="sourceLine" id="cb171-8" data-line-number="8"><span class="co">#&gt;   3   4   6  11 </span></a>
-<a class="sourceLine" id="cb171-9" data-line-number="9"><span class="co">#&gt; attr(,&quot;class&quot;)</span></a>
-<a class="sourceLine" id="cb171-10" data-line-number="10"><span class="co">#&gt; [1] &quot;omit&quot;</span></a></code></pre></div>
-<p>As posições originais dos dados faltantes descartados podem ser obtidas com:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">attr</span>(</a>
-<a class="sourceLine" id="cb172-2" data-line-number="2">  <span class="dt">x =</span> prec_alt_sem_falt,</a>
-<a class="sourceLine" id="cb172-3" data-line-number="3">  <span class="dt">which =</span> <span class="st">&quot;na.action&quot;</span></a>
-<a class="sourceLine" id="cb172-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb172-5" data-line-number="5"><span class="co">#&gt; mar abr jun nov </span></a>
-<a class="sourceLine" id="cb172-6" data-line-number="6"><span class="co">#&gt;   3   4   6  11 </span></a>
-<a class="sourceLine" id="cb172-7" data-line-number="7"><span class="co">#&gt; attr(,&quot;class&quot;)</span></a>
-<a class="sourceLine" id="cb172-8" data-line-number="8"><span class="co">#&gt; [1] &quot;omit&quot;</span></a></code></pre></div>
-<p>Quando trabalhamos com vetores grandes que contenham váriás falhas é útil saber a posição da sequência de dados consecutivos válidos mais longa. A função <code>na.contiguous()</code> retornará somente elementos daquela sequência.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">prec_alt_val_long &lt;-<span class="st"> </span><span class="kw">na.contiguous</span>(prec_alt)</a>
-<a class="sourceLine" id="cb173-2" data-line-number="2">prec_alt_val_long</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="co">#&gt; jul ago set out </span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">#&gt;  21  42 110 120 </span></a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="co">#&gt; attr(,&quot;na.action&quot;)</span></a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="co">#&gt; [1]  1  2  3  4  5  6 11 12</span></a>
-<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="co">#&gt; attr(,&quot;class&quot;)</span></a>
-<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="co">#&gt; [1] &quot;omit&quot;</span></a>
-<a class="sourceLine" id="cb173-9" data-line-number="9"><span class="co">#&gt; attr(,&quot;tsp&quot;)</span></a>
-<a class="sourceLine" id="cb173-10" data-line-number="10"><span class="co">#&gt; [1]  7 10  1</span></a></code></pre></div>
-</div>
-<div id="indexação-com-nas" class="section level4">
-<h4><span class="header-section-number">7.5.5.2</span> Indexação com <code>NA</code>s</h4>
-<p>Suponha que queremos extrair um conjunto de elementos de <code>prec_clim</code> baseado em <code>inds_na</code>.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
-<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="co">#&gt;  TRUE FALSE    NA    NA FALSE    NA FALSE FALSE FALSE FALSE    NA FALSE</span></a></code></pre></div>
-<p>O interesse é extrair os valores de <code>prec_clim</code> quando a <code>prec_alt</code> superou 220 mm. A expressão para essa seleção é:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">prec_clim[prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>]</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="co">#&gt;  jan &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; </span></a>
-<a class="sourceLine" id="cb175-3" data-line-number="3"><span class="co">#&gt;  230   NA   NA   NA   NA</span></a></code></pre></div>
-<p>o resultado da filtragem foi um vetor com o resultado da condição de prec_clim para qual <code>prec_alt &gt; 220</code> e também <code>NA</code>s. Isto é um resultado que provavelmente ninguém deseja.</p>
-<p>Se nós queremos extrair os valores de <code>prec_clim</code> para os quais <code>prec_alt</code> <strong>não é faltante</strong> e <strong>também superior a 220</strong> nós devemos usar a seguinte expressão:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">prec_clim[<span class="op">!</span><span class="kw">is.na</span>(prec_alt) <span class="op">&amp;</span><span class="st"> </span>prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>]</a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="co">#&gt; jan </span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">#&gt; 230</span></a></code></pre></div>
-<p>A moral da história aqui é que na prática quando você tem <code>NA</code>s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o <img src="images/logo_r.png" width="20"> pode retornar algo diferente do que era esperado.</p>
-</div>
-<div id="efeito-de-nas-em-funções" class="section level4">
-<h4><span class="header-section-number">7.5.5.3</span> Efeito de <code>NA</code>s em funções</h4>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">summary</span>(prec_alt)</a>
-<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="co">#&gt;    0.00   36.75  115.00  119.50  205.75  250.00       4</span></a></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">max</span>()</a>
-<a class="sourceLine" id="cb178-2" data-line-number="2"><span class="kw">min</span>()</a>
-<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="kw">sum</span>()</a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="kw">cumsum</span>()</a>
-<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="kw">diff</span>()</a></code></pre></div>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">na.approx</span>()</a></code></pre></div>
+<div class="rmdimportant">
+<p>
+Para localizar valores extremos em um vetor podemos usar as funções <code>which.max()</code> e <code>which.min()</code> que fornecem respectivamente, a posição do valor máximo e mínimo no vetor. Elas são versões eficientes dos códigos <code>which(x == max(x))</code> e <code>which(x == min(x))</code>. Contudo, há uma diferença entre elas que pode ser verificada pela comparação dos resultados das instruções:
+</p>
+<p>
+<code>which.min(prec)</code>
+</p>
+<p>
+<code>which(prec == min(prec))</code>
+</p>
+<p>
+A primeira seleciona o primeiro índice para o qual <code>prec</code> tem seu mínimo (5° elemento), enquanto a segunda retorna todos os índices correspondentes ao mínimo (5° e 6° elemento).
+</p>
 </div>
 </div>
-<div id="dados-nulos" class="section level3">
-<h3><span class="header-section-number">7.5.6</span> Dados Nulos (<code>NULL</code>)</h3>
-<p>O <code>NULL</code> é um tipo especial de dado no <img src="images/logo_r.png" width="20">. Ele é um vetor de tamanho zero.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">vetor_nulo1 &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2">vetor_nulo1</a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co">#&gt; NULL</span></a>
-<a class="sourceLine" id="cb180-4" data-line-number="4"><span class="kw">length</span>(vetor_nulo1)</a>
-<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
-<p>Um vetor nulo também pode ser definido com:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">vetor_nulo2 &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb181-2" data-line-number="2">vetor_nulo2</a>
-<a class="sourceLine" id="cb181-3" data-line-number="3"><span class="co">#&gt; NULL</span></a></code></pre></div>
-<p>Note que um vetor ser nulo não significa que ele não exista. Ou seja, a atribuição de <code>NULL</code> a uma variável não apaga a variável de seu ambiente de trabalho. A existência de uma variável pode ser verificada com a função <code>exists()</code>, na qual o argumento <code>x</code> deve ser passado como caracter.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">exists</span>(<span class="dt">x =</span> <span class="st">&quot;vetor_nulo1&quot;</span>)</a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
-<p>Como o <code>NULL</code> é um vetor vazio, seu uso explícito dentro de um vetor não conta. Assim, qualquer operação com <code>NULL</code> resulta em um vetor vazio.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">(vetor_elem_nulo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NULL</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co">#&gt; [1] 1 2 4</span></a>
-<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="kw">length</span>(vetor_elem_nulo)</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4"><span class="co">#&gt; [1] 3</span></a>
-<a class="sourceLine" id="cb183-5" data-line-number="5">vetor_elem_nulo <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="co">#&gt; numeric(0)</span></a></code></pre></div>
-<p>Em algumas situações você pode querer anular um atributo de um vetor, como os nomes. Eventualmente até mesmo o próprio vetor.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">prec</a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
-<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="kw">names</span>(prec) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb184-5" data-line-number="5">prec</a>
-<a class="sourceLine" id="cb184-6" data-line-number="6"><span class="co">#&gt;  [1] 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
-<a class="sourceLine" id="cb184-7" data-line-number="7">prec &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb184-8" data-line-number="8">prec</a>
-<a class="sourceLine" id="cb184-9" data-line-number="9"><span class="co">#&gt; NULL</span></a></code></pre></div>
 </div>
-<div id="exercícios-1" class="section level3">
-<h3><span class="header-section-number">7.5.7</span> Exercícios</h3>
-<ol style="list-style-type: decimal">
-<li>Crie um vetor com os valores de <span class="math inline">\(e^{x}cos{x}\)</span> para os valores de <span class="math inline">\(x = (3, 3.1, 3.2, ..., 6\)</span>).</li>
-</ol>
-<hr />
-<ol start="2" style="list-style-type: decimal">
-<li>Crie os seguintes vetores.
-<ol style="list-style-type: lower-alpha">
-<li><p><span class="math inline">\((0.1^{3}\times0.2^{1}, 0.1^{6}\times0.2^{4}, ..., 0.1^{36}\times0.2^{34})\)</span></p></li>
-<li><p><span class="math inline">\((2, \frac{2^{2}}{2}, \frac{2^{3}}{3}, ..., \frac{2^{25}}{25})\)</span></p></li>
-</ol></li>
-</ol>
-<hr />
-<ol start="3" style="list-style-type: decimal">
-<li>Reproduza a criação do vetor dias da semana (<code>dds</code>) mostrado abaixo.</li>
-</ol>
-<hr />
-<ol start="4" style="list-style-type: decimal">
-<li>Escreva os códigos necessários para determinar:</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>o vetor lógico indicando quais números são pares na sequência de valores 85, 79, 70, 6, 32, 8, 17, 93, 81, 76. Calcule o total de números ímpares.</p></li>
-<li><p>Se um ano é bissexto. Verifique os resultados de seu código para os anos 1974, 1968, 1959, 1895, 1921, 1897, 1906, 1982, 1970, 1965. Calcule o total de anos com 365 dias.</p></li>
-</ol>
-<hr />
-<ol start="5" style="list-style-type: decimal">
-<li>Quais códigos para gerar os seguintes dados:</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>[1] -20   0  10  20  30  40</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>[1] -1.00 -0.75 -0.50 -0.25  0.00  0.25  0.50  0.75  1.00</code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code> [1] -3.1415927 -2.5703940 -1.9991953 -1.4279967 -0.8567980 -0.2855993
- [7]  0.2855993  0.8567980  1.4279967  1.9991953  2.5703940  3.1415927</code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code> [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5</code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code> [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
-<ol start="6" style="list-style-type: lower-alpha">
-<li><p>Dica: lembre da função <code>rep()</code> e seus argumentos <code>each</code> e <code>times</code>. Experimente usar vetores nesses argumentos.</p></li>
-<li><p>Como a partir da matriz gerada na letra <em>f</em> você pode obter a matriz abaixo?</p></li>
-<li><p>Qual o código para converter a matriz gerada na letra <em>g</em> no vetor abaixo?</p></li>
-</ol>
-<hr />
-<ol start="6" style="list-style-type: decimal">
-<li><p>Como obter as seguintes sequências a partir dos vetores fornecidos usando a mesma solução para todos casos?</p>
-<ol style="list-style-type: lower-alpha">
-<li>v3 = (10, 0.5, 8, 4)</li>
-</ol></li>
-</ol>
-<pre><code>[1] 1 2 3 4</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>v2 = (10, 0.5)</li>
-</ol>
-<pre><code>[1] 1 2</code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>v1 = (10)</li>
-</ol>
-<pre><code>[1] 1</code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>v0 = ()</li>
-</ol>
-<pre><code>integer(0)</code></pre>
-<hr />
-<ol start="7" style="list-style-type: decimal">
-<li><ol style="list-style-type: lower-alpha">
-<li>Calcule a soma cumulativa dos números 2, 3, 4, 5, 6. Dica: ver a função <code>cumsum()</code>. (b) Calcule a soma cumulativa destes números mas na ordem reversa. Dica: ver a função <code>rev()</code>.</li>
-</ol></li>
-</ol>
-<hr />
-<ol start="8" style="list-style-type: decimal">
-<li>Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS.</li>
-</ol>
-<table>
-<thead>
-<tr class="header">
-<th align="center">hora</th>
-<th align="center">prec</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">9</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="even">
-<td align="center">10</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="odd">
-<td align="center">11</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="even">
-<td align="center">12</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="odd">
-<td align="center">13</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="even">
-<td align="center">14</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="odd">
-<td align="center">15</td>
-<td align="center">0.0</td>
-</tr>
-<tr class="even">
-<td align="center">16</td>
-<td align="center">21.4</td>
-</tr>
-<tr class="odd">
-<td align="center">17</td>
-<td align="center">41.2</td>
-</tr>
-<tr class="even">
-<td align="center">18</td>
-<td align="center">2.6</td>
-</tr>
-<tr class="odd">
-<td align="center">19</td>
-<td align="center">1.0</td>
-</tr>
-<tr class="even">
-<td align="center">20</td>
-<td align="center">0.4</td>
-</tr>
-<tr class="odd">
-<td align="center">21</td>
-<td align="center">0.0</td>
-</tr>
-</tbody>
-</table>
-<ol style="list-style-type: lower-alpha">
-<li><p>Como seria o código para determinar a soma cumulativa da precipitação horária? Salve seu resultado em um vetor chamado <code>prec_acum</code>. Interprete o resultado <code>c(NA, diff(prec_acum))</code>.</p></li>
-<li><p>Mostre o código para encontrar o horário de ocorrência da precipitação máxima?</p></li>
-<li><p>Mostre o código para obter a hora de início e fim do evento de precipitação severa. Qual foi a duração do evento?</p></li>
-<li><p>Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?</p></li>
-</ol>
-<hr />
-<ol start="9" style="list-style-type: decimal">
-<li>EXERCÍCIO RESOLVIDO. Considere o vetor <code>x</code> definido pelos números descritos abaixo. Mostre como encontrar o primeiro número positivo localizado após o último número negativo. Por exemplo, seja o vetor <code>z</code> definido pelos valores (11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14). Os valores selecionados seriam 5 e 30.</li>
-</ol>
-<p>Um possível código para chegar a esse resultado seria:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb194-2" data-line-number="2">  <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">-15</span>, <span class="dv">-10</span>, <span class="dv">-22</span>, <span class="dv">-8</span>, <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb194-3" data-line-number="3">  <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">-3</span>, <span class="dv">-1</span>, <span class="dv">30</span>, <span class="dv">14</span></a>
-<a class="sourceLine" id="cb194-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb194-5" data-line-number="5"><span class="co"># x1 &lt;- ifelse(x &gt; 0, 1, 0)</span></a>
-<a class="sourceLine" id="cb194-6" data-line-number="6"><span class="co"># cópia de x</span></a>
-<a class="sourceLine" id="cb194-7" data-line-number="7">x01 &lt;-<span class="st"> </span>x</a>
-<a class="sourceLine" id="cb194-8" data-line-number="8"><span class="co"># substituo x positivo por 1 e x negativo por 0</span></a>
-<a class="sourceLine" id="cb194-9" data-line-number="9">x01[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb194-10" data-line-number="10">x01[<span class="op">!</span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb194-11" data-line-number="11">res &lt;-<span class="st"> </span>x[<span class="kw">which</span>(<span class="kw">diff</span>(x01) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb194-12" data-line-number="12">res</a>
-<a class="sourceLine" id="cb194-13" data-line-number="13"><span class="co">#&gt; [1]  5 30</span></a></code></pre></div>
-<hr />
-<ol start="10" style="list-style-type: decimal">
-<li>Mostre o código para resolver as seguintes tarefas. Considere o vetor <code>prec</code> com valores de precipitação diária indicado abaixo.</li>
-</ol>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">prec &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb195-2" data-line-number="2">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="dv">0</span>, <span class="fl">0.01</span>, <span class="fl">0.75</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-3" data-line-number="3">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.35</span>, <span class="fl">0.08</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.31</span>, <span class="dv">0</span>, <span class="fl">3.57</span>, <span class="fl">12.17</span>, <span class="dv">0</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-4" data-line-number="4">  <span class="dv">0</span>, <span class="fl">0.04</span>, <span class="fl">3.16</span>, <span class="dv">0</span>, <span class="fl">0.95</span>, <span class="fl">0.79</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">3.51</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.16</span>,</a>
-<a class="sourceLine" id="cb195-5" data-line-number="5">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">8.16</span>, <span class="fl">0.54</span>, <span class="fl">4.39</span>, <span class="fl">1.24</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">2.43</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-6" data-line-number="6">  <span class="dv">0</span>, <span class="fl">7.18</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.26</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.28</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.09</span>, <span class="fl">0.38</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-7" data-line-number="7">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.51</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.67</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.15</span>, <span class="dv">0</span>, <span class="fl">0.82</span>,</a>
-<a class="sourceLine" id="cb195-8" data-line-number="8">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.37</span>, <span class="dv">0</span>, <span class="fl">0.58</span>, <span class="fl">4.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">7.68</span>,</a>
-<a class="sourceLine" id="cb195-9" data-line-number="9">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.37</span>, <span class="dv">0</span>, <span class="fl">1.56</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.34</span>, <span class="fl">0.48</span>, <span class="dv">0</span>, <span class="fl">4.21</span>, <span class="fl">2.28</span>, <span class="fl">4.3</span>,</a>
-<a class="sourceLine" id="cb195-10" data-line-number="10">  <span class="dv">0</span>, <span class="fl">3.38</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">7.28</span>, <span class="dv">0</span>, <span class="fl">4.89</span>, <span class="fl">3.91</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">2.93</span>,</a>
-<a class="sourceLine" id="cb195-11" data-line-number="11">  <span class="dv">0</span>, <span class="fl">2.49</span>, <span class="fl">0.77</span>, <span class="dv">0</span>, <span class="fl">2.9</span>, <span class="fl">3.53</span>, <span class="fl">0.83</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.94</span>, <span class="fl">0.59</span>, <span class="dv">0</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-12" data-line-number="12">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.04</span>, <span class="dv">0</span>, <span class="fl">0.65</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">6.23</span>, <span class="fl">0.09</span>, <span class="dv">0</span>, <span class="fl">0.66</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">4.42</span>,</a>
-<a class="sourceLine" id="cb195-13" data-line-number="13">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.84</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.09</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.08</span>, <span class="dv">0</span>, <span class="fl">0.66</span>, <span class="dv">0</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb195-14" data-line-number="14">  <span class="dv">0</span>, <span class="fl">0.06</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">3.28</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">5.69</span>, <span class="fl">0.8</span>, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb195-15" data-line-number="15">)</a></code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li><p>Quantos dias ocorreram no intervalo 0 &lt; prec &lt; 0.25?</p></li>
-<li><p>Substitua os valores de chuva registrados no intervalo 0 &lt; prec &lt; 0.25 por 0.</p></li>
-<li><p>Crie um vetor denominado <code>prec01</code> indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro.</p></li>
-<li><p>Qual a probabilidade de chuva dessa série de precipitação diária?</p></li>
-<li><p>Qual a probabilidade de chover dois dias consecutivos (<code>p11</code>)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (<code>p01 + p10</code>)?</p></li>
-<li><p>Determine a duração de cada evento chuvoso (número de dias consecutivos).</p></li>
-</ol>
-<blockquote>
-<p>Dica: comece encontrando a posição do início do evento e depois a posição final do envento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.</p>
-</blockquote>
-<p>O resultado esperado é um vetor que identifique o evento e sua duração.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">duracao &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">evento1 =</span> <span class="dv">1</span>, <span class="dt">evento2 =</span> <span class="dv">1</span>, <span class="dt">evento3 =</span> <span class="dv">1</span>, <span class="dt">evento4 =</span> <span class="dv">1</span>, <span class="dt">evento5 =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb196-2" data-line-number="2"><span class="dt">evento6 =</span> <span class="dv">1</span>, <span class="dt">evento7 =</span> <span class="dv">2</span>, <span class="dt">evento8 =</span> <span class="dv">1</span>, <span class="dt">evento9 =</span> <span class="dv">4</span>, <span class="dt">evento10 =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb196-3" data-line-number="3"><span class="dt">evento11 =</span> <span class="dv">1</span>, <span class="dt">evento12 =</span> <span class="dv">1</span>, <span class="dt">evento13 =</span> <span class="dv">1</span>, <span class="dt">evento14 =</span> <span class="dv">1</span>, <span class="dt">evento15 =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb196-4" data-line-number="4"><span class="dt">evento16 =</span> <span class="dv">1</span>, <span class="dt">evento17 =</span> <span class="dv">1</span>, <span class="dt">evento18 =</span> <span class="dv">1</span>, <span class="dt">evento19 =</span> <span class="dv">2</span>, <span class="dt">evento20 =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb196-5" data-line-number="5"><span class="dt">evento21 =</span> <span class="dv">1</span>, <span class="dt">evento22 =</span> <span class="dv">1</span>, <span class="dt">evento23 =</span> <span class="dv">2</span>, <span class="dt">evento24 =</span> <span class="dv">3</span>, <span class="dt">evento25 =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb196-6" data-line-number="6"><span class="dt">evento26 =</span> <span class="dv">1</span>, <span class="dt">evento27 =</span> <span class="dv">2</span>, <span class="dt">evento28 =</span> <span class="dv">1</span>, <span class="dt">evento29 =</span> <span class="dv">2</span>, <span class="dt">evento30 =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb196-7" data-line-number="7"><span class="dt">evento31 =</span> <span class="dv">2</span>, <span class="dt">evento32 =</span> <span class="dv">1</span>, <span class="dt">evento33 =</span> <span class="dv">1</span>, <span class="dt">evento34 =</span> <span class="dv">1</span>, <span class="dt">evento35 =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb196-8" data-line-number="8"><span class="dt">evento36 =</span> <span class="dv">1</span>, <span class="dt">evento37 =</span> <span class="dv">1</span>, <span class="dt">evento38 =</span> <span class="dv">1</span>, <span class="dt">evento39 =</span> <span class="dv">3</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">duracao</a>
-<a class="sourceLine" id="cb197-2" data-line-number="2"><span class="co">#&gt;  evento1  evento2  evento3  evento4  evento5  evento6  evento7  evento8 </span></a>
-<a class="sourceLine" id="cb197-3" data-line-number="3"><span class="co">#&gt;        1        1        1        1        2        1        2        1 </span></a>
-<a class="sourceLine" id="cb197-4" data-line-number="4"><span class="co">#&gt;  evento9 evento10 evento11 evento12 evento13 evento14 evento15 evento16 </span></a>
-<a class="sourceLine" id="cb197-5" data-line-number="5"><span class="co">#&gt;        4        1        1        1        1        1        1        1 </span></a>
-<a class="sourceLine" id="cb197-6" data-line-number="6"><span class="co">#&gt; evento17 evento18 evento19 evento20 evento21 evento22 evento23 evento24 </span></a>
-<a class="sourceLine" id="cb197-7" data-line-number="7"><span class="co">#&gt;        1        1        2        1        1        1        2        3 </span></a>
-<a class="sourceLine" id="cb197-8" data-line-number="8"><span class="co">#&gt; evento25 evento26 evento27 evento28 evento29 evento30 evento31 evento32 </span></a>
-<a class="sourceLine" id="cb197-9" data-line-number="9"><span class="co">#&gt;        1        1        2        1        2        3        2        1 </span></a>
-<a class="sourceLine" id="cb197-10" data-line-number="10"><span class="co">#&gt; evento33 evento34 evento35 evento36 evento37 evento38 evento39 </span></a>
-<a class="sourceLine" id="cb197-11" data-line-number="11"><span class="co">#&gt;        1        1        1        1        1        1        3</span></a></code></pre></div>
-<hr />
-<ol start="11" style="list-style-type: decimal">
-<li>EXERCÍCIO RESOLVIDO. Dado o vetor <code>temp</code> mostrado abaixo.</li>
-</ol>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb198-2" data-line-number="2">  <span class="ot">NA</span>, <span class="ot">NA</span>, 27L, 7L, 4L, 0L, 26L, 15L, 25L, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, 6L,</a>
-<a class="sourceLine" id="cb198-3" data-line-number="3">  29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>,</a>
-<a class="sourceLine" id="cb198-4" data-line-number="4">  <span class="ot">NA</span>, 19L</a>
-<a class="sourceLine" id="cb198-5" data-line-number="5">)</a></code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li>Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?</li>
-</ol>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="co"># vetor lógico de falhas</span></a>
-<a class="sourceLine" id="cb199-2" data-line-number="2">eh_falha &lt;-<span class="st"> </span><span class="kw">is.na</span>(temp)</a>
-<a class="sourceLine" id="cb199-3" data-line-number="3"><span class="co"># soma cumulativa de falhas</span></a>
-<a class="sourceLine" id="cb199-4" data-line-number="4">acum_falhas &lt;-<span class="st"> </span><span class="kw">cumsum</span>(eh_falha)</a>
-<a class="sourceLine" id="cb199-5" data-line-number="5"><span class="co"># calculando soma a partir do início da falha</span></a>
-<a class="sourceLine" id="cb199-6" data-line-number="6">seq_falhas &lt;-<span class="st"> </span>acum_falhas <span class="op">-</span><span class="st"> </span><span class="kw">cummax</span>((<span class="op">!</span>eh_falha) <span class="op">*</span><span class="st"> </span>acum_falhas)</a>
-<a class="sourceLine" id="cb199-7" data-line-number="7">seq_falhas</a>
-<a class="sourceLine" id="cb199-8" data-line-number="8"><span class="co">#&gt;  [1] 1 2 0 0 0 0 0 0 0 1 2 3 4 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 0</span></a></code></pre></div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Como a partir do vetor resultante em <em>11.b</em> obter um vetor cujo os valores
-dentro das falhas indique a ordem de ocorrência da falha.</li>
-</ol>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">(ordem_falhas &lt;-<span class="st"> </span><span class="kw">cumsum</span>(seq_falhas <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">as.integer</span>(eh_falha <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="co">#&gt;  [1] 1 1 0 0 0 0 0 0 0 2 2 2 2 0 0 0 0 0 0 0 0 0 3 3 3 3 3 3 3 0</span></a></code></pre></div>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Qual o tamanho de cada falha.</li>
-</ol>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">pos_fim_falha &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">diff</span>(ordem_falhas)) <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb201-2" data-line-number="2">(tamanho_falhas &lt;-<span class="st"> </span>seq_falhas[pos_fim_falha])</a>
-<a class="sourceLine" id="cb201-3" data-line-number="3"><span class="co">#&gt; [1] 2 4 7</span></a>
-<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="co"># names(tamanho_falhas) &lt;- paste0(&quot;falha&quot;, unique(ordem_falhas[ordem_falhas &gt; 0]))</span></a>
-<a class="sourceLine" id="cb201-5" data-line-number="5"><span class="kw">names</span>(tamanho_falhas) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;falha&quot;</span>, <span class="kw">seq_along</span>(tamanho_falhas))</a>
-<a class="sourceLine" id="cb201-6" data-line-number="6">tamanho_falhas</a>
-<a class="sourceLine" id="cb201-7" data-line-number="7"><span class="co">#&gt; falha1 falha2 falha3 </span></a>
-<a class="sourceLine" id="cb201-8" data-line-number="8"><span class="co">#&gt;      2      4      7</span></a></code></pre></div>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Determine o tamanho da maior falha?</li>
-</ol>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">(max_falha &lt;-<span class="st"> </span><span class="kw">max</span>(tamanho_falhas))</a>
-<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="co">#&gt; [1] 7</span></a></code></pre></div>
-<hr />
-<ol start="12" style="list-style-type: decimal">
-<li>Para os valores de velocidade (<span class="math inline">\(V_h\)</span>) e a direção do vento (<span class="math inline">\(\theta\)</span>) (na convenção meteorológica):</li>
-</ol>
-<p><span class="math inline">\(V_h\)</span> = (10, 10, 10, 10, 14.142, 14.142, 14.142, 14.142, 0)</p>
-<p><span class="math inline">\(\theta\)</span> = (270, 180, 360, 90, 225, 315, 135, 45, 0)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Determine as componentes zonal e meridional do vento.</li>
-</ol>
-<p><span class="math display">\[u = -V_{h} \cdot sin(\theta_{rad})\]</span>
-<span class="math display">\[v = -V_{h} \cdot cos(\theta_{rad})\]</span></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Faça os cálculos necessários para reconstruir <span class="math inline">\(V_h\)</span> e <span class="math inline">\(\theta\)</span> a partir de <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span> determinados no item <strong>a</strong>. Por convenção, a direção do vento <span class="math inline">\(\theta\)</span> em condições calmas (<span class="math inline">\(V_h\)</span> &lt; 0.5 m s<sup>-1</sup>) é assumida como 0°.</li>
-</ol>
-<p><span class="math display">\[V_{h} = \sqrt{(u^2 + v^2)}\]</span>
-<span class="math display">\[\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}\]</span>
-<span class="math display">\[
-\theta = \left\{\begin{matrix}
-\theta_{mat} + 360 &amp; se &amp; \theta_{mat} &lt; 0 \\ 
-0 &amp; se &amp; u = 0,\:  v = 0 \: \:  ou \: \:  V_{h} &lt; 0.5\\
-\end{matrix}\right.
-\]</span></p>
-<p>Como resultado monte um dataframe com todas variáveis derivadas.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="right">u</th>
-<th align="right">v</th>
-<th align="right">ws</th>
-<th align="right">wd</th>
-<th align="right">wd_uv</th>
-<th align="left">dir</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">10</td>
-<td align="right">0</td>
-<td align="right">10.000</td>
-<td align="right">270</td>
-<td align="right">270</td>
-<td align="left">Oeste</td>
-</tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">10</td>
-<td align="right">10.000</td>
-<td align="right">180</td>
-<td align="right">180</td>
-<td align="left">Sul</td>
-</tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">-10</td>
-<td align="right">10.000</td>
-<td align="right">360</td>
-<td align="right">360</td>
-<td align="left">Norte</td>
-</tr>
-<tr class="even">
-<td align="right">-10</td>
-<td align="right">0</td>
-<td align="right">10.000</td>
-<td align="right">90</td>
-<td align="right">90</td>
-<td align="left">Leste</td>
-</tr>
-<tr class="odd">
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">14.142</td>
-<td align="right">225</td>
-<td align="right">225</td>
-<td align="left">Sudoeste</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="right">-10</td>
-<td align="right">14.142</td>
-<td align="right">315</td>
-<td align="right">315</td>
-<td align="left">Noroeste</td>
-</tr>
-<tr class="odd">
-<td align="right">-10</td>
-<td align="right">10</td>
-<td align="right">14.142</td>
-<td align="right">135</td>
-<td align="right">135</td>
-<td align="left">Sudeste</td>
-</tr>
-<tr class="even">
-<td align="right">-10</td>
-<td align="right">-10</td>
-<td align="right">14.142</td>
-<td align="right">45</td>
-<td align="right">45</td>
-<td align="left">Nordeste</td>
-</tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0.000</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Calmo</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>Dica: ver figura abaixo.</p>
-</blockquote>
-<p><img src="images/wind_components.png" /></p>
-<hr />
-<ol start="13" style="list-style-type: decimal">
-<li>Para as séries de <code>prec_obs</code> e <code>prec_sim</code> calcule:</li>
-</ol>
-<ul>
-<li>a proporção corretamente prevista <span class="math inline">\(PC = \frac{wc+dc}{n}\)</span></li>
-<li>o índice de sucesso crítico <span class="math inline">\(CSI=\frac{wc}{wc+wi+di}\)</span>.</li>
-</ul>
-<p>Onde <span class="math inline">\(wc\)</span> e <span class="math inline">\(dc\)</span> são as previsões corretas de dias úmidos (<span class="math inline">\(prec &gt; 0.25\)</span> mm dia<sup>-1</sup>) e secos respectivamente, <span class="math inline">\(wi\)</span> e <span class="math inline">\(di\)</span> são as previsões incorretas de dias úmidos e secos respectivamente. <span class="math inline">\(n\)</span> é o n° total de previsões.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">prec_obs &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-2" data-line-number="2">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>,</a>
-<a class="sourceLine" id="cb203-3" data-line-number="3">  <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb203-4" data-line-number="4">  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb203-5" data-line-number="5">  <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span></a>
-<a class="sourceLine" id="cb203-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb203-7" data-line-number="7">prec_sim &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-8" data-line-number="8">  <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb203-9" data-line-number="9">  <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>,</a>
-<a class="sourceLine" id="cb203-10" data-line-number="10">  <span class="fl">0.25</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb203-11" data-line-number="11">  <span class="fl">0.25</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb203-12" data-line-number="12">)</a></code></pre></div>
-<hr />
-<ol start="14" style="list-style-type: decimal">
-<li>Escreva o código para calcular o coeficiente de correlação de Pearson (<code>r</code>) entre os vetores <code>obs</code> e <code>prev</code>.</li>
-</ol>
-<p><img src="images/correlation-formula.gif" /></p>
-<p>Confira seu resultado com a saída da função <code>cor(obs, prev)</code>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">obs &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb204-2" data-line-number="2">  <span class="fl">-0.49</span>, <span class="fl">0.27</span>, <span class="fl">-0.48</span>, <span class="fl">0.8</span>, <span class="dv">-1</span>, <span class="fl">0.1</span>, <span class="fl">-1.16</span>,</a>
-<a class="sourceLine" id="cb204-3" data-line-number="3">  <span class="fl">0.58</span>, <span class="fl">-1.6</span>, <span class="fl">-0.31</span>, <span class="fl">0.45</span>, <span class="fl">-0.98</span>, <span class="fl">0.19</span>, <span class="fl">0.73</span>,</a>
-<a class="sourceLine" id="cb204-4" data-line-number="4">  <span class="fl">-0.49</span>, <span class="fl">-0.04</span>, <span class="fl">-0.11</span>, <span class="fl">0.46</span>, <span class="fl">2.02</span>, <span class="fl">-1.05</span></a>
-<a class="sourceLine" id="cb204-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb204-6" data-line-number="6">prev &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb204-7" data-line-number="7">  <span class="ot">NA</span>, <span class="fl">-0.49</span>, <span class="fl">0.27</span>, <span class="fl">-0.48</span>, <span class="fl">0.8</span>, <span class="dv">-1</span>, <span class="fl">0.1</span>, <span class="fl">-1.16</span>,</a>
-<a class="sourceLine" id="cb204-8" data-line-number="8">  <span class="fl">0.58</span>, <span class="fl">-1.6</span>, <span class="fl">-0.31</span>, <span class="fl">0.45</span>, <span class="fl">-0.98</span>, <span class="fl">0.19</span>, <span class="fl">0.73</span>,</a>
-<a class="sourceLine" id="cb204-9" data-line-number="9">  <span class="fl">-0.49</span>, <span class="fl">-0.04</span>, <span class="fl">-0.11</span>, <span class="fl">0.46</span>, <span class="fl">2.02</span></a>
-<a class="sourceLine" id="cb204-10" data-line-number="10">)</a></code></pre></div>
-<hr />
-<ol start="15" style="list-style-type: decimal">
-<li>Construa uma função para converter valores de temperatura em K para °C e outra para converter ângulos de radianos para graus. Utilize dois exemplos para mostrar que suas funções funcionam corretamente.</li>
-</ol>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="sequências.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estrutura-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="replace-vect.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

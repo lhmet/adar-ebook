@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-16" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,13 +225,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-numéricos"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores numéricos</a></li>
 <li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -390,35 +391,35 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-1" class="section level2">
 <h2><span class="header-section-number">9.1</span> Pré-requisitos</h2>
 <p>Para reproduzir os códigos deste capítulo você precisará dos seguintes pacotes:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb273-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
-<a class="sourceLine" id="cb273-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb273-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
-<a class="sourceLine" id="cb273-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
-<a class="sourceLine" id="cb273-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb273-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb273-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
-<a class="sourceLine" id="cb273-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb273-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
-<a class="sourceLine" id="cb273-11" data-line-number="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb279-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb279-3" data-line-number="3">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb279-4" data-line-number="4">  <span class="st">&quot;readr&quot;</span>,</a>
+<a class="sourceLine" id="cb279-5" data-line-number="5">  <span class="st">&quot;feather&quot;</span>,</a>
+<a class="sourceLine" id="cb279-6" data-line-number="6">  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb279-7" data-line-number="7">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb279-8" data-line-number="8">  <span class="st">&quot;dplyr&quot;</span>,</a>
+<a class="sourceLine" id="cb279-9" data-line-number="9">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb279-10" data-line-number="10">  <span class="st">&quot;openxlsx&quot;</span></a>
+<a class="sourceLine" id="cb279-11" data-line-number="11">)</a></code></pre></div>
 <p>Para instalá-los já com as dependências utilize a instrução abaixo:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">install.packages</span>(pacotes)</a></code></pre></div>
 <p>Agora você pode carregar os pacotes.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
-<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb275-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
-<a class="sourceLine" id="cb275-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
-<a class="sourceLine" id="cb275-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb275-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb275-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
-<a class="sourceLine" id="cb275-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
-<a class="sourceLine" id="cb275-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb275-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb275-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
-<a class="sourceLine" id="cb275-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb275-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb275-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
-<a class="sourceLine" id="cb275-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;easypackages&quot;</span>)</a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)</a>
+<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)</a>
+<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-7" data-line-number="7"><span class="co">#&gt; Attaching package: &#39;dplyr&#39;</span></a>
+<a class="sourceLine" id="cb281-8" data-line-number="8"><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></a>
+<a class="sourceLine" id="cb281-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-10" data-line-number="10"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb281-11" data-line-number="11"><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></a>
+<a class="sourceLine" id="cb281-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-13" data-line-number="13"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb281-14" data-line-number="14"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</a>
+<a class="sourceLine" id="cb281-15" data-line-number="15"><span class="kw">library</span>(<span class="st">&quot;openxlsx&quot;</span>)</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Para carregar diversos pacotes de uma vez só, você pode usar a função <code>libraries()</code> do pacote <strong>easypackages</strong>. Então o trecho de código anterior poderia ser substituído por:
@@ -438,7 +439,7 @@ ou simplesmente
 </div>
 <p>Para ter acesso a todos pacotes suportados pelo pacote <strong>rio</strong>, após sua
 instalação precisamos executar o comando abaixo.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">install_formats</span>()</a></code></pre></div>
 </div>
             </section>
 

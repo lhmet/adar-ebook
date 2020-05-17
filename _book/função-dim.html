@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-16" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,13 +225,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-numéricos"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores numéricos</a></li>
 <li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -391,23 +392,23 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">A.1</span> Função <code>dim()</code></h2>
 <p>Podemos converter um vetor atômico em uma arranjo de <code>n</code> dimensões através do atributo da dimensão de um objeto. Este atributo pode ser alterado pela função <code>dim()</code>. Para fazer isso, definimos o atributo <code>dim</code> (de dimensão) com um vetor numérico com os tamanhos para cada dimensão.
 O R reorganizará os elementos do vetor de acordo com as dimensões.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1">v &lt;-<span class="st"> </span>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb407-2" data-line-number="2"><span class="kw">length</span>(v)</a>
-<a class="sourceLine" id="cb407-3" data-line-number="3"><span class="kw">attributes</span>(v)</a>
-<a class="sourceLine" id="cb407-4" data-line-number="4"><span class="kw">typeof</span>(v)</a>
-<a class="sourceLine" id="cb407-5" data-line-number="5"><span class="co"># conversão de vetor para matriz</span></a>
-<a class="sourceLine" id="cb407-6" data-line-number="6"><span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas</span></a>
-<a class="sourceLine" id="cb407-7" data-line-number="7"><span class="co"># v é vector?</span></a>
-<a class="sourceLine" id="cb407-8" data-line-number="8"><span class="kw">is.vector</span>(v)</a>
-<a class="sourceLine" id="cb407-9" data-line-number="9"><span class="co"># v é matrix?</span></a>
-<a class="sourceLine" id="cb407-10" data-line-number="10"><span class="kw">is.matrix</span>(v)</a>
-<a class="sourceLine" id="cb407-11" data-line-number="11"><span class="co"># classe de vetor</span></a>
-<a class="sourceLine" id="cb407-12" data-line-number="12"><span class="kw">class</span>(v)</a>
-<a class="sourceLine" id="cb407-13" data-line-number="13"><span class="kw">attributes</span>(v)</a>
-<a class="sourceLine" id="cb407-14" data-line-number="14">v</a>
-<a class="sourceLine" id="cb407-15" data-line-number="15"><span class="co"># invertendo as dimensões</span></a>
-<a class="sourceLine" id="cb407-16" data-line-number="16"><span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb407-17" data-line-number="17">v</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1">v &lt;-<span class="st"> </span>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb413-2" data-line-number="2"><span class="kw">length</span>(v)</a>
+<a class="sourceLine" id="cb413-3" data-line-number="3"><span class="kw">attributes</span>(v)</a>
+<a class="sourceLine" id="cb413-4" data-line-number="4"><span class="kw">typeof</span>(v)</a>
+<a class="sourceLine" id="cb413-5" data-line-number="5"><span class="co"># conversão de vetor para matriz</span></a>
+<a class="sourceLine" id="cb413-6" data-line-number="6"><span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas</span></a>
+<a class="sourceLine" id="cb413-7" data-line-number="7"><span class="co"># v é vector?</span></a>
+<a class="sourceLine" id="cb413-8" data-line-number="8"><span class="kw">is.vector</span>(v)</a>
+<a class="sourceLine" id="cb413-9" data-line-number="9"><span class="co"># v é matrix?</span></a>
+<a class="sourceLine" id="cb413-10" data-line-number="10"><span class="kw">is.matrix</span>(v)</a>
+<a class="sourceLine" id="cb413-11" data-line-number="11"><span class="co"># classe de vetor</span></a>
+<a class="sourceLine" id="cb413-12" data-line-number="12"><span class="kw">class</span>(v)</a>
+<a class="sourceLine" id="cb413-13" data-line-number="13"><span class="kw">attributes</span>(v)</a>
+<a class="sourceLine" id="cb413-14" data-line-number="14">v</a>
+<a class="sourceLine" id="cb413-15" data-line-number="15"><span class="co"># invertendo as dimensões</span></a>
+<a class="sourceLine" id="cb413-16" data-line-number="16"><span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb413-17" data-line-number="17">v</a></code></pre></div>
 <p>O R usa o primeiro elemento de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.</p>
 <p>Note como os valores de <code>v</code> foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.</p>
 <p>Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para estruturar uma <code>matrix</code>.</p>

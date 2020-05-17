@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 Referências | Análise de Dados Ambientais com R</title>
+  <title>7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 Referências | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 Referências | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ggplot2.html"/>
-<link rel="next" href="oper-mat.html"/>
+<link rel="prev" href="index-vetores.html"/>
+<link rel="next" href="lidando-com-com-dados-faltantes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -388,49 +388,94 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1">
-<h1><span class="header-section-number">Capítulo 12</span> Referências</h1>
-<div id="refs">
-<div id="ref-Dasu-Johnson">
-<p>Dasu, Tamraparni, and Theodore Johnson. 2003. “Data Quality.” In <em>Exploratory Data Mining and Data Cleaning</em>, edited by Walter A. Shewhart and Samuel S. Wilks, 99–137. Wiley-Blackwell. <a href="https://doi.org/10.1002/0471448354.ch4">https://doi.org/10.1002/0471448354.ch4</a>.</p>
+<div id="replace-vect" class="section level2">
+<h2><span class="header-section-number">7.6</span> Substituição de elementos de um vetor</h2>
+<p>Podemos substituir os valores de um vetor usando os mesmos esquemas de indexação vistos na seção anterior. A sintaxe geral para substituir elementos de um vetor por novos valores é:</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>vetor[indices] &lt;- novos_valores</code>
+</p>
+<p>Vamos fazer uma cópia do vetor <code>prec</code> para então alterá-lo, fazendo substituição de seus elementos usando as diferentes formas de indexação.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">(prec_alt &lt;-<span class="st"> </span>prec)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
+<div id="por-posições" class="section level4">
+<h4><span class="header-section-number">7.6.0.1</span> Por posições</h4>
+<p>suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1">inds_jja</a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co">#&gt; [1] 6 7 8</span></a>
+<a class="sourceLine" id="cb163-3" data-line-number="3">prec_alt[inds_jja] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">21</span>, <span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb163-4" data-line-number="4">prec</a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
+<a class="sourceLine" id="cb163-7" data-line-number="7">prec_alt</a>
+<a class="sourceLine" id="cb163-8" data-line-number="8"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb163-9" data-line-number="9"><span class="co">#&gt; 300 200 210  12   0  NA  21  42 100 120  10 280</span></a></code></pre></div>
 </div>
-<div id="ref-Gillespie2017">
-<p>Gillespie, Colin, and Robin Lovelace. 2017. <em>Efficient R Programming: A Practical Guide to Smarter Programming</em>. 1st ed. O’Reilly Media, Inc.</p>
+<div id="por-nomes" class="section level4">
+<h4><span class="header-section-number">7.6.0.2</span> Por nomes</h4>
+<p>Suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">prec_jd_corr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">250</span>, <span class="dv">208</span>)</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">prec_alt[<span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;dez&quot;</span>)] &lt;-<span class="st"> </span>prec_jd_corr</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3">prec</a>
+<a class="sourceLine" id="cb164-4" data-line-number="4"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb164-5" data-line-number="5"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
+<a class="sourceLine" id="cb164-6" data-line-number="6">prec_alt</a>
+<a class="sourceLine" id="cb164-7" data-line-number="7"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb164-8" data-line-number="8"><span class="co">#&gt; 250 200 210  12   0  NA  21  42 100 120  10 208</span></a></code></pre></div>
 </div>
-<div id="ref-Hijmans2017">
-<p>Hijmans, Robert J. 2017. <em>Raster: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p>
-</div>
-<div id="ref-Pierce2017">
-<p>Pierce, David. 2017. <em>Ncdf4: Interface to Unidata netCDF (Version 4 or Earlier) Format Data Files</em>. <a href="https://CRAN.R-project.org/package=ncdf4">https://CRAN.R-project.org/package=ncdf4</a>.</p>
-</div>
-<div id="ref-R-base">
-<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
-</div>
-<div id="ref-Wickham2014">
-<p>Wickham, H. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
-</div>
-<div id="ref-Wickham-stringr">
-<p>Wickham, Hadley. 2018. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p>
-</div>
-<div id="ref-Wickham-dplyr">
-<p>Wickham, H., R. Francois, L. Henry, and K. Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
-</div>
-<div id="ref-Wickham2017">
-<p>Wickham, H., and G. Grolemund. 2017. <em>R for Data Science</em>. O’Reilly Media. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
-</div>
-</div>
+<div id="por-comparação" class="section level4">
+<h4><span class="header-section-number">7.6.0.3</span> Por comparação</h4>
+<p>Imagine que você precisa substituir os valores de <code>prec</code> que ficaram em torno de <span class="math inline">\(\pm10 \%\)</span> da média mensal climatológica pelos valores climatológicos.</p>
+<p>Vamos primeiro determinar os desvios relativos (em %) em relação as médias climatológicas:</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># limiar em % da normal climatológica</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2">limiar &lt;-<span class="st"> </span><span class="dv">10</span> </a>
+<a class="sourceLine" id="cb165-3" data-line-number="3">desvios &lt;-<span class="st"> </span>prec <span class="op">-</span><span class="st"> </span>prec_clim</a>
+<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="co"># anomalias relativas em %</span></a>
+<a class="sourceLine" id="cb165-5" data-line-number="5">(anom_perc &lt;-<span class="st">  </span><span class="kw">abs</span>(desvios)<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="co">#&gt;        jan        fev        mar        abr        mai        jun        jul </span></a>
+<a class="sourceLine" id="cb165-7" data-line-number="7"><span class="co">#&gt;  30.434783   2.439024  31.250000  88.000000 100.000000 100.000000  70.000000 </span></a>
+<a class="sourceLine" id="cb165-8" data-line-number="8"><span class="co">#&gt;        ago        set        out        nov        dez </span></a>
+<a class="sourceLine" id="cb165-9" data-line-number="9"><span class="co">#&gt;  63.333333   9.090909  27.272727  95.000000  27.272727</span></a></code></pre></div>
+<p>Então substituímos os casos com baixo desvio pela precipitação climatológica.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># meses com prec em torno de +-10% da média climatol.</span></a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">prec[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="co">#&gt; fev set </span></a>
+<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="co">#&gt; 200 100</span></a>
+<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="co"># substituição pela prec mensal climatol. </span></a>
+<a class="sourceLine" id="cb166-6" data-line-number="6">prec[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>] &lt;-<span class="st"> </span>prec_clim[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb166-7" data-line-number="7">prec</a>
+<a class="sourceLine" id="cb166-8" data-line-number="8"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb166-9" data-line-number="9"><span class="co">#&gt; 300 205 210  12   0   0  12  22 110 120  10 280</span></a></code></pre></div>
+<p>A função <code>abs()</code> determina o valor absoluto ou módulo de um vetor.</p>
+<p>Uma alternativa bastante útil para substituir valores de um vetor usando comparações é a <strong>função vetorizada</strong> <strong><code>ifelse()</code></strong>. A mesma operação realizada no trecho de código anterior poderia ser feita com <code>ifelse()</code> da seguinte forma:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">prec &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ano_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, prec_clim, prec)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">prec</a>
+<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co">#&gt; 300 205 210  12   0   0  12  22 110 120  10 280</span></a></code></pre></div>
+<!---
+Uma exemplo é sua aplicação para preencher as falhas no vetor `prec_alt` por seus valores climatológicos.
 
+
+```r
+prec_alt_comp <- ifelse(
+  test = is.na(prec_alt), # condição: é faltante?
+  yes = prec_clim,        # se verdadeira: preenche com prec_clim 
+  no = prec_alt           # se falsa: mantém prec_alt
+)
+prec_alt_comp
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 200 210  12   0  30  21  42 100 120  10 208
+```
+--->
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="oper-mat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index-vetores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lidando-com-com-dados-faltantes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

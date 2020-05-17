@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-16" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,13 +225,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-numéricos"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores numéricos</a></li>
 <li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -497,18 +498,16 @@ code span.wa { color: #bf0303; } /* Warning */
 </table>
 <p>Este conjunto de operadores permite diversas comparações entre vetores, por exemplo:</p>
 <ul>
-<li>em quais meses <code>prec</code> foram abaixo do normal?</li>
+<li>quais meses de <code>prec</code> foram abaixo do normal?</li>
 </ul>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">prec</a>
 <a class="sourceLine" id="cb136-2" data-line-number="2"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
 <a class="sourceLine" id="cb136-3" data-line-number="3"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a>
 <a class="sourceLine" id="cb136-4" data-line-number="4">prec_clim</a>
 <a class="sourceLine" id="cb136-5" data-line-number="5"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
-<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co"># nomeando vetor prec_clim com os nomes do vetor prec</span></a>
-<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)</a>
-<a class="sourceLine" id="cb136-8" data-line-number="8">prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb136-9" data-line-number="9"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
-<a class="sourceLine" id="cb136-10" data-line-number="10"><span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></a></code></pre></div>
+<a class="sourceLine" id="cb136-6" data-line-number="6">prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
+<a class="sourceLine" id="cb136-8" data-line-number="8"><span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></a></code></pre></div>
 <p>O operador <code>%in%</code> serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># operador está contido em</span></a>
 <a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec</a>

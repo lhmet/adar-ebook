@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-16" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,13 +225,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.4.3" data-path="sequências.html"><a href="sequências.html#repetições"><i class="fa fa-check"></i><b>7.4.3</b> Repetições</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="index-vetores.html"><a href="index-vetores.html"><i class="fa fa-check"></i><b>7.5</b> Indexação de vetores</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-inteiros"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores inteiros</a></li>
+<li class="chapter" data-level="7.5.1" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-numéricos"><i class="fa fa-check"></i><b>7.5.1</b> Indexação por vetores numéricos</a></li>
 <li class="chapter" data-level="7.5.2" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-nomes"><i class="fa fa-check"></i><b>7.5.2</b> Indexação por nomes</a></li>
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
-<li class="chapter" data-level="7.5.4" data-path="index-vetores.html"><a href="index-vetores.html#replace-vect"><i class="fa fa-check"></i><b>7.5.4</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.5.5" data-path="index-vetores.html"><a href="index-vetores.html#lidando-com-com-dados-faltantes"><i class="fa fa-check"></i><b>7.5.5</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.5.6" data-path="index-vetores.html"><a href="index-vetores.html#dados-nulos"><i class="fa fa-check"></i><b>7.5.6</b> Dados Nulos (<code>NULL</code>)</a></li>
-<li class="chapter" data-level="7.5.7" data-path="index-vetores.html"><a href="index-vetores.html#exercícios-1"><i class="fa fa-check"></i><b>7.5.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
@@ -399,23 +400,23 @@ longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no
 <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho
 (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho
 da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
 <p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux
 e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução
 abaixo:</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
 <p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos,
 ler e escrever dados, quando você não especificar o caminho completo para o
 arquivo de saída.</p>
 <p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode
 usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb279-4" data-line-number="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb279-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb279-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb279-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
+<a class="sourceLine" id="cb285-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
+<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb285-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
+<a class="sourceLine" id="cb285-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
+<a class="sourceLine" id="cb285-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Você pode configurar o diretório de trabalho pelo menu do Rstudio <em><code>Session ▶ Set Working Directory</code></em>. Você terá as opções:
