@@ -89,11 +89,6 @@ A instalação no SO Windows é igual a instalação de qualquer outro *software
 pode ser facilmente encontrada na internet. Por esta razão, somente indicou-se 
 o caminho de instalação.
 
-
-<div class="rmdtip">
-<p>Ao instalar R recomenda-se optar por instalar na língua inglesa. Assim quando surgir uma mensagem de erro durante seu uso, basta usá-la numa pesquisa na internet para solucionar o problema. As chances de resolver o problema serão muito maiores se sua pesquisa for realizada em inglês.</p>
-</div>
-
 ### Instalando o R
 
 O <img src="images/logo_r.png" width="20"> pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Nós veremos a instalação do <img src="images/logo_r.png" width="20"> a partir dos arquivos binários.

@@ -310,7 +310,7 @@ is.logical(vetor_num)
 
 Essa é uma forma de verificação mais direta do tipo de uma variável. Outra possível forma seria combinar o uso do operador relacional[^relacionais] idêntico (`==`) e a mais legível que `typeof(vetor_num) == "double"`. O operador `==` é um operador relacional para verificar se dois objetos são iguais.
 
-[^relacionais]: Operadores relacionais será visto na seção Operações com Vetores. 
+[^relacionais]: Operadores relacionais será visto na seção \@ref(oper-vect). 
 
 <div class="rmdtip">
 <p>O grupo de funções <code>is.{tipo_de_dados}()</code> inclui também opções para verificar se a variável tem valores:</p>
@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-05-15"
+#> [1] "2020-05-17"
 Sys.time()
-#> [1] "2020-05-15 15:40:48 UTC"
+#> [1] "2020-05-17 01:04:57 UTC"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->

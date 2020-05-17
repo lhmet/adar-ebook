@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R</title>
+  <title>7.3 Operações com vetores | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="testes-sobre-tipos-de-dados.html"/>
-<link rel="next" href="outros-tipos-de-dados-derivados.html"/>
+<link rel="prev" href="atributos.html"/>
+<link rel="next" href="sequências.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -362,87 +362,262 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conversão-entre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.3</span> Conversão entre tipos de dados</h2>
-<p>Em algumas circunstâncias precisamos alterar o tipo de uma variável para o tipo que queremos. Para isso há o grupo de funções <code>as.{tipo_de_dados}()</code>, semelhante ao grupo de funções <code>is.{tipo_de_dados}()</code>. Este tipo de operação é chamada de <strong>coersão</strong> no <img src="images/logo_r.png" width="20">.</p>
-<!-- 
-COLOCAR TUDO EM UMA TABELA SÓ 
--->
-<p>Então, a coersão da variável <code>vetor_num</code> para inteiro pode ser feita com:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_num
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="kw">as.integer</span>(vetor_num)
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.integer</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;integer&quot;</span></code></pre></div>
-<p>Já a sua coersão para lógico</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.logical</span>(vetor_num)
-<span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE    NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.logical</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;logical&quot;</span></code></pre></div>
-<p>converte <strong>0</strong> para <code>FALSE</code> e <strong>qualquer outro número</strong> para <code>TRUE</code>.</p>
-<p>A coersão da variável <code>vetor_log</code> para numérica</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_log
-<span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span>
-<span class="kw">as.numeric</span>(vetor_log)
-<span class="co">#&gt; [1]  0 NA  0  1</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_log))
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>converte os valores <code>FALSE</code> para <strong>0</strong> e <strong>TRUE</strong> para <code>1</code>.</p>
-<p>A coersão da variável <code>vetor_char</code> para numérica ou inteiro</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_char
-<span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">as.integer</span>(vetor_char)
-<span class="co">#&gt; Warning: NAs introduced by coercion</span>
-<span class="co">#&gt; [1] NA NA NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_char))
-<span class="co">#&gt; Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>gera <code>NA</code>.</p>
-<p>Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coersão automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.</p>
-<p>Misturando <code>numeric</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_num_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_num, vetor_char))
-<span class="co">#&gt; [1] &quot;-1&quot; &quot;0&quot;  &quot;1&quot;  &quot;2&quot;  NA   &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_num_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<p>Misturando <code>logical</code> com <code>numeric</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_num &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_num))
-<span class="co">#&gt; [1]  0 NA  0  1 -1  0  1  2 NA</span>
-<span class="kw">typeof</span>(vmix_log_num)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>Misturando <code>double</code> com <code>integer</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_dbl_int &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_dbl, vetor_int))
-<span class="co">#&gt; [1] -1.51  0.33  1.46  2.04  1.00  6.00 10.00    NA</span>
-<span class="kw">typeof</span>(vmix_dbl_int)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>Misturando <code>lógical</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_char))
-<span class="co">#&gt; [1] &quot;FALSE&quot; NA      &quot;FALSE&quot; &quot;TRUE&quot;  &quot;ae&quot;    NA      &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_log_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<p>A hierarquia usada na coerção entre tipos de dados segue a relação:</p>
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
-<code>logical &lt; integer &lt; numeric &lt;  character</code>
-</p>
-<p>A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável <code>vetor_num</code>, podemos fazer:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
-vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> 
-<span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE    NA</span>
-<span class="kw">sum</span>(vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 2</span></code></pre></div>
-<p>Neste exemplo, os valores lógicos obtidos com o operador <code>&gt;</code> foram implicitamente convertidos para numéricos (<code>TRUE</code> para <code>1</code>, <code>FALSE</code> para <code>0</code>) antes de se obter a soma dos casos verdadeiros. O argumento <code>na.rm = TRUE</code> habilita a funcionalidade de realizar a soma ignorando os itens faltantes.</p>
+<div id="oper-vect" class="section level2">
+<h2><span class="header-section-number">7.3</span> Operações com vetores</h2>
+<p>Como o <code>R</code> é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esta é uma das grandes vantagens do <img src="images/logo_r.png" width="20">.</p>
+<p>Operações aritméticas podem ser aplicadas diretamente entre vetores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># desvios da prec em relação a média climatológica</span>
+prec <span class="op">-</span><span class="st"> </span>prec_clim
+<span class="co">#&gt;  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez </span>
+<span class="co">#&gt;   70   -5   50  -88  -60  -30  -28  -38  -10  -45 -190   60</span>
+<span class="co"># anomalia em % relativa</span>
+prec<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span>
+<span class="co">#&gt; 130.43478  97.56098 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 </span>
+<span class="co">#&gt;       set       out       nov       dez </span>
+<span class="co">#&gt;  90.90909  72.72727   5.00000 127.27273</span>
+<span class="co"># transformação boxcox da prec com alpha = 0.335</span>
+((prec<span class="op">^</span><span class="fl">0.335</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="fl">0.335</span>)
+<span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span>
+<span class="co">#&gt; 17.188869 14.626583 14.916806  3.877403 -2.985075 -2.985075  3.877403  5.422424 </span>
+<span class="co">#&gt;       set       out       nov       dez </span>
+<span class="co">#&gt; 10.977168 11.856532  3.470802 16.727944</span>
+<span class="co"># cte^intervalo</span>
+<span class="kw">mean</span>(prec)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)
+<span class="co">#&gt; [1] 10.271319  4.725171  3.204890  2.538929</span></code></pre></div>
+<p>Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># velocidades em m s-1</span>
+(vel_ms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">0.3</span>, <span class="fl">1.4</span>, <span class="fl">2.0</span>))
+<span class="co">#&gt; [1] 1.5 0.3 1.4 2.0</span>
+<span class="co"># fator de conversão para km h-1</span>
+fator_conv &lt;-<span class="st"> </span><span class="fl">3.6</span>
+vel_ms <span class="op">*</span><span class="st"> </span>fator_conv
+<span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span>
+<span class="co"># equivalência</span>
+fator_conv &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>)
+vel_ms <span class="op">*</span><span class="st"> </span>fator_conv
+<span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></code></pre></div>
+<p>A constante <code>fator_conv = 3.6</code> nesse caso é reciclada 4 vezes (tamanho do vetor <code>vel_ms</code>) e então multiplicada por cada elemento de <code>vetor_dbl</code>. Por isso os resultados no código acima são idênticos. Essa funcionalidade de fazer um vetor do mesmo tamanho de outro é conhecida como <strong>reciclagem</strong>. Se o vetor mais longo não tem tamanho múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> realiza a operação com uma mensagem de aviso.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>
+<span class="co">#&gt;  [1]  1  4  3  8  5 12  7 16  9 20</span>
+<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+<span class="co">#&gt; Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object</span>
+<span class="co">#&gt; length</span>
+<span class="co">#&gt;  [1]  1  4  9  4 10 18  7 16 27 10</span></code></pre></div>
+<p>A reciclagem é um recurso útil, mas também perigoso. Seu código pode ficar mais elegante ou gerar resultados inesperados.</p>
+<p>Operações aritméticas podem ser feitas com vetores lógicos, como nos exemplos abaixo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span>
+<span class="co">#&gt; [1] -1</span>
+prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span>
+(prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+<span class="co">#&gt;  [1]  1  2  3  4  0  0  0  0  9 10 11 12</span></code></pre></div>
+<div id="comparações" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Comparações</h3>
+<p>Vetores lógicos resultam da comparação de números ou caracteres. A Tabela <a href="oper-vect.html#tab:oper-logic">7.1</a> apresenta os principais operadores lógicos para comparações.</p>
+<table>
+<caption><span id="tab:oper-logic">Tabela 7.1: </span>Operadores Lógicos</caption>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="center">menor que</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="center">menor ou igual a</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="center">maior que</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;=</td>
+<td align="center">maior ou igual</td>
+</tr>
+<tr class="odd">
+<td align="center">==</td>
+<td align="center">idêntico</td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="center">diferente</td>
+</tr>
+<tr class="odd">
+<td align="center">!x</td>
+<td align="center">não é x (negação)</td>
+</tr>
+<tr class="even">
+<td align="center">x | y</td>
+<td align="center">x ou y</td>
+</tr>
+<tr class="odd">
+<td align="center">x &amp; y</td>
+<td align="center">x e y</td>
+</tr>
+<tr class="even">
+<td align="center">isTRUE(x)</td>
+<td align="center">teste se x é verdadeiro</td>
+</tr>
+<tr class="odd">
+<td align="center">%in%</td>
+<td align="center">está contido em</td>
+</tr>
+</tbody>
+</table>
+<p>Este conjunto de operadores permite diversas comparações entre vetores, por exemplo:</p>
+<ul>
+<li>em quais meses <code>prec</code> foram abaixo do normal?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span>
+prec_clim
+<span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span>
+<span class="co"># nomeando vetor prec_clim com os nomes do vetor prec</span>
+<span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)
+prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></code></pre></div>
+<p>O operador <code>%in%</code> serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># operador está contido em</span>
+<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span>
+<span class="co"># 2:4 são elementos de x?</span>
+<span class="kw">is.element</span>(<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>), prec)
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></code></pre></div>
+<p>Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:</p>
+<ul>
+<li><span class="math inline">\(0 &lt; prec \leq 100\)</span></li>
+<li><span class="math inline">\(prec &lt; 50\)</span> ou <span class="math inline">\(prec \geq 150\)</span></li>
+</ul>
+<p>precisamos usar os operadores relacionais:</p>
+<ul>
+<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e“)</p></li>
+<li><p><code>|</code> e <code>||</code> (&quot;ou“)</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec entre 0 e 100 mm</span>
+prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>prec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt; FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span>
+<span class="co"># prec abaixo de 50 e acima de 150 mm</span>
+prec <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">|</span><span class="st"> </span>prec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">150</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE</span></code></pre></div>
+<p>A ordem das operações pode ser controlada por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
+<p>A forma dupla (<code>&amp;&amp;</code> ou <code>||</code>) compara somente um elemento de cada lado, enquanto a forma normal (<code>&amp;</code> e <code>|</code>), compara cada elemento dos vetores em cada lado.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+<span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span>
+a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span>
+<span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b</span>
+<span class="co"># retornando somente um resultado</span>
+a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<table style="width:83%;">
+<caption>Demostração da diferença entre &amp; e &amp;&amp;.</caption>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="11%" />
+<col width="11%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">a==1</th>
+<th align="center">b==1</th>
+<th align="center">a == 1 &amp; b == 1</th>
+<th align="center">a == 1 &amp;&amp; b == 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos <code>&amp;</code> ou <code>|</code>. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas.</p>
+<div id="testes-de-igualdade" class="section level4">
+<h4><span class="header-section-number">7.3.1.1</span> Testes de igualdade</h4>
+<p>A comparação de igualdade no <img src="images/logo_r.png" width="20"> pode ser meio confusa devido as forma de armazenamento diferentes dos números.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>
+<span class="co">#&gt; [1] 0.3</span>
+<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>
+<span class="co">#&gt; [1] 0.3</span>
+<span class="fl">0.3</span> <span class="op">==</span><span class="st"> </span><span class="fl">0.3</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Tudo normal, mas ao comparar operações com valores decimais, você pode se surpreender:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>) <span class="op">==</span><span class="st"> </span>(<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>)
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p>Isso ocorre por imprecisão no final da parte decimal que pode ser arrendondada incorretamente. Isso não acarreta problema na maioria dos cálculos. Para evitar esse problema é melhor comparar os resultados usando a função <code>all.equal()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(
+  <span class="dt">target =</span> <span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>,
+  <span class="dt">current =</span> <span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>
+)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>A <code>all.equal()</code> inclui uma tolerância na comparação (<span class="math inline">\(1,5\times10^{-8}\)</span>) fazendo com aquela imprecisão seja ignorada. Para mais detalhes consulte <code>?all.equal</code>.</p>
+</div>
+</div>
+<div id="funções-any-e-all" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Funções <code>any</code> e <code>all</code></h3>
+<p>Estas funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>)
+<span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># todas as posições são maiores que 0 ?</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># alguma posição é maior que 0?</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<ul>
+<li><code>all()</code> verifica se a condição avaliada é válida para todos elementos de um vetor;</li>
+<li><code>any()</code> verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;</li>
+</ul>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="testes-sobre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="outros-tipos-de-dados-derivados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="atributos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sequências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

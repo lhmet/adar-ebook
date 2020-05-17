@@ -42,8 +42,8 @@ prec <- c(
   jun = 0, 
   jul = 12, 
   ago = 22, 
-  set = 80, 
-  out = 100, 
+  set = 100, 
+  out = 120, 
   nov = 10,  
   dez = 280
   )
@@ -53,12 +53,12 @@ prec <- c(
 
 
 ```r
-prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 10, 280)
+prec <- c(300, 200, 210, 12, 0, 0, 12, 22, 100, 120, 10, 280)
 meses <- c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 names(prec) <- meses
 prec
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 300 150 210  12   0   0  12  22  80 100  10 280
+#> 300 200 210  12   0   0  12  22 100 120  10 280
 ```
 
 
@@ -67,12 +67,12 @@ prec
 
 ```r
 prec <- setNames(
-  object = c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 10, 280),
+  object = c(300, 200, 210, 12, 0, 0, 12, 22, 100, 120, 10, 280),
   nm = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 )
 prec
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 300 150 210  12   0   0  12  22  80 100  10 280
+#> 300 200 210  12   0   0  12  22 100 120  10 280
 ```
 
 Nomes não podem ser repetidos entre os elementos, porque a seleção de um subconjunto do vetor baseada nos nomes retornará somente o primeiro elemento que tiver nome repetido.
@@ -81,25 +81,24 @@ Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saíd
 
 
 ```r
-(meses_pnm <- c(jan = 1, 2, 3))
-#> jan         
-#>   1   2   3
-names(meses_pnm)
-#> [1] "jan" ""    ""
+(meses <- c(jan = 1, fev = 2, 3:12))
+#> jan fev                                         
+#>   1   2   3   4   5   6   7   8   9  10  11  12
+names(meses)
+#>  [1] "jan" "fev" ""    ""    ""    ""    ""    ""    ""    ""    ""    ""
 ```
 
-Quando nenhum nome é especificado, `names()` retornará `NULL`.
+Quando nenhum nome é especificado, `names()` retornará `NULL`[^mais-sobre-null].
 
 
 ```r
-(meses_snm <- c(1, 2, 3))
-#> [1] 1 2 3
-names(meses_snm)
+names(1:12)
 #> NULL
 ```
 
+[^mais-sobre-null]: Nós conheceremos mais detalhes sobre o `NULL` na sessão \@ref(dados-nulos).
 
-Para remover os nomes de um vetor, usamos a função `unname()` ou `names() <- NULL`.
+Para remover os nomes de um vetor, podemos usar a função `unname()` ou `names() <- NULL`.
 
 
 ```r
@@ -116,8 +115,47 @@ prec_clim
 ```
 
 
+Nas próximas seções frequentemente usaremos  os vetores `prec` e `prec_clim`. É importante então contextualizar essas variáveis. A variável `prec` consiste na precipitação mensal observada em um ano qualquer em um dado local. A variável `prec_clim` refere-se aos valores esperados de precipitação mensal[^normais] (médias de pelo menos 30 anos) do mesmo local.
 
-## Operações com vetores
+[^normais]: Também conhecidos como **normais climatológicas** de precipitação de um local. 
+
+
+## Atributos
+
+Nós podemos adicionar atributos a um vetor, como por exemplo alguma informação sobre os valores daquela variável. A variável `prec` possui um atributo (`names`). A função `attributes()` lista qualquer atributo de uma variável. Vamos criar uma variável para mostrar como podemos adicionar um atributo a um vetor.
+
+
+```r
+temp <- c(27, 23, 21, 18, 19, 28)
+attributes(temp)
+#> NULL
+```
+
+Podemos adicionar um atributo chamado `metadados` à `temp` e fornecer um vetor caracter com a função de atribuição de atributo `attr()<-`
+
+```r
+attr(temp, "metadados") <- "dados obtidos em www.inmet.gov.br, acesso em 10/10/2010"
+temp
+#> [1] 27 23 21 18 19 28
+#> attr(,"metadados")
+#> [1] "dados obtidos em www.inmet.gov.br, acesso em 10/10/2010"
+```
+
+Algumas funções carregarão este atributo adiante, mas outras não, conforme exemplo a seguir.
+
+
+```r
+(temp_inc <- temp + 1)
+#> [1] 28 24 22 19 20 29
+#> attr(,"metadados")
+#> [1] "dados obtidos em www.inmet.gov.br, acesso em 10/10/2010"
+(temp_inc <- c(temp_inc, 18))
+#> [1] 28 24 22 19 20 29 18
+```
+
+Há situações de uso válido deste recurso, mas inicialmente é melhor não confiar nele. 
+
+## Operações com vetores {#oper-vect}
 
 Como o `R` é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou *loopings*) ao longo do vetor. Esta é uma das grandes vantagens do  <img src="images/logo_r.png" width="20">.
 
@@ -128,75 +166,68 @@ Operações aritméticas podem ser aplicadas diretamente entre vetores.
 # desvios da prec em relação a média climatológica
 prec - prec_clim
 #>  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez 
-#>   70  -55   50  -88  -60  -30  -28  -38  -30  -65 -190   60
-# % do total anual
+#>   70   -5   50  -88  -60  -30  -28  -38  -10  -45 -190   60
+# anomalia em % relativa
 prec/prec_clim * 100
 #>       jan       fev       mar       abr       mai       jun       jul       ago 
-#> 130.43478  73.17073 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 
+#> 130.43478  97.56098 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 
 #>       set       out       nov       dez 
-#>  72.72727  60.60606   5.00000 127.27273
-# transformação boxcox da prec com alpha = 0.2
-(prec ^ 0.2 - 1)/0.2
+#>  90.90909  72.72727   5.00000 127.27273
+# transformação boxcox da prec com alpha = 0.335
+((prec^0.335 - 1)/0.335)
 #>       jan       fev       mar       abr       mai       jun       jul       ago 
-#> 10.645673  8.620350  9.568467  3.218759 -5.000000 -5.000000  3.218759  4.278004 
+#> 17.188869 14.626583 14.916806  3.877403 -2.985075 -2.985075  3.877403  5.422424 
 #>       set       out       nov       dez 
-#>  7.011244  7.559432  2.924466 10.431268
-prec %% 10
-#> jan fev mar abr mai jun jul ago set out nov dez 
-#>   0   0   0   2   0   0   2   2   0   0   0   0
+#> 10.977168 11.856532  3.470802 16.727944
+# cte^intervalo
+mean(prec)^(1/2:5)
+#> [1] 10.271319  4.725171  3.204890  2.538929
 ```
 
---- PAREI AQUI
 
 Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação. 
 
 
 ```r
-(vetor_dbl <- c(-1.5, 0.3, 1.4, 2.0))
-#> [1] -1.5  0.3  1.4  2.0
-cte <- 4
-vetor_dbl * cte
-#> [1] -6.0  1.2  5.6  8.0
-quatros <- c(4, 4, 4, 4)
-vetor_dbl * quatros
-#> [1] -6.0  1.2  5.6  8.0
+# velocidades em m s-1
+(vel_ms <- c(1.5, 0.3, 1.4, 2.0))
+#> [1] 1.5 0.3 1.4 2.0
+# fator de conversão para km h-1
+fator_conv <- 3.6
+vel_ms * fator_conv
+#> [1] 5.40 1.08 5.04 7.20
+# equivalência
+fator_conv <- c(3.6, 3.6, 3.6, 3.6)
+vel_ms * fator_conv
+#> [1] 5.40 1.08 5.04 7.20
 ```
 
-O número 4 nesse caso é reciclado 4 vezes e então multiplicado por cada elemento de `vetor_dbl`.
-
+A constante `fator_conv = 3.6` nesse caso é reciclada 4 vezes (tamanho do vetor `vel_ms`) e então multiplicada por cada elemento de `vetor_dbl`. Por isso os resultados no código acima são idênticos. Essa funcionalidade de fazer um vetor do mesmo tamanho de outro é conhecida como **reciclagem**. Se o vetor mais longo não tem tamanho múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> realiza a operação com uma mensagem de aviso.
 
 
 ```r
-v2 <- c(2, 1)
-vetor_dbl + v2
-#> [1] 0.5 1.3 3.4 3.0
+1:10 * 1:2
+#>  [1]  1  4  3  8  5 12  7 16  9 20
+1:10 * 1:3
+#> Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object
+#> length
+#>  [1]  1  4  9  4 10 18  7 16 27 10
 ```
 
-Se o vetor mais longo não é múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> imprime um aviso.
 
+A reciclagem é um recurso útil, mas também perigoso. Seu código pode ficar mais elegante ou gerar resultados inesperados.
 
-```r
-v3 <- c(2, 1, 3)
-vetor_dbl + v3
-#> Warning in vetor_dbl + v3: longer object length is not a multiple of shorter
-#> object length
-#> [1] 0.5 1.3 4.4 4.0
-```
-
-A reciclagem é intrinsecamente usada em operações envolvendo vetores.
 
 Operações aritméticas podem ser feitas com vetores lógicos, como nos exemplos abaixo:
 
 
 ```r
-c(TRUE, TRUE, FALSE) * 5
-#> [1] 5 5 0
-TRUE * 4
-#> [1] 4
-TRUE + TRUE
-#> [1] 2
 FALSE - TRUE
 #> [1] -1
+prec_clim >= 100
+#>  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+(prec_clim >= 100) * 1:12
+#>  [1]  1  2  3  4  0  0  0  0  9 10 11 12
 ```
 
 ### Comparações
@@ -222,22 +253,20 @@ Table: (\#tab:oper-logic)Operadores Lógicos
 
 Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
 
-- quais elementos do `vetor_dbl` (da seção \@ref(build-vectors)) são negativos?
+- em quais meses `prec` foram abaixo do normal?
 
 
 ```r
-prec - mean(prec) < 0
+prec
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 200 210  12   0   0  12  22 100 120  10 280
+prec_clim
+#>  [1] 230 205 160 100  60  30  40  60 110 165 200 220
+# nomeando vetor prec_clim com os nomes do vetor prec
+names(prec_clim) <- names(prec)
+prec - prec_clim < 0
 #>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
-#> FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
-```
-
-- quais elementos de `prec` são maior que os de `prec_clim`?
-
-
-```r
-prec > 100
-#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
-#>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+#> FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
 ```
 
 O operador `%in%` serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.
@@ -246,17 +275,17 @@ O operador `%in%` serve para verificar se um vetor está contido parcial ou tota
 ```r
 # operador está contido em
 c(200, 150, 100) %in% prec
-#> [1] FALSE  TRUE  TRUE
+#> [1]  TRUE FALSE  TRUE
 # 2:4 são elementos de x?
 is.element(c(200, 150, 100), prec)
-#> [1] FALSE  TRUE  TRUE
+#> [1]  TRUE FALSE  TRUE
 ```
 
 
 Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:
 
 - $0 < prec \leq 100$ 
-- $x < 50$  ou $x \geq 150$ 
+- $prec < 50$  ou $prec \geq 150$ 
 
 precisamos usar os operadores relacionais:
 
@@ -264,26 +293,21 @@ precisamos usar os operadores relacionais:
 
 - `|` e `||` (\"ou"\)
 
-A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores de mesmo tamanho que os vetores testados). 
-
-
 
 
 ```r
-horas <- 0:23
-# noite
-horas < 6 | horas > 18
-#>  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-# dia
-horas >= 6 & horas <= 18
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-#> [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-# dia
-!(horas < 6 | horas > 18)
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-#> [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+# prec entre 0 e 100 mm
+prec > 0 & prec <= 100
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#> FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
+# prec abaixo de 50 e acima de 150 mm
+prec < 50 | prec >= 150
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#>  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
 ```
+
+
+A ordem das operações pode ser controlada por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores de mesmo tamanho que os vetores testados). 
 
 
 A forma dupla (`&&` ou `||`) compara somente um elemento de cada lado, enquanto a forma normal (`&` e `|`), compara cada elemento dos vetores em cada lado.
@@ -319,6 +343,40 @@ Table: Demostração da diferença entre & e &&.
 Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. 
 
 
+#### Testes de igualdade 
+
+A comparação de igualdade no <img src="images/logo_r.png" width="20"> pode ser meio confusa devido as forma de armazenamento diferentes dos números.
+
+
+```r
+0.6 - 0.3
+#> [1] 0.3
+0.9 - 0.6
+#> [1] 0.3
+0.3 == 0.3
+#> [1] TRUE
+```
+
+Tudo normal, mas ao comparar operações com valores decimais, você pode se surpreender:
+
+
+```r
+(0.6 - 0.3) == (0.9 - 0.6)
+#> [1] FALSE
+```
+
+Isso ocorre por imprecisão no final da parte decimal que pode ser arrendondada incorretamente. Isso não acarreta problema na maioria dos cálculos. Para evitar esse problema é melhor comparar os resultados usando a função `all.equal()`.
+
+
+```r
+all.equal(
+  target = 0.6 - 0.3,
+  current = 0.9 - 0.6
+)
+#> [1] TRUE
+```
+
+A `all.equal()` inclui uma tolerância na comparação ($1,5\times10^{-8}$) fazendo com aquela imprecisão seja ignorada. Para mais detalhes consulte `?all.equal`.
 
 
 ### Funções `any` e `all`
@@ -341,278 +399,181 @@ any(vetor > 0) # alguma posição é maior que 0?
 
 ## Sequências 
 
-Vimos nas seções anteriores que é muito simples criar sequências de números inteiros com o operador `:`.  Nesta seção veremos outras formas de gerar sequências, como uma sequência de números não inteiros e sequências de números repetidos. 
+Vimos nas seções anteriores que é muito simples criar sequências de números inteiros com o operador `:`.  Nesta seção veremos outras formas de gerar sequências, como uma sequência de números reais e sequências de números repetidos. 
+
 
 ### Sequências de números inteiros
 
-Sequências de números formam um vetor. Há diversas formas de se gerar sequências no R. Para gerar uma sequência de 1 até 365, em vez de escrevermos cada número e combiná-los usando `c(1,2,3,...,365)`, podemos usar o operador `:` da seguinte forma:
- 
+Os dois pontos (`:`) são uma maneira muito fácil de gerar uma sequência de números igualmente espaçados por 1. Você especifica um número inicial e um número final e o `R` produzirá todos os números inteiros entre eles, incluindo os dois números. Isso funciona mesmo para números negativos ou para valores decrescentes.
+
+
 
 ```r
-# dias do ano
-dda <- 1:365
-dda
-#>   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-#>  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-#>  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-#>  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-#>  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-#>  [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
-#> [109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
-#> [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
-#> [145] 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162
-#> [163] 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180
-#> [181] 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198
-#> [199] 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216
-#> [217] 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234
-#> [235] 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252
-#> [253] 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270
-#> [271] 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288
-#> [289] 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306
-#> [307] 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324
-#> [325] 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
-#> [343] 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360
-#> [361] 361 362 363 364 365
+(ddm <- 1:31)
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+#> [26] 26 27 28 29 30 31
+typeof(ddm)
+#> [1] "integer"
 # sequencia de inteiros decrescente
-si_dec <- 10:-10
-si_dec
+(si_dec <- 10:-10)
 #>  [1]  10   9   8   7   6   5   4   3   2   1   0  -1  -2  -3  -4  -5  -6  -7  -8
 #> [20]  -9 -10
-# sequencia de numeros não inteiros
-seqn <- 1.5:10
-seqn
-#> [1] 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5
-c(seqn, 10)
-#>  [1]  1.5  2.5  3.5  4.5  5.5  6.5  7.5  8.5  9.5 10.0
+typeof(si_dec)
+#> [1] "integer"
 ```
 
-### Sequências de números não inteiros
+### Sequências de números reais
 
-Para gerar uma sequencia de números reias há a função `seq()`.
+A função `seq()`pode ser usada para gerar sequências tanto de números reais como inteiros.
+
+No código abaixo são geradas uma sequência crescente e uma decrescente, ambas igualmente espaçadas por 3.
 
 
 ```r
-# igual a c(snum, 10), mas usando o seq
-(snum_b <- seq(
-  from = 1.5,
-  to = 10,
-  by = 0.5
-))
-#>  [1]  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0  8.5
-#> [16]  9.0  9.5 10.0
+seq(from = 1, to = 10, by = 3)
+#> [1]  1  4  7 10
+seq(from = 10, to = 1, by = -3)
+#> [1] 10  7  4  1
 ```
 
-Exemplos de sequência de anos, meses e dias.
+Para sequências decrescentes o argumento `by` (\"por\") deve ser negativo.
 
-```r
-# vetor com de anos decimais (2 valores por dia)
-anos_dec <- seq(2010, 2011, length.out = 365 * 2)
-# para ver só o início do vetor ao invés de todo o vetor
-head(anos_dec)
-#> [1] 2010.000 2010.001 2010.003 2010.004 2010.005 2010.007
-# mas não dá pra ver a parte decimal, vamos alterar as opções
-# aumentando as casas decimais
-options(digits = 6)
-# verifique agora
-head(anos_dec)
-#> [1] 2010.00 2010.00 2010.00 2010.00 2010.01 2010.01
-# só os primeiros 30 elementos
-head(anos_dec, 30)
-#>  [1] 2010.00 2010.00 2010.00 2010.00 2010.01 2010.01 2010.01 2010.01 2010.01
-#> [10] 2010.01 2010.01 2010.02 2010.02 2010.02 2010.02 2010.02 2010.02 2010.02
-#> [19] 2010.02 2010.03 2010.03 2010.03 2010.03 2010.03 2010.03 2010.03 2010.04
-#> [28] 2010.04 2010.04 2010.04
-# para ver só o final do vetor yrFrac
-tail(anos_dec)
-#> [1] 2010.99 2010.99 2011.00 2011.00 2011.00 2011.00
-# para ver só os último 50 elementos do yrFrac
-tail(anos_dec, 50)
-#>  [1] 2010.93 2010.93 2010.94 2010.94 2010.94 2010.94 2010.94 2010.94 2010.94
-#> [10] 2010.95 2010.95 2010.95 2010.95 2010.95 2010.95 2010.95 2010.95 2010.96
-#> [19] 2010.96 2010.96 2010.96 2010.96 2010.96 2010.96 2010.97 2010.97 2010.97
-#> [28] 2010.97 2010.97 2010.97 2010.97 2010.98 2010.98 2010.98 2010.98 2010.98
-#> [37] 2010.98 2010.98 2010.98 2010.99 2010.99 2010.99 2010.99 2010.99 2010.99
-#> [46] 2010.99 2011.00 2011.00 2011.00 2011.00
-# pentadas
-pent <- seq(from = 1, to = 365, by = 5)
-# dencendios
-decd <- seq(from = 1, to = 365, by = 10)
-# fracoes de dia
-frac_d30mn <- seq(0, 365, length.out = 365 * 48) + 1
-head(frac_d30mn, 48 * 2)
-#>  [1] 1.00000 1.02083 1.04167 1.06250 1.08334 1.10417 1.12501 1.14584 1.16668
-#> [10] 1.18751 1.20835 1.22918 1.25001 1.27085 1.29168 1.31252 1.33335 1.35419
-#> [19] 1.37502 1.39586 1.41669 1.43752 1.45836 1.47919 1.50003 1.52086 1.54170
-#> [28] 1.56253 1.58337 1.60420 1.62504 1.64587 1.66670 1.68754 1.70837 1.72921
-#> [37] 1.75004 1.77088 1.79171 1.81255 1.83338 1.85422 1.87505 1.89588 1.91672
-#> [46] 1.93755 1.95839 1.97922 2.00006 2.02089 2.04173 2.06256 2.08340 2.10423
-#> [55] 2.12506 2.14590 2.16673 2.18757 2.20840 2.22924 2.25007 2.27091 2.29174
-#> [64] 2.31257 2.33341 2.35424 2.37508 2.39591 2.41675 2.43758 2.45842 2.47925
-#> [73] 2.50009 2.52092 2.54175 2.56259 2.58342 2.60426 2.62509 2.64593 2.66676
-#> [82] 2.68760 2.70843 2.72927 2.75010 2.77093 2.79177 2.81260 2.83344 2.85427
-#> [91] 2.87511 2.89594 2.91678 2.93761 2.95845 2.97928
-tail(frac_d30mn, 48 * 2)
-#>  [1] 364.021 364.042 364.062 364.083 364.104 364.125 364.146 364.167 364.187
-#> [10] 364.208 364.229 364.250 364.271 364.292 364.312 364.333 364.354 364.375
-#> [19] 364.396 364.417 364.437 364.458 364.479 364.500 364.521 364.542 364.562
-#> [28] 364.583 364.604 364.625 364.646 364.667 364.687 364.708 364.729 364.750
-#> [37] 364.771 364.792 364.812 364.833 364.854 364.875 364.896 364.917 364.937
-#> [46] 364.958 364.979 365.000 365.021 365.042 365.062 365.083 365.104 365.125
-#> [55] 365.146 365.167 365.187 365.208 365.229 365.250 365.271 365.292 365.312
-#> [64] 365.333 365.354 365.375 365.396 365.417 365.437 365.458 365.479 365.500
-#> [73] 365.521 365.542 365.562 365.583 365.604 365.625 365.646 365.667 365.687
-#> [82] 365.708 365.729 365.750 365.771 365.792 365.812 365.833 365.854 365.875
-#> [91] 365.896 365.917 365.937 365.958 365.979 366.000
-# diferentes funções para gerar uma sequência
-an <- c(1, 7, 2, 5, 3, 2)
-# gerando uma sequencia a partir de um número
-seq_len(length.out = 6)
-#> [1] 1 2 3 4 5 6
-# gerando uma sequência a partir de um número
-seq(6)
-#> [1] 1 2 3 4 5 6
-# de acordo com o tamanho do vetor gera-se uma sequencia
-seq(along = an)
-#> [1] 1 2 3 4 5 6
-seq(along = 0) # ! melhor opção para gerar sequencias do tamanho do vetor
-#> [1] 1
-seq(0) # ! cuidado, veja ?seq para entender a razão desse resultado inusitado
-#> [1] 1 0
-# conflito entre parâmetros
-# a <-seq(from = -5, to = 5, by = 0.05, length.out=200)
-s5by <- seq(from = -5, to = 5, by = 0.05)
-length(s5by)
-#> [1] 201
-tail(s5by)
-#> [1] 4.75 4.80 4.85 4.90 4.95 5.00
-s5len <- seq(from = -5, to = 5, length.out = 200)
-length(s5len)
-#> [1] 200
-tail(s5len)
-#> [1] 4.74874 4.79899 4.84925 4.89950 4.94975 5.00000
-```
+A saída da `seq()` vai sempre incluir o n° inicial (passado no argumento `from` - \"de\"), mas nem sempre incluirá o n° final (passado no argumento `to` - \"até\"). Se sua sequência está aumentando por um argumento `by` que é par (ímpar) e o argumento `to` também é par (ímpar), não incluirá o valor do argumento `to` no resultado (Tabela \@ref(tab:seqs-by)). Quando `to` e `by` diferem o valor de `to` fará parte da sequência de saída.
 
-### Sequências de números repetidos
+
+
+Table: (\#tab:seqs-by)Sequências com argumentos ímpares e pares.
+
+ 'from'    'to'    'to' é par?    'by'    'by' é par?         sequência          resultado inclui 'to' 
+--------  ------  -------------  ------  -------------  ----------------------  -----------------------
+   1        10        TRUE         2         TRUE          c(1, 3, 5, 7, 9)              FALSE         
+   1        10        TRUE         3         FALSE          c(1, 4, 7, 10)               TRUE          
+   1        11        FALSE        2         TRUE        c(1, 3, 5, 7, 9, 11)            TRUE          
+   1        11        FALSE        3         FALSE          c(1, 4, 7, 10)               FALSE         
+
+Ao invés de usar o argumento `by`, podemos especificar um valor para o argumento `length.out` (\"tamanho de saída\") para produzir um vetor com tantos números, igualmente espaçados, entre os valores `from` e `to`.
+
 
 
 ```r
-rep_t4 <- rep(1:2, times = 4)
-rep_t4
+seq(from = 1, to = 10, length.out = 20)
+#>  [1]  1.000000  1.473684  1.947368  2.421053  2.894737  3.368421  3.842105
+#>  [8]  4.315789  4.789474  5.263158  5.736842  6.210526  6.684211  7.157895
+#> [15]  7.631579  8.105263  8.578947  9.052632  9.526316 10.000000
+```
+
+O `length.out = 20` no código acima permite gerar 20 números igualmente espaçados entre 1 e 10.
+
+### Repetições
+
+Algumas vezes precisamos repetir certos valores, o que pode ser feito com a função `rep()`. O argumento `times` especifica o número de vezes para repetir o `x`. 
+
+
+```r
+rep(x = 1:2, times = 4)
 #> [1] 1 2 1 2 1 2 1 2
-rep_e31 <- rep(1:12, each = 31)
-rep_e31
-#>   [1]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-#>  [26]  1  1  1  1  1  1  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-#>  [51]  2  2  2  2  2  2  2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3
-#>  [76]  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  4  4  4  4
-#> [101]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  5
-#> [126]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-#> [151]  5  5  5  5  5  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-#> [176]  6  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-#> [201]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  8  8  8  8  8  8  8  8
-#> [226]  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  9  9
-#> [251]  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9
-#> [276]  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
-#> [301] 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11
-#> [326] 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12
-#> [351] 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12
-rep_t13 <- rep(c("chuva", "sol"), times = c(1, 3))
-rep_t13
-#> [1] "chuva" "sol"   "sol"   "sol"
-rep_t13_t4 <- rep(rep(c("chuva", "sol"), times = c(1, 3)), times = 4)
-rep_t13_t4
-#>  [1] "chuva" "sol"   "sol"   "sol"   "chuva" "sol"   "sol"   "sol"   "chuva"
-#> [10] "sol"   "sol"   "sol"   "chuva" "sol"   "sol"   "sol"
+```
+
+O argumento `each` especifica o número de vezes para repetir cada elemento de `x`.
+
+
+```r
+rep(x = 1:2, each = 3)
+#> [1] 1 1 1 2 2 2
+```
+
+Os argumentos podem ser combinados.
+
+
+```r
+rep(x = 1:2, times = 4, each = 3)
+#>  [1] 1 1 1 2 2 2 1 1 1 2 2 2 1 1 1 2 2 2 1 1 1 2 2 2
+```
+
+No caso acima, `x` primeiro foi repetido 4 vezes e depois cada elemento foi repetido 3 vezes.
+
+Quando argumento `times` é um vetor de mesmo tamanho que `x`, cada um de seus valores será usado para repetir tantas vezes o respectivo elemento de `x`.
+
+
+```r
+rep(x = 1:2, times = 4:3)
+#> [1] 1 1 1 1 2 2 2
 ```
 
 
 ## Indexação de vetores {#index-vetores}
 
-Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. 
+Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. Para extrair ou filtrar elementos de um vetor usamos o operador colchetes, seguindo a sintaxe: 
 
-Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos. 
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `vetor[indices]` </p>
 
-Através do operador `[` podemos acessar ou filtrar elementos de um vetor. O operador colchete `[` aplicado a um vetor retornará um vetor.
+onde **`indices`** representa os índices dos elementos da variável `vetor` a serem selecionados. O operador `[` quando aplicado a um vetor retornará sempre um vetor.
 
-Considere os seguintes vetores como exemplo:
+Podemos selecionar partes de um vetor especificando o índice de diferentes formas:
 
+- por posições (números inteiros)
 
-```r
-prec
-#> jan fev mar abr mai jun jul ago set out nov dez 
-#> 300 150 210  12   0   0  12  22  80 100  10 280
-```
+- por caracteres (nomes dos elementos)
 
-Como selecionar o valor de chuva e temperatura só para janeiro?
+- por vetores lógicos (testes ou comparações)
 
-Usando a seguinte sintaxe: 
-
-`vetor[i]`
-
-onde `i` representa o índice dos elementos a serem selecionados.
 
 ### Indexação por vetores inteiros
 
 #### Positivos
 
-Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:
+Para extrairmos a precipitação de janeiro e dezembro do vetor `prec` podemos usar o seguinte código:
 
 
 ```r
-prec_jan <- prec[1]
-prec_jan
-#> jan 
-#> 300
+prec_jd <- prec[c(1, length(prec))]
+prec_jd
+#> jan dez 
+#> 300 280
 ```
 
-Como selecionar os últimos valores do vetor de chuva?
+Similarmente a precipitação dos meses de inverno (JJA) podem ser selecionadas com:
 
 
 ```r
-prec_dez <- prec[length(prec)]
-prec_dez
-#> dez 
-#> 280
-```
-
-Como selecionar os valores de chuva do trimestre JJA e de temperatura para o trimestre DJF?
-
-
-```r
-sel_prec <- c(6, 7, 8)
+inds_jja <- 6:8
 # vetor de chuva JJA
-prec_jja <- prec[sel_prec]
-prec_jja
+prec[inds_jja]
 #> jun jul ago 
 #>   0  12  22
-# total de chuva trimestral nesse ano
-prect_jja_tot <- sum(prec_jja)
-prect_jja_tot
-#> [1] 34
 ```
 
 #### Negativos
 
-Como selecionar todos valores menos o primeiro e o último?
+Se quiséssemos selecionar a precipitação de todos os meses exceto as de janeiro e dezembro poderíamos usar os índices correspondentes aqueles meses, precedidos do sinal negativo.
 
 
 ```r
 # exceto o primeiro e ultimo
 prec[-c(1, length(prec))]
 #> fev mar abr mai jun jul ago set out nov 
-#> 150 210  12   0   0  12  22  80 100  10
+#> 200 210  12   0   0  12  22 100 120  10
 ```
 
-###  Indexação por nomes
+Para remover os meses de inverno de `prec`, faríamos:
 
 
 ```r
-prec["Jan"]
-#> <NA> 
-#>   NA
-prec[c("Dez", "Fev", "Jun")]
-#> <NA> <NA> <NA> 
-#>   NA   NA   NA
+ prec[-inds_jja]
+#> jan fev mar abr mai set out nov dez 
+#> 300 200 210  12   0 100 120  10 280
+```
+
+
+###  Indexação por nomes
+
+A seleção de partes e um vetor pode ser feita também usando os nomes de seus elementos. As precipitações de janeiro e dezembro poderiam ser extraídas usando:
+
+
+```r
+prec[c("jan", "dez")]
+#> jan dez 
+#> 300 280
 ```
 
 ### Indexação por vetores lógicos
@@ -621,280 +582,363 @@ Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de 
 
 
 ```r
-vetor_l <- c(
+inds_log <- c(
   TRUE, FALSE, FALSE, TRUE,
   TRUE, FALSE, TRUE, FALSE,
   TRUE, FALSE, FALSE, TRUE
 )
-meses[vetor_l]
-#> [1] "jan" "abr" "mai" "jul" "set" "dez"
+prec[inds_log]
+#> jan abr mai jul set dez 
+#> 300  12   0  12 100 280
 ```
 
-Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando-se a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
+Somente os elementos de `inds_log` correspondentes a `TRUE` foram selecionados. 
+
+Vamos considerar um vetor lógico (`inds_log`) para demonstrar como a funcionalidade de **coerção** pode ser útil. Imagine que você queira extrair de `prec` o primeiro elemento, mas o segundo não, o terceiro elemento sim, o quarto não e assim sucessivamente. Essa seleção intercalada pode ser simplesmente feita com:
 
 
 ```r
-sum(vetor_l)
-#> [1] 6
-```
-
-Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar da **coerção** de vetores.
-
-
-```r
-# vetor lógico
-vetor_l <- c(TRUE, FALSE)
-meses[vetor_l]
-#> [1] "jan" "mar" "mai" "jul" "set" "nov"
-vetor_l <- c(TRUE, FALSE, FALSE)
-meses[vetor_l]
-#> [1] "jan" "abr" "jul" "out"
-prec[c(TRUE, FALSE)]
+inds_log <- c(TRUE, FALSE)
+prec[inds_log]
 #> jan mar mai jul set nov 
-#> 300 210   0  12  80  10
+#> 300 210   0  12 100  10
 ```
 
-A indexação pode ser feita também por comparações:
+Uma forma mais prática de filtrar vetores é por comparações. Por exemplo, quando houve precipitação acima de 80 mm?
 
 
 ```r
-# vetor prec
+inds_prec_alta <- prec > 80
+prec[inds_prec_alta]
+#> jan fev mar set out dez 
+#> 300 200 210 100 120 280
+```
+
+Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira. Nós podemos localizar essas ocorrências usando a função `which()`. Por exemplo, qual a posição dos elementos do vetor `inds_prec_alta` que são verdadeiros.
+
+
+```r
+which(inds_prec_alta)
+#> jan fev mar set out dez 
+#>   1   2   3   9  10  12
+```
+
+Esses índices também podem ser usados para extrair os valores de precipitação dos meses correspondentes.
+
+
+```r
+prec[which(inds_prec_alta)]
+#> jan fev mar set out dez 
+#> 300 200 210 100 120 280
+```
+
+FALTANDO
+`which.max()` e `which.min()`
+
+
+### Substituição de elementos de um vetor {#replace-vect}
+
+Podemos substituir os valores de um vetor usando os mesmos esquemas de indexação vistos na seção anterior. A sintaxe geral para substituir elementos de um vetor por novos valores é:
+
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `vetor[indices] <- novos_valores` </p>
+
+Vamos fazer uma cópia do vetor `prec` para então alterá-lo, fazendo substituição de seus elementos usando as diferentes formas de indexação.
+
+
+```r
+(prec_alt <- prec)
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 200 210  12   0   0  12  22 100 120  10 280
+```
+
+- Por posições: suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.
+
+
+```r
+inds_jja
+#> [1] 6 7 8
+prec_alt[inds_jja] <- c(NA, 21, 42)
 prec
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 300 150 210  12   0   0  12  22  80 100  10 280
-# teste para chuva > 80 mm/mês
-prec > 80
-#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
-#>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-# salvando resultado do teste
-prec_alta <- prec > 80
-# extraindo valores atendidos ao teste
-prec[prec_alta]
-#> jan fev mar out dez 
-#> 300 150 210 100 280
-# teste para meses com chuva abaixo da média mensal
-(prec_med <- mean(prec))
-#> [1] 98
-# salvando resultado do teste
-(prec_baixa <- prec < prec_med)
-#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
-#> FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
-# extraindo valores que atendem a condição
-prec[prec_baixa]
-#> abr mai jun jul ago set nov 
-#>  12   0   0  12  22  80  10
-# extraindo os 3 primeiros meses com prec abaixo da média
-prec[prec_baixa][1:3]
-#> abr mai jun 
-#>  12   0   0
-# forma equivalente em uma linha só
-prec[prec < mean(prec)][1:3]
-#> abr mai jun 
-#>  12   0   0
-# teste para meses com prec diferente de zero
-prec[prec != 0]
-#> jan fev mar abr jul ago set out nov dez 
-#> 300 150 210  12  12  22  80 100  10 280
+#> 300 200 210  12   0   0  12  22 100 120  10 280
+prec_alt
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 200 210  12   0  NA  21  42 100 120  10 280
 ```
 
-Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira Nós podemos localizar essas ocorrências usando a função `which()`:
-
-
-```r
-# prec sem nomes
-names(prec) <- NULL
-# combinação de operador lógico e relacional
-prec_alta
-#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
-#>  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-which(prec_alta)
-#> jan fev mar out dez 
-#>   1   2   3  10  12
-# qual os meses em que a chuva foi acima da media
-which(prec > prec_med)
-#> [1]  1  2  3 10 12
-prec[which(prec > prec_med)]
-#> [1] 300 150 210 100 280
-```
-
-
-
-
-### Substituição de elementos de um vetor
-
-
-```r
-# posição a ser alterada
-pos <- 10
-# valor da prec naquela posição
-prec_velha <- prec[pos]
-prec_velha
-#> [1] 100
-# vetor de prec
-prec
-#>  [1] 300 150 210  12   0   0  12  22  80 100  10 280
-# substituição do valor original por um novo valor
-prec_nova <- 30
-# alterando prec do mês de outubro
-prec[pos] <- prec_nova
-prec
-#>  [1] 300 150 210  12   0   0  12  22  80  30  10 280
-```
   
-A substituição também pode ser feita também pelo nome das variáveis.
+- Por nomes: suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.
+
+
+```r
+prec_jd_corr <- c(250, 208)
+prec_alt[c("jan", "dez")] <- prec_jd_corr
+prec
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 200 210  12   0   0  12  22 100 120  10 280
+prec_alt
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 200 210  12   0  NA  21  42 100 120  10 208
+```
+
+
+- Por comparação: imagine que você precisa substituir os valores de `prec_alt` que ficaram em torno de $\pm10 \%$  da média mensal climatológica pelos valores climatológicos.
+
+
+```r
+# limiar em % da normal climatológica
+limiar <- 10 
+# anomalias relativas em %
+(anom_perc <-  (abs(prec - prec_clim)/prec_clim) * 100)
+#>        jan        fev        mar        abr        mai        jun        jul 
+#>  30.434783   2.439024  31.250000  88.000000 100.000000 100.000000  70.000000 
+#>        ago        set        out        nov        dez 
+#>  63.333333   9.090909  27.272727  95.000000  27.272727
+# meses com prec em torno de +-10% da média climatol.
+prec_alt[anom_perc <= 10]
+#> fev set 
+#> 200 100
+# substituição pela prec mensal climatol. 
+prec_alt[anom_perc <= 10] <- prec_clim[anom_perc <= 10]
+prec_clim
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 230 205 160 100  60  30  40  60 110 165 200 220
+prec_alt
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 205 210  12   0  NA  21  42 110 120  10 208
+```
+
+A função `abs()` obém o valor absoluto ou módulo de um vetor.
+
+
+### Lidando com com dados faltantes
+
+Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituílos se necessários.
+
+Vamos substituir alguns valores da `prec_alt` por `NA` para poder tratar de dados faltantes usando as diferentes funcionalidades que o <img src="images/logo_r.png" width="20"> oferece para isso. 
+
+
+```r
+prec_alt[c(3, 4, 11)] <- NA
+prec_alt
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 205  NA  NA   0  NA  21  42 110 120  NA 208
+```
+
+#### Identificação e remoção de `NA`s
+
+Para identificar `NA`s em um vetor, a função específica para isso é a `is.na()`. 
+
+
+```r
+is.na(prec_alt)
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#> FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+```
+
+Também podemos usá-la em combinaçãocom a função `which()` para obter os índices dos elementos faltantes.
+
+
+```r
+which(is.na(prec_alt))
+#> mar abr jun nov 
+#>   3   4   6  11
+```
+
+Novos usuários do R tentam identificar dados faltantes com a expressão: 
+
+
+```r
+prec_alt == NA
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#>  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA
+```
+
+O que produzirá somente `NA`s mesmo que o vetor testado possua algum `NA`. Isso ocorre pela regra de qualquer operação com `NA`s resulta em `NA`s.
+
+Para verificar se há algum dado faltante em um vetor usamos a função `anyNA()` e para quantificar o total de observações faltantes combinamos as expressões `sum()` e `is.na()`:
+
+
+```r
+anyNA(prec_alt)
+#> [1] TRUE
+sum(is.na(prec_alt))
+#> [1] 4
+```
+
+A remoção dos elementos faltantes de um vetor é moleza. É só usar indexação lógica:
+
+
+```r
+prec_alt[!is.na(prec_alt)]
+#> jan fev mai jul ago set out dez 
+#> 250 205   0  21  42 110 120 208
+# outra forma equivalente
+#prec_alt[-which(is.na(prec_alt))]
+```
+
+Uma a alternativa mais sofisticada é `na.omit()` que não só remove os valores faltantes, mas como também guarda onde haviam dados faltantes. Esta informação é armazenada na lista de atributos.
+
+
+```r
+prec_alt_sem_falt <- na.omit(prec_alt)
+attributes(prec_alt_sem_falt)
+#> $names
+#> [1] "jan" "fev" "mai" "jul" "ago" "set" "out" "dez"
+#> 
+#> $na.action
+#> mar abr jun nov 
+#>   3   4   6  11 
+#> attr(,"class")
+#> [1] "omit"
+```
+
+As posições originais dos dados faltantes descartados podem ser obtidas com:
+
+
+```r
+attr(
+  x = prec_alt_sem_falt,
+  which = "na.action"
+)
+#> mar abr jun nov 
+#>   3   4   6  11 
+#> attr(,"class")
+#> [1] "omit"
+```
+
+Quando trabalhamos com vetores grandes que contenham váriás falhas é útil saber a posição da sequência de dados consecutivos válidos mais longa. A função `na.contiguous()` retornará somente elementos daquela sequência.
+
+
+```r
+prec_alt_val_long <- na.contiguous(prec_alt)
+prec_alt_val_long
+#> jul ago set out 
+#>  21  42 110 120 
+#> attr(,"na.action")
+#> [1]  1  2  3  4  5  6 11 12
+#> attr(,"class")
+#> [1] "omit"
+#> attr(,"tsp")
+#> [1]  7 10  1
+```
+
+#### Indexação com `NA`s
+
+Suponha que queremos extrair um conjunto de elementos de `prec_clim` baseado em `inds_na`.
+
+
+```r
+prec_alt > 220
+#>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
+#>  TRUE FALSE    NA    NA FALSE    NA FALSE FALSE FALSE FALSE    NA FALSE
+```
+
+O interesse é extrair os valores de `prec_clim` quando a `prec_alt` superou 220 mm. A expressão para essa seleção é: 
+
+
+```r
+prec_clim[prec_alt > 220]
+#>  jan <NA> <NA> <NA> <NA> 
+#>  230   NA   NA   NA   NA
+```
+
+o resultado da filtragem foi um vetor com o resultado da condição de prec_clim  para qual `prec_alt > 220` e também `NA`s. Isto é um resultado que provavelmente ninguém deseja. 
+
+Se nós queremos extrair os valores de `prec_clim` para os quais `prec_alt` **não é faltante** e **também superior a 220** nós devemos usar a seguinte expressão:
+
+
+```r
+prec_clim[!is.na(prec_alt) & prec_alt > 220]
+#> jan 
+#> 230
+```
+
+A moral da história aqui é que na prática quando você tem `NA`s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o <img src="images/logo_r.png" width="20"> pode retornar algo diferente do que era esperado.
+
+#### Efeito de `NA`s em funções
+
+
+
+```r
+summary(prec_alt)
+#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#>    0.00   36.75  115.00  119.50  205.75  250.00       4
+```
+
+
+
+```r
+max()
+min()
+sum()
+cumsum()
+diff()
+```
+
+
+```r
+na.approx()
+```
+
+
+
+### Dados Nulos (`NULL`) {#dados-nulos}
+
+O `NULL` é um tipo especial de dado no <img src="images/logo_r.png" width="20">. Ele é um vetor de tamanho zero.
+
+
+
+```r
+vetor_nulo1 <- NULL
+vetor_nulo1
+#> NULL
+length(vetor_nulo1)
+#> [1] 0
+```
+
+Um vetor nulo também pode ser definido com:
+
+
+```r
+vetor_nulo2 <- c()
+vetor_nulo2
+#> NULL
+```
+
+Note que um vetor ser nulo não significa que ele não exista. Ou seja, a atribuição de `NULL` a uma variável não apaga a variável de seu ambiente de trabalho. A existência de uma variável pode ser verificada com a função `exists()`, na qual o argumento `x` deve ser passado como caracter. 
+
+
+```r
+exists(x = "vetor_nulo1")
+#> [1] TRUE
+```
+
+Como o `NULL` é um vetor vazio, seu uso explícito dentro de um vetor não conta. Assim, qualquer operação com `NULL` resulta em um vetor vazio.
+
+
+```r
+(vetor_elem_nulo <- c(1, 2, NULL, 4))
+#> [1] 1 2 4
+length(vetor_elem_nulo)
+#> [1] 3
+vetor_elem_nulo + NULL
+#> numeric(0)
+```
+
+Em algumas situações você pode querer anular um atributo de um vetor, como os nomes. Eventualmente até mesmo o próprio vetor.
 
 
 ```r
 prec
-#>  [1] 300 150 210  12   0   0  12  22  80  30  10 280
-prec["Mai"] <- 5
-```
-
-
-### Vetores nulos e elementos faltantes
-
-Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. 
-No R dados faltantes são representados pela string `NA`.
-
-
-```r
-v1 <- c(1:8, NA)
-v1 > 5 # NA sai na resposta
-#> [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE    NA
-# teste lógico com o operador idêntico "=="
-v1 == NA
-#> [1] NA NA NA NA NA NA NA NA NA
-# não funcionou, porque há funções específicas para vetores com NA
-onde_falta <- is.na(v1)
-# função apropriada p/ checar se tem NAs
-faltante <- which(is.na(v1))
-v1[-faltante]
-#> [1] 1 2 3 4 5 6 7 8
-# ou
-v1[!onde_falta]
-#> [1] 1 2 3 4 5 6 7 8
-# mas o R possui a função mean
-mean(v1)
-#> [1] NA
-# não retornou o que desejamos, removendo as posicoes dos dados faltantes
-mean(v1[-faltante])
-#> [1] 4.5
-# ok, mas olhando o help ...
-# ?mean
-mean(v1, na.rm = TRUE)
-#> [1] 4.5
-# definir como faltante todos elementos de v1
-v1[] <- NA
-v1
-#> [1] NA NA NA NA NA NA NA NA NA
-length(v1)
-#> [1] 9
-# vetor com dados faltantes indicados por -999
-# substituir onde é -999 por NA
-x_falt <- c(-999, 10, 15, -999, 50)
-x_falt == -999
-#> [1]  TRUE FALSE FALSE  TRUE FALSE
-x_falt[x_falt == -999] <- NA
-# total de dados faltantes
-sum(!is.na(x_falt))
-#> [1] 3
-```
-
-
-### Dados Nulos (`NULL`)
-
-O `NULL` é um tipo de dado especial de dado no R. Ele é um vetor de tamnho zero.
-
-
-```r
-# v1 existe ?
-ls()
-#>  [1] "a"                  "an"                 "anos_dec"          
-#>  [4] "b"                  "cran_news_windows"  "cte"               
-#>  [7] "dda"                "decd"               "desc"              
-#> [10] "faltante"           "format_hotkey"      "frac_d30mn"        
-#> [13] "horas"              "meses"              "meses_pnm"         
-#> [16] "meses_snm"          "onde_falta"         "oper"              
-#> [19] "oper_logic"         "pcks"               "pent"              
-#> [22] "pos"                "prec"               "prec_alta"         
-#> [25] "prec_baixa"         "prec_clim"          "prec_dez"          
-#> [28] "prec_jan"           "prec_jja"           "prec_med"          
-#> [31] "prec_nova"          "prec_velha"         "prect_jja_tot"     
-#> [34] "quatros"            "r_cran_version_win" "rblue"             
-#> [37] "rep_e31"            "rep_t13"            "rep_t13_t4"        
-#> [40] "rep_t4"             "s5by"               "s5len"             
-#> [43] "sel_prec"           "seqn"               "si_dec"            
-#> [46] "snum_b"             "v1"                 "v2"                
-#> [49] "v3"                 "vetor"              "vetor_dbl"         
-#> [52] "vetor_l"            "x_falt"
-exists("v1")
-#> [1] TRUE
-# vamos anular todo v1
-v1 <- NULL
-ls()
-#>  [1] "a"                  "an"                 "anos_dec"          
-#>  [4] "b"                  "cran_news_windows"  "cte"               
-#>  [7] "dda"                "decd"               "desc"              
-#> [10] "faltante"           "format_hotkey"      "frac_d30mn"        
-#> [13] "horas"              "meses"              "meses_pnm"         
-#> [16] "meses_snm"          "onde_falta"         "oper"              
-#> [19] "oper_logic"         "pcks"               "pent"              
-#> [22] "pos"                "prec"               "prec_alta"         
-#> [25] "prec_baixa"         "prec_clim"          "prec_dez"          
-#> [28] "prec_jan"           "prec_jja"           "prec_med"          
-#> [31] "prec_nova"          "prec_velha"         "prect_jja_tot"     
-#> [34] "quatros"            "r_cran_version_win" "rblue"             
-#> [37] "rep_e31"            "rep_t13"            "rep_t13_t4"        
-#> [40] "rep_t4"             "s5by"               "s5len"             
-#> [43] "sel_prec"           "seqn"               "si_dec"            
-#> [46] "snum_b"             "v1"                 "v2"                
-#> [49] "v3"                 "vetor"              "vetor_dbl"         
-#> [52] "vetor_l"            "x_falt"
-v1
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 200 210  12   0   0  12  22 100 120  10 280
+names(prec) <- NULL
+prec
+#>  [1] 300 200 210  12   0   0  12  22 100 120  10 280
+prec <- NULL
+prec
 #> NULL
-# NULL
-vetor1 <- c()
-vetor2 <- NULL
-is.null(c(vetor1, vetor2))
-#> [1] TRUE
-# vetor1 e vetor2 são equivalentes?
-identical(vetor1, vetor2)
-#> [1] TRUE
-# remoção de elementos de um vetor com NULL
-a <- c(10, 2, NA, 20)
-a
-#> [1] 10  2 NA 20
-typeof(a)
-#> [1] "double"
-# remover de a o dado faltante
-a <- a[!is.na(a)]
-a
-#> [1] 10  2 20
-# é possível remover um elemento com o NULL?
-a[length(a)] <- NULL
-#> Error in a[length(a)] <- NULL: replacement has length zero
-a
-#> [1] 10  2 20
-a <- a[-length(a)]
-a
-#> [1] 10  2
-typeof(a)
-#> [1] "double"
-# anulando a
-a <- NULL
-# qual modo de um objeto nulo?
-typeof(a)
-#> [1] "NULL"
-# qual modo de NA?
-b <- NA
-b
-#> [1] NA
-typeof(b)
-#> [1] "logical"
-length(a)
-#> [1] 0
-length(b)
-#> [1] 1
 ```
 
  
@@ -946,8 +990,8 @@ length(b)
   c.
 
 ```
- [1] -3.141593 -2.570394 -1.999195 -1.427997 -0.856798 -0.285599  0.285599
- [8]  0.856798  1.427997  1.999195  2.570394  3.141593
+ [1] -3.1415927 -2.5703940 -1.9991953 -1.4279967 -0.8567980 -0.2855993
+ [7]  0.2855993  0.8567980  1.4279967  1.9991953  2.5703940  3.1415927
 ```
   d.
 

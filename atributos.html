@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R</title>
+  <title>7.2 Atributos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.2 Atributos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.2 Atributos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="testes-sobre-tipos-de-dados.html"/>
-<link rel="next" href="outros-tipos-de-dados-derivados.html"/>
+<link rel="prev" href="propriedades.html"/>
+<link rel="next" href="oper-vect.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -362,87 +362,34 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conversão-entre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.3</span> Conversão entre tipos de dados</h2>
-<p>Em algumas circunstâncias precisamos alterar o tipo de uma variável para o tipo que queremos. Para isso há o grupo de funções <code>as.{tipo_de_dados}()</code>, semelhante ao grupo de funções <code>is.{tipo_de_dados}()</code>. Este tipo de operação é chamada de <strong>coersão</strong> no <img src="images/logo_r.png" width="20">.</p>
-<!-- 
-COLOCAR TUDO EM UMA TABELA SÓ 
--->
-<p>Então, a coersão da variável <code>vetor_num</code> para inteiro pode ser feita com:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_num
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="kw">as.integer</span>(vetor_num)
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.integer</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;integer&quot;</span></code></pre></div>
-<p>Já a sua coersão para lógico</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.logical</span>(vetor_num)
-<span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE    NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.logical</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;logical&quot;</span></code></pre></div>
-<p>converte <strong>0</strong> para <code>FALSE</code> e <strong>qualquer outro número</strong> para <code>TRUE</code>.</p>
-<p>A coersão da variável <code>vetor_log</code> para numérica</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_log
-<span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span>
-<span class="kw">as.numeric</span>(vetor_log)
-<span class="co">#&gt; [1]  0 NA  0  1</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_log))
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>converte os valores <code>FALSE</code> para <strong>0</strong> e <strong>TRUE</strong> para <code>1</code>.</p>
-<p>A coersão da variável <code>vetor_char</code> para numérica ou inteiro</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_char
-<span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">as.integer</span>(vetor_char)
-<span class="co">#&gt; Warning: NAs introduced by coercion</span>
-<span class="co">#&gt; [1] NA NA NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_char))
-<span class="co">#&gt; Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>gera <code>NA</code>.</p>
-<p>Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coersão automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.</p>
-<p>Misturando <code>numeric</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_num_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_num, vetor_char))
-<span class="co">#&gt; [1] &quot;-1&quot; &quot;0&quot;  &quot;1&quot;  &quot;2&quot;  NA   &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_num_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<p>Misturando <code>logical</code> com <code>numeric</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_num &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_num))
-<span class="co">#&gt; [1]  0 NA  0  1 -1  0  1  2 NA</span>
-<span class="kw">typeof</span>(vmix_log_num)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>Misturando <code>double</code> com <code>integer</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_dbl_int &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_dbl, vetor_int))
-<span class="co">#&gt; [1] -1.51  0.33  1.46  2.04  1.00  6.00 10.00    NA</span>
-<span class="kw">typeof</span>(vmix_dbl_int)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
-<p>Misturando <code>lógical</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_char))
-<span class="co">#&gt; [1] &quot;FALSE&quot; NA      &quot;FALSE&quot; &quot;TRUE&quot;  &quot;ae&quot;    NA      &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_log_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
-<p>A hierarquia usada na coerção entre tipos de dados segue a relação:</p>
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
-<code>logical &lt; integer &lt; numeric &lt;  character</code>
-</p>
-<p>A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável <code>vetor_num</code>, podemos fazer:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
-vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> 
-<span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE    NA</span>
-<span class="kw">sum</span>(vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 2</span></code></pre></div>
-<p>Neste exemplo, os valores lógicos obtidos com o operador <code>&gt;</code> foram implicitamente convertidos para numéricos (<code>TRUE</code> para <code>1</code>, <code>FALSE</code> para <code>0</code>) antes de se obter a soma dos casos verdadeiros. O argumento <code>na.rm = TRUE</code> habilita a funcionalidade de realizar a soma ignorando os itens faltantes.</p>
+<div id="atributos" class="section level2">
+<h2><span class="header-section-number">7.2</span> Atributos</h2>
+<p>Nós podemos adicionar atributos a um vetor, como por exemplo alguma informação sobre os valores daquela variável. A variável <code>prec</code> possui um atributo (<code>names</code>). A função <code>attributes()</code> lista qualquer atributo de uma variável. Vamos criar uma variável para mostrar como podemos adicionar um atributo a um vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">28</span>)
+<span class="kw">attributes</span>(temp)
+<span class="co">#&gt; NULL</span></code></pre></div>
+<p>Podemos adicionar um atributo chamado <code>metadados</code> à <code>temp</code> e fornecer um vetor caracter com a função de atribuição de atributo <code>attr()&lt;-</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attr</span>(temp, <span class="st">&quot;metadados&quot;</span>) &lt;-<span class="st"> &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span>
+temp
+<span class="co">#&gt; [1] 27 23 21 18 19 28</span>
+<span class="co">#&gt; attr(,&quot;metadados&quot;)</span>
+<span class="co">#&gt; [1] &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span></code></pre></div>
+<p>Algumas funções carregarão este atributo adiante, mas outras não, conforme exemplo a seguir.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(temp_inc &lt;-<span class="st"> </span>temp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
+<span class="co">#&gt; [1] 28 24 22 19 20 29</span>
+<span class="co">#&gt; attr(,&quot;metadados&quot;)</span>
+<span class="co">#&gt; [1] &quot;dados obtidos em www.inmet.gov.br, acesso em 10/10/2010&quot;</span>
+(temp_inc &lt;-<span class="st"> </span><span class="kw">c</span>(temp_inc, <span class="dv">18</span>))
+<span class="co">#&gt; [1] 28 24 22 19 20 29 18</span></code></pre></div>
+<p>Há situações de uso válido deste recurso, mas inicialmente é melhor não confiar nele.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="testes-sobre-tipos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="outros-tipos-de-dados-derivados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="propriedades.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="oper-vect.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
