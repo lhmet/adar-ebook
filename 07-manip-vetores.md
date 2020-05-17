@@ -253,7 +253,7 @@ Table: (\#tab:oper-logic)Operadores Lógicos
 
 Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
 
-- em quais meses `prec` foram abaixo do normal?
+- quais meses de `prec` foram abaixo do normal?
 
 
 ```r
@@ -262,8 +262,6 @@ prec
 #> 300 200 210  12   0   0  12  22 100 120  10 280
 prec_clim
 #>  [1] 230 205 160 100  60  30  40  60 110 165 200 220
-# nomeando vetor prec_clim com os nomes do vetor prec
-names(prec_clim) <- names(prec)
 prec - prec_clim < 0
 #>   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez 
 #> FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
@@ -503,22 +501,22 @@ rep(x = 1:2, times = 4:3)
 
 ## Indexação de vetores {#index-vetores}
 
-Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. Para extrair ou filtrar elementos de um vetor usamos o operador colchetes, seguindo a sintaxe: 
+Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do <img src="images/logo_r.png" width="20">. Para extrair ou filtrar elementos de um vetor usamos o operador colchetes **`[ ]`**, seguindo a sintaxe: 
 
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;"> `vetor[indices]` </p>
 
-onde **`indices`** representa os índices dos elementos da variável `vetor` a serem selecionados. O operador `[` quando aplicado a um vetor retornará sempre um vetor.
+onde **`indices`** representa o vetor com os índices dos elementos da variável `vetor` a serem selecionados. O operador **`[`** quando aplicado a um vetor retornará sempre um vetor.
 
-Podemos selecionar partes de um vetor especificando o índice de diferentes formas:
+Para acessar partes um elemento de um vetor o vetor `indices` dentro dos colchetes pode ser especificado de diferentes formas:
 
-- por posições (números inteiros)
+- por posições (vetor numérico)
 
-- por caracteres (nomes dos elementos)
+- por nomes (vetor de caracteres)
 
-- por vetores lógicos (testes ou comparações)
+- por comparações, testes ou condições (vetor lógico)
 
 
-### Indexação por vetores inteiros
+### Indexação por vetores numéricos
 
 #### Positivos
 
@@ -526,13 +524,18 @@ Para extrairmos a precipitação de janeiro e dezembro do vetor `prec` podemos u
 
 
 ```r
-prec_jd <- prec[c(1, length(prec))]
-prec_jd
+# vetor com as posições dos meses de janeiro e dezembro
+c(1, length(prec))
+#> [1]  1 12
+# acesso aos valores localizados nas posições 1 e 12 
+prec[c(1, length(prec))]
 #> jan dez 
 #> 300 280
 ```
 
-Similarmente a precipitação dos meses de inverno (JJA) podem ser selecionadas com:
+Passando um vetor numérico entre os colchetes retorna a parte do vetor contendo os elementos daquelas posições.
+
+Similarmente a precipitação dos meses de inverno (Junho, Julho e Agosto) podem ser selecionadas usando um vetor definido com os índices das posições daqueles meses:
 
 
 ```r
@@ -545,29 +548,28 @@ prec[inds_jja]
 
 #### Negativos
 
-Se quiséssemos selecionar a precipitação de todos os meses exceto as de janeiro e dezembro poderíamos usar os índices correspondentes aqueles meses, precedidos do sinal negativo.
+O acesso aos dados de precipitação de janeiro e dezembro do vetor `prec` poderia ser feita uma lógica complementar. Poderíamos selecionar todos elementos de `prec` exceto aqueles entre Fevereiro (posição 2) e Novembro (posição 11). Esta frase poderia ser transcrita em código `R`, simplesmente como `-(2:11)`. O sinal `-` precedendo o vetor numérico, exclui o acesso aquelas posições quando usado entre o operador **`[`**.
 
 
 ```r
-# exceto o primeiro e ultimo
-prec[-c(1, length(prec))]
-#> fev mar abr mai jun jul ago set out nov 
-#> 200 210  12   0   0  12  22 100 120  10
+prec[-(2:11)]
+#> jan dez 
+#> 300 280
 ```
 
-Para remover os meses de inverno de `prec`, faríamos:
+Analogamente, os meses de inverno poderiam ser selecionados com:
 
 
 ```r
- prec[-inds_jja]
-#> jan fev mar abr mai set out nov dez 
-#> 300 200 210  12   0 100 120  10 280
+ prec[-c(1:5, 9:12)]
+#> jun jul ago 
+#>   0  12  22
 ```
 
 
 ###  Indexação por nomes
 
-A seleção de partes e um vetor pode ser feita também usando os nomes de seus elementos. As precipitações de janeiro e dezembro poderiam ser extraídas usando:
+A seleção de partes e um vetor pode ser feita também usando os nomes de seus elementos. As precipitações de janeiro e dezembro poderiam ser extraídas usando os nomes daqueles elementos:
 
 
 ```r
@@ -576,25 +578,35 @@ prec[c("jan", "dez")]
 #> 300 280
 ```
 
+Assim como as precipitações de inverno.
+
+
+```r
+prec[c("jun", "jul", "ago")]
+#> jun jul ago 
+#>   0  12  22
+```
+
+
 ### Indexação por vetores lógicos
 
-Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor. 
+Vamos criar um vetor lógico e usá-lo para a seleção com um vetor lógico dos elementos de `prec` para Janiro e Dezembro. 
 
 
 ```r
 inds_log <- c(
-  TRUE, FALSE, FALSE, TRUE,
-  TRUE, FALSE, TRUE, FALSE,
-  TRUE, FALSE, FALSE, TRUE
+  TRUE, FALSE, FALSE, FALSE,
+  FALSE, FALSE, FALSE, FALSE,
+  FALSE, FALSE, FALSE, TRUE
 )
 prec[inds_log]
-#> jan abr mai jul set dez 
-#> 300  12   0  12 100 280
+#> jan dez 
+#> 300 280
 ```
 
 Somente os elementos de `inds_log` correspondentes a `TRUE` foram selecionados. 
 
-Vamos considerar um vetor lógico (`inds_log`) para demonstrar como a funcionalidade de **coerção** pode ser útil. Imagine que você queira extrair de `prec` o primeiro elemento, mas o segundo não, o terceiro elemento sim, o quarto não e assim sucessivamente. Essa seleção intercalada pode ser simplesmente feita com:
+Vetores lógicos são muito úteis quando aproveitamos a funcionalidade de **coerção**. Imagine que você queira extrair de `prec` o primeiro elemento, mas o segundo não, o terceiro elemento sim, o quarto não e assim sucessivamente. Essa seleção intercalada pode ser simplesmente feita com:
 
 
 ```r
@@ -604,7 +616,7 @@ prec[inds_log]
 #> 300 210   0  12 100  10
 ```
 
-Uma forma mais prática de filtrar vetores é por comparações. Por exemplo, quando houve precipitação acima de 80 mm?
+Uma forma mais prática de filtrar vetores é por comparações. Por exemplo, quais valores de precipitação foram acima de 80 mm?
 
 
 ```r
@@ -614,7 +626,9 @@ prec[inds_prec_alta]
 #> 300 200 210 100 120 280
 ```
 
-Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto, em alguns casos, o interesse é na posição dentro do vetor na qual a condição é verdadeira. Nós podemos localizar essas ocorrências usando a função `which()`. Por exemplo, qual a posição dos elementos do vetor `inds_prec_alta` que são verdadeiros.
+
+
+Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma ou várias condições. Entretanto, em alguns casos, o interesse está nas posições do vetor que atendem a condição (onde ela é verdadeira). Nós podemos localizar essas ocorrências usando a função `which()`. Por exemplo, qual a posição dos elementos do vetor `inds_prec_alta` que são verdadeiros?
 
 
 ```r
@@ -623,20 +637,40 @@ which(inds_prec_alta)
 #>   1   2   3   9  10  12
 ```
 
-Esses índices também podem ser usados para extrair os valores de precipitação dos meses correspondentes.
+A função `which()` converte um vetor lógico em numérico, somente os índices em que a condição é `TRUE`.
+
+A utilidade da `which()` é mais evidente quando usada para, por  exemplo, sabermos qual o mês do 4° caso mais chuvoso.
 
 
 ```r
-prec[which(inds_prec_alta)]
-#> jan fev mar set out dez 
-#> 300 200 210 100 120 280
+which(inds_prec_alta)[4]
+#> set 
+#>   9
+names(which(inds_prec_alta)[4])
+#> [1] "set"
+# ou
+names(prec)[which(inds_prec_alta)[4]]
+#> [1] "set"
 ```
 
-FALTANDO
-`which.max()` e `which.min()`
+<div class="rmdtip">
+<p>A resultado da <code>which()</code> é um vetor numérico e portanto equivale a indexação numérica. Então a selecões abaixo são equivalentes:</p>
+<p><code>prec[which(inds_prec_alta)]</code></p>
+<p><code>prec[inds_prec_alta]</code></p>
+<p>Quando é melhor usar uma ou outra opção? Note que o resultado de <code>which(inds_prec_alta)</code> armazena somente os índices que satisfazem a condição, enquanto que o resultado de <code>inds_prec_alta</code> é um vetor lógico de mesmo tamanho que <code>prec</code>. Então, se estiver trabalhando com <strong>big data</strong> (p.ex.: um vetor com milhões de elementos) em termos de eficiência de uso da memória a <code>which()</code> é melhor opção.</p>
+</div>
 
 
-### Substituição de elementos de um vetor {#replace-vect}
+
+<div class="rmdimportant">
+<p>Para localizar valores extremos em um vetor podemos usar as funções <code>which.max()</code> e <code>which.min()</code> que fornecem respectivamente, a posição do valor máximo e mínimo no vetor. Elas são versões eficientes dos códigos <code>which(x == max(x))</code> e <code>which(x == min(x))</code>. Contudo, há uma diferença entre elas que pode ser verificada pela comparação dos resultados das instruções:</p>
+<p><code>which.min(prec)</code></p>
+<p><code>which(prec == min(prec))</code></p>
+<p>A primeira seleciona o primeiro índice para o qual <code>prec</code> tem seu mínimo (5° elemento), enquanto a segunda retorna todos os índices correspondentes ao mínimo (5° e 6° elemento).</p>
+</div>
+
+
+## Substituição de elementos de um vetor {#replace-vect}
 
 Podemos substituir os valores de um vetor usando os mesmos esquemas de indexação vistos na seção anterior. A sintaxe geral para substituir elementos de um vetor por novos valores é:
 
@@ -651,7 +685,9 @@ Vamos fazer uma cópia do vetor `prec` para então alterá-lo, fazendo substitui
 #> 300 200 210  12   0   0  12  22 100 120  10 280
 ```
 
-- Por posições: suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.
+#### Por posições
+
+suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.
 
 
 ```r
@@ -667,7 +703,9 @@ prec_alt
 ```
 
   
-- Por nomes: suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.
+#### Por nomes
+
+Suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.
 
 
 ```r
@@ -682,36 +720,74 @@ prec_alt
 ```
 
 
-- Por comparação: imagine que você precisa substituir os valores de `prec_alt` que ficaram em torno de $\pm10 \%$  da média mensal climatológica pelos valores climatológicos.
+#### Por comparação
+
+Imagine que você precisa substituir os valores de `prec` que ficaram em torno de $\pm10 \%$  da média mensal climatológica pelos valores climatológicos.
+
+Vamos primeiro determinar os desvios relativos (em %) em relação as médias climatológicas:
 
 
 ```r
 # limiar em % da normal climatológica
 limiar <- 10 
+desvios <- prec - prec_clim
 # anomalias relativas em %
-(anom_perc <-  (abs(prec - prec_clim)/prec_clim) * 100)
+(anom_perc <-  abs(desvios)/prec_clim * 100)
 #>        jan        fev        mar        abr        mai        jun        jul 
 #>  30.434783   2.439024  31.250000  88.000000 100.000000 100.000000  70.000000 
 #>        ago        set        out        nov        dez 
 #>  63.333333   9.090909  27.272727  95.000000  27.272727
+```
+
+Então substituímos os casos com baixo desvio pela precipitação climatológica.
+
+
+```r
 # meses com prec em torno de +-10% da média climatol.
-prec_alt[anom_perc <= 10]
+prec[anom_perc <= 10]
 #> fev set 
 #> 200 100
 # substituição pela prec mensal climatol. 
-prec_alt[anom_perc <= 10] <- prec_clim[anom_perc <= 10]
-prec_clim
+prec[anom_perc <= 10] <- prec_clim[anom_perc <= 10]
+prec
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 230 205 160 100  60  30  40  60 110 165 200 220
-prec_alt
-#> jan fev mar abr mai jun jul ago set out nov dez 
-#> 250 205 210  12   0  NA  21  42 110 120  10 208
+#> 300 205 210  12   0   0  12  22 110 120  10 280
 ```
 
-A função `abs()` obém o valor absoluto ou módulo de um vetor.
+A função `abs()` determina o valor absoluto ou módulo de um vetor.
+
+Uma alternativa bastante útil para substituir valores de um vetor usando comparações é a **função vetorizada** **`ifelse()`**. A mesma operação realizada no trecho de código anterior poderia ser feita com `ifelse()` da seguinte forma:
 
 
-### Lidando com com dados faltantes
+```r
+prec <- ifelse(ano_perc <= 10, prec_clim, prec)
+```
+
+```r
+prec
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 300 205 210  12   0   0  12  22 110 120  10 280
+```
+
+
+<!---
+Uma exemplo é sua aplicação para preencher as falhas no vetor `prec_alt` por seus valores climatológicos.
+
+
+```r
+prec_alt_comp <- ifelse(
+  test = is.na(prec_alt), # condição: é faltante?
+  yes = prec_clim,        # se verdadeira: preenche com prec_clim 
+  no = prec_alt           # se falsa: mantém prec_alt
+)
+prec_alt_comp
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 200 210  12   0  30  21  42 100 120  10 208
+```
+--->
+
+
+## Lidando com com dados faltantes
 
 Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituílos se necessários.
 
@@ -722,7 +798,7 @@ Vamos substituir alguns valores da `prec_alt` por `NA` para poder tratar de dado
 prec_alt[c(3, 4, 11)] <- NA
 prec_alt
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 250 205  NA  NA   0  NA  21  42 110 120  NA 208
+#> 250 200  NA  NA   0  NA  21  42 100 120  NA 208
 ```
 
 #### Identificação e remoção de `NA`s
@@ -772,7 +848,7 @@ A remoção dos elementos faltantes de um vetor é moleza. É só usar indexaç�
 ```r
 prec_alt[!is.na(prec_alt)]
 #> jan fev mai jul ago set out dez 
-#> 250 205   0  21  42 110 120 208
+#> 250 200   0  21  42 100 120 208
 # outra forma equivalente
 #prec_alt[-which(is.na(prec_alt))]
 ```
@@ -814,7 +890,7 @@ Quando trabalhamos com vetores grandes que contenham váriás falhas é útil sa
 prec_alt_val_long <- na.contiguous(prec_alt)
 prec_alt_val_long
 #> jul ago set out 
-#>  21  42 110 120 
+#>  21  42 100 120 
 #> attr(,"na.action")
 #> [1]  1  2  3  4  5  6 11 12
 #> attr(,"class")
@@ -839,8 +915,7 @@ O interesse é extrair os valores de `prec_clim` quando a `prec_alt` superou 220
 
 ```r
 prec_clim[prec_alt > 220]
-#>  jan <NA> <NA> <NA> <NA> 
-#>  230   NA   NA   NA   NA
+#> [1] 230  NA  NA  NA  NA
 ```
 
 o resultado da filtragem foi um vetor com o resultado da condição de prec_clim  para qual `prec_alt > 220` e também `NA`s. Isto é um resultado que provavelmente ninguém deseja. 
@@ -850,40 +925,89 @@ Se nós queremos extrair os valores de `prec_clim` para os quais `prec_alt` **n�
 
 ```r
 prec_clim[!is.na(prec_alt) & prec_alt > 220]
-#> jan 
-#> 230
+#> [1] 230
 ```
 
 A moral da história aqui é que na prática quando você tem `NA`s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o <img src="images/logo_r.png" width="20"> pode retornar algo diferente do que era esperado.
 
-#### Efeito de `NA`s em funções
+#### Efeito de `NAs` em funções
 
+Na seção \@ref(NAs) vimos que qualquer operação com `NA` resulta em `NA`. Algumas funções úteis merecem ser enfatizadas quando usadas em vetores com dados faltantes.
+
+A função `range()` retorna a amplitude de variação dos valores em um vetor.
+
+
+```r
+range(prec_alt)
+#> [1] NA NA
+```
+
+Como `prec_alt` possui dados faltantes ela retornará `NA`. Assim como várias outras funções matemáticas básicas no <img src="images/logo_r.png" width="20"> a função `range()` permite especificar o argumento `na.rm = TRUE` para calcular o resultado após omitir os valores faltantes.
+
+
+```r
+range(prec_alt, na.rm = TRUE)
+#> [1]   0 250
+```
+
+Logo, `prec_alt` varia de um mínimo 0 a um máximo de 250. Entre as funções com essa versatilidade incluem-se por exemplo as mais usadas para estatísticas descritivas, como:
+
+
+```r
+# prec máx. mensal
+max(prec_alt, na.rm = TRUE)
+#> [1] 250
+# pŕec min mensal
+min(prec_alt, na.rm = TRUE)
+#> [1] 0
+# prec total anual
+sum(prec_alt, na.rm = TRUE)
+#> [1] 941
+# prec média
+mean(prec_alt, na.rm = TRUE)
+#> [1] 117.625
+# mediana da prec 
+median(prec_alt, na.rm = TRUE)
+#> [1] 110
+# desvio padrão
+sd(prec_alt, na.rm = TRUE)
+#> [1] 93.87216
+```
+
+A função `summary()` fornece um resumo estatístico de uma variável, incluindo: mínimo, 1° quartil, mediana, média, 3° quartil, máximo e o número de casos faltantes (se aplicável). 
 
 
 ```r
 summary(prec_alt)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-#>    0.00   36.75  115.00  119.50  205.75  250.00       4
+#>    0.00   36.75  110.00  117.62  202.00  250.00       4
 ```
 
 
 
 ```r
-max()
-min()
-sum()
-cumsum()
-diff()
+#wq::na.approx()
 ```
 
+<!---
+Rol de dados
+sort()
+order()
 
-```r
-na.approx()
-```
+cumsum(prec_alt)
+diff(prec_alt)
 
+duplicated()
+unique()
 
+frequência de ocorrência, contagens, porcentagem e proporção
+table()
+prop.table()*100
 
-### Dados Nulos (`NULL`) {#dados-nulos}
+# boolean aritmetic
+--->
+
+## Dados Nulos (`NULL`) {#dados-nulos}
 
 O `NULL` é um tipo especial de dado no <img src="images/logo_r.png" width="20">. Ele é um vetor de tamanho zero.
 
@@ -932,10 +1056,10 @@ Em algumas situações você pode querer anular um atributo de um vetor, como os
 ```r
 prec
 #> jan fev mar abr mai jun jul ago set out nov dez 
-#> 300 200 210  12   0   0  12  22 100 120  10 280
+#> 300 205 210  12   0   0  12  22 110 120  10 280
 names(prec) <- NULL
 prec
-#>  [1] 300 200 210  12   0   0  12  22 100 120  10 280
+#>  [1] 300 205 210  12   0   0  12  22 110 120  10 280
 prec <- NULL
 prec
 #> NULL

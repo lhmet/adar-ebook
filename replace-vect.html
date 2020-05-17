@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R</title>
+  <title>7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.6 Substituição de elementos de um vetor | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="referências.html"/>
-<link rel="next" href="função-dim.html"/>
+<link rel="prev" href="index-vetores.html"/>
+<link rel="next" href="lidando-com-com-dados-faltantes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -363,17 +363,94 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="oper-mat" class="section level1">
-<h1><span class="header-section-number">Apêndice A</span> Operações adicionais com matrizes</h1>
-<p>Há outras formas de se construir uma matriz além daquela usando a função <code>matrix()</code>. Há também diveras operações matriciais que podem ser realizadas no <img src="images/logo_r.png" width="20">. Aqui apresentam-se esse conteúdo complementar sobre matrizes.</p>
+<div id="replace-vect" class="section level2">
+<h2><span class="header-section-number">7.6</span> Substituição de elementos de um vetor</h2>
+<p>Podemos substituir os valores de um vetor usando os mesmos esquemas de indexação vistos na seção anterior. A sintaxe geral para substituir elementos de um vetor por novos valores é:</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>vetor[indices] &lt;- novos_valores</code>
+</p>
+<p>Vamos fazer uma cópia do vetor <code>prec</code> para então alterá-lo, fazendo substituição de seus elementos usando as diferentes formas de indexação.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_alt &lt;-<span class="st"> </span>prec)
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></code></pre></div>
+<div id="por-posições" class="section level4">
+<h4><span class="header-section-number">7.6.0.1</span> Por posições</h4>
+<p>suponha que você precisa substituir os valores de precipitação dos meses de inverno por valores corrigidos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inds_jja
+<span class="co">#&gt; [1] 6 7 8</span>
+prec_alt[inds_jja] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">21</span>, <span class="dv">42</span>)
+prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span>
+prec_alt
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0  NA  21  42 100 120  10 280</span></code></pre></div>
+</div>
+<div id="por-nomes" class="section level4">
+<h4><span class="header-section-number">7.6.0.2</span> Por nomes</h4>
+<p>Suponha que os valores de precipitação de janeiro e dezembro foram atualizados para 250 e 208, respectivamente. Esta alteração pode ser com o código abaixo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_jd_corr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">250</span>, <span class="dv">208</span>)
+prec_alt[<span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;dez&quot;</span>)] &lt;-<span class="st"> </span>prec_jd_corr
+prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span>
+prec_alt
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 250 200 210  12   0  NA  21  42 100 120  10 208</span></code></pre></div>
+</div>
+<div id="por-comparação" class="section level4">
+<h4><span class="header-section-number">7.6.0.3</span> Por comparação</h4>
+<p>Imagine que você precisa substituir os valores de <code>prec</code> que ficaram em torno de <span class="math inline">\(\pm10 \%\)</span> da média mensal climatológica pelos valores climatológicos.</p>
+<p>Vamos primeiro determinar os desvios relativos (em %) em relação as médias climatológicas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># limiar em % da normal climatológica</span>
+limiar &lt;-<span class="st"> </span><span class="dv">10</span> 
+desvios &lt;-<span class="st"> </span>prec <span class="op">-</span><span class="st"> </span>prec_clim
+<span class="co"># anomalias relativas em %</span>
+(anom_perc &lt;-<span class="st">  </span><span class="kw">abs</span>(desvios)<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)
+<span class="co">#&gt;        jan        fev        mar        abr        mai        jun        jul </span>
+<span class="co">#&gt;  30.434783   2.439024  31.250000  88.000000 100.000000 100.000000  70.000000 </span>
+<span class="co">#&gt;        ago        set        out        nov        dez </span>
+<span class="co">#&gt;  63.333333   9.090909  27.272727  95.000000  27.272727</span></code></pre></div>
+<p>Então substituímos os casos com baixo desvio pela precipitação climatológica.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># meses com prec em torno de +-10% da média climatol.</span>
+prec[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]
+<span class="co">#&gt; fev set </span>
+<span class="co">#&gt; 200 100</span>
+<span class="co"># substituição pela prec mensal climatol. </span>
+prec[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>] &lt;-<span class="st"> </span>prec_clim[anom_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>]
+prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 205 210  12   0   0  12  22 110 120  10 280</span></code></pre></div>
+<p>A função <code>abs()</code> determina o valor absoluto ou módulo de um vetor.</p>
+<p>Uma alternativa bastante útil para substituir valores de um vetor usando comparações é a <strong>função vetorizada</strong> <strong><code>ifelse()</code></strong>. A mesma operação realizada no trecho de código anterior poderia ser feita com <code>ifelse()</code> da seguinte forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ano_perc <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, prec_clim, prec)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 205 210  12   0   0  12  22 110 120  10 280</span></code></pre></div>
+<!---
+Uma exemplo é sua aplicação para preencher as falhas no vetor `prec_alt` por seus valores climatológicos.
+
+
+```r
+prec_alt_comp <- ifelse(
+  test = is.na(prec_alt), # condição: é faltante?
+  yes = prec_clim,        # se verdadeira: preenche com prec_clim 
+  no = prec_alt           # se falsa: mantém prec_alt
+)
+prec_alt_comp
+#> jan fev mar abr mai jun jul ago set out nov dez 
+#> 250 200 210  12   0  30  21  42 100 120  10 208
+```
+--->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="referências.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="função-dim.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index-vetores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lidando-com-com-dados-faltantes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

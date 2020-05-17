@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R</title>
+  <title>7.7 Lidando com com dados faltantes | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.7 Lidando com com dados faltantes | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Apêndice A Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.7 Lidando com com dados faltantes | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="referências.html"/>
-<link rel="next" href="função-dim.html"/>
+<link rel="prev" href="replace-vect.html"/>
+<link rel="next" href="dados-nulos.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -363,17 +363,146 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="oper-mat" class="section level1">
-<h1><span class="header-section-number">Apêndice A</span> Operações adicionais com matrizes</h1>
-<p>Há outras formas de se construir uma matriz além daquela usando a função <code>matrix()</code>. Há também diveras operações matriciais que podem ser realizadas no <img src="images/logo_r.png" width="20">. Aqui apresentam-se esse conteúdo complementar sobre matrizes.</p>
+<div id="lidando-com-com-dados-faltantes" class="section level2">
+<h2><span class="header-section-number">7.7</span> Lidando com com dados faltantes</h2>
+<p>Dados faltantes (<code>NA</code>s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituílos se necessários.</p>
+<p>Vamos substituir alguns valores da <code>prec_alt</code> por <code>NA</code> para poder tratar de dados faltantes usando as diferentes funcionalidades que o <img src="images/logo_r.png" width="20"> oferece para isso.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">11</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span>
+prec_alt
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 250 200  NA  NA   0  NA  21  42 100 120  NA 208</span></code></pre></div>
+<div id="identificação-e-remoção-de-nas" class="section level4">
+<h4><span class="header-section-number">7.7.0.1</span> Identificação e remoção de <code>NA</code>s</h4>
+<p>Para identificar <code>NA</code>s em um vetor, a função específica para isso é a <code>is.na()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(prec_alt)
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt; FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE</span></code></pre></div>
+<p>Também podemos usá-la em combinaçãocom a função <code>which()</code> para obter os índices dos elementos faltantes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">is.na</span>(prec_alt))
+<span class="co">#&gt; mar abr jun nov </span>
+<span class="co">#&gt;   3   4   6  11</span></code></pre></div>
+<p>Novos usuários do R tentam identificar dados faltantes com a expressão:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt <span class="op">==</span><span class="st"> </span><span class="ot">NA</span>
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt;  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA</span></code></pre></div>
+<p>O que produzirá somente <code>NA</code>s mesmo que o vetor testado possua algum <code>NA</code>. Isso ocorre pela regra de qualquer operação com <code>NA</code>s resulta em <code>NA</code>s.</p>
+<p>Para verificar se há algum dado faltante em um vetor usamos a função <code>anyNA()</code> e para quantificar o total de observações faltantes combinamos as expressões <code>sum()</code> e <code>is.na()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anyNA</span>(prec_alt)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">sum</span>(<span class="kw">is.na</span>(prec_alt))
+<span class="co">#&gt; [1] 4</span></code></pre></div>
+<p>A remoção dos elementos faltantes de um vetor é moleza. É só usar indexação lógica:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt[<span class="op">!</span><span class="kw">is.na</span>(prec_alt)]
+<span class="co">#&gt; jan fev mai jul ago set out dez </span>
+<span class="co">#&gt; 250 200   0  21  42 100 120 208</span>
+<span class="co"># outra forma equivalente</span>
+<span class="co">#prec_alt[-which(is.na(prec_alt))]</span></code></pre></div>
+<p>Uma a alternativa mais sofisticada é <code>na.omit()</code> que não só remove os valores faltantes, mas como também guarda onde haviam dados faltantes. Esta informação é armazenada na lista de atributos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt_sem_falt &lt;-<span class="st"> </span><span class="kw">na.omit</span>(prec_alt)
+<span class="kw">attributes</span>(prec_alt_sem_falt)
+<span class="co">#&gt; $names</span>
+<span class="co">#&gt; [1] &quot;jan&quot; &quot;fev&quot; &quot;mai&quot; &quot;jul&quot; &quot;ago&quot; &quot;set&quot; &quot;out&quot; &quot;dez&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $na.action</span>
+<span class="co">#&gt; mar abr jun nov </span>
+<span class="co">#&gt;   3   4   6  11 </span>
+<span class="co">#&gt; attr(,&quot;class&quot;)</span>
+<span class="co">#&gt; [1] &quot;omit&quot;</span></code></pre></div>
+<p>As posições originais dos dados faltantes descartados podem ser obtidas com:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attr</span>(
+  <span class="dt">x =</span> prec_alt_sem_falt,
+  <span class="dt">which =</span> <span class="st">&quot;na.action&quot;</span>
+)
+<span class="co">#&gt; mar abr jun nov </span>
+<span class="co">#&gt;   3   4   6  11 </span>
+<span class="co">#&gt; attr(,&quot;class&quot;)</span>
+<span class="co">#&gt; [1] &quot;omit&quot;</span></code></pre></div>
+<p>Quando trabalhamos com vetores grandes que contenham váriás falhas é útil saber a posição da sequência de dados consecutivos válidos mais longa. A função <code>na.contiguous()</code> retornará somente elementos daquela sequência.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt_val_long &lt;-<span class="st"> </span><span class="kw">na.contiguous</span>(prec_alt)
+prec_alt_val_long
+<span class="co">#&gt; jul ago set out </span>
+<span class="co">#&gt;  21  42 100 120 </span>
+<span class="co">#&gt; attr(,&quot;na.action&quot;)</span>
+<span class="co">#&gt; [1]  1  2  3  4  5  6 11 12</span>
+<span class="co">#&gt; attr(,&quot;class&quot;)</span>
+<span class="co">#&gt; [1] &quot;omit&quot;</span>
+<span class="co">#&gt; attr(,&quot;tsp&quot;)</span>
+<span class="co">#&gt; [1]  7 10  1</span></code></pre></div>
+</div>
+<div id="indexação-com-nas" class="section level4">
+<h4><span class="header-section-number">7.7.0.2</span> Indexação com <code>NA</code>s</h4>
+<p>Suponha que queremos extrair um conjunto de elementos de <code>prec_clim</code> baseado em <code>inds_na</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt;  TRUE FALSE    NA    NA FALSE    NA FALSE FALSE FALSE FALSE    NA FALSE</span></code></pre></div>
+<p>O interesse é extrair os valores de <code>prec_clim</code> quando a <code>prec_alt</code> superou 220 mm. A expressão para essa seleção é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_clim[prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>]
+<span class="co">#&gt; [1] 230  NA  NA  NA  NA</span></code></pre></div>
+<p>o resultado da filtragem foi um vetor com o resultado da condição de prec_clim para qual <code>prec_alt &gt; 220</code> e também <code>NA</code>s. Isto é um resultado que provavelmente ninguém deseja.</p>
+<p>Se nós queremos extrair os valores de <code>prec_clim</code> para os quais <code>prec_alt</code> <strong>não é faltante</strong> e <strong>também superior a 220</strong> nós devemos usar a seguinte expressão:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_clim[<span class="op">!</span><span class="kw">is.na</span>(prec_alt) <span class="op">&amp;</span><span class="st"> </span>prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>]
+<span class="co">#&gt; [1] 230</span></code></pre></div>
+<p>A moral da história aqui é que na prática quando você tem <code>NA</code>s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o <img src="images/logo_r.png" width="20"> pode retornar algo diferente do que era esperado.</p>
+</div>
+<div id="efeito-de-nas-em-funções" class="section level4">
+<h4><span class="header-section-number">7.7.0.3</span> Efeito de <code>NAs</code> em funções</h4>
+<p>Na seção <a href="calculadora.html#NAs">5.2.3</a> vimos que qualquer operação com <code>NA</code> resulta em <code>NA</code>. Algumas funções úteis merecem ser enfatizadas quando usadas em vetores com dados faltantes.</p>
+<p>A função <code>range()</code> retorna a amplitude de variação dos valores em um vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(prec_alt)
+<span class="co">#&gt; [1] NA NA</span></code></pre></div>
+<p>Como <code>prec_alt</code> possui dados faltantes ela retornará <code>NA</code>. Assim como várias outras funções matemáticas básicas no <img src="images/logo_r.png" width="20"> a função <code>range()</code> permite especificar o argumento <code>na.rm = TRUE</code> para calcular o resultado após omitir os valores faltantes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1]   0 250</span></code></pre></div>
+<p>Logo, <code>prec_alt</code> varia de um mínimo 0 a um máximo de 250. Entre as funções com essa versatilidade incluem-se por exemplo as mais usadas para estatísticas descritivas, como:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec máx. mensal</span>
+<span class="kw">max</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 250</span>
+<span class="co"># pŕec min mensal</span>
+<span class="kw">min</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 0</span>
+<span class="co"># prec total anual</span>
+<span class="kw">sum</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 941</span>
+<span class="co"># prec média</span>
+<span class="kw">mean</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 117.625</span>
+<span class="co"># mediana da prec </span>
+<span class="kw">median</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 110</span>
+<span class="co"># desvio padrão</span>
+<span class="kw">sd</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] 93.87216</span></code></pre></div>
+<p>A função <code>summary()</code> fornece um resumo estatístico de uma variável, incluindo: mínimo, 1° quartil, mediana, média, 3° quartil, máximo e o número de casos faltantes (se aplicável).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prec_alt)
+<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span>
+<span class="co">#&gt;    0.00   36.75  110.00  117.62  202.00  250.00       4</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#wq::na.approx()</span></code></pre></div>
+<!---
+Rol de dados
+sort()
+order()
+
+cumsum(prec_alt)
+diff(prec_alt)
+
+duplicated()
+unique()
+
+frequência de ocorrência, contagens, porcentagem e proporção
+table()
+prop.table()*100
+
+# boolean aritmetic
+--->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="referências.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="função-dim.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="replace-vect.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dados-nulos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
