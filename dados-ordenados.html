@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R</title>
+  <title>7.10 Dados ordenados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.10 Dados ordenados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.10 Dados ordenados | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html"/>
-<link rel="next" href="ciência-de-dados.html"/>
+<link rel="prev" href="encontrando-e-removendo-dados-duplicados.html"/>
+<link rel="next" href="exercícios-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -368,23 +368,47 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análise-de-dados-meteorológicos" class="section level2">
-<h2><span class="header-section-number">1.1</span> Análise de dados meteorológicos</h2>
-<blockquote>
-<p>Processo pelo qual adquire-se conhecimento, compreensão e percepção dos fenômenos meteorológicos a partir de observações (dados) qualitativas e quantitativas.</p>
-</blockquote>
-</style>
-<div class="midcenter" style="margin-left:50px; margin-top:50px;">
-<p><img src="images/TB1.jpg" height="300px" width="400px" /></p>
-</div>
+<div id="dados-ordenados" class="section level2">
+<h2><span class="header-section-number">7.10</span> Dados ordenados</h2>
+<p>Duas operações comuns em análise de dados são a ordenação e o ranqueamento dos dados de um vetor.</p>
+<p>A função <code>sort()</code> arranja os dados de um vetor numérico em ordem crescente ou descrescente (se argumento for especificado como <code>decreasing = TRUE</code>). Se o vetor for de caracteres, o arranjo segue a ordem alfabética dando precedência às letras em minúsculo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(prec_alt)
+<span class="co">#&gt; mai jul ago set out fev dez jan </span>
+<span class="co">#&gt;   0  21  42 100 120 200 208 250</span>
+<span class="kw">sort</span>(prec_alt, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; jan dez fev out set ago jul mai </span>
+<span class="co">#&gt; 250 208 200 120 100  42  21   0</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">names</span>(prec_alt))
+<span class="co">#&gt;  [1] &quot;abr&quot; &quot;ago&quot; &quot;dez&quot; &quot;fev&quot; &quot;jan&quot; &quot;jul&quot; &quot;jun&quot; &quot;mai&quot; &quot;mar&quot; &quot;nov&quot; &quot;out&quot; &quot;set&quot;</span></code></pre></div>
+<p>A ordem de cada elemento de um vetor numérico é obtida com a função <code>order()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_alt
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 250 200  NA  NA   0  NA  21  42 100 120  NA 208</span>
+<span class="kw">order</span>(prec_alt)
+<span class="co">#&gt;  [1]  5  7  8  9 10  2 12  1  3  4  6 11</span></code></pre></div>
+<p>Por padrão, os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento <code>na.last = NA</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">order</span>(prec_alt, <span class="dt">na.last =</span> <span class="ot">NA</span>)
+<span class="co">#&gt; [1]  5  7  8  9 10  2 12  1</span></code></pre></div>
+<!---
+cumsum(prec_alt)
+diff(prec_alt)
+
+frequência de ocorrência, contagens, porcentagem e proporção
+table()
+prop.table()*100
+
+# boolean aritmetic
+
+#wq::na.approx()
+--->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ciência-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="encontrando-e-removendo-dados-duplicados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

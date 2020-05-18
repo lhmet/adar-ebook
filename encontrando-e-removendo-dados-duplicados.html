@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R</title>
+  <title>7.9 Encontrando e removendo dados duplicados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.9 Encontrando e removendo dados duplicados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.1 Análise de dados meteorológicos | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.9 Encontrando e removendo dados duplicados | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html"/>
-<link rel="next" href="ciência-de-dados.html"/>
+<link rel="prev" href="dados-nulos.html"/>
+<link rel="next" href="dados-ordenados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -368,23 +368,49 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análise-de-dados-meteorológicos" class="section level2">
-<h2><span class="header-section-number">1.1</span> Análise de dados meteorológicos</h2>
-<blockquote>
-<p>Processo pelo qual adquire-se conhecimento, compreensão e percepção dos fenômenos meteorológicos a partir de observações (dados) qualitativas e quantitativas.</p>
-</blockquote>
-</style>
-<div class="midcenter" style="margin-left:50px; margin-top:50px;">
-<p><img src="images/TB1.jpg" height="300px" width="400px" /></p>
-</div>
+<div id="encontrando-e-removendo-dados-duplicados" class="section level2">
+<h2><span class="header-section-number">7.9</span> Encontrando e removendo dados duplicados</h2>
+<p>Dados frequentemente pode ter valores duplicados ou repetidos e dependendo da aplicação isso pode causar problemas nos resultados.</p>
+<p>O R oferece algumas funções convenientes para detectar dados duplicados.</p>
+<p>Vamos criar um vetor de datas que contenham datas repetidas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datas &lt;-<span class="st"> </span><span class="kw">seq</span>(
+  <span class="dt">from =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2017-01-10&quot;</span>),
+  <span class="dt">to =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2017-01-10&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="dv">10</span>,
+  <span class="dt">by =</span> <span class="st">&quot;day&quot;</span>
+)
+datas &lt;-<span class="st"> </span><span class="kw">c</span>(
+  datas[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="ot">NA</span>, 
+  datas[<span class="dv">7</span><span class="op">:</span><span class="kw">length</span>(datas)], 
+  datas[<span class="kw">length</span>(datas)], 
+  datas[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>]
+)
+datas
+<span class="co">#&gt;  [1] &quot;2017-01-10&quot; &quot;2017-01-11&quot; &quot;2017-01-12&quot; &quot;2017-01-13&quot; &quot;2017-01-14&quot;</span>
+<span class="co">#&gt;  [6] &quot;2017-01-15&quot; NA           &quot;2017-01-16&quot; &quot;2017-01-17&quot; &quot;2017-01-18&quot;</span>
+<span class="co">#&gt; [11] &quot;2017-01-19&quot; &quot;2017-01-20&quot; &quot;2017-01-20&quot; &quot;2017-01-14&quot; &quot;2017-01-15&quot;</span></code></pre></div>
+<p>A dunção <code>duplicated()</code> serve detectar onde ocorrem valores repetidos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">duplicated</span>(datas)
+<span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
+<span class="co">#&gt; [13]  TRUE  TRUE  TRUE</span></code></pre></div>
+<p>Ela retorna um vetor lógico mostrando quais elementos são duplicados. Neste exemplo os últimos 3 elementos. Este resultado pode ser usado para remover os valores repetidos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># datas únicas: sem valores duplicados</span>
+datas[<span class="op">!</span><span class="kw">duplicated</span>(datas)]
+<span class="co">#&gt;  [1] &quot;2017-01-10&quot; &quot;2017-01-11&quot; &quot;2017-01-12&quot; &quot;2017-01-13&quot; &quot;2017-01-14&quot;</span>
+<span class="co">#&gt;  [6] &quot;2017-01-15&quot; NA           &quot;2017-01-16&quot; &quot;2017-01-17&quot; &quot;2017-01-18&quot;</span>
+<span class="co">#&gt; [11] &quot;2017-01-19&quot; &quot;2017-01-20&quot;</span></code></pre></div>
+<p>Alternativamente, há função <code>unique()</code> para remover valores repetidos de um vetor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(datas)
+<span class="co">#&gt;  [1] &quot;2017-01-10&quot; &quot;2017-01-11&quot; &quot;2017-01-12&quot; &quot;2017-01-13&quot; &quot;2017-01-14&quot;</span>
+<span class="co">#&gt;  [6] &quot;2017-01-15&quot; NA           &quot;2017-01-16&quot; &quot;2017-01-17&quot; &quot;2017-01-18&quot;</span>
+<span class="co">#&gt; [11] &quot;2017-01-19&quot; &quot;2017-01-20&quot;</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ciência-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dados-nulos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dados-ordenados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -513,6 +513,10 @@ Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
 
 ### Códigos como fluxogramas 
 
+<!-- 
+In deciphering R code it is helpful to read from right to left and from inside to outside. 
+-->
+
 A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
 
 Essa é justamente a ideia do operador *pipe* `%>%`: passar a saída de uma função para outra função como a entrada dessa função por meio de uma seqüência de etapas. O operador `%>%` está disponível no <img src="images/logo_r.png" width="20"> através do pacote [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
