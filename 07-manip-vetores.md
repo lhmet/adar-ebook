@@ -77,7 +77,7 @@ prec
 
 Nomes não podem ser repetidos entre os elementos, porque a seleção de um subconjunto do vetor baseada nos nomes retornará somente o primeiro elemento que tiver nome repetido.
 
-Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função `names()` retornará um vetor caracter vazio (\"\") para aqueles elementos sem nomes especificados. 
+Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função `names()` retornará um vetor caractere vazio (\"\") para aqueles elementos sem nomes especificados. 
 
 
 ```r
@@ -131,7 +131,7 @@ attributes(temp)
 #> NULL
 ```
 
-Podemos adicionar um atributo chamado `metadados` à `temp` e fornecer um vetor caracter com a função de atribuição de atributo `attr()<-`
+Podemos adicionar um atributo chamado `metadados` à `temp` e fornecer um vetor caractere com a função de atribuição de atributo `attr()<-`
 
 ```r
 attr(temp, "metadados") <- "dados obtidos em www.inmet.gov.br, acesso em 10/10/2010"
@@ -336,7 +336,7 @@ a == 1 && b == 1
  1   1   TRUE    TRUE         TRUE                          
 ------------------------------------------------------------
 
-Table: Demostração da diferença entre & e &&.
+Table: Demonstração da diferença entre & e &&.
 
 Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. 
 
@@ -602,7 +602,7 @@ prec[c("jun", "jul", "ago")]
 
 ### Indexação por vetores lógicos
 
-Vamos criar um vetor lógico e usá-lo para a seleção com um vetor lógico dos elementos de `prec` para Janiro e Dezembro. 
+Vamos criar um vetor lógico e usá-lo para a seleção com um vetor lógico dos elementos de `prec` para Janeiro e Dezembro. 
 
 
 ```r
@@ -666,7 +666,7 @@ names(prec)[which(inds_prec_alta)[4]]
 ```
 
 <div class="rmdtip">
-<p>A resultado da <code>which()</code> é um vetor numérico e portanto equivale a indexação numérica. Então a selecões abaixo são equivalentes:</p>
+<p>A resultado da <code>which()</code> é um vetor numérico e portanto equivale a indexação numérica. Então a seleções abaixo são equivalentes:</p>
 <p><code>prec[which(inds_prec_alta)]</code></p>
 <p><code>prec[inds_prec_alta]</code></p>
 <p>Quando é melhor usar uma ou outra opção? Note que o resultado de <code>which(inds_prec_alta)</code> armazena somente os índices que satisfazem a condição, enquanto que o resultado de <code>inds_prec_alta</code> é um vetor lógico de mesmo tamanho que <code>prec</code>. Então, se estiver trabalhando com <strong>big data</strong> (p.ex.: um vetor com milhões de elementos) em termos de eficiência de uso da memória a <code>which()</code> é melhor opção.</p>
@@ -802,7 +802,7 @@ prec_alt_comp
 
 ## Lidando com com dados faltantes
 
-Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituílos se necessários.
+Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituí-los se necessários.
 
 Vamos substituir alguns valores da `prec_alt` por `NA` para poder tratar de dados faltantes usando as diferentes funcionalidades que o <img src="images/logo_r.png" width="20"> oferece para isso. 
 
@@ -825,7 +825,7 @@ is.na(prec_alt)
 #> FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
 ```
 
-Também podemos usá-la em combinaçãocom a função `which()` para obter os índices dos elementos faltantes.
+Também podemos usá-la aninhada com a função `which()` para obter os índices dos elementos faltantes.
 
 
 ```r
@@ -896,7 +896,7 @@ attr(
 #> [1] "omit"
 ```
 
-Quando trabalhamos com vetores grandes que contenham váriás falhas é útil saber a posição da sequência de dados consecutivos válidos mais longa. A função `na.contiguous()` retornará somente elementos daquela sequência.
+Quando trabalhamos com vetores grandes que contenham várias falhas é útil saber a posição da sequência de dados consecutivos válidos mais longa. A função `na.contiguous()` retornará somente elementos daquela sequência.
 
 
 ```r
@@ -1038,7 +1038,7 @@ vetor_nulo2
 #> NULL
 ```
 
-Note que um vetor ser nulo não significa que ele não exista. Ou seja, a atribuição de `NULL` a uma variável não apaga a variável de seu ambiente de trabalho. A existência de uma variável pode ser verificada com a função `exists()`, na qual o argumento `x` deve ser passado como caracter. 
+Note que um vetor ser nulo não significa que ele não exista. Ou seja, a atribuição de `NULL` a uma variável não apaga a variável de seu ambiente de trabalho. A existência de uma variável pode ser verificada com a função `exists()`, na qual o argumento `x` deve ser passado como caractere. 
 
 
 ```r
@@ -1074,13 +1074,11 @@ prec
 ```
 
 
-## Encontrando e removendo dados duplicados
+## Dados duplicados
  
-Dados frequentemente pode ter valores duplicados ou repetidos e dependendo da aplicação isso pode causar problemas nos resultados.
+Dados frequentemente pode ter valores duplicados ou repetidos e dependendo da aplicação isso pode causar problemas nos resultados. Portanto é importante detectar e remover essas ocorrências. O <img src="images/logo_r.png" width="20"> oferece algumas funções convenientes para detectar dados duplicados. 
 
-O R oferece algumas funções convenientes para detectar dados duplicados. 
-
-Vamos criar um vetor de datas que contenham datas repetidas:
+Mas antes, vamos criar um vetor de datas com alguns dias repetidos para então mostrar as funcionalidades disponíveis.
 
 
 ```r
@@ -1101,7 +1099,7 @@ datas
 #> [11] "2017-01-19" "2017-01-20" "2017-01-20" "2017-01-14" "2017-01-15"
 ```
 
-A dunção `duplicated()` serve detectar onde ocorrem valores repetidos. 
+A função `duplicated()` detecta onde ocorrem valores repetidos. 
 
 
 
@@ -1413,7 +1411,7 @@ prec <- c(
 
   (f) Determine a duração de cada evento chuvoso (número de dias consecutivos).
    
-> Dica: comece encontrando a posição do início do evento e depois a posição final do envento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.
+> Dica: comece encontrando a posição do início do evento e depois a posição final do evento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.
 
 
 
@@ -1536,7 +1534,7 @@ $$
 $$
 
 
-Como resultado monte um dataframe com todas variáveis derivadas.
+Como resultado monte um data frame com todas variáveis derivadas.
 
 
    u     v       ws    wd   wd_uv  dir      
