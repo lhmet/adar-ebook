@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,10 +230,15 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#identificação-e-remoção-de-nas"><i class="fa fa-check"></i><b>7.7.1</b> Identificação e remoção de <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#indexação-com-nas"><i class="fa fa-check"></i><b>7.7.2</b> Indexação com <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.3" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#efeito-de-nas-em-funções"><i class="fa fa-check"></i><b>7.7.3</b> Efeito de <code>NAs</code> em funções</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
+<li class="chapter" data-level="7.9" data-path="encontrando-e-removendo-dados-duplicados.html"><a href="encontrando-e-removendo-dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Encontrando e removendo dados duplicados</a></li>
+<li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
+<li class="chapter" data-level="7.11" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.11</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -391,19 +396,19 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="aparência" class="section level2">
 <h2><span class="header-section-number">C.3</span> Aparência</h2>
 <p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb465-1" data-line-number="1">    <span class="op">---</span></a>
-<a class="sourceLine" id="cb465-2" data-line-number="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
-<a class="sourceLine" id="cb465-3" data-line-number="3">    author: Nome Sobrenome</a>
-<a class="sourceLine" id="cb465-4" data-line-number="4">    output:</a>
-<a class="sourceLine" id="cb465-5" data-line-number="5">         html_document:</a>
-<a class="sourceLine" id="cb465-6" data-line-number="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
-<a class="sourceLine" id="cb465-7" data-line-number="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
-<a class="sourceLine" id="cb465-8" data-line-number="8">            number_sections: true</a>
-<a class="sourceLine" id="cb465-9" data-line-number="9">            toc: true</a>
-<a class="sourceLine" id="cb465-10" data-line-number="10">            fig_width: <span class="dv">7</span></a>
-<a class="sourceLine" id="cb465-11" data-line-number="11">            fig_height: <span class="dv">6</span></a>
-<a class="sourceLine" id="cb465-12" data-line-number="12">            fig_caption: true</a>
-<a class="sourceLine" id="cb465-13" data-line-number="13">    <span class="op">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb473-1" data-line-number="1">    <span class="op">---</span></a>
+<a class="sourceLine" id="cb473-2" data-line-number="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
+<a class="sourceLine" id="cb473-3" data-line-number="3">    author: Nome Sobrenome</a>
+<a class="sourceLine" id="cb473-4" data-line-number="4">    output:</a>
+<a class="sourceLine" id="cb473-5" data-line-number="5">         html_document:</a>
+<a class="sourceLine" id="cb473-6" data-line-number="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
+<a class="sourceLine" id="cb473-7" data-line-number="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
+<a class="sourceLine" id="cb473-8" data-line-number="8">            number_sections: true</a>
+<a class="sourceLine" id="cb473-9" data-line-number="9">            toc: true</a>
+<a class="sourceLine" id="cb473-10" data-line-number="10">            fig_width: <span class="dv">7</span></a>
+<a class="sourceLine" id="cb473-11" data-line-number="11">            fig_height: <span class="dv">6</span></a>
+<a class="sourceLine" id="cb473-12" data-line-number="12">            fig_caption: true</a>
+<a class="sourceLine" id="cb473-13" data-line-number="13">    <span class="op">---</span></a></code></pre></div>
 </div>
             </section>
 

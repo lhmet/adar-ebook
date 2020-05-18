@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,10 +230,15 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#identificação-e-remoção-de-nas"><i class="fa fa-check"></i><b>7.7.1</b> Identificação e remoção de <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#indexação-com-nas"><i class="fa fa-check"></i><b>7.7.2</b> Indexação com <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.3" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#efeito-de-nas-em-funções"><i class="fa fa-check"></i><b>7.7.3</b> Efeito de <code>NAs</code> em funções</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
+<li class="chapter" data-level="7.9" data-path="encontrando-e-removendo-dados-duplicados.html"><a href="encontrando-e-removendo-dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Encontrando e removendo dados duplicados</a></li>
+<li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
+<li class="chapter" data-level="7.11" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.11</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -396,8 +401,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb169-2" data-line-number="2">prec_alt</a>
 <a class="sourceLine" id="cb169-3" data-line-number="3"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
 <a class="sourceLine" id="cb169-4" data-line-number="4"><span class="co">#&gt; 250 200  NA  NA   0  NA  21  42 100 120  NA 208</span></a></code></pre></div>
-<div id="identificação-e-remoção-de-nas" class="section level4">
-<h4><span class="header-section-number">7.7.0.1</span> Identificação e remoção de <code>NA</code>s</h4>
+<div id="identificação-e-remoção-de-nas" class="section level3">
+<h3><span class="header-section-number">7.7.1</span> Identificação e remoção de <code>NA</code>s</h3>
 <p>Para identificar <code>NA</code>s em um vetor, a função específica para isso é a <code>is.na()</code>.</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">is.na</span>(prec_alt)</a>
 <a class="sourceLine" id="cb170-2" data-line-number="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
@@ -416,13 +421,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb173-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a>
 <a class="sourceLine" id="cb173-3" data-line-number="3"><span class="kw">sum</span>(<span class="kw">is.na</span>(prec_alt))</a>
 <a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
-<p>A remoção dos elementos faltantes de um vetor é moleza. É só usar indexação lógica:</p>
+<p>A remoção dos elementos faltantes de um vetor é moleza. É só combinar o operador negação <code>!</code> e <code>is.na()</code> por indexação lógica:</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">prec_alt[<span class="op">!</span><span class="kw">is.na</span>(prec_alt)]</a>
 <a class="sourceLine" id="cb174-2" data-line-number="2"><span class="co">#&gt; jan fev mai jul ago set out dez </span></a>
 <a class="sourceLine" id="cb174-3" data-line-number="3"><span class="co">#&gt; 250 200   0  21  42 100 120 208</span></a>
 <a class="sourceLine" id="cb174-4" data-line-number="4"><span class="co"># outra forma equivalente</span></a>
 <a class="sourceLine" id="cb174-5" data-line-number="5"><span class="co">#prec_alt[-which(is.na(prec_alt))]</span></a></code></pre></div>
-<p>Uma a alternativa mais sofisticada é <code>na.omit()</code> que não só remove os valores faltantes, mas como também guarda onde haviam dados faltantes. Esta informação é armazenada na lista de atributos.</p>
+<p>Uma alternativa mais sofisticada é a função <code>na.omit()</code>. Ela não só remove os valores faltantes, mas como também guarda a localização dos dados faltantes. Esta informação é armazenada na lista de atributos do vetor.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">prec_alt_sem_falt &lt;-<span class="st"> </span><span class="kw">na.omit</span>(prec_alt)</a>
 <a class="sourceLine" id="cb175-2" data-line-number="2"><span class="kw">attributes</span>(prec_alt_sem_falt)</a>
 <a class="sourceLine" id="cb175-3" data-line-number="3"><span class="co">#&gt; $names</span></a>
@@ -454,8 +459,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">#&gt; attr(,&quot;tsp&quot;)</span></a>
 <a class="sourceLine" id="cb177-10" data-line-number="10"><span class="co">#&gt; [1]  7 10  1</span></a></code></pre></div>
 </div>
-<div id="indexação-com-nas" class="section level4">
-<h4><span class="header-section-number">7.7.0.2</span> Indexação com <code>NA</code>s</h4>
+<div id="indexação-com-nas" class="section level3">
+<h3><span class="header-section-number">7.7.2</span> Indexação com <code>NA</code>s</h3>
 <p>Suponha que queremos extrair um conjunto de elementos de <code>prec_clim</code> baseado em <code>inds_na</code>.</p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span></a>
 <a class="sourceLine" id="cb178-2" data-line-number="2"><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></a>
@@ -468,57 +473,49 @@ code span.wa { color: #bf0303; } /* Warning */
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">prec_clim[<span class="op">!</span><span class="kw">is.na</span>(prec_alt) <span class="op">&amp;</span><span class="st"> </span>prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span>]</a>
 <a class="sourceLine" id="cb180-2" data-line-number="2"><span class="co">#&gt; [1] 230</span></a></code></pre></div>
 <p>A moral da história aqui é que na prática quando você tem <code>NA</code>s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o <img src="images/logo_r.png" width="20"> pode retornar algo diferente do que era esperado.</p>
+<p>Uma função para filtragem de dados que é capaz de dar conta disso mais prontamente é função <code>subset()</code> (que pode ser traduzida como <em>subconjunto</em>) que recebe os dados no primeiro argumento (<code>x</code>) e a expressão lógica no segundo (argumento <code>subset</code> de mesmo nome da função).</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">subset</span>(</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2">  <span class="dt">x =</span> prec_clim,</a>
+<a class="sourceLine" id="cb181-3" data-line-number="3">  <span class="dt">subset =</span> prec_alt <span class="op">&gt;</span><span class="st"> </span><span class="dv">220</span></a>
+<a class="sourceLine" id="cb181-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb181-5" data-line-number="5"><span class="co">#&gt; [1] 230</span></a></code></pre></div>
 </div>
-<div id="efeito-de-nas-em-funções" class="section level4">
-<h4><span class="header-section-number">7.7.0.3</span> Efeito de <code>NAs</code> em funções</h4>
+<div id="efeito-de-nas-em-funções" class="section level3">
+<h3><span class="header-section-number">7.7.3</span> Efeito de <code>NAs</code> em funções</h3>
 <p>Na seção <a href="calculadora.html#NAs">5.2.3</a> vimos que qualquer operação com <code>NA</code> resulta em <code>NA</code>. Algumas funções úteis merecem ser enfatizadas quando usadas em vetores com dados faltantes.</p>
 <p>A função <code>range()</code> retorna a amplitude de variação dos valores em um vetor.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">range</span>(prec_alt)</a>
-<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="co">#&gt; [1] NA NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">range</span>(prec_alt)</a>
+<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="co">#&gt; [1] NA NA</span></a></code></pre></div>
 <p>Como <code>prec_alt</code> possui dados faltantes ela retornará <code>NA</code>. Assim como várias outras funções matemáticas básicas no <img src="images/logo_r.png" width="20"> a função <code>range()</code> permite especificar o argumento <code>na.rm = TRUE</code> para calcular o resultado após omitir os valores faltantes.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">range</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="co">#&gt; [1]   0 250</span></a></code></pre></div>
-<p>Logo, <code>prec_alt</code> varia de um mínimo 0 a um máximo de 250. Entre as funções com essa versatilidade incluem-se por exemplo as mais usadas para estatísticas descritivas, como:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="co"># prec máx. mensal</span></a>
-<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="kw">max</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="co">#&gt; [1] 250</span></a>
-<a class="sourceLine" id="cb183-4" data-line-number="4"><span class="co"># pŕec min mensal</span></a>
-<a class="sourceLine" id="cb183-5" data-line-number="5"><span class="kw">min</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co"># prec total anual</span></a>
-<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="kw">sum</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-9" data-line-number="9"><span class="co">#&gt; [1] 941</span></a>
-<a class="sourceLine" id="cb183-10" data-line-number="10"><span class="co"># prec média</span></a>
-<a class="sourceLine" id="cb183-11" data-line-number="11"><span class="kw">mean</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-12" data-line-number="12"><span class="co">#&gt; [1] 117.625</span></a>
-<a class="sourceLine" id="cb183-13" data-line-number="13"><span class="co"># mediana da prec </span></a>
-<a class="sourceLine" id="cb183-14" data-line-number="14"><span class="kw">median</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-15" data-line-number="15"><span class="co">#&gt; [1] 110</span></a>
-<a class="sourceLine" id="cb183-16" data-line-number="16"><span class="co"># desvio padrão</span></a>
-<a class="sourceLine" id="cb183-17" data-line-number="17"><span class="kw">sd</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb183-18" data-line-number="18"><span class="co">#&gt; [1] 93.87216</span></a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">range</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co">#&gt; [1]   0 250</span></a></code></pre></div>
+<p>Logo, <code>prec_alt</code> varia de um mínimo 0 a um máximo de 250.</p>
+<p>Diversas funções tem essa funcionalidade, entre elas as mais usadas para estatísticas descritivas, como:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="co"># prec máx. mensal</span></a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="kw">max</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">#&gt; [1] 250</span></a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="co"># pŕec min mensal</span></a>
+<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="kw">min</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-6" data-line-number="6"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb184-7" data-line-number="7"><span class="co"># prec total anual</span></a>
+<a class="sourceLine" id="cb184-8" data-line-number="8"><span class="kw">sum</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-9" data-line-number="9"><span class="co">#&gt; [1] 941</span></a>
+<a class="sourceLine" id="cb184-10" data-line-number="10"><span class="co"># prec média</span></a>
+<a class="sourceLine" id="cb184-11" data-line-number="11"><span class="kw">mean</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-12" data-line-number="12"><span class="co">#&gt; [1] 117.625</span></a>
+<a class="sourceLine" id="cb184-13" data-line-number="13"><span class="co"># mediana da prec </span></a>
+<a class="sourceLine" id="cb184-14" data-line-number="14"><span class="kw">median</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-15" data-line-number="15"><span class="co">#&gt; [1] 110</span></a>
+<a class="sourceLine" id="cb184-16" data-line-number="16"><span class="co"># desvio padrão</span></a>
+<a class="sourceLine" id="cb184-17" data-line-number="17"><span class="kw">sd</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-18" data-line-number="18"><span class="co">#&gt; [1] 93.87216</span></a>
+<a class="sourceLine" id="cb184-19" data-line-number="19"><span class="co"># variância</span></a>
+<a class="sourceLine" id="cb184-20" data-line-number="20"><span class="kw">var</span>(prec_alt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb184-21" data-line-number="21"><span class="co">#&gt; [1] 8811.982</span></a></code></pre></div>
 <p>A função <code>summary()</code> fornece um resumo estatístico de uma variável, incluindo: mínimo, 1° quartil, mediana, média, 3° quartil, máximo e o número de casos faltantes (se aplicável).</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">summary</span>(prec_alt)</a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></a>
-<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">#&gt;    0.00   36.75  110.00  117.62  202.00  250.00       4</span></a></code></pre></div>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="co">#wq::na.approx()</span></a></code></pre></div>
-<!---
-Rol de dados
-sort()
-order()
-
-cumsum(prec_alt)
-diff(prec_alt)
-
-duplicated()
-unique()
-
-frequência de ocorrência, contagens, porcentagem e proporção
-table()
-prop.table()*100
-
-# boolean aritmetic
---->
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">summary</span>(prec_alt)</a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></a>
+<a class="sourceLine" id="cb185-3" data-line-number="3"><span class="co">#&gt;    0.00   36.75  110.00  117.62  202.00  250.00       4</span></a></code></pre></div>
 </div>
 </div>
             </section>

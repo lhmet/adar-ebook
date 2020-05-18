@@ -458,6 +458,21 @@ inds_jja <- 6:8
 prec[inds_jja]
 ```
 
+```{block, reposicionamento, type='rmdtip'}
+O reposicionamento dos elementos de um vetor pode ser feito pela especificação da ordem dos índices. Par ordenar os elementos na ordem dezembro, Janeiro e Fevereiro indexamos da seguinte maneira:
+
+`prec[c(12, 1, 2)]`
+
+A inversão da ordem dos elementos pode ser feita com a indexação:
+
+`prec[length(prec):1]`
+
+A função `rev()` economiza tempo de digitação de código para realizar esta mesma ação:
+
+`rev(prec)`
+
+```
+
 #### Negativos
 
 O acesso aos dados de precipitação de janeiro e dezembro do vetor `prec` poderia ser feita uma lógica complementar. Poderíamos selecionar todos elementos de `prec` exceto aqueles entre Fevereiro (posição 2) e Novembro (posição 11). Esta frase poderia ser transcrita em código `R`, simplesmente como `-(2:11)`. O sinal `-` precedendo o vetor numérico, exclui o acesso aquelas posições quando usado entre o operador **`[`**.
@@ -471,6 +486,9 @@ Analogamente, os meses de inverno poderiam ser selecionados com:
 ```{r}
  prec[-c(1:5, 9:12)]
 ```
+
+
+
 
 
 ###  Indexação por nomes
@@ -586,6 +604,7 @@ prec
 prec_alt
 ```
 
+
   
 #### Por nomes
 
@@ -660,7 +679,7 @@ prec_alt[c(3, 4, 11)] <- NA
 prec_alt
 ```
 
-#### Identificação e remoção de `NA`s
+### Identificação e remoção de `NA`s
 
 Para identificar `NA`s em um vetor, a função específica para isso é a `is.na()`. 
 
@@ -689,7 +708,7 @@ anyNA(prec_alt)
 sum(is.na(prec_alt))
 ```
 
-A remoção dos elementos faltantes de um vetor é moleza. É só usar indexação lógica:
+A remoção dos elementos faltantes de um vetor é moleza. É só combinar o operador negação `!` e `is.na()` por indexação lógica:
 
 ```{r}
 prec_alt[!is.na(prec_alt)]
@@ -697,7 +716,7 @@ prec_alt[!is.na(prec_alt)]
 #prec_alt[-which(is.na(prec_alt))]
 ```
 
-Uma a alternativa mais sofisticada é `na.omit()` que não só remove os valores faltantes, mas como também guarda onde haviam dados faltantes. Esta informação é armazenada na lista de atributos.
+Uma alternativa mais sofisticada é a função `na.omit()`. Ela não só remove os valores faltantes, mas como também guarda a localização dos dados faltantes. Esta informação é armazenada na lista de atributos do vetor.
 
 ```{r}
 prec_alt_sem_falt <- na.omit(prec_alt)
@@ -720,7 +739,7 @@ prec_alt_val_long <- na.contiguous(prec_alt)
 prec_alt_val_long
 ```
 
-#### Indexação com `NA`s
+### Indexação com `NA`s
 
 Suponha que queremos extrair um conjunto de elementos de `prec_clim` baseado em `inds_na`.
 
@@ -744,7 +763,18 @@ prec_clim[!is.na(prec_alt) & prec_alt > 220]
 
 A moral da história aqui é que na prática quando você tem `NA`s em índices (ou seja, nos valores de qualquer vetor dentro do colchetes) o `r rblue` pode retornar algo diferente do que era esperado.
 
-#### Efeito de `NAs` em funções
+
+Uma função para filtragem de dados que é capaz de dar conta disso mais prontamente é função `subset()` (que pode ser traduzida como *subconjunto*) que recebe os dados no primeiro argumento (`x`) e a expressão lógica no segundo (argumento `subset` de mesmo nome da função).
+
+```{r}
+subset(
+  x = prec_clim,
+  subset = prec_alt > 220
+)
+```
+
+
+### Efeito de `NAs` em funções
 
 Na seção \@ref(NAs) vimos que qualquer operação com `NA` resulta em `NA`. Algumas funções úteis merecem ser enfatizadas quando usadas em vetores com dados faltantes.
 
@@ -760,7 +790,10 @@ Como `prec_alt` possui dados faltantes ela retornará `NA`. Assim como várias o
 range(prec_alt, na.rm = TRUE)
 ```
 
-Logo, `prec_alt` varia de um mínimo `r min(prec_alt, na.rm = TRUE)` a um máximo de `r max(prec_alt, na.rm = TRUE)`. Entre as funções com essa versatilidade incluem-se por exemplo as mais usadas para estatísticas descritivas, como:
+Logo, `prec_alt` varia de um mínimo `r min(prec_alt, na.rm = TRUE)` a um máximo de `r max(prec_alt, na.rm = TRUE)`. 
+
+
+Diversas funções tem essa funcionalidade, entre elas as mais usadas para estatísticas descritivas, como:
 
 ```{r}
 # prec máx. mensal
@@ -775,6 +808,8 @@ mean(prec_alt, na.rm = TRUE)
 median(prec_alt, na.rm = TRUE)
 # desvio padrão
 sd(prec_alt, na.rm = TRUE)
+# variância
+var(prec_alt, na.rm = TRUE)
 ```
 
 A função `summary()` fornece um resumo estatístico de uma variável, incluindo: mínimo, 1° quartil, mediana, média, 3° quartil, máximo e o número de casos faltantes (se aplicável). 
@@ -782,29 +817,6 @@ A função `summary()` fornece um resumo estatístico de uma variável, incluind
 ```{r}
 summary(prec_alt)
 ```
-
-
-```{r, eval = FALSE}
-#wq::na.approx()
-```
-
-<!---
-Rol de dados
-sort()
-order()
-
-cumsum(prec_alt)
-diff(prec_alt)
-
-duplicated()
-unique()
-
-frequência de ocorrência, contagens, porcentagem e proporção
-table()
-prop.table()*100
-
-# boolean aritmetic
---->
 
 ## Dados Nulos (`NULL`) {#dados-nulos}
 
@@ -848,9 +860,94 @@ prec <- NULL
 prec
 ```
 
- 
 
-### Exercícios
+## Encontrando e removendo dados duplicados
+ 
+Dados frequentemente pode ter valores duplicados ou repetidos e dependendo da aplicação isso pode causar problemas nos resultados.
+
+O R oferece algumas funções convenientes para detectar dados duplicados. 
+
+Vamos criar um vetor de datas que contenham datas repetidas:
+
+```{r}
+datas <- seq(
+  from = as.Date("2017-01-10"),
+  to = as.Date("2017-01-10") + 10,
+  by = "day"
+)
+datas <- c(
+  datas[1:6], NA, 
+  datas[7:length(datas)], 
+  datas[length(datas)], 
+  datas[5:6]
+)
+datas
+```
+
+A dunção `duplicated()` serve detectar onde ocorrem valores repetidos. 
+
+
+```{r}
+duplicated(datas)
+```
+
+Ela retorna um vetor lógico mostrando quais elementos são duplicados. Neste exemplo os últimos 3 elementos. Este resultado pode ser usado para remover os valores repetidos:
+
+```{r}
+# datas únicas: sem valores duplicados
+datas[!duplicated(datas)]
+```
+
+Alternativamente, há função `unique()` para remover valores repetidos de um vetor:
+
+```{r}
+unique(datas)
+```
+
+## Dados ordenados
+
+Duas operações comuns em análise de dados são a ordenação e o ranqueamento dos dados de um vetor.
+
+A função `sort()` arranja os dados de um vetor numérico em ordem crescente ou descrescente (se argumento for especificado como `decreasing = TRUE`). Se o vetor for de caracteres, o arranjo segue a ordem alfabética dando precedência às letras em minúsculo.
+
+```{r}
+sort(prec_alt)
+sort(prec_alt, decreasing = TRUE)
+```
+
+```{r}
+sort(names(prec_alt))
+```
+
+A ordem de cada elemento de um vetor numérico é obtida com a função `order()`:
+
+```{r}
+prec_alt
+order(prec_alt)
+```
+
+Por padrão, os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento `na.last = NA`.
+
+```{r}
+order(prec_alt, na.last = NA)
+```
+
+
+
+<!---
+cumsum(prec_alt)
+diff(prec_alt)
+
+frequência de ocorrência, contagens, porcentagem e proporção
+table()
+prop.table()*100
+
+# boolean aritmetic
+
+#wq::na.approx()
+--->
+
+## Exercícios
 
 1. Crie um vetor com os valores de $e^{x}cos{x}$ para os valores de $x = (3, 3.1, 3.2, ..., 6$).
 

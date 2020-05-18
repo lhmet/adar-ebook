@@ -71,12 +71,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ──────────────────────── tidyverse 1.3.0 ──
+#> ── Attaching packages ───────────────────────────────────── tidyverse 1.3.0 ──
 #> ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
 #> ✓ tibble  3.0.1     ✓ dplyr   0.8.5
 #> ✓ tidyr   1.0.2     ✓ stringr 1.4.0
 #> ✓ readr   1.3.1     ✓ forcats 0.5.0
-#> ── Conflicts ─────────────────────────── tidyverse_conflicts() ──
+#> ── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
 ```
@@ -512,6 +512,10 @@ Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:
 
 
 ### Códigos como fluxogramas 
+
+<!-- 
+In deciphering R code it is helpful to read from right to left and from inside to outside. 
+-->
 
 A manipulação de dados requer uma organização apropriada do código. A medida que novas etapas do fluxo de trabalho vão sendo implementadas o código expande-se. As etapas vão sendo implementadas de forma sequencial, combinando funções que geram saídas que servirão de entrada para outras funções na cadeia de processamento. 
 

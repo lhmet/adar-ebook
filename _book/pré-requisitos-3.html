@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,10 +230,15 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a></li>
-<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="dados-nulos.html"><a href="dados-nulos.html#exercícios-1"><i class="fa fa-check"></i><b>7.8.1</b> Exercícios</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#identificação-e-remoção-de-nas"><i class="fa fa-check"></i><b>7.7.1</b> Identificação e remoção de <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#indexação-com-nas"><i class="fa fa-check"></i><b>7.7.2</b> Indexação com <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.3" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#efeito-de-nas-em-funções"><i class="fa fa-check"></i><b>7.7.3</b> Efeito de <code>NAs</code> em funções</a></li>
 </ul></li>
+<li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
+<li class="chapter" data-level="7.9" data-path="encontrando-e-removendo-dados-duplicados.html"><a href="encontrando-e-removendo-dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Encontrando e removendo dados duplicados</a></li>
+<li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
+<li class="chapter" data-level="7.11" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.11</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -391,53 +396,53 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pré-requisitos-3" class="section level2">
 <h2><span class="header-section-number">10.1</span> Pré-requisitos</h2>
 <p>O pacote <strong>tidyverse</strong> torna fácil de instalar e carregar os pacotes do <em>tidyverse</em> com apenas uma chamada à função:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <p>E da mesma forma carregamos o conjunto de pacotes com:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb323-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ──────────────────────── tidyverse 1.3.0 ──</span></a>
-<a class="sourceLine" id="cb323-3" data-line-number="3"><span class="co">#&gt; ✓ ggplot2 3.3.0     ✓ purrr   0.3.4</span></a>
-<a class="sourceLine" id="cb323-4" data-line-number="4"><span class="co">#&gt; ✓ tibble  3.0.1     ✓ dplyr   0.8.5</span></a>
-<a class="sourceLine" id="cb323-5" data-line-number="5"><span class="co">#&gt; ✓ tidyr   1.0.2     ✓ stringr 1.4.0</span></a>
-<a class="sourceLine" id="cb323-6" data-line-number="6"><span class="co">#&gt; ✓ readr   1.3.1     ✓ forcats 0.5.0</span></a>
-<a class="sourceLine" id="cb323-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ─────────────────────────── tidyverse_conflicts() ──</span></a>
-<a class="sourceLine" id="cb323-8" data-line-number="8"><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb323-9" data-line-number="9"><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></a></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb331-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ───────────────────────────────────── tidyverse 1.3.0 ──</span></a>
+<a class="sourceLine" id="cb331-3" data-line-number="3"><span class="co">#&gt; ✓ ggplot2 3.3.0     ✓ purrr   0.3.4</span></a>
+<a class="sourceLine" id="cb331-4" data-line-number="4"><span class="co">#&gt; ✓ tibble  3.0.1     ✓ dplyr   0.8.5</span></a>
+<a class="sourceLine" id="cb331-5" data-line-number="5"><span class="co">#&gt; ✓ tidyr   1.0.2     ✓ stringr 1.4.0</span></a>
+<a class="sourceLine" id="cb331-6" data-line-number="6"><span class="co">#&gt; ✓ readr   1.3.1     ✓ forcats 0.5.0</span></a>
+<a class="sourceLine" id="cb331-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──</span></a>
+<a class="sourceLine" id="cb331-8" data-line-number="8"><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></a>
+<a class="sourceLine" id="cb331-9" data-line-number="9"><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></a></code></pre></div>
 <div class="rmdnote">
 <p>
 Ao carregar o pacote <strong>tidyverse</strong> é mostrado no console os pacotes que foram carregados. À direita são mostradas as configurações e informações sobre o seu sistema operacional. Na parte inferior, há uma mensagem sobre os conflitos entre as funções da base do R (ou de outros pacotes) que tem mesmo nome que as de algum pacote do <em>tidyverse</em>. A função do pacote carregado mais recentemente terá prioridade de uso. No caso acima, a função <code>filter()</code> do <strong>dplyr</strong> sobrepôs a função <code>filter()</code> do pacote <strong>stats</strong> da base do R. Em situações como esta é melhor deixar explícito no seu código a chamada à função usando <code>pacote::funcao()</code>.
 </p>
 </div>
 <p>Neste capítulo além do <strong>tidyverse</strong> usaremos outros pacotes que já podemos instalar:</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)</a>
-<a class="sourceLine" id="cb324-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;openair&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;rio&quot;</span>)</a>
+<a class="sourceLine" id="cb332-2" data-line-number="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
 <div id="dados" class="section level3">
 <h3><span class="header-section-number">10.1.1</span> Dados</h3>
 <p>Para este capítulo utilizaremos diversos conjuntos de dados para exemplificar o uso das principais ferramentas de manipulação de dados do <em>tidyverse</em>.</p>
 <ol style="list-style-type: decimal">
 <li>Dados climatológicos de precipitação e temperatura máxima anual de estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> localizadas no estado do Rio Grande do Sul.</li>
 </ol>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb325-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
-<a class="sourceLine" id="cb325-3" data-line-number="3">clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb325-4" data-line-number="4">clima_rs</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">clima_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima-rs.RDS?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
+<a class="sourceLine" id="cb333-3" data-line-number="3">clima_rs &lt;-<span class="st"> </span><span class="kw">import</span>(clima_file_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb333-4" data-line-number="4">clima_rs</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Metadados das estações meteorológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep">INMET</a> relacionadas a tabela de dados <code>clima_rs</code>.</li>
 </ol>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb326-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
-<a class="sourceLine" id="cb326-3" data-line-number="3">metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb326-4" data-line-number="4">metadados_rs</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1">metadados_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/clima_rs_metadata_61_90.rds?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb334-2" data-line-number="2"><span class="co"># dados de exemplo</span></a>
+<a class="sourceLine" id="cb334-3" data-line-number="3">metadados_rs &lt;-<span class="st"> </span><span class="kw">import</span>(metadados_url, <span class="dt">format =</span> <span class="st">&quot;RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb334-4" data-line-number="4">metadados_rs</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Um exemplo minimalista de dados referentes a séries temporais de precipitação anual observada em estações meteorológicas.</li>
 </ol>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb327-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
-<a class="sourceLine" id="cb327-4" data-line-number="4">  ),</a>
-<a class="sourceLine" id="cb327-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
-<a class="sourceLine" id="cb327-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
-<a class="sourceLine" id="cb327-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb327-8" data-line-number="8">prec_anual</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">prec_anual &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb335-2" data-line-number="2">  <span class="dt">site =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb335-3" data-line-number="3">    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span></a>
+<a class="sourceLine" id="cb335-4" data-line-number="4">  ),</a>
+<a class="sourceLine" id="cb335-5" data-line-number="5">  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),</a>
+<a class="sourceLine" id="cb335-6" data-line-number="6">  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)</a>
+<a class="sourceLine" id="cb335-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb335-8" data-line-number="8">prec_anual</a></code></pre></div>
 </div>
 </div>
             </section>
