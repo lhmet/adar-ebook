@@ -15,7 +15,7 @@ Esse *script* pode ser executado pelo R no **modo de processamento em lote** (do
 Nesta seção apresenta-se ao leitor estes dois modos de execução do <img src="images/logo_r.png" width="20">.
 
 
-## <img src="images/logo_r.png" width="20"> no modo interativo
+## R no modo interativo
 
 No Linux o <img src="images/logo_r.png" width="20"> pode ser aberto simplesmente digitando em um terminal a letra `R`. 
 
@@ -240,7 +240,7 @@ Este conjunto de linhas de código, quando inseridos em um arquivo texto[^newtex
 Este *script* produzirá como saída o arquivo `/home/usuario/adar/plot-script1.pdf`. Você pode visualizar o arquivo para conferir o gráficos de pontos gerado.
 
 
-## <img src="images/logo_r.png" width="20"> no modo de processamento em lote
+## R no modo de processamento em lote
 
 
 Para rodar um *script* no modo de processamento em lote do <img src="images/logo_r.png" width="20"> através do seguinte comando no terminal Linux:
