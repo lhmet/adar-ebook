@@ -373,47 +373,90 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="identificação-de-eventos-discretos" class="section level2">
 <h2><span class="header-section-number">7.12</span> Identificação de eventos discretos</h2>
 <p>Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc.</p>
-<p>Para caracterização destes eventos as informação essencias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.</p>
+<p>Para caracterização destes eventos as informação essencias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos na escala de evento.</p>
 <p>Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm.</p>
 <p>O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># como identificar estes períodos?</span>
-limiar &lt;-<span class="st"> </span><span class="dv">100</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">limiar &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="co"># definição de evento (condição)</span>
-(eventos &lt;-<span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span>limiar)
-<span class="co">#&gt;  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span>
-<span class="co">#&gt; [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE</span></code></pre></div>
-<p>A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(acum_eventos &lt;-<span class="st"> </span><span class="kw">cumsum</span>(eventos))
-<span class="co">#&gt;  [1]  1  2  3  3  3  3  3  3  4  5  6  7  8  9 10 10 10 10 10 10 10 11 11 12</span>
-<span class="co"># mantém valores de cumsum qdo não é evento</span>
-<span class="co"># e zera qdo é evento</span>
-(entre_eventos &lt;-<span class="st"> </span>acum_eventos <span class="op">*</span><span class="st"> </span>(<span class="op">!</span>eventos))
-<span class="co">#&gt;  [1]  0  0  0  3  3  3  3  3  0  0  0  0  0  0  0 10 10 10 10 10 10  0 11  0</span>
-acum_eventos <span class="op">*</span><span class="st"> </span>(eventos)
-<span class="co">#&gt;  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12</span>
-<span class="co"># sequencia das ocorrência dentro de um evento</span>
-(seq_eventos &lt;-<span class="st"> </span>acum_eventos <span class="op">-</span><span class="st"> </span><span class="kw">cummax</span>(entre_eventos))
-<span class="co">#&gt;  [1] 1 2 3 0 0 0 0 0 1 2 3 4 5 6 7 0 0 0 0 0 0 1 0 1</span>
-<span class="co"># identificador da ordem cronológica de cada evento</span>
-(ordem_eventos &lt;-<span class="st"> </span><span class="kw">cumsum</span>(seq_eventos <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>eventos)
-<span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4</span></code></pre></div>
-<p>Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_ult &lt;-<span class="st"> </span><span class="kw">ifelse</span>(eventos[<span class="kw">length</span>(eventos)] <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="kw">length</span>(eventos), <span class="dv">0</span>)
-<span class="co">#replace(pos_ult, is.na(pos_ult), NULL)</span>
-(fim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">which</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">diff</span>(eventos) <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, pos_ult))
-<span class="co">#&gt; [1]  3 15 22 24</span>
-(inicio &lt;-<span class="st"> </span><span class="kw">which</span>(seq_eventos <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))
+(x &lt;-<span class="st"> </span>evts &lt;-<span class="st"> </span><span class="kw">as.integer</span>(prec <span class="op">&gt;</span><span class="st"> </span>limiar))
+<span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1</span></code></pre></div>
+<p>A conversão dos eventos de lógico para númerico é opcional<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a> e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).</p>
+<p>As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (<code>lag(x)</code>) do elemento atual (<code>x</code>). Se a diferença for negativa (<code>0 - 1 = -1</code>) temos o início de um evento.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># x atrasado: desloca os elementos para para frente</span>
+pos_ini &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lag</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)
+pos_prim &lt;-<span class="st"> </span><span class="kw">ifelse</span>(
+  <span class="dt">test =</span> x[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,
+  <span class="dt">yes =</span> <span class="dv">1</span>,
+  <span class="dt">no =</span> <span class="dv">0</span>
+)
+(pos_ini &lt;-<span class="st"> </span><span class="kw">c</span>(pos_prim, pos_ini))
 <span class="co">#&gt; [1]  1  9 22 24</span>
-(dur &lt;-<span class="st"> </span>seq_eventos[fim])
+dts[pos_ini]
+<span class="co">#&gt; [1] &quot;2010-01-01&quot; &quot;2010-09-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></code></pre></div>
+<p>Temos que ter cuidado especial com o primeiro índice das posições iniciais, ajustando-o para considerar adequadamente eventos começando logo início do vetor. Esse ajuste é necessário porque usando a diferença do vetor defasado não há como detectar se o primeiro elemento é evento ou não.</p>
+<p>Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (<code>lead(x)</code>) do elemento atual (<code>x</code>). Se a diferença for negativa (<code>0 - 1 = -1</code>) temos o fim de um evento.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_fim &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lead</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)
+pos_ult &lt;-<span class="st"> </span><span class="kw">ifelse</span>(
+  <span class="dt">test =</span> x[<span class="kw">length</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,
+  <span class="dt">yes =</span> <span class="kw">length</span>(x),
+  <span class="dt">no =</span> <span class="dv">0</span>
+)
+(pos_fim &lt;-<span class="st"> </span><span class="kw">c</span>(pos_fim, pos_ult))
+<span class="co">#&gt; [1]  3 15 22 24</span>
+dts[pos_fim]
+<span class="co">#&gt; [1] &quot;2010-03-01&quot; &quot;2011-03-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></code></pre></div>
+<p>O último índice do vetor de posições finais requer tratamento similar ao do 1° elemento das posições iniciais. Ele deve ser ajustado para tratar dos casos com eventos no último elemento de <code>x</code>.</p>
+<p>A duração de cada evento é facilmente obtida do fim e início de cada evento:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">duracao &lt;-<span class="st"> </span>pos_fim <span class="op">-</span><span class="st"> </span>pos_ini <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+duracao
 <span class="co">#&gt; [1] 3 7 1 1</span>
-<span class="kw">unique</span>(ordem_eventos[ordem_eventos <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>])
-<span class="co">#&gt; [1] 1 2 3 4</span></code></pre></div>
-<!---
-#freq <- table(ordem_eventos[ordem_eventos > 0])
-#duracao <- unname(rep(freq, times = freq))
-#dur <- ordem_eventos
-#dur[ordem_eventos != 0] <- duracao
---->
+<span class="co"># rbind(x, atras = lag(x), adiant = lead(x), pos_ini = lag(x)-x, pos_fim = lead(x) - x)</span></code></pre></div>
+<p>Eventualmente você pode precisar de um vetor identificando cada evento, o que pode ser feito usando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">evts_id &lt;-<span class="st"> </span>evts
+evts_id[evts <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">seq_along</span>(duracao), <span class="dt">times =</span> duracao)
+evts_id
+<span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4</span></code></pre></div>
+<p>Este vetor pode ser usado, para obter estatísticas de cada evento. Por exemplo, a precipitação média em cada evento pode ser determinada passando este vetor como argumento da função <code>tapply()</code>. Como só queremos informação nos eventos vamos substituir os valores = 0 por NA em <code>evts_id</code>. Assim a <code>tapply()</code> retornará a média só para os eventos de interesse.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">evts_id &lt;-<span class="st"> </span><span class="kw">ifelse</span>(evts_id <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="ot">NA</span>, evts_id)
+<span class="co"># prec média em cada evento</span>
+<span class="kw">tapply</span>(
+  <span class="dt">X =</span> prec,
+  <span class="dt">INDEX =</span> evts_id,
+  <span class="dt">FUN =</span> mean
+)
+<span class="co">#&gt;        1        2        3        4 </span>
+<span class="co">#&gt; 198.3333 193.5714 120.0000 208.0000</span></code></pre></div>
+<!--
+# Forma alternativa de resolução
+acum_eventos <- cumsum(eventos)
+# mantém valores de cumsum qdo não é evento
+# e zera qdo é evento
+entre_eventos <- acum_eventos * (!eventos)
+# sequencia das ocorrência dentro de um evento
+(seq_eventos <- acum_eventos - cummax(entre_eventos))
+# identificador da ordem cronológica de cada evento
+(ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
+# Com os vetores que identificam cada evento e quantificam suas ocorrências em 
+# cada evento, podemos extrair os índices de início, fim e a duração de cada 
+# evento.
+pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
+#replace(pos_ult, is.na(pos_ult), NULL)
+(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
+(inicio <- which(seq_eventos == 1))
+(dur <- seq_eventos[fim])
+unique(ordem_eventos[ordem_eventos > 0])
+
+# freq <- table(ordem_eventos[ordem_eventos > 0])
+# duracao <- unname(rep(freq, times = freq))
+# dur <- ordem_eventos
+# dur[ordem_eventos != 0] <- duracao
+-->
+</div>
+<div class="footnotes">
+<hr />
+<ol start="26">
+<li id="fn26"><p>Isso significa que os resultados nos códigos abaixo não se alteram se removermos essa conversão.<a href="identificação-de-eventos-discretos.html#fnref26">↩</a></p></li>
+</ol>
 </div>
             </section>
 

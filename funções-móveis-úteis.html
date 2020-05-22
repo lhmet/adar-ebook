@@ -400,40 +400,13 @@ prec_ac &lt;-<span class="st"> </span><span class="kw">cumsum</span>(prec)
 prec_ac
 <span class="co">#&gt;  [1]  230  435  595  695  755  785  825  885  995 1160 1360 1580 1830 2030 2240</span>
 <span class="co">#&gt; [16] 2252 2252 2282 2303 2345 2445 2565 2575 2783</span></code></pre></div>
-<p>Para melhor compreensão vamos visualizar as duas variáveis na mesma escala. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção <strong>Visualização de dados</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(ggplot2)</span>
-<span class="co"># gráfico</span>
-graf &lt;-<span class="st"> </span><span class="kw">qplot</span>(
-  <span class="dt">x =</span> dts,
-  <span class="dt">y =</span> prec,
-  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;col&quot;</span>),
-  <span class="dt">ylim =</span> <span class="kw">range</span>(<span class="kw">c</span>(prec, prec_ac))
-) <span class="op">+</span>
-<span class="st">  </span><span class="co"># ajuste dos labels das datas (eixo x)</span>
-<span class="st">  </span><span class="kw">scale_x_date</span>(
-    <span class="dt">name =</span> <span class="st">&quot;meses&quot;</span>,
-    <span class="dt">date_breaks =</span> <span class="st">&quot;2 months&quot;</span>,
-    <span class="dt">date_labels =</span> <span class="st">&quot;%b</span><span class="ch">\n</span><span class="st">%Y&quot;</span>
-  ) <span class="op">+</span>
-<span class="st">  </span><span class="co"># camada com prec acumulado</span>
-<span class="st">  </span><span class="kw">layer</span>(
-    <span class="dt">map =</span> <span class="kw">aes</span>(
-      <span class="dt">x =</span> dts,
-      <span class="dt">y =</span> prec_ac,
-    ),
-    <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>,
-    <span class="dt">params =</span> <span class="kw">list</span>(
-      <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>,
-      <span class="dt">size =</span> <span class="dv">1</span>
-    ),
-    <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,
-    <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>
-  )
-graf</code></pre></div>
-<p><img src="images/unnamed-chunk-61-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># (y_cmx &lt;- cummax(y))</span>
-<span class="co"># (y_cmn &lt;- cummin(y))</span></code></pre></div>
+<p>A relação entre essas duas variáveis pode ser melhor compreendida pelo gráfico da Figura <a href="funções-móveis-úteis.html#fig:plot-cumsum">7.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:plot-cumsum"></span>
+<img src="images/plot-cumsum-1.png" alt="Visualização da soma acumulada. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**." width="90%" />
+<p class="caption">
+Figura 7.1: Visualização da soma acumulada. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção <strong>Visualização de dados</strong>.
+</p>
+</div>
 <p>As funções <code>cummax()</code> e <code>cummin()</code> fornecem os valores mínimo e máximo entre o início do vetor e a posição de cada elemento. Para enfatizar a utilidade destas funções, vamos considerar o vetor <code>y</code> abaixo, representando uma onda com amplitude que aumenta no tempo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="fl">2.75</span><span class="op">*</span>pi, <span class="dt">length.out =</span> <span class="dv">20</span>))
 <span class="co">#&gt;  [1] 0.0000000 0.4547042 0.9094084 1.3641126 1.8188168 2.2735210 2.7282252</span>
@@ -449,48 +422,18 @@ graf</code></pre></div>
 (y_env_inf &lt;-<span class="st"> </span><span class="kw">cummin</span>(y))
 <span class="co">#&gt;  [1]  0.00 -0.28 -0.28 -0.28 -0.28 -0.28 -1.85 -3.17 -3.17 -3.17 -3.17 -3.17</span>
 <span class="co">#&gt; [13] -3.17 -4.35 -6.28 -6.28 -6.28 -6.28 -6.28 -6.28</span></code></pre></div>
-<p>A visualização gráfica mostra que estas funções fornecem os envelopes superiore e inferior de variação de um vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graf &lt;-<span class="st"> </span><span class="kw">qplot</span>(
-  <span class="dt">x =</span> x,
-  <span class="dt">y =</span> y,
-  <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;line&quot;</span>, <span class="st">&quot;point&quot;</span>),
-  <span class="dt">ylim =</span> <span class="kw">range</span>(<span class="kw">c</span>(y, y_env_sup, y_env_inf))
-) <span class="op">+</span>
-<span class="st">  </span><span class="co"># linha do envelope superior</span>
-<span class="st">  </span><span class="kw">layer</span>(
-    <span class="dt">map =</span> <span class="kw">aes</span>(
-      <span class="dt">x =</span> x, 
-      <span class="dt">y =</span> y_env_sup, 
-      ), 
-    <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>,
-    <span class="dt">params =</span> <span class="kw">list</span>(
-      <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, 
-      <span class="dt">size =</span> <span class="dv">1</span>
-      ),
-    <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, 
-    <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>
-    ) <span class="op">+</span>
-<span class="st">  </span><span class="co"># linha do envelope inferior</span>
-<span class="st">  </span><span class="kw">layer</span>(
-    <span class="dt">map =</span> <span class="kw">aes</span>(
-      <span class="dt">x =</span> x, 
-      <span class="dt">y =</span> y_env_inf
-      ), 
-    <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>,
-    <span class="dt">params =</span> <span class="kw">list</span>(
-      <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, 
-      <span class="dt">size =</span> <span class="dv">1</span>
-      ),
-    <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, 
-    <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>
-    )
-graf</code></pre></div>
-<p><img src="images/unnamed-chunk-63-1.png" width="672" /></p>
+<p>A Figura <a href="funções-móveis-úteis.html#fig:plot-cumaxmin">7.2</a> permite visualizar que estas funções fornecem os envelopes superior e inferior de variação de um vetor.</p>
+<div class="figure" style="text-align: center"><span id="fig:plot-cumaxmin"></span>
+<img src="images/plot-cumaxmin-1.png" alt="Visualização do potencial uso das funções `cummax()` e `cummin()`." width="90%" />
+<p class="caption">
+Figura 7.2: Visualização do potencial uso das funções <code>cummax()</code> e <code>cummin()</code>.
+</p>
+</div>
 <p>Em alguns casos precisamos comparar os valores em relação a valores antes ou depois de um elemento do vetor. Para este tipo de operação podemos usar as funções:</p>
 <ul>
 <li><p><code>diff(x)</code>: diferencial ou primeira diferença, calcula para cada elemento de <code>x</code> a diferença <code>x[i] - x[i-1]</code> para i de 2 até <code>length(x)</code>. Resulta em um vetor com um elemento a menos que o vetor de entrada.</p></li>
 <li><p><code>lag(x, n)</code> do pacote <strong><code>dplyr</code></strong><a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a>: atrasa os valores de um vetor <code>x</code> por <code>n</code> observações;</p></li>
-<li><p><code>lead(x, n)</code> do pacote <strong><code>dplyr</code></strong><a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>: adianta os valores de um vetor <code>x</code> por <code>n</code> observações;</p></li>
+<li><p><code>lead(x, n)</code> do pacote <strong><code>dplyr</code></strong>: adianta os valores de um vetor <code>x</code> por <code>n</code> observações;</p></li>
 </ul>
 <p>Vamos comparar o resultado da <code>diff()</code> aplicada ao vetor de <code>prec</code> acumulado (<code>prec_ac</code>) com os valores <code>prec</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(prec_ac) 
@@ -527,7 +470,6 @@ frequência de ocorrência, contagens, porcentagem e proporção
 <hr />
 <ol start="25">
 <li id="fn25"><p>faz parte da coleção de pacotes para ciência de dados chamada <strong>tidyverse</strong>.<a href="funções-móveis-úteis.html#fnref25">↩</a></p></li>
-<li id="fn26"><p>faz parte da coleção de pacotes para ciência de dados chamada <strong>tidyverse</strong>.<a href="funções-móveis-úteis.html#fnref26">↩</a></p></li>
 </ol>
 </div>
             </section>

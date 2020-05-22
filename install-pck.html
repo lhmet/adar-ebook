@@ -451,62 +451,13 @@ As vezes você pode estar com diversos pacotes carregados e eles podem ter funç
 <li>checar a versão mais recente do R</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvcheck)
-<span class="kw">check_r</span>()
-## $installed_version
-## [1] &quot;R-4.0.0&quot;
-## 
-## $latest_version
-## [1] &quot;R-4.0.0&quot;
-## 
-## $latest_url
-## [1] &quot;https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz&quot;
-## 
-## $up_to_date
-## [1] TRUE</code></pre></div>
+<span class="kw">check_r</span>()</code></pre></div>
 <ul>
 <li>checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">check_cran</span>(<span class="st">&#39;dplyr&#39;</span>)
-## package is up-to-date release version
-## $package
-## [1] &quot;dplyr&quot;
-## 
-## $installed_version
-## [1] &quot;0.8.5&quot;
-## 
-## $latest_version
-## [1] &quot;0.8.5&quot;
-## 
-## $up_to_date
-## [1] TRUE
 <span class="kw">check_github</span>(<span class="st">&#39;lhmet/inmetr&#39;</span>)
-## package is up-to-date devel version
-## $package
-## [1] &quot;lhmet/inmetr&quot;
-## 
-## $installed_version
-## [1] &#39;0.3.0.9000&#39;
-## 
-## $latest_version
-## [1] &quot;0.3.0.9000&quot;
-## 
-## $up_to_date
-## [1] TRUE
-<span class="kw">check_bioc</span>(<span class="st">&#39;EBImage&#39;</span>)
-## ## EBImage is not installed...
-## install.packages(&quot;BiocManager&quot;)
-## BiocManager::install(&quot;EBImage&quot;)
-## $package
-## [1] &quot;EBImage&quot;
-## 
-## $installed_version
-## [1] NA
-## 
-## $latest_version
-## [1] &quot;4.30.0&quot;
-## 
-## $up_to_date
-## [1] NA</code></pre></div>
+<span class="kw">check_bioc</span>(<span class="st">&#39;EBImage&#39;</span>)</code></pre></div>
 <p>Por fim, para atualizar todos os pacotes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_all</span>(<span class="dt">check_R =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="rmdtip">
