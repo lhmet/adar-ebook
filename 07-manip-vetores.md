@@ -7,11 +7,23 @@ Neste capítulo veremos como manipular vetores, incluindo:
 
 - como nomear vetores
 
-- operação entre vetores
+- realizar cálculos entre vetores
 
 - gerar sequências
 
-- a indexação de vetores
+- entender a indexação de vetores
+
+- lidar com dados faltantes, nulos e duplicados
+
+- usar as funções para cálculos móveis
+
+
+Em algumas seções deste capítulos usaremos funções dos pacotes do grupo [tidyverse](https://www.tidyverse.org/), como o [ggplot2](https://ggplot2.tidyverse.org/) e [dplyr](https://dplyr.tidyverse.org/). Para carregá-los basta digitar:
+
+
+```r
+library(tidyverse)
+```
 
 
 ## Propriedades
@@ -338,7 +350,7 @@ a == 1 && b == 1
 
 Table: Demonstração da diferença entre & e &&.
 
-Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. 
+Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como feito nas operações matemáticas. 
 
 
 #### Testes de igualdade 
@@ -391,6 +403,7 @@ any(vetor > 0) # alguma posição é maior que 0?
 ```
 
 - `all()` verifica se a condição avaliada é válida para todos elementos de um vetor;
+
 - `any()` verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;
 
 
@@ -462,6 +475,8 @@ seq(from = 1, to = 10, length.out = 20)
 
 O `length.out = 20` no código acima permite gerar 20 números igualmente espaçados entre 1 e 10.
 
+
+
 ### Repetições
 
 Algumas vezes precisamos repetir certos valores, o que pode ser feito com a função `rep()`. O argumento `times` especifica o número de vezes para repetir o `x`. 
@@ -498,6 +513,9 @@ rep(x = 1:2, times = 4:3)
 #> [1] 1 1 1 1 2 2 2
 ```
 
+<!-- 
+AULA-6 encerrou aqui 
+-->
 
 ## Indexação de vetores {#index-vetores}
 
@@ -800,7 +818,7 @@ prec_alt_comp
 --->
 
 
-## Lidando com com dados faltantes
+## Lidando com dados faltantes
 
 Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituí-los se necessários.
 
@@ -1132,7 +1150,7 @@ unique(datas)
 
 ## Dados ordenados
 
-Duas operações comuns em análise de dados são a ordenação e o ranqueamento dos dados de um vetor.
+Duas operações comuns em análise de dados são a ordenação e a classificação dados de um vetor.
 
 A função `sort()` arranja os dados de um vetor numérico em ordem crescente ou descrescente (se argumento for especificado como `decreasing = TRUE`). Se o vetor for de caracteres, o arranjo segue a ordem alfabética dando precedência às letras em minúsculo.
 
@@ -1152,7 +1170,7 @@ sort(names(prec_alt))
 #>  [1] "abr" "ago" "dez" "fev" "jan" "jul" "jun" "mai" "mar" "nov" "out" "set"
 ```
 
-A ordem de cada elemento de um vetor numérico é obtida com a função `order()`:
+A ordem de classificação de cada elemento de um vetor numérico é obtida com a função `order()`:
 
 
 ```r
@@ -1163,7 +1181,18 @@ order(prec_alt)
 #>  [1]  5  7  8  9 10  2 12  1  3  4  6 11
 ```
 
-Por padrão, os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento `na.last = NA`.
+O resultado indica que o 5º lemento de `prec_alt` é o menor valor e o 1º elemeno é o de maior valor. Isso pode ser facilmente verificado passando este resultado na indexação da `prec_alt`.
+
+
+```r
+# equivalente a sort()
+prec_alt[order(prec_alt)]
+#> mai jul ago set out fev dez jan mar abr jun nov 
+#>   0  21  42 100 120 200 208 250  NA  NA  NA  NA
+```
+
+
+Nota-se então, que por padrão na saída da `order()` os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento `na.last = NA`.
 
 
 ```r
@@ -1173,18 +1202,281 @@ order(prec_alt, na.last = NA)
 
 
 
+## Funções móveis úteis
+
+Se queremos obter um valor que leve em consideração todos os valores anteriores e o valor atual, podemos usar funções da família **cum{fun}()**, como a **`cumsum()`** para somar valores à medida que avançamos na sequência. Esta operação é conhecida como soma cumulativa, total móvel ou soma móvel.
+
+Vamos obter a soma cumulativa da série da precipitação mensal abaixo.
+
+
+```r
+# serie de com 2 anos de prec mensal
+prec <- c(
+    230, 205, 160, 100, 60, 30, 
+    40, 60, 110, 165, 200, 220, 
+    250,200, 210, 12, 0, 30, 
+    21, 42, 100, 120, 10, 208
+  )
+prec
+#>  [1] 230 205 160 100  60  30  40  60 110 165 200 220 250 200 210  12   0  30  21
+#> [20]  42 100 120  10 208
+# meses de prec como datas
+dts <- seq(
+  from = as.Date("2010-01-01"),
+  by = "month",
+  length.out = length(prec)
+)
+dts
+#>  [1] "2010-01-01" "2010-02-01" "2010-03-01" "2010-04-01" "2010-05-01"
+#>  [6] "2010-06-01" "2010-07-01" "2010-08-01" "2010-09-01" "2010-10-01"
+#> [11] "2010-11-01" "2010-12-01" "2011-01-01" "2011-02-01" "2011-03-01"
+#> [16] "2011-04-01" "2011-05-01" "2011-06-01" "2011-07-01" "2011-08-01"
+#> [21] "2011-09-01" "2011-10-01" "2011-11-01" "2011-12-01"
+prec_ac <- cumsum(prec)
+prec_ac
+#>  [1]  230  435  595  695  755  785  825  885  995 1160 1360 1580 1830 2030 2240
+#> [16] 2252 2252 2282 2303 2345 2445 2565 2575 2783
+```
+
+
+Para melhor compreensão vamos visualizar as duas variáveis na mesma escala. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**.
+
+
+```r
+#library(ggplot2)
+# gráfico
+graf <- qplot(
+  x = dts,
+  y = prec,
+  geom = c("col"),
+  ylim = range(c(prec, prec_ac))
+) +
+  # ajuste dos labels das datas (eixo x)
+  scale_x_date(
+    name = "meses",
+    date_breaks = "2 months",
+    date_labels = "%b\n%Y"
+  ) +
+  # camada com prec acumulado
+  layer(
+    map = aes(
+      x = dts,
+      y = prec_ac,
+    ),
+    geom = "line",
+    params = list(
+      colour = "green",
+      size = 1
+    ),
+    stat = "identity",
+    position = "identity"
+  )
+graf
+```
+
+<img src="images/unnamed-chunk-61-1.png" width="672" />
+
+```r
+
+# (y_cmx <- cummax(y))
+# (y_cmn <- cummin(y))
+```
+
+
+As funções `cummax()` e `cummin()` fornecem os valores mínimo e máximo entre o início do vetor e a posição de cada elemento. Para enfatizar a utilidade destas funções, vamos considerar o vetor `y` abaixo, representando uma onda com amplitude que aumenta no tempo.
+
+
+
+```r
+(x <- seq(from = 0, to = 2.75*pi, length.out = 20))
+#>  [1] 0.0000000 0.4547042 0.9094084 1.3641126 1.8188168 2.2735210 2.7282252
+#>  [8] 3.1829294 3.6376336 4.0923378 4.5470420 5.0017462 5.4564504 5.9111546
+#> [15] 6.3658588 6.8205630 7.2752672 7.7299714 8.1846756 8.6393798
+(y <- round(-x*cos(2*x), 2))
+#>  [1]  0.00 -0.28  0.22  1.25  1.60  0.37 -1.85 -3.17 -1.99  1.33  4.30  4.19
+#> [13]  0.45 -4.35 -6.28 -3.25  2.92  7.49  6.46  0.00
+# maximos e minimos móveis de y
+(y_env_sup <- cummax(y))
+#>  [1] 0.00 0.00 0.22 1.25 1.60 1.60 1.60 1.60 1.60 1.60 4.30 4.30 4.30 4.30 4.30
+#> [16] 4.30 4.30 7.49 7.49 7.49
+(y_env_inf <- cummin(y))
+#>  [1]  0.00 -0.28 -0.28 -0.28 -0.28 -0.28 -1.85 -3.17 -3.17 -3.17 -3.17 -3.17
+#> [13] -3.17 -4.35 -6.28 -6.28 -6.28 -6.28 -6.28 -6.28
+```
+
+A visualização gráfica mostra que estas funções fornecem os envelopes superiore e inferior de variação de um vetor.
+
+
+```r
+graf <- qplot(
+  x = x,
+  y = y,
+  geom = c("line", "point"),
+  ylim = range(c(y, y_env_sup, y_env_inf))
+) +
+  # linha do envelope superior
+  layer(
+    map = aes(
+      x = x, 
+      y = y_env_sup, 
+      ), 
+    geom = "line",
+    params = list(
+      colour = "red", 
+      size = 1
+      ),
+    stat = "identity", 
+    position = "identity"
+    ) +
+  # linha do envelope inferior
+  layer(
+    map = aes(
+      x = x, 
+      y = y_env_inf
+      ), 
+    geom = "line",
+    params = list(
+      colour = "blue", 
+      size = 1
+      ),
+    stat = "identity", 
+    position = "identity"
+    )
+graf
+```
+
+<img src="images/unnamed-chunk-63-1.png" width="672" />
+
+Em alguns casos precisamos comparar os valores em relação a valores antes ou depois de um elemento do vetor. Para este tipo de operação podemos usar as funções: 
+
+- `diff(x)`: diferencial ou primeira diferença, calcula para cada elemento de `x` a diferença `x[i] - x[i-1]` para i de 2 até `length(x)`. Resulta em um vetor com um elemento a menos que o vetor de entrada.
+
+
+
+- `lag(x, n)` do pacote **`dplyr`**[^pcktidyverse]: atrasa os valores de um vetor `x` por `n` observações; 
+
+
+
+- `lead(x, n)` do pacote **`dplyr`**[^pcktidyverse]: adianta os valores de um vetor `x` por `n` observações; 
+
+
+[^pcktidyverse]: faz parte da coleção de pacotes para ciência de dados chamada **tidyverse**.
+
+
+Vamos comparar o resultado da `diff()` aplicada ao vetor de `prec` acumulado (`prec_ac`) com os valores `prec`.
+
+
+```r
+diff(prec_ac) 
+#>  [1] 205 160 100  60  30  40  60 110 165 200 220 250 200 210  12   0  30  21  42
+#> [20] 100 120  10 208
+#length(diff(prec_ac))
+prec
+#>  [1] 230 205 160 100  60  30  40  60 110 165 200 220 250 200 210  12   0  30  21
+#> [20]  42 100 120  10 208
+#length(prec)
+```
+
+Se precisássemos comparar `prec` com valores do mês anterior e posterior, estes vetores poderiam ser obtidos simplesmente com:
+
+
+```r
+# vetor prec deslocado para frente (atrasado)
+lag(prec)
+#>  [1]  NA 230 205 160 100  60  30  40  60 110 165 200 220 250 200 210  12   0  30
+#> [20]  21  42 100 120  10
+# vetor prec deslocado para trás (adiantados)
+lead(prec)
+#>  [1] 205 160 100  60  30  40  60 110 165 200 220 250 200 210  12   0  30  21  42
+#> [20] 100 120  10 208  NA
+```
+
+Para detectar períodos de aumento (ou redução) da precipitação do mês atual em relação ao anterior.
+
+
+```r
+prec - lag(prec) > 0
+#>  [1]    NA FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#> [13]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+prec - lag(prec) < 0
+#>  [1]    NA  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [13] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE
+```
+
+
 <!---
-cumsum(prec_alt)
-diff(prec_alt)
-
+- table()
 frequência de ocorrência, contagens, porcentagem e proporção
-table()
-prop.table()*100
-
-# boolean aritmetic
-
-#wq::na.approx()
+- prop.table()*100
 --->
+
+
+## Identificação de eventos discretos
+
+Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor,  períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
+
+Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.
+
+Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm. 
+
+O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.
+
+
+```r
+# como identificar estes períodos?
+limiar <- 100
+# definição de evento (condição)
+(eventos <- prec > limiar)
+#>  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+#> [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+```
+
+A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.
+
+
+```r
+(acum_eventos <- cumsum(eventos))
+#>  [1]  1  2  3  3  3  3  3  3  4  5  6  7  8  9 10 10 10 10 10 10 10 11 11 12
+# mantém valores de cumsum qdo não é evento
+# e zera qdo é evento
+(entre_eventos <- acum_eventos * (!eventos))
+#>  [1]  0  0  0  3  3  3  3  3  0  0  0  0  0  0  0 10 10 10 10 10 10  0 11  0
+acum_eventos * (eventos)
+#>  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12
+# sequencia das ocorrência dentro de um evento
+(seq_eventos <- acum_eventos - cummax(entre_eventos))
+#>  [1] 1 2 3 0 0 0 0 0 1 2 3 4 5 6 7 0 0 0 0 0 0 1 0 1
+# identificador da ordem cronológica de cada evento
+(ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
+#>  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4
+```
+
+Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.
+
+
+```r
+pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
+#replace(pos_ult, is.na(pos_ult), NULL)
+(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
+#> [1]  3 15 22 24
+(inicio <- which(seq_eventos == 1))
+#> [1]  1  9 22 24
+(dur <- seq_eventos[fim])
+#> [1] 3 7 1 1
+unique(ordem_eventos[ordem_eventos > 0])
+#> [1] 1 2 3 4
+```
+
+
+<!---
+#freq <- table(ordem_eventos[ordem_eventos > 0])
+#duracao <- unname(rep(freq, times = freq))
+#dur <- ordem_eventos
+#dur[ordem_eventos != 0] <- duracao
+--->
+
+
+
 
 ## Exercícios
 
@@ -1223,28 +1515,29 @@ prop.table()*100
   a.
 
 ```
-[1] -20   0  10  20  30  40
+[1] -30   0   5  10  15  20  30
 ```
   b.
 
 ```
-[1] -1.00 -0.75 -0.50 -0.25  0.00  0.25  0.50  0.75  1.00
+[1] 1.0 0.8 0.6 0.4 0.2 0.0
 ```
   c.
 
 ```
- [1] -3.1415927 -2.5703940 -1.9991953 -1.4279967 -0.8567980 -0.2855993
- [7]  0.2855993  0.8567980  1.4279967  1.9991953  2.5703940  3.1415927
+ [1] 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593
+ [9] 3.141593 3.141593 3.141593 3.141593
 ```
   d.
 
 ```
- [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5
+ [1] -1 -1  0  0  0  1  1  1  1  2  2  2  2  2  3  3  3  3  3  3  4  4  4  4  4
+[26]  4  4  5  5  5  5  5  5  5  5
 ```
   e.
 
 ```
- [1] 1 1 1 1 1 2 2 2 2 3 3 3 4 4 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1
+ [1] 5 5 5 5 5 4 4 4 4 3 3 3 2 2 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5
 ```
 
   f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
@@ -1338,8 +1631,6 @@ c. Mostre o código para obter a hora de início e fim do evento de  precipitaç
 d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
 
 
-
-
 - - -
 
 9. EXERCÍCIO RESOLVIDO. Considere o vetor `x` definido pelos números descritos abaixo. Mostre como  encontrar o primeiro número positivo localizado após o último número negativo. Por exemplo, seja o vetor `z` definido pelos valores (11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14). Os valores selecionados seriam 5 e 30.
@@ -1391,17 +1682,14 @@ prec <- c(
   (a) Quantos dias ocorreram no intervalo 0 < prec < 0.25?
   
 
-
   (b) Substitua os valores de chuva registrados no intervalo 0 < prec < 0.25 por 0.
   
-
 
   (c) Crie um vetor denominado `prec01` indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro. 
 
 
   (d) Qual a probabilidade de chuva dessa série de precipitação diária?
   
-
 
   (e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
 
