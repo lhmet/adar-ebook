@@ -550,17 +550,6 @@ Com o [rvcheck](https://github.com/GuangchuangYu/rvcheck) podemos:
 ```r
 library(rvcheck)
 check_r()
-## $installed_version
-## [1] "R-3.6.3"
-## 
-## $latest_version
-## [1] "R-4.0.0"
-## 
-## $latest_url
-## [1] "https://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz"
-## 
-## $up_to_date
-## [1] FALSE
 ```
 
 - checar a versão mais atual de um pacote na CRAN, no GitHub ou no Bioconductor
@@ -568,44 +557,8 @@ check_r()
 
 ```r
 check_cran('dplyr')
-## package is up-to-date release version
-## $package
-## [1] "dplyr"
-## 
-## $installed_version
-## [1] "0.8.5"
-## 
-## $latest_version
-## [1] "0.8.5"
-## 
-## $up_to_date
-## [1] TRUE
 check_github('lhmet/inmetr')
-## package is up-to-date devel version
-## $package
-## [1] "lhmet/inmetr"
-## 
-## $installed_version
-## [1] '0.3.0.9000'
-## 
-## $latest_version
-## [1] "0.3.0.9000"
-## 
-## $up_to_date
-## [1] TRUE
 check_bioc('EBImage')
-## package is up-to-date release version
-## $package
-## [1] "EBImage"
-## 
-## $installed_version
-## [1] "4.28.1"
-## 
-## $latest_version
-## [1] "4.28.1"
-## 
-## $up_to_date
-## [1] TRUE
 ```
 
 Por fim, para atualizar todos os pacotes:

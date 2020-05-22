@@ -1238,49 +1238,12 @@ prec_ac
 #> [16] 2252 2252 2282 2303 2345 2445 2565 2575 2783
 ```
 
+A relação entre essas duas variáveis pode ser melhor compreendida pelo gráfico da Figura \@ref(fig:plot-cumsum).
 
-Para melhor compreensão vamos visualizar as duas variáveis na mesma escala. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**.
-
-
-```r
-#library(ggplot2)
-# gráfico
-graf <- qplot(
-  x = dts,
-  y = prec,
-  geom = c("col"),
-  ylim = range(c(prec, prec_ac))
-) +
-  # ajuste dos labels das datas (eixo x)
-  scale_x_date(
-    name = "meses",
-    date_breaks = "2 months",
-    date_labels = "%b\n%Y"
-  ) +
-  # camada com prec acumulado
-  layer(
-    map = aes(
-      x = dts,
-      y = prec_ac,
-    ),
-    geom = "line",
-    params = list(
-      colour = "green",
-      size = 1
-    ),
-    stat = "identity",
-    position = "identity"
-  )
-graf
-```
-
-<img src="images/unnamed-chunk-61-1.png" width="672" />
-
-```r
-
-# (y_cmx <- cummax(y))
-# (y_cmn <- cummin(y))
-```
+<div class="figure" style="text-align: center">
+<img src="images/plot-cumsum-1.png" alt="Visualização da soma acumulada. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**." width="90%" />
+<p class="caption">(\#fig:plot-cumsum)Visualização da soma acumulada. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**.</p>
+</div>
 
 
 As funções `cummax()` e `cummin()` fornecem os valores mínimo e máximo entre o início do vetor e a posição de cada elemento. Para enfatizar a utilidade destas funções, vamos considerar o vetor `y` abaixo, representando uma onda com amplitude que aumenta no tempo.
@@ -1304,48 +1267,14 @@ As funções `cummax()` e `cummin()` fornecem os valores mínimo e máximo entre
 #> [13] -3.17 -4.35 -6.28 -6.28 -6.28 -6.28 -6.28 -6.28
 ```
 
-A visualização gráfica mostra que estas funções fornecem os envelopes superiore e inferior de variação de um vetor.
+A Figura \@ref(fig:plot-cumaxmin) permite visualizar que estas funções fornecem os envelopes superior e inferior de variação de um vetor.
 
 
-```r
-graf <- qplot(
-  x = x,
-  y = y,
-  geom = c("line", "point"),
-  ylim = range(c(y, y_env_sup, y_env_inf))
-) +
-  # linha do envelope superior
-  layer(
-    map = aes(
-      x = x, 
-      y = y_env_sup, 
-      ), 
-    geom = "line",
-    params = list(
-      colour = "red", 
-      size = 1
-      ),
-    stat = "identity", 
-    position = "identity"
-    ) +
-  # linha do envelope inferior
-  layer(
-    map = aes(
-      x = x, 
-      y = y_env_inf
-      ), 
-    geom = "line",
-    params = list(
-      colour = "blue", 
-      size = 1
-      ),
-    stat = "identity", 
-    position = "identity"
-    )
-graf
-```
 
-<img src="images/unnamed-chunk-63-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="images/plot-cumaxmin-1.png" alt="Visualização do potencial uso das funções `cummax()` e `cummin()`." width="90%" />
+<p class="caption">(\#fig:plot-cumaxmin)Visualização do potencial uso das funções `cummax()` e `cummin()`.</p>
+</div>
 
 Em alguns casos precisamos comparar os valores em relação a valores antes ou depois de um elemento do vetor. Para este tipo de operação podemos usar as funções: 
 
@@ -1357,7 +1286,7 @@ Em alguns casos precisamos comparar os valores em relação a valores antes ou d
 
 
 
-- `lead(x, n)` do pacote **`dplyr`**[^pcktidyverse]: adianta os valores de um vetor `x` por `n` observações; 
+- `lead(x, n)` do pacote **`dplyr`**: adianta os valores de um vetor `x` por `n` observações; 
 
 
 [^pcktidyverse]: faz parte da coleção de pacotes para ciência de dados chamada **tidyverse**.
@@ -1413,9 +1342,9 @@ frequência de ocorrência, contagens, porcentagem e proporção
 
 ## Identificação de eventos discretos
 
-Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor,  períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
+Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
 
-Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.
+Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos na escala de evento.
 
 Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm. 
 
@@ -1423,57 +1352,116 @@ O primeiro passo é obter um vetor lógico que indicando a ocorrência dos event
 
 
 ```r
-# como identificar estes períodos?
 limiar <- 100
 # definição de evento (condição)
-(eventos <- prec > limiar)
-#>  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
-#> [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+(x <- evts <- as.integer(prec > limiar))
+#>  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1
 ```
 
-A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.
+A conversão dos eventos de lógico para númerico é opcional[^aviso] e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).
+
+[^aviso]: Isso significa que os resultados nos códigos abaixo não se alteram se removermos essa conversão.
+
+As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (`lag(x)`) do elemento atual (`x`). Se a diferença for negativa (`0 - 1 = -1`) temos o início de um evento.
 
 
 ```r
-(acum_eventos <- cumsum(eventos))
-#>  [1]  1  2  3  3  3  3  3  3  4  5  6  7  8  9 10 10 10 10 10 10 10 11 11 12
-# mantém valores de cumsum qdo não é evento
-# e zera qdo é evento
-(entre_eventos <- acum_eventos * (!eventos))
-#>  [1]  0  0  0  3  3  3  3  3  0  0  0  0  0  0  0 10 10 10 10 10 10  0 11  0
-acum_eventos * (eventos)
-#>  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12
-# sequencia das ocorrência dentro de um evento
-(seq_eventos <- acum_eventos - cummax(entre_eventos))
-#>  [1] 1 2 3 0 0 0 0 0 1 2 3 4 5 6 7 0 0 0 0 0 0 1 0 1
-# identificador da ordem cronológica de cada evento
-(ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
+# x atrasado: desloca os elementos para para frente
+pos_ini <- which(lag(x) - x < 0)
+pos_prim <- ifelse(
+  test = x[1] == 1,
+  yes = 1,
+  no = 0
+)
+(pos_ini <- c(pos_prim, pos_ini))
+#> [1]  1  9 22 24
+dts[pos_ini]
+#> [1] "2010-01-01" "2010-09-01" "2011-10-01" "2011-12-01"
+```
+
+Temos que ter cuidado especial com o primeiro índice das posições iniciais, ajustando-o para considerar adequadamente eventos começando logo início do vetor. Esse ajuste é necessário porque usando a diferença do vetor defasado não há como detectar se o primeiro elemento é evento ou não.    
+
+
+Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (`lead(x)`) do elemento atual (`x`). Se a diferença for negativa (`0 - 1 = -1`) temos o fim de um evento.
+
+
+```r
+pos_fim <- which(lead(x) - x < 0)
+pos_ult <- ifelse(
+  test = x[length(x)] == 1,
+  yes = length(x),
+  no = 0
+)
+(pos_fim <- c(pos_fim, pos_ult))
+#> [1]  3 15 22 24
+dts[pos_fim]
+#> [1] "2010-03-01" "2011-03-01" "2011-10-01" "2011-12-01"
+```
+
+O último índice do vetor de posições finais requer tratamento similar ao do 1° elemento das posições iniciais. Ele deve ser ajustado para tratar dos casos com eventos no último elemento de `x`.
+
+A duração de cada evento é facilmente obtida do fim e início de cada evento:
+
+
+```r
+duracao <- pos_fim - pos_ini + 1
+duracao
+#> [1] 3 7 1 1
+# rbind(x, atras = lag(x), adiant = lead(x), pos_ini = lag(x)-x, pos_fim = lead(x) - x)
+```
+
+Eventualmente você pode precisar de um vetor identificando cada evento, o que pode ser feito usando:
+
+
+```r
+evts_id <- evts
+evts_id[evts > 0] <- rep(seq_along(duracao), times = duracao)
+evts_id
 #>  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4
 ```
 
-Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.
+Este vetor pode ser usado, para obter estatísticas de cada evento. Por exemplo, a precipitação média em cada evento pode ser determinada passando este vetor como argumento da função `tapply()`. Como só queremos informação nos eventos vamos substituir os valores = 0 por NA em `evts_id`. Assim a `tapply()` retornará a média só para os eventos de interesse. 
 
 
 ```r
-pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
-#replace(pos_ult, is.na(pos_ult), NULL)
-(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
-#> [1]  3 15 22 24
-(inicio <- which(seq_eventos == 1))
-#> [1]  1  9 22 24
-(dur <- seq_eventos[fim])
-#> [1] 3 7 1 1
-unique(ordem_eventos[ordem_eventos > 0])
-#> [1] 1 2 3 4
+evts_id <- ifelse(evts_id == 0, NA, evts_id)
+# prec média em cada evento
+tapply(
+  X = prec,
+  INDEX = evts_id,
+  FUN = mean
+)
+#>        1        2        3        4 
+#> 198.3333 193.5714 120.0000 208.0000
 ```
 
 
-<!---
-#freq <- table(ordem_eventos[ordem_eventos > 0])
-#duracao <- unname(rep(freq, times = freq))
-#dur <- ordem_eventos
-#dur[ordem_eventos != 0] <- duracao
---->
+
+<!--
+# Forma alternativa de resolução
+acum_eventos <- cumsum(eventos)
+# mantém valores de cumsum qdo não é evento
+# e zera qdo é evento
+entre_eventos <- acum_eventos * (!eventos)
+# sequencia das ocorrência dentro de um evento
+(seq_eventos <- acum_eventos - cummax(entre_eventos))
+# identificador da ordem cronológica de cada evento
+(ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
+# Com os vetores que identificam cada evento e quantificam suas ocorrências em 
+# cada evento, podemos extrair os índices de início, fim e a duração de cada 
+# evento.
+pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
+#replace(pos_ult, is.na(pos_ult), NULL)
+(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
+(inicio <- which(seq_eventos == 1))
+(dur <- seq_eventos[fim])
+unique(ordem_eventos[ordem_eventos > 0])
+
+# freq <- table(ordem_eventos[ordem_eventos > 0])
+# duracao <- unname(rep(freq, times = freq))
+# dur <- ordem_eventos
+# dur[ordem_eventos != 0] <- duracao
+-->
 
 
 
