@@ -19,11 +19,22 @@ Neste capítulo veremos como manipular vetores, incluindo:
 
 - como nomear vetores
 
-- operação entre vetores
+- realizar cálculos entre vetores
 
 - gerar sequências
 
-- a indexação de vetores
+- entender a indexação de vetores
+
+- lidar com dados faltantes, nulos e duplicados
+
+- usar as funções para cálculos móveis
+
+
+Em algumas seções deste capítulos usaremos funções dos pacotes do grupo [tidyverse](https://www.tidyverse.org/), como o [ggplot2](https://ggplot2.tidyverse.org/) e [dplyr](https://dplyr.tidyverse.org/). Para carregá-los basta digitar:
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+library(tidyverse)
+```
 
 
 ## Propriedades
@@ -274,7 +285,7 @@ desc[2:nrow(desc), 6] <- ""
 pander(desc, caption = "Demonstração da diferença entre & e &&.")
 ```
 
-Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. 
+Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como feito nas operações matemáticas. 
 
 
 #### Testes de igualdade 
@@ -316,6 +327,7 @@ any(vetor > 0) # alguma posição é maior que 0?
 ```
 
 - `all()` verifica se a condição avaliada é válida para todos elementos de um vetor;
+
 - `any()` verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;
 
 
@@ -389,6 +401,8 @@ seq(from = 1, to = 10, length.out = 20)
 
 O `length.out = 20` no código acima permite gerar 20 números igualmente espaçados entre 1 e 10.
 
+
+
 ### Repetições
 
 Algumas vezes precisamos repetir certos valores, o que pode ser feito com a função `rep()`. O argumento `times` especifica o número de vezes para repetir o `x`. 
@@ -417,6 +431,9 @@ Quando argumento `times` é um vetor de mesmo tamanho que `x`, cada um de seus v
 rep(x = 1:2, times = 4:3)
 ```
 
+<!-- 
+AULA-6 encerrou aqui 
+-->
 
 ## Indexação de vetores {#index-vetores}
 
@@ -668,7 +685,7 @@ prec_alt_comp
 --->
 
 
-## Lidando com com dados faltantes
+## Lidando com dados faltantes
 
 Dados faltantes (`NA`s) são inevitáveis e em qualquer processamento de dados reais nós precisamos determinar se existem dados faltantes e a quantidade de observações válidas. É importante também, saber o efeito que eles tem nos cálculos, as funcionalidades para identificá-los e substituí-los se necessários.
 
@@ -904,7 +921,7 @@ unique(datas)
 
 ## Dados ordenados
 
-Duas operações comuns em análise de dados são a ordenação e o ranqueamento dos dados de um vetor.
+Duas operações comuns em análise de dados são a ordenação e a classificação dados de um vetor.
 
 A função `sort()` arranja os dados de um vetor numérico em ordem crescente ou descrescente (se argumento for especificado como `decreasing = TRUE`). Se o vetor for de caracteres, o arranjo segue a ordem alfabética dando precedência às letras em minúsculo.
 
@@ -917,14 +934,22 @@ sort(prec_alt, decreasing = TRUE)
 sort(names(prec_alt))
 ```
 
-A ordem de cada elemento de um vetor numérico é obtida com a função `order()`:
+A ordem de classificação de cada elemento de um vetor numérico é obtida com a função `order()`:
 
 ```{r}
 prec_alt
 order(prec_alt)
 ```
 
-Por padrão, os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento `na.last = NA`.
+O resultado indica que o 5º lemento de `prec_alt` é o menor valor e o 1º elemeno é o de maior valor. Isso pode ser facilmente verificado passando este resultado na indexação da `prec_alt`.
+
+```{r}
+# equivalente a sort()
+prec_alt[order(prec_alt)]
+```
+
+
+Nota-se então, que por padrão na saída da `order()` os elementos faltantes são colocados nas últimas posições (no exemplo: 3, 4, 6, 11). Para remover os casos faltantes especificamos o argumento `na.last = NA`.
 
 ```{r}
 order(prec_alt, na.last = NA)
@@ -932,18 +957,254 @@ order(prec_alt, na.last = NA)
 
 
 
+## Funções móveis úteis
+
+Se queremos obter um valor que leve em consideração todos os valores anteriores e o valor atual, podemos usar funções da família **cum{fun}()**, como a **`cumsum()`** para somar valores à medida que avançamos na sequência. Esta operação é conhecida como soma cumulativa, total móvel ou soma móvel.
+
+Vamos obter a soma cumulativa da série da precipitação mensal abaixo.
+
+```{r}
+# serie de com 2 anos de prec mensal
+prec <- c(
+    230, 205, 160, 100, 60, 30, 
+    40, 60, 110, 165, 200, 220, 
+    250,200, 210, 12, 0, 30, 
+    21, 42, 100, 120, 10, 208
+  )
+prec
+# meses de prec como datas
+dts <- seq(
+  from = as.Date("2010-01-01"),
+  by = "month",
+  length.out = length(prec)
+)
+dts
+prec_ac <- cumsum(prec)
+prec_ac
+```
+
+
+Para melhor compreensão vamos visualizar as duas variáveis na mesma escala. A precipitação será representada por barras e a precipitação acumulada até o mês decorrido como linha. Nós abordaremos os recursos para visualização gráfica na seção **Visualização de dados**.
+
+```{r}
+#library(ggplot2)
+# gráfico
+graf <- qplot(
+  x = dts,
+  y = prec,
+  geom = c("col"),
+  ylim = range(c(prec, prec_ac))
+) +
+  # ajuste dos labels das datas (eixo x)
+  scale_x_date(
+    name = "meses",
+    date_breaks = "2 months",
+    date_labels = "%b\n%Y"
+  ) +
+  # camada com prec acumulado
+  layer(
+    map = aes(
+      x = dts,
+      y = prec_ac,
+    ),
+    geom = "line",
+    params = list(
+      colour = "green",
+      size = 1
+    ),
+    stat = "identity",
+    position = "identity"
+  )
+graf
+
+# (y_cmx <- cummax(y))
+# (y_cmn <- cummin(y))
+```
+
+
+As funções `cummax()` e `cummin()` fornecem os valores mínimo e máximo entre o início do vetor e a posição de cada elemento. Para enfatizar a utilidade destas funções, vamos considerar o vetor `y` abaixo, representando uma onda com amplitude que aumenta no tempo.
+
+
+```{r}
+(x <- seq(from = 0, to = 2.75*pi, length.out = 20))
+(y <- round(-x*cos(2*x), 2))
+# maximos e minimos móveis de y
+(y_env_sup <- cummax(y))
+(y_env_inf <- cummin(y))
+```
+
+A visualização gráfica mostra que estas funções fornecem os envelopes superiore e inferior de variação de um vetor.
+
+```{r}
+graf <- qplot(
+  x = x,
+  y = y,
+  geom = c("line", "point"),
+  ylim = range(c(y, y_env_sup, y_env_inf))
+) +
+  # linha do envelope superior
+  layer(
+    map = aes(
+      x = x, 
+      y = y_env_sup, 
+      ), 
+    geom = "line",
+    params = list(
+      colour = "red", 
+      size = 1
+      ),
+    stat = "identity", 
+    position = "identity"
+    ) +
+  # linha do envelope inferior
+  layer(
+    map = aes(
+      x = x, 
+      y = y_env_inf
+      ), 
+    geom = "line",
+    params = list(
+      colour = "blue", 
+      size = 1
+      ),
+    stat = "identity", 
+    position = "identity"
+    )
+graf
+```
+
+Em alguns casos precisamos comparar os valores em relação a valores antes ou depois de um elemento do vetor. Para este tipo de operação podemos usar as funções: 
+
+- `diff(x)`: diferencial ou primeira diferença, calcula para cada elemento de `x` a diferença `x[i] - x[i-1]` para i de 2 até `length(x)`. Resulta em um vetor com um elemento a menos que o vetor de entrada.
+
+
+
+- `lag(x, n)` do pacote **`dplyr`**[^pcktidyverse]: atrasa os valores de um vetor `x` por `n` observações; 
+
+
+
+- `lead(x, n)` do pacote **`dplyr`**[^pcktidyverse]: adianta os valores de um vetor `x` por `n` observações; 
+
+
+[^pcktidyverse]: faz parte da coleção de pacotes para ciência de dados chamada **tidyverse**.
+
+
+Vamos comparar o resultado da `diff()` aplicada ao vetor de `prec` acumulado (`prec_ac`) com os valores `prec`.
+
+```{r}
+diff(prec_ac) 
+#length(diff(prec_ac))
+prec
+#length(prec)
+```
+
+Se precisássemos comparar `prec` com valores do mês anterior e posterior, estes vetores poderiam ser obtidos simplesmente com:
+
+```{r}
+# vetor prec deslocado para frente (atrasado)
+lag(prec)
+# vetor prec deslocado para trás (adiantados)
+lead(prec)
+```
+
+Para detectar períodos de aumento (ou redução) da precipitação do mês atual em relação ao anterior.
+
+```{r}
+prec - lag(prec) > 0
+prec - lag(prec) < 0
+```
+
+
 <!---
-cumsum(prec_alt)
-diff(prec_alt)
-
+- table()
 frequência de ocorrência, contagens, porcentagem e proporção
-table()
-prop.table()*100
-
-# boolean aritmetic
-
-#wq::na.approx()
+- prop.table()*100
 --->
+
+
+## Identificação de eventos discretos
+
+Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor,  períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
+
+Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.
+
+Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm. 
+
+O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.
+
+```{r}
+# como identificar estes períodos?
+limiar <- 100
+# definição de evento (condição)
+(eventos <- prec > limiar)
+```
+
+A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.
+
+```{r}
+acum_eventos <- cumsum(eventos)
+# mantém valores de cumsum qdo não é evento
+# e zera qdo é evento
+entre_eventos <- acum_eventos * (!eventos)
+# sequencia das ocorrência dentro de um evento
+(seq_eventos <- acum_eventos - cummax(entre_eventos))
+# identificador da ordem cronológica de cada evento
+(ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
+```
+
+Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.
+
+```{r}
+# inicio
+inicio <- which(seq_eventos == 1)
+
+a <- acum_eventos * eventos
+cbind(entre_eventos , ordem_eventos, dur)
+# fim
+# O FIM DEPENDIA DO DUR!
+# PRECISO REER COMO OBTER END
+# ordem_eventos_apend <- ordem_eventos[length(ordem_eventos)] > 0
+# ordem_eventos_apend <- c(ordem_eventos, 0)
+# 
+# dif_prev <- diff(ordem_eventos_apend) which(ordem_eventos -  < 0)
+# ifelse(dif_prev > )
+# 
+# ordem_eventos - eventos
+# 
+# seq_eventos * eventos
+# 
+# fim <- which(((seq_eventos == dur) * eventos) == 1)
+# # duração dos eventos
+# duracao <- seq_eventos[fim]
+# names(inicio) <- names(fim) <- names(duracao) <- unique(ordem_eventos[ordem_eventos > 0])
+```
+
+
+```{r}
+# identificador do evento
+unique(ordem_eventos[ordem_eventos > 0])
+# indice do inicio do evento
+inicio
+# indice do fim do evento
+fim
+# duracao de cada evento
+duracao
+```
+
+<!---
+#freq <- table(ordem_eventos[ordem_eventos > 0])
+#duracao <- unname(rep(freq, times = freq))
+#dur <- ordem_eventos
+#dur[ordem_eventos != 0] <- duracao
+--->
+
+
+Encontrando os índices de início e fim dos eventos:
+
+
+
+
+
 
 ## Exercícios
 
@@ -981,23 +1242,23 @@ prop.table()*100
 5. Quais códigos para gerar os seguintes dados:
   a.
 ```{r, eval=TRUE,echo=FALSE,comment=""}
-(tar0 <- c(-20, seq(0, 40, by = 10)))
+(tar0 <- c(-30, seq(0, 20, by = 5), 30))
 ```
   b.
 ```{r, eval=TRUE,echo=FALSE,comment=""}
-(seq(-1, 1, by = 1 / 4))
+(seq(1, 0, by = -1/5))
 ```
   c.
 ```{r , eval=TRUE,echo=FALSE,comment=""}
-(seq(-pi, pi, length.out = 12))
+(seq(pi, pi, length.out = 12))
 ```
   d.
 ```{r , eval=TRUE,echo=FALSE,comment=""}
-rep(1:5, times = 5:1)
+rep(-1:5, times = 2:8)
 ```
   e.
 ```{r , eval=TRUE,echo=FALSE,comment=""}
-rep(c(1:5, 4:1), times = c(5:1, 2:5))
+rep(c(5:1, 2:5), times = c(5:1, 2:5))
 ``` 
 
   f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
@@ -1073,35 +1334,17 @@ knitr::kable(evento, align = "c", longtable = TRUE)
 
 a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve seu resultado em um vetor chamado `prec_acum`. Interprete o resultado `c(NA, diff(prec_acum))`.
 
-```{r, include = FALSE}
-(prec_acum <- cumsum(prec_h))
-```
+
 
 b. Mostre o código para encontrar o horário de ocorrência da precipitação máxima?
 
-```{r, include = FALSE}
-hora[which.max(prec_h)]
-```
+
 
 c. Mostre o código para obter a hora de início e fim do evento de  precipitação severa. Qual foi a duração do evento?
 
-```{r, include = FALSE}
-(inicio <- hora[prec_h > 0][1])
-(fim <- hora[max(which(prec_h > 0))])
-fim - inicio + 1
-sum(prec_h > 0)
-```
+
 
 d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
-
-```{r, include = FALSE}
-tot_evento <- sum(prec_h)
-perc_rel <- prec_h / tot_evento * 100
-perc_rel
-perc_rel_cum <- cumsum(perc_rel)
-perc_rel_cum[hora == 17]
-round(perc_rel_cum[hora == 17])
-```
 
 
 - - -
@@ -1176,122 +1419,27 @@ prec <- c(
 
   (a) Quantos dias ocorreram no intervalo 0 < prec < 0.25?
   
-```{r Chunk10a1, echo=FALSE, eval=TRUE, results = FALSE}
-n_ev <- sum(prec > 0 & prec < 0.25)
-n_ev
-vals_ev <- prec[prec > 0 & prec < 0.25]
-vals_ev
-```
 
   (b) Substitua os valores de chuva registrados no intervalo 0 < prec < 0.25 por 0.
   
-```{r Chunk10b, echo=FALSE, eval=TRUE, results = FALSE}
-prec[prec > 0 & prec < 0.25] <- 0
-prec
-```  
 
   (c) Crie um vetor denominado `prec01` indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro. 
-```{r Chunk10c, echo=FALSE, eval=TRUE, results = FALSE}
-limiar <- 0.25
-prec01 <- as.integer(prec > limiar)
-# prec01
-prec_estado <- prec01
-prec_estado[prec_estado == 1] <- "chuvoso"
-# prec_estado
-prec_estado[prec_estado == "0"] <- "seco"
-prec_estado
-```
+
 
   (d) Qual a probabilidade de chuva dessa série de precipitação diária?
   
-```{r Chunk10d, echo=FALSE, eval=TRUE, results = FALSE}
-prob <- sum(prec01) / length(prec01)
-prob <- mean(prec01)
-# %
-prob_perc <- mean(prec01) * 100
-prob
-prob_perc
-``` 
 
   (e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
 
-```{r Chunk10e, message=FALSE, echo=FALSE, eval=TRUE, results=FALSE}
-choveu <- data.frame(
-  hoje = prec01[-length(prec01)],
-  amanha = prec01[-1]
-)
-choveu
-# p11: núm de eventos com chuva em dois dias consecutivos /núm. de combinações de 2 dias
-prob11 <- with(
-  choveu,
-  sum(hoje == 1 & amanha == 1) / length(amanha) * 100
-)
-prob11
-# p01
-prob01 <- with(
-  choveu,
-  sum(hoje == 0 & amanha == 1) / length(amanha) * 100
-)
-prob01
-# p10
-prob10 <- with(
-  choveu,
-  sum(hoje == 1 & amanha == 0) / length(amanha) * 100
-)
-prob10
-prob10 == prob01
-# sum(sapply(1:(length(prec01)-1), function(i) if(prec01[i] == 1 & prec01[i+1] == 1) 1 else 0))/length()
-# numero de vezes que choveu ou hoje ou amanhã: p(1|1)
-prob12 <- with(
-  choveu,
-  sum(hoje != amanha) / length(amanha) * 100
-)
-prob12
-# p00
-prob00 <- with(
-  choveu,
-  sum(hoje == 0 & amanha == 0) / length(amanha) * 100
-)
-prob00
-# somas das probalidades deve ser igual a 1
-prob12 + prob11 + prob00
-```
 
-```{r Chunk10e1, echo=FALSE, eval=TRUE, results='hide'}
-## PARA MELHOR VISUALIZAÇÃO
-# data frame para visualização de casos de prec com 2 consecutivos
-conds_df <- with(
-  choveu,
-  data.frame(hoje,
-    amanha,
-    cond00 = hoje == 0 & amanha == 0,
-    cond11 = hoje == 1 & amanha == 1,
-    cond01 = (hoje == 0 & amanha == 1),
-    cond10 = (hoje == 1 & amanha == 0),
-    cond12 = (hoje != amanha)
-  )
-)
-# dia que não permite comparação para as transições de estado
-# conds_df <- conds_df[complete.cases(conds_df), ]
-(probs <- colSums(conds_df) / nrow(conds_df))
-# verificação das probabilidades
-(probs_sum <- sum(probs[-c(1:2, 7)]))
-```
+
+
 
   (f) Determine a duração de cada evento chuvoso (número de dias consecutivos).
    
 > Dica: comece encontrando a posição do início do evento e depois a posição final do evento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.
 
-```{r Chunk10f, echo=FALSE, eval=TRUE, results='hide'}
-# posições iniciais do evento
-posi <- which(diff(c(0, prec01)) == 1)
-# posições finais do evento
-posf <- c(which(diff(c(prec01, 0)) == -1))
-# duracao de cada evento
-duracao <- posf - posi + 1
-# duracao
-names(duracao) <- paste("evento", 1:length(duracao), sep = "")
-```
+
 
 O resultado esperado é um vetor que identifique o evento e sua duração.
 

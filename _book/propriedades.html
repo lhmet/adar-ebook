@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.1 Propriedades | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.1 Propriedades | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-18" />
+<meta name="date" content="2020-05-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -176,10 +176,12 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
-<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5" data-path="boas-refrências.html"><a href="boas-refrências.html"><i class="fa fa-check"></i><b>5</b> Boas refrências</a><ul>
 <li class="chapter" data-level="5.1" data-path="convenção.html"><a href="convenção.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
@@ -230,15 +232,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.5.3" data-path="index-vetores.html"><a href="index-vetores.html#indexação-por-vetores-lógicos"><i class="fa fa-check"></i><b>7.5.3</b> Indexação por vetores lógicos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="replace-vect.html"><a href="replace-vect.html"><i class="fa fa-check"></i><b>7.6</b> Substituição de elementos de um vetor</a></li>
-<li class="chapter" data-level="7.7" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com com dados faltantes</a><ul>
-<li class="chapter" data-level="7.7.1" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#identificação-e-remoção-de-nas"><i class="fa fa-check"></i><b>7.7.1</b> Identificação e remoção de <code>NA</code>s</a></li>
-<li class="chapter" data-level="7.7.2" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#indexação-com-nas"><i class="fa fa-check"></i><b>7.7.2</b> Indexação com <code>NA</code>s</a></li>
-<li class="chapter" data-level="7.7.3" data-path="lidando-com-com-dados-faltantes.html"><a href="lidando-com-com-dados-faltantes.html#efeito-de-nas-em-funções"><i class="fa fa-check"></i><b>7.7.3</b> Efeito de <code>NAs</code> em funções</a></li>
+<li class="chapter" data-level="7.7" data-path="lidando-com-dados-faltantes.html"><a href="lidando-com-dados-faltantes.html"><i class="fa fa-check"></i><b>7.7</b> Lidando com dados faltantes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lidando-com-dados-faltantes.html"><a href="lidando-com-dados-faltantes.html#identificação-e-remoção-de-nas"><i class="fa fa-check"></i><b>7.7.1</b> Identificação e remoção de <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lidando-com-dados-faltantes.html"><a href="lidando-com-dados-faltantes.html#indexação-com-nas"><i class="fa fa-check"></i><b>7.7.2</b> Indexação com <code>NA</code>s</a></li>
+<li class="chapter" data-level="7.7.3" data-path="lidando-com-dados-faltantes.html"><a href="lidando-com-dados-faltantes.html#efeito-de-nas-em-funções"><i class="fa fa-check"></i><b>7.7.3</b> Efeito de <code>NAs</code> em funções</a></li>
 </ul></li>
 <li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.9" data-path="dados-duplicados.html"><a href="dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Dados duplicados</a></li>
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
-<li class="chapter" data-level="7.11" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.11</b> Exercícios</a></li>
+<li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
+<li class="chapter" data-level="7.12" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.12</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -323,55 +326,54 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>11.2</b> <em>ggplot2</em></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
-<li class="chapter" data-level="A.1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
-<li class="chapter" data-level="A.2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
-<li class="chapter" data-level="A.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
-<li class="chapter" data-level="A.3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
-<li class="chapter" data-level="A.3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
-<li class="chapter" data-level="A.3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
-<li class="chapter" data-level="A.3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
-<li class="chapter" data-level="A.3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
+<li class="appendix"><span><b>Appendix</b></span><ul>
+<li class="chapter" data-level="1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>3.4</b> Determinante</a></li>
+<li class="chapter" data-level="3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>3.6</b> Produto cartesiano</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
-<li class="chapter" data-level="B.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>B.1</b> Amostras pequenas de dados</a><ul>
-<li class="chapter" data-level="B.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>B.1.1</b> scan()</a></li>
-<li class="chapter" data-level="B.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>B.1.2</b> readline()</a></li>
-<li class="chapter" data-level="B.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>B.1.3</b> Impressão na tela</a></li>
-<li class="chapter" data-level="B.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>B.1.4</b> textConnection()</a></li>
+<li class="chapter" data-level="A" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>A</b> Funções nativas do R para importar e exportar dados</a><ul>
+<li class="chapter" data-level="A.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>A.1</b> Amostras pequenas de dados</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>A.1.1</b> scan()</a></li>
+<li class="chapter" data-level="A.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>A.1.2</b> readline()</a></li>
+<li class="chapter" data-level="A.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>A.1.3</b> Impressão na tela</a></li>
+<li class="chapter" data-level="A.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>A.1.4</b> textConnection()</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>B.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
-<li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
+<li class="chapter" data-level="A.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>A.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
+<li class="chapter" data-level="A.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>A.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
-<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="A.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>A.3</b> Dados de pacotes do R</a></li>
+<li class="chapter" data-level="A.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>A.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="A.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>A.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="A.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>A.4.2</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
-<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
-<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
-<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
-<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
+<li class="chapter" data-level="B" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>B</b> R Markdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="B.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>B.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="B.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>B.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="B.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>B.1.3</b> Códigos R dentro de linhas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
-<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
-<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
-<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
-<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
-<li class="chapter" data-level="C.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.2.7</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>C.2.8</b> Hyperlinks</a></li>
-<li class="chapter" data-level="C.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.2.9</b> Figuras</a></li>
-<li class="chapter" data-level="C.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.2.10</b> Expressões matemáticas</a></li>
+<li class="chapter" data-level="B.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>B.2</b> Markdown</a><ul>
+<li class="chapter" data-level="B.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>B.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="B.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>B.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="B.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>B.2.3</b> Listas</a></li>
+<li class="chapter" data-level="B.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>B.2.4</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="B.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>B.2.5</b> Citações diretas</a></li>
+<li class="chapter" data-level="B.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>B.2.6</b> Tabelas</a></li>
+<li class="chapter" data-level="B.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>B.2.7</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="B.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>B.2.8</b> Hyperlinks</a></li>
+<li class="chapter" data-level="B.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>B.2.9</b> Figuras</a></li>
+<li class="chapter" data-level="B.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>B.2.10</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>C.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
+<li class="chapter" data-level="B.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>B.3</b> Aparência</a></li>
+<li class="chapter" data-level="B.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>B.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
@@ -406,69 +408,69 @@ code span.wa { color: #bf0303; } /* Warning */
 <ul>
 <li>Durante a criação, com a função <code>c()</code> incluindo os nomes nos argumentos</li>
 </ul>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="co"># vetor de chuva mensal para um dado ano</span></a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">prec &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">  <span class="dt">jan =</span> <span class="dv">300</span>, </a>
-<a class="sourceLine" id="cb123-4" data-line-number="4">  <span class="dt">fev =</span> <span class="dv">150</span>,</a>
-<a class="sourceLine" id="cb123-5" data-line-number="5">  <span class="dt">mar =</span> <span class="dv">210</span>,</a>
-<a class="sourceLine" id="cb123-6" data-line-number="6">  <span class="dt">abr =</span> <span class="dv">12</span>, </a>
-<a class="sourceLine" id="cb123-7" data-line-number="7">  <span class="dt">mai =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb123-8" data-line-number="8">  <span class="dt">jun =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb123-9" data-line-number="9">  <span class="dt">jul =</span> <span class="dv">12</span>, </a>
-<a class="sourceLine" id="cb123-10" data-line-number="10">  <span class="dt">ago =</span> <span class="dv">22</span>, </a>
-<a class="sourceLine" id="cb123-11" data-line-number="11">  <span class="dt">set =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb123-12" data-line-number="12">  <span class="dt">out =</span> <span class="dv">120</span>, </a>
-<a class="sourceLine" id="cb123-13" data-line-number="13">  <span class="dt">nov =</span> <span class="dv">10</span>,  </a>
-<a class="sourceLine" id="cb123-14" data-line-number="14">  <span class="dt">dez =</span> <span class="dv">280</span></a>
-<a class="sourceLine" id="cb123-15" data-line-number="15">  )</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># vetor de chuva mensal para um dado ano</span></a>
+<a class="sourceLine" id="cb2-2" title="2">prec &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb2-3" title="3">  <span class="dt">jan =</span> <span class="dv">300</span>, </a>
+<a class="sourceLine" id="cb2-4" title="4">  <span class="dt">fev =</span> <span class="dv">150</span>,</a>
+<a class="sourceLine" id="cb2-5" title="5">  <span class="dt">mar =</span> <span class="dv">210</span>,</a>
+<a class="sourceLine" id="cb2-6" title="6">  <span class="dt">abr =</span> <span class="dv">12</span>, </a>
+<a class="sourceLine" id="cb2-7" title="7">  <span class="dt">mai =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb2-8" title="8">  <span class="dt">jun =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb2-9" title="9">  <span class="dt">jul =</span> <span class="dv">12</span>, </a>
+<a class="sourceLine" id="cb2-10" title="10">  <span class="dt">ago =</span> <span class="dv">22</span>, </a>
+<a class="sourceLine" id="cb2-11" title="11">  <span class="dt">set =</span> <span class="dv">100</span>, </a>
+<a class="sourceLine" id="cb2-12" title="12">  <span class="dt">out =</span> <span class="dv">120</span>, </a>
+<a class="sourceLine" id="cb2-13" title="13">  <span class="dt">nov =</span> <span class="dv">10</span>,  </a>
+<a class="sourceLine" id="cb2-14" title="14">  <span class="dt">dez =</span> <span class="dv">280</span></a>
+<a class="sourceLine" id="cb2-15" title="15">  )</a></code></pre></div>
 <ul>
 <li>Modificando um vetor com a função <code>names()&lt;-</code></li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">10</span>, <span class="dv">280</span>)</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
-<a class="sourceLine" id="cb124-3" data-line-number="3"><span class="kw">names</span>(prec) &lt;-<span class="st"> </span>meses</a>
-<a class="sourceLine" id="cb124-4" data-line-number="4">prec</a>
-<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb124-6" data-line-number="6"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">10</span>, <span class="dv">280</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2">meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">names</span>(prec) &lt;-<span class="st"> </span>meses</a>
+<a class="sourceLine" id="cb3-4" title="4">prec</a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
 <ul>
 <li>Criando um vetor modificado</li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">prec &lt;-<span class="st"> </span><span class="kw">setNames</span>(</a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">  <span class="dt">object =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">10</span>, <span class="dv">280</span>),</a>
-<a class="sourceLine" id="cb125-3" data-line-number="3">  <span class="dt">nm =</span> <span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
-<a class="sourceLine" id="cb125-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb125-5" data-line-number="5">prec</a>
-<a class="sourceLine" id="cb125-6" data-line-number="6"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb125-7" data-line-number="7"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">prec &lt;-<span class="st"> </span><span class="kw">setNames</span>(</a>
+<a class="sourceLine" id="cb4-2" title="2">  <span class="dt">object =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">10</span>, <span class="dv">280</span>),</a>
+<a class="sourceLine" id="cb4-3" title="3">  <span class="dt">nm =</span> <span class="kw">c</span>(<span class="st">&quot;jan&quot;</span>, <span class="st">&quot;fev&quot;</span>, <span class="st">&quot;mar&quot;</span>, <span class="st">&quot;abr&quot;</span>, <span class="st">&quot;mai&quot;</span>, <span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;ago&quot;</span>, <span class="st">&quot;set&quot;</span>, <span class="st">&quot;out&quot;</span>, <span class="st">&quot;nov&quot;</span>, <span class="st">&quot;dez&quot;</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4">)</a>
+<a class="sourceLine" id="cb4-5" title="5">prec</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></a></code></pre></div>
 <p>Nomes não podem ser repetidos entre os elementos, porque a seleção de um subconjunto do vetor baseada nos nomes retornará somente o primeiro elemento que tiver nome repetido.</p>
-<p>Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função <code>names()</code> retornará um vetor caractere vazio (&quot;&quot;) para aqueles elementos sem nomes especificados.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">(meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">jan =</span> <span class="dv">1</span>, <span class="dt">fev =</span> <span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">12</span>))</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="co">#&gt; jan fev                                         </span></a>
-<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="co">#&gt;   1   2   3   4   5   6   7   8   9  10  11  12</span></a>
-<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="kw">names</span>(meses)</a>
-<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="co">#&gt;  [1] &quot;jan&quot; &quot;fev&quot; &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;</span></a></code></pre></div>
-<p>Quando nenhum nome é especificado, <code>names()</code> retornará <code>NULL</code><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">names</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<p>Embora não faça muito sentido, nem todos elementos precisam ter nomes. A saída da função <code>names()</code> retornará um vetor caractere vazio ("") para aqueles elementos sem nomes especificados.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">(meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">jan =</span> <span class="dv">1</span>, <span class="dt">fev =</span> <span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">12</span>))</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; jan fev                                         </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;   1   2   3   4   5   6   7   8   9  10  11  12</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">names</span>(meses)</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;  [1] &quot;jan&quot; &quot;fev&quot; &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;    &quot;&quot;</span></a></code></pre></div>
+<p>Quando nenhum nome é especificado, <code>names()</code> retornará <code>NULL</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">names</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; NULL</span></a></code></pre></div>
 <p>Para remover os nomes de um vetor, podemos usar a função <code>unname()</code> ou <code>names() &lt;- NULL</code>.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">prec_clim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">230</span>, <span class="dv">205</span>, <span class="dv">160</span>, <span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">110</span>, <span class="dv">165</span>, <span class="dv">200</span>, <span class="dv">220</span>)</a>
-<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)</a>
-<a class="sourceLine" id="cb128-3" data-line-number="3">prec_clim</a>
-<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
-<a class="sourceLine" id="cb128-5" data-line-number="5"><span class="co">#&gt; 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
-<a class="sourceLine" id="cb128-6" data-line-number="6"><span class="kw">unname</span>(prec_clim)</a>
-<a class="sourceLine" id="cb128-7" data-line-number="7"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
-<a class="sourceLine" id="cb128-8" data-line-number="8"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb128-9" data-line-number="9">prec_clim</a>
-<a class="sourceLine" id="cb128-10" data-line-number="10"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a></code></pre></div>
-<p>Nas próximas seções frequentemente usaremos os vetores <code>prec</code> e <code>prec_clim</code>. É importante então contextualizar essas variáveis. A variável <code>prec</code> consiste na precipitação mensal observada em um ano qualquer em um dado local. A variável <code>prec_clim</code> refere-se aos valores esperados de precipitação mensal<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> (médias de pelo menos 30 anos) do mesmo local.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">prec_clim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">230</span>, <span class="dv">205</span>, <span class="dv">160</span>, <span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">110</span>, <span class="dv">165</span>, <span class="dv">200</span>, <span class="dv">220</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="kw">names</span>(prec)</a>
+<a class="sourceLine" id="cb7-3" title="3">prec_clim</a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="kw">unname</span>(prec_clim)</a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="kw">names</span>(prec_clim) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb7-9" title="9">prec_clim</a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></a></code></pre></div>
+<p>Nas próximas seções frequentemente usaremos os vetores <code>prec</code> e <code>prec_clim</code>. É importante então contextualizar essas variáveis. A variável <code>prec</code> consiste na precipitação mensal observada em um ano qualquer em um dado local. A variável <code>prec_clim</code> refere-se aos valores esperados de precipitação mensal<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> (médias de pelo menos 30 anos) do mesmo local.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="23">
-<li id="fn23"><p>Nós conheceremos mais detalhes sobre o <code>NULL</code> na sessão <a href="dados-nulos.html#dados-nulos">7.8</a>.<a href="propriedades.html#fnref23" class="footnote-back">↩</a></p></li>
-<li id="fn24"><p>Também conhecidos como <strong>normais climatológicas</strong> de precipitação de um local.<a href="propriedades.html#fnref24" class="footnote-back">↩</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Nós conheceremos mais detalhes sobre o <code>NULL</code> na sessão <a href="dados-nulos.html#dados-nulos">7.8</a>.<a href="propriedades.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Também conhecidos como <strong>normais climatológicas</strong> de precipitação de um local.<a href="propriedades.html#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
