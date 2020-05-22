@@ -221,8 +221,8 @@ A constante `fator_conv = 3.6` nesse caso é reciclada 4 vezes (tamanho do vetor
 1:10 * 1:2
 #>  [1]  1  4  3  8  5 12  7 16  9 20
 1:10 * 1:3
-#> Warning in 1:10 * 1:3: comprimento do objeto maior não é múltiplo do comprimento
-#> do objeto menor
+#> Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object
+#> length
 #>  [1]  1  4  9  4 10 18  7 16 27 10
 ```
 
@@ -1377,6 +1377,8 @@ prec
 #length(prec)
 ```
 
+Se precisássemos comparar `prec` com valores do mês anterior e posterior, estes vetores poderiam ser obtidos simplesmente com:
+
 
 ```r
 # vetor prec deslocado para frente (atrasado)
@@ -1389,103 +1391,89 @@ lead(prec)
 #> [20] 100 120  10 208  NA
 ```
 
-
-
-- table()
-frequência de ocorrência, contagens, porcentagem e proporção
-
-- prop.table()*100
-
-
+Para detectar períodos de aumento (ou redução) da precipitação do mês atual em relação ao anterior.
 
 
 ```r
-# operação com dados lógicos
-prec_2anos <-
-  c(
-    230, 205, 160, 100, 60, 30, 40, 60, 110, 165, 200, 220, 250,
-    200, 210, 12, 0, 30, 21, 42, 100, 120, 10, 208
-  )
+prec - lag(prec) > 0
+#>  [1]    NA FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#> [13]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+prec - lag(prec) < 0
+#>  [1]    NA  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [13] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE
+```
 
 
-# suponha que a estação de uma região seja definida por um limiar
-# de 100 mm/mes
+<!---
+- table()
+frequência de ocorrência, contagens, porcentagem e proporção
+- prop.table()*100
+--->
+
+
+## Identificação de eventos discretos
+
+Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor,  períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
+
+Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.
+
+Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm. 
+
+O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.
+
+
+```r
 # como identificar estes períodos?
-v <- prec_2anos
 limiar <- 100
 # definição de evento (condição)
-eventos <- v > limiar
-# eventos <- !eventos
-acum_eventos <- cumsum(eventos)
+(eventos <- prec > limiar)
+#>  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+#> [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+```
+
+A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.
+
+
+```r
+(acum_eventos <- cumsum(eventos))
+#>  [1]  1  2  3  3  3  3  3  3  4  5  6  7  8  9 10 10 10 10 10 10 10 11 11 12
 # mantém valores de cumsum qdo não é evento
 # e zera qdo é evento
-entre_eventos <- acum_eventos * as.integer((!eventos))
+(entre_eventos <- acum_eventos * (!eventos))
+#>  [1]  0  0  0  3  3  3  3  3  0  0  0  0  0  0  0 10 10 10 10 10 10  0 11  0
+acum_eventos * (eventos)
+#>  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12
 # sequencia das ocorrência dentro de um evento
 (seq_eventos <- acum_eventos - cummax(entre_eventos))
 #>  [1] 1 2 3 0 0 0 0 0 1 2 3 4 5 6 7 0 0 0 0 0 0 1 0 1
-# ordem de cada evento
+# identificador da ordem cronológica de cada evento
 (ordem_eventos <- cumsum(seq_eventos == 1) * eventos)
 #>  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4
-
-cumsum(eventos) * eventos
-#>  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12
-
-# duração dos eventos
-freq <- table(ordem_eventos[ordem_eventos > 0])
-duracao <- unname(rep(freq, times = freq))
-dur <- ordem_eventos
-dur[ordem_eventos != 0] <- duracao
-
-#sequence(freq)
-
-
-tibble::tibble(
-  prec_2anos,
-  eventos,
-  seq_eventos,
-  ordem_eventos,
-  dur
-)
-#> # A tibble: 24 x 5
-#>    prec_2anos eventos seq_eventos ordem_eventos   dur
-#>         <dbl> <lgl>         <int>         <int> <int>
-#>  1        230 TRUE              1             1     3
-#>  2        205 TRUE              2             1     3
-#>  3        160 TRUE              3             1     3
-#>  4        100 FALSE             0             0     0
-#>  5         60 FALSE             0             0     0
-#>  6         30 FALSE             0             0     0
-#>  7         40 FALSE             0             0     0
-#>  8         60 FALSE             0             0     0
-#>  9        110 TRUE              1             2     7
-#> 10        165 TRUE              2             2     7
-#> # ... with 14 more rows
 ```
 
-Encontrando os índices de início e fim dos eventos:
+Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.
 
 
 ```r
-#(cs <- cumsum(eventos) * eventos)
-inicio <- which(seq_eventos == 1)
-fim <- which(((seq_eventos == dur) * eventos) == 1)
-
-# identificador do evento
+pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
+#replace(pos_ult, is.na(pos_ult), NULL)
+(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
+#> [1]  3 15 22 24
+(inicio <- which(seq_eventos == 1))
+#> [1]  1  9 22 24
+(dur <- seq_eventos[fim])
+#> [1] 3 7 1 1
 unique(ordem_eventos[ordem_eventos > 0])
 #> [1] 1 2 3 4
-# indice do inicio do evento
-inicio
-#> [1]  1  9 22 24
-# indice do fim do evento
-fim
-#> [1]  3 15 22 24
-# duracao de cada evento
-dur[inicio] # ou dur[fim]
-#> [1] 3 7 1 1
-
-as.integer(eventos)
-#>  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1
 ```
+
+
+<!---
+#freq <- table(ordem_eventos[ordem_eventos > 0])
+#duracao <- unname(rep(freq, times = freq))
+#dur <- ordem_eventos
+#dur[ordem_eventos != 0] <- duracao
+--->
 
 
 

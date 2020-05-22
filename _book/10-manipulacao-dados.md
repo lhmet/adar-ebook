@@ -71,12 +71,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> -- Attaching packages --------- tidyverse 1.3.0 --
-#> v ggplot2 3.3.0     v purrr   0.3.4
-#> v tibble  3.0.1     v dplyr   0.8.5
-#> v tidyr   1.0.2     v stringr 1.4.0
-#> v readr   1.3.1     v forcats 0.5.0
-#> -- Conflicts ------------ tidyverse_conflicts() --
+#> ── Attaching packages ─────────────────── tidyverse 1.3.0 ──
+#> ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
+#> ✓ tibble  3.0.1     ✓ dplyr   0.8.5
+#> ✓ tidyr   1.0.2     ✓ stringr 1.4.0
+#> ✓ readr   1.3.1     ✓ forcats 0.5.0
+#> ── Conflicts ────────────────────── tidyverse_conflicts() ──
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
 ```
@@ -764,13 +764,13 @@ clima_rs_tbl %>%
 
 
 <div class="rmdtip">
-<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo "Sul". O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
+<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo &quot;Sul&quot;. O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
 <p><code>str_replace_all(</code></p>
-<p><code>string = c("abc", "lca"),</code></p>
-<p><code>pattern = "a",</code></p>
-<p><code>replacement =  "A"</code></p>
+<p><code>string = c(&quot;abc&quot;, &quot;lca&quot;),</code></p>
+<p><code>pattern = &quot;a&quot;,</code></p>
+<p><code>replacement =  &quot;A&quot;</code></p>
 <p><code>)</code></p>
-<p><code>#&gt; [1] "Abc" "lcA"</code></p>
+<p><code>#&gt; [1] &quot;Abc&quot; &quot;lcA&quot;</code></p>
 </div>
 
 

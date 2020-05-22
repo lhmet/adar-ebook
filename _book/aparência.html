@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>C.3 Aparência | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -238,8 +238,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.9" data-path="dados-duplicados.html"><a href="dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Dados duplicados</a></li>
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
-<li class="chapter" data-level="7.11" data-path="funções-úteis.html"><a href="funções-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções úteis</a></li>
-<li class="chapter" data-level="7.12" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.12</b> Exercícios</a></li>
+<li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
+<li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
+<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -397,19 +398,19 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="aparência" class="section level2">
 <h2><span class="header-section-number">C.3</span> Aparência</h2>
 <p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb474-1" title="1">    <span class="op">---</span></a>
-<a class="sourceLine" id="cb474-2" title="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
-<a class="sourceLine" id="cb474-3" title="3">    author: Nome Sobrenome</a>
-<a class="sourceLine" id="cb474-4" title="4">    output:</a>
-<a class="sourceLine" id="cb474-5" title="5">         html_document:</a>
-<a class="sourceLine" id="cb474-6" title="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
-<a class="sourceLine" id="cb474-7" title="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
-<a class="sourceLine" id="cb474-8" title="8">            number_sections: true</a>
-<a class="sourceLine" id="cb474-9" title="9">            toc: true</a>
-<a class="sourceLine" id="cb474-10" title="10">            fig_width: <span class="dv">7</span></a>
-<a class="sourceLine" id="cb474-11" title="11">            fig_height: <span class="dv">6</span></a>
-<a class="sourceLine" id="cb474-12" title="12">            fig_caption: true</a>
-<a class="sourceLine" id="cb474-13" title="13">    <span class="op">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb486-1" data-line-number="1">    <span class="op">---</span></a>
+<a class="sourceLine" id="cb486-2" data-line-number="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
+<a class="sourceLine" id="cb486-3" data-line-number="3">    author: Nome Sobrenome</a>
+<a class="sourceLine" id="cb486-4" data-line-number="4">    output:</a>
+<a class="sourceLine" id="cb486-5" data-line-number="5">         html_document:</a>
+<a class="sourceLine" id="cb486-6" data-line-number="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
+<a class="sourceLine" id="cb486-7" data-line-number="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
+<a class="sourceLine" id="cb486-8" data-line-number="8">            number_sections: true</a>
+<a class="sourceLine" id="cb486-9" data-line-number="9">            toc: true</a>
+<a class="sourceLine" id="cb486-10" data-line-number="10">            fig_width: <span class="dv">7</span></a>
+<a class="sourceLine" id="cb486-11" data-line-number="11">            fig_height: <span class="dv">6</span></a>
+<a class="sourceLine" id="cb486-12" data-line-number="12">            fig_caption: true</a>
+<a class="sourceLine" id="cb486-13" data-line-number="13">    <span class="op">---</span></a></code></pre></div>
 </div>
             </section>
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.4 Erros comuns | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.4 Erros comuns | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -238,8 +238,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.9" data-path="dados-duplicados.html"><a href="dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Dados duplicados</a></li>
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
-<li class="chapter" data-level="7.11" data-path="funções-úteis.html"><a href="funções-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções úteis</a></li>
-<li class="chapter" data-level="7.12" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.12</b> Exercícios</a></li>
+<li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
+<li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
+<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -397,28 +398,28 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="erros-comuns" class="section level2">
 <h2><span class="header-section-number">5.4</span> Erros comuns</h2>
 <p>As expressões abaixo ilustram o que acontece quando cometemos alguns erros bem comuns ao trabalhar com <img src="images/logo_r.png" width="20">:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="kw">srt</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb77-2" title="2"><span class="co">#&gt; Error in srt(2): não foi possível encontrar a função &quot;srt&quot;</span></a>
-<a class="sourceLine" id="cb77-3" title="3">m <span class="op">*</span><span class="st"> </span>g</a>
-<a class="sourceLine" id="cb77-4" title="4"><span class="co">#&gt; Error in eval(expr, envir, enclos): objeto &#39;m&#39; não encontrado</span></a>
-<a class="sourceLine" id="cb77-5" title="5"><span class="kw">setwd</span>(<span class="st">&quot;algum/caminho/no/alem&quot;</span>)</a>
-<a class="sourceLine" id="cb77-6" title="6"><span class="co">#&gt; Error in setwd(&quot;algum/caminho/no/alem&quot;): não é possível mudar o diretório de trabalho</span></a>
-<a class="sourceLine" id="cb77-7" title="7"><span class="kw">save</span>(<span class="dt">file =</span> <span class="st">&quot;algum/outro/caminho/no/alem&quot;</span>)</a>
-<a class="sourceLine" id="cb77-8" title="8"><span class="co">#&gt; Warning in save(file = &quot;algum/outro/caminho/no/alem&quot;): nothing specified to be</span></a>
-<a class="sourceLine" id="cb77-9" title="9"><span class="co">#&gt; save()d</span></a>
-<a class="sourceLine" id="cb77-10" title="10"><span class="co">#&gt; Warning in gzfile(file, &quot;wb&quot;): não foi possível abrir o arquivo comprimido</span></a>
-<a class="sourceLine" id="cb77-11" title="11"><span class="co">#&gt; &#39;algum/outro/caminho/no/alem&#39;, motivo provável &#39;No such file or directory&#39;</span></a>
-<a class="sourceLine" id="cb77-12" title="12"><span class="co">#&gt; Error in gzfile(file, &quot;wb&quot;): não é possível abrir a conexão</span></a></code></pre></div>
-<p>Reconhecemos um erro pela presença da palavra <strong><code>Error</code></strong> na mensagem e por estar destacada em vermelha ou laranja, dependendo de como o RStudio está configurado. O que tem depois do ":" na mensagem é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">srt</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="co">#&gt; Error in srt(2): could not find function &quot;srt&quot;</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3">m <span class="op">*</span><span class="st"> </span>g</a>
+<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;m&#39; not found</span></a>
+<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="kw">setwd</span>(<span class="st">&quot;algum/caminho/no/alem&quot;</span>)</a>
+<a class="sourceLine" id="cb77-6" data-line-number="6"><span class="co">#&gt; Error in setwd(&quot;algum/caminho/no/alem&quot;): cannot change working directory</span></a>
+<a class="sourceLine" id="cb77-7" data-line-number="7"><span class="kw">save</span>(<span class="dt">file =</span> <span class="st">&quot;algum/outro/caminho/no/alem&quot;</span>)</a>
+<a class="sourceLine" id="cb77-8" data-line-number="8"><span class="co">#&gt; Warning in save(file = &quot;algum/outro/caminho/no/alem&quot;): nothing specified to be</span></a>
+<a class="sourceLine" id="cb77-9" data-line-number="9"><span class="co">#&gt; save()d</span></a>
+<a class="sourceLine" id="cb77-10" data-line-number="10"><span class="co">#&gt; Warning in gzfile(file, &quot;wb&quot;): cannot open compressed file &#39;algum/outro/caminho/</span></a>
+<a class="sourceLine" id="cb77-11" data-line-number="11"><span class="co">#&gt; no/alem&#39;, probable reason &#39;No such file or directory&#39;</span></a>
+<a class="sourceLine" id="cb77-12" data-line-number="12"><span class="co">#&gt; Error in gzfile(file, &quot;wb&quot;): cannot open the connection</span></a></code></pre></div>
+<p>Reconhecemos um erro pela presença da palavra <strong><code>Error</code></strong> na mensagem e por estar destacada em vermelha ou laranja, dependendo de como o RStudio está configurado. O que tem depois do &quot;:&quot; na mensagem é uma tentativa do <img src="images/logo_r.png" width="20"> nos dizer o que deu errado.</p>
 <div class="rmdtip">
 <p>
 <strong>As mensagens de erro são suas amigas. Sempre leia as mensagens de erro</strong>. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar.
 </p>
 </div>
 <p>No trecho de código acima, na avaliação da expressão com a função <code>save()</code> surge primeiro um <strong>Warning</strong> (aviso). Avisos surgem quando algo inesperado ocorreu, mas que as coisas ainda podem dar certo. Outro exemplo de mensagem de aviso é:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb78-2" title="2"><span class="co">#&gt; Warning in sqrt(-1): NaNs produzidos</span></a>
-<a class="sourceLine" id="cb78-3" title="3"><span class="co">#&gt; [1] NaN</span></a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="co">#&gt; Warning in sqrt(-1): NaNs produced</span></a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co">#&gt; [1] NaN</span></a></code></pre></div>
 <p>Na expressão acima foi possível obter um resultado, mas o R avisa que foi produzido <code>NaN</code>. Como visto na seção <a href="calculadora.html#nans">5.2.2</a>, qualquer operação derivada deste resultado produzirá <code>NaN</code>.</p>
 <p>Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura <a href="erros-comuns.html#fig:google-it">5.1</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:google-it"></span>

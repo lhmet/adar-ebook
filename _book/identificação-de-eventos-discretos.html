@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 6 Tipos básicos de dados | Análise de Dados Ambientais com R</title>
+  <title>7.12 Identificação de eventos discretos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 6 Tipos básicos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.12 Identificação de eventos discretos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 6 Tipos básicos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.12 Identificação de eventos discretos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercícios.html"/>
-<link rel="next" href="tipos-dados.html"/>
+<link rel="prev" href="funções-móveis-úteis.html"/>
+<link rel="next" href="exercícios-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -395,28 +395,58 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="datatype" class="section level1">
-<h1><span class="header-section-number">Capítulo 6</span> Tipos básicos de dados</h1>
-<p>Neste capítulo vamos:</p>
-<ul>
-<li>aprender a criar vetores</li>
-<li>conhecer os tipos de dados mais usados no R</li>
-<li>descobrir qual é o tipo de dado de uma variável</li>
-<li>saber como converter uma variável de um tipo para outro</li>
-</ul>
-<!-- 
-faltando: 
-fórmulas 
-factor 
--->
+<div id="identificação-de-eventos-discretos" class="section level2">
+<h2><span class="header-section-number">7.12</span> Identificação de eventos discretos</h2>
+<p>Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc.</p>
+<p>Para caracterização destes eventos as informação essencias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com a discretização de cada evento é possível então aprofundar a análise, definindo novos atributos na escala de evento.</p>
+<p>Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm.</p>
+<p>O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1"><span class="co"># como identificar estes períodos?</span></a>
+<a class="sourceLine" id="cb209-2" data-line-number="2">limiar &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb209-3" data-line-number="3"><span class="co"># definição de evento (condição)</span></a>
+<a class="sourceLine" id="cb209-4" data-line-number="4">(eventos &lt;-<span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span>limiar)</a>
+<a class="sourceLine" id="cb209-5" data-line-number="5"><span class="co">#&gt;  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb209-6" data-line-number="6"><span class="co">#&gt; [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE</span></a></code></pre></div>
+<p>A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">(acum_eventos &lt;-<span class="st"> </span><span class="kw">cumsum</span>(eventos))</a>
+<a class="sourceLine" id="cb210-2" data-line-number="2"><span class="co">#&gt;  [1]  1  2  3  3  3  3  3  3  4  5  6  7  8  9 10 10 10 10 10 10 10 11 11 12</span></a>
+<a class="sourceLine" id="cb210-3" data-line-number="3"><span class="co"># mantém valores de cumsum qdo não é evento</span></a>
+<a class="sourceLine" id="cb210-4" data-line-number="4"><span class="co"># e zera qdo é evento</span></a>
+<a class="sourceLine" id="cb210-5" data-line-number="5">(entre_eventos &lt;-<span class="st"> </span>acum_eventos <span class="op">*</span><span class="st"> </span>(<span class="op">!</span>eventos))</a>
+<a class="sourceLine" id="cb210-6" data-line-number="6"><span class="co">#&gt;  [1]  0  0  0  3  3  3  3  3  0  0  0  0  0  0  0 10 10 10 10 10 10  0 11  0</span></a>
+<a class="sourceLine" id="cb210-7" data-line-number="7">acum_eventos <span class="op">*</span><span class="st"> </span>(eventos)</a>
+<a class="sourceLine" id="cb210-8" data-line-number="8"><span class="co">#&gt;  [1]  1  2  3  0  0  0  0  0  4  5  6  7  8  9 10  0  0  0  0  0  0 11  0 12</span></a>
+<a class="sourceLine" id="cb210-9" data-line-number="9"><span class="co"># sequencia das ocorrência dentro de um evento</span></a>
+<a class="sourceLine" id="cb210-10" data-line-number="10">(seq_eventos &lt;-<span class="st"> </span>acum_eventos <span class="op">-</span><span class="st"> </span><span class="kw">cummax</span>(entre_eventos))</a>
+<a class="sourceLine" id="cb210-11" data-line-number="11"><span class="co">#&gt;  [1] 1 2 3 0 0 0 0 0 1 2 3 4 5 6 7 0 0 0 0 0 0 1 0 1</span></a>
+<a class="sourceLine" id="cb210-12" data-line-number="12"><span class="co"># identificador da ordem cronológica de cada evento</span></a>
+<a class="sourceLine" id="cb210-13" data-line-number="13">(ordem_eventos &lt;-<span class="st"> </span><span class="kw">cumsum</span>(seq_eventos <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>eventos)</a>
+<a class="sourceLine" id="cb210-14" data-line-number="14"><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4</span></a></code></pre></div>
+<p>Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">pos_ult &lt;-<span class="st"> </span><span class="kw">ifelse</span>(eventos[<span class="kw">length</span>(eventos)] <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="kw">length</span>(eventos), <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="co">#replace(pos_ult, is.na(pos_ult), NULL)</span></a>
+<a class="sourceLine" id="cb211-3" data-line-number="3">(fim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">which</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">diff</span>(eventos) <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, pos_ult))</a>
+<a class="sourceLine" id="cb211-4" data-line-number="4"><span class="co">#&gt; [1]  3 15 22 24</span></a>
+<a class="sourceLine" id="cb211-5" data-line-number="5">(inicio &lt;-<span class="st"> </span><span class="kw">which</span>(seq_eventos <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb211-6" data-line-number="6"><span class="co">#&gt; [1]  1  9 22 24</span></a>
+<a class="sourceLine" id="cb211-7" data-line-number="7">(dur &lt;-<span class="st"> </span>seq_eventos[fim])</a>
+<a class="sourceLine" id="cb211-8" data-line-number="8"><span class="co">#&gt; [1] 3 7 1 1</span></a>
+<a class="sourceLine" id="cb211-9" data-line-number="9"><span class="kw">unique</span>(ordem_eventos[ordem_eventos <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>])</a>
+<a class="sourceLine" id="cb211-10" data-line-number="10"><span class="co">#&gt; [1] 1 2 3 4</span></a></code></pre></div>
+<!---
+#freq <- table(ordem_eventos[ordem_eventos > 0])
+#duracao <- unname(rep(freq, times = freq))
+#dur <- ordem_eventos
+#dur[ordem_eventos != 0] <- duracao
+--->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercícios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="funções-móveis-úteis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

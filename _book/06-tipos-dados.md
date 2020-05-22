@@ -61,7 +61,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 
 
 <div class="rmdtip">
-<p>Embora existam dois tipos de vetores o termo "vetor" é em geral usado para se referir ao do tipo atômico.</p>
+<p>Embora existam dois tipos de vetores o termo &quot;vetor&quot; é em geral usado para se referir ao do tipo atômico.</p>
 </div>
 
 
@@ -242,7 +242,7 @@ cat(sentenca_2aspas, "\n")
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
 <ul>
 <li><p><code>\\'</code> aspas simples</p></li>
-<li><p><code>\\"</code> aspas duplas</p></li>
+<li><p><code>\\&quot;</code> aspas duplas</p></li>
 <li><p><code>\\n</code> quebra de lina ou nova linha</p></li>
 <li><p><code>\\\\</code> a própria barra invertida</p></li>
 </ul>
@@ -381,11 +381,11 @@ A coersão da variável `vetor_char` para numérica ou inteiro
 vetor_char
 #> [1] "ae" NA   "ou"
 as.integer(vetor_char)
-#> Warning: NAs introduzidos por coerção
+#> Warning: NAs introduced by coercion
 #> [1] NA NA NA
 # verificação do resultado
 typeof(as.numeric(vetor_char))
-#> Warning in typeof(as.numeric(vetor_char)): NAs introduzidos por coerção
+#> Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion
 #> [1] "double"
 ```
 
@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-05-20"
+#> [1] "2020-05-22"
 Sys.time()
-#> [1] "2020-05-20 09:40:16 -03"
+#> [1] "2020-05-22 03:39:12 -03"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->

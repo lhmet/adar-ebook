@@ -1142,10 +1142,11 @@ limiar <- 100
 A partir daí o problema consiste em identificar valores idênticos consecutivos em sequência. Nós então combinaremos operadores lógicos, aritmética de vetores, indexação e funções básicas para determinar a duração em cada evento e a ordem cronológica.
 
 ```{r}
-acum_eventos <- cumsum(eventos)
+(acum_eventos <- cumsum(eventos))
 # mantém valores de cumsum qdo não é evento
 # e zera qdo é evento
-entre_eventos <- acum_eventos * (!eventos)
+(entre_eventos <- acum_eventos * (!eventos))
+acum_eventos * (eventos)
 # sequencia das ocorrência dentro de um evento
 (seq_eventos <- acum_eventos - cummax(entre_eventos))
 # identificador da ordem cronológica de cada evento
@@ -1155,41 +1156,14 @@ entre_eventos <- acum_eventos * (!eventos)
 Com os vetores que identificam cada evento e quantificam suas ocorrências em cada evento, podemos extrair os índices de início, fim e a duração de cada evento.
 
 ```{r}
-# inicio
-inicio <- which(seq_eventos == 1)
-
-a <- acum_eventos * eventos
-cbind(entre_eventos , ordem_eventos, dur)
-# fim
-# O FIM DEPENDIA DO DUR!
-# PRECISO REER COMO OBTER END
-# ordem_eventos_apend <- ordem_eventos[length(ordem_eventos)] > 0
-# ordem_eventos_apend <- c(ordem_eventos, 0)
-# 
-# dif_prev <- diff(ordem_eventos_apend) which(ordem_eventos -  < 0)
-# ifelse(dif_prev > )
-# 
-# ordem_eventos - eventos
-# 
-# seq_eventos * eventos
-# 
-# fim <- which(((seq_eventos == dur) * eventos) == 1)
-# # duração dos eventos
-# duracao <- seq_eventos[fim]
-# names(inicio) <- names(fim) <- names(duracao) <- unique(ordem_eventos[ordem_eventos > 0])
-```
-
-
-```{r}
-# identificador do evento
+pos_ult <- ifelse(eventos[length(eventos)] == TRUE, length(eventos), 0)
+#replace(pos_ult, is.na(pos_ult), NULL)
+(fim <- c(which(c(NA, diff(eventos) < 0) == 1) - 1, pos_ult))
+(inicio <- which(seq_eventos == 1))
+(dur <- seq_eventos[fim])
 unique(ordem_eventos[ordem_eventos > 0])
-# indice do inicio do evento
-inicio
-# indice do fim do evento
-fim
-# duracao de cada evento
-duracao
 ```
+
 
 <!---
 #freq <- table(ordem_eventos[ordem_eventos > 0])
@@ -1197,11 +1171,6 @@ duracao
 #dur <- ordem_eventos
 #dur[ordem_eventos != 0] <- duracao
 --->
-
-
-Encontrando os índices de início e fim dos eventos:
-
-
 
 
 

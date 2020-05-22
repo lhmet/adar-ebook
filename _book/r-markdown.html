@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Apêndice C R Markdown | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Apêndice C R Markdown | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -238,8 +238,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.8" data-path="dados-nulos.html"><a href="dados-nulos.html"><i class="fa fa-check"></i><b>7.8</b> Dados Nulos (<code>NULL</code>)</a></li>
 <li class="chapter" data-level="7.9" data-path="dados-duplicados.html"><a href="dados-duplicados.html"><i class="fa fa-check"></i><b>7.9</b> Dados duplicados</a></li>
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
-<li class="chapter" data-level="7.11" data-path="funções-úteis.html"><a href="funções-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções úteis</a></li>
-<li class="chapter" data-level="7.12" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.12</b> Exercícios</a></li>
+<li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
+<li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
+<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -396,21 +397,21 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="r-markdown" class="section level1">
 <h1><span class="header-section-number">Apêndice C</span> R Markdown</h1>
-<p><a href="http://rmarkdown.rstudio.com/">R Markdown</a> é uma ferramenta de <a href="https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_liter%C3%A1ria">programação literária</a> que combina uma sintaxe de formatação de texto simples (o <a href="http://daringfireball.net/projects/markdown/">Markdown</a>) com trechos de códigos <a href="http://www.r-project.org">R</a> em um documento final em formatos HTML, PDF ou Word. Esta peculiaridade do R Markdown faz dele um elemento chave para pesquisa reproduzível<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> e colaborativa.</p>
+<p><a href="http://rmarkdown.rstudio.com/">R Markdown</a> é uma ferramenta de <a href="https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_liter%C3%A1ria">programação literária</a> que combina uma sintaxe de formatação de texto simples (o <a href="http://daringfireball.net/projects/markdown/">Markdown</a>) com trechos de códigos <a href="http://www.r-project.org">R</a> em um documento final em formatos HTML, PDF ou Word. Esta peculiaridade do R Markdown faz dele um elemento chave para pesquisa reproduzível<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> e colaborativa.</p>
 <!-- documento dinâmico reprodutível  = texto (descrição e interpretação dos resultados) + código (linguagem computacional)  -->
 <p>O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes <a href="http://yihui.name/knitr/">knitr</a> e <a href="http://pandoc.org/">pandoc</a>. A extensão de um arquivo R Markdown é <code>.Rmd</code>. Um texto R Markdown pode ser facilmente criado no RStudio a partir de um <em>template</em> em <em><code>File ▶ New File ▶ R Markdown</code></em>. Ao clicar no ícone <code>Knit HTML</code> ou digitar o atalho <code>Ctr+Shift+K</code> é gerado o documento HTML do arquivo <code>.Rmd</code> correspondente.</p>
-<p>Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados na internet por meio do <a href="https://rpubs.com/">Rpubs</a><a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>, <a href="https://github.com">Github</a><a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> e <a href="https://app.netlify.com/drop">netlify</a><a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>.</p>
+<p>Os documentos HTML gerados com R Markdown podem ser prontamente disponibilizados na internet por meio do <a href="https://rpubs.com/">Rpubs</a><a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>, <a href="https://github.com">Github</a><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> e <a href="https://app.netlify.com/drop">netlify</a><a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>.</p>
 <!-- 
 
 -->
 </div>
 <div class="footnotes">
 <hr />
-<ol start="25">
-<li id="fn25"><p>Pesquisa reproduzível é o conceito de divulgar documentos científicos incluindo os dados e os códigos utilizados (além do texto e dos gráficos) para que qualquer pessoa possa reproduzir os resultados e assim aperfeiçoar ou construir novos resultados a partir deles.<a href="r-markdown.html#fnref25" class="footnote-back">↩</a></p></li>
-<li id="fn26"><p>No RStudio, após gerar o documento HTML clicando em knit, clique em <em>Publish</em> no canto superior direito da aba Viewer e siga os passos apresentados.<a href="r-markdown.html#fnref26" class="footnote-back">↩</a></p></li>
-<li id="fn27"><p>para publicar no GitHub você precisa criar seu arquivo HTML dentro de um projeto do RStudio usando o <a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o">git</a> como sistema de versão de controle. Ao gerar o arquivo HTML, na aba <em>Git</em> do painel <em>Environmet</em>, <em>Commit</em> o arquivo gerado e depois <em>Push</em>. O arquivo HTML no GitHub pode ser visualizado <a href="https://rawgit.com/nomedousuario/nomedorepositorio/master/nomedoarquivo.html" class="uri">https://rawgit.com/nomedousuario/nomedorepositorio/master/nomedoarquivo.html</a>.<a href="r-markdown.html#fnref27" class="footnote-back">↩</a></p></li>
-<li id="fn28"><p>Para publicar seu documento HTML no <a href="https://app.netlify.com/drop">netlify</a> coloque-o em uma pasta qualquer, renomeie seu <code>arquivo.html</code> para <code>index.html</code> e arraste a pasta para área pontilhada indicada no site.<a href="r-markdown.html#fnref28" class="footnote-back">↩</a></p></li>
+<ol start="27">
+<li id="fn27"><p>Pesquisa reproduzível é o conceito de divulgar documentos científicos incluindo os dados e os códigos utilizados (além do texto e dos gráficos) para que qualquer pessoa possa reproduzir os resultados e assim aperfeiçoar ou construir novos resultados a partir deles.<a href="r-markdown.html#fnref27" class="footnote-back">↩</a></p></li>
+<li id="fn28"><p>No RStudio, após gerar o documento HTML clicando em knit, clique em <em>Publish</em> no canto superior direito da aba Viewer e siga os passos apresentados.<a href="r-markdown.html#fnref28" class="footnote-back">↩</a></p></li>
+<li id="fn29"><p>para publicar no GitHub você precisa criar seu arquivo HTML dentro de um projeto do RStudio usando o <a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Sobre-Controle-de-Vers%C3%A3o">git</a> como sistema de versão de controle. Ao gerar o arquivo HTML, na aba <em>Git</em> do painel <em>Environmet</em>, <em>Commit</em> o arquivo gerado e depois <em>Push</em>. O arquivo HTML no GitHub pode ser visualizado <a href="https://rawgit.com/nomedousuario/nomedorepositorio/master/nomedoarquivo.html" class="uri">https://rawgit.com/nomedousuario/nomedorepositorio/master/nomedoarquivo.html</a>.<a href="r-markdown.html#fnref29" class="footnote-back">↩</a></p></li>
+<li id="fn30"><p>Para publicar seu documento HTML no <a href="https://app.netlify.com/drop">netlify</a> coloque-o em uma pasta qualquer, renomeie seu <code>arquivo.html</code> para <code>index.html</code> e arraste a pasta para área pontilhada indicada no site.<a href="r-markdown.html#fnref30" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
