@@ -1181,7 +1181,7 @@ order(prec_alt)
 #>  [1]  5  7  8  9 10  2 12  1  3  4  6 11
 ```
 
-O resultado indica que o 5º lemento de `prec_alt` é o menor valor e o 1º elemeno é o de maior valor. Isso pode ser facilmente verificado passando este resultado na indexação da `prec_alt`.
+O resultado indica que o 5º elemento de `prec_alt` é o menor valor e o 1º elemento é o de maior valor. Isso pode ser facilmente verificado passando este resultado na indexação da `prec_alt`.
 
 
 ```r
@@ -1282,14 +1282,14 @@ Em alguns casos precisamos comparar os valores em relação a valores antes ou d
 
 
 
-- `lag(x, n)` do pacote **`dplyr`**[^pcktidyverse]: atrasa os valores de um vetor `x` por `n` observações; 
+- `lag(x, n)` do pacote **`dplyr`**[^pcktidyverse]: atrasa os valores de um vetor `x` por `n` observações (valor predefinido `n = 1`); 
 
 
 
-- `lead(x, n)` do pacote **`dplyr`**: adianta os valores de um vetor `x` por `n` observações; 
+- `lead(x, n)` do pacote **`dplyr`**: adianta os valores de um vetor `x` por `n` observações (valor predefinido `n = 1`); 
 
 
-[^pcktidyverse]: faz parte da coleção de pacotes para ciência de dados chamada **tidyverse**.
+[^pcktidyverse]: faz parte da coleção de pacotes <img src="images/logo_r.png" width="20"> para ciência de dados chamada **tidyverse**.
 
 
 Vamos comparar o resultado da `diff()` aplicada ao vetor de `prec` acumulado (`prec_ac`) com os valores `prec`.
@@ -1342,13 +1342,13 @@ frequência de ocorrência, contagens, porcentagem e proporção
 
 ## Identificação de eventos discretos
 
-Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
+Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição atmosférica crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
 
-Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos na escala de evento.
+Para caracterização destes eventos as informação ess�ncias são o **início**, o **fim** e a **duração** de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.
 
-Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. Por simplicidade, o exemplo será de identificação de períodos secos em uma dada região, considerando como critério valores de precipitação inferiores a 100 mm. 
+Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. O evento de interesse será o período da estação chuvosa nos dados `prec`. Neste exemplo, a estação chuvosa é definida quando `prec > 100` mm mês^-1^.  
 
-O primeiro passo é obter um vetor lógico que indicando a ocorrência dos eventos.
+O primeiro passo é identificar a ocorrência dos eventos.
 
 
 ```r
@@ -1358,16 +1358,28 @@ limiar <- 100
 #>  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1
 ```
 
-A conversão dos eventos de lógico para númerico é opcional[^aviso] e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).
+A conversão dos eventos de lógico para numérico é opcional[^aviso] e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).
 
 [^aviso]: Isso significa que os resultados nos códigos abaixo não se alteram se removermos essa conversão.
 
-As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (`lag(x)`) do elemento atual (`x`). Se a diferença for negativa (`0 - 1 = -1`) temos o início de um evento.
+As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (`lag(x)`) do elemento atual (`x`). Se a diferença for  `-1` temos o início de um evento. A tabela abaixo permite visualizar melhor isso.
+
+
+                                                                                                                                 
+---------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
+elemento     1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24
+x            1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1
+lag(x)      NA    1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0
+pos_ini     NA    0    0    1    0    0    0    0   -1    0    0    0    0    0    0    1    0    0    0    0    0   -1    1   -1
+---------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
+
+
 
 
 ```r
 # x atrasado: desloca os elementos para para frente
 pos_ini <- which(lag(x) - x < 0)
+# ajuste do primeiro elemento de pos_ini
 pos_prim <- ifelse(
   test = x[1] == 1,
   yes = 1,
@@ -1375,18 +1387,29 @@ pos_prim <- ifelse(
 )
 (pos_ini <- c(pos_prim, pos_ini))
 #> [1]  1  9 22 24
+# datas de início dos eventos
 dts[pos_ini]
 #> [1] "2010-01-01" "2010-09-01" "2011-10-01" "2011-12-01"
 ```
 
-Temos que ter cuidado especial com o primeiro índice das posições iniciais, ajustando-o para considerar adequadamente eventos começando logo início do vetor. Esse ajuste é necessário porque usando a diferença do vetor defasado não há como detectar se o primeiro elemento é evento ou não.    
+Temos que ter cuidado especial com o primeiro índice das posições iniciais (`pos_prim`), ajustando-o para considerar adequadamente eventos começando logo início do vetor. Esse ajuste é necessário porque usando a diferença do vetor defasado não há como detectar se o primeiro elemento é evento ou não.    
 
 
-Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (`lead(x)`) do elemento atual (`x`). Se a diferença for negativa (`0 - 1 = -1`) temos o fim de um evento.
+Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (`lead(x)`) do elemento atual (`x`). Quando essa diferença é `-1` temos o fim de um evento, o que pode ser visualizado na tabela abaixo. 
+
+
+                                                                                                                                 
+---------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
+elemento     1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24
+x            1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1
+lead(x)      1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1   NA
+pos_fim      0    0   -1    0    0    0    0    1    0    0    0    0    0    0   -1    0    0    0    0    0    1   -1    1   NA
+---------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
 
 
 ```r
 pos_fim <- which(lead(x) - x < 0)
+# ajuste do último elemento de pos_fim
 pos_ult <- ifelse(
   test = x[length(x)] == 1,
   yes = length(x),
@@ -1394,9 +1417,12 @@ pos_ult <- ifelse(
 )
 (pos_fim <- c(pos_fim, pos_ult))
 #> [1]  3 15 22 24
+# datas do fim dos eventos
 dts[pos_fim]
 #> [1] "2010-03-01" "2011-03-01" "2011-10-01" "2011-12-01"
 ```
+
+
 
 O último índice do vetor de posições finais requer tratamento similar ao do 1° elemento das posições iniciais. Ele deve ser ajustado para tratar dos casos com eventos no último elemento de `x`.
 
@@ -1420,7 +1446,7 @@ evts_id
 #>  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4
 ```
 
-Este vetor pode ser usado, para obter estatísticas de cada evento. Por exemplo, a precipitação média em cada evento pode ser determinada passando este vetor como argumento da função `tapply()`. Como só queremos informação nos eventos vamos substituir os valores = 0 por NA em `evts_id`. Assim a `tapply()` retornará a média só para os eventos de interesse. 
+Este vetor pode ser usado, para obter estatísticas de cada evento. Por exemplo, a precipitação média em cada evento pode ser determinada passando este vetor como argumento da função `tapply()`. Como só queremos informação nos eventos vamos substituir os valores = 0 por NA em `evts_id`. Assim, a `tapply()` retornará a média só para os eventos de interesse. 
 
 
 ```r
@@ -1429,12 +1455,19 @@ evts_id <- ifelse(evts_id == 0, NA, evts_id)
 tapply(
   X = prec,
   INDEX = evts_id,
-  FUN = mean
+  FUN = sum
 )
-#>        1        2        3        4 
-#> 198.3333 193.5714 120.0000 208.0000
+#>    1    2    3    4 
+#>  595 1355  120  208
 ```
 
+A `tapply()` tem três argumentos:
+
+- `X`: dados que queremos aplicar a função
+
+- `INDEX:` vetor de índices com os grupos para os quais a função será aplicada separadamente.
+
+- `FUN`: a função que desejamos aplicar aos dados (e.g.: `mean()`, ``)
 
 
 <!--
@@ -1513,8 +1546,8 @@ unique(ordem_eventos[ordem_eventos > 0])
   c.
 
 ```
- [1] 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593 3.141593
- [9] 3.141593 3.141593 3.141593 3.141593
+ [1] -3.1415927 -2.4434610 -1.7453293 -1.0471976 -0.3490659  0.3490659
+ [7]  1.0471976  1.7453293  2.4434610  3.1415927
 ```
   d.
 
