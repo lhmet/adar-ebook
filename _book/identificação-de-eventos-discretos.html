@@ -398,14 +398,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="identificação-de-eventos-discretos" class="section level2">
 <h2><span class="header-section-number">7.12</span> Identificação de eventos discretos</h2>
 <p>Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição atmosférica crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc.</p>
-<p>Para caracterização destes eventos as informação essencias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.</p>
+<p>Para caracterização destes eventos as informação ess�ncias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.</p>
 <p>Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. O evento de interesse será o período da estação chuvosa nos dados <code>prec</code>. Neste exemplo, a estação chuvosa é definida quando <code>prec &gt; 100</code> mm mês<sup>-1</sup>.</p>
 <p>O primeiro passo é identificar a ocorrência dos eventos.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">limiar &lt;-<span class="st"> </span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb206-2" data-line-number="2"><span class="co"># definição de evento (condição)</span></a>
 <a class="sourceLine" id="cb206-3" data-line-number="3">(x &lt;-<span class="st"> </span>evts &lt;-<span class="st"> </span><span class="kw">as.integer</span>(prec <span class="op">&gt;</span><span class="st"> </span>limiar))</a>
 <a class="sourceLine" id="cb206-4" data-line-number="4"><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1</span></a></code></pre></div>
-<p>A conversão dos eventos de lógico para númerico é opcional<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).</p>
+<p>A conversão dos eventos de lógico para numérico é opcional<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).</p>
 <p>As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (<code>lag(x)</code>) do elemento atual (<code>x</code>). Se a diferença for <code>-1</code> temos o início de um evento. A tabela abaixo permite visualizar melhor isso.</p>
 <table>
 <tbody>
