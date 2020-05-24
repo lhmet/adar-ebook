@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-22" />
+<meta name="date" content="2020-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -457,8 +457,8 @@ Figura 7.2: Visualização do potencial uso das funções <code>cummax()</code> 
 <p>Em alguns casos precisamos comparar os valores em relação a valores antes ou depois de um elemento do vetor. Para este tipo de operação podemos usar as funções:</p>
 <ul>
 <li><p><code>diff(x)</code>: diferencial ou primeira diferença, calcula para cada elemento de <code>x</code> a diferença <code>x[i] - x[i-1]</code> para i de 2 até <code>length(x)</code>. Resulta em um vetor com um elemento a menos que o vetor de entrada.</p></li>
-<li><p><code>lag(x, n)</code> do pacote <strong><code>dplyr</code></strong><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>: atrasa os valores de um vetor <code>x</code> por <code>n</code> observações;</p></li>
-<li><p><code>lead(x, n)</code> do pacote <strong><code>dplyr</code></strong>: adianta os valores de um vetor <code>x</code> por <code>n</code> observações;</p></li>
+<li><p><code>lag(x, n)</code> do pacote <strong><code>dplyr</code></strong><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>: atrasa os valores de um vetor <code>x</code> por <code>n</code> observações (valor predefinido <code>n = 1</code>);</p></li>
+<li><p><code>lead(x, n)</code> do pacote <strong><code>dplyr</code></strong>: adianta os valores de um vetor <code>x</code> por <code>n</code> observações (valor predefinido <code>n = 1</code>);</p></li>
 </ul>
 <p>Vamos comparar o resultado da <code>diff()</code> aplicada ao vetor de <code>prec</code> acumulado (<code>prec_ac</code>) com os valores <code>prec</code>.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">diff</span>(prec_ac) </a>
@@ -494,7 +494,7 @@ frequência de ocorrência, contagens, porcentagem e proporção
 <div class="footnotes">
 <hr />
 <ol start="25">
-<li id="fn25"><p>faz parte da coleção de pacotes para ciência de dados chamada <strong>tidyverse</strong>.<a href="funções-móveis-úteis.html#fnref25" class="footnote-back">↩</a></p></li>
+<li id="fn25"><p>faz parte da coleção de pacotes <img src="images/logo_r.png" width="20"> para ciência de dados chamada <strong>tidyverse</strong>.<a href="funções-móveis-úteis.html#fnref25" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
