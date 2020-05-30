@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.3 Variáveis | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.3 Variáveis | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-23" />
+<meta name="date" content="2020-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -397,51 +397,51 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="variaveis" class="section level2">
 <h2><span class="header-section-number">5.3</span> Variáveis</h2>
-<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo &quot;expressão&quot; significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador <code>&lt;-</code>, esta combinação é chamada de operador <strong>atribuição</strong>. A expressão geral para definir uma variável é:</p>
+<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo "expressão" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador <code>&lt;-</code>, esta combinação é chamada de operador <strong>atribuição</strong>. A expressão geral para definir uma variável é:</p>
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
 <code>variavel &lt;- valor</code>
 </p>
 <p>Uma atribuição armazena o valor (no lado direita da atribuição) em uma <strong>variável</strong><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> (no lado esquerdo da atribuição). Então uma variável é um nome usado para guardar os dados. Os valores dos dados podem ser de diferentes tipos, como veremos na seção <a href="tipos-dados.html#tipos-dados">6.1</a>.</p>
 <p>Quando uma variável recebe um valor, o <img src="images/logo_r.png" width="20"> não imprime nada no console.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">m_kg &lt;-<span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">m_kg &lt;-<span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <p>Para visualizar o valor de uma variável, digite o nome da variável na linha de comando, ou imprima seu valor com a função <code>print()</code>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">m_kg</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="co">#&gt; [1] 100</span></a>
-<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="kw">print</span>(m_kg)</a>
-<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co">#&gt; [1] 100</span></a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">m_kg</a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="co">#&gt; [1] 100</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="kw">print</span>(m_kg)</a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="co">#&gt; [1] 100</span></a></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> diferencia letras maiúsculas de minúsculas.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">m_kg</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">#&gt; [1] 100</span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3">M_KG</a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;M_KG&#39; not found</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">m_kg</a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="co">#&gt; [1] 100</span></a>
+<a class="sourceLine" id="cb67-3" title="3">M_KG</a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="co">#&gt; Error in eval(expr, envir, enclos): objeto &#39;M_KG&#39; não encontrado</span></a></code></pre></div>
 <p>Como criamos apenas a variável <code>m_kg</code>, <code>M_kg</code> não foi encontrada.</p>
 <p>A variável <code>m_kg</code> pode ser utilizado para criar outras variáveis.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">peso_kg &lt;-<span class="st"> </span>m_kg <span class="op">*</span><span class="st"> </span><span class="fl">9.8</span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">peso_kg</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">peso_kg &lt;-<span class="st"> </span>m_kg <span class="op">*</span><span class="st"> </span><span class="fl">9.8</span></a>
+<a class="sourceLine" id="cb68-2" title="2">peso_kg</a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
 <p>Os espaços em torno do operador de atribuição (<code>&lt;-</code>) não são obrigatórios mas eles ajudam na legibilidade do código. Veja as diferentes interpretações que as expressões abaixo podem ter dependendo de como os espaços são posicionados em torno da variável <code>g</code>.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="fl">9.8</span>  <span class="co"># g é igual a 9.8</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">g <span class="op">&lt;</span><span class="st"> </span><span class="fl">-9.8</span>  <span class="co"># g é menor que -9.8 ?</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3">g&lt;-<span class="fl">9.8</span>    <span class="co"># g é igual a 9.8 ou é menor que -9.8 ?</span></a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">g &lt;-<span class="st"> </span><span class="fl">9.8</span>  <span class="co"># g é igual a 9.8</span></a>
+<a class="sourceLine" id="cb69-2" title="2">g <span class="op">&lt;</span><span class="st"> </span><span class="fl">-9.8</span>  <span class="co"># g é menor que -9.8 ?</span></a>
+<a class="sourceLine" id="cb69-3" title="3">g&lt;-<span class="fl">9.8</span>    <span class="co"># g é igual a 9.8 ou é menor que -9.8 ?</span></a></code></pre></div>
 <p>Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso. Para criar e já mostrar o resultado da variável, podemos colocar parênteses em torno da atribuição:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="fl">9.8</span> <span class="co"># cria</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">g        <span class="co"># imprime</span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="co">#&gt; [1] 9.8</span></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4">(g &lt;-<span class="st"> </span><span class="fl">9.8</span>) <span class="co"># cria e imprime</span></a>
-<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="co">#&gt; [1] 9.8</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">g &lt;-<span class="st"> </span><span class="fl">9.8</span> <span class="co"># cria</span></a>
+<a class="sourceLine" id="cb70-2" title="2">g        <span class="co"># imprime</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="co">#&gt; [1] 9.8</span></a>
+<a class="sourceLine" id="cb70-4" title="4">(g &lt;-<span class="st"> </span><span class="fl">9.8</span>) <span class="co"># cria e imprime</span></a>
+<a class="sourceLine" id="cb70-5" title="5"><span class="co">#&gt; [1] 9.8</span></a></code></pre></div>
 <p>Podemos criar uma variável baseado em variáveis criadas previamente. Por exemplo, vamos definir a variável peso, como <span class="math inline">\(p_{kg} = m_{kg}.g\)</span>:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">(peso_kg &lt;-<span class="st"> </span>m_kg <span class="op">*</span><span class="st"> </span>g)</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">(peso_kg &lt;-<span class="st"> </span>m_kg <span class="op">*</span><span class="st"> </span>g)</a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
 <p>Se alterarmos o valor de uma das variáveis isso não mudará o valor da outra:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">(m_kg &lt;-<span class="st"> </span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co">#&gt; [1] 10</span></a>
-<a class="sourceLine" id="cb72-3" data-line-number="3">peso_kg</a>
-<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">(m_kg &lt;-<span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="co">#&gt; [1] 10</span></a>
+<a class="sourceLine" id="cb72-3" title="3">peso_kg</a>
+<a class="sourceLine" id="cb72-4" title="4"><span class="co">#&gt; [1] 980</span></a></code></pre></div>
 <p>O antigo valor de <code>m_kg</code> será sobrescrito. Mas, embora <code>p_kg</code> tenha sido definida a partir de <code>m_kg</code>, seu valor permanecerá o mesmo. Esse comportamento que nos permite compreender o que acontece quando temos várias expressões em sequência num <em>script</em>.</p>
 <p>Para saber as variáveis já criadas numa sessão <img src="images/logo_r.png" width="20">, use a função <code>ls()</code><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> para verificar as variáveis existentes:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="co">#&gt; [4] &quot;m_kg&quot;               &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="co">#&gt; [4] &quot;m_kg&quot;               &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></a></code></pre></div>
 <!--
 
 ```r
@@ -474,18 +474,18 @@ Um exemplo mais elaborado de uso da função `assign()` para criar várias vari�
 <div id="removendo-variáveis" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Removendo variáveis</h3>
 <p>Para remover variáveis usa-se a função <code>rm()</code>. Vamos remover a variável <code>m</code> criada previamente e ver a lista de objetos no espaço de trabalho.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">rm</span>(m_kg)</a>
-<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
-<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="co">#&gt; [4] &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">rm</span>(m_kg)</a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb74-3" title="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span></a>
+<a class="sourceLine" id="cb74-4" title="4"><span class="co">#&gt; [4] &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></a></code></pre></div>
 <p>Podemos remover mais de uma variável ao mesmo tempo.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">rm</span>(g, peso_kg)</a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;r_cran_version_win&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="kw">rm</span>(g, peso_kg)</a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;r_cran_version_win&quot;</span></a></code></pre></div>
 <p>Para remover todas variáveis do espaço de trabalho (use com cautela):</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># apagando tudo</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
-<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="kw">ls</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co"># apagando tudo</span></a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb76-3" title="3"><span class="kw">ls</span>()</a></code></pre></div>
 </div>
 </div>
 <div class="footnotes">

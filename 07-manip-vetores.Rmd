@@ -1127,7 +1127,7 @@ frequência de ocorrência, contagens, porcentagem e proporção
 
 Frequentemente precisamos separar a série temporal de uma variável em eventos discretos, como a identificação de períodos extremos ou de risco, como secas, tempestades, ondas de calor, períodos de poluição atmosférica crítica (acima ou abaixo de um limiar de concentração do poluentes) e etc. 
 
-Para caracterização destes eventos as informação ess�ncias são o **início**, o **fim** e a **duração** de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.
+Para caracterização destes eventos as informação essencias são o **início**, o **fim** e a **duração** de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.
 
 Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. O evento de interesse será o período da estação chuvosa nos dados `prec`. Neste exemplo, a estação chuvosa é definida quando `prec > 100` mm mês^-1^.  
 
@@ -1297,82 +1297,115 @@ unique(ordem_eventos[ordem_eventos > 0])
 
 3. Reproduza a criação do vetor dias da semana (`dds`) mostrado abaixo.
 
+```
+domingo segunda   terca  quarta  quinta   sexta   sabado
+      1       2       3       4       5       6        7
+```
+
+- - - 
+
+4. Interprete o resultado da seguinte operação:
+
+```{r, eval = FALSE}
+dds_nums <- c(
+  5L, 2L, 5L, 2L, 7L, 7L, 2L,
+  6L, 6L, 3L, 7L, 1L, 2L, 2L,
+  5L, 7L, 3L, 2L, 6L, 4L, 1L
+)
+names(dds)[dds_nums]
+```
 
 - - -
 
-4. Escreva os códigos necessários para determinar:  
+5. a. Escreva o código necessário para determinar o vetor lógico indicando quais números são pares na sequência de valores `r set.seed(2); paste0(paste( (nums <- sample(1:100, 10)) , collapse = ", "))`. b. Calcule o total de números ímpares.
 
-`r paste("  ")`a. o vetor lógico indicando quais números são pares na sequência de valores `r set.seed(2); paste0(paste( (nums <- sample(1:100, 10)) , collapse = ", "))`. Calcule o total de números ímpares.
 
-`r paste("  ")`b. Se um ano é bissexto. Verifique os resultados de seu código para os anos `r set.seed(2); paste( (anos <- sample(1890:2015, 10)) , collapse = ", ")`. Calcule o total de anos com 365 dias.
+- - - 
+
+6. Para um ano ser bissexto, ele deve ser:
+
+- divísivel por 4 (a divisão é exata com resto igual a zero)
+
+- não pode ser divisível por 100 (a divisão não é exata, ou seja, o resto é diferente de zero)
+
+- pode ser que seja divisível por 400: caso seja divisível por 400, a divisão deve ser exata, deixando o resto igual a zero.
+
+`r paste("  ")`Com os critérios definidos acima, construa o código para:
+
+`r paste("    ")`a. Verificar se os anos `r set.seed(3); paste( (anos <- c(sample(1890:2015, 10), 2100, 2300)) , collapse = ", ")` são bissextos.
+
+`r paste("    ")`b. Mostre quais anos são bissextos.
+
+`r paste("    ")`c. Usando o código para verificar se o ano é bissexto, gere um vetor nomeado `ndias` com o número de dias do ano para os anos do item (a).
+
+`r paste("    ")`d. Programe como obter o total de anos com 366 dias?
 
 
 
 - - -
 
-5. Quais códigos para gerar os seguintes dados:
+7. Quais códigos para gerar os seguintes dados:
+
   a.
-```{r, eval=TRUE,echo=FALSE,comment=""}
-(tar0 <- c(-30, seq(0, 20, by = 5), 30))
+  
+```
+[1] -30   0   5  10  15  20  30
 ```
   b.
-```{r, eval=TRUE,echo=FALSE,comment=""}
-(seq(1, 0, by = -1/5))
+
 ```
+[1] 1.0 0.8 0.6 0.4 0.2 0.0
+```  
+  
   c.
-```{r , eval=TRUE,echo=FALSE,comment=""}
-(seq(-pi, pi, length.out = 10))
+
 ```
+[1] -3.1415927 -2.4434610 -1.7453293 -1.0471976 -0.3490659  0.3490659
+[7]  1.0471976  1.7453293  2.4434610  3.1415927
+```
+
+  
   d.
-```{r , eval=TRUE,echo=FALSE,comment=""}
-rep(-1:5, times = 2:8)
+
 ```
+[1] -1 -1  0  0  0  1  1  1  1  2  2  2  2  2  3  3  3  3  3  3  4  4  4
+[24]  4  4  4  4  5  5  5  5  5  5  5  5
+```
+
   e.
-```{r , eval=TRUE,echo=FALSE,comment=""}
-rep(c(5:1, 2:5), times = c(5:1, 2:5))
-``` 
 
-  f. Dica: lembre da função `rep()` e seus argumentos `each` e `times`. Experimente usar vetores nesses argumentos.
-  
-  g. Como a partir da matriz gerada na letra *f* você pode obter a matriz abaixo?
-  
-
-
-  h. Qual o código para converter a matriz gerada na letra *g* no vetor abaixo?
+```
+[1] 5 5 5 5 5 4 4 4 4 3 3 3 2 2 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5
+```
   
 
 - - - 
 
-6. Como obter as seguintes sequências a partir dos vetores fornecidos usando a mesma solução para todos casos?
+8. Usando o mesmo código para solução em todos os itens abaixo, obtenha as seguintes sequências usando os vetores fornecidos.
 
-```{r , eval=TRUE,echo=FALSE,comment=""}
-v3 <- c(10, 0.5, 8, 4)
+```{r , eval=TRUE,echo=FALSE}
+v3 <- c(11, 0.25, 7, 2)
 ``` 
 
-   a. v3 = `r paste0("(", paste(v3 , collapse = ", "), ")")`
+ a. v3 = `r paste0("(", paste(v3 , collapse = ", "), ")")`
 
-```{r, eval=TRUE,echo=FALSE,comment=""}
-1:length(v3)
+```
+[1] 1 2 3 4
 ``` 
 
-```{r Chunk7b, eval=TRUE,echo=FALSE,comment=""}
-v2 <- c(10, 0.5)
-``` 
 
-  b. v2 = `r paste0("(", paste(v2 , collapse = ", "), ")")`
+  b. v2 = `r paste0("(", paste(v3[1:2] , collapse = ", "), ")")`
 
-```{r Chunk7b_sol, eval=TRUE,echo=FALSE,comment=""}
-1:length(v2)
+```
+[1] 1 2
 ```
 
-```{r Chunk7c, eval=TRUE,echo=FALSE,comment=""}
-v1 <- c(10)
-``` 
-  c. v1 = `r paste0("(", paste(v1 , collapse = ", "), ")")`
+
+  c. v1 = `r paste0("(", paste(v3[1] , collapse = ", "), ")")`
 
 
-```{r Chunk7c_sol, eval=TRUE,echo=FALSE,comment=""}
-1:length(v1)
+```
+[1] 1
 ```
 
 ```{r Chunk7d, eval=TRUE,echo=FALSE,comment=""}
@@ -1381,20 +1414,109 @@ v0 <- c()
 
   d. v0 = `r paste0("(", paste(v0 , collapse = ", "), ")")`
 
-
-```{r Chunk7d_sol, eval=TRUE,echo=FALSE,comment=""}
-# 1:length(v0)
-seq_along(v0)
+```
+integer(0)
 ```
 
 - - -
 
-7. (a) Calcule a soma cumulativa dos números `r 2:6`. Dica: ver a função `cumsum()`. (b) Calcule a soma cumulativa destes números mas na ordem reversa. Dica: ver a função `rev()`.
+9. Considere os seguintes dados horários de temperatura do ar ($T_{ar}$) registrados em duas estações meteorológicas, entre as 0 e 23 horas de um dado dia.
+
+```{r prep-tar-data}
+tar_est1 <- c(
+  14.92, 14.61, 14.32, 14.07, 13.84, 13.65, 13.56, 13.97, 15.08,
+  16.5, 17.88, 19.08, 20.02, 20.66, 21.01, 21.05, 20.76, 20.05,
+  18.77, 17.51, 16.67, 16.11, 15.66, 15.27
+)
+tar_est2 <- c(
+  13.13, 13.01, 12.93, 12.87, 12.82, 12.81, 13.2, 14.22, 15.77,
+  17.49, 19.2, 20.57, 21.49, 22.01, 22.03, 21.71, 20.84, 18.77,
+  16.54, 15.13, 14.34, 13.81, 13.49, 13.28
+)
+```
+
+> Dica: Faça um gráfico para visualizar as temperaturas das duas estações. Isso facilitará a solução.
+
+`r paste("   ")`**a.** Determine a média diária da $T_{ar}$ das duas estações arrendondando para uma casa decimal. Salve a média de cada estação nas variáveis `tmed_est1` e `tmed_est2`. 
+
+
+`r paste("   ")`**b**. Utilizando as variáveis do item anterior, verifique usando comparação lógica, em qual estação o ambiente é mais quente?
+
+
+`r paste("   ")`**c**. Obtenha a 3ª maior temperatura do dia em cada estação.
+
+
+`r paste("   ")`**d**. Calcule a amplitude térmica diária ($ATD = T_{max}-T_{min}$, onde $T_{max}$: temperatura máxima dária e $T_{min}$: temperatura mínima dária) das estações 1 e 2, arrendondando para uma casa decimal. Salve os resultados nas variaveis `atd_est1` e `atd_est2`.
+
+
+`r paste("   ")`**e**. Qual o horário de ocorrência das temperaturas máximas e mínimas em cada estação? Salve os resultados nas variáveis `hmax_est{i}` e `hmin_est{i}`, com $i = 1, 2$.
+
+
+`r paste("   ")`**f**. Quando `tar_est2` é maior que `tar_est1` qual a maior diferença absoluta de temperatura entre as duas estações?
+
+
+`r paste("   ")`**g**. Qual a hora correspondende a ocorrência daquela maior diferença absoluta de temperatura obtida no item anterior?
+
+`r paste("   ")`**h**. O horário do pôr do sol pode ser estimado a partir da $T_{ar}$. Para o período após o horário de ocorrência da $T_{max}$ determina-se em qual hora ocorre a maior queda de $T_{ar}$ em relação a hora anterior. Estime o horário do pôr do sol para as duas estações (`hps_est{i}`). 
+
+
+`r paste("   ")`**i**. Em quais horas as temperaturas das duas estações estão mais próximas uma da outra, ou seja com menos de 0,5°C de diferença ?
+
+
+`r paste("   ")`**j**. Calcule a temperatura média diária usando os seguintes métodos para estação 2.
+
+$T_{med_{1}} = (T_{max} + T_{min})/2$, salvando em uma variável `tar_met1`.
+
+
+$T_{med_{2}} = (T_{max} + T_{min} + T_{9} + 2T_{21})/5$, salvando em uma variável `tar_met2`.
+
+
+$T_{med_{3}} = (T_{7} + T_{14} + 2T_{21})/4$, salvando em uma variável `tar_met2`.
+
+
+`r paste("   ")`**k**.Compare este resultados com aqueles obtidos no item **a**. Qual é melhor?
+
+- - -
+
+10. Calcule a temperatura do ar horária usando o **modelo de onda** para representação do ciclo diário da temperatura do ar, descrito pelas seguintes equações:
+
+$$\left\{\begin{matrix}
+h_{T_{min}}\leq h < h_{T_{max}}, & T_{calc} =  \bar{T} - A \, cos\left ( arg \right )\\ 
+demais\; horas, & T_{calc} =  \bar{T} + A \, cos\left ( arg \right )
+\end{matrix}\right.$$
+
+`r paste("   ")`onde:
+
+$$\bar{T} = \left ( \frac{T_{max} + T_{min}}{2} \right )$$
+
+`r paste("   ")`e 
+
+$$A =\left ( \frac{T_{max}-T_{min}}{2} \right ) $$
+
+`r paste("   ")`O argumento do cosseno ($arg$) é definido por:
+
+$$\left\{\begin{matrix}
+h <  h_{T_{min}}, & arg = \pi  \left ( \frac{h+10}{10+h_{Tmin}} \right )\\ 
+h_{T_{min}}\leq h < h_{T_{max}}, & arg = \pi  \left ( \frac{h-h_{T_{min}}}{14-h_{T_{min}}} \right )\\ 
+h > h_{T_{max}},  & arg = \pi\left ( \frac{14-h}{10+h_{Tmin}} \right )
+\end{matrix}\right. $$
+
+`r paste("   ")`**a**. Aplique o método acima para estação 1 e 2 substituindo os valores de $T_{max}$, $T_{min}$, $h_{T_{max}}$, $h_{T_{max}}$, adequadamente.
+
+
+`r paste("   ")`**b**. Calcule o RMSE nos dois casos. $RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}\left (T_{calc}-T_{obs}  \right )^{2}}$
+
+`r paste("   ")`**c**. Calcule a correlação ($r$) nos dois casos. A barra representa a média aritmética. Confira seu resultado com a saída da função `cor(tar_obs, tar_calc)`. 
+
+$$r = \frac{\sum_{i=1}^{n} (T_{obs}-\bar{T}_{obs})(T_{calc}-\bar{T}_{calc}))}{\sqrt{\sum_{i = 1}^{n} (T_{obs}-\bar{T}_{obs})^{2}(T_{calc}-\bar{T}_{calc})^{2})}}$$
+
+
+
 
 
 - - -
 
-8. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS. 
+11. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS. 
 
 ```{r, echo = FALSE}
 hora <- (12:24) - 3
@@ -1403,47 +1525,31 @@ evento <- data.frame(hora, prec = prec_h)
 knitr::kable(evento, align = "c", longtable = TRUE)
 ```
 
-a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve seu resultado em um vetor chamado `prec_acum`. Interprete o resultado `c(NA, diff(prec_acum))`.
+`r paste("  ")`a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve o resultado em um vetor chamado `prec_acum`. Interprete o resultado de `c(NA, diff(prec_acum))`.
 
 
 
-b. Mostre o código para encontrar o horário de ocorrência da precipitação máxima?
+`r paste("  ")`b. Mostre o código para encontrar o horário de ocorrência da precipitação máxima?
 
 
 
-c. Mostre o código para obter a hora de início e fim do evento de  precipitação severa. Qual foi a duração do evento?
+`r paste("  ")`c. Mostre o código para obter a hora de início e fim do evento de  precipitação severa. Qual foi a duração do evento?
 
 
 
-d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
+`r paste("  ")`d. Qual foi a precipitação total do evento? Quanto da precipitação total do evento, em %, ocorreu até às 17 h?
 
 
 - - -
 
-9. EXERCÍCIO RESOLVIDO. Considere o vetor `x` definido pelos números descritos abaixo. Mostre como  encontrar o primeiro número positivo localizado após o último número negativo. Por exemplo, seja o vetor `z` definido pelos valores (11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14). Os valores selecionados seriam 5 e 30.
+12. Considere o vetor `x` definido pelos números descritos abaixo. Mostre como  encontrar o primeiro número positivo localizado após o último número negativo. Por exemplo, seja o vetor `z` definido pelos valores (11, 10, 15, 2, 6, -15, -10, -22, -8, 5, 7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14). Os valores selecionados seriam 5 e 30.
 
-Um possível código para chegar a esse resultado seria:
-
-```{r}
-x <- c(
-  11, 10, 15, 2, 6, -15, -10, -22, -8, 5,
-  7, 2, 12, 8, 4, 1, 3, -3, -1, 30, 14
-)
-# x1 <- ifelse(x > 0, 1, 0)
-# cópia de x
-x01 <- x
-# substituo x positivo por 1 e x negativo por 0
-x01[x > 0] <- 1
-x01[!x > 0] <- 0
-res <- x[which(diff(x01) == 1) + 1]
-res
-```
 
 - - -
 
-10. Mostre o código para resolver as seguintes tarefas. Considere o vetor `prec` com valores de precipitação diária indicado abaixo.
+13. Considerando o vetor `prec` com valores de precipitação diária indicado abaixo. Escreva o código para resolver as seguintes tarefas.
 
-```{r Chunk10, echo=FALSE, eval=FALSE}
+```{r prep-data-prec, echo=FALSE, eval=FALSE}
 # como gerar vetor de precipitações
 vprec <- c(
   0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
@@ -1470,7 +1576,7 @@ prec
 dput(round(prec, 2))
 ```
 
-```{r Chunk10a, message=FALSE, echo=TRUE, eval=TRUE}
+```{r data-q13, message=FALSE, echo=TRUE, eval=TRUE}
 prec <- c(
   0, 0, 0, 0.8, 0, 0.01, 0.75, 0,
   0, 0, 0, 0.35, 0.08, 0, 0, 0, 0, 0.31, 0, 3.57, 12.17, 0, 0,
@@ -1488,29 +1594,24 @@ prec <- c(
 )
 ```
 
-  (a) Quantos dias ocorreram no intervalo 0 < prec < 0.25?
+`r paste("   ")`(a) Quantos dias ocorreram no intervalo 0 < prec < 0.25?
   
 
-  (b) Substitua os valores de chuva registrados no intervalo 0 < prec < 0.25 por 0.
+`r paste("   ")`(b) Substitua os valores de chuva registrados no intervalo 0 < prec < 0.25 por 0.
   
 
-  (c) Crie um vetor denominado `prec01` indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro. 
+`r paste("   ")`(c) Crie um vetor denominado `prec01` indicando o estado da precipitação (chuvoso = 1, seco = 0) baseado no limiar de 0.25 mm para detecção de chuva pelo pluviômetro. 
 
 
-  (d) Qual a probabilidade de chuva dessa série de precipitação diária?
+`r paste("   ")`(d) Qual a probabilidade de chuva dessa série de precipitação diária?
   
 
-  (e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
+`r paste("   ")`(e) Qual a probabilidade de chover dois dias consecutivos (`p11`)? Calcule a probabilidade de chover em qualquer um de dois dias consecutivos (`p01 + p10`)?
 
 
 
-
-
-  (f) Determine a duração de cada evento chuvoso (número de dias consecutivos).
+`r paste("   ")`(f) Determine a duração de cada evento chuvoso (número de dias consecutivos).
    
-> Dica: comece encontrando a posição do início do evento e depois a posição final do evento. A diferença entre as posições fornece a duração do evento. O exercício resolvido (9) é análogo a esse exercício.
-
-
 
 O resultado esperado é um vetor que identifique o evento e sua duração.
 
@@ -1532,67 +1633,45 @@ duracao
 
 - - -
 
-11. EXERCÍCIO RESOLVIDO. Dado o vetor `temp` mostrado abaixo.
+14. Dado o vetor `dados` mostrado abaixo.
 
-```{r Chunk111, echo=FALSE, eval=TRUE}
-temp <- sample(0:30, 30)
-temp[2:4] <- NA
-temp[10:15] <- NA
-temp[23:29] <- NA
-# dput(temp)
-temp <- c(
+```{r prep-data-gaps, echo=FALSE, eval=TRUE}
+dados <- sample(0:30, 30)
+dados[2:4] <- NA
+dados[10:15] <- NA
+dados[23:29] <- NA
+# dput(dados)
+dados <- c(
   NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L,
   29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA,
   NA, 19L
 )
 ```
+
 ```{r Chunk112}
-temp <- c(
+dados <- c(
   NA, NA, 27L, 7L, 4L, 0L, 26L, 15L, 25L, NA, NA, NA, NA, 6L,
   29L, 18L, 17L, 23L, 20L, 1L, 30L, 13L, NA, NA, NA, NA, NA, NA,
   NA, 19L
 )
 ```
 
-   a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
-
-```{r Chunk11a}
-# vetor lógico de falhas
-eh_falha <- is.na(temp)
-# soma cumulativa de falhas
-acum_falhas <- cumsum(eh_falha)
-# calculando soma a partir do início da falha
-seq_falhas <- acum_falhas - cummax((!eh_falha) * acum_falhas)
-seq_falhas
-```
+`r paste("  ")`a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
 
 
-   b. Como a partir do vetor resultante em *11.b* obter um vetor cujo os valores
+`r paste("  ")`b. Como a partir do vetor resultante em *11.b* obter um vetor cujo os valores
 dentro das falhas indique a ordem de ocorrência da falha.
 
-```{r Chunk11c}
-(ordem_falhas <- cumsum(seq_falhas == 1) * as.integer(eh_falha > 0))
-```
 
-   c. Qual o tamanho de cada falha.
+`r paste("  ")`c. Qual o tamanho de cada falha.
    
-```{r}
-pos_fim_falha <- which(c(NA, diff(ordem_falhas)) < 0) - 1
-(tamanho_falhas <- seq_falhas[pos_fim_falha])
-# names(tamanho_falhas) <- paste0("falha", unique(ordem_falhas[ordem_falhas > 0]))
-names(tamanho_falhas) <- paste0("falha", seq_along(tamanho_falhas))
-tamanho_falhas
-```
 
-   d. Determine o tamanho da maior falha?
+`r paste("  ")`d. Determine o tamanho da maior falha?
 
-```{r}
-(max_falha <- max(tamanho_falhas))
-```
 
 - - -
 
-12. Para os valores de velocidade ($V_h$) e a direção do vento ($\theta$) (na convenção meteorológica):
+15. Para os valores de velocidade ($V_h$) e a direção do vento ($\theta$) (na convenção meteorológica):
 
 ```{r Chunk12, include=FALSE}
 ws <- c(10, 10, 10, 10, 14.142, 14.142, 14.142, 14.142, 0)
@@ -1603,14 +1682,14 @@ $V_h$ = `r paste0("(", paste(ws , collapse = ", "), ")")`
 
 $\theta$ = `r paste0("(", paste(wd , collapse = ", "), ")")`
 
-   a. Determine as componentes zonal e meridional do vento.
+`r paste("  ")`a. Determine as componentes zonal e meridional do vento.
    
    $$u = -V_{h} \cdot sin(\theta_{rad})$$
    $$v = -V_{h} \cdot cos(\theta_{rad})$$
 
 
 
-   b. Faça os cálculos necessários para reconstruir $V_h$ e $\theta$ a partir de $u$ e $v$ determinados no item **a**. Por convenção, a direção do vento $\theta$ em condições calmas ($V_h$ < 0.5 m s^-1^) é assumida como 0°.
+`r paste("  ")`b. Faça os cálculos necessários para reconstruir $V_h$ e $\theta$, a partir de $u$ e $v$ determinados no item **a**. Por convenção, a direção do vento $\theta$ em condições calmas ($V_h$ < 0.5 m s^-1^) é assumida como 0°.
 
 $$V_{h} = \sqrt{(u^2 + v^2)}$$
 $$\theta_{mat} = {\rm atan2}(-u, -v)\cdot\frac{180}{\pi}$$
@@ -1622,7 +1701,7 @@ $$
 $$
 
 
-Como resultado monte um data frame com todas variáveis derivadas.
+A tabela abaixo apresenta o resultado esperado para as variáveis derivadas.
 
 ```{r, eval = TRUE, echo = FALSE}
 uv_df <- structure(list(u = c(10, 0, 0, -10, 10, 10, -10, -10, 0), v = c(0, 
@@ -1646,14 +1725,15 @@ knitr::kable(uv_df)
 - - -
 
 
-13. Para as séries de `prec_obs` e `prec_sim` calcule:
+16. Para as séries de `prec_obs` e `prec_sim` calcule:
 
-- a proporção corretamente prevista $PC = \frac{wc+dc}{n}$ 
-- o índice de sucesso crítico $CSI=\frac{wc}{wc+wi+di}$. 
+`r paste("    ")`a. A proporção corretamente prevista $PC = \frac{wc+dc}{n}$ 
+
+`r paste("    ")`b. O índice de sucesso crítico $CSI=\frac{wc}{wc+wi+di}$. 
 
 Onde $wc$ e $dc$ são as previsões corretas de dias úmidos ($prec > 0.25$ mm dia^-1^) e secos respectivamente, $wi$ e $di$ são as previsões incorretas de dias úmidos e secos respectivamente. $n$ é o n° total de previsões.
 
-```{r , include=TRUE}
+```{r, echo = TRUE}
 prec_obs <- c(
   0, 0, 0, 0.5, 1, 6, 9, 0.2, 1, 0, 0, 0.25,
   10, 15, 8, 3, 0, 0, 0, 0, 0, 0, 0.25, 0,
@@ -1671,19 +1751,34 @@ prec_sim <- c(
 
 - - -
 
-14. Escreva o código para calcular o coeficiente de correlação de Pearson (`r`) entre os vetores `obs` e `prev`. 
+17. Escreva o código para calcular as estatísticas abaixo, entre os vetores de valores observados (`obs`) e previstos (`prev`) por um dado modelo atmosférico, em um dado local.
 
-![](images/correlation-formula.gif)
+`r paste("  ")`a. O Viés relativo (%)[^vies].  
 
-Confira seu resultado com a saída da função `cor(obs, prev)`. 
+$$PBIAS = 100\frac{\sum_{i=1}^{n}(Prev_{i}-Obs_{i})}{\sum_{i=1}^{n}(Obs_{i})}$$. 
+
+
+[^vies]: Mede a tendência média dos valores previstos (ou simulados) em serem maiores (superestimativa) ou menores (subestiva) que os observados. O valor ótimo é 0, menores valores indicam melhor desempenho. Valores positivos indicam tendência de superestimativa e negativos de subestimativa.
+
+
+`r paste("  ")`b. Coeficente de eficiência de Nash-Sutcliffe (NSE)[^nse].
+
+[^nse]: NSE é uma estatística normalizada que que determina a magnitude relativa da variância residual (ruído) comparada a variância dos dados medidos (informação). NSE varia de -Inf a 1. Essencialmente, quanto mais próximo a 1, melhor o modelo. 
+
+
+$$NSE = 1 - \frac{\sum_{i=1}^{n} (Obs_{i}-Sim_{i})^{2}}{\sum_{i = 1}^{n} (Obs_{i}-\bar{Obs}_{i})^{2}}$$
+
+
+
+
 
 ```{r , include=TRUE}
-obs <- c(
+v_obs <- c(
   -0.49, 0.27, -0.48, 0.8, -1, 0.1, -1.16,
   0.58, -1.6, -0.31, 0.45, -0.98, 0.19, 0.73,
   -0.49, -0.04, -0.11, 0.46, 2.02, -1.05
 )
-prev <- c(
+v_prev <- c(
   NA, -0.49, 0.27, -0.48, 0.8, -1, 0.1, -1.16,
   0.58, -1.6, -0.31, 0.45, -0.98, 0.19, 0.73,
   -0.49, -0.04, -0.11, 0.46, 2.02
@@ -1692,8 +1787,6 @@ prev <- c(
 
 
 
-- - - 
 
-15. Construa uma função para converter valores de temperatura em K para °C e outra para converter ângulos de radianos para graus. Utilize dois exemplos para mostrar que suas funções funcionam corretamente.
 
 

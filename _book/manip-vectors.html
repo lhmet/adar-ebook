@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 7 Manipulação de Vetores | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 7 Manipulação de Vetores | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-23" />
+<meta name="date" content="2020-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -176,10 +176,12 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html#configurando-dicionários-customizados"><i class="fa fa-check"></i><b>4.2.1</b> Configurando dicionários customizados</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
-<li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
+<li class="chapter" data-level="5" data-path="boas-refrências.html"><a href="boas-refrências.html"><i class="fa fa-check"></i><b>5</b> Boas refrências</a><ul>
 <li class="chapter" data-level="5.1" data-path="convenção.html"><a href="convenção.html"><i class="fa fa-check"></i><b>5.1</b> Convenção</a></li>
 <li class="chapter" data-level="5.2" data-path="calculadora.html"><a href="calculadora.html"><i class="fa fa-check"></i><b>5.2</b> Calculadora</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="calculadora.html"><a href="calculadora.html#aritmética-básica"><i class="fa fa-check"></i><b>5.2.1</b> Aritmética básica</a></li>
@@ -325,55 +327,54 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>11.2</b> <em>ggplot2</em></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="oper-mat.html"><a href="oper-mat.html"><i class="fa fa-check"></i><b>A</b> Operações adicionais com matrizes</a><ul>
-<li class="chapter" data-level="A.1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>A.1</b> Função <code>dim()</code></a></li>
-<li class="chapter" data-level="A.2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>A.2</b> Atribuição por indexação</a></li>
-<li class="chapter" data-level="A.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>A.3</b> Operações matriciais</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>A.3.1</b> Multiplicação matricial</a></li>
-<li class="chapter" data-level="A.3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>A.3.2</b> Adição matricial</a></li>
-<li class="chapter" data-level="A.3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>A.3.3</b> Produto escalar</a></li>
-<li class="chapter" data-level="A.3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>A.3.4</b> Determinante</a></li>
-<li class="chapter" data-level="A.3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>A.3.5</b> Solução de sistemas lineares</a></li>
-<li class="chapter" data-level="A.3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>A.3.6</b> Produto cartesiano</a></li>
+<li class="appendix"><span><b>Appendix</b></span><ul>
+<li class="chapter" data-level="1" data-path="função-dim.html"><a href="função-dim.html"><i class="fa fa-check"></i><b>1</b> Função <code>dim()</code></a></li>
+<li class="chapter" data-level="2" data-path="atribuição-por-indexação.html"><a href="atribuição-por-indexação.html"><i class="fa fa-check"></i><b>2</b> Atribuição por indexação</a></li>
+<li class="chapter" data-level="3" data-path="operações-matriciais.html"><a href="operações-matriciais.html"><i class="fa fa-check"></i><b>3</b> Operações matriciais</a><ul>
+<li class="chapter" data-level="3.1" data-path="operações-matriciais.html"><a href="operações-matriciais.html#multiplicação-matricial"><i class="fa fa-check"></i><b>3.1</b> Multiplicação matricial</a></li>
+<li class="chapter" data-level="3.2" data-path="operações-matriciais.html"><a href="operações-matriciais.html#adição-matricial"><i class="fa fa-check"></i><b>3.2</b> Adição matricial</a></li>
+<li class="chapter" data-level="3.3" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-escalar"><i class="fa fa-check"></i><b>3.3</b> Produto escalar</a></li>
+<li class="chapter" data-level="3.4" data-path="operações-matriciais.html"><a href="operações-matriciais.html#determinante"><i class="fa fa-check"></i><b>3.4</b> Determinante</a></li>
+<li class="chapter" data-level="3.5" data-path="operações-matriciais.html"><a href="operações-matriciais.html#solução-de-sistemas-lineares"><i class="fa fa-check"></i><b>3.5</b> Solução de sistemas lineares</a></li>
+<li class="chapter" data-level="3.6" data-path="operações-matriciais.html"><a href="operações-matriciais.html#produto-cartesiano"><i class="fa fa-check"></i><b>3.6</b> Produto cartesiano</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>B</b> Funções nativas do R para importar e exportar dados</a><ul>
-<li class="chapter" data-level="B.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>B.1</b> Amostras pequenas de dados</a><ul>
-<li class="chapter" data-level="B.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>B.1.1</b> scan()</a></li>
-<li class="chapter" data-level="B.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>B.1.2</b> readline()</a></li>
-<li class="chapter" data-level="B.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>B.1.3</b> Impressão na tela</a></li>
-<li class="chapter" data-level="B.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>B.1.4</b> textConnection()</a></li>
+<li class="chapter" data-level="A" data-path="funções-nativas-do-r-para-importar-e-exportar-dados.html"><a href="funções-nativas-do-r-para-importar-e-exportar-dados.html"><i class="fa fa-check"></i><b>A</b> Funções nativas do R para importar e exportar dados</a><ul>
+<li class="chapter" data-level="A.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html"><i class="fa fa-check"></i><b>A.1</b> Amostras pequenas de dados</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#scan"><i class="fa fa-check"></i><b>A.1.1</b> scan()</a></li>
+<li class="chapter" data-level="A.1.2" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#readline"><i class="fa fa-check"></i><b>A.1.2</b> readline()</a></li>
+<li class="chapter" data-level="A.1.3" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#impressão-na-tela"><i class="fa fa-check"></i><b>A.1.3</b> Impressão na tela</a></li>
+<li class="chapter" data-level="A.1.4" data-path="amostras-pequenas-de-dados.html"><a href="amostras-pequenas-de-dados.html#textconnection"><i class="fa fa-check"></i><b>A.1.4</b> textConnection()</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>B.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
-<li class="chapter" data-level="B.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>B.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
+<li class="chapter" data-level="A.2" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><i class="fa fa-check"></i><b>A.2</b> Exportando e recuperando objetos do R no formato textual</a><ul>
+<li class="chapter" data-level="A.2.1" data-path="exportando-e-recuperando-objetos-do-r-no-formato-textual.html"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#dput-dget-dump-e-source."><i class="fa fa-check"></i><b>A.2.1</b> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>B.3</b> Dados de pacotes do R</a></li>
-<li class="chapter" data-level="B.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>B.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>B.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
-<li class="chapter" data-level="B.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>B.4.2</b> Arquivos formatados com largura fixa</a></li>
+<li class="chapter" data-level="A.3" data-path="dados-de-pacotes-do-r.html"><a href="dados-de-pacotes-do-r.html"><i class="fa fa-check"></i><b>A.3</b> Dados de pacotes do R</a></li>
+<li class="chapter" data-level="A.4" data-path="readtable.html"><a href="readtable.html"><i class="fa fa-check"></i><b>A.4</b> Leitura de arquivos texto com funções da base do R</a><ul>
+<li class="chapter" data-level="A.4.1" data-path="readtable.html"><a href="readtable.html#dados-hidrometeorológicos-brasileiros"><i class="fa fa-check"></i><b>A.4.1</b> Dados hidrometeorológicos brasileiros</a></li>
+<li class="chapter" data-level="A.4.2" data-path="readtable.html"><a href="readtable.html#arquivos-formatados-com-largura-fixa"><i class="fa fa-check"></i><b>A.4.2</b> Arquivos formatados com largura fixa</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>C</b> R Markdown</a><ul>
-<li class="chapter" data-level="C.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>C.1</b> Como usar o <em>R Markdown</em></a><ul>
-<li class="chapter" data-level="C.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>C.1.1</b> Opções do <strong>chunk</strong></a></li>
-<li class="chapter" data-level="C.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>C.1.2</b> Saídas dos <strong>chunks</strong></a></li>
-<li class="chapter" data-level="C.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>C.1.3</b> Códigos R dentro de linhas</a></li>
+<li class="chapter" data-level="B" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>B</b> R Markdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Como usar o <em>R Markdown</em></a><ul>
+<li class="chapter" data-level="B.1.1" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#opções-do-chunk"><i class="fa fa-check"></i><b>B.1.1</b> Opções do <strong>chunk</strong></a></li>
+<li class="chapter" data-level="B.1.2" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#saídas-dos-chunks"><i class="fa fa-check"></i><b>B.1.2</b> Saídas dos <strong>chunks</strong></a></li>
+<li class="chapter" data-level="B.1.3" data-path="como-usar-o-r-markdown.html"><a href="como-usar-o-r-markdown.html#códigos-r-dentro-de-linhas"><i class="fa fa-check"></i><b>B.1.3</b> Códigos R dentro de linhas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
-<li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
-<li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
-<li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
-<li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
-<li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
-<li class="chapter" data-level="C.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>C.2.7</b> Ênfase de texto</a></li>
-<li class="chapter" data-level="C.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>C.2.8</b> Hyperlinks</a></li>
-<li class="chapter" data-level="C.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>C.2.9</b> Figuras</a></li>
-<li class="chapter" data-level="C.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>C.2.10</b> Expressões matemáticas</a></li>
+<li class="chapter" data-level="B.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>B.2</b> Markdown</a><ul>
+<li class="chapter" data-level="B.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>B.2.1</b> Cabeçalhos</a></li>
+<li class="chapter" data-level="B.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>B.2.2</b> Parágrafos</a></li>
+<li class="chapter" data-level="B.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>B.2.3</b> Listas</a></li>
+<li class="chapter" data-level="B.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>B.2.4</b> Linhas horizontais</a></li>
+<li class="chapter" data-level="B.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>B.2.5</b> Citações diretas</a></li>
+<li class="chapter" data-level="B.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>B.2.6</b> Tabelas</a></li>
+<li class="chapter" data-level="B.2.7" data-path="markdown.html"><a href="markdown.html#ênfase-de-texto"><i class="fa fa-check"></i><b>B.2.7</b> Ênfase de texto</a></li>
+<li class="chapter" data-level="B.2.8" data-path="markdown.html"><a href="markdown.html#hyperlinks"><i class="fa fa-check"></i><b>B.2.8</b> Hyperlinks</a></li>
+<li class="chapter" data-level="B.2.9" data-path="markdown.html"><a href="markdown.html#figuras"><i class="fa fa-check"></i><b>B.2.9</b> Figuras</a></li>
+<li class="chapter" data-level="B.2.10" data-path="markdown.html"><a href="markdown.html#expressões-matemáticas"><i class="fa fa-check"></i><b>B.2.10</b> Expressões matemáticas</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>C.3</b> Aparência</a></li>
-<li class="chapter" data-level="C.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>C.4</b> Referências para aprender mais sobre o R Markdown</a></li>
+<li class="chapter" data-level="B.3" data-path="aparência.html"><a href="aparência.html"><i class="fa fa-check"></i><b>B.3</b> Aparência</a></li>
+<li class="chapter" data-level="B.4" data-path="referências-para-aprender-mais-sobre-o-r-markdown.html"><a href="referências-para-aprender-mais-sobre-o-r-markdown.html"><i class="fa fa-check"></i><b>B.4</b> Referências para aprender mais sobre o R Markdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/lhmet/adar-ebook" target="blank">Publicado com bookdown</a></li>
@@ -407,7 +408,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><p>usar as funções para cálculos móveis</p></li>
 </ul>
 <p>Em algumas seções deste capítulos usaremos funções dos pacotes do grupo <a href="https://www.tidyverse.org/">tidyverse</a>, como o <a href="https://ggplot2.tidyverse.org/">ggplot2</a> e <a href="https://dplyr.tidyverse.org/">dplyr</a>. Para carregá-los basta digitar:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 </div>
             </section>
 

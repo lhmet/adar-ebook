@@ -61,7 +61,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 
 
 <div class="rmdtip">
-<p>Embora existam dois tipos de vetores o termo &quot;vetor&quot; é em geral usado para se referir ao do tipo atômico.</p>
+<p>Embora existam dois tipos de vetores o termo "vetor" é em geral usado para se referir ao do tipo atômico.</p>
 </div>
 
 
@@ -157,7 +157,7 @@ Na exemplo acima nós forçamos a conversão da variável `vetor_num` do tipo re
 ### Caractere
 
 
-Um grupo de caracteres (ou *strings*), letras ou qualquer forma de texto são dados do tipo **`character`**. Eles são identificados por aspas dupla (`"`) ou simples (`'`) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caracter:
+Um grupo de caracteres (ou *strings*), letras ou qualquer forma de texto são dados do tipo **`character`**. Eles são identificados por aspas dupla (`"`) ou simples (`'`) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caractere:
 
 
 ```r
@@ -167,7 +167,7 @@ class(vetor_char)
 #> [1] "character"
 ```
 
-Dados do tipo caracter são usados para descrição qualitativa de uma variável, como no caso de  identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).
+Dados do tipo caractere são usados para descrição qualitativa de uma variável, como no caso de  identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).
 
 O número de letras em cada elemento de um vetor do tipo **`character`** podemos determinar com `nchar()`.
         
@@ -198,13 +198,13 @@ month.abb
 #>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
 ```
 
-Se você precisar incluir aspas duplas ou apóstrofe em um caracter usando os dois delimitadores juntos, como nos dois exemplos, respectivamente:
+Se você precisar incluir aspas duplas ou apóstrofe em um caractere usando os dois delimitadores juntos, como nos dois exemplos, respectivamente:
 
 
 ```r
-citacao <- 'Me diga o que é pior: "Desistir do que quer ou se contentar com o que nunca quiz?" - Reverb Poesia.'
+citacao <- 'Me diga o que é pior: "Desistir do que quer ou se contentar com o que nunca quis?" - Reverb Poesia.'
 citacao
-#> [1] "Me diga o que é pior: \"Desistir do que quer ou se contentar com o que nunca quiz?\" - Reverb Poesia."
+#> [1] "Me diga o que é pior: \"Desistir do que quer ou se contentar com o que nunca quis?\" - Reverb Poesia."
 
 sentenca_apos <- "Marca d'água"
 sentenca_apos
@@ -212,7 +212,7 @@ sentenca_apos
 ```
 
 
-Se precisar usar ambos delimitadores dentro um mesmo caracter, use a barra invertida (`\`) antes do delimitador que deseja desconsiderar.
+Se precisar usar ambos delimitadores dentro um mesmo caractere, use a barra invertida (`\`) antes do delimitador que deseja desconsiderar.
 
 
 ```r
@@ -236,13 +236,13 @@ cat(sentenca_2aspas, "\n")
 #> Ele disse: "Me sinto como um peixe fora d'água"
 ```
 
-[^cat]: Em comparação a função `print()`, a função `cat()` tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a  coersão deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.
+[^cat]: Em comparação a função `print()`, a função `cat()` tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a  coerção deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.
 
 <div class="rmdnote">
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
 <ul>
 <li><p><code>\\'</code> aspas simples</p></li>
-<li><p><code>\\&quot;</code> aspas duplas</p></li>
+<li><p><code>\\"</code> aspas duplas</p></li>
 <li><p><code>\\n</code> quebra de lina ou nova linha</p></li>
 <li><p><code>\\\\</code> a própria barra invertida</p></li>
 </ul>
@@ -325,13 +325,13 @@ Essa é uma forma de verificação mais direta do tipo de uma variável. Outra p
 ## Conversão entre tipos de dados
 
 
-Em algumas circunstâncias precisamos alterar o tipo de uma variável para o tipo que queremos. Para isso há o grupo de funções `as.{tipo_de_dados}()`, semelhante ao grupo de funções `is.{tipo_de_dados}()`. Este tipo de operação é chamada de **coersão** no <img src="images/logo_r.png" width="20">.
+Em algumas circunstâncias precisamos alterar o tipo de uma variável para o tipo que queremos. Para isso há o grupo de funções `as.{tipo_de_dados}()`, semelhante ao grupo de funções `is.{tipo_de_dados}()`. Este tipo de operação é chamada de **coerção** no <img src="images/logo_r.png" width="20">.
 
 <!-- 
 COLOCAR TUDO EM UMA TABELA SÓ 
 -->
 
-Então, a coersão da variável `vetor_num` para inteiro pode ser feita com:
+Então, a coerção da variável `vetor_num` para inteiro pode ser feita com:
 
 
 ```r
@@ -344,7 +344,7 @@ typeof(as.integer(vetor_num))
 #> [1] "integer"
 ```
 
-Já a sua coersão para lógico 
+Já a sua coerção para lógico 
 
 
 ```r
@@ -358,7 +358,7 @@ typeof(as.logical(vetor_num))
 converte **0** para `FALSE` e **qualquer outro número** para `TRUE`.
 
 
-A coersão da variável `vetor_log` para numérica 
+A coerção da variável `vetor_log` para numérica 
 
 
 ```r
@@ -374,25 +374,25 @@ typeof(as.numeric(vetor_log))
 converte os valores `FALSE` para **0** e **TRUE** para `1`. 
 
 
-A coersão da variável `vetor_char` para numérica ou inteiro
+A coerção da variável `vetor_char` para numérica ou inteiro
 
 
 ```r
 vetor_char
 #> [1] "ae" NA   "ou"
 as.integer(vetor_char)
-#> Warning: NAs introduced by coercion
+#> Warning: NAs introduzidos por coerção
 #> [1] NA NA NA
 # verificação do resultado
 typeof(as.numeric(vetor_char))
-#> Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion
+#> Warning in typeof(as.numeric(vetor_char)): NAs introduzidos por coerção
 #> [1] "double"
 ```
 
 gera `NA`.
 
 
-Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coersão automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.
+Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coerção automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.
 
 Misturando `numeric` com `character` resulta:
 
@@ -457,7 +457,7 @@ Neste exemplo, os valores lógicos obtidos com o operador `>` foram implicitamen
 
 ### Fator
 
-Em alguns casos variáveis do tipo caracter possuem uma ordem implícita. Este tipo de variável é geralmente chamada de **categórica**. Então qualquer variável que pode ser ordenada ou classificada em grupos pode ser representada como `factor` no <img src="images/logo_r.png" width="20">. 
+Em alguns casos variáveis do tipo caractere possuem uma ordem implícita. Este tipo de variável é geralmente chamada de **categórica**. Então qualquer variável que pode ser ordenada ou classificada em grupos pode ser representada como `factor` no <img src="images/logo_r.png" width="20">. 
 
 Podemos por exemplo classificar eventos de ocorrência de chuva por classe de intensidade:
 
@@ -471,7 +471,7 @@ intensidade
 #> Levels: alta baixa moderada
 ```
 
-Note que a impressão de um fator na tela é diferente da deum vetor do tipo `character`. Ele é impresso sem as aspas e há uma segunda linha de informação sobre os níveis (*levels*) da variável `intensidade`. Um fator possui o atributo adicional: níveis. Os níveis de um fator são obtidos com a função `levels()`: 
+Note que a impressão de um fator na tela é diferente da de um caractere. Ele é impresso sem as aspas e há uma segunda linha de informação sobre os níveis (*levels*) da variável `intensidade`. Um fator possui o atributo adicional: níveis. Os níveis de um fator são obtidos com a função `levels()`: 
 
 
 ```r
@@ -512,7 +512,7 @@ Fatores são úteis em alguns processos analíticos e gráficos. Para ilustrar u
 n_casos <- c(90, 30, 5)
 ```
 
-Podeíamos representar graficamente estas informações. Veja abaixo a diferença na ordem do eixo x, ao usar o fator `intensidade`(ordem alfabética) e `intensidade_o` (ordenado):
+Poderíamos representar graficamente estas informações. Veja abaixo a diferença na ordem do eixo x, ao usar o fator `intensidade`(ordem alfabética) e `intensidade_o` (ordenado):
 
 
 ```r
@@ -538,7 +538,7 @@ is.ordered(intensidade)
 #> [1] FALSE
 ```
 
-A coersão para **fator** é feita pela função `as.factor`:
+A coerção para **fator** é feita pela função `as.factor`:
 
 
 ```r
@@ -555,7 +555,7 @@ summary(intensidade_no)
 
 ### Datas e horários
 
-Lidar com datas e horários pode ser difícil se não for usad uma estrutura de dados específica para isso. Entre as classes mais úteis para armazenar este tipo de informação, estão:
+Lidar com datas e horários pode ser difícil se não for usada uma estrutura de dados específica para isso. Entre as classes mais úteis para armazenar este tipo de informação, estão:
 
   * `Date`: para combinar datas (anos, meses e dias)
   
@@ -569,16 +569,16 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-05-23"
+#> [1] "2020-05-30"
 Sys.time()
-#> [1] "2020-05-23 22:57:03 -03"
+#> [1] "2020-05-30 16:26:21 -03"
 ```
 
-<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meriadiano de Greenwich). -->
+<!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
 
 As datas seguem o formato padrão de representação [ISO-8601](https://pt.wikipedia.org/wiki/ISO_8601), ou seja o formato `YYYY-MM-DD` para `ano-mês-dia`, independente do local onde você mora.
 
-Datas são criadas a partir da coersão de dados do tipo `character` para `date`:
+Datas são criadas a partir da coerção de dados do tipo `character` para `date`:
 
 
 ```r
@@ -592,7 +592,7 @@ as.numeric(amd)
 #> [1] 15519
 ```
 
-Datas com horários são criados a partir da coersão de dados do tipo `character` para `POSIXct`:
+Datas com horários são criados a partir da coerção de dados do tipo `character` para `POSIXct`:
 
 
 ```r
@@ -605,7 +605,7 @@ as.numeric(amd_hms)
 #> [1] 1340916120
 ```
 
-A manipulação de dados da classe de datas com horários (`POSIXct`) torna-se mais versátil através do pacote `lubridate`, específico para manipulaçãode datas, o que será visto posteriormente.
+A manipulação de dados da classe de datas com horários (`POSIXct`) torna-se mais versátil através do pacote `lubridate`, específico para manipulação de datas, o que será visto posteriormente.
 
 O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a `%` e outros códigos que são descritos no manual de ajuda da função `?strptime`. O formato padrão assumido pelo R para caracteres contendo datas com horas é `%Y-%m-%d %H:%M:%S`.
 
@@ -632,7 +632,7 @@ format(x = Sys.Date(), format = "%Y")
 #> [1] "2020"
 ```
 
-O argumento format também pode ser specificado nas funções `as.Date()` e `as.POSIXct()`, assim provendo grande versatilidade para ler datas em diferentes formatos. No exmplo a seguir, vamos converter um caracter com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.
+O argumento format também pode ser especificado nas funções `as.Date()` e `as.POSIXct()`, assim provendo grande versatilidade para ler datas em diferentes formatos. No exemplo a seguir, vamos converter um caractere com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.
 
 
 ```r

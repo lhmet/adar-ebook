@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.2 Diretório de trabalho | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.2 Diretório de trabalho | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-23" />
+<meta name="date" content="2020-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -407,23 +407,23 @@ longos de diretórios para os arquivos. Por isso, quando abrimos uma sessão no
 <img src="images/logo_r.png" width="20">, ela é vinculada a um diretório de trabalho
 (<em>working directory</em>, <code>wd</code>). A função <code>getwd()</code> retorna o diretório de trabalho
 da sua sessão do <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<p>O local <em>default</em> geralmente é o home do usuário &quot;/home/usuario&quot; no linux
-e &quot;C:\Users\usuario\&quot; no Windows. Você obtém essa informação com a instrução
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<p>O local <em>default</em> geralmente é o home do usuário "/home/usuario" no linux
+e "C:\Users\usuario\" no Windows. Você obtém essa informação com a instrução
 abaixo:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="kw">Sys.getenv</span>(<span class="st">&quot;HOME&quot;</span>)</a></code></pre></div>
 <p>É neste local onde o <img src="images/logo_r.png" width="20"> e o RStudio irão salvar gráficos, documentos,
 ler e escrever dados, quando você não especificar o caminho completo para o
 arquivo de saída.</p>
 <p>Ocasionalmente pode ser conveniente alterar seu <code>wd</code> e para isso você pode
 usar a função <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
-<a class="sourceLine" id="cb306-3" data-line-number="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
-<a class="sourceLine" id="cb306-4" data-line-number="4"><span class="kw">getwd</span>()</a>
-<a class="sourceLine" id="cb306-5" data-line-number="5"><span class="co"># volta para o wd original</span></a>
-<a class="sourceLine" id="cb306-6" data-line-number="6"><span class="kw">setwd</span>(wd)</a>
-<a class="sourceLine" id="cb306-7" data-line-number="7"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb305-2" title="2"><span class="co"># define o wd em &quot;/home/user&quot;</span></a>
+<a class="sourceLine" id="cb305-3" title="3"><span class="kw">setwd</span>(<span class="st">&quot;~/Documents&quot;</span>)</a>
+<a class="sourceLine" id="cb305-4" title="4"><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb305-5" title="5"><span class="co"># volta para o wd original</span></a>
+<a class="sourceLine" id="cb305-6" title="6"><span class="kw">setwd</span>(wd)</a>
+<a class="sourceLine" id="cb305-7" title="7"><span class="kw">getwd</span>()</a></code></pre></div>
 <div class="rmdtip">
 <p>
 Você pode configurar o diretório de trabalho pelo menu do Rstudio <em><code>Session ▶ Set Working Directory</code></em>. Você terá as opções:

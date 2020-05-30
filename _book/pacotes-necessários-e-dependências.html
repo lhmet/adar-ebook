@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Pacotes necessários e dependências | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Pacotes necessários e dependências | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-23" />
+<meta name="date" content="2020-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -399,34 +399,34 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">2.3</span> Pacotes necessários e dependências</h2>
 <p>Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.</p>
 <p>Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes da instalação no <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb25-1" data-line-number="1">$ <span class="fu">sudo</span> apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">  <span class="st">&quot;rmarkdown&quot;</span>,</a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">  <span class="st">&quot;knitr&quot;</span>,</a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">  <span class="st">&quot;pander&quot;</span>, </a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">  <span class="st">&quot;htmlTable&quot;</span>,</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7">  <span class="st">&quot;styler&quot;</span>,</a>
-<a class="sourceLine" id="cb26-8" data-line-number="8">  <span class="st">&quot;tidyverse&quot;</span>, </a>
-<a class="sourceLine" id="cb26-9" data-line-number="9">  <span class="st">&quot;rio&quot;</span>,   <span class="co"># instala readxl, openlxlsx, data.table, foreign, haven, feather, </span></a>
-<a class="sourceLine" id="cb26-10" data-line-number="10">           <span class="co"># readODS, jsonlite, rmatio</span></a>
-<a class="sourceLine" id="cb26-11" data-line-number="11">  <span class="st">&quot;writexl&quot;</span>,</a>
-<a class="sourceLine" id="cb26-12" data-line-number="12">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
-<a class="sourceLine" id="cb26-13" data-line-number="13">  <span class="st">&quot;ncdf4&quot;</span>,</a>
-<a class="sourceLine" id="cb26-14" data-line-number="14">  <span class="st">&quot;raster&quot;</span>,</a>
-<a class="sourceLine" id="cb26-15" data-line-number="15">  <span class="st">&quot;openair&quot;</span>,</a>
-<a class="sourceLine" id="cb26-16" data-line-number="16">  <span class="st">&quot;lubridate&quot;</span>,</a>
-<a class="sourceLine" id="cb26-17" data-line-number="17">  <span class="st">&quot;fields&quot;</span>,</a>
-<a class="sourceLine" id="cb26-18" data-line-number="18">  <span class="st">&quot;viridis&quot;</span>,</a>
-<a class="sourceLine" id="cb26-19" data-line-number="19">  <span class="st">&quot;WriteXLS&quot;</span>,</a>
-<a class="sourceLine" id="cb26-20" data-line-number="20">  <span class="st">&quot;gcookbook&quot;</span></a>
-<a class="sourceLine" id="cb26-21" data-line-number="21">  )</a>
-<a class="sourceLine" id="cb26-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb26-23" data-line-number="23">pcks_dev &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb26-24" data-line-number="24">  <span class="st">&quot;vembedr&quot;</span>,</a>
-<a class="sourceLine" id="cb26-25" data-line-number="25">  <span class="st">&quot;inmetr&quot;</span></a>
-<a class="sourceLine" id="cb26-26" data-line-number="26">)</a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">install.packages</span>(pcks) </a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb25-1" title="1">$ <span class="fu">sudo</span> apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb26-2" title="2">  <span class="st">&quot;easypackages&quot;</span>,</a>
+<a class="sourceLine" id="cb26-3" title="3">  <span class="st">&quot;rmarkdown&quot;</span>,</a>
+<a class="sourceLine" id="cb26-4" title="4">  <span class="st">&quot;knitr&quot;</span>,</a>
+<a class="sourceLine" id="cb26-5" title="5">  <span class="st">&quot;pander&quot;</span>, </a>
+<a class="sourceLine" id="cb26-6" title="6">  <span class="st">&quot;htmlTable&quot;</span>,</a>
+<a class="sourceLine" id="cb26-7" title="7">  <span class="st">&quot;styler&quot;</span>,</a>
+<a class="sourceLine" id="cb26-8" title="8">  <span class="st">&quot;tidyverse&quot;</span>, </a>
+<a class="sourceLine" id="cb26-9" title="9">  <span class="st">&quot;rio&quot;</span>,   <span class="co"># instala readxl, openlxlsx, data.table, foreign, haven, feather, </span></a>
+<a class="sourceLine" id="cb26-10" title="10">           <span class="co"># readODS, jsonlite, rmatio</span></a>
+<a class="sourceLine" id="cb26-11" title="11">  <span class="st">&quot;writexl&quot;</span>,</a>
+<a class="sourceLine" id="cb26-12" title="12">  <span class="st">&quot;microbenchmark&quot;</span>,</a>
+<a class="sourceLine" id="cb26-13" title="13">  <span class="st">&quot;ncdf4&quot;</span>,</a>
+<a class="sourceLine" id="cb26-14" title="14">  <span class="st">&quot;raster&quot;</span>,</a>
+<a class="sourceLine" id="cb26-15" title="15">  <span class="st">&quot;openair&quot;</span>,</a>
+<a class="sourceLine" id="cb26-16" title="16">  <span class="st">&quot;lubridate&quot;</span>,</a>
+<a class="sourceLine" id="cb26-17" title="17">  <span class="st">&quot;fields&quot;</span>,</a>
+<a class="sourceLine" id="cb26-18" title="18">  <span class="st">&quot;viridis&quot;</span>,</a>
+<a class="sourceLine" id="cb26-19" title="19">  <span class="st">&quot;WriteXLS&quot;</span>,</a>
+<a class="sourceLine" id="cb26-20" title="20">  <span class="st">&quot;gcookbook&quot;</span></a>
+<a class="sourceLine" id="cb26-21" title="21">  )</a>
+<a class="sourceLine" id="cb26-22" title="22"></a>
+<a class="sourceLine" id="cb26-23" title="23">pcks_dev &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb26-24" title="24">  <span class="st">&quot;vembedr&quot;</span>,</a>
+<a class="sourceLine" id="cb26-25" title="25">  <span class="st">&quot;inmetr&quot;</span></a>
+<a class="sourceLine" id="cb26-26" title="26">)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">install.packages</span>(pcks) </a></code></pre></div>
 <!-- 
 # rJava
 https://github.com/hannarud/r-best-practices/wiki/Installing-RJava-(Ubuntu)
