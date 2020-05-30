@@ -1657,33 +1657,33 @@ tar_est2 <- c(
 
 > Dica: Faça um gráfico para visualizar as temperaturas das duas estações. Isso facilitará a solução.
 
-  **a.** Determine a média diária da $T_{ar}$ das duas estações arrendondando para uma casa decimal. Salve a média de cada estação nas variáveis `tmed_est1` e `tmed_est2`. 
+   **a.** Determine a média diária da $T_{ar}$ das duas estações arrendondando para uma casa decimal. Salve a média de cada estação nas variáveis `tmed_est1` e `tmed_est2`. 
 
 
-  **b**. Utilizando as variáveis do item anterior, verifique usando comparação lógica, em qual estação o ambiente é mais quente?
+   **b**. Utilizando as variáveis do item anterior, verifique usando comparação lógica, em qual estação o ambiente é mais quente?
 
 
-  **c**. Obtenha a 3ª maior temperatura do dia em cada estação.
+   **c**. Obtenha a 3ª maior temperatura do dia em cada estação.
 
 
-  **d**. Calcule a amplitude térmica diária ($ATD = T_{max}-T_{min}$, onde $T_{max}$: temperatura máxima dária e $T_{min}$: temperatura mínima dária) das estações 1 e 2, arrendondando para uma casa decimal. Salve os resultados nas variaveis `atd_est1` e `atd_est2`.
+   **d**. Calcule a amplitude térmica diária ($ATD = T_{max}-T_{min}$, onde $T_{max}$: temperatura máxima dária e $T_{min}$: temperatura mínima dária) das estações 1 e 2, arrendondando para uma casa decimal. Salve os resultados nas variaveis `atd_est1` e `atd_est2`.
 
 
-  **e**. Qual o horário de ocorrência das temperaturas máximas e mínimas em cada estação? Salve os resultados nas variáveis `hmax_est{i}` e `hmin_est{i}`, com $i = 1, 2$.
+   **e**. Qual o horário de ocorrência das temperaturas máximas e mínimas em cada estação? Salve os resultados nas variáveis `hmax_est{i}` e `hmin_est{i}`, com $i = 1, 2$.
 
 
-  **f**. Quando `tar_est2` é maior que `tar_est1` qual a maior diferença absoluta de temperatura entre as duas estações?
+   **f**. Quando `tar_est2` é maior que `tar_est1` qual a maior diferença absoluta de temperatura entre as duas estações?
 
 
-  **g**. Qual a hora correspondende a ocorrência daquela maior diferença absoluta de temperatura obtida no item anterior?
+   **g**. Qual a hora correspondende a ocorrência daquela maior diferença absoluta de temperatura obtida no item anterior?
 
-  **h**. O horário do pôr do sol pode ser estimado a partir da $T_{ar}$. Para o período após o horário de ocorrência da $T_{max}$ determina-se em qual hora ocorre a maior queda de $T_{ar}$ em relação a hora anterior. Estime o horário do pôr do sol para as duas estações (`hps_est{i}`). 
-
-
-  **i**. Em quais horas as temperaturas das duas estações estão mais próximas uma da outra, ou seja com menos de 0,5°C de diferença ?
+   **h**. O horário do pôr do sol pode ser estimado a partir da $T_{ar}$. Para o período após o horário de ocorrência da $T_{max}$ determina-se em qual hora ocorre a maior queda de $T_{ar}$ em relação a hora anterior. Estime o horário do pôr do sol para as duas estações (`hps_est{i}`). 
 
 
-  **j**. Calcule a temperatura média diária usando os seguintes métodos para estação 2.
+   **i**. Em quais horas as temperaturas das duas estações estão mais próximas uma da outra, ou seja com menos de 0,5°C de diferença ?
+
+
+   **j**. Calcule a temperatura média diária usando os seguintes métodos para estação 2.
 
 $T_{med_{1}} = (T_{max} + T_{min})/2$, salvando em uma variável `tar_met1`.
 
@@ -1694,7 +1694,7 @@ $T_{med_{2}} = (T_{max} + T_{min} + T_{9} + 2T_{21})/5$, salvando em uma variáv
 $T_{med_{3}} = (T_{7} + T_{14} + 2T_{21})/4$, salvando em uma variável `tar_met2`.
 
 
-  **k**.Compare este resultados com aqueles obtidos no item **a**. Qual é melhor?
+   **k**.Compare este resultados com aqueles obtidos no item **a**. Qual é melhor?
 
 - - -
 
