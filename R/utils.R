@@ -29,6 +29,7 @@ r_cran_version_win <- function() {
   r_winver <- unique(stringr::str_extract(text, "R-[0-9]{1}\\.[0-9]{1}\\.[0-9]{1}"))
   r_winver <- r_winver[!is.na(r_winver)]
   return(r_winver[[1]])
+
 }
 
 #' Get link to NEWS of R for Windows
