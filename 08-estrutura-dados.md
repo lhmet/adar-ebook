@@ -55,8 +55,8 @@ Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `ve
 ```r
 # criando a matriz gerada com dim
 mat <- matrix(vetor, nrow = 3, ncol = 4)
-#> Warning in matrix(vetor, nrow = 3, ncol = 4): data length [7] is not a sub-
-#> multiple or multiple of the number of rows [3]
+#> Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um
+#> submúltiplo ou múltiplo do número de linhas [3]
 mat
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    0   -2   -5   -1
@@ -64,8 +64,8 @@ mat
 #> [3,]   -1    5    1    3
 # não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
-#> Warning in matrix(vetor, nrow = 3): data length [7] is not a sub-multiple or
-#> multiple of the number of rows [3]
+#> Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um
+#> submúltiplo ou múltiplo do número de linhas [3]
 mat
 #>      [,1] [,2] [,3]
 #> [1,]    0   -2   -5
@@ -78,8 +78,8 @@ No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas
 
 ```r
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
-#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): data length [7] is not a sub-
-#> multiple or multiple of the number of rows [2]
+#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não
+#> é um submúltiplo ou múltiplo do número de linhas [2]
 mat
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    0    1   -1   -2
@@ -1174,7 +1174,7 @@ mode(lst[1])
 #> [1] "list"
 # a função sum() espera como entrada um vetor
 sum(lst[1])
-#> Error in sum(lst[1]): invalid 'type' (list) of argument
+#> Error in sum(lst[1]): 'type' inválido (list) do argumento
 # acessando elemento inexistente
 lst[6]
 #> $<NA>
@@ -1286,7 +1286,7 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 
 
 ------------------------------------------------------------------------------
-           descrição                   código               resultado         
+          descriÃ§Ã£o                 cÃ³digo               resultado         
 -------------------------------- ------------------ --------------------------
        frasco de pimenta               frasco         ![](images/pepper.jpg)  
 
@@ -1295,7 +1295,7 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 
       1 pacote de pimenta           frasco[[1]]      ![](images/pepper-2.jpg) 
 
-    conteúdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
+   conteÃºdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
             pimenta                                                           
 ------------------------------------------------------------------------------
 
@@ -1485,8 +1485,8 @@ Para um diagnóstico rápido das variáveis de um `dataframe` usamos a função 
 # descrição geral do conjunto de dados
 str(dados)
 #> 'data.frame':	15 obs. of  3 variables:
-#>  $ datas : chr  "2013-01-01" "2013-01-02" "2013-01-03" "2013-01-04" ...
-#>  $ cidade: chr  "Santa Maria" "Santa Maria" "Santa Maria" "Santa Maria" ...
+#>  $ datas : Factor w/ 15 levels "2013-01-01","2013-01-02",..: 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ cidade: Factor w/ 1 level "Santa Maria": 1 1 1 1 1 1 1 1 1 1 ...
 #>  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
 ```
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-24" />
+<meta name="date" content="2020-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,44 +53,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -338,7 +363,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -438,28 +463,28 @@ In deciphering R code it is helpful to read from right to left and from inside t
 <div id="vantagens-do" class="section level4">
 <h4><span class="header-section-number">10.4.1.1</span> Vantagens do %&gt;%</h4>
 <p>O exemplo a baixo mostra uma aplicação simples do <code>%&gt;%</code> para extrair a raiz quadrada de um número com a função <code>base::sqrt()</code>e a extração do segundo elemento de um vetor com a função <code>dplyr::nth()</code> (uma função alternativa aos colchetes <code>[]</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># chamada tradicional de uma função </span>
-<span class="kw">sqrt</span>(<span class="dv">4</span>)
-<span class="kw">nth</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">2</span>)
-<span class="co"># chamada de uma função com %&gt;%</span>
-<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sqrt</span>()
-<span class="dv">5</span><span class="op">:</span><span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nth</span>(<span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1"><span class="co"># chamada tradicional de uma função </span></a>
+<a class="sourceLine" id="cb366-2" title="2"><span class="kw">sqrt</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb366-3" title="3"><span class="kw">nth</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb366-4" title="4"><span class="co"># chamada de uma função com %&gt;%</span></a>
+<a class="sourceLine" id="cb366-5" title="5"><span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb366-6" title="6"><span class="dv">5</span><span class="op">:</span><span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nth</span>(<span class="dv">2</span>)</a></code></pre></div>
 <p>Ambas formas realizam a mesma tarefa e com mesmo resultado e o benefício do <code>%&gt;%</code> não fica evidente. Entretanto, quando precisamos aplicar várias funções as vantagens ficam mais óbvias.</p>
 <p>No código abaixo tente decifrar o objetivo das operações no vetor x.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>)
-x
-<span class="co">#&gt; [1]  1  3 -1  1  4  2  2 -3</span>
-<span class="kw">nth</span>(<span class="kw">sort</span>(<span class="kw">cos</span>(<span class="kw">unique</span>(x)), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dt">n =</span> <span class="dv">2</span>)
-<span class="co">#&gt; [1] 0.5403023</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb367-2" title="2">x</a>
+<a class="sourceLine" id="cb367-3" title="3"><span class="co">#&gt; [1]  1  3 -1  1  4  2  2 -3</span></a>
+<a class="sourceLine" id="cb367-4" title="4"><span class="kw">nth</span>(<span class="kw">sort</span>(<span class="kw">cos</span>(<span class="kw">unique</span>(x)), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dt">n =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb367-5" title="5"><span class="co">#&gt; [1] 0.5403023</span></a></code></pre></div>
 <p>Talvez com o código identado fique mais claro:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nth</span>(            <span class="co"># 4</span>
-  <span class="kw">sort</span>(         <span class="co"># 3</span>
-    <span class="kw">cos</span>(        <span class="co"># 2</span>
-      <span class="kw">unique</span>(x) <span class="co"># 1</span>
-    ),
-    <span class="dt">decreasing =</span> <span class="ot">TRUE</span>
-  ),<span class="dt">n =</span>  <span class="dv">2</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">nth</span>(            <span class="co"># 4</span></a>
+<a class="sourceLine" id="cb368-2" title="2">  <span class="kw">sort</span>(         <span class="co"># 3</span></a>
+<a class="sourceLine" id="cb368-3" title="3">    <span class="kw">cos</span>(        <span class="co"># 2</span></a>
+<a class="sourceLine" id="cb368-4" title="4">      <span class="kw">unique</span>(x) <span class="co"># 1</span></a>
+<a class="sourceLine" id="cb368-5" title="5">    ),</a>
+<a class="sourceLine" id="cb368-6" title="6">    <span class="dt">decreasing =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb368-7" title="7">  ),<span class="dt">n =</span>  <span class="dv">2</span></a>
+<a class="sourceLine" id="cb368-8" title="8">)</a></code></pre></div>
 <p>O código acima está aninhando funções e isso leva a uma dificuldade de ler por causa da desordem. Para interpretá-lo precisamos fazer a leitura de dentro para fora:</p>
 <ol style="list-style-type: decimal">
 <li>mantém somente os valores únicos de x</li>
@@ -469,11 +494,11 @@ x
 </ol>
 <p>Conclusão: o objetivo era obter o segundo maior número resultante do cosseno do vetor numérico x.</p>
 <p>A versão usando pipe é:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># 1</span>
-<span class="st">  </span><span class="kw">cos</span>() <span class="op">%&gt;%</span><span class="st">                   </span><span class="co"># 2</span>
-<span class="st">  </span><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 3</span>
-<span class="st">  </span><span class="kw">nth</span>(<span class="dt">n =</span> <span class="dv">2</span>)                      <span class="co"># 4</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb369-2" title="2"><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># 1</span></a>
+<a class="sourceLine" id="cb369-3" title="3"><span class="st">  </span><span class="kw">cos</span>() <span class="op">%&gt;%</span><span class="st">                   </span><span class="co"># 2</span></a>
+<a class="sourceLine" id="cb369-4" title="4"><span class="st">  </span><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 3</span></a>
+<a class="sourceLine" id="cb369-5" title="5"><span class="st">  </span><span class="kw">nth</span>(<span class="dt">n =</span> <span class="dv">2</span>)                      <span class="co"># 4</span></a></code></pre></div>
 <p>Dessa forma, o código fica mais simples, legível e explícito. Por isso, daqui para frente, nós utilizaremos extensivamente o operador <code>%&gt;%</code> para ilustrar os verbos do <strong>dplyr</strong> e suas combinações.</p>
 <div class="rmdtip">
 <p>
@@ -490,26 +515,26 @@ No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela 
 <div id="o-operador-.-como-argumento" class="section level4">
 <h4><span class="header-section-number">10.4.1.2</span> O operador <code>.</code> como argumento</h4>
 <p>Uma representação mais explícita do código usado na cadeia de funções acima, seria com a inclusão do operador <code>.</code> e os nomes dos argumentos das funções:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unique</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># 1</span>
-<span class="st">  </span><span class="kw">sort</span>(<span class="dt">x =</span> ., <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 2</span>
-<span class="st">  </span><span class="kw">cos</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                     </span><span class="co"># 3</span>
-<span class="st">  </span><span class="kw">nth</span>(<span class="dt">x =</span> ., <span class="dt">n =</span> <span class="dv">2</span>)                  <span class="co"># 4</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb370-2" title="2"><span class="st">  </span><span class="kw">unique</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># 1</span></a>
+<a class="sourceLine" id="cb370-3" title="3"><span class="st">  </span><span class="kw">sort</span>(<span class="dt">x =</span> ., <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 2</span></a>
+<a class="sourceLine" id="cb370-4" title="4"><span class="st">  </span><span class="kw">cos</span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span><span class="st">                     </span><span class="co"># 3</span></a>
+<a class="sourceLine" id="cb370-5" title="5"><span class="st">  </span><span class="kw">nth</span>(<span class="dt">x =</span> ., <span class="dt">n =</span> <span class="dv">2</span>)                  <span class="co"># 4</span></a></code></pre></div>
 <p>O tempo a mais digitando é compensado posteriormente quando o você mesmo futuramente tiver que reler o código. Essa forma enfatiza com o <code>.</code> que o resultado à esquerda é usado como entrada para função à direita do <code>%&gt;%</code>.</p>
 <p>Mas nem todas funções do <img src="images/logo_r.png" width="20"> foram construídas com os dados de entrada no primeiro argumento. Essa é a deixa para outra funcionalidade do <code>.</code> que é redirecionar os dados de entrada para a posição adequada naquelas funções. Uma função que se encaixa neste caso é a <code>base::grep()</code> que detecta uma expressão regular num conjunto de caracteres (<em>strings</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">adverbs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ontem&quot;</span>, <span class="st">&quot;hoje&quot;</span>, <span class="st">&quot;amanhã&quot;</span>)
-<span class="kw">grep</span>(
-  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,
-  <span class="dt">x =</span> adverbs,
-  <span class="dt">value =</span> <span class="ot">TRUE</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1">adverbs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ontem&quot;</span>, <span class="st">&quot;hoje&quot;</span>, <span class="st">&quot;amanhã&quot;</span>)</a>
+<a class="sourceLine" id="cb371-2" title="2"><span class="kw">grep</span>(</a>
+<a class="sourceLine" id="cb371-3" title="3">  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,</a>
+<a class="sourceLine" id="cb371-4" title="4">  <span class="dt">x =</span> adverbs,</a>
+<a class="sourceLine" id="cb371-5" title="5">  <span class="dt">value =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb371-6" title="6">)</a></code></pre></div>
 <p>O código acima seve para retornar os elementos do vetor <code>dias</code> que contenham a letra <code>h</code>. No entanto os dados de entrada da <code>base::grep()</code> são esperados no 2° argumento (<code>x</code>). Para redirecioná-los para essa posição dentro de uma cadeia de funções com <code>%&gt;%</code>, colocamos o operador <code>.</code> no 2° argumento da função:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">adverbs <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">grep</span>(
-  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,
-  <span class="dt">x =</span> .,
-  <span class="dt">value =</span> <span class="ot">TRUE</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">adverbs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb372-2" title="2"><span class="st">  </span><span class="kw">grep</span>(</a>
+<a class="sourceLine" id="cb372-3" title="3">  <span class="dt">pattern =</span> <span class="st">&quot;h&quot;</span>,</a>
+<a class="sourceLine" id="cb372-4" title="4">  <span class="dt">x =</span> .,</a>
+<a class="sourceLine" id="cb372-5" title="5">  <span class="dt">value =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb372-6" title="6">)</a></code></pre></div>
 <!---
 # pipe forever?
 # No. ver http://r4ds.had.co.nz/pipes.html#When%20not%20to%20use%20the%20pipe
@@ -520,49 +545,49 @@ No exemplo anterior nós introduzimos a função <code>dplyr::nth()</code>. Ela 
 <h3><span class="header-section-number">10.4.2</span> Seleção de variáveis</h3>
 <p><img src="images/dplyr-select.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
 <p>Para selecionar somente variáveis de interesse em uma tabela de dados podemos usar a função <code>dplyr::select(.data, ...)</code>. Nos dados <code>clima_rs_tbl</code> se desejamos selecionar apenas as colunas <code>estacao</code> e <code>tmax</code> aplicamos a <code>dplyr::select()</code> com o 2° argumento listando as colunas que desejamos selecionar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(clima_rs_tbl, estacao, tmax)</code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1"><span class="kw">select</span>(clima_rs_tbl, estacao, tmax)</a></code></pre></div>
 <p>O resultado é um subconjunto dos dados originais contendo apenas as colunas nomeadas nos argumentos seguintes aos dados de entrada.</p>
 <p>A função <code>dplyr::select()</code> possui funções auxiliares para seleção de variáveis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># as variáveis entre uf e tmax</span>
-<span class="st">  </span><span class="kw">select</span>(., uf<span class="op">:</span>tmax) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># todas variáveis menos as entre codigo:uf</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>(codigo<span class="op">:</span>uf)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># ordem inversa das variáveis</span>
-<span class="st">  </span><span class="kw">select</span>(., tmax<span class="op">:</span>codigo) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># nomes que contenham a letra &quot;a&quot;</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;a&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># variáveis que iniciam com &quot;c&quot;</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">starts_with</span>(<span class="st">&quot;c&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># usando um vetor de caracteres</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;estacao&quot;</span>, <span class="st">&quot;uf&quot;</span>))) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># combinações</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>uf, <span class="kw">ends_with</span>(<span class="st">&quot;o&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
-
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># variáveis que inciam com letras minúsculas e com 4 caracteres</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">matches</span>(<span class="st">&quot;^[a-z]{4}$&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<p>O último exemplo usa uma expressão regular (<a href="https://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a>). <em>Regex</em> é uma linguagem para descrever e manipular caracteres de texto. Há <a href="http://aurelio.net/regex/guia/">livros sobre este assunto</a> e diversos <a href="https://stringr.tidyverse.org/articles/regular-expressions.html">tutorias</a> sobre <em>regex</em> no R. Para saber mais sobre isso veja o capítulo sobre <a href="http://r4ds.had.co.nz/strings.html">strings</a> do livro de <span class="citation">H. Wickham and Grolemund (<a href="referências.html#ref-Wickham2017">2017</a>)</span>. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-2" title="2"><span class="st">  </span><span class="co"># as variáveis entre uf e tmax</span></a>
+<a class="sourceLine" id="cb374-3" title="3"><span class="st">  </span><span class="kw">select</span>(., uf<span class="op">:</span>tmax) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-4" title="4"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-5" title="5"></a>
+<a class="sourceLine" id="cb374-6" title="6">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-7" title="7"><span class="st">  </span><span class="co"># todas variáveis menos as entre codigo:uf</span></a>
+<a class="sourceLine" id="cb374-8" title="8"><span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>(codigo<span class="op">:</span>uf)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-9" title="9"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-10" title="10"></a>
+<a class="sourceLine" id="cb374-11" title="11">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-12" title="12"><span class="st">  </span><span class="co"># ordem inversa das variáveis</span></a>
+<a class="sourceLine" id="cb374-13" title="13"><span class="st">  </span><span class="kw">select</span>(., tmax<span class="op">:</span>codigo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-14" title="14"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-15" title="15"></a>
+<a class="sourceLine" id="cb374-16" title="16">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-17" title="17"><span class="st">  </span><span class="co"># nomes que contenham a letra &quot;a&quot;</span></a>
+<a class="sourceLine" id="cb374-18" title="18"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;a&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-19" title="19"><span class="st">  </span><span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-20" title="20"></a>
+<a class="sourceLine" id="cb374-21" title="21">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-22" title="22"><span class="st">  </span><span class="co"># variáveis que iniciam com &quot;c&quot;</span></a>
+<a class="sourceLine" id="cb374-23" title="23"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">starts_with</span>(<span class="st">&quot;c&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-24" title="24"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-25" title="25"></a>
+<a class="sourceLine" id="cb374-26" title="26">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-27" title="27"><span class="st">  </span><span class="co"># usando um vetor de caracteres</span></a>
+<a class="sourceLine" id="cb374-28" title="28"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;estacao&quot;</span>, <span class="st">&quot;uf&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-29" title="29"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-30" title="30"></a>
+<a class="sourceLine" id="cb374-31" title="31">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-32" title="32"><span class="st">  </span><span class="co"># combinações</span></a>
+<a class="sourceLine" id="cb374-33" title="33"><span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span>uf, <span class="kw">ends_with</span>(<span class="st">&quot;o&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-34" title="34"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb374-35" title="35"></a>
+<a class="sourceLine" id="cb374-36" title="36">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-37" title="37"><span class="st">  </span><span class="co"># variáveis que inciam com letras minúsculas e com 4 caracteres</span></a>
+<a class="sourceLine" id="cb374-38" title="38"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">matches</span>(<span class="st">&quot;^[a-z]{4}$&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb374-39" title="39"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p>O último exemplo usa uma expressão regular (<a href="https://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a>). <em>Regex</em> é uma linguagem para descrever e manipular caracteres de texto. Há <a href="http://aurelio.net/regex/guia/">livros sobre este assunto</a> e diversos <a href="https://stringr.tidyverse.org/articles/regular-expressions.html">tutorias</a> sobre <em>regex</em> no R. Para saber mais sobre isso veja o capítulo sobre <a href="http://r4ds.had.co.nz/strings.html">strings</a> do livro de <span class="citation">H. Wickham and Grolemund (<a href="referências.html#ref-Wickham2017" role="doc-biblioref">2017</a>)</span>. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.</p>
 <p>Veja mais funções úteis para seleção de variáveis em <code>?dplyr::select</code>.</p>
 </div>
 <div id="seleção-de-observações" class="section level3">
@@ -573,39 +598,39 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 <ul>
 <li>linhas correspondentes ao <code>codigo</code> da estação 83936.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(codigo <span class="op">==</span><span class="st"> </span><span class="dv">83936</span>)</code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb375-2" title="2"><span class="st">  </span><span class="kw">filter</span>(codigo <span class="op">==</span><span class="st"> </span><span class="dv">83936</span>)</a></code></pre></div>
 <ul>
 <li>linhas da variável <code>estacao</code> que contenham o vetor caractere <code>litoraneas</code>.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">litoraneas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Torres&quot;</span>, 
-                <span class="st">&quot;Guaporé&quot;</span>)
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(estacao <span class="op">%in%</span><span class="st"> </span>litoraneas)</code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1">litoraneas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Torres&quot;</span>, </a>
+<a class="sourceLine" id="cb376-2" title="2">                <span class="st">&quot;Guaporé&quot;</span>)</a>
+<a class="sourceLine" id="cb376-3" title="3">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb376-4" title="4"><span class="st">  </span><span class="kw">filter</span>(estacao <span class="op">%in%</span><span class="st"> </span>litoraneas)</a></code></pre></div>
 <ul>
 <li>observações com <code>tmax</code> acima de 10% da média</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(clima_rs_tbl,  tmax <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.1</span><span class="op">*</span><span class="kw">mean</span>(tmax))</code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="kw">filter</span>(clima_rs_tbl,  tmax <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.1</span><span class="op">*</span><span class="kw">mean</span>(tmax))</a></code></pre></div>
 <ul>
 <li>observações com <code>tmax</code> e <code>prec</code> acima de suas médias</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="kw">filter</span>(
-  tmax <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(tmax),  
-  prec <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(prec)
-)
-<span class="co"># equivalente a</span>
-<span class="co">#clima_rs %&gt;% </span>
-<span class="co">#  filter(tmax &gt; mean(tmax) &amp; prec &gt; mean(prec))</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb378-2" title="2"><span class="kw">filter</span>(</a>
+<a class="sourceLine" id="cb378-3" title="3">  tmax <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(tmax),  </a>
+<a class="sourceLine" id="cb378-4" title="4">  prec <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb378-5" title="5">)</a>
+<a class="sourceLine" id="cb378-6" title="6"><span class="co"># equivalente a</span></a>
+<a class="sourceLine" id="cb378-7" title="7"><span class="co">#clima_rs %&gt;% </span></a>
+<a class="sourceLine" id="cb378-8" title="8"><span class="co">#  filter(tmax &gt; mean(tmax) &amp; prec &gt; mean(prec))</span></a></code></pre></div>
 <ul>
-<li>observações cuja variável <code>estacao</code> tem a palavra &quot;Sul&quot;</li>
+<li>observações cuja variável <code>estacao</code> tem a palavra "Sul"</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># estações com &quot;Sul&quot; no nome</span>
-clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(estacao, <span class="st">&quot;Sul&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" title="1"><span class="co"># estações com &quot;Sul&quot; no nome</span></a>
+<a class="sourceLine" id="cb379-2" title="2">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-3" title="3"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(estacao, <span class="st">&quot;Sul&quot;</span>))</a></code></pre></div>
 <div class="rmdtip">
 <p>
-O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo “Sul”. O pacote <strong>stringr</strong> <span class="citation"><span class="citation">(Hadley Wickham <a href="referências.html#ref-Wickham-stringr">2018</a>)</span></span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:
+O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo “Sul”. O pacote <strong>stringr</strong> <span class="citation"><span class="citation">(Wickham <a href="referências.html#ref-Wickham-stringr" role="doc-biblioref">2018</a>)</span></span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:
 </p>
 <p>
 <code>str_replace_all(</code>
@@ -627,158 +652,160 @@ O exemplo acima é mais uma operação com caracteres onde foi usada a função 
 </p>
 </div>
 <p>A seleção de observações também pode ser baseada em índices passados para função <code>dplyr::slice()</code> que retorna o subconjunto de observações correspondentes. Abaixo vejamos alguns exemplos de filtragem de linhas baseada em índices ou posições:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#linhas 2 e 4 </span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))
-<span class="co">#última linha</span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">n</span>())
-<span class="co"># exlui da última à 3a linha</span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="op">-</span>(<span class="kw">n</span>()<span class="op">:</span><span class="dv">3</span>))
-<span class="co"># linhas com tmax &gt; 26</span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which</span>(tmax <span class="op">&gt;</span><span class="st"> </span><span class="dv">26</span>))
-<span class="co"># linhas com tmax mais próxima a média de tmax</span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which.min</span>(<span class="kw">abs</span>(tmax <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tmax))))</code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1"><span class="co">#linhas 2 e 4 </span></a>
+<a class="sourceLine" id="cb380-2" title="2">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb380-3" title="3"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb380-4" title="4"><span class="co">#última linha</span></a>
+<a class="sourceLine" id="cb380-5" title="5">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb380-6" title="6"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb380-7" title="7"><span class="co"># exlui da última à 3a linha</span></a>
+<a class="sourceLine" id="cb380-8" title="8">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb380-9" title="9"><span class="st">  </span><span class="kw">slice</span>(., <span class="op">-</span>(<span class="kw">n</span>()<span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb380-10" title="10"><span class="co"># linhas com tmax &gt; 26</span></a>
+<a class="sourceLine" id="cb380-11" title="11">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb380-12" title="12"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which</span>(tmax <span class="op">&gt;</span><span class="st"> </span><span class="dv">26</span>))</a>
+<a class="sourceLine" id="cb380-13" title="13"><span class="co"># linhas com tmax mais próxima a média de tmax</span></a>
+<a class="sourceLine" id="cb380-14" title="14">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb380-15" title="15"><span class="st">  </span><span class="kw">slice</span>(., <span class="kw">which.min</span>(<span class="kw">abs</span>(tmax <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tmax))))</a></code></pre></div>
 </div>
 <div id="reordenando-dados" class="section level3">
 <h3><span class="header-section-number">10.4.4</span> Reordenando dados</h3>
 <p><img src="images/dplyr-arrange.png" width="20%" height="20%" style="display: block; margin: auto;" /></p>
 <p>As vezes é útil reordenar os dados segundo a ordem (crescente ou decrescente) dos valores de uma variável. Por exemplo, os dados <code>clima_rs_tbl</code> podem ser arranjados em ordem decrescente da precipitação anual, conforme abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(., <span class="kw">desc</span>(prec)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb381-2" title="2"><span class="st">  </span><span class="kw">arrange</span>(., <span class="kw">desc</span>(prec)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb381-3" title="3"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>A função <code>dplyr::arrange()</code> por padrão ordena os dados em ordem crescente. A função <code>dplyr::desc()</code> ordena os valores da variável em ordem descendente.</p>
 <p>Os dados ordenados pela <code>tmax</code>, ficam da seguinte forma:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(., tmax) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb382-2" title="2"><span class="st">  </span><span class="kw">arrange</span>(., tmax) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb382-3" title="3"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
 </div>
 <div id="criando-e-renomeando-variáveis" class="section level3">
 <h3><span class="header-section-number">10.4.5</span> Criando e renomeando variáveis</h3>
 <p><img src="images/dplyr-mutate-rename.png" width="50%" height="55%" style="display: block; margin: auto;" /></p>
 <p>Uma nova variável pode ser adicionada aos dados através da função <code>dplyr::mutate()</code>. A <code>tmax</code> expressa em Kelvin pode ser adicionada aos dados <code>clima_rs_tbl</code>, com:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># tmax em Kelvin</span>
-<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">tmaxK =</span> tmax <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># só as colunas de interesse</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;tmax&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># 3 primeiras linhas</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb383-2" title="2"><span class="st">  </span><span class="co"># tmax em Kelvin</span></a>
+<a class="sourceLine" id="cb383-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">tmaxK =</span> tmax <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb383-4" title="4"><span class="st">  </span><span class="co"># só as colunas de interesse</span></a>
+<a class="sourceLine" id="cb383-5" title="5"><span class="st">  </span><span class="kw">select</span>(., <span class="kw">contains</span>(<span class="st">&quot;tmax&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb383-6" title="6"><span class="st">  </span><span class="co"># 3 primeiras linhas</span></a>
+<a class="sourceLine" id="cb383-7" title="7"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>Podemos renomear variáveis com a função <code>dplyr::rename()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="kw">rename</span>(., 
-       <span class="st">&quot;id&quot;</span> =<span class="st"> </span>codigo,
-       <span class="st">&quot;site&quot;</span> =<span class="st"> </span>estacao,
-       <span class="st">&quot;temp_max&quot;</span> =<span class="st"> </span>tmax,
-       <span class="st">&quot;precip&quot;</span> =<span class="st"> </span>prec
-       ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb384-2" title="2"><span class="kw">rename</span>(., </a>
+<a class="sourceLine" id="cb384-3" title="3">       <span class="st">&quot;id&quot;</span> =<span class="st"> </span>codigo,</a>
+<a class="sourceLine" id="cb384-4" title="4">       <span class="st">&quot;site&quot;</span> =<span class="st"> </span>estacao,</a>
+<a class="sourceLine" id="cb384-5" title="5">       <span class="st">&quot;temp_max&quot;</span> =<span class="st"> </span>tmax,</a>
+<a class="sourceLine" id="cb384-6" title="6">       <span class="st">&quot;precip&quot;</span> =<span class="st"> </span>prec</a>
+<a class="sourceLine" id="cb384-7" title="7">       ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb384-8" title="8"><span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável <code>site</code> será corrigida, de forma os valores iguais a “A803” sejam substituídos por “A003”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_corr &lt;-<span class="st"> </span>prec_anual <span class="op">%&gt;%</span>
-<span class="kw">mutate</span>(
-  <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>)
-) 
-<span class="kw">tail</span>(prec_anual_corr, <span class="dt">n =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">prec_anual_corr &lt;-<span class="st"> </span>prec_anual <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb385-2" title="2"><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb385-3" title="3">  <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>)</a>
+<a class="sourceLine" id="cb385-4" title="4">) </a>
+<a class="sourceLine" id="cb385-5" title="5"><span class="kw">tail</span>(prec_anual_corr, <span class="dt">n =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p>Podemos preencher os valores faltantes de uma variável por um valor prescrito, por exemplo baseado na média de outras observações, ou nos valores prévios, ou posteriores. Variáveis podem ser derivadas das variáveis sendo criadas dentro da <code>dplyr::mutate()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># preenchendo prec faltante pela média</span>
-prec_anual_comp <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(., 
-         <span class="dt">prec =</span> <span class="kw">replace_na</span>(prec,
-                           <span class="kw">mean</span>(prec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-                           ),
-         <span class="dt">ndias =</span> <span class="kw">ifelse</span>(ano <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, 
-                      <span class="dv">366</span>, 
-                      <span class="dv">365</span>),
-         <span class="co"># intensidade de ndias, criada na linha acima</span>
-         <span class="dt">intensidade =</span> prec <span class="op">/</span><span class="st"> </span>ndias
-         )
-
-prec_anual_comp <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># preenche com  a observação prévia</span>
-<span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;down&quot;</span>)
-
-prec_anual_comp <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># preenche com  a observação posterior</span>
-<span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="co"># preenchendo prec faltante pela média</span></a>
+<a class="sourceLine" id="cb386-2" title="2">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb386-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(., </a>
+<a class="sourceLine" id="cb386-4" title="4">         <span class="dt">prec =</span> <span class="kw">replace_na</span>(prec,</a>
+<a class="sourceLine" id="cb386-5" title="5">                           <span class="kw">mean</span>(prec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb386-6" title="6">                           ),</a>
+<a class="sourceLine" id="cb386-7" title="7">         <span class="dt">ndias =</span> <span class="kw">ifelse</span>(ano <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb386-8" title="8">                      <span class="dv">366</span>, </a>
+<a class="sourceLine" id="cb386-9" title="9">                      <span class="dv">365</span>),</a>
+<a class="sourceLine" id="cb386-10" title="10">         <span class="co"># intensidade de ndias, criada na linha acima</span></a>
+<a class="sourceLine" id="cb386-11" title="11">         <span class="dt">intensidade =</span> prec <span class="op">/</span><span class="st"> </span>ndias</a>
+<a class="sourceLine" id="cb386-12" title="12">         )</a>
+<a class="sourceLine" id="cb386-13" title="13"></a>
+<a class="sourceLine" id="cb386-14" title="14">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb386-15" title="15"><span class="st">  </span><span class="co"># preenche com  a observação prévia</span></a>
+<a class="sourceLine" id="cb386-16" title="16"><span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;down&quot;</span>)</a>
+<a class="sourceLine" id="cb386-17" title="17"></a>
+<a class="sourceLine" id="cb386-18" title="18">prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb386-19" title="19"><span class="st">  </span><span class="co"># preenche com  a observação posterior</span></a>
+<a class="sourceLine" id="cb386-20" title="20"><span class="st">  </span><span class="kw">fill</span>(prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)</a></code></pre></div>
 </div>
 <div id="agregando-observações" class="section level3">
 <h3><span class="header-section-number">10.4.6</span> Agregando observações</h3>
 <p><img src="images/dplyr-summarise-count.png" width="40%" height="50%" style="display: block; margin: auto;" /></p>
 <p>A função <code>dplyr::summarise()</code> (ou <code>dplyr::sumarize()</code>) agrega valores de uma variável e os fornece para uma função que retorna um único resultado. O resultado será armazenado em um <code>data frame</code>.</p>
 <p>Por exemplo, qual a <code>prec</code> média anual do RS?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    .,
-    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)
-  )</code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb387-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb387-3" title="3">    .,</a>
+<a class="sourceLine" id="cb387-4" title="4">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb387-5" title="5">  )</a></code></pre></div>
 <p>Se você só quer o valor (ou o vetor), ao invés de um <code>data frame</code>, pode usar a função <code>dplyr::pull()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    .,
-    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)
-  ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb388-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb388-3" title="3">    .,</a>
+<a class="sourceLine" id="cb388-4" title="4">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec)</a>
+<a class="sourceLine" id="cb388-5" title="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb388-6" title="6"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
 <p>Podemos aplicar uma ou mais funções a mais de uma variável usando <code>dplyr::summarise_at()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_at</span>(
-    .,
-    <span class="dt">.vars =</span> <span class="kw">vars</span>(prec, tmax),
-    <span class="dt">.funs =</span> <span class="kw">funs</span>(min, median, max),
-    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb389-2" title="2"><span class="st">  </span><span class="kw">summarise_at</span>(</a>
+<a class="sourceLine" id="cb389-3" title="3">    .,</a>
+<a class="sourceLine" id="cb389-4" title="4">    <span class="dt">.vars =</span> <span class="kw">vars</span>(prec, tmax),</a>
+<a class="sourceLine" id="cb389-5" title="5">    <span class="dt">.funs =</span> <span class="kw">funs</span>(min, median, max),</a>
+<a class="sourceLine" id="cb389-6" title="6">    <span class="dt">na.rm =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb389-7" title="7">  )</a></code></pre></div>
 <p>Observações repetidas devem ser removidas dos dados antes de qualquer cálculo. Suponha os dados abaixo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_comp_rep &lt;-
-<span class="st">  </span>prec_anual_comp <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>),
-    <span class="dt">ano =</span> <span class="ot">NULL</span>
-  ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># preenche com  a observação posterior</span>
-<span class="st">  </span><span class="kw">fill</span>(., prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)
-prec_anual_comp_rep</code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1">prec_anual_comp_rep &lt;-</a>
+<a class="sourceLine" id="cb390-2" title="2"><span class="st">  </span>prec_anual_comp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb390-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb390-4" title="4">    <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>),</a>
+<a class="sourceLine" id="cb390-5" title="5">    <span class="dt">ano =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb390-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb390-7" title="7"><span class="st">  </span><span class="co"># preenche com  a observação posterior</span></a>
+<a class="sourceLine" id="cb390-8" title="8"><span class="st">  </span><span class="kw">fill</span>(., prec, <span class="dt">.direction =</span> <span class="st">&quot;up&quot;</span>)</a>
+<a class="sourceLine" id="cb390-9" title="9">prec_anual_comp_rep</a></code></pre></div>
 <p>Para desconsiderar linhas duplicadas nos dados usamos a função <code>dplyr::distinct()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove observações repetidas</span>
-prec_anual_comp_rep <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">distinct</span>(site, prec)</code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="co"># remove observações repetidas</span></a>
+<a class="sourceLine" id="cb391-2" title="2">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb391-3" title="3"><span class="st">  </span><span class="kw">distinct</span>(site, prec)</a></code></pre></div>
 <p>A função <code>dplyr::count()</code> é útil para obter a frequência de ocorrência de uma variável ou da combinação de variáveis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_comp_rep <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(site)
-prec_anual_comp_rep <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(site, prec)</code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb392-2" title="2"><span class="st">  </span><span class="kw">count</span>(site)</a>
+<a class="sourceLine" id="cb392-3" title="3">prec_anual_comp_rep <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb392-4" title="4"><span class="st">  </span><span class="kw">count</span>(site, prec)</a></code></pre></div>
 </div>
 <div id="agrupando-observações" class="section level3">
 <h3><span class="header-section-number">10.4.7</span> Agrupando observações</h3>
 <p><img src="images/dplyr-group-by-summarise.png" width="40%" height="50%" style="display: block; margin: auto;" /></p>
-<p>Frequentemente temos que agrupar observações em categorias ou grupos para realizar uma análise estatística. A função <code>dplyr::group_by()</code> é uma função silenciosa que separa (invisivelmente) as observações em categorias ou grupos. A única mudança ao aplicar a <code>dplyr::group_by()</code> à um <em>data frame</em> é a indicação da variável agrupada e o seu número de grupos na saída do console. No exemplo a seguir vamos agrupar os dados <code>prec_anual_tbl</code> por <code>site</code> e teremos 4 grupos para esta variável.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site)</code></pre></div>
+<p>Frequentemente temos que agrupar observações em categorias ou grupos para realizar uma análise estatística. A função
+<code>dplyr::group_by()</code> é uma função silenciosa que separa (invisivelmente) as observações em categorias ou grupos.
+A única mudança ao aplicar a <code>dplyr::group_by()</code> à um <em>data frame</em> é a indicação da variável agrupada e o seu número de grupos na saída do console. No exemplo a seguir vamos agrupar os dados <code>prec_anual_tbl</code> por <code>site</code> e teremos 4 grupos para esta variável.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb393-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(site)</a></code></pre></div>
 <p>A grande funcionalidade da <code>dplyr::group_by()</code> surge quando combinada com a função <code>dplyr::summarise()</code>, o que nos permite obter resumos estatísticos para cada grupo da variável.</p>
 <p>Por exemplo a chuva anual média por <code>site</code> é obtida com o seguinte código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(., site) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(., <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec))</code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb394-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(., site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb394-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(., <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec))</a></code></pre></div>
 <p>A <code>prec</code> média para cada ano e o número de anos utilizados em seu cálculo é obtida por:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(., ano) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    .,
-    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec),
-    <span class="dt">nobs =</span> <span class="kw">n</span>()
-  )</code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">prec_anual_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb395-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(., ano) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb395-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb395-4" title="4">    .,</a>
+<a class="sourceLine" id="cb395-5" title="5">    <span class="dt">prec_med =</span> <span class="kw">mean</span>(prec),</a>
+<a class="sourceLine" id="cb395-6" title="6">    <span class="dt">nobs =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb395-7" title="7">  )</a></code></pre></div>
 <p>A função <code>n()</code> conta quantas observações temos em um subconjunto dos dados.</p>
 <p>Os grupos podem ser compostos de mais de uma variável. Para o exemplo com os dados <code>prec_anual_long</code>;</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long</code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">prec_anual_long</a></code></pre></div>
 <p>podemos obter a média por <code>variavel</code> e <code>site</code>, fazendo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">estats_por_site_var &lt;-<span class="st"> </span>prec_anual_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site, variavel) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">media =</span> <span class="kw">mean</span>(medida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-  ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(variavel, site)
-estats_por_site_var</code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">estats_por_site_var &lt;-<span class="st"> </span>prec_anual_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb397-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(site, variavel) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb397-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb397-4" title="4">    <span class="dt">media =</span> <span class="kw">mean</span>(medida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb397-5" title="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb397-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(variavel, site)</a>
+<a class="sourceLine" id="cb397-7" title="7">estats_por_site_var</a></code></pre></div>
 <p>Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.</p>
 <p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubrí-las.</p>
 <!---
@@ -793,67 +820,67 @@ estats_por_site_var</code></pre></div>
 <p>A combinação de 2 <em>data frames</em>, com observações similares, que tem variáveis diferentes e algumas em comum é uma tarefa muito comum na manipulação de conjuntos dados. Este tipo de operação é chamada de <strong>junção</strong> (do termo em inglês <em>join</em>) de tabelas . O pacote <strong>dplyr</strong> possui uma gama de funções do tipo <em>join</em> para combinar <em>data frames</em>, genericamente representadas por <code>&lt;tipo&gt;_join()</code>, onde <code>&lt;tipo&gt;</code> pode ser substituído por <code>dplyr::full_join()</code>, <code>dplyr::inner_join()</code>, <code>dplyr::left_join()</code>, <code>dplyr::right_join()</code>.</p>
 <p>Essas funções combinam informação em dois data frames baseada na unificação de valores entre as variáveis que ambos compartilham.</p>
 <p>Vamos considerar os dados <code>clima_rs_tbl</code> e <code>metadados_rs</code>. Para melhor compreensão do exemplo vamos remover algumas variáveis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># normais climatológicas das estaçõess</span>
-clima_rs_tbl &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(estacao<span class="op">:</span>uf))
-<span class="kw">head</span>(clima_rs_tbl)
-<span class="co"># metadados das estações convertidos para tibble</span>
-metadados_rs &lt;-<span class="st"> </span>metadados_rs <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as_tibble</span>()
-<span class="kw">head</span>(metadados_rs)</code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="co"># normais climatológicas das estaçõess</span></a>
+<a class="sourceLine" id="cb398-2" title="2">clima_rs_tbl &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb398-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(estacao<span class="op">:</span>uf))</a>
+<a class="sourceLine" id="cb398-4" title="4"><span class="kw">head</span>(clima_rs_tbl)</a>
+<a class="sourceLine" id="cb398-5" title="5"><span class="co"># metadados das estações convertidos para tibble</span></a>
+<a class="sourceLine" id="cb398-6" title="6">metadados_rs &lt;-<span class="st"> </span>metadados_rs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb398-7" title="7"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb398-8" title="8"><span class="kw">head</span>(metadados_rs)</a></code></pre></div>
 <p>A variável comum às duas tabelas é:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_comum &lt;-<span class="st"> </span><span class="kw">names</span>(clima_rs_tbl) <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(metadados_rs)
-<span class="kw">names</span>(clima_rs_tbl)[var_comum]</code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">var_comum &lt;-<span class="st"> </span><span class="kw">names</span>(clima_rs_tbl) <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(metadados_rs)</a>
+<a class="sourceLine" id="cb399-2" title="2"><span class="kw">names</span>(clima_rs_tbl)[var_comum]</a></code></pre></div>
 <p>Vamos comparar os valores da variável <code>codigo</code> em cada tabela de dados para verificar se todos valores contidos em uma tabela também estão presentes na outra e vice-versa.</p>
 <p>Para saber se algum valor da variável <code>codigo</code> da tabela <code>clima_rs_tbl</code> não está contido na tabela <code>metadados_rs</code> podemos usar o seguinte código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># algum codigo não está presente na tabela metadados_rs</span>
-clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>metadados_rs<span class="op">$</span>codigo ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(., codigo)</code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="co"># algum codigo não está presente na tabela metadados_rs</span></a>
+<a class="sourceLine" id="cb400-2" title="2">clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb400-3" title="3"><span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>metadados_rs<span class="op">$</span>codigo ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb400-4" title="4"><span class="st">  </span><span class="kw">select</span>(., codigo)</a></code></pre></div>
 <p>Não há nenhum caso.</p>
 <p>Analogamente, vamos verificar se algum valor da variável <code>codigo</code> dos <code>metadados_rs</code> não está contido em <code>clima_rs_tbl</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># algum codigo não está presente na tabela metadados_rs</span>
-metadados_rs <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>clima_rs_tbl<span class="op">$</span>codigo )<span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(., codigo)</code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="co"># algum codigo não está presente na tabela metadados_rs</span></a>
+<a class="sourceLine" id="cb401-2" title="2">metadados_rs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb401-3" title="3"><span class="st">  </span><span class="kw">filter</span>(., <span class="op">!</span><span class="st"> </span>codigo <span class="op">%in%</span><span class="st"> </span>clima_rs_tbl<span class="op">$</span>codigo )<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb401-4" title="4"><span class="st">  </span><span class="kw">select</span>(., codigo)</a></code></pre></div>
 <p>Obtemos que 7 valores da variável <code>codigo</code> dos <code>metadados_rs</code> que não estão presentes na tabela <code>clima_rs_tbl</code>. Portanto, não há valores de <code>tmax</code> e <code>prec</code> para essas observações.</p>
 <p>Suponha agora que desejássemos visualizar a variação espacial da precipitação (<code>prec</code>) ou da temperatura máxima do ar (<code>tmax</code>) climatológica. Precisaríamos além dessas variáveis, as coordenadas geográficas das estações meteorológicas para plotar sua localização espacial. As coordenadas <code>lon</code> e <code>lat</code> da <code>metadados_rs</code> podem ser combinadas com <code>clima_rs_tbl</code> em uma nova tabela (<code>clima_rs_comb</code>), usando a função <code>dplyr::full_join()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_comb &lt;-<span class="st"> </span><span class="kw">full_join</span>(
-  <span class="dt">x =</span> clima_rs_tbl, 
-  <span class="dt">y =</span> metadados_rs,
-  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>)
-clima_rs_comb</code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1">clima_rs_comb &lt;-<span class="st"> </span><span class="kw">full_join</span>(</a>
+<a class="sourceLine" id="cb402-2" title="2">  <span class="dt">x =</span> clima_rs_tbl, </a>
+<a class="sourceLine" id="cb402-3" title="3">  <span class="dt">y =</span> metadados_rs,</a>
+<a class="sourceLine" id="cb402-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>)</a>
+<a class="sourceLine" id="cb402-5" title="5">clima_rs_comb</a></code></pre></div>
 <p>Da inspeção das últimas linhas de <code>clima_rs_comb</code> verificamos que o resultado é uma tabela que contém todos valores da variável <code>codigo</code> das duas tabelas. Os valores das variáveis <code>prec</code> e <code>tmax</code>, para as observações da variável <code>codigo</code> sem valores ( na <code>metadados_rs</code>) são preenchidos com <code>NA</code>.</p>
 <p>Se a combinação de interesse for nas observações em comum entre as tabelas, usaríamos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_intersec &lt;-<span class="st"> </span><span class="kw">inner_join</span>(
-  <span class="dt">x =</span> metadados_rs, 
-  <span class="dt">y =</span> clima_rs_tbl,
-  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
-)
-clima_rs_intersec</code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">clima_rs_intersec &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</a>
+<a class="sourceLine" id="cb403-2" title="2">  <span class="dt">x =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb403-3" title="3">  <span class="dt">y =</span> clima_rs_tbl,</a>
+<a class="sourceLine" id="cb403-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb403-5" title="5">)</a>
+<a class="sourceLine" id="cb403-6" title="6">clima_rs_intersec</a></code></pre></div>
 <p>Para obter uma tabela com as observações diferentes entre as duas tabelas, usamos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_disj &lt;-<span class="st"> </span><span class="kw">anti_join</span>(
-  <span class="dt">x =</span> metadados_rs, 
-  <span class="dt">y =</span> clima_rs_tbl,
-  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
-)
-clima_rs_disj</code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">clima_rs_disj &lt;-<span class="st"> </span><span class="kw">anti_join</span>(</a>
+<a class="sourceLine" id="cb404-2" title="2">  <span class="dt">x =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb404-3" title="3">  <span class="dt">y =</span> clima_rs_tbl,</a>
+<a class="sourceLine" id="cb404-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb404-5" title="5">)</a>
+<a class="sourceLine" id="cb404-6" title="6">clima_rs_disj</a></code></pre></div>
 <p>O exemplo abaixo demonstram os resultados das funções <code>dplyr::left_join()</code> e <code>dplyr::right_join()</code> para um versão reduzida dos dados <code>clima_rs_tbl</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clima_rs_tbl_mini &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) 
-clima_rs_tbl_mini
-<span class="co"># combina os dados baseado nas observações dos dados à esquerda (x)</span>
-<span class="kw">left_join</span>(
-  <span class="dt">x =</span> clima_rs_tbl_mini, 
-  <span class="dt">y =</span>metadados_rs, 
-  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
-)
-<span class="co"># combina os dados baseado nas observações dos dados à direita (y)</span>
-<span class="kw">right_join</span>(
-  <span class="dt">x =</span> clima_rs_tbl_mini, 
-  <span class="dt">y =</span> metadados_rs, 
-  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1">clima_rs_tbl_mini &lt;-<span class="st"> </span>clima_rs_tbl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-2" title="2"><span class="st">  </span><span class="kw">slice</span>(., <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb405-3" title="3">clima_rs_tbl_mini</a>
+<a class="sourceLine" id="cb405-4" title="4"><span class="co"># combina os dados baseado nas observações dos dados à esquerda (x)</span></a>
+<a class="sourceLine" id="cb405-5" title="5"><span class="kw">left_join</span>(</a>
+<a class="sourceLine" id="cb405-6" title="6">  <span class="dt">x =</span> clima_rs_tbl_mini, </a>
+<a class="sourceLine" id="cb405-7" title="7">  <span class="dt">y =</span>metadados_rs, </a>
+<a class="sourceLine" id="cb405-8" title="8">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb405-9" title="9">)</a>
+<a class="sourceLine" id="cb405-10" title="10"><span class="co"># combina os dados baseado nas observações dos dados à direita (y)</span></a>
+<a class="sourceLine" id="cb405-11" title="11"><span class="kw">right_join</span>(</a>
+<a class="sourceLine" id="cb405-12" title="12">  <span class="dt">x =</span> clima_rs_tbl_mini, </a>
+<a class="sourceLine" id="cb405-13" title="13">  <span class="dt">y =</span> metadados_rs, </a>
+<a class="sourceLine" id="cb405-14" title="14">  <span class="dt">by =</span> <span class="st">&quot;codigo&quot;</span></a>
+<a class="sourceLine" id="cb405-15" title="15">)</a></code></pre></div>
 </div>
 </div>
             </section>
@@ -917,7 +944,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

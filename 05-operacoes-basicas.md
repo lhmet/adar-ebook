@@ -72,7 +72,7 @@ Além de números e operadores artiméticos a expressão acima inclui a constant
 
 
 <div class="rmdwarning">
-<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção @ref(matfuns) .</p>
+<p>Note que no R, o separador decimal é o ponto ".", ao invés da vírgula "," usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção @ref(matfuns) .</p>
 </div>
 
 As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem de precedência que aprendemos em matemática na escola: 
@@ -343,7 +343,7 @@ O <img src="images/logo_r.png" width="20"> diferencia letras maiúsculas de min�
 m_kg
 #> [1] 100
 M_KG
-#> Error in eval(expr, envir, enclos): object 'M_KG' not found
+#> Error in eval(expr, envir, enclos): objeto 'M_KG' não encontrado
 ```
 
 Como criamos apenas a variável `m_kg`, `M_kg` não foi encontrada. 
@@ -486,17 +486,17 @@ As expressões abaixo ilustram o que acontece quando cometemos alguns erros bem 
 
 ```r
 srt(2)
-#> Error in srt(2): could not find function "srt"
+#> Error in srt(2): não foi possível encontrar a função "srt"
 m * g
-#> Error in eval(expr, envir, enclos): object 'm' not found
+#> Error in eval(expr, envir, enclos): objeto 'm' não encontrado
 setwd("algum/caminho/no/alem")
-#> Error in setwd("algum/caminho/no/alem"): cannot change working directory
+#> Error in setwd("algum/caminho/no/alem"): não é possível mudar o diretório de trabalho
 save(file = "algum/outro/caminho/no/alem")
 #> Warning in save(file = "algum/outro/caminho/no/alem"): nothing specified to be
 #> save()d
-#> Warning in gzfile(file, "wb"): cannot open compressed file 'algum/outro/caminho/
-#> no/alem', probable reason 'No such file or directory'
-#> Error in gzfile(file, "wb"): cannot open the connection
+#> Warning in gzfile(file, "wb"): não foi possível abrir o arquivo comprimido
+#> 'algum/outro/caminho/no/alem', motivo provável 'No such file or directory'
+#> Error in gzfile(file, "wb"): não é possível abrir a conexão
 ```
 
 
@@ -513,7 +513,7 @@ No trecho de código acima, na avaliação da expressão com a função `save()`
 
 ```r
 sqrt(-1)
-#> Warning in sqrt(-1): NaNs produced
+#> Warning in sqrt(-1): NaNs produzidos
 #> [1] NaN
 ```
 

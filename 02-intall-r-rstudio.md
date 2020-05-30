@@ -33,10 +33,6 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 -->
 
 
-```
-## Warning in options(stringsAsFactors = TRUE): 'options(stringsAsFactors = TRUE)'
-## is deprecated and will be disabled
-```
 
 
 Para tirar melhor proveito deste livro, você precisará:
@@ -418,8 +414,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
+[1] "C:/Users/bitev/Documents/R/win-library/3.6"
+[2] "C:/Program Files/R/R-3.6.3/library"        
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -501,7 +497,7 @@ install_github("lhmet/inmetr")
 
 <div class="rmdtip">
 <p>Você pode acessar uma função de um pacote instalado com a forma especial <code>pacote::funcao</code>. O trecho de código anterior poderia ser reduzido a:</p>
-<p><code>remotes::install_github(&quot;lhmet/inmetr&quot;)</code></p>
+<p><code>remotes::install_github("lhmet/inmetr")</code></p>
 <p>Essa forma deixa explícito que estamos usando a função <code>install_github()</code> do pacote <strong>remotes</strong>.</p>
 <p>As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto, essa é a alternativa mais segura de avaliar funções afim de evitar conflitos.</p>
 </div>
@@ -734,7 +730,7 @@ $ sudo apt-get install git
 ```
 
 
-Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Ubuntu 16.04.6 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
+Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Windows 10 x64 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
 
 
 #### Git no RStudio
