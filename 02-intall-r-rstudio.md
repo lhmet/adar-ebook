@@ -165,8 +165,14 @@ Entretanto, como o R é um projeto de evolução rápida, a versão estável mai
 (ou em desenvolvimento), que geralmente incluem o estado da arte da ciência de dados. Por esta razão, vamos instalar a última versão do <img src="images/logo_r.png" width="20"> e de forma 
 que seja atualizado automaticamente pelo sistema. Isto pode ser feito com os comandos a seguir.
 
+<!---
 [^rversion-recente]: A versão mais atual no período de elaboração deste texto 
 foi a R 4.0.0.
+-->
+
+[^rversion-recente]: A versão mais atual no período de elaboração deste texto 
+foi a R 4.0.
+
 
 1. Incluímos o endereço do repositório externo mantido pelo CRAN [^cran-mirror]
 à lista de repositórios do sistema [^aviso-sudo].
@@ -228,7 +234,7 @@ Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáv
 [^versoesubuntu]: Clique [aqui](https://wiki.ubuntu.com/Releases) para saber mais sobre as versões do Ubuntu.
 
  
-A versão mais atual é a 4.0.0. Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
+A versão mais atual é a ... . Para que ele seja atualizado automaticamente no Ubuntu você precisa adicionar o endereço https://cloud.r-project.org/bin/linux/ubuntu que automaticamente redireciona para o espelho da CRAN mais próximo à lista de repositórios do Linux.
 
 ###### Incluindo repositório do <img src="images/logo_r.png" width="20"> na Lista de repositórios do Ubuntu
 
