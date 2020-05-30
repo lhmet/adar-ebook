@@ -1555,13 +1555,13 @@ names(dds)[dds_nums]
 
   Com os critérios definidos acima, construa o código para:
 
-    a. Verificar se os anos 1894, 1947, 1901, 1992, 1925, 2014, 1993, 1996, 1984, 1897, 2100, 2300 são bissextos.
+  a. Verificar se os anos 1894, 1947, 1901, 1992, 1925, 2014, 1993, 1996, 1984, 1897, 2100, 2300 são bissextos.
 
-    b. Mostre quais anos são bissextos.
+  b. Mostre quais anos são bissextos.
 
-    c. Usando o código para verificar se o ano é bissexto, gere um vetor nomeado `ndias` com o número de dias do ano para os anos do item (a).
+  c. Usando o código para verificar se o ano é bissexto, gere um vetor nomeado `ndias` com o número de dias do ano para os anos do item (a).
 
-    d. Programe como obter o total de anos com 366 dias?
+  d. Programe como obter o total de anos com 366 dias?
 
 
 
@@ -1867,14 +1867,14 @@ dados <- c(
   a. Como você pode codificar a obtenção de um vetor com zeros nos valores válidos e com números sequenciais dentro das falhas?
 
 
-  b. Como a partir do vetor resultante em *11.b* obter um vetor cujo os valores
+  b. Como a partir do vetor resultante do item anterior você pode obter um vetor cujo os valores
 dentro das falhas indique a ordem de ocorrência da falha.
 
 
-  c. Qual o tamanho de cada falha.
+  c. Qual o código para determinar o tamanho de cada falha?
    
 
-  d. Determine o tamanho da maior falha?
+  d. Como determinar o tamanho da maior falha?
 
 
 - - -
