@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2020-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,7 +240,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
 <li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
 <li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
-<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
+<li class="chapter" data-level="7.13" data-path="frequência-de-ocorrência-de-dados-discretos.html"><a href="frequência-de-ocorrência-de-dados-discretos.html"><i class="fa fa-check"></i><b>7.13</b> Frequência de ocorrência de dados discretos</a></li>
+<li class="chapter" data-level="7.14" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.14</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -400,48 +401,48 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dput-dget-dump-e-source." class="section level3">
 <h3><span class="header-section-number">B.2.1</span> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</h3>
 <p>Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função <code>dput()</code> (que pode ser traduzido como "despejar"). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função <code>dget()</code>.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1">x</a>
-<a class="sourceLine" id="cb449-2" title="2"><span class="co"># representação textual do objeto x</span></a>
-<a class="sourceLine" id="cb449-3" title="3"><span class="kw">dput</span>(x)</a>
-<a class="sourceLine" id="cb449-4" title="4"><span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></a>
-<a class="sourceLine" id="cb449-5" title="5">(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
-<a class="sourceLine" id="cb449-6" title="6">(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
-<a class="sourceLine" id="cb449-7" title="7"><span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)</a>
-<a class="sourceLine" id="cb449-8" title="8"><span class="co"># recuperando x a partir do arquivo</span></a>
-<a class="sourceLine" id="cb449-9" title="9">y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)</a>
-<a class="sourceLine" id="cb449-10" title="10"><span class="co"># alterar valores de y</span></a>
-<a class="sourceLine" id="cb449-11" title="11">y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb449-12" title="12">y</a>
-<a class="sourceLine" id="cb449-13" title="13"><span class="co"># verificar existência de x e y</span></a>
-<a class="sourceLine" id="cb449-14" title="14"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb449-15" title="15"><span class="co"># listando variáveis que começam com x ou y</span></a>
-<a class="sourceLine" id="cb449-16" title="16"><span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</a>
-<a class="sourceLine" id="cb449-17" title="17"><span class="co"># salvando mais de um objeto em um arquivo</span></a>
-<a class="sourceLine" id="cb449-18" title="18">(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
-<a class="sourceLine" id="cb449-19" title="19"><span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)</a>
-<a class="sourceLine" id="cb449-20" title="20"><span class="co"># vamos apagar x e y do espaco de trabalho</span></a>
-<a class="sourceLine" id="cb449-21" title="21"><span class="kw">rm</span>(x, y)</a>
-<a class="sourceLine" id="cb449-22" title="22"><span class="co"># x e y não existem mais</span></a>
-<a class="sourceLine" id="cb449-23" title="23"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb449-24" title="24"><span class="co"># recuperando os objetos x e y salvos em xy.R</span></a>
-<a class="sourceLine" id="cb449-25" title="25"><span class="kw">source</span>(xy_dest_file)</a>
-<a class="sourceLine" id="cb449-26" title="26"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb449-27" title="27">x</a>
-<a class="sourceLine" id="cb449-28" title="28">y</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1">x</a>
+<a class="sourceLine" id="cb456-2" title="2"><span class="co"># representação textual do objeto x</span></a>
+<a class="sourceLine" id="cb456-3" title="3"><span class="kw">dput</span>(x)</a>
+<a class="sourceLine" id="cb456-4" title="4"><span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></a>
+<a class="sourceLine" id="cb456-5" title="5">(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb456-6" title="6">(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb456-7" title="7"><span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)</a>
+<a class="sourceLine" id="cb456-8" title="8"><span class="co"># recuperando x a partir do arquivo</span></a>
+<a class="sourceLine" id="cb456-9" title="9">y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)</a>
+<a class="sourceLine" id="cb456-10" title="10"><span class="co"># alterar valores de y</span></a>
+<a class="sourceLine" id="cb456-11" title="11">y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb456-12" title="12">y</a>
+<a class="sourceLine" id="cb456-13" title="13"><span class="co"># verificar existência de x e y</span></a>
+<a class="sourceLine" id="cb456-14" title="14"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb456-15" title="15"><span class="co"># listando variáveis que começam com x ou y</span></a>
+<a class="sourceLine" id="cb456-16" title="16"><span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</a>
+<a class="sourceLine" id="cb456-17" title="17"><span class="co"># salvando mais de um objeto em um arquivo</span></a>
+<a class="sourceLine" id="cb456-18" title="18">(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</a>
+<a class="sourceLine" id="cb456-19" title="19"><span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)</a>
+<a class="sourceLine" id="cb456-20" title="20"><span class="co"># vamos apagar x e y do espaco de trabalho</span></a>
+<a class="sourceLine" id="cb456-21" title="21"><span class="kw">rm</span>(x, y)</a>
+<a class="sourceLine" id="cb456-22" title="22"><span class="co"># x e y não existem mais</span></a>
+<a class="sourceLine" id="cb456-23" title="23"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb456-24" title="24"><span class="co"># recuperando os objetos x e y salvos em xy.R</span></a>
+<a class="sourceLine" id="cb456-25" title="25"><span class="kw">source</span>(xy_dest_file)</a>
+<a class="sourceLine" id="cb456-26" title="26"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb456-27" title="27">x</a>
+<a class="sourceLine" id="cb456-28" title="28">y</a></code></pre></div>
 <p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget("nomedoarquivo")</code>.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1"><span class="co"># representação textual de um data.frame</span></a>
-<a class="sourceLine" id="cb450-2" title="2">dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(</a>
-<a class="sourceLine" id="cb450-3" title="3">  <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb450-4" title="4">    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb450-5" title="5">    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),</a>
-<a class="sourceLine" id="cb450-6" title="6">    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),</a>
-<a class="sourceLine" id="cb450-7" title="7">    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)</a>
-<a class="sourceLine" id="cb450-8" title="8">  ),</a>
-<a class="sourceLine" id="cb450-9" title="9">  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),</a>
-<a class="sourceLine" id="cb450-10" title="10">  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,</a>
-<a class="sourceLine" id="cb450-11" title="11">  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)</a>
-<a class="sourceLine" id="cb450-12" title="12">)</a>
-<a class="sourceLine" id="cb450-13" title="13">dados3est</a></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="co"># representação textual de um data.frame</span></a>
+<a class="sourceLine" id="cb457-2" title="2">dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(</a>
+<a class="sourceLine" id="cb457-3" title="3">  <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb457-4" title="4">    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb457-5" title="5">    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),</a>
+<a class="sourceLine" id="cb457-6" title="6">    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),</a>
+<a class="sourceLine" id="cb457-7" title="7">    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)</a>
+<a class="sourceLine" id="cb457-8" title="8">  ),</a>
+<a class="sourceLine" id="cb457-9" title="9">  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),</a>
+<a class="sourceLine" id="cb457-10" title="10">  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,</a>
+<a class="sourceLine" id="cb457-11" title="11">  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)</a>
+<a class="sourceLine" id="cb457-12" title="12">)</a>
+<a class="sourceLine" id="cb457-13" title="13">dados3est</a></code></pre></div>
 <p><strong>Vantagens:</strong></p>
 <ul>
 <li>armazena os <strong>dados e os metadados</strong></li>

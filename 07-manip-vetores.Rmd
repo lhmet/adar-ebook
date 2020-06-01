@@ -1116,11 +1116,7 @@ prec - lag(prec) < 0
 ```
 
 
-<!---
-- table()
-frequência de ocorrência, contagens, porcentagem e proporção
-- prop.table()*100
---->
+
 
 
 ## Identificação de eventos discretos
@@ -1235,7 +1231,7 @@ evts_id <- ifelse(evts_id == 0, NA, evts_id)
 tapply(
   X = prec,
   INDEX = evts_id,
-  FUN = sum
+  FUN = mean
 )
 ```
 
@@ -1275,6 +1271,69 @@ unique(ordem_eventos[ordem_eventos > 0])
 -->
 
 
+<!---
+- table()
+frequência de ocorrência, contagens, porcentagem e proporção
+- prop.table()*100
+--->
+
+## Frequência de ocorrência de dados discretos
+
+Uma forma muito comum de resumir dados é contar quantos valores de uma variável caem dentro de diferentes classes ou intervalos. Podemos usar o exemplo anterior para contabilizar a duração de cada evento através da função `table()`.
+
+
+```{r}
+evts_id
+freq_tab <- table(evts_id)
+freq_tab
+names(freq_tab)
+```
+
+Quando aplicada a dados numéricos, a função `table()` retorna o número de vezes que cada valor único aparece. Os nomes correspondem aos diferentes valores individuais. Neste caso, o número de ocorrências de cada eventos corresponde a duração deles. 
+
+Por padrão, a `table()` não incluirá valores faltantes. Se for de interesse incluí-los, use o argumento `exclude = NULL`.
+
+```{r}
+table(evts_id, exclude = NULL)
+```
+
+A saída da função `table()` é um objeto do tipo `table`. O que pode ser tratado como um vetor com nomes.
+
+```{r}
+class(freq_tab)
+```
+
+Eventualmente você pode querer esta tabela na forma de um vetor, o que pode ser realizado simplemente concatenando a tabela: 
+
+```{r}
+c(freq_tab)
+```
+
+Alternativamente é possível converter a tabela em um quadro de dados (`data.frame`, estrutura de dados que será vista posteriormente).
+
+
+```{r}
+as.data.frame(freq_tab)
+```
+
+A função table() pode lidar com mais de um vetor. Por exemplo, podemos contar o números que foram acima ou abaixo da normal climatológica com a seguinte expressão:
+
+```{r}
+freq_prec <- table(Prec_acima_normal = prec > mean(prec_clim),
+      mes = format(dts, "%m"))
+freq_prec
+#ftable
+```
+
+Verifica-se que somente os meses de Dezembro e de Janeiro Março foram acima da normal climatológica mensal nos 2 anos. Enquanto Outubro e Novembro foram somente em 1 dos 2 anos de dados.
+
+Outra função útil neste contexto é a `cut()`. Ela separa os dados em classes ou intervalos.
+
+```{r}
+prec_classes <- cut(prec, breaks = seq(0, 250, by = 50))
+prec_classes
+table(prec_classes)
+```
 
 
 ## Exercícios

@@ -1333,11 +1333,7 @@ prec - lag(prec) < 0
 ```
 
 
-<!---
-- table()
-frequência de ocorrência, contagens, porcentagem e proporção
-- prop.table()*100
---->
+
 
 
 ## Identificação de eventos discretos
@@ -1455,10 +1451,10 @@ evts_id <- ifelse(evts_id == 0, NA, evts_id)
 tapply(
   X = prec,
   INDEX = evts_id,
-  FUN = sum
+  FUN = mean
 )
-#>    1    2    3    4 
-#>  595 1355  120  208
+#>        1        2        3        4 
+#> 198.3333 193.5714 120.0000 208.0000
 ```
 
 A `tapply()` tem três argumentos:
@@ -1497,6 +1493,104 @@ unique(ordem_eventos[ordem_eventos > 0])
 -->
 
 
+<!---
+- table()
+frequência de ocorrência, contagens, porcentagem e proporção
+- prop.table()*100
+--->
+
+## Frequência de ocorrência de dados discretos
+
+Uma forma muito comum de resumir dados é contar quantos valores de uma variável caem dentro de diferentes classes ou intervalos. Podemos usar o exemplo anterior para contabilizar a duração de cada evento através da função `table()`.
+
+
+
+```r
+evts_id
+#>  [1]  1  1  1 NA NA NA NA NA  2  2  2  2  2  2  2 NA NA NA NA NA NA  3 NA  4
+freq_tab <- table(evts_id)
+freq_tab
+#> evts_id
+#> 1 2 3 4 
+#> 3 7 1 1
+names(freq_tab)
+#> [1] "1" "2" "3" "4"
+```
+
+Quando aplicada a dados numéricos, a função `table()` retorna o número de vezes que cada valor único aparece. Os nomes correspondem aos diferentes valores individuais. Neste caso, o número de ocorrências de cada eventos corresponde a duração deles. 
+
+Por padrão, a `table()` não incluirá valores faltantes. Se for de interesse incluí-los, use o argumento `exclude = NULL`.
+
+
+```r
+table(evts_id, exclude = NULL)
+#> evts_id
+#>    1    2    3    4 <NA> 
+#>    3    7    1    1   12
+```
+
+A saída da função `table()` é um objeto do tipo `table`. O que pode ser tratado como um vetor com nomes.
+
+
+```r
+class(freq_tab)
+#> [1] "table"
+```
+
+Eventualmente você pode querer esta tabela na forma de um vetor, o que pode ser realizado simplemente concatenando a tabela: 
+
+
+```r
+c(freq_tab)
+#> 1 2 3 4 
+#> 3 7 1 1
+```
+
+Alternativamente é possível converter a tabela em um quadro de dados (`data.frame`, estrutura de dados que será vista posteriormente).
+
+
+
+```r
+as.data.frame(freq_tab)
+#>   evts_id Freq
+#> 1       1    3
+#> 2       2    7
+#> 3       3    1
+#> 4       4    1
+```
+
+A função table() pode lidar com mais de um vetor. Por exemplo, podemos contar o números que foram acima ou abaixo da normal climatológica com a seguinte expressão:
+
+
+```r
+freq_prec <- table(Prec_acima_normal = prec > mean(prec_clim),
+      mes = format(dts, "%m"))
+freq_prec
+#>                  mes
+#> Prec_acima_normal 01 02 03 04 05 06 07 08 09 10 11 12
+#>             FALSE  0  0  0  2  2  2  2  2  2  1  1  0
+#>             TRUE   2  2  2  0  0  0  0  0  0  1  1  2
+#ftable
+```
+
+Verifica-se que somente os meses de Dezembro e de Janeiro Março foram acima da normal climatológica mensal nos 2 anos. Enquanto Outubro e Novembro foram somente em 1 dos 2 anos de dados.
+
+Outra função útil neste contexto é a `cut()`. Ela separa os dados em classes ou intervalos.
+
+
+```r
+prec_classes <- cut(prec, breaks = seq(0, 250, by = 50))
+prec_classes
+#>  [1] (200,250] (200,250] (150,200] (50,100]  (50,100]  (0,50]    (0,50]   
+#>  [8] (50,100]  (100,150] (150,200] (150,200] (200,250] (200,250] (150,200]
+#> [15] (200,250] (0,50]    <NA>      (0,50]    (0,50]    (0,50]    (50,100] 
+#> [22] (100,150] (0,50]    (200,250]
+#> Levels: (0,50] (50,100] (100,150] (150,200] (200,250]
+table(prec_classes)
+#> prec_classes
+#>    (0,50]  (50,100] (100,150] (150,200] (200,250] 
+#>         7         4         2         4         6
+```
 
 
 ## Exercícios

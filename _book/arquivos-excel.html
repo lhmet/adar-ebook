@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2020-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,7 +240,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
 <li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
 <li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
-<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
+<li class="chapter" data-level="7.13" data-path="frequência-de-ocorrência-de-dados-discretos.html"><a href="frequência-de-ocorrência-de-dados-discretos.html"><i class="fa fa-check"></i><b>7.13</b> Frequência de ocorrência de dados discretos</a></li>
+<li class="chapter" data-level="7.14" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.14</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -427,40 +428,40 @@ mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <h3><span class="header-section-number">9.6.1</span> Como usar</h3>
 <p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote
 <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb336-2" title="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
-<a class="sourceLine" id="cb336-3" title="3">  <span class="kw">tempdir</span>(), </a>
-<a class="sourceLine" id="cb336-4" title="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
-<a class="sourceLine" id="cb336-5" title="5">  )</a>
-<a class="sourceLine" id="cb336-6" title="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
+<a class="sourceLine" id="cb343-2" title="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
+<a class="sourceLine" id="cb343-3" title="3">  <span class="kw">tempdir</span>(), </a>
+<a class="sourceLine" id="cb343-4" title="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
+<a class="sourceLine" id="cb343-5" title="5">  )</a>
+<a class="sourceLine" id="cb343-6" title="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb337-2" title="2">  <span class="dt">file =</span> dest_file_excel,</a>
-<a class="sourceLine" id="cb337-3" title="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb337-4" title="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb337-5" title="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb344-2" title="2">  <span class="dt">file =</span> dest_file_excel,</a>
+<a class="sourceLine" id="cb344-3" title="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb344-4" title="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb344-5" title="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
 <p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em>
 em novo arquivo <code>.xls</code>.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
-<a class="sourceLine" id="cb338-2" title="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
+<a class="sourceLine" id="cb345-2" title="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 <p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato
 <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). Uma alternativa, caso você
 ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no
 entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">library</span>(WriteXLS)</a>
-<a class="sourceLine" id="cb339-2" title="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
-<a class="sourceLine" id="cb339-3" title="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
-<a class="sourceLine" id="cb339-4" title="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
-<a class="sourceLine" id="cb339-5" title="5"><span class="co"># conferindo</span></a>
-<a class="sourceLine" id="cb339-6" title="6"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb339-7" title="7">  <span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb339-8" title="8">    <span class="dt">file =</span> arq_xls_temp,</a>
-<a class="sourceLine" id="cb339-9" title="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb339-10" title="10">  )</a>
-<a class="sourceLine" id="cb339-11" title="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1"><span class="kw">library</span>(WriteXLS)</a>
+<a class="sourceLine" id="cb346-2" title="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
+<a class="sourceLine" id="cb346-3" title="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
+<a class="sourceLine" id="cb346-4" title="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
+<a class="sourceLine" id="cb346-5" title="5"><span class="co"># conferindo</span></a>
+<a class="sourceLine" id="cb346-6" title="6"><span class="kw">head</span>(</a>
+<a class="sourceLine" id="cb346-7" title="7">  <span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb346-8" title="8">    <span class="dt">file =</span> arq_xls_temp,</a>
+<a class="sourceLine" id="cb346-9" title="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb346-10" title="10">  )</a>
+<a class="sourceLine" id="cb346-11" title="11">)</a></code></pre></div>
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">9.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
@@ -470,12 +471,12 @@ eficiente.</p>
 <p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados
 da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a
 <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
-<a class="sourceLine" id="cb340-2" title="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb340-3" title="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb340-4" title="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb340-5" title="5">)</a>
-<a class="sourceLine" id="cb340-6" title="6">tempos_escrita_xlsx</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
+<a class="sourceLine" id="cb347-2" title="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb347-3" title="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
+<a class="sourceLine" id="cb347-4" title="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb347-5" title="5">)</a>
+<a class="sourceLine" id="cb347-6" title="6">tempos_escrita_xlsx</a></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das
 expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <!---
