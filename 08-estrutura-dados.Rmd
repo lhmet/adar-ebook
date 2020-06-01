@@ -25,329 +25,21 @@ O `r rblue` possui uma variedade de estruturas (Figura \@ref(fig:fig-estrut-dado
 
 - *list* (lista)
 
-- *dataframe* (tabela de dados)
+- *dataframe* (quadro ou tabela de dados)
 
 ```{r fig-estrut-dados, echo = FALSE, out.width="100%", fig.cap="Principais estruturas de dados no R."}
 knitr::include_graphics("images/dataStructuresR.png")
 ```
 
+Neste curso nós focaremos nas estrutura de quadro de dados e listas que são as mais revelantes para processamento de dados ambientais. Matrizes e arranjos tendem a ser usadas por uma pequena fração de usuários e para aplicações específicas. Também existem outras estruturas específicas que são criadas por desenvolvedores para atender as suas necessidades. Essas estruturas são disponibilizadas com pacotes de contribuidores, como por exemplo estruturas de dados para manipulação de dados geoespaciais.
 
-## Matriz
-
-Vetores são dados unidimensionais. Vetores multidimensionais são denominados arranjos (tradução do termo em inglês *array*). As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
-
-### Criação de matrizes 
-
-#### Função `matrix()` 
-
-Uma forma mais clara de se criar uma matriz é usando a função `matrix()`.
-
-Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.
-
-```{r Chunk1121, message=FALSE , echo=TRUE, eval=TRUE}
-vetor <- c(0, 1, -1, -2, 3, 5, -5)
-# atribuindo novas dimensões ao vetor
-m <- matrix(vetor) # matriz de uma coluna
-m
-```
-
-Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `vetor` podemos fazer da seguinte forma:
-
-```{r Chunk1122, message=FALSE , echo=TRUE, eval=TRUE}
-# criando a matriz gerada com dim
-mat <- matrix(vetor, nrow = 3, ncol = 4)
-mat
-# não há necessidade de especificar ambos ncol e nrow
-mat <- matrix(vetor, nrow = 3)
-mat
-```
-
-No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento **`byrow = TRUE`** da função `matrix()`:
-
-```{r Chunk1124, message=FALSE , echo=TRUE, eval=TRUE}
-mat <- matrix(vetor, ncol = 4, byrow = TRUE)
-mat
-```
-
-### Nomes das linhas e colunas de uma matriz {#nomes-lin-col-mat}
-
-Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara. 
-Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construir uma matriz com os meses ao longo das colunas e  os anos ao longo das linhas. 
-
-```{r Chunk121, message=FALSE  , echo=TRUE, eval=TRUE}
-# temperatura do ar média mensal do ano de 1990
-temp90 <- c(
-  25.00, 23.20, 22.50, 21.00, 19.00, 17.60,
-  18.00, 19.70, 21.30, 22.00, 24.00, 26.80
-)
-# temperatura do ar média mensal do ano de 1991
-temp91 <- c(
-  24.89, 24.07, 23.56, 23.11, 18.29, 18.22,
-  16.72, 19.37, 20.08, 21.45, 26.61, 25.99
-)
-# temperatura do ar média mensal do ano de 1992
-temp92 <- c(
-  23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22,
-  21.45, 19.7, 22.5, 24.07, 20.08
-)
-# vetor com as temperaturas dos 3 anos
-vtemp <- c(temp90, temp91, temp92)
-vtemp
-# arranjar matrix com meses ao longo das colunas e anos ao longo das linhas
-temp_mat <- matrix(vtemp, ncol = 12, byrow = TRUE)
-temp_mat
-# cópia da matriz temp_mat (sem nomes)
-temp_matO <- temp_mat
-```
-
-Atribuindo nomes às linhas (`rownames()`) e colunas (`colnames()`) da matriz criada dos vetores de temperatura mensal (`temp_mat`).
-
-```{r Chunk122, message=FALSE  , echo=TRUE, eval=TRUE}
-# atribuindo nomes as colunas e linhas da temp_mat
-rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
-colnames(temp_mat) <- c(
-  "Jan", "Fev", "Mar", "Abr", "Mai",
-  "Jun", "Jul", "Ago", "Set", "Out",
-  "Nov", "Dez"
-)
-temp_mat
-```
-
-### Indexação de matrizes
-
-Como acessamos o valor de temperatura de maio de 1991 na matriz `temp_mat`?
-
-```{r Chunk131, message=FALSE , echo=TRUE, eval=TRUE}
-temp_mat # matriz de temperaturas com nomes
-temp_matO # matriz de temperaturas sem nomes
-# qual a linha do ano de 1991
-linha <- 2
-# qual a coluna do mês de maio
-coluna <- 5
-# extraindo
-temp_mat[linha, coluna]
-# ou usando os nomes
-temp_mat["ano1991", "Mai"]
-```
-
-
-
-Com o operador `[` podemos usar todos os esquemas de indexação vistos em vetores.
-
-```{r Chunk132, message=FALSE,  echo=TRUE, eval=TRUE}
-# temperaturas de todos janeiros
-temp_mat[, 1]
-temp_mat[, "Jan"]
-# só as temperaturas de 1990 e 1993
-temp_mat[ -2, ]
-# só as temperaturas dos verões
-temp_mat[, c(12, 1, 2)]
-# invertendo ordem das colunas
-temp_mat[, ncol(temp_mat):1]
-# invertendo ordem das colunas e das linhas
-temp_mat[ 3:1, 12:1]
-# invertendo ordem das colunas e das linhas
-temp_mat[ c(2, 1, 3), c(6:1, 12, 10:8)]
-# só as temperaturas dos invernos
-temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago") ]
-# exceto as temperaturas dos invernos
-temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago")) ]
-# seleção de colunas intercaladas da matriz: mês sim, mês nao
-temp_mat[, c(TRUE, FALSE)]
-# 2 meses sim, 1 mes não
-temp_mat[, c(TRUE, TRUE, FALSE)]
-```
-
-Podemos fazer uso do operador `[` de forma aninhada:
-
-```{r Chunk133, message=FALSE  , echo=TRUE, eval=TRUE}
-temp_mat
-temp_mat[, 1:6]
-temp_mat[, 1:6]["ano1991", ]
-temp_mat[, 1:6]["ano1991", ][2:4]
-```
-
-Podemos substituir valores de uma submatriz da matriz:
-
-```{r Chunk134, message=FALSE , echo=TRUE, eval=TRUE}
-M <- temp_mat
-M
-# 1990 e 1992 os meses de jan e dez
-M[c(1, 3), c(1, 12)]
-# matriz com novos valores
-matrix(c(21, 22, 23, 24), ncol = 2)
-# substituindo
-M[c(1, 3), c(1, 12)] <- matrix(c(21, 22, 23, 24), ncol = 2)
-M
-```
-
-
-### Número de linhas e colunas de uma matriz
-
-```{r Chunk141, message=FALSE  , echo=TRUE, eval=TRUE}
-M
-ncol(temp_mat)
-nrow(temp_mat)
-dim(temp_mat)
-```
-
-Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.
-
-```{r Chunk142, message=FALSE  , echo=TRUE, eval=TRUE}
-# colunas de cada elemento da matriz
-col(temp_mat)
-# linhas de cada elemento da matriz
-row(temp_mat)
-```
-
-### Adição de linhas e colunas a uma matriz
-
-Na construção de um vetor concatenaram-se valores com a função `c()`. A concatenação por linhas ou colunas em uma matriz pode ser feita com as funções `rbind()` e `cbind()`, respectivamente. No exemplo abaixo concatenam-se vetores de temperaturas mensais de 3 anos (ver seção \@ref(nomes-lin-col-mat)), primeiro por linhas e depois por colunas. 
-
-```{r Chunk151, message=FALSE  , echo=TRUE, eval=TRUE}
-(temp_mat_lin <- rbind(temp90, temp91, temp92))
-(temp_mat_col <- cbind(temp90, temp91, temp92))
-```
+O Apêndice \@ref(oper-mat) oferece um material sobre matrizes caso você precise saber mais sobre esta estrutura de dados.
 
 
 
 
-### Matriz transposta e diagonal
-
-A primeira entre as diversas funções de álgebra matricial no R é a transposta `t()`.
-```{r Chunk161, message=FALSE   , echo=TRUE, eval=TRUE}
-temp_mat
-t(temp_mat)
-# diagonal 
-diag(temp_mat)
-```
-
-Operações matriciais adicionais são apresentadas no Apêndice \@ref(oper-mat).
 
 
-### Conversão de matriz para vetor
-
-Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: `temp_mat`) no início da seção ela foi baseada em um vetor (`vtemp`). Como fazemos para voltar aquele vetor original a partir da matriz?
-
-```{r Chunk171}
-temp_mat[1:nrow(temp_mat) * ncol(temp_mat) ]
-# vetor de temperaturas
-vtemp <- temp_mat[1:(ncol(temp_mat) * nrow(temp_mat))]
-vtemp
-# outra forma de converte temp_mat para vetor
-c(temp_mat)
-# função formal para converter
-as.vector(temp_mat)
-# para desmanchar a matriz com os elementos seguindo a ordem das linhas
-c(t(temp_mat))
-as.vector(t(temp_mat))
-# serie temporal de temp_mat
-stemp <- c(t(temp_mat))
-plot(stemp, type = "o")
-# criar matriz com colunas temp e meses 1:12
-cbind(rep(1:12, nrow(temp_mat)), stemp)
-# dados de temp e meses
-tempdat <- cbind(1:12, stemp)
-# plot da temperatura pelos meses (os meses repetem)
-plot(
-  tempdat,
-  type = "p", # tipo de grafico: pontos
-  pch = 20, # codigo numérico do simbolo do ponto
-  col = rep(1:3, each = ncol(temp_mat)), # cores dos pontos
-  cex = rep(seq(1, 2, by = 0.5), each = ncol(temp_mat)), # aumenta tamanho dos pontos
-  las = 1, # orientação dos labels dos eixos perpendiculares ao eixo
-  ylab = expression(Tar ~ (degree ~ C)), # label da variável y
-  xlab = "meses", # label da variavel x
-  main = "Temperatura mensal (1990-1992)" # título
-) # end plot
-# para entender a variação nas cores e símbolos usadas no gráfico
-cbind(
-  meses = 1:12, temp = stemp,
-  cores = rep(1:3, each = ncol(temp_mat)), # cores
-  simb_tam = rep(seq(1, 2, by = 0.5), each = ncol(temp_mat))
-) # tamanho dos símbolos
-```
-
-
-
-## Arranjo 
-
-Arranjo é uma estrutura de dados multidimensional. A matriz é um caso particular de arranjo com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. 
-
-
-Por exemplo, imagine o campo espacial representado por uma grade de espaçamento horizontal regular de uma variável meteorológica. Nessa situação podemos usar uma matriz com valores de temperatura, onde as colunas representam as longitudes e as linhas as latitudes dos pontos da grade. Em um dados tempo, a matriz da variável com valores de temperatura do ar, por exemplo, representa o estado térmico espacial daquele momento. Então podemos dizer que esse arranjo possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).
-
-### Criação 
-
-Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor `temp_vetor` abaixo. 
-
-```{r, include = FALSE}
-set.seed(1); dput(round(rnorm(3*4*3, mean = 19, sd = 4)))
-```
-
-
-```{r Chunk211}
-temp_vetor <- c(
-  18, 24, 19, 23, 19, 27, 24, 18, 13, 20, 25, 19, 18, 22, 17,
-  9, 17, 22, 13, 19, 29, 18, 19, 18, 11, 18, 19, 17, 13, 17, 26,
-  21, 22, 20, 14, 17
-)
-```
-
-O vetor `temp_vetor` pode ser convertido em um arranjo dos campos espaciais usando a função `array()`, com o argumento `dim` especificando as dimensões.
-
-```{r}
-temp_array <- array(data = temp_vetor, dim = c(3, 4, 3))
-temp_array
-dim(temp_array)
-class(temp_array)
-```
-
-O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.
-
-```{r Chun221, message=FALSE  , echo=TRUE, eval=TRUE}
-colnames(temp_array) <- -(45:42)
-rownames(temp_array) <- -(19:21)
-# nomes das dimensões
-dimnames(temp_array)
-# nomes para camadas
-dimnames(temp_array)[[3]] <- c("Jan", "Fev", "Mar")
-temp_array
-```
-
-### Indexação
-
-Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices `A[linha, coluna, camada]`.
-
-```{r Chun221a, message=FALSE  , echo=TRUE, eval=TRUE}
-# serie temporal do 1º ponto
-temp_array[1, 1, ]
-temp_array["-19", "-45", ]
-# para 1a faixa de latitude (-19),
-# os valores de temp das longitudes em todos tempos
-temp_array[1, , ]
-# para 2a faixa de longitude (-44), todas longitudes e tempos
-temp_array[, 2, ]
-# média meridional
-colMeans(temp_array[, 2, ])
-# subdominio "espacial"
-temp_array[2:3, 2:3, ]
-# média espacial do 1o mês
-mean(temp_array[, , 1])
-# média espacial do segundo mês
-mean(temp_array[, , "Jan"])
-# demanchando o arranjo (conversão para vetor)
-c(temp_array)
-c(temp_array[, , 1])
-# para entender a forma como a matriz é convertida para vetor
-mat_temp <- cbind(
-  mes = rep(1:3, each = 20),
-  elemat = rep(1:20, times = 6),
-  valores = c(temp_array),
-  elearr = 1:(cumprod(dim(temp_array))[3])
-)
-mat_temp
-```
 
 ## Lista {#listas}
 
@@ -816,6 +508,11 @@ Podemos converter um objeto para *dataframe* com `as.data.frame()`:
 + Uma matriz cria um *dataframe* com mesma estrutura de uma matriz;
 
 ```{r Chunk551, message=FALSE  , echo=TRUE, eval=TRUE}
+# temperatura do ar média mensal do ano de 1990
+temp90 <- c(
+  25.00, 23.20, 22.50, 21.00, 19.00, 17.60,
+  18.00, 19.70, 21.30, 22.00, 24.00, 26.80
+)
 # convertendo lista para dataframe
 sm_l
 sm_l_df <- as.data.frame(sm_l)
@@ -825,6 +522,14 @@ v <- c(3, 100, NA, NA, 6)
 v_df <- as.data.frame(v)
 # convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
+```
+
+A conversão de matriz para quadro de dados, pode ser feita da seguinte forma.
+
+```{r}
+vetor <- c(0, 1, -1, -2, 3, 5, -5)
+mat <- matrix(vetor, ncol = 4, byrow = TRUE)
+mat
 # convertendo matrix para dataframe
 mat
 mat_df <- as.data.frame(mat)

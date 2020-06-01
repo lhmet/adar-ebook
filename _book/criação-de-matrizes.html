@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>C.3 Aparência | Análise de Dados Ambientais com R</title>
+  <title>A.1 Criação de matrizes | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="A.1 Criação de matrizes | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="A.1 Criação de matrizes | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="markdown.html"/>
-<link rel="next" href="referências-para-aprender-mais-sobre-o-r-markdown.html"/>
+<link rel="prev" href="matriz.html"/>
+<link rel="next" href="nomes-lin-col-mat.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -397,30 +397,60 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aparência" class="section level2">
-<h2><span class="header-section-number">C.3</span> Aparência</h2>
-<p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb490-1" title="1">    <span class="op">---</span></a>
-<a class="sourceLine" id="cb490-2" title="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
-<a class="sourceLine" id="cb490-3" title="3">    author: Nome Sobrenome</a>
-<a class="sourceLine" id="cb490-4" title="4">    output:</a>
-<a class="sourceLine" id="cb490-5" title="5">         html_document:</a>
-<a class="sourceLine" id="cb490-6" title="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
-<a class="sourceLine" id="cb490-7" title="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
-<a class="sourceLine" id="cb490-8" title="8">            number_sections: true</a>
-<a class="sourceLine" id="cb490-9" title="9">            toc: true</a>
-<a class="sourceLine" id="cb490-10" title="10">            fig_width: <span class="dv">7</span></a>
-<a class="sourceLine" id="cb490-11" title="11">            fig_height: <span class="dv">6</span></a>
-<a class="sourceLine" id="cb490-12" title="12">            fig_caption: true</a>
-<a class="sourceLine" id="cb490-13" title="13">    <span class="op">---</span></a></code></pre></div>
+<div id="criação-de-matrizes" class="section level2">
+<h2><span class="header-section-number">A.1</span> Criação de matrizes</h2>
+<div id="função-matrix" class="section level3">
+<h3><span class="header-section-number">A.1.1</span> Função <code>matrix()</code></h3>
+<p>Uma forma mais clara de se criar uma matriz é usando a função <code>matrix()</code>.</p>
+<p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
+<a class="sourceLine" id="cb420-2" title="2"><span class="co"># atribuindo novas dimensões ao vetor</span></a>
+<a class="sourceLine" id="cb420-3" title="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span></a>
+<a class="sourceLine" id="cb420-4" title="4">m</a>
+<a class="sourceLine" id="cb420-5" title="5"><span class="co">#&gt;      [,1]</span></a>
+<a class="sourceLine" id="cb420-6" title="6"><span class="co">#&gt; [1,]    0</span></a>
+<a class="sourceLine" id="cb420-7" title="7"><span class="co">#&gt; [2,]    1</span></a>
+<a class="sourceLine" id="cb420-8" title="8"><span class="co">#&gt; [3,]   -1</span></a>
+<a class="sourceLine" id="cb420-9" title="9"><span class="co">#&gt; [4,]   -2</span></a>
+<a class="sourceLine" id="cb420-10" title="10"><span class="co">#&gt; [5,]    3</span></a>
+<a class="sourceLine" id="cb420-11" title="11"><span class="co">#&gt; [6,]    5</span></a>
+<a class="sourceLine" id="cb420-12" title="12"><span class="co">#&gt; [7,]   -5</span></a></code></pre></div>
+<p>Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor <code>vetor</code> podemos fazer da seguinte forma:</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
+<a class="sourceLine" id="cb421-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb421-3" title="3"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb421-4" title="4"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb421-5" title="5">mat</a>
+<a class="sourceLine" id="cb421-6" title="6"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb421-7" title="7"><span class="co">#&gt; [1,]    0   -2   -5   -1</span></a>
+<a class="sourceLine" id="cb421-8" title="8"><span class="co">#&gt; [2,]    1    3    0   -2</span></a>
+<a class="sourceLine" id="cb421-9" title="9"><span class="co">#&gt; [3,]   -1    5    1    3</span></a>
+<a class="sourceLine" id="cb421-10" title="10"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span></a>
+<a class="sourceLine" id="cb421-11" title="11">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb421-12" title="12"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb421-13" title="13"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb421-14" title="14">mat</a>
+<a class="sourceLine" id="cb421-15" title="15"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb421-16" title="16"><span class="co">#&gt; [1,]    0   -2   -5</span></a>
+<a class="sourceLine" id="cb421-17" title="17"><span class="co">#&gt; [2,]    1    3    0</span></a>
+<a class="sourceLine" id="cb421-18" title="18"><span class="co">#&gt; [3,]   -1    5    1</span></a></code></pre></div>
+<p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb422-2" title="2"><span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não</span></a>
+<a class="sourceLine" id="cb422-3" title="3"><span class="co">#&gt; é um submúltiplo ou múltiplo do número de linhas [2]</span></a>
+<a class="sourceLine" id="cb422-4" title="4">mat</a>
+<a class="sourceLine" id="cb422-5" title="5"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb422-6" title="6"><span class="co">#&gt; [1,]    0    1   -1   -2</span></a>
+<a class="sourceLine" id="cb422-7" title="7"><span class="co">#&gt; [2,]    3    5   -5    0</span></a></code></pre></div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências-para-aprender-mais-sobre-o-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="matriz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="nomes-lin-col-mat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

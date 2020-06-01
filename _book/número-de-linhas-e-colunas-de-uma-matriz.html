@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>C.3 Aparência | Análise de Dados Ambientais com R</title>
+  <title>A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="C.3 Aparência | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="markdown.html"/>
-<link rel="next" href="referências-para-aprender-mais-sobre-o-r-markdown.html"/>
+<link rel="prev" href="indexação-de-matrizes.html"/>
+<link rel="next" href="adição-de-linhas-e-colunas-a-uma-matriz.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -397,30 +397,40 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aparência" class="section level2">
-<h2><span class="header-section-number">C.3</span> Aparência</h2>
-<p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb490-1" title="1">    <span class="op">---</span></a>
-<a class="sourceLine" id="cb490-2" title="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
-<a class="sourceLine" id="cb490-3" title="3">    author: Nome Sobrenome</a>
-<a class="sourceLine" id="cb490-4" title="4">    output:</a>
-<a class="sourceLine" id="cb490-5" title="5">         html_document:</a>
-<a class="sourceLine" id="cb490-6" title="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
-<a class="sourceLine" id="cb490-7" title="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
-<a class="sourceLine" id="cb490-8" title="8">            number_sections: true</a>
-<a class="sourceLine" id="cb490-9" title="9">            toc: true</a>
-<a class="sourceLine" id="cb490-10" title="10">            fig_width: <span class="dv">7</span></a>
-<a class="sourceLine" id="cb490-11" title="11">            fig_height: <span class="dv">6</span></a>
-<a class="sourceLine" id="cb490-12" title="12">            fig_caption: true</a>
-<a class="sourceLine" id="cb490-13" title="13">    <span class="op">---</span></a></code></pre></div>
+<div id="número-de-linhas-e-colunas-de-uma-matriz" class="section level2">
+<h2><span class="header-section-number">A.4</span> Número de linhas e colunas de uma matriz</h2>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1">M</a>
+<a class="sourceLine" id="cb429-2" title="2"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
+<a class="sourceLine" id="cb429-3" title="3"><span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span></a>
+<a class="sourceLine" id="cb429-4" title="4"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
+<a class="sourceLine" id="cb429-5" title="5"><span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span></a>
+<a class="sourceLine" id="cb429-6" title="6"><span class="kw">ncol</span>(temp_mat)</a>
+<a class="sourceLine" id="cb429-7" title="7"><span class="co">#&gt; [1] 12</span></a>
+<a class="sourceLine" id="cb429-8" title="8"><span class="kw">nrow</span>(temp_mat)</a>
+<a class="sourceLine" id="cb429-9" title="9"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb429-10" title="10"><span class="kw">dim</span>(temp_mat)</a>
+<a class="sourceLine" id="cb429-11" title="11"><span class="co">#&gt; [1]  3 12</span></a></code></pre></div>
+<p>Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="co"># colunas de cada elemento da matriz</span></a>
+<a class="sourceLine" id="cb430-2" title="2"><span class="kw">col</span>(temp_mat)</a>
+<a class="sourceLine" id="cb430-3" title="3"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
+<a class="sourceLine" id="cb430-4" title="4"><span class="co">#&gt; [1,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb430-5" title="5"><span class="co">#&gt; [2,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb430-6" title="6"><span class="co">#&gt; [3,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb430-7" title="7"><span class="co"># linhas de cada elemento da matriz</span></a>
+<a class="sourceLine" id="cb430-8" title="8"><span class="kw">row</span>(temp_mat)</a>
+<a class="sourceLine" id="cb430-9" title="9"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
+<a class="sourceLine" id="cb430-10" title="10"><span class="co">#&gt; [1,]    1    1    1    1    1    1    1    1    1     1     1     1</span></a>
+<a class="sourceLine" id="cb430-11" title="11"><span class="co">#&gt; [2,]    2    2    2    2    2    2    2    2    2     2     2     2</span></a>
+<a class="sourceLine" id="cb430-12" title="12"><span class="co">#&gt; [3,]    3    3    3    3    3    3    3    3    3     3     3     3</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências-para-aprender-mais-sobre-o-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="indexação-de-matrizes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="adição-de-linhas-e-colunas-a-uma-matriz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
