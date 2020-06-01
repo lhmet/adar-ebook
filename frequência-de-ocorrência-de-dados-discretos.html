@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R</title>
+  <title>7.13 Frequência de ocorrência de dados discretos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="7.13 Frequência de ocorrência de dados discretos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Testes sobre tipos de dados | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="7.13 Frequência de ocorrência de dados discretos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tipos-dados.html"/>
-<link rel="next" href="conversão-entre-tipos-de-dados.html"/>
+<link rel="prev" href="identificação-de-eventos-discretos.html"/>
+<link rel="next" href="exercícios-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -371,54 +371,68 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Testes sobre tipos de dados</h2>
-<p>Além função <code>typeof()</code>, a família de funções <code>is.{tipo_de_dados}()</code> também permite descobrir o tipo de dado de uma variável. Por exemplo, para testar se a variável <code>vetor_num</code> é do tipo <code>character</code>, substituímos <code>{tipo_de_dados}</code> por <code>character</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.character</span>(vetor_num)
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<p>O mesmo processo vale para <code>integer</code>, <code>numeric</code>, <code>double</code>, <code>logical</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.integer</span>(vetor_num)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="kw">is.numeric</span>(vetor_num)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.double</span>(vetor_num)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.logical</span>(vetor_num)
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<p>Essa é uma forma de verificação mais direta do tipo de uma variável. Outra possível forma seria combinar o uso do operador relacional<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a> idêntico (<code>==</code>) e a mais legível que <code>typeof(vetor_num) == &quot;double&quot;</code>. O operador <code>==</code> é um operador relacional para verificar se dois objetos são iguais.</p>
-<div class="rmdtip">
-<p>
-O grupo de funções <code>is.{tipo_de_dados}()</code> inclui também opções para verificar se a variável tem valores:
-</p>
-<ul>
-<li>
-<code>NA</code>: <code>is.na()</code>
-</li>
-<li>
-<code>NaN</code>: <code>is.nan()</code>
-</li>
-<li>
-<code>Inf</code>: <code>is.infinite</code>
-</li>
-<li>
-valores finitos: <code>is.finite()</code>
-</li>
-</ul>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="22">
-<li id="fn22"><p>Operadores relacionais será visto na seção <a href="oper-vect.html#oper-vect">7.3</a>.<a href="testes-sobre-tipos-de-dados.html#fnref22">↩</a></p></li>
-</ol>
+<div id="frequência-de-ocorrência-de-dados-discretos" class="section level2">
+<h2><span class="header-section-number">7.13</span> Frequência de ocorrência de dados discretos</h2>
+<p>Uma forma muito comum de resumir dados é contar quantos valores de uma variável caem dentro de diferentes classes ou intervalos. Podemos usar o exemplo anterior para contabilizar a duração de cada evento através da função <code>table()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">evts_id
+<span class="co">#&gt;  [1]  1  1  1 NA NA NA NA NA  2  2  2  2  2  2  2 NA NA NA NA NA NA  3 NA  4</span>
+freq_tab &lt;-<span class="st"> </span><span class="kw">table</span>(evts_id)
+freq_tab
+<span class="co">#&gt; evts_id</span>
+<span class="co">#&gt; 1 2 3 4 </span>
+<span class="co">#&gt; 3 7 1 1</span>
+<span class="kw">names</span>(freq_tab)
+<span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</span></code></pre></div>
+<p>Quando aplicada a dados numéricos, a função <code>table()</code> retorna o número de vezes que cada valor único aparece. Os nomes correspondem aos diferentes valores individuais. Neste caso, o número de ocorrências de cada eventos corresponde a duração deles.</p>
+<p>Por padrão, a <code>table()</code> não incluirá valores faltantes. Se for de interesse incluí-los, use o argumento <code>exclude = NULL</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(evts_id, <span class="dt">exclude =</span> <span class="ot">NULL</span>)
+<span class="co">#&gt; evts_id</span>
+<span class="co">#&gt;    1    2    3    4 &lt;NA&gt; </span>
+<span class="co">#&gt;    3    7    1    1   12</span></code></pre></div>
+<p>A saída da função <code>table()</code> é um objeto do tipo <code>table</code>. O que pode ser tratado como um vetor com nomes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(freq_tab)
+<span class="co">#&gt; [1] &quot;table&quot;</span></code></pre></div>
+<p>Eventualmente você pode querer esta tabela na forma de um vetor, o que pode ser realizado simplemente concatenando a tabela:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(freq_tab)
+<span class="co">#&gt; 1 2 3 4 </span>
+<span class="co">#&gt; 3 7 1 1</span></code></pre></div>
+<p>Alternativamente é possível converter a tabela em um quadro de dados (<code>data.frame</code>, estrutura de dados que será vista posteriormente).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.data.frame</span>(freq_tab)
+<span class="co">#&gt;   evts_id Freq</span>
+<span class="co">#&gt; 1       1    3</span>
+<span class="co">#&gt; 2       2    7</span>
+<span class="co">#&gt; 3       3    1</span>
+<span class="co">#&gt; 4       4    1</span></code></pre></div>
+<p>A função table() pode lidar com mais de um vetor. Por exemplo, podemos contar o números que foram acima ou abaixo da normal climatológica com a seguinte expressão:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">freq_prec &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="dt">Prec_acima_normal =</span> prec <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(prec_clim),
+      <span class="dt">mes =</span> <span class="kw">format</span>(dts, <span class="st">&quot;%m&quot;</span>))
+freq_prec
+<span class="co">#&gt;                  mes</span>
+<span class="co">#&gt; Prec_acima_normal 01 02 03 04 05 06 07 08 09 10 11 12</span>
+<span class="co">#&gt;             FALSE  0  0  0  2  2  2  2  2  2  1  1  0</span>
+<span class="co">#&gt;             TRUE   2  2  2  0  0  0  0  0  0  1  1  2</span>
+<span class="co">#ftable</span></code></pre></div>
+<p>Verifica-se que somente os meses de Dezembro e de Janeiro Março foram acima da normal climatológica mensal nos 2 anos. Enquanto Outubro e Novembro foram somente em 1 dos 2 anos de dados.</p>
+<p>Outra função útil neste contexto é a <code>cut()</code>. Ela separa os dados em classes ou intervalos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_classes &lt;-<span class="st"> </span><span class="kw">cut</span>(prec, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">250</span>, <span class="dt">by =</span> <span class="dv">50</span>))
+prec_classes
+<span class="co">#&gt;  [1] (200,250] (200,250] (150,200] (50,100]  (50,100]  (0,50]    (0,50]   </span>
+<span class="co">#&gt;  [8] (50,100]  (100,150] (150,200] (150,200] (200,250] (200,250] (150,200]</span>
+<span class="co">#&gt; [15] (200,250] (0,50]    &lt;NA&gt;      (0,50]    (0,50]    (0,50]    (50,100] </span>
+<span class="co">#&gt; [22] (100,150] (0,50]    (200,250]</span>
+<span class="co">#&gt; Levels: (0,50] (50,100] (100,150] (150,200] (200,250]</span>
+<span class="kw">table</span>(prec_classes)
+<span class="co">#&gt; prec_classes</span>
+<span class="co">#&gt;    (0,50]  (50,100] (100,150] (150,200] (200,250] </span>
+<span class="co">#&gt;         7         4         2         4         6</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tipos-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conversão-entre-tipos-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="identificação-de-eventos-discretos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

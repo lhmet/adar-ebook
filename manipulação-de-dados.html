@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2020-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,7 +120,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
+<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
@@ -215,7 +215,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="7.10" data-path="dados-ordenados.html"><a href="dados-ordenados.html"><i class="fa fa-check"></i><b>7.10</b> Dados ordenados</a></li>
 <li class="chapter" data-level="7.11" data-path="funções-móveis-úteis.html"><a href="funções-móveis-úteis.html"><i class="fa fa-check"></i><b>7.11</b> Funções móveis úteis</a></li>
 <li class="chapter" data-level="7.12" data-path="identificação-de-eventos-discretos.html"><a href="identificação-de-eventos-discretos.html"><i class="fa fa-check"></i><b>7.12</b> Identificação de eventos discretos</a></li>
-<li class="chapter" data-level="7.13" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.13</b> Exercícios</a></li>
+<li class="chapter" data-level="7.13" data-path="frequência-de-ocorrência-de-dados-discretos.html"><a href="frequência-de-ocorrência-de-dados-discretos.html"><i class="fa fa-check"></i><b>7.13</b> Frequência de ocorrência de dados discretos</a></li>
+<li class="chapter" data-level="7.14" data-path="exercícios-1.html"><a href="exercícios-1.html"><i class="fa fa-check"></i><b>7.14</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estrutura-dados.html"><a href="estrutura-dados.html"><i class="fa fa-check"></i><b>8</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="8.1" data-path="matriz.html"><a href="matriz.html"><i class="fa fa-check"></i><b>8.1</b> Matriz</a><ul>
@@ -605,25 +606,25 @@ clima_rs_tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(estacao, <span class="st">&quot;Sul&quot;</span>))</code></pre></div>
 <div class="rmdtip">
 <p>
-O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo “Sul”. O pacote <strong>stringr</strong> <span class="citation"><span class="citation">(Hadley Wickham <a href="referências.html#ref-Wickham-stringr">2018</a>)</span></span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:
+O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo &quot;Sul&quot;. O pacote <strong>stringr</strong> <span class="citation"><span class="citation">(Hadley Wickham <a href="referências.html#ref-Wickham-stringr">2018</a>)</span></span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:
 </p>
 <p>
 <code>str_replace_all(</code>
 </p>
 <p>
-<code>string = c(“abc”, “lca”),</code>
+<code>string = c(&quot;abc&quot;, &quot;lca&quot;),</code>
 </p>
 <p>
-<code>pattern = “a”,</code>
+<code>pattern = &quot;a&quot;,</code>
 </p>
 <p>
-<code>replacement = “A”</code>
+<code>replacement = &quot;A&quot;</code>
 </p>
 <p>
 <code>)</code>
 </p>
 <p>
-<code>#&gt; [1] “Abc” “lcA”</code>
+<code>#&gt; [1] &quot;Abc&quot; &quot;lcA&quot;</code>
 </p>
 </div>
 <p>A seleção de observações também pode ser baseada em índices passados para função <code>dplyr::slice()</code> que retorna o subconjunto de observações correspondentes. Abaixo vejamos alguns exemplos de filtragem de linhas baseada em índices ou posições:</p>
@@ -676,7 +677,7 @@ clima_rs_tbl <span class="op">%&gt;%</span>
        <span class="st">&quot;precip&quot;</span> =<span class="st"> </span>prec
        ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<p>Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável <code>site</code> será corrigida, de forma os valores iguais a “A803” sejam substituídos por “A003”.</p>
+<p>Podemos sobrescrever variáveis e recodificar seus valores, conforme o exemplo abaixo. A variável <code>site</code> será corrigida, de forma os valores iguais a &quot;A803&quot; sejam substituídos por &quot;A003&quot;.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_corr &lt;-<span class="st"> </span>prec_anual <span class="op">%&gt;%</span>
 <span class="kw">mutate</span>(
   <span class="dt">site =</span> <span class="kw">recode</span>(site, <span class="dt">A803 =</span> <span class="st">&quot;A003&quot;</span>)
