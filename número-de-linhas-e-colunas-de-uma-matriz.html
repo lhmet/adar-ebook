@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.3 Restruturação de dados retangulares | Análise de Dados Ambientais com R</title>
+  <title>A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.3 Restruturação de dados retangulares | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.3 Restruturação de dados retangulares | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="A.4 Número de linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tibble-um-data-frame-aperfeiçoado.html"/>
-<link rel="next" href="manipulação-de-dados.html"/>
+<link rel="prev" href="indexação-de-matrizes.html"/>
+<link rel="next" href="adição-de-linhas-e-colunas-a-uma-matriz.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -372,152 +372,40 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="restruturação-de-dados-retangulares" class="section level2">
-<h2><span class="header-section-number">10.3</span> Restruturação de dados retangulares</h2>
-<blockquote>
-<p>Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados <span class="citation">(Dasu and Johnson <a href="referências.html#ref-Dasu-Johnson">2003</a>, <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">New York Times 2014/08/18</a>)</span>.</p>
-</blockquote>
-<!---
-# references
-#http://www.storybench.org/getting-started-with-tidyverse-in-r/
---->
-<div id="dados-arrumados" class="section level3">
-<h3><span class="header-section-number">10.3.1</span> Dados arrumados</h3>
-<p>O conceito &quot;dados arrumados&quot; foi estabelecido por <span class="citation">H. Wickham (<a href="referências.html#ref-Wickham2014">2014</a>)</span> e representa uma forma padronizada de conectar a estrutura (formato) de um conjunto de dados a sua semântica (significado).</p>
-<p>Dados bem estruturados servem para:</p>
-<ul>
-<li><p>fornecer dados propícios para o processamento e análise de dados por <em>softwares</em>;</p></li>
-<li><p>revelar informações e facilitar a percepção de padrões</p></li>
-</ul>
-<p>Dados no &quot;formato arrumado&quot; atendem as seguintes regras para dados retangulares:</p>
-<ol style="list-style-type: decimal">
-<li><p>cada <strong>variável</strong> está em uma coluna</p></li>
-<li><p>cada <strong>observação</strong> corresponde a uma linha</p></li>
-<li><p>cada <strong>valor</strong> corresponde a uma célula</p></li>
-<li><p>cada tipo de unidade observacional deve compor uma tabela</p></li>
-</ol>
-<div class="rmdnote">
-<p>
-Como sinônimo de observações você pode encontrar os termos: registros, casos, exemplos, instâncias ou amostras dependendo da área de aplicação.
-</p>
-</div>
-<div class="figure">
-<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Estrutura de dados padronizados" />
-<p class="caption">Estrutura de dados padronizados</p>
-</div>
-<p>Um exemplo de dados no formato arrumado é o <em>tibble</em> <code>prec_anual_tbl</code> mostrado abaixo:</p>
-<p>Os dados acima tem duas variáveis: precipitação (<code>prec</code>) e intensidade da precipitação (<code>intensidade</code>). As unidades observacionais são as colunas <code>site</code> e <code>ano</code>. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.</p>
-<p>Uma <strong>variável</strong> contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma <strong>observação</strong> contém todos valores medidos na mesma unidade observacional ao longo dos atributos. Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e uma observação.</p>
-<p>Exemplo de diferentes <strong>tipos de unidades observacionais</strong> são a tabela com a séries temporais dos elementos meteorológicos (exemplo acima) e a tabela com os metadados das estações de superfície que contém atributos das estações meteorológicas (<code>site</code> no exemplo acima), tais como: longitude, latitude, altitude, nome, município, estado e etc.</p>
-<p>A estrutura de dados &quot;arrumados&quot; parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
-<ul>
-<li><p>quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;</p></li>
-<li><p>a organização dos dados busca tornar o registro de dados o mais fácil possível;</p></li>
-</ul>
-<p>Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns <span class="citation">(H. Wickham and Grolemund <a href="referências.html#ref-Wickham2017">2017</a>)</span>:</p>
-<ul>
-<li><p>uma variável deve ser distribuída ao longo das colunas</p></li>
-<li><p>uma observação deve ser distribuída ao longo das linhas</p></li>
-</ul>
-<p>Essas duas operações são realizadas com as principais funções do pacote <strong>tidyr</strong>:</p>
-<ul>
-<li><p><code>gather()</code>, que pode ser traduzida como reunir (nas linhas);</p></li>
-<li><p><code>spread()</code> que pode ser traduzida como espalhar (nas colunas)</p></li>
-</ul>
-<!---
-#O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
---->
-</div>
-<div id="formatos-de-dados-mais-comuns" class="section level3">
-<h3><span class="header-section-number">10.3.2</span> Formatos de dados mais comuns</h3>
-<p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos.</p>
-<p>Os principais formatos de dados são:</p>
-<ul>
-<li><p>dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;</p></li>
-<li><p>dados amplos, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;</p></li>
-</ul>
-<div id="formatos-dados" class="section level4">
-<h4><span class="header-section-number">10.3.2.1</span> Formato de dados longo</h4>
-<p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
-  prec_anual_tbl,
-  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span>
-) 
-prec_anual_tbl</code></pre></div>
-<p>Vamos usar a função <code>tidyr::gather()</code> para reestruturar os dados <code>prec_anual_tbl</code> em uma nova tabela de dados que chamaremos <code>prec_anual_long</code>.</p>
-<p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos dois novos pares de variáveis: <code>variavel</code> e <code>valor</code>. Na coluna <code>variavel</code> será distribuído o nome das variáveis <code>prec</code> e <code>intensidade</code>. A coluna <code>valor</code>reunirá os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long &lt;-<span class="st"> </span><span class="kw">gather</span>(
-  <span class="dt">data =</span> prec_anual_tbl,
-  <span class="dt">key =</span> variavel,
-  <span class="dt">value =</span> medida,
-  prec, intensidade
-)
-prec_anual_long</code></pre></div>
-<p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
-<ul>
-<li><p><code>data = prec_anual_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
-<li><p><code>key = variavel</code>, nome que nós escolhemos para dar à nova coluna que distribuirá os <strong>nomes das variáveis</strong> dos dados de entrada.</p></li>
-<li><p><code>value = medida</code>, nome que nós escolhemos para dar à nova coluna que reunirá os <strong>valores das variáveis</strong> dos dados de entrada;</p></li>
-<li><p><code>...</code>, lista com o nome das variáveis, no código acima corresponde à <code>prec, intensidade</code>;</p></li>
-</ul>
-<p>As demais colunas dos dados (<code>site</code> e <code>ano</code>) serão mantidas inalteradas e seus valores serão repetidos quando necessário.</p>
-<p>Como em outras funções dos pacotes do <strong>tidyverse</strong> você perceberá que os argumentos <strong>não são especificados como caracteres</strong> e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>key</code> e <code>value</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
-<p>Se nós desejássemos que todas colunas do <em>data frame</em> fossem reunidas em uma nova coluna <code>atributo</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia ser feito simplesmente sem especificar variáveis de interesse (<code>prec, intensidade</code>) no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">gather</span>(
-  prec_anual_tbl, 
-  <span class="dt">key =</span> atributo,
-  <span class="dt">value =</span> valor
-)
-prec_anual_longo</code></pre></div>
-<p>Se não forem especificados nomes para os argumentos <code>key</code> e <code>value</code> na chamada da função <code>tidyr::gather()</code>, serão atribuídos os valores <em>default</em>: <code>key</code> e <code>value</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(prec_anual_tbl)</code></pre></div>
-</div>
-<div id="formato-de-dados-amplo" class="section level4">
-<h4><span class="header-section-number">10.3.2.2</span> Formato de dados amplo</h4>
-<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>tidyr::spread()</code>. Esta função é complementar à <code>tidyr::gather()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long</code></pre></div>
-<p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(
-  <span class="dt">data =</span> prec_anual_long,
-  <span class="dt">key =</span> variavel,
-  <span class="dt">value =</span> medida
-)
-prec_anual_amplo</code></pre></div>
-<p>Esta operação serviu para colocar os dados originais (<code>prec_anual_long</code>) no formato &quot;arrumado&quot; (<code>prec_anual_amplo</code>).</p>
-</div>
-</div>
-<div id="funções-adicionais-do-tidyr" class="section level3">
-<h3><span class="header-section-number">10.3.3</span> Funções adicionais do <strong>tidyr</strong></h3>
-<p>Você pode unir duas colunas inserindo um separador entre elas com a função <code>tidyr::unite()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(
-  prec_anual_long,
-  <span class="dt">col =</span> site_ano,
-  site, ano,
-  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>
-))</code></pre></div>
-<p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>tidyr::separate()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(
-  prec_anual_long_u,
-  <span class="dt">col =</span> site_ano,
-  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,
-  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)
-)</code></pre></div>
-<p>Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função <code>tidyr::complete()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual
-prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(
-  prec_anual,
-  site, ano
-)
-prec_anual_comp</code></pre></div>
-</div>
+<div id="número-de-linhas-e-colunas-de-uma-matriz" class="section level2">
+<h2><span class="header-section-number">A.4</span> Número de linhas e colunas de uma matriz</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M
+<span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span>
+<span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span>
+<span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span>
+<span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span>
+<span class="kw">ncol</span>(temp_mat)
+<span class="co">#&gt; [1] 12</span>
+<span class="kw">nrow</span>(temp_mat)
+<span class="co">#&gt; [1] 3</span>
+<span class="kw">dim</span>(temp_mat)
+<span class="co">#&gt; [1]  3 12</span></code></pre></div>
+<p>Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># colunas de cada elemento da matriz</span>
+<span class="kw">col</span>(temp_mat)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span>
+<span class="co">#&gt; [1,]    1    2    3    4    5    6    7    8    9    10    11    12</span>
+<span class="co">#&gt; [2,]    1    2    3    4    5    6    7    8    9    10    11    12</span>
+<span class="co">#&gt; [3,]    1    2    3    4    5    6    7    8    9    10    11    12</span>
+<span class="co"># linhas de cada elemento da matriz</span>
+<span class="kw">row</span>(temp_mat)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span>
+<span class="co">#&gt; [1,]    1    1    1    1    1    1    1    1    1     1     1     1</span>
+<span class="co">#&gt; [2,]    2    2    2    2    2    2    2    2    2     2     2     2</span>
+<span class="co">#&gt; [3,]    3    3    3    3    3    3    3    3    3     3     3     3</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tibble-um-data-frame-aperfeiçoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manipulação-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="indexação-de-matrizes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="adição-de-linhas-e-colunas-a-uma-matriz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
