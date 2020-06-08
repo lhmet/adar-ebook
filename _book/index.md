@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2020-06-01"
+date: "2020-06-08"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

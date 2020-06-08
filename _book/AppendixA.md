@@ -2,9 +2,7 @@
 
 
 
-# Matriz
-
-Operações matriciais adicionais são apresentadas no Apêndice \@ref(oper-mat)
+# Matriz {#oper-mat}
 
 Vetores são dados unidimensionais. Vetores multidimensionais são denominados arranjos (tradução do termo em inglês *array*). As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
@@ -417,11 +415,11 @@ cbind(
 ) # tamanho dos símbolos
 ```
 
-## Operações adicionais com matrizes {#oper-mat}
+## Operações adicionais com matrizes 
 
 Há outras formas de se construir uma matriz além daquela usando a função `matrix()`. Há também diveras operações matriciais que podem ser realizadas no <img src="images/logo_r.png" width="20">. Aqui apresentam-se esse conteúdo complementar sobre matrizes.
 
-## Função `dim()`
+### Função `dim()`
 
 Podemos converter um vetor atômico em uma arranjo de `n` dimensões através do atributo da dimensão de um objeto. Este atributo pode ser alterado pela função `dim()`. Para fazer isso, definimos o atributo `dim` (de dimensão) com um vetor numérico com os tamanhos para cada dimensão. 
 O R reorganizará os elementos do vetor de acordo com as dimensões.

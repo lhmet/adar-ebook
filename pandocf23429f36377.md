@@ -1,1 +1,0 @@
-Este método de atribuição é menos comum, por deixar o código menos legível que o método `variavel <- valor`. Mas em alguns casos de programação avançada envolvendo ambientes (especificado como 3° argumento da `assign()`) ele pode ser útil.

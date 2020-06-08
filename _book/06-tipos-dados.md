@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-06-01"
+#> [1] "2020-06-08"
 Sys.time()
-#> [1] "2020-06-01 13:29:17 -03"
+#> [1] "2020-06-08 13:50:08 -03"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
