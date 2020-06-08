@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 1 Motivação | Análise de Dados Ambientais com R</title>
+  <title>8.2 Data Frames (Quadro de Dados) | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 1 Motivação | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="8.2 Data Frames (Quadro de Dados) | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 1 Motivação | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="8.2 Data Frames (Quadro de Dados) | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="análise-de-dados-meteorológicos.html"/>
+<link rel="prev" href="listas.html"/>
+<link rel="next" href="io.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -373,35 +373,517 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Capítulo 1</span> Motivação</h1>
-<!-- #dados meteorológicos 
-#Importância e valor da informação meteorológica
- aquisição de dados
- preparação de dados
- controle de qualidade
- interpolação 
- visualização
--->
-<!--
-
-- pesquisa reproduzível, transparência
-
--->
-<pre><code>## Warning in options(stringsAsFactors = TRUE): &#39;options(stringsAsFactors = TRUE)&#39;
-## is deprecated and will be disabled</code></pre>
-<div class="figure">
-<img src="images/HeHeartlandPark2601underconstructionbar9.gif" />
+<div id="data-frames-quadro-de-dados" class="section level2">
+<h2><span class="header-section-number">8.2</span> <em>Data Frames</em> (Quadro de Dados)</h2>
+<p>Um <em>Data Frame</em>, aqui será referenciado como quadro de dados, é a estrutura de dados mais usada para guardar conjunto de dados na forma de tabela (dados tabulares).</p>
+<p>Um quadro de dados é retangular como a de uma matriz. Mas tem a vantagem de armazenar vetores de diferentes tipos (<code>character</code>, <code>numeric</code>, <code>logical</code> e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogênea.</p>
+<p>Cada linha do quadro de dados corresponde a uma observação. Cada coluna corresponde a uma variável.</p>
+<div id="criação-1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Criação</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Uma das formas mais simples de se criar um quadro de dados é através da função <code>data.frame()</code>. Vamos criar um quadro de dados com medidas de temperatura da estação de Santa Maria.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando um dataframe</span>
+dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">datas =</span> <span class="kw">c</span>(
+    <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-02&quot;</span>, <span class="st">&quot;2013-01-03&quot;</span>, <span class="st">&quot;2013-01-04&quot;</span>, <span class="st">&quot;2013-01-05&quot;</span>,
+    <span class="st">&quot;2013-01-06&quot;</span>, <span class="st">&quot;2013-01-07&quot;</span>, <span class="st">&quot;2013-01-08&quot;</span>, <span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-10&quot;</span>,
+    <span class="st">&quot;2013-01-11&quot;</span>, <span class="st">&quot;2013-01-12&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-14&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>
+  ),
+  <span class="dt">cidade =</span> <span class="kw">rep</span>(<span class="st">&quot;Santa Maria&quot;</span>, <span class="dv">15</span>),
+  <span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">34</span>, <span class="dv">27</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">32</span>)
+)
+dados
+<span class="co">#&gt;         datas      cidade tar</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16</span>
+<span class="co">#&gt; 9  2013-01-09 Santa Maria  34</span>
+<span class="co">#&gt; 10 2013-01-10 Santa Maria  27</span>
+<span class="co">#&gt; 11 2013-01-11 Santa Maria  15</span>
+<span class="co">#&gt; 12 2013-01-12 Santa Maria  28</span>
+<span class="co">#&gt; 13 2013-01-13 Santa Maria  22</span>
+<span class="co">#&gt; 14 2013-01-14 Santa Maria  29</span>
+<span class="co">#&gt; 15 2013-01-15 Santa Maria  32</span>
+<span class="kw">class</span>(dados)
+<span class="co">#&gt; [1] &quot;data.frame&quot;</span>
+<span class="kw">is.data.frame</span>(dados)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Novamente podemos a <code>str()</code> para um diagnóstico rápido das variáveis em um quadro de dados:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados)
+<span class="co">#&gt; &#39;data.frame&#39;:    15 obs. of  3 variables:</span>
+<span class="co">#&gt;  $ datas : chr  &quot;2013-01-01&quot; &quot;2013-01-02&quot; &quot;2013-01-03&quot; &quot;2013-01-04&quot; ...</span>
+<span class="co">#&gt;  $ cidade: chr  &quot;Santa Maria&quot; &quot;Santa Maria&quot; &quot;Santa Maria&quot; &quot;Santa Maria&quot; ...</span>
+<span class="co">#&gt;  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...</span></code></pre></div>
+<p>A função <code>summary()</code> fornece um resumo estatístico das variáveis (colunas) de um <em>dataframe</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dados)
+<span class="co">#&gt;     datas              cidade               tar      </span>
+<span class="co">#&gt;  Length:15          Length:15          Min.   :15.0  </span>
+<span class="co">#&gt;  Class :character   Class :character   1st Qu.:19.5  </span>
+<span class="co">#&gt;  Mode  :character   Mode  :character   Median :27.0  </span>
+<span class="co">#&gt;                                        Mean   :25.4  </span>
+<span class="co">#&gt;                                        3rd Qu.:31.5  </span>
+<span class="co">#&gt;                                        Max.   :35.0</span></code></pre></div>
+</div>
+<div id="atributos-de-um-dataframe" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Atributos de um <em>dataframe</em></h3>
+<p>Quadro de dados é uma estrutura de dados avançada e possui diversos atributos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># atributos</span>
+<span class="kw">attributes</span>(dados)
+<span class="co">#&gt; $names</span>
+<span class="co">#&gt; [1] &quot;datas&quot;  &quot;cidade&quot; &quot;tar&quot;   </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $class</span>
+<span class="co">#&gt; [1] &quot;data.frame&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $row.names</span>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span>
+<span class="co"># atributos armazenados em uma lista</span>
+<span class="kw">str</span>(<span class="kw">attributes</span>(dados))
+<span class="co">#&gt; List of 3</span>
+<span class="co">#&gt;  $ names    : chr [1:3] &quot;datas&quot; &quot;cidade&quot; &quot;tar&quot;</span>
+<span class="co">#&gt;  $ class    : chr &quot;data.frame&quot;</span>
+<span class="co">#&gt;  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...</span>
+<span class="co"># número de colunas</span>
+<span class="kw">ncol</span>(dados)
+<span class="co">#&gt; [1] 3</span>
+<span class="co"># número de linhas</span>
+<span class="kw">nrow</span>(dados)
+<span class="co">#&gt; [1] 15</span>
+<span class="co"># dimensões</span>
+<span class="kw">dim</span>(dados)
+<span class="co">#&gt; [1] 15  3</span>
+<span class="co"># nomes podem ser atribuídos as linhas e as colunas</span>
+<span class="kw">rownames</span>(dados)
+<span class="co">#&gt;  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot;</span></code></pre></div>
+<p>Nomes podem ser atribuídos a cada observação (linha) do quadro de dados através da função <code>rownames()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># novos nomes para as linhas de dados</span>
+<span class="kw">rownames</span>(dados) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;linha&quot;</span>, <span class="kw">rownames</span>(dados))
+dados
+<span class="co">#&gt;              datas      cidade tar</span>
+<span class="co">#&gt; linha1  2013-01-01 Santa Maria  31</span>
+<span class="co">#&gt; linha2  2013-01-02 Santa Maria  35</span>
+<span class="co">#&gt; linha3  2013-01-03 Santa Maria  21</span>
+<span class="co">#&gt; linha4  2013-01-04 Santa Maria  23</span>
+<span class="co">#&gt; linha5  2013-01-05 Santa Maria  33</span>
+<span class="co">#&gt; linha6  2013-01-06 Santa Maria  17</span>
+<span class="co">#&gt; linha7  2013-01-07 Santa Maria  18</span>
+<span class="co">#&gt; linha8  2013-01-08 Santa Maria  16</span>
+<span class="co">#&gt; linha9  2013-01-09 Santa Maria  34</span>
+<span class="co">#&gt; linha10 2013-01-10 Santa Maria  27</span>
+<span class="co">#&gt; linha11 2013-01-11 Santa Maria  15</span>
+<span class="co">#&gt; linha12 2013-01-12 Santa Maria  28</span>
+<span class="co">#&gt; linha13 2013-01-13 Santa Maria  22</span>
+<span class="co">#&gt; linha14 2013-01-14 Santa Maria  29</span>
+<span class="co">#&gt; linha15 2013-01-15 Santa Maria  32</span></code></pre></div>
+<p>Embora este recurso exista, em geral, esta opção não é muito utilizada uma vez que podemos adicionar uma coluna com para identificar cada observação. Por isso vamos ver como remover os nomes das linhas do quadro de dados.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># removendo nomes das linhas</span>
+<span class="kw">rownames</span>(dados) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+dados
+<span class="co">#&gt;         datas      cidade tar</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16</span>
+<span class="co">#&gt; 9  2013-01-09 Santa Maria  34</span>
+<span class="co">#&gt; 10 2013-01-10 Santa Maria  27</span>
+<span class="co">#&gt; 11 2013-01-11 Santa Maria  15</span>
+<span class="co">#&gt; 12 2013-01-12 Santa Maria  28</span>
+<span class="co">#&gt; 13 2013-01-13 Santa Maria  22</span>
+<span class="co">#&gt; 14 2013-01-14 Santa Maria  29</span>
+<span class="co">#&gt; 15 2013-01-15 Santa Maria  32</span></code></pre></div>
+<p>Os nomes das variáveis de um quadro de dados podem ser adicionadas com a função <code>names()</code> (ou também a <code>colnames()</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dados)
+<span class="co">#&gt; [1] &quot;datas&quot;  &quot;cidade&quot; &quot;tar&quot;</span>
+<span class="co"># mesmo que names(dados)</span>
+<span class="kw">colnames</span>(dados)
+<span class="co">#&gt; [1] &quot;datas&quot;  &quot;cidade&quot; &quot;tar&quot;</span></code></pre></div>
+</div>
+<div id="formas-de-acesso-à-variáveis" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> Formas de acesso à variáveis</h3>
+<div id="cohetes-e-ifrão" class="section level4">
+<h4><span class="header-section-number">8.2.3.1</span> Co[hetes e $ifrão</h4>
+<p>Existem várias formas de acessar as variáveis de um quadro de dados. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: cochetes simples <code>[</code>, duplo <code>[[</code> e sifrão<code>$</code>. Mas observe abaixo, a diferença nos resultados extraídos com cada operador.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variáveis do dataframe</span>
+<span class="kw">names</span>(dados)
+<span class="co">#&gt; [1] &quot;datas&quot;  &quot;cidade&quot; &quot;tar&quot;</span>
+<span class="co"># acessando os dados de temperatura</span>
+dados[, <span class="dv">3</span>]
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+<span class="co"># ou</span>
+dados[, <span class="st">&quot;tar&quot;</span>]
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+<span class="co"># ou</span>
+dados<span class="op">$</span>tar
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+<span class="kw">is.vector</span>(dados<span class="op">$</span>tar)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co"># note a diferença no resultado da extração</span>
+dados[<span class="st">&quot;tar&quot;</span>]
+<span class="co">#&gt;    tar</span>
+<span class="co">#&gt; 1   31</span>
+<span class="co">#&gt; 2   35</span>
+<span class="co">#&gt; 3   21</span>
+<span class="co">#&gt; 4   23</span>
+<span class="co">#&gt; 5   33</span>
+<span class="co">#&gt; 6   17</span>
+<span class="co">#&gt; 7   18</span>
+<span class="co">#&gt; 8   16</span>
+<span class="co">#&gt; 9   34</span>
+<span class="co">#&gt; 10  27</span>
+<span class="co">#&gt; 11  15</span>
+<span class="co">#&gt; 12  28</span>
+<span class="co">#&gt; 13  22</span>
+<span class="co">#&gt; 14  29</span>
+<span class="co">#&gt; 15  32</span>
+<span class="kw">class</span>(dados[<span class="st">&quot;tar&quot;</span>])
+<span class="co">#&gt; [1] &quot;data.frame&quot;</span>
+dados[[<span class="st">&quot;tar&quot;</span>]]
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+<span class="kw">class</span>(dados[[<span class="st">&quot;tar&quot;</span>]])
+<span class="co">#&gt; [1] &quot;numeric&quot;</span>
+dados[, <span class="st">&quot;tar&quot;</span>]
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+<span class="kw">class</span>(dados[, <span class="st">&quot;tar&quot;</span>])
+<span class="co">#&gt; [1] &quot;numeric&quot;</span></code></pre></div>
+<p>Portanto, <strong>quadro de dados</strong> são uma versão bidimensional de uma lista.</p>
+</div>
+<div id="função-with" class="section level4">
+<h4><span class="header-section-number">8.2.3.2</span> Função <code>with()</code></h4>
+<p>O acesso as variáveis de um <em>dataframe</em> também é possível com a função <code>with(data, expr)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># acesso a variáveis de um dataframe</span>
+<span class="kw">with</span>(<span class="dt">data =</span> dados, <span class="dt">expr =</span> tar)
+<span class="co">#&gt;  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</span>
+tarK &lt;-<span class="st"> </span><span class="kw">with</span>(<span class="dt">data =</span> dados, <span class="dt">expr =</span> tar <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span>)
+tarK
+<span class="co">#&gt;  [1] 304.15 308.15 294.15 296.15 306.15 290.15 291.15 289.15 307.15 300.15</span>
+<span class="co">#&gt; [11] 288.15 301.15 295.15 302.15 305.15</span>
+<span class="co"># gráfico de uma variável usando with()</span>
+<span class="kw">with</span>(<span class="dt">data =</span> dados, 
+     <span class="co"># parâmetro expr geralmente não é mostrado</span>
+       <span class="kw">plot</span>(tar <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span>, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)
+     )</code></pre></div>
+<p><img src="images/Chunk5310-1.png" width="672" /></p>
+<p>O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do quadro de dados de entrada. Quando houver uma expressão com mais de uma linha você agrupa o código usando chaves <code>{}</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(dados, 
+     {
+       dates &lt;-<span class="st"> </span><span class="kw">as.Date</span>(datas)
+       <span class="kw">plot</span>(dates, tar, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)
+     }
+)</code></pre></div>
+<p><img src="images/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="indexação-seleção-e-substituição" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> Indexação, seleção e substituição</h3>
+<p>Os esquemas de indexação usados para vetores (<a href="index-vetores.html#index-vetores">7.5</a>) podem ser usados com quadro de dados. Porém o quadro de dados possui duas dimensões e a indexação pode ser feita por linhas e colunas:</p>
+<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
+<code>quadro_dados[inds_lin, inds_col]</code>
+</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exclui a primeiro e a última observação para todas variáveis</span>
+(inds_lin &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(dados)))
+<span class="co">#&gt; [1]  -1 -15</span>
+(inds_col &lt;-<span class="st"> </span><span class="dv">3</span>)
+<span class="co">#&gt; [1] 3</span>
+dados[inds_lin, inds_col]
+<span class="co">#&gt;  [1] 35 21 23 33 17 18 16 34 27 15 28 22 29</span></code></pre></div>
+<p>Podemos selecionar a temperatura no dia 2013-01-09, usando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>datas <span class="op">==</span><span class="st"> &quot;2013-01-09&quot;</span>, <span class="st">&quot;tar&quot;</span>]
+<span class="co">#&gt; [1] 34</span></code></pre></div>
+<p>Para acrescentar uma nova variável chamada <code>prec</code>, fazemos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># acrescentar uma nova variavel</span>
+dados<span class="op">$</span>prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>)
+dados
+<span class="co">#&gt;         datas      cidade tar prec</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4</span>
+<span class="co">#&gt; 9  2013-01-09 Santa Maria  34    0</span>
+<span class="co">#&gt; 10 2013-01-10 Santa Maria  27    0</span>
+<span class="co">#&gt; 11 2013-01-11 Santa Maria  15    5</span>
+<span class="co">#&gt; 12 2013-01-12 Santa Maria  28    0</span>
+<span class="co">#&gt; 13 2013-01-13 Santa Maria  22    0</span>
+<span class="co">#&gt; 14 2013-01-14 Santa Maria  29    2</span>
+<span class="co">#&gt; 15 2013-01-15 Santa Maria  32    0</span></code></pre></div>
+<p>Uma função específica para gerar subconjunto de dados em <em>dataframes</em> é a <code>subset()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subconjunto baseado em condição lógica</span>
+ss1 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados, datas <span class="op">==</span><span class="st"> &quot;2013-01-09&quot;</span>, <span class="dt">select =</span> <span class="st">&quot;tar&quot;</span>)
+ss1
+<span class="co">#&gt;   tar</span>
+<span class="co">#&gt; 9  34</span>
+<span class="co"># subconjunto baseado em condição lógica</span>
+ss2 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados, tar <span class="op">&gt;</span><span class="st"> </span><span class="dv">26</span> <span class="op">&amp;</span><span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
+ss2
+<span class="co">#&gt;         datas      cidade tar prec</span>
+<span class="co">#&gt; 14 2013-01-14 Santa Maria  29    2</span>
+<span class="co"># subconjunto baseado em condição lógica</span>
+ss3 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados, tar <span class="op">&gt;</span><span class="st"> </span><span class="dv">26</span> <span class="op">|</span><span class="st"> </span>prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
+ss3
+<span class="co">#&gt;         datas      cidade tar prec</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4</span>
+<span class="co">#&gt; 9  2013-01-09 Santa Maria  34    0</span>
+<span class="co">#&gt; 10 2013-01-10 Santa Maria  27    0</span>
+<span class="co">#&gt; 11 2013-01-11 Santa Maria  15    5</span>
+<span class="co">#&gt; 12 2013-01-12 Santa Maria  28    0</span>
+<span class="co">#&gt; 14 2013-01-14 Santa Maria  29    2</span>
+<span class="co">#&gt; 15 2013-01-15 Santa Maria  32    0</span>
+<span class="co"># subconjunto baseado em condição lógica</span>
+ss4 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados,
+  datas <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>),
+  <span class="dt">select =</span> <span class="op">-</span>cidade
+)
+ss4
+<span class="co">#&gt;         datas tar prec</span>
+<span class="co">#&gt; 9  2013-01-09  34    0</span>
+<span class="co">#&gt; 13 2013-01-13  22    0</span>
+<span class="co">#&gt; 15 2013-01-15  32    0</span>
+<span class="co"># subconjunto baseado em condição lógica</span>
+ss4 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados,
+  <span class="op">!</span>datas <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>),
+  <span class="dt">select =</span> <span class="op">-</span>cidade
+)
+ss4
+<span class="co">#&gt;         datas tar prec</span>
+<span class="co">#&gt; 1  2013-01-01  31    0</span>
+<span class="co">#&gt; 2  2013-01-02  35    0</span>
+<span class="co">#&gt; 3  2013-01-03  21    0</span>
+<span class="co">#&gt; 4  2013-01-04  23    0</span>
+<span class="co">#&gt; 5  2013-01-05  33    0</span>
+<span class="co">#&gt; 6  2013-01-06  17   10</span>
+<span class="co">#&gt; 7  2013-01-07  18   18</span>
+<span class="co">#&gt; 8  2013-01-08  16    4</span>
+<span class="co">#&gt; 10 2013-01-10  27    0</span>
+<span class="co">#&gt; 11 2013-01-11  15    5</span>
+<span class="co">#&gt; 12 2013-01-12  28    0</span>
+<span class="co">#&gt; 14 2013-01-14  29    2</span></code></pre></div>
+<p>Uma função específica para alteração, remoção e inclusão de variáveis em um <em>dataframe</em> é a <code>transform()</code>. Essa função é mais indicada para alteração de mais de uma variável (ao mesmo tempo) de um <em>dataframe</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mudança do dataframe, alteração de várias variáveis</span>
+dados &lt;-<span class="st"> </span><span class="kw">transform</span>(dados,
+  <span class="dt">cidade =</span> <span class="kw">ifelse</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(dados) <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>, <span class="st">&quot;Sao Sepe&quot;</span>, cidade),
+  <span class="dt">datas =</span> <span class="kw">c</span>(datas[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>], datas[<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]),
+  <span class="dt">anomalias =</span> <span class="kw">ifelse</span>(cidade <span class="op">==</span><span class="st"> &quot;Santa Maria&quot;</span>,
+    tar <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tar[cidade <span class="op">==</span><span class="st"> &quot;Santa Maria&quot;</span>]),
+    tar <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tar[cidade <span class="op">==</span><span class="st"> &quot;Sao Sepe&quot;</span>])
+  )
+)
+dados
+<span class="co">#&gt;         datas      cidade tar prec anomalias</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0       5.6</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0       9.6</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0      -4.4</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0      -2.4</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0       7.6</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10      -8.4</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18      -7.4</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4      -9.4</span>
+<span class="co">#&gt; 9  2013-01-01    Sao Sepe  34    0       8.6</span>
+<span class="co">#&gt; 10 2013-01-02    Sao Sepe  27    0       1.6</span>
+<span class="co">#&gt; 11 2013-01-03    Sao Sepe  15    5     -10.4</span>
+<span class="co">#&gt; 12 2013-01-04    Sao Sepe  28    0       2.6</span>
+<span class="co">#&gt; 13 2013-01-05    Sao Sepe  22    0      -3.4</span>
+<span class="co">#&gt; 14 2013-01-06    Sao Sepe  29    2       3.6</span>
+<span class="co">#&gt; 15 2013-01-07    Sao Sepe  32    0       6.6</span>
+<span class="co"># alterar só uma variavel, anomalia normalizada</span>
+dados<span class="op">$</span>anomalias.norm &lt;-<span class="st"> </span><span class="kw">ifelse</span>(dados<span class="op">$</span>cidade <span class="op">==</span><span class="st"> &quot;Santa Maria&quot;</span>,
+  dados<span class="op">$</span>anomalias <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(dados<span class="op">$</span>anomalias[dados<span class="op">$</span>cidade <span class="op">==</span><span class="st"> &quot;Santa Maria&quot;</span>]),
+  dados<span class="op">$</span>anomalias <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(dados<span class="op">$</span>anomalias[dados<span class="op">$</span>cidade <span class="op">==</span><span class="st"> &quot;Sao Sepe&quot;</span>])
+)
+dados
+<span class="co">#&gt;         datas      cidade tar prec anomalias anomalias.norm</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0       5.6      0.7321669</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0       9.6      1.2551433</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0      -4.4     -0.5752740</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0      -2.4     -0.3137858</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0       7.6      0.9936551</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10      -8.4     -1.0982504</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18      -7.4     -0.9675063</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4      -9.4     -1.2289944</span>
+<span class="co">#&gt; 9  2013-01-01    Sao Sepe  34    0       8.6      1.3392114</span>
+<span class="co">#&gt; 10 2013-01-02    Sao Sepe  27    0       1.6      0.2491556</span>
+<span class="co">#&gt; 11 2013-01-03    Sao Sepe  15    5     -10.4     -1.6195115</span>
+<span class="co">#&gt; 12 2013-01-04    Sao Sepe  28    0       2.6      0.4048779</span>
+<span class="co">#&gt; 13 2013-01-05    Sao Sepe  22    0      -3.4     -0.5294557</span>
+<span class="co">#&gt; 14 2013-01-06    Sao Sepe  29    2       3.6      0.5606001</span>
+<span class="co">#&gt; 15 2013-01-07    Sao Sepe  32    0       6.6      1.0277669</span></code></pre></div>
+</div>
+<div id="combinando-dataframes" class="section level3">
+<h3><span class="header-section-number">8.2.5</span> Combinando <em>dataframes</em></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coords_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">lon =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="op">-</span><span class="fl">45.1</span>, <span class="dv">7</span>)), <span class="co"># longitudes</span>
+  <span class="dt">lat =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="op">-</span><span class="fl">23.1</span>, <span class="dv">7</span>))
+) <span class="co"># latitudes</span>
+d &lt;-<span class="st"> </span><span class="kw">cbind</span>(dados, coords_df)
+d
+<span class="co">#&gt;         datas      cidade tar prec anomalias anomalias.norm   lon   lat</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0       5.6      0.7321669 -45.0 -23.0</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0       9.6      1.2551433 -45.0 -23.0</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0      -4.4     -0.5752740 -45.0 -23.0</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0      -2.4     -0.3137858 -45.0 -23.0</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0       7.6      0.9936551 -45.0 -23.0</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10      -8.4     -1.0982504 -45.0 -23.0</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18      -7.4     -0.9675063 -45.0 -23.0</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4      -9.4     -1.2289944 -45.0 -23.0</span>
+<span class="co">#&gt; 9  2013-01-01    Sao Sepe  34    0       8.6      1.3392114 -45.1 -23.1</span>
+<span class="co">#&gt; 10 2013-01-02    Sao Sepe  27    0       1.6      0.2491556 -45.1 -23.1</span>
+<span class="co">#&gt; 11 2013-01-03    Sao Sepe  15    5     -10.4     -1.6195115 -45.1 -23.1</span>
+<span class="co">#&gt; 12 2013-01-04    Sao Sepe  28    0       2.6      0.4048779 -45.1 -23.1</span>
+<span class="co">#&gt; 13 2013-01-05    Sao Sepe  22    0      -3.4     -0.5294557 -45.1 -23.1</span>
+<span class="co">#&gt; 14 2013-01-06    Sao Sepe  29    2       3.6      0.5606001 -45.1 -23.1</span>
+<span class="co">#&gt; 15 2013-01-07    Sao Sepe  32    0       6.6      1.0277669 -45.1 -23.1</span>
+<span class="co"># usando a própria função data.frame()</span>
+d2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dados, coords_df, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+d2
+<span class="co">#&gt;         datas      cidade tar prec anomalias anomalias.norm   lon   lat</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0       5.6      0.7321669 -45.0 -23.0</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0       9.6      1.2551433 -45.0 -23.0</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0      -4.4     -0.5752740 -45.0 -23.0</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0      -2.4     -0.3137858 -45.0 -23.0</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0       7.6      0.9936551 -45.0 -23.0</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10      -8.4     -1.0982504 -45.0 -23.0</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18      -7.4     -0.9675063 -45.0 -23.0</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4      -9.4     -1.2289944 -45.0 -23.0</span>
+<span class="co">#&gt; 9  2013-01-01    Sao Sepe  34    0       8.6      1.3392114 -45.1 -23.1</span>
+<span class="co">#&gt; 10 2013-01-02    Sao Sepe  27    0       1.6      0.2491556 -45.1 -23.1</span>
+<span class="co">#&gt; 11 2013-01-03    Sao Sepe  15    5     -10.4     -1.6195115 -45.1 -23.1</span>
+<span class="co">#&gt; 12 2013-01-04    Sao Sepe  28    0       2.6      0.4048779 -45.1 -23.1</span>
+<span class="co">#&gt; 13 2013-01-05    Sao Sepe  22    0      -3.4     -0.5294557 -45.1 -23.1</span>
+<span class="co">#&gt; 14 2013-01-06    Sao Sepe  29    2       3.6      0.5606001 -45.1 -23.1</span>
+<span class="co">#&gt; 15 2013-01-07    Sao Sepe  32    0       6.6      1.0277669 -45.1 -23.1</span>
+<span class="co"># verificando se os dois dataframes são idênticos</span>
+<span class="kw">identical</span>(d, d2)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co"># dados de Caçapava</span>
+cacapava &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">datas =</span> <span class="st">&quot;2013-01-01&quot;</span>,
+  <span class="dt">cidade =</span> <span class="st">&quot;Cacapava&quot;</span>,
+  <span class="dt">tar =</span> <span class="dv">19</span>,
+  <span class="dt">prec =</span> <span class="dv">0</span>,
+  <span class="dt">anomalias =</span> <span class="ot">NA</span>,
+  <span class="dt">anomalias.norm =</span> <span class="ot">NA</span>,
+  <span class="dt">lon =</span> <span class="op">-</span><span class="fl">45.1</span>,
+  <span class="dt">lat =</span> <span class="op">-</span><span class="fl">23.2</span>
+)
+d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, cacapava)
+d
+<span class="co">#&gt;         datas      cidade tar prec anomalias anomalias.norm   lon   lat</span>
+<span class="co">#&gt; 1  2013-01-01 Santa Maria  31    0       5.6      0.7321669 -45.0 -23.0</span>
+<span class="co">#&gt; 2  2013-01-02 Santa Maria  35    0       9.6      1.2551433 -45.0 -23.0</span>
+<span class="co">#&gt; 3  2013-01-03 Santa Maria  21    0      -4.4     -0.5752740 -45.0 -23.0</span>
+<span class="co">#&gt; 4  2013-01-04 Santa Maria  23    0      -2.4     -0.3137858 -45.0 -23.0</span>
+<span class="co">#&gt; 5  2013-01-05 Santa Maria  33    0       7.6      0.9936551 -45.0 -23.0</span>
+<span class="co">#&gt; 6  2013-01-06 Santa Maria  17   10      -8.4     -1.0982504 -45.0 -23.0</span>
+<span class="co">#&gt; 7  2013-01-07 Santa Maria  18   18      -7.4     -0.9675063 -45.0 -23.0</span>
+<span class="co">#&gt; 8  2013-01-08 Santa Maria  16    4      -9.4     -1.2289944 -45.0 -23.0</span>
+<span class="co">#&gt; 9  2013-01-01    Sao Sepe  34    0       8.6      1.3392114 -45.1 -23.1</span>
+<span class="co">#&gt; 10 2013-01-02    Sao Sepe  27    0       1.6      0.2491556 -45.1 -23.1</span>
+<span class="co">#&gt; 11 2013-01-03    Sao Sepe  15    5     -10.4     -1.6195115 -45.1 -23.1</span>
+<span class="co">#&gt; 12 2013-01-04    Sao Sepe  28    0       2.6      0.4048779 -45.1 -23.1</span>
+<span class="co">#&gt; 13 2013-01-05    Sao Sepe  22    0      -3.4     -0.5294557 -45.1 -23.1</span>
+<span class="co">#&gt; 14 2013-01-06    Sao Sepe  29    2       3.6      0.5606001 -45.1 -23.1</span>
+<span class="co">#&gt; 15 2013-01-07    Sao Sepe  32    0       6.6      1.0277669 -45.1 -23.1</span>
+<span class="co">#&gt; 16 2013-01-01    Cacapava  19    0        NA             NA -45.1 -23.2</span></code></pre></div>
+</div>
+<div id="teste-e-coerção" class="section level3">
+<h3><span class="header-section-number">8.2.6</span> Teste e Coerção</h3>
+<p>Podemos converter uma estrutura de dados para quadro de dados com a função <code>as.data.frame()</code>:</p>
+<ul>
+<li><p>Um vetor é transformado em um <em>dataframe</em> de uma coluna;</p></li>
+<li><p>Uma lista terá uma coluna para elemento, se os elementos não forem de mesmo tamanho haverá um erro;</p></li>
+<li><p>Uma matriz cria um <em>dataframe</em> com mesma estrutura de uma matriz;</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal do ano de 1990</span>
+temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="fl">25.00</span>, <span class="fl">23.20</span>, <span class="fl">22.50</span>, <span class="fl">21.00</span>, <span class="fl">19.00</span>, <span class="fl">17.60</span>,
+  <span class="fl">18.00</span>, <span class="fl">19.70</span>, <span class="fl">21.30</span>, <span class="fl">22.00</span>, <span class="fl">24.00</span>, <span class="fl">26.80</span>
+)
+<span class="co"># convertendo lista para dataframe</span>
+sm_l
+<span class="co">#&gt; $cidade</span>
+<span class="co">#&gt; [1] &quot;Santa Maria&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $dados</span>
+<span class="co">#&gt;      tar prec</span>
+<span class="co">#&gt; [1,]  31  300</span>
+<span class="co">#&gt; [2,]  35  200</span>
+<span class="co">#&gt; [3,]  21  150</span>
+<span class="co">#&gt; [4,]  23  120</span>
+<span class="co">#&gt; [5,]  33  210</span>
+<span class="co">#&gt; [6,]  17  110</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $lon</span>
+<span class="co">#&gt; [1] -45</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $lat</span>
+<span class="co">#&gt; [1] -23</span>
+sm_l_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sm_l)
+sm_l_df
+<span class="co">#&gt;        cidade dados.tar dados.prec lon lat</span>
+<span class="co">#&gt; 1 Santa Maria        31        300 -45 -23</span>
+<span class="co">#&gt; 2 Santa Maria        35        200 -45 -23</span>
+<span class="co">#&gt; 3 Santa Maria        21        150 -45 -23</span>
+<span class="co">#&gt; 4 Santa Maria        23        120 -45 -23</span>
+<span class="co">#&gt; 5 Santa Maria        33        210 -45 -23</span>
+<span class="co">#&gt; 6 Santa Maria        17        110 -45 -23</span>
+<span class="co"># convertendo array para dataframe</span>
+v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">100</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
+v_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(v)
+<span class="co"># convertendo vetor para dataframe</span>
+temp90_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(temp90)</code></pre></div>
+<p>A conversão de matriz para quadro de dados, pode ser feita da seguinte forma.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>)
+mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): data length [7] is not a sub-</span>
+<span class="co">#&gt; multiple or multiple of the number of rows [2]</span>
+mat
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    0    1   -1   -2</span>
+<span class="co">#&gt; [2,]    3    5   -5    0</span>
+<span class="co"># convertendo matrix para dataframe</span>
+mat
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    0    1   -1   -2</span>
+<span class="co">#&gt; [2,]    3    5   -5    0</span>
+mat_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(mat)
+<span class="kw">names</span>(mat_df)
+<span class="co">#&gt; [1] &quot;V1&quot; &quot;V2&quot; &quot;V3&quot; &quot;V4&quot;</span>
+mat_df
+<span class="co">#&gt;   V1 V2 V3 V4</span>
+<span class="co">#&gt; 1  0  1 -1 -2</span>
+<span class="co">#&gt; 2  3  5 -5  0</span>
+<span class="co"># testes</span>
+<span class="kw">is.data.frame</span>(mat_df)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">class</span>(v_df)
+<span class="co">#&gt; [1] &quot;data.frame&quot;</span></code></pre></div>
 
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="análise-de-dados-meteorológicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="listas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="io.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

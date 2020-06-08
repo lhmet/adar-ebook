@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 1 Motivação | Análise de Dados Ambientais com R</title>
+  <title>A.8 Operações adicionais com matrizes | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 1 Motivação | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="A.8 Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 1 Motivação | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="A.8 Operações adicionais com matrizes | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="análise-de-dados-meteorológicos.html"/>
+<link rel="prev" href="conversão-de-matriz-para-vetor.html"/>
+<link rel="next" href="atribuição-por-indexação.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -373,26 +373,32 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Capítulo 1</span> Motivação</h1>
-<!-- #dados meteorológicos 
-#Importância e valor da informação meteorológica
- aquisição de dados
- preparação de dados
- controle de qualidade
- interpolação 
- visualização
--->
-<!--
-
-- pesquisa reproduzível, transparência
-
--->
-<pre><code>## Warning in options(stringsAsFactors = TRUE): &#39;options(stringsAsFactors = TRUE)&#39;
-## is deprecated and will be disabled</code></pre>
-<div class="figure">
-<img src="images/HeHeartlandPark2601underconstructionbar9.gif" />
-
+<div id="operações-adicionais-com-matrizes" class="section level2">
+<h2><span class="header-section-number">A.8</span> Operações adicionais com matrizes</h2>
+<p>Há outras formas de se construir uma matriz além daquela usando a função <code>matrix()</code>. Há também diveras operações matriciais que podem ser realizadas no <img src="images/logo_r.png" width="20">. Aqui apresentam-se esse conteúdo complementar sobre matrizes.</p>
+<div id="função-dim" class="section level3">
+<h3><span class="header-section-number">A.8.1</span> Função <code>dim()</code></h3>
+<p>Podemos converter um vetor atômico em uma arranjo de <code>n</code> dimensões através do atributo da dimensão de um objeto. Este atributo pode ser alterado pela função <code>dim()</code>. Para fazer isso, definimos o atributo <code>dim</code> (de dimensão) com um vetor numérico com os tamanhos para cada dimensão. O R reorganizará os elementos do vetor de acordo com as dimensões.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+<span class="kw">length</span>(v)
+<span class="kw">attributes</span>(v)
+<span class="kw">typeof</span>(v)
+<span class="co"># conversão de vetor para matriz</span>
+<span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>) <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas</span>
+<span class="co"># v é vector?</span>
+<span class="kw">is.vector</span>(v)
+<span class="co"># v é matrix?</span>
+<span class="kw">is.matrix</span>(v)
+<span class="co"># classe de vetor</span>
+<span class="kw">class</span>(v)
+<span class="kw">attributes</span>(v)
+v
+<span class="co"># invertendo as dimensões</span>
+<span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)
+v</code></pre></div>
+<p>O R usa o primeiro elemento de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.</p>
+<p>Note como os valores de <code>v</code> foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.</p>
+<p>Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para estruturar uma <code>matrix</code>.</p>
 </div>
 </div>
             </section>
@@ -400,8 +406,8 @@ code > span. { color: #1f1c1b; } /* Normal */
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="análise-de-dados-meteorológicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conversão-de-matriz-para-vetor.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="atribuição-por-indexação.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
