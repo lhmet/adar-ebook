@@ -759,7 +759,7 @@ equação de báskara para dados valores
 
 - - - 
 
-7. Determine a temperatura de bulbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Para uma temperatura do ar ($T$) de 20°C e Umidade relativa ($UR$) de 70%, qual o valor de `Tw`? Defina variáveis para os valores $T$ e ($UR$) e use-as na equação de $T_{w}$.
+7. Determine a temperatura de bulbo úmido ($T_{w}$) usando a expressão empírica ([Stull, 2011](http://journals.ametsoc.org/doi/abs/10.1175/JAMC-D-11-0143.1])) abaixo. Salve os resultados em variáveis diferentes. Determine a $T_{w}$  para temperatura do ar $T = 20°C$  e Umidade relativa $UR = 70 \% $ ? Defina variáveis para os valores de $T$ e $UR$ solicitados e substitua-os na equação de $T_{w}$. Não é necessária a conversão dos dados expressos em % para aplicação na equação. 
 
 $$
 \begin{aligned} 
@@ -784,7 +784,7 @@ $$
 <img src="images/conj-eqs-tomasella2003.png" width="88%" style="display: block; margin: auto;" />
 
  - Considere $SI = 16.29$ (%), $CL =  49.25$ (%), $Db = 1.25$ ($g \, cm^{-3}$), $Me = 25$ (%), onde
-$SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é a densidade do solo e $Me$ é a umidade equivalente em %.
+$SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é a densidade do solo e $Me$ é a umidade equivalente em %. Não é necessária a conversão dos dados expressos em % para aplicação nas equações. 
 
 
 - - - 
@@ -797,7 +797,7 @@ $SI$ é a porcentagem de silte no solo, $CL$ é a porcentagem de argila, $Db$ é
 
  - no código da questão 8, utilize a temperatura do ar ($T$) de 30°C e Umidade relativa ($UR$) de 30% para calcular $Tw$.
 
- - no código da questão 9, considere $SI = 13$ (%), $CL =  37$ (%), $Db = 1.3$ ($g \, cm^{-3}$), $Me = 21$ (%) para recalcular  $\theta_{10kPa}$, $\theta_{33kPa}$ e $\theta_{1500kPa}$.
+ - no código da questão 9, considere $SI = 13$ (%), $CL =  37$ (%), $Db = 1.3$ ($g \, cm^{-3}$), $Me = 21$ (%) para recalcular  $\theta_{10kPa}$, $\theta_{33kPa}$ e $\theta_{1500kPa}$. 
 
 - após os códigos usados para resolver as questões 8 e 9, adicione uma nova linha com a expressão `sessionInfo()`.
 

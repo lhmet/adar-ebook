@@ -1067,10 +1067,8 @@ multivariado em tempo real da Oscilação de Madden-Julian disponível em http:/
     de dados.
 
 
-    g. Interprete a saída da `tibble::glimpse()` do pacote **dplyr** aplicada 
-    aos dados importados. O resultado parece com o de alguma outra função que 
-    você já conhece, qual?
-
+    g. Interprete a saída da `dplyr::glimpse()` aplicada 
+    aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
 
 
 
@@ -1078,7 +1076,6 @@ multivariado em tempo real da Oscilação de Madden-Julian disponível em http:/
 [SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela ou a tabela 
 mais abaixo na página do *link*). Veja a seção \@ref(arquivos-fwf) para 
 detalhes. Mostre as últimas linhas dos dados importados.
-
 
 
 
@@ -1101,12 +1098,10 @@ até encontrar o arquivo NetCDF.
 
 
 
-
     b. Compare as dimensões do *data frame* com as dimensões do objeto 
     importado, o número de linhas e de colunas do *data frame* correspondem a
     quais propriedades ou dimensões do objeto importado? Faça essa comparação 
     usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
-
 
 
 

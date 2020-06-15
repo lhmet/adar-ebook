@@ -1,1 +1,0 @@
-**As mensagens de erro são suas amigas. Sempre leia as mensagens de erro**. Elas serão incompreensíveis no início, mas acabarão fazendo mais sentido e tornando-se útil (eu espero). Essa maneira de aprender só funciona se lermos as mensagens de erro em primeiro lugar. 
