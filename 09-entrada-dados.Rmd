@@ -1051,18 +1051,7 @@ easypackages::libraries(c("rio", "tidyverse", "WriteXLS"))
 1. a. Importe da *web* diretamente para o `r rblue` os dados do índice 
 multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt.
 
-```{r, include=FALSE}
-url_data_mjo <- "http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt"
-ind_mjo <- import(url_data_mjo, fread = TRUE)
-ind_mjo
-var_nomes <- scan(url_data_mjo, 
-                  what = "character",
-                  nlines = 2, 
-                  skip = 1, 
-                  n = 7, 
-                  sep = ",",
-                  comment.char = ".")
-```
+
 
     b. Defina o nome das variáveis como: `year, month, day, RMM1, RMM2, phase, 
     amplitude, status`. Tente obter os nomes das variáveis do próprio link para 
@@ -1070,52 +1059,28 @@ var_nomes <- scan(url_data_mjo,
     seção \@ref(scan) para detalhes). Mostre os 10 primeiros valores da 
     variável `RMM1`.
 
-```{r, include = FALSE}
-ind_mjo <- setNames(ind_mjo, c(str_trim(var_nomes), "status"))
-head(ind_mjo)
-head(ind_mjo$RMM1, 10)
-```
+
 
     c. Escreva os dados importados em um arquivo excel no **formato `xls`** 
     e nomeado `mjo.xls`. Dê uma olhada na seção \@ref(export-xls).
     
-```{r, include = FALSE}
-arq_xls_temp <- file.path(tempdir(), "mjo.xls")
-#writexl::write_xlsx(ind_mjo, arq_xls_temp)
-WriteXLS(x = ind_mjo, ExcelFileName = arq_xls_temp)
-```
+
     
     d. Importe no R o arquivo excel nomeado `mjo.xls` e mostre qual a classe 
     dos dados importados.
-```{r, include = FALSE}
-mjoxl <- import(arq_xls_temp)
-mjoxl
-class(mjoxl)
-```
+
 
     e. Mostre as primeiras e as últimas 10 linhas dos dados.
-```{r, include = FALSE}
-head(mjoxl, 10)
-tail(mjoxl, 10)
-```
+
   
     
     f. Qual o código para mostrar quantas linhas e colunas possui a tabela 
     de dados.
-```{r, include = FALSE}
-nrow(mjoxl); ncol(mjoxl)
-dim(mjoxl)
-str(mjoxl)
-```
 
-    g. Interprete a saída da `tibble::glimpse()` do pacote **dplyr** aplicada 
-    aos dados importados. O resultado parece com o de alguma outra função que 
-    você já conhece, qual?
 
-```{r, include = FALSE}
-glimpse(mjoxl)
-str(mjoxl)
-```
+    g. Interprete a saída da `dplyr::glimpse()` aplicada 
+    aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
+
 
 
 2. Importe as anomalias padronizadas dos dados do 
@@ -1123,28 +1088,6 @@ str(mjoxl)
 mais abaixo na página do *link*). Veja a seção \@ref(arquivos-fwf) para 
 detalhes. Mostre as últimas linhas dos dados importados.
 
-```{r, include = FALSE}
-link_soi <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
-nome_vars <- scan(
-  link_soi, # varredura do arquivo
-  what = "character", # tipo dos dados
-  skip = 3, # pula 3 linhas
-  nmax = 13 # num. max. de campos a serem lidos
-)
-nome_vars
-# anomalias padronizadas
-soi_pad <- import(
-  file = link_soi,
-  format = "fwf", # formato de largura fixa
-  skip = 74 + 4, # pula 4 linhas
-  header = FALSE, # sem cabeçalho
-  # nrows = 70, # num. de linhas
-  widths = c(4, rep(6, 12)), # largura dos campos das variáveis
-  na.strings = "-999.9", # string para dados faltantes
-  col.names = nome_vars
-)
-tail(soi_pad)
-```
 
 
 
@@ -1153,16 +1096,7 @@ INMET no período de 1981-2010, disponível neste
 [link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas 
 dos meses e ano são numéricas.
 
-```{r, include = FALSE}
-url_data_inmet <- "http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls"
-tmin_nc_6190 <- import(
-  url_data_inmet,
-  col_names = TRUE,
-  skip = 3,
-  na = "-"
-)
-str(tmin_nc_6190)
-```
+
 
 4. Faça *download* de dados gradeados de precipitação diário para todo Brasil 
 com resolução horizontal de 0,25° 
@@ -1173,19 +1107,6 @@ até encontrar o arquivo NetCDF.
     as coordenadas espaciais e verifique o número de colunas e linhas 
     resultantes.
 
-```{r, include = FALSE}
-library(raster)
-nc_file <- "/home/hidrometeorologista/Dropbox/datasets/Daily_grid_met_vars_Brazil_80_13/data/v2.2-prec-only/prec_daily_UT_Brazil_v2.2_20100101_20151231.nc"
-prec_b <- brick(nc_file)
-prec_b
-prec_df <- as.data.frame(
-  x = prec_b,
-  xy = TRUE, 
-  na.rm = TRUE
-  #long = TRUE
-)
-
-```
 
 
     b. Compare as dimensões do *data frame* com as dimensões do objeto 
@@ -1193,10 +1114,6 @@ prec_df <- as.data.frame(
     quais propriedades ou dimensões do objeto importado? Faça essa comparação 
     usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
 
-```{r, eval = FALSE, include = FALSE}
-#str(prec_df)
-ncol(prec_df); nrow(prec_df)
-```
 
 
 
