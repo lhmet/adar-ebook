@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-15" />
+<meta name="date" content="2020-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -409,8 +409,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb384-3" title="3">  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,</a>
 <a class="sourceLine" id="cb384-4" title="4">  <span class="dt">destfile =</span> arq_temp</a>
 <a class="sourceLine" id="cb384-5" title="5">)</a>
-<a class="sourceLine" id="cb384-6" title="6"><span class="co"># nome dos dados carregados para os exercícios</span></a>
-<a class="sourceLine" id="cb384-7" title="7"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
+<a class="sourceLine" id="cb384-6" title="6"><span class="kw">file.exists</span>(arq_temp)</a>
+<a class="sourceLine" id="cb384-7" title="7"><span class="kw">readRDS</span>(arq_temp)</a>
+<a class="sourceLine" id="cb384-8" title="8"><span class="co"># nome dos dados carregados para os exercícios</span></a>
+<a class="sourceLine" id="cb384-9" title="9"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a>
+<a class="sourceLine" id="cb384-10" title="10"></a>
+<a class="sourceLine" id="cb384-11" title="11"><span class="kw">print</span>(<span class="kw">load</span>(<span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData&quot;</span>))</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato "arrumado" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>

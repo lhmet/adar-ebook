@@ -1188,8 +1188,12 @@ download.file(
   "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
   destfile = arq_temp
 )
+file.exists(arq_temp)
+readRDS(arq_temp)
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
+
+print(load("https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData"))
 ```
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).

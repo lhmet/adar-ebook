@@ -727,7 +727,7 @@ As dimensões da *array* são: 720 (longitudes) x 360 (latitudes) x 12 (meses).
 ```{r}
 dados_cru_url <- "https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1"
 dest_file_nc <- file.path(tempdir(), "cru10min30_tmp.nc")
-download.file(dados_cru_url, dest_file_nc)
+download.file(dados_cru_url, dest_file_nc, mode = "wb")
 ```
 
 Abrindo arquivo NetCDF e obtendo informações básicas.
@@ -784,11 +784,10 @@ nc_close(ncin)
 ```
 
 As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.:
-longitudes), *arrays* bidimensionais (matrizes, campo espacial de um momento),
-ou *arrays* multidimensionais (campos espaciais de uma variável em diversos 
-tempos).
+longitudes), matrizes (como o campo espacial de um momento), ou arranjos (Apêndice \@ref(oper-mat)) multidimensionais (campos espaciais de uma variável em diversos 
+tempos ou níveis de altitude).
 
-Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um 
+Vamos extrair o campo espacial de um passo de tempo (1 mês), criar um 
 *data frame* onde cada linha será um ponto de grade e a coluna representa
 uma variável, por exemplo: longitude, latitude e temperatura. 
 

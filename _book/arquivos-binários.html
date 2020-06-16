@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-15" />
+<meta name="date" content="2020-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -531,7 +531,7 @@ superfície com resolução espacial de 0,5 º na área continental.
 As dimensões da <em>array</em> são: 720 (longitudes) x 360 (latitudes) x 12 (meses).</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1">dados_cru_url &lt;-<span class="st"> &quot;https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1&quot;</span></a>
 <a class="sourceLine" id="cb302-2" title="2">dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;cru10min30_tmp.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb302-3" title="3"><span class="kw">download.file</span>(dados_cru_url, dest_file_nc)</a></code></pre></div>
+<a class="sourceLine" id="cb302-3" title="3"><span class="kw">download.file</span>(dados_cru_url, dest_file_nc, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a></code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1">dest_file_nc</a>
 <a class="sourceLine" id="cb303-2" title="2"><span class="kw">file.exists</span>(dest_file_nc)</a></code></pre></div>
@@ -571,10 +571,9 @@ e <code>ncatt_get</code>. Depois fechamos o acesso ao arquivo NetCDF.</p>
 <a class="sourceLine" id="cb306-13" title="13"><span class="co"># fechando arquivo</span></a>
 <a class="sourceLine" id="cb306-14" title="14"><span class="kw">nc_close</span>(ncin)</a></code></pre></div>
 <p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.:
-longitudes), <em>arrays</em> bidimensionais (matrizes, campo espacial de um momento),
-ou <em>arrays</em> multidimensionais (campos espaciais de uma variável em diversos
-tempos).</p>
-<p>Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um
+longitudes), matrizes (como o campo espacial de um momento), ou arranjos (Apêndice <a href="oper-mat.html#oper-mat">A</a>) multidimensionais (campos espaciais de uma variável em diversos
+tempos ou níveis de altitude).</p>
+<p>Vamos extrair o campo espacial de um passo de tempo (1 mês), criar um
 <em>data frame</em> onde cada linha será um ponto de grade e a coluna representa
 uma variável, por exemplo: longitude, latitude e temperatura.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1">m &lt;-<span class="st"> </span><span class="dv">1</span></a>
