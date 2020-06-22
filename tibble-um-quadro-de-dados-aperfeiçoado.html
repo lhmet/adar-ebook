@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.2 Calculadora | Análise de Dados Ambientais com R</title>
+  <title>10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.2 Calculadora | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.2 Calculadora | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="convenção.html"/>
-<link rel="next" href="variaveis.html"/>
+<link rel="prev" href="pré-requisitos-3.html"/>
+<link rel="next" href="restruturação-de-dados-retangulares.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -373,243 +373,81 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="calculadora" class="section level2">
-<h2><span class="header-section-number">5.2</span> Calculadora</h2>
-<p>O <img src="images/logo_r.png" width="20"> é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o <img src="images/logo_r.png" width="20">, essa uma forma de familiarizar-se com a linha de comandos.</p>
-<div id="aritmética-básica" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Aritmética básica</h3>
-<p>Todas operações feitas em uma calculadora podem ser realizadas no painel com console do <img src="images/logo_r.png" width="20"> no RStudio. Podemos calcular diversas operações em uma expressão:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span><span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span> <span class="op">-</span><span class="st"> </span>pi
-<span class="co">#&gt; [1] 22.85841</span></code></pre></div>
-<p>Além de números e operadores artiméticos a expressão acima inclui a constante pré-definida (<span class="math inline">\(\pi\)</span>): <code>pi</code> (=3.1415927).</p>
-<div class="rmdwarning">
-<p>
-Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(matfuns) .
-</p>
-</div>
-<p>As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem de precedência que aprendemos em matemática na escola:</p>
+<div id="tibble-um-quadro-de-dados-aperfeiçoado" class="section level2">
+<h2><span class="header-section-number">10.2</span> <em>tibble</em>: um <em>quadro de dados</em> aperfeiçoado</h2>
+<p>Quadro de dados (<em>data frames</em>) são a unidade fundamental de armazenamento de dados retangulares no <img src="images/logo_r.png" width="20">. O pacote <strong>tibble</strong> estende a classe <em>data frame</em> da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>. O novo objeto é chamado de <em>tibble</em> e sua classe de <code>tbl_df</code>.</p>
+<div id="funcionalidades-do-tibble" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Funcionalidades do <em>tibble</em></h3>
+<p>Para ilustrar algumas vantagens do <em>tibble</em>, vamos usar o <em>data frame</em> <code>prec_anual</code>. A criação destes dados como <em>tibble</em> é feita com a função de mesmo nome do pacote: <code>tibble::tibble()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">site =</span> <span class="kw">c</span>(
+    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+  ),
+  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>)
+)</code></pre></div>
+<p>O exemplo acima é ilustrativo, pois um <em>data frame</em> pode ser convertido em um <em>tibble</em> simplesmente com a função <code>tibble::as_tibble()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(prec_anual)
+prec_anual_tbl</code></pre></div>
+<p>Com o <em>tibble</em> acima, as principais diferenças entre um <em>tibble</em> e um <em>data frame</em> podem ser enfatizadas.</p>
 <ul>
-<li><p>parênteses: <code>(</code> <code>)</code></p></li>
-<li><p>expoentes: <code>^</code>ou <code>**</code></p></li>
-<li><p>multiplicação: <code>*</code></p></li>
-<li><p>divisão: <code>/</code></p></li>
+<li><p>quando impresso no console do R, o <em>tibble</em> já mostra a classe de cada variável.</p></li>
+<li><p>vetores caracteres não são interpretados como <em>factors</em> em um <em>tibble</em>, em contraste a <code>base::data.frame()</code> que faz a coerção para <em>factor</em> e não conserva o nome das variáveis. Este comportamento padrão pode causar problemas aos usuários desavisados em análises posteriores.</p></li>
 </ul>
-<p>Então os parênteses podem ser usados para forçar a ordem das operações acima conforme nossa intenção:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span>((<span class="dv">8</span><span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">4</span>) <span class="op">-</span><span class="st"> </span>pi <span class="co"># parênteses opcionais se você lembrar a regra</span>
-<span class="co">#&gt; [1] 22.85841</span>
-(<span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span><span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">4</span> <span class="op">-</span><span class="st"> </span>pi
-<span class="co">#&gt; [1] 15.35841</span>
-(<span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span> <span class="op">-</span><span class="st"> </span>pi
-<span class="co">#&gt; [1] 77.85841</span>
-(<span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span><span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>) <span class="op">-</span><span class="st"> </span>pi
-<span class="co">#&gt; [1] 22.85841</span>
-<span class="dv">10</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">8</span><span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">-</span><span class="st"> </span>pi)
-<span class="co">#&gt; [1] 84.55668</span>
-<span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span><span class="op">^</span>(<span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>) <span class="op">-</span><span class="st"> </span>pi
-<span class="co">#&gt; [1] 9.686834</span>
-<span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span><span class="op">^</span>(<span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span> <span class="op">-</span><span class="st"> </span>pi)
-<span class="co">#&gt; [1] 10.00412</span></code></pre></div>
-<!-- 
--1^2 = ?
--->
-<p>Se você quer saber se um número é divisor exato de outro número (resto da divisão igual a zero), o operador <code>%%</code> determina o resto de uma divisão:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 0</span>
-<span class="dv">11</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 1</span></code></pre></div>
-<p>O operador <code>%/%</code> fornece a parte inteira do quociente da divisão entre 2 números.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">11</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 5.5</span>
-<span class="dv">11</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 5</span></code></pre></div>
-<p>Operações que resultam em números muito pequenos ou muito grandes são representados em notação científica.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">/</span><span class="dv">10000</span>
-<span class="co">#&gt; [1] 5e-04</span></code></pre></div>
-<p>Este mesmo valor pode ser escrito nas seguintes formas equivalentes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">5e-4</span>
-<span class="co">#&gt; [1] 5e-04</span>
-<span class="fl">5E-4</span>
-<span class="co">#&gt; [1] 5e-04</span>
-<span class="dv">5</span><span class="op">*</span><span class="dv">10</span><span class="op">^-</span><span class="dv">4</span>
-<span class="co">#&gt; [1] 5e-04</span></code></pre></div>
-<!--
-Os resultados dos cálculos no <img src="images/logo_r.png" width="20"> são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
-
-
-```r
-# opção de dígitos padrão
-getOption("digits")
-#> [1] 7
-exp(1)
-#> [1] 2.718282
-# alterando para 14
-options(digits = 14)
-exp(1)
-#> [1] 2.718281828459
-getOption("digits")
-#> [1] 14
-# redefinindo para o número de casas decimais padrão
-options(digits = 7)
-getOption("digits")
-#> [1] 7
-```
--->
-<p>O valor absoluto e o sinal de um número podem ser obtidos pelas seguintes expressões:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abs</span>(<span class="op">-</span><span class="dv">6</span>)
-<span class="co">#&gt; [1] 6</span>
-<span class="kw">sign</span>(<span class="op">-</span><span class="dv">6</span>)
-<span class="co">#&gt; [1] -1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">data.frame</span>(<span class="st">&quot;temp. do ar&quot;</span> =<span class="st"> &quot;18&quot;</span>))</code></pre></div>
+<ul>
+<li>permite usar seus próprios argumentos prévios para definir variáveis durante a criação do <em>tibble</em>; veja o exemplo abaixo, onde a <code>int prec</code>(intensidade da precipitação) é baseada na razão da precipitação (<code>prec</code>) pelo número de dias no ano.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">site =</span> <span class="kw">c</span>(
+    <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A001&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A002&quot;</span>, <span class="st">&quot;A003&quot;</span>, <span class="st">&quot;A803&quot;</span>, <span class="st">&quot;A803&quot;</span>
+  ),
+  <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">2000</span><span class="op">:</span><span class="dv">2002</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2006</span>),
+  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">1800</span>, <span class="dv">1400</span>, <span class="dv">1750</span>, <span class="dv">1470</span>, <span class="dv">1630</span>, <span class="dv">1300</span>, <span class="dv">1950</span>, <span class="dv">1100</span>),
+  <span class="st">&quot;int prec&quot;</span> =<span class="st"> </span>prec <span class="op">/</span><span class="st"> </span><span class="fl">365.25</span>
+)
+prec_anual_tbl</code></pre></div>
+<ul>
+<li>nunca adiciona nomes às linhas (<code>row.names</code>)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nomes das linhas de um data frame são carregados adiante</span>
+<span class="kw">subset</span>(prec_anual, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)
+<span class="co"># tibble não possui nome de linhas (rownames)</span>
+<span class="kw">subset</span>(prec_anual_tbl, ano <span class="op">==</span><span class="st"> </span><span class="dv">2001</span>)</code></pre></div>
+<ul>
+<li>a impressão de um <em>tibble</em> mostra as dez primeiras linhas e a quantidade de colunas mostradas é ajustada ao tamanho da janela do console.</li>
+</ul>
+<p>As opções de controle <em>default</em> da impressão de <em>tibbles</em> no console pode ser configuradas através da função de opções de configuração global do R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">15</span>
+n &lt;-<span class="st"> </span><span class="dv">3</span>
+<span class="kw">options</span>(
+  <span class="dt">tibble.print_max =</span> m,
+  <span class="dt">tibble.print_min =</span> n
+)</code></pre></div>
+<p>Com a configuração acima, será impresso no console do R <code>n = 3</code> linhas do <em>tibble</em> se ele tiver mais de <code>m = 15</code> linhas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(clima_rs) <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>
+<span class="co"># coersão do data.frame clima_rs para tibble</span>
+clima_rs_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(clima_rs)</code></pre></div>
+<p>Para restaurar as opções <em>default</em> use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(
+  <span class="dt">tibble.print_max =</span> <span class="ot">NULL</span>,
+  <span class="dt">tibble.print_min =</span> <span class="ot">NULL</span>
+)
+clima_rs_tbl</code></pre></div>
+<p>Uma alternativa útil para inspecionar mais detalhadamente os dados é a função <code>tibble::glimpse()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(clima_rs)</code></pre></div>
+<p>Lembre-se também, da função <code>utils::View()</code> para visualizar os dados no RStudio.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(clima_rs)</code></pre></div>
+<p>Outros aspectos diferencias do <em>tibble</em> podem consultados na vinheta do referido pacote (<code>vignette(&quot;tibble&quot;)</code>).</p>
 </div>
-<div id="nans" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Cálculos problemáticos</h3>
-<p>Quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado (Tabela <a href="calculadora.html#tab:tab-num-esp">5.1</a>) surgirão alguns valores numéricos especiais na sua frente, como: <code>Inf</code>(Infinito) e <code>NaN</code> (abreviação do termo em inglês <em>Not a Number</em> - valor indefinido).</p>
-<table>
-<caption><span id="tab:tab-num-esp">Tabela 5.1: </span>Exemplos de operações que resultam em NaN ou <span class="math inline">\(\pm\infty\)</span> .</caption>
-<thead>
-<tr class="header">
-<th align="center">operação</th>
-<th align="center">resultado</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">2/0</td>
-<td align="center">Inf</td>
-</tr>
-<tr class="even">
-<td align="center">-12/0</td>
-<td align="center">-Inf</td>
-</tr>
-<tr class="odd">
-<td align="center">log(0)</td>
-<td align="center">-Inf</td>
-</tr>
-<tr class="even">
-<td align="center">(c(-3, 3))^Inf</td>
-<td align="center">NaN, Inf</td>
-</tr>
-<tr class="odd">
-<td align="center">0*Inf</td>
-<td align="center">NaN</td>
-</tr>
-<tr class="even">
-<td align="center">log(-0.5)</td>
-<td align="center">NaN</td>
-</tr>
-<tr class="odd">
-<td align="center">sqrt(-1)</td>
-<td align="center">NaN</td>
-</tr>
-<tr class="even">
-<td align="center">0/0</td>
-<td align="center">NaN</td>
-</tr>
-<tr class="odd">
-<td align="center">Inf-Inf</td>
-<td align="center">NaN</td>
-</tr>
-<tr class="even">
-<td align="center">mean(c(NA, NA), na.rm = TRUE)</td>
-<td align="center">NaN</td>
-</tr>
-</tbody>
-</table>
-<p>A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas ao rodar um script longo.</p>
-<p>Por outro lado, há operações válidas com estes valores especiais.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="ot">Inf</span>)
-<span class="co">#&gt; [1] 0</span>
-(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>)<span class="op">^</span><span class="ot">Inf</span>
-<span class="co">#&gt; [1] 0 1</span>
-<span class="dv">0</span> <span class="op">/</span><span class="st"> </span><span class="ot">Inf</span>
-<span class="co">#&gt; [1] 0</span>
-(<span class="op">-</span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="ot">Inf</span>)<span class="op">^</span><span class="dv">0</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="dv">0</span><span class="op">^</span><span class="dv">0</span>
-<span class="co">#&gt; [1] 1</span></code></pre></div>
-</div>
-<div id="NAs" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Dados faltantes</h3>
-<!-- 
-https://medium.com/coinmonks/dealing-with-missing-data-using-r-3ae428da2d17 
-https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4
--->
-<p>Antes do que você imagina, na sua jornada pelo mundo real dos dados ambientais, você irá se deparar com os &quot;NAs&quot;. <code>NA</code> é a abreviação do termo em inglês <em>Not Available</em>, uma constante especial do <img src="images/logo_r.png" width="20"> que representa <strong>dado faltante</strong>. Geralmente dados faltantes são representados por um código<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> como &quot;-999.99&quot; ou qualquer outro valor fora do intervalo de variação possível da variável.</p>
-<p>A coisa mais importante a saber sobre <code>NA</code> é que qualquer operação envolvendo <code>NA</code> resultará em <code>NA</code> (Tabela <a href="calculadora.html#tab:tab-nas">5.2</a>).</p>
-<table>
-<caption><span id="tab:tab-nas">Tabela 5.2: </span>Operações com NA.</caption>
-<thead>
-<tr class="header">
-<th align="center">operação</th>
-<th align="center">resultado</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">NA + 5</td>
-<td align="center">NA</td>
-</tr>
-<tr class="even">
-<td align="center">sqrt(NA)</td>
-<td align="center">NA</td>
-</tr>
-<tr class="odd">
-<td align="center">NA^2</td>
-<td align="center">NA</td>
-</tr>
-<tr class="even">
-<td align="center">NA/NaN</td>
-<td align="center">NA</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="matfuns" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> Funções matemáticas</h3>
-<p>O <img src="images/logo_r.png" width="20"> tem diversas funções internas. A sintaxe para chamar uma função é simplesmente:</p>
-<p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
-<code>funcão(argumento)</code>
-</p>
-<p>Por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cosseno de 60°</span>
-<span class="kw">cos</span>(<span class="dv">60</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">180</span>)
-<span class="co">#&gt; [1] 0.5</span>
-<span class="co"># raiz quadrada de 100</span>
-<span class="kw">sqrt</span>(<span class="dv">100</span>)
-<span class="co">#&gt; [1] 10</span>
-<span class="co"># exponencial de 1</span>
-<span class="kw">exp</span>(<span class="dv">1</span>)
-<span class="co">#&gt; [1] 2.718282</span>
-<span class="co"># fatorial de 4 (4*3*2*1)</span>
-<span class="kw">factorial</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1] 24</span></code></pre></div>
-<p>Por padrão a função logaritmo (<code>log()</code>) determina o logaritmo natural (logaritmo na base <span class="math inline">\(e\)</span>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># logaritmo natural de 10</span>
-<span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">10</span>)
-<span class="co">#&gt; [1] 2.302585</span></code></pre></div>
-<p>Para obter o logaritmo de 10 na base 10, o segundo argumento da função <code>log()</code> deve ser especificado, ou pode-se usar a função <code>log10()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">base =</span> <span class="dv">10</span>) <span class="co"># logaritmo de 10 na base 10</span>
-<span class="co">#&gt; [1] 1</span>
-<span class="kw">log10</span>(<span class="dv">10</span>) <span class="co"># forma equivalente</span>
-<span class="co">#&gt; [1] 1</span></code></pre></div>
-<p>No <img src="images/logo_r.png" width="20"> você verá que parênteses são frequentemente utilizados. Em geral, uma palavra antecedendo um parênteses em uma expressão: é uma função.</p>
-<p>Você não precisa lembrar do nome de cada função do <img src="images/logo_r.png" width="20">. Você pode ou buscar pelo termo em um site de busca, ou usar o auto-preenchimento de código (<tab> no RStudio) após a parte inicial do nome da função.</p>
-<p>Digitando <code>?</code> antes do nome de uma função ou operador abrirá a página de ajuda daquela função.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?atan2</code></pre></div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="16">
-<li id="fn16"><p>Valores não numéricos também podem ser encontrados por aí, como por exemplo &quot;---&quot;, &quot;na&quot;, &quot;N/A&quot;, &quot;None&quot;, &quot; &quot;.<a href="calculadora.html#fnref16">↩</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="convenção.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variaveis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pré-requisitos-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="restruturação-de-dados-retangulares.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

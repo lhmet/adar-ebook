@@ -261,8 +261,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="10.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+<li class="chapter" data-level="10.2" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>quadro de dados</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>10.3</b> Restruturação de dados retangulares</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>10.3.1</b> Dados arrumados</a></li>
@@ -378,12 +378,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Com os dados arrumados, a próxima etapa é a manipulação dos dados. O pacote <strong>dplyr</strong> oferece um conjunto de funções que facilita as operações mais comuns para lidar com dados retangulares de uma forma bem pensada.</p>
 <p>Os verbos fundamentais desta gramática de manipulação de dados são:</p>
 <ul>
-<li><code>select()</code>, para selecionar variáveis;</li>
-<li><code>filter()</code>, para filtrar observações;</li>
-<li><code>arrange()</code>, para classificar variáveis;</li>
-<li><code>mutate()</code>, para criar e transformar variáveis;</li>
-<li><code>group_by()</code>, para agrupar observações;</li>
-<li><code>summarise()</code>, para resumir os dados com medidas estatísticas descritivas;</li>
+<li><p><code>select()</code>, para selecionar variáveis;</p></li>
+<li><p><code>filter()</code>, para filtrar observações;</p></li>
+<li><p><code>arrange()</code>, para classificar variáveis;</p></li>
+<li><p><code>mutate()</code>, para criar e transformar variáveis;</p></li>
+<li><p><code>group_by()</code>, para agrupar observações;</p></li>
+<li><p><code>summarise()</code>, para resumir os dados com medidas estatísticas descritivas;</p></li>
 </ul>
 <p>Estes verbos possuem uma sintaxe consistente com uma sentença gramatical:</p>
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
@@ -553,7 +553,7 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 
 clima_rs_tbl <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># usando um vetor de caracteres</span>
-<span class="st">  </span><span class="kw">select</span>(., <span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;estacao&quot;</span>, <span class="st">&quot;uf&quot;</span>))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(., <span class="kw">any_of</span>(<span class="kw">c</span>(<span class="st">&quot;estacao&quot;</span>, <span class="st">&quot;uf&quot;</span>))) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
 
 clima_rs_tbl <span class="op">%&gt;%</span>
@@ -564,7 +564,10 @@ clima_rs_tbl <span class="op">%&gt;%</span>
 clima_rs_tbl <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># variáveis que inciam com letras minúsculas e com 4 caracteres</span>
 <span class="st">  </span><span class="kw">select</span>(., <span class="kw">matches</span>(<span class="st">&quot;^[a-z]{4}$&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">head</span>(., <span class="dt">n =</span> <span class="dv">3</span>)
+<span class="co"># variáveis numéricas</span>
+clima_rs_tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(is.numeric)</code></pre></div>
 <p>O último exemplo usa uma expressão regular (<a href="https://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a>). <em>Regex</em> é uma linguagem para descrever e manipular caracteres de texto. Há <a href="http://aurelio.net/regex/guia/">livros sobre este assunto</a> e diversos <a href="https://stringr.tidyverse.org/articles/regular-expressions.html">tutorias</a> sobre <em>regex</em> no R. Para saber mais sobre isso veja o capítulo sobre <a href="http://r4ds.had.co.nz/strings.html">strings</a> do livro de <span class="citation">H. Wickham and Grolemund (<a href="referências.html#ref-Wickham2017">2017</a>)</span>. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.</p>
 <p>Veja mais funções úteis para seleção de variáveis em <code>?dplyr::select</code>.</p>
 </div>
@@ -630,10 +633,10 @@ O exemplo acima é mais uma operação com caracteres onde foi usada a função 
 </p>
 </div>
 <p>A seleção de observações também pode ser baseada em índices passados para função <code>dplyr::slice()</code> que retorna o subconjunto de observações correspondentes. Abaixo vejamos alguns exemplos de filtragem de linhas baseada em índices ou posições:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#linhas 2 e 4 </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># linhas 2 e 4</span>
 clima_rs_tbl <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))
-<span class="co">#última linha</span>
+<span class="st">  </span><span class="kw">slice</span>(., <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))
+<span class="co"># última linha</span>
 clima_rs_tbl <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">slice</span>(., <span class="kw">n</span>())
 <span class="co"># exlui da última à 3a linha</span>
@@ -729,7 +732,7 @@ prec_anual_comp <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise_at</span>(
     .,
     <span class="dt">.vars =</span> <span class="kw">vars</span>(prec, tmax),
-    <span class="dt">.funs =</span> <span class="kw">funs</span>(min, median, max),
+    <span class="dt">.funs =</span> <span class="kw">list</span>(<span class="dt">mn =</span> min, <span class="dt">md =</span> median, <span class="dt">mx =</span> max),
     <span class="dt">na.rm =</span> <span class="ot">TRUE</span>
   )</code></pre></div>
 <p>Observações repetidas devem ser removidas dos dados antes de qualquer cálculo. Suponha os dados abaixo:</p>
@@ -775,13 +778,13 @@ prec_anual_comp_rep <span class="op">%&gt;%</span>
 <p>Os grupos podem ser compostos de mais de uma variável. Para o exemplo com os dados <code>prec_anual_long</code>;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long</code></pre></div>
 <p>podemos obter a média por <code>variavel</code> e <code>site</code>, fazendo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">estats_por_site_var &lt;-<span class="st"> </span>prec_anual_long <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">por_site_var &lt;-<span class="st"> </span>prec_anual_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(site, variavel) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(
     <span class="dt">media =</span> <span class="kw">mean</span>(medida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
   ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(variavel, site)
-estats_por_site_var</code></pre></div>
+por_site_var</code></pre></div>
 <p>Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.</p>
 <p>Há mais funções úteis disponíveis no pacote <strong>dplyr</strong> e você é encorajado a descubrí-las.</p>
 <!---
