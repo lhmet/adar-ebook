@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.2 tibble: um data frame aperfeiçoado | Análise de Dados Ambientais com R</title>
+  <title>10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.2 tibble: um data frame aperfeiçoado | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.2 tibble: um data frame aperfeiçoado | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="10.2 tibble: um quadro de dados aperfeiçoado | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -286,8 +286,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="10.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+<li class="chapter" data-level="10.2" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>quadro de dados</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>10.3</b> Restruturação de dados retangulares</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>10.3.1</b> Dados arrumados</a></li>
@@ -398,9 +398,9 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tibble-um-data-frame-aperfeiçoado" class="section level2">
-<h2><span class="header-section-number">10.2</span> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</h2>
-<p><em>Data frames</em> são a unidade fundamental de armazenamento de dados retangulares no R. O pacote <strong>tibble</strong> estende a classe <em>data frame</em> da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>. O novo objeto é chamado de <em>tibble</em> e sua classe de <code>tbl_df</code>.</p>
+<div id="tibble-um-quadro-de-dados-aperfeiçoado" class="section level2">
+<h2><span class="header-section-number">10.2</span> <em>tibble</em>: um <em>quadro de dados</em> aperfeiçoado</h2>
+<p>Quadro de dados (<em>data frames</em>) são a unidade fundamental de armazenamento de dados retangulares no <img src="images/logo_r.png" width="20">. O pacote <strong>tibble</strong> estende a classe <em>data frame</em> da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo <em>factor</em>. O novo objeto é chamado de <em>tibble</em> e sua classe de <code>tbl_df</code>.</p>
 <div id="funcionalidades-do-tibble" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> Funcionalidades do <em>tibble</em></h3>
 <p>Para ilustrar algumas vantagens do <em>tibble</em>, vamos usar o <em>data frame</em> <code>prec_anual</code>. A criação destes dados como <em>tibble</em> é feita com a função de mesmo nome do pacote: <code>tibble::tibble()</code>.</p>

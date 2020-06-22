@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tibble-um-data-frame-aperfeiçoado.html"/>
+<link rel="prev" href="tibble-um-quadro-de-dados-aperfeiçoado.html"/>
 <link rel="next" href="manipulação-de-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -286,8 +286,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="10.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html"><i class="fa fa-check"></i><b>10.1</b> Pré-requisitos</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="pré-requisitos-3.html"><a href="pré-requisitos-3.html#dados"><i class="fa fa-check"></i><b>10.1.1</b> Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>data frame</em> aperfeiçoado</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="tibble-um-data-frame-aperfeiçoado.html"><a href="tibble-um-data-frame-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
+<li class="chapter" data-level="10.2" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html"><i class="fa fa-check"></i><b>10.2</b> <em>tibble</em>: um <em>quadro de dados</em> aperfeiçoado</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="tibble-um-quadro-de-dados-aperfeiçoado.html"><a href="tibble-um-quadro-de-dados-aperfeiçoado.html#funcionalidades-do-tibble"><i class="fa fa-check"></i><b>10.2.1</b> Funcionalidades do <em>tibble</em></a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html"><i class="fa fa-check"></i><b>10.3</b> Restruturação de dados retangulares</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="restruturação-de-dados-retangulares.html"><a href="restruturação-de-dados-retangulares.html#dados-arrumados"><i class="fa fa-check"></i><b>10.3.1</b> Dados arrumados</a></li>
@@ -441,15 +441,15 @@ Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e um
 <li><p>quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;</p></li>
 <li><p>a organização dos dados busca tornar o registro de dados o mais fácil possível;</p></li>
 </ul>
-<p>Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns <span class="citation">(H. Wickham and Grolemund <a href="referências.html#ref-Wickham2017" role="doc-biblioref">2017</a>)</span>:</p>
+<p>Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns:</p>
 <ul>
-<li><p>uma variável deve ser distribuída ao longo das colunas</p></li>
-<li><p>uma observação deve ser distribuída ao longo das linhas</p></li>
+<li><p>distribuir observações (que estão armazenadas nas colunas) ao longo das linhas</p></li>
+<li><p>distribuir variáveis (que estão armazenada nas linhas) ao longo das colunas</p></li>
 </ul>
 <p>Essas duas operações são realizadas com as principais funções do pacote <strong>tidyr</strong>:</p>
 <ul>
-<li><p><code>gather()</code>, que pode ser traduzida como reunir (nas linhas);</p></li>
-<li><p><code>spread()</code> que pode ser traduzida como espalhar (nas colunas)</p></li>
+<li><p><code>pivot_longer()</code>: para pivotar colunas ao longo das linhas (reunir "variáveis" nas linhas);</p></li>
+<li><p><code>pivot_wider()</code>: para pivotar linhas ao longo das colunas (espalhar "observações" nas colunas)</p></li>
 </ul>
 <!---
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
@@ -460,90 +460,122 @@ Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e um
 <p>O pacote <strong>tidyr</strong> é a extensão do <img src="images/logo_r.png" width="20"> que fornece funcionalidades para reestruturar os dados entre diferentes formatos.</p>
 <p>Os principais formatos de dados são:</p>
 <ul>
-<li><p>dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;</p></li>
-<li><p>dados amplos, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;</p></li>
+<li><p><strong>dados longos</strong>, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;</p></li>
+<li><p><strong>dados amplos</strong>, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;</p></li>
 </ul>
 <div id="formatos-dados" class="section level4">
 <h4><span class="header-section-number">10.3.2.1</span> Formato de dados longo</h4>
-<p>Para exemplificar o formato de dados longo vamos partir dos "dados arrumados" do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no R.</p>
+<p>Para exemplificar o formato de dados longo vamos partir dos "dados arrumados" do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no <img src="images/logo_r.png" width="20">.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" title="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(</a>
 <a class="sourceLine" id="cb334-2" title="2">  prec_anual_tbl,</a>
 <a class="sourceLine" id="cb334-3" title="3">  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span></a>
 <a class="sourceLine" id="cb334-4" title="4">) </a>
 <a class="sourceLine" id="cb334-5" title="5">prec_anual_tbl</a></code></pre></div>
-<p>Vamos usar a função <code>tidyr::gather()</code> para reestruturar os dados <code>prec_anual_tbl</code> em uma nova tabela de dados que chamaremos <code>prec_anual_long</code>.</p>
-<p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos dois novos pares de variáveis: <code>variavel</code> e <code>valor</code>. Na coluna <code>variavel</code> será distribuído o nome das variáveis <code>prec</code> e <code>intensidade</code>. A coluna <code>valor</code>reunirá os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1">prec_anual_long &lt;-<span class="st"> </span><span class="kw">gather</span>(</a>
-<a class="sourceLine" id="cb335-2" title="2">  <span class="dt">data =</span> prec_anual_tbl,</a>
-<a class="sourceLine" id="cb335-3" title="3">  <span class="dt">key =</span> variavel,</a>
-<a class="sourceLine" id="cb335-4" title="4">  <span class="dt">value =</span> medida,</a>
-<a class="sourceLine" id="cb335-5" title="5">  prec, intensidade</a>
-<a class="sourceLine" id="cb335-6" title="6">)</a>
-<a class="sourceLine" id="cb335-7" title="7">prec_anual_long</a></code></pre></div>
+<p>Vamos usar a função <code>tidyr::pivot_longer()</code> para reestruturar os dados <code>prec_anual_tbl</code> em uma nova tabela de dados que chamaremos <code>prec_anual_long</code>.</p>
+<p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos dois novos pares de variáveis: <code>variavel</code> e <code>valor</code>. Na coluna <code>variavel</code> pivotaremos as variáveis <code>prec</code> e <code>intensidade</code>. Na coluna <code>valor</code> pivotaremos os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"></a>
+<a class="sourceLine" id="cb335-2" title="2">prec_anual_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb335-3" title="3">  <span class="dt">data =</span> prec_anual_tbl,</a>
+<a class="sourceLine" id="cb335-4" title="4">  <span class="dt">cols =</span> <span class="kw">c</span>(prec, intensidade), <span class="co"># ou c(&quot;prec&quot;, &quot;intensidade&quot;),</span></a>
+<a class="sourceLine" id="cb335-5" title="5">  <span class="dt">names_to =</span> <span class="st">&quot;variavel&quot;</span>,</a>
+<a class="sourceLine" id="cb335-6" title="6">  <span class="dt">values_to =</span> <span class="st">&quot;medida&quot;</span></a>
+<a class="sourceLine" id="cb335-7" title="7">)</a>
+<a class="sourceLine" id="cb335-8" title="8">prec_anual_long</a>
+<a class="sourceLine" id="cb335-9" title="9"></a>
+<a class="sourceLine" id="cb335-10" title="10"><span class="co"># prec_anual_long &lt;- gather(</span></a>
+<a class="sourceLine" id="cb335-11" title="11"><span class="co">#   data = prec_anual_tbl,</span></a>
+<a class="sourceLine" id="cb335-12" title="12"><span class="co">#   key = variavel,</span></a>
+<a class="sourceLine" id="cb335-13" title="13"><span class="co">#   value = medida,</span></a>
+<a class="sourceLine" id="cb335-14" title="14"><span class="co">#   prec, intensidade</span></a>
+<a class="sourceLine" id="cb335-15" title="15"><span class="co"># )</span></a></code></pre></div>
 <p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
 <ul>
-<li><p><code>data = prec_anual_tbl</code>, o <em>data frame</em> ou <em>tibble</em> que será reestruturado;</p></li>
-<li><p><code>key = variavel</code>, nome que nós escolhemos para dar à nova coluna que distribuirá os <strong>nomes das variáveis</strong> dos dados de entrada.</p></li>
-<li><p><code>value = medida</code>, nome que nós escolhemos para dar à nova coluna que reunirá os <strong>valores das variáveis</strong> dos dados de entrada;</p></li>
-<li><p><code>...</code>, lista com o nome das variáveis, no código acima corresponde à <code>prec, intensidade</code>;</p></li>
+<li><p><code>data = prec_anual_tbl</code>, o <em>quadro de dados</em> ou <em>tibble</em> que será reestruturado;</p></li>
+<li><p><code>cols = c("prec", "intensidade")</code>, variáveis a serem pivotadas no formato longo;</p></li>
+<li><p><code>names_to = variavel</code>, um vetor caractere com nome que nós escolhemos para dar à nova coluna que armazenará os dados nos <strong>nomes das variáveis</strong> dos dados de entrada (<code>data</code>).</p></li>
+<li><p><code>values_to = medida</code>, um caractere com o nome que nós escolhemos para dar à nova coluna que armazenará os dados contidos nos valores das células;</p></li>
 </ul>
 <p>As demais colunas dos dados (<code>site</code> e <code>ano</code>) serão mantidas inalteradas e seus valores serão repetidos quando necessário.</p>
-<p>Como em outras funções dos pacotes do <strong>tidyverse</strong> você perceberá que os argumentos <strong>não são especificados como caracteres</strong> e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>key</code> e <code>value</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
-<p>Se nós desejássemos que todas colunas do <em>data frame</em> fossem reunidas em uma nova coluna <code>atributo</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia ser feito simplesmente sem especificar variáveis de interesse (<code>prec, intensidade</code>) no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">gather</span>(</a>
-<a class="sourceLine" id="cb336-2" title="2">  prec_anual_tbl, </a>
-<a class="sourceLine" id="cb336-3" title="3">  <span class="dt">key =</span> atributo,</a>
-<a class="sourceLine" id="cb336-4" title="4">  <span class="dt">value =</span> valor</a>
-<a class="sourceLine" id="cb336-5" title="5">)</a>
-<a class="sourceLine" id="cb336-6" title="6">prec_anual_longo</a></code></pre></div>
-<p>Se não forem especificados nomes para os argumentos <code>key</code> e <code>value</code> na chamada da função <code>tidyr::gather()</code>, serão atribuídos os valores <em>default</em>: <code>key</code> e <code>value</code>.</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="kw">gather</span>(prec_anual_tbl)</a></code></pre></div>
+<p>Como em outras funções dos pacotes do <strong>tidyverse</strong> você perceberá que alguns argumentos <strong>não são especificados como caracteres</strong> e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>names_to</code> e <code>values_to</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
+<p>Se nós desejássemos que todas colunas do <em>quadro de dados</em> fossem reunidas em uma nova coluna <code>variavel</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia intuitivamente ser feito simplesmente especificando as variáveis de interesse por <code>everything()</code><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> no trecho de código anterior.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb336-2" title="2">  <span class="dt">data =</span> prec_anual_tbl, </a>
+<a class="sourceLine" id="cb336-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>(),</a>
+<a class="sourceLine" id="cb336-4" title="4">  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,</a>
+<a class="sourceLine" id="cb336-5" title="5">  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span>,</a>
+<a class="sourceLine" id="cb336-6" title="6">  <span class="dt">values_ptypes =</span> <span class="kw">list</span>(<span class="dt">site =</span> <span class="st">&#39;numeric&#39;</span>)</a>
+<a class="sourceLine" id="cb336-7" title="7">)</a></code></pre></div>
+<p>Entretanto, como a variável site é do tipo caractere, ela não pode ser combinada com variáveis do tipo numérico. Então temos que transformar a variável <code>site</code> para numérico se isso for realmente necessário.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1">prec_anual_tbl_num &lt;-<span class="st"> </span><span class="kw">transform</span>(</a>
+<a class="sourceLine" id="cb337-2" title="2">  prec_anual_tbl,</a>
+<a class="sourceLine" id="cb337-3" title="3">  <span class="dt">site =</span> <span class="kw">parse_number</span>(site)</a>
+<a class="sourceLine" id="cb337-4" title="4">)</a>
+<a class="sourceLine" id="cb337-5" title="5">prec_anual_tbl_num</a></code></pre></div>
+<p>A função <code>parse_number()</code> é uma função auxiliar do pacote <strong><code>readr</code></strong> para extrair números de um caractere.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1"><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb338-2" title="2">  <span class="dt">data =</span> prec_anual_tbl_num, </a>
+<a class="sourceLine" id="cb338-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>(),</a>
+<a class="sourceLine" id="cb338-4" title="4">  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,</a>
+<a class="sourceLine" id="cb338-5" title="5">  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span></a>
+<a class="sourceLine" id="cb338-6" title="6">)</a></code></pre></div>
+<p>A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais.</p>
+<p>Se não forem especificados nomes para os argumentos <code>names_to</code> e <code>values_to</code> na chamada da função <code>tidyr::pivot_longer</code>, serão atribuídos os valores <em>default</em>: <code>name</code> e <code>value</code>.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb339-2" title="2">  <span class="dt">data =</span> prec_anual_tbl_num, </a>
+<a class="sourceLine" id="cb339-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>()</a>
+<a class="sourceLine" id="cb339-4" title="4">)</a></code></pre></div>
 </div>
 <div id="formato-de-dados-amplo" class="section level4">
 <h4><span class="header-section-number">10.3.2.2</span> Formato de dados amplo</h4>
-<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>tidyr::spread()</code>. Esta função é complementar à <code>tidyr::gather()</code>.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1">prec_anual_long</a></code></pre></div>
-<p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam distribuídos em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os valores armazenados na coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">spread</span>(</a>
-<a class="sourceLine" id="cb339-2" title="2">  <span class="dt">data =</span> prec_anual_long,</a>
-<a class="sourceLine" id="cb339-3" title="3">  <span class="dt">key =</span> variavel,</a>
-<a class="sourceLine" id="cb339-4" title="4">  <span class="dt">value =</span> medida</a>
-<a class="sourceLine" id="cb339-5" title="5">)</a>
-<a class="sourceLine" id="cb339-6" title="6">prec_anual_amplo</a></code></pre></div>
+<p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>tidyr::pivot_wider()</code>. Esta função é complementar à <code>tidyr::pivot_longer()</code>.</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1">prec_anual_long</a></code></pre></div>
+<p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam pivotados em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os dados das células da coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb341-2" title="2">  <span class="dt">data =</span> prec_anual_long,</a>
+<a class="sourceLine" id="cb341-3" title="3">  <span class="dt">names_from =</span> variavel,</a>
+<a class="sourceLine" id="cb341-4" title="4">  <span class="dt">values_from =</span> medida</a>
+<a class="sourceLine" id="cb341-5" title="5">)</a>
+<a class="sourceLine" id="cb341-6" title="6">prec_anual_amplo</a></code></pre></div>
 <p>Esta operação serviu para colocar os dados originais (<code>prec_anual_long</code>) no formato "arrumado" (<code>prec_anual_amplo</code>).</p>
 </div>
 </div>
 <div id="funções-adicionais-do-tidyr" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> Funções adicionais do <strong>tidyr</strong></h3>
 <p>Você pode unir duas colunas inserindo um separador entre elas com a função <code>tidyr::unite()</code>:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(</a>
-<a class="sourceLine" id="cb340-2" title="2">  prec_anual_long,</a>
-<a class="sourceLine" id="cb340-3" title="3">  <span class="dt">col =</span> site_ano,</a>
-<a class="sourceLine" id="cb340-4" title="4">  site, ano,</a>
-<a class="sourceLine" id="cb340-5" title="5">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span></a>
-<a class="sourceLine" id="cb340-6" title="6">))</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(</a>
+<a class="sourceLine" id="cb342-2" title="2">  <span class="dt">data =</span> prec_anual_long,</a>
+<a class="sourceLine" id="cb342-3" title="3">  <span class="dt">col =</span> site_ano,</a>
+<a class="sourceLine" id="cb342-4" title="4">  site, ano,</a>
+<a class="sourceLine" id="cb342-5" title="5">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span></a>
+<a class="sourceLine" id="cb342-6" title="6">))</a></code></pre></div>
 <p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>tidyr::separate()</code>:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="kw">separate</span>(</a>
-<a class="sourceLine" id="cb341-2" title="2">  prec_anual_long_u,</a>
-<a class="sourceLine" id="cb341-3" title="3">  <span class="dt">col =</span> site_ano,</a>
-<a class="sourceLine" id="cb341-4" title="4">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,</a>
-<a class="sourceLine" id="cb341-5" title="5">  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)</a>
-<a class="sourceLine" id="cb341-6" title="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb343-2" title="2">  <span class="dt">data =</span> prec_anual_long_u,</a>
+<a class="sourceLine" id="cb343-3" title="3">  <span class="dt">col =</span> site_ano,</a>
+<a class="sourceLine" id="cb343-4" title="4">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,</a>
+<a class="sourceLine" id="cb343-5" title="5">  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)</a>
+<a class="sourceLine" id="cb343-6" title="6">)</a></code></pre></div>
 <p>Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função <code>tidyr::complete()</code>:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1">prec_anual</a>
-<a class="sourceLine" id="cb342-2" title="2">prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(</a>
-<a class="sourceLine" id="cb342-3" title="3">  prec_anual,</a>
-<a class="sourceLine" id="cb342-4" title="4">  site, ano</a>
-<a class="sourceLine" id="cb342-5" title="5">)</a>
-<a class="sourceLine" id="cb342-6" title="6">prec_anual_comp</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1">prec_anual</a>
+<a class="sourceLine" id="cb344-2" title="2">prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(</a>
+<a class="sourceLine" id="cb344-3" title="3">  <span class="dt">data =</span> prec_anual,</a>
+<a class="sourceLine" id="cb344-4" title="4">  site, ano</a>
+<a class="sourceLine" id="cb344-5" title="5">)</a>
+<a class="sourceLine" id="cb344-6" title="6">prec_anual_comp</a></code></pre></div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="29">
+<li id="fn29"><p>Nós veremos mais sobre funções do tipo seletoras na seção de manipulação de dados.<a href="restruturação-de-dados-retangulares.html#fnref29" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tibble-um-data-frame-aperfeiçoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tibble-um-quadro-de-dados-aperfeiçoado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="manipulação-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

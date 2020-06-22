@@ -27,7 +27,7 @@ https://rstudio.com/resources/webinars/reproducibility-in-production/
 
 Neste capítulo veremos:
 
-- um *data frame* aperfeiçoado, denominado *tibble*
+- um *quadro de dados* aperfeiçoado, denominado *tibble*
 
 - como arrumar seus dados em uma estrutura conveniente para a análise e visualização de dados
 
@@ -35,7 +35,7 @@ Neste capítulo veremos:
 
 - como manipular os dados com uma ferramenta intuitiva e padronizada
 
-Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do R. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Conseqüentemente, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.
+Existem diversas ferramentas da base do <img src="images/logo_r.png" width="20"> para realizar as operações listadas acima. Entretanto, elas não foram construídas para um objetivo comum e foram feitas por diferentes desenvolvedores e em diferentes fases da evolução do <img src="images/logo_r.png" width="20">. Por isso, elas podem parecer confusas, não seguem uma codificação consistente e não foram construídas pensando em uma interface integrada para o processamento de dados. Conseqüentemente, para usá-las é necessários um esforço significativo para entender a estrutura de dados de entrada de cada uma. A seguir, precisamos padronizar suas saídas para que sirvam de entrada para outra função (às vezes de outro pacote) que facilita a realização de uma próxima etapa do fluxo de trabalho.
 
 Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvidas há 20 anos atrás são úteis até hoje. Mas as mesmas ferramentas podem não ser a melhor solução para os problemas contemporâneos. Alterar os códigos da base do <img src="images/logo_r.png" width="20"> é uma tarefa complicada devido a cadeia de dependências do código fonte e dos pacotes dos milhares de contribuidores. Então, grande parte das inovações no <img src="images/logo_r.png" width="20"> estão ocorrendo na forma de pacotes. Um exemplo é o conjunto de pacotes [*tidyverse*](https://www.tidyverse.org/) desenvolvido para suprir a necessidade de ferramentas efetivas e integradas para ciência de dados (Figura \@ref(fig:tidy-workflow)).
 
@@ -49,13 +49,16 @@ Muitas coisas no <img src="images/logo_r.png" width="20"> que foram desenvolvida
 <p class="caption">(\#fig:tidy-workflow)Modelo de ferramentas empregadas em ciência de dados. Adaptado de @Wickham2017.</p>
 </div>
 
-O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em um pacote do <img src="images/logo_r.png" width="20"> que agrupa pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma filosofia comum de *design*, gramática [@Wickham-dplyr] e estrutura de dados [@Wickham2014]. Consequentemente, o *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do <img src="images/logo_r.png" width="20">. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes (que a base do <img src="images/logo_r.png" width="20">), legíveis e com sintaxe mais fácil de lembrar.
+O termo *tidyverse* pode ser traduzido como 'universo arrumado' e consiste em uma coleção de pacotes (Figura \@ref(fig:tidyverse-components)) que compartilham uma interface comum com padrões de estrutura e manipulação de dados [@Wickham-dplyr, @Wickham2014].
+
+O *tidyverse* tem sido amplamente utilizado pela comunidade de usuários e desenvolvedores do <img src="images/logo_r.png" width="20">. Além de uma abordagem mais coesa e consistente para realizar as tarefas envolvidas no processamento de dados, os códigos são mais eficientes, legíveis e com sintaxe mais fácil de lembrar. Consequentemente, focamos mais nos conceitos e menos na sintaxe.
 
 <div class="figure">
 <img src="images/tidyverse_components.png" alt="Coleção de pacotes do *tidyverse*." width="80%" />
 <p class="caption">(\#fig:tidyverse-components)Coleção de pacotes do *tidyverse*.</p>
 </div>
 
+O tidyverse enfatiza legibilidade ao invés de desempenho. Para quem está começando a programar ele atenderá à maioria dos processos analíticos, mas pode não ser rápido o suficiente para um sistema de processamento de dados operacional de alta demanda. Se você precisa avançar nesta linha, você precisará se aprofundar em ferramentas específicas (veja por exemplo  @Gillespie2017).
 
 ## Pré-requisitos
 
@@ -71,12 +74,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> -- Attaching packages ------------------------------- tidyverse 1.3.0 --
+#> -- Attaching packages --------
 #> v ggplot2 3.3.1     v purrr   0.3.4
 #> v tibble  3.0.1     v dplyr   1.0.0
 #> v tidyr   1.1.0     v stringr 1.4.0
 #> v readr   1.3.1     v forcats 0.5.0
-#> -- Conflicts ---------------------------------- tidyverse_conflicts() --
+#> -- Conflicts -----------------
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
 ```
@@ -92,7 +95,12 @@ Neste capítulo além do **tidyverse** usaremos outros pacotes que já podemos i
 
 
 ```r
-pacotes <- c("openair", "lubridate", "scales", "rio")
+pacotes <- c(
+  "openair",
+  "lubridate",
+  "scales",
+  "rio"
+)
 easypackages::libraries(pacotes)
 ```
 
@@ -144,9 +152,9 @@ prec_anual
 
 
 
-## *tibble*: um *data frame* aperfeiçoado
+## *tibble*: um *quadro de dados* aperfeiçoado
 
-*Data frames* são a unidade fundamental de armazenamento de dados retangulares no R. O pacote **tibble** estende a classe *data frame* da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*. O novo objeto é chamado de *tibble* e sua classe de `tbl_df`. 
+Quadro de dados (*data frames*) são a unidade fundamental de armazenamento de dados retangulares no <img src="images/logo_r.png" width="20">. O pacote **tibble** estende a classe *data frame* da base do <img src="images/logo_r.png" width="20"> com aperfeiçoamentos relacionados a impressão de dados (mais amigável e versátil), a seleção de dados e a manipulação de dados do tipo *factor*. O novo objeto é chamado de *tibble* e sua classe de `tbl_df`. 
 
 ### Funcionalidades do *tibble*
 
@@ -318,17 +326,17 @@ A estrutura de dados \"arrumados\" parece óbvia, mas na prática, dados neste f
 
 - a organização dos dados busca tornar o registro de dados o mais fácil possível;
 
-Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns [@Wickham2017]:
+Consequente, dados reais sempre precisarão ser arrumados. O primeiro passo é identificação das variáveis e das observações. O passo seguinte é resolver os seguintes problemas mais comuns:
 
-- uma variável deve ser distribuída ao longo das colunas
+- distribuir observações (que estão armazenadas nas colunas) ao longo das linhas
 
-- uma observação deve ser distribuída ao longo das linhas
+- distribuir variáveis (que estão armazenada nas linhas) ao longo das colunas
 
 Essas duas operações são realizadas com as principais funções do pacote **tidyr**: 
 
-- `gather()`, que pode ser traduzida como reunir (nas linhas);
+- `pivot_longer()`: para pivotar colunas ao longo das linhas (reunir \"variáveis\" nas linhas);
 
-- `spread()` que pode ser traduzida como espalhar (nas colunas)
+- `pivot_wider()`: para pivotar linhas ao longo das colunas (espalhar \"observações\" nas colunas)
 
 <!---
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
@@ -343,14 +351,14 @@ O pacote **tidyr** é a extensão do <img src="images/logo_r.png" width="20"> qu
 
 Os principais formatos de dados são: 
 
-- dados longos, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;
+- **dados longos**, são tabelas com mais valores ao longo das linhas; geralmente mistura variáveis com observações;
 
-- dados amplos, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;
+- **dados amplos**, são tabelas com valores mais distribuídos nas colunas, geralmente contém pelo menos uma unidade observacional misturada com variáveis;
 
 
 #### Formato de dados longo {#formatos-dados}
 
-Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `prec_anual_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para  seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no R.
+Para exemplificar o formato de dados longo vamos partir dos \"dados arrumados\" do exemplo, `prec_anual_tbl`. Primeiro vamos renomear a variável `int prec` para `intensidade` para  seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no <img src="images/logo_r.png" width="20">.
 
 
 ```r
@@ -361,72 +369,116 @@ prec_anual_tbl <- rename(
 prec_anual_tbl
 ```
 
-Vamos usar a função `tidyr::gather()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
+Vamos usar a função `tidyr::pivot_longer()` para reestruturar os dados `prec_anual_tbl` em uma nova tabela de dados que chamaremos `prec_anual_long`.
 
-Na nova tabela, manteremos as colunas `site`, `ano` e   teremos dois novos pares de variáveis: `variavel` e `valor`. Na coluna `variavel` será distribuído o nome das variáveis `prec` e `intensidade`. A coluna `valor`reunirá os valores das variáveis `prec` e `intensidade`.
+Na nova tabela, manteremos as colunas `site`, `ano` e   teremos dois novos pares de variáveis: `variavel` e `valor`. Na coluna `variavel` pivotaremos as variáveis `prec` e `intensidade`. Na coluna `valor` pivotaremos os valores das variáveis `prec` e `intensidade`.
 
 
 ```r
-prec_anual_long <- gather(
+
+prec_anual_long <- pivot_longer(
   data = prec_anual_tbl,
-  key = variavel,
-  value = medida,
-  prec, intensidade
+  cols = c(prec, intensidade), # ou c("prec", "intensidade"),
+  names_to = "variavel",
+  values_to = "medida"
 )
 prec_anual_long
+
+# prec_anual_long <- gather(
+#   data = prec_anual_tbl,
+#   key = variavel,
+#   value = medida,
+#   prec, intensidade
+# )
+
 ```
 
 O código acima demonstra os principais argumentos requeridos pela função `gather`:
 
-- `data = prec_anual_tbl`, o *data frame* ou *tibble* que será reestruturado;
+- `data = prec_anual_tbl`, o *quadro de dados* ou *tibble* que será reestruturado;
 
-- `key = variavel`, nome que nós escolhemos para dar à nova coluna que distribuirá os **nomes das variáveis** dos dados de entrada.
+- `cols = c("prec", "intensidade")`, variáveis a serem pivotadas no formato longo;
 
-- `value = medida`, nome que nós escolhemos para dar à nova coluna que reunirá os **valores das variáveis** dos dados de entrada;
 
-- `...`, lista com o nome das variáveis, no código acima corresponde à `prec, intensidade`;
+- `names_to = variavel`, um vetor caractere com nome que nós escolhemos para dar à nova coluna que armazenará os dados nos **nomes das variáveis** dos dados de entrada (`data`).
+
+- `values_to = medida`, um caractere com o nome que nós escolhemos para dar à nova coluna que armazenará os dados contidos nos valores das células;
+
 
 As demais colunas dos dados (`site` e `ano`) serão mantidas inalteradas e seus valores serão repetidos quando necessário.
 
-Como em outras funções dos pacotes do **tidyverse** você perceberá que os argumentos **não são especificados como caracteres** e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: `nome_var <- 10`). Os argumentos `key` e `value` podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.
+Como em outras funções dos pacotes do **tidyverse** você perceberá que alguns argumentos **não são especificados como caracteres** e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: `nome_var <- 10`). Os argumentos `names_to` e `values_to` podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.
 
-Se nós desejássemos que todas colunas do *data frame* fossem reunidas em uma nova coluna `atributo` e os seus valores em uma nova coluna `valor`, isso poderia ser feito simplesmente sem especificar variáveis de interesse (`prec, intensidade`) no trecho de código anterior. A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais:
+
+
+Se nós desejássemos que todas colunas do *quadro de dados* fossem reunidas em uma nova coluna `variavel` e os seus valores em uma nova coluna `valor`, isso poderia intuitivamente ser feito simplesmente especificando as variáveis de interesse por `everything()`[^selectores] no trecho de código anterior. 
 
 
 ```r
-prec_anual_longo <- gather(
-  prec_anual_tbl, 
-  key = atributo,
-  value = valor
+prec_anual_longo <- pivot_longer(
+  data = prec_anual_tbl, 
+  cols = everything(),
+  names_to = "atributo",
+  values_to = "valor",
+  values_ptypes = list(site = 'numeric')
 )
-prec_anual_longo
 ```
 
-Se não forem especificados nomes para os argumentos `key` e `value` na chamada da função `tidyr::gather()`, serão atribuídos os valores *default*: `key` e `value`.
+[^selectores]: Nós veremos mais sobre funções do tipo seletoras na seção de manipulação de dados.
+
+Entretanto, como a variável site é do tipo caractere, ela não pode ser combinada com variáveis do tipo numérico. Então temos que transformar a variável `site` para numérico se isso for realmente necessário.
 
 
 ```r
-gather(prec_anual_tbl)
+prec_anual_tbl_num <- transform(
+  prec_anual_tbl,
+  site = parse_number(site)
+)
+prec_anual_tbl_num
+```
+
+A função `parse_number()` é uma função auxiliar do pacote **`readr`** para extrair números de um caractere.
+
+
+```r
+pivot_longer(
+  data = prec_anual_tbl_num, 
+  cols = everything(),
+  names_to = "atributo",
+  values_to = "valor"
+)
+
+```
+A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais.
+
+Se não forem especificados nomes para os argumentos `names_to` e `values_to` na chamada da função `tidyr::pivot_longer`, serão atribuídos os valores *default*: `name` e `value`.
+
+
+```r
+pivot_longer(
+  data = prec_anual_tbl_num, 
+  cols = everything()
+)
 ```
 
 
 #### Formato de dados amplo
 
-Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função `tidyr::spread()`. Esta função é complementar à `tidyr::gather()`.
+Utilizando os dados `meteo_long`, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função `tidyr::pivot_wider()`. Esta função é complementar à `tidyr::pivot_longer()`.
 
 
 ```r
 prec_anual_long
 ```
 
-Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam distribuídos em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os valores armazenados na coluna `medida`. Para fazer isso usamos o seguinte código:
+Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna `variavel`) sejam pivotados em duas colunas. Estas colunas receberão os nomes `prec` e `intensidade` e serão preenchidas com os dados das células da coluna `medida`. Para fazer isso usamos o seguinte código:
 
 
 ```r
-prec_anual_amplo <- spread(
+prec_anual_amplo <- pivot_wider(
   data = prec_anual_long,
-  key = variavel,
-  value = medida
+  names_from = variavel,
+  values_from = medida
 )
 prec_anual_amplo
 ```
@@ -441,7 +493,7 @@ Você pode unir duas colunas inserindo um separador entre elas com a função `t
 
 ```r
 (prec_anual_long_u <- unite(
-  prec_anual_long,
+  data = prec_anual_long,
   col = site_ano,
   site, ano,
   sep = "_"
@@ -453,7 +505,7 @@ Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a fu
 
 ```r
 separate(
-  prec_anual_long_u,
+  data = prec_anual_long_u,
   col = site_ano,
   sep = "_",
   into = c("site", "ano")
@@ -466,7 +518,7 @@ Para completar valores das variáveis para unidades observacionais faltantes pod
 ```r
 prec_anual
 prec_anual_comp <- complete(
-  prec_anual,
+  data = prec_anual,
   site, ano
 )
 prec_anual_comp
@@ -482,10 +534,15 @@ Com os dados arrumados, a próxima etapa é a manipulação dos dados. O pacote 
 Os verbos fundamentais desta gramática de manipulação de dados são: 
 
   - `select()`, para selecionar variáveis;
+  
   - `filter()`, para filtrar observações;
+  
   - `arrange()`, para classificar variáveis;
+  
   - `mutate()`, para criar e transformar variáveis;
+  
   - `group_by()`, para agrupar observações;
+  
   - `summarise()`, para resumir os dados com medidas estatísticas descritivas;
 
 
@@ -690,7 +747,7 @@ clima_rs_tbl %>%
 
 clima_rs_tbl %>%
   # usando um vetor de caracteres
-  select(., one_of(c("estacao", "uf"))) %>%
+  select(., any_of(c("estacao", "uf"))) %>%
   head(., n = 3)
 
 clima_rs_tbl %>%
@@ -702,6 +759,9 @@ clima_rs_tbl %>%
   # variáveis que inciam com letras minúsculas e com 4 caracteres
   select(., matches("^[a-z]{4}$")) %>%
   head(., n = 3)
+# variáveis numéricas
+clima_rs_tbl %>%
+  select(is.numeric)
 ```
 
 O último exemplo usa uma expressão regular ([regex](https://pt.wikipedia.org/wiki/Express%C3%A3o_regular)). *Regex* é uma linguagem para descrever e manipular caracteres de texto. Há [livros sobre este assunto](http://aurelio.net/regex/guia/) e diversos [tutorias](https://stringr.tidyverse.org/articles/regular-expressions.html) sobre *regex* no R. Para saber mais sobre isso veja  o capítulo sobre [strings](http://r4ds.had.co.nz/strings.html) do livro de @Wickham2017. Conhecendo o básico, você poupará tempo automatizando a formatação de caracteres de texto.
@@ -778,10 +838,10 @@ A seleção de observações também pode ser baseada em índices passados para 
 
 
 ```r
-#linhas 2 e 4 
+# linhas 2 e 4
 clima_rs_tbl %>%
-  slice(., c(2,4))
-#última linha
+  slice(., c(2, 4))
+# última linha
 clima_rs_tbl %>%
   slice(., n())
 # exlui da última à 3a linha
@@ -936,7 +996,7 @@ clima_rs_tbl %>%
   summarise_at(
     .,
     .vars = vars(prec, tmax),
-    .funs = funs(min, median, max),
+    .funs = list(mn = min, md = median, mx = max),
     na.rm = TRUE
   )
 ```
@@ -1033,13 +1093,13 @@ podemos obter a média por `variavel` e `site`, fazendo:
 
 
 ```r
-estats_por_site_var <- prec_anual_long %>%
+por_site_var <- prec_anual_long %>%
   group_by(site, variavel) %>%
   summarise(
     media = mean(medida, na.rm = TRUE)
   ) %>%
   arrange(variavel, site)
-estats_por_site_var
+por_site_var
 ```
 
 Com o conjunto de verbos exemplificados você agora é capaz de realizar as tarefas mais comuns de manipulação de dados tabulares de forma clara e confiável.
@@ -1197,14 +1257,13 @@ easypackages::libraries(pcks)
 arq_temp <- tempfile(fileext = ".RData")
 download.file(
   "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
-  destfile = arq_temp
+  destfile = arq_temp, 
+  mode = "wb"
 )
 file.exists(arq_temp)
-readRDS(arq_temp)
+
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
-
-print(load("https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData"))
 ```
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
@@ -1214,24 +1273,15 @@ print(load("https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exer
 soi 
 ```
 
-
-
-
-```r
-soi_arrumado <- gather(data = soi, 
-                       key = "mes", 
-                       value = "soi",
-                       -YEAR) %>%
-  mutate(., mes = as.integer(mes)) %>%
-  arrange(YEAR, mes) %>%
-  setNames(., tolower(names(.)))
-soi_arrumado
-```
-
 A estrutura esperada dos dados arrumados é mostrada abaixo: 
 
-
-
+```
+Rows: 36
+Columns: 3
+$ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 195...
+$ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ...
+$ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, ...
+```
 
 2. Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o *tibble* fornecido abaixo para o \"formato arrumado\". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe *date* usando a função `as.Date()`.
 
@@ -1240,28 +1290,17 @@ A estrutura esperada dos dados arrumados é mostrada abaixo:
 precd_ncdf
 ```
 
-
-
-
-```r
-precd_arrum <- gather(precd_ncdf,
-                      key =  date, 
-                      value = prec,
-                      -c(x, y)) %>%
-  mutate(
-    date = gsub(
-      pattern = "X", 
-      replacement = "", 
-      x = date
-      ),
-    date = as.Date(date, "%Y.%m.%d")
-  )
-precd_arrum
-```
-
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 
+```
+Rows: 40
+Columns: 4
+$ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60...
+$ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.12...
+$ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 20...
+$ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000...
+```
 
 3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
 
@@ -1271,15 +1310,17 @@ poluentes
 ```
 
 
-```r
-poluentes_arrum <- poluentes %>%
-  spread(., poluente, duracao)
-poluentes_arrum
-```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
-
+```
+Rows: 3
+Columns: 4
+$ estacao <int> 1, 2, 4
+$ no2     <chr> NA, NA, "1h"
+$ ozone   <chr> "1h", "8h", NA
+$ so2     <chr> "1h", NA, NA
+```
 
 
 4. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.
@@ -1291,28 +1332,19 @@ dados_sm
 
 
 
-  
-
-```r
-dados_sm_arrum <- dados_sm %>%
-  gather(., 
-         key = day, 
-         value = valor, 
-         d1:d31
-         ) %>%
-  spread(., 
-         element, 
-         valor
-         ) %>%
-  mutate(.,
-         day = as.integer(str_replace_all(day, "d", ""))
-         ) %>%
-  arrange(year, month, day)
-```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
-
+```
+Rows: 186
+Columns: 6
+$ id    <chr> "83936", "83936", "83936", "83936", "8...
+$ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+$ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 20...
+$ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,...
+$ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29...
+$ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18...
+```
 
 
 - - -
@@ -1322,20 +1354,15 @@ A estrutura esperada do *tibble* resultante é mostrada abaixo:
    a. junte as colunas `year`, `month` e `day` em uma única coluna denominada `date` de forma que a classe dessa nova coluna seja `date`.  
 
 
-```r
-dados_sm_arrum_u <- dados_sm_arrum %>%
-  unite(., 
-        col = date, 
-        c("year", "month", "day"),
-        sep = "-"
-        ) %>%
-  mutate(date = as.Date(date))
+Estrutura de dados esperada:
+
 ```
-
-
-
-```r
-glimpse(dados_sm_arrum_u)
+Rows: 186
+Columns: 4
+$ id   <chr> "83936", "83936", "83936", "83936", "83...
+$ date <date> 2010-01-01, 2010-01-02, 2010-01-03, 20...
+$ tmax <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29....
+$ tmin <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18....
 ```
 
 
@@ -1343,20 +1370,6 @@ glimpse(dados_sm_arrum_u)
    b. Filtre os dados obtidos em **(a)** de forma a descobrir as datas em que as observações de `tmax` ou `tmin` são faltantes. Mostre o *tibble* filtrado com as datas e explique o porquê de seus valores. 
 
 
-```r
-dados_sm_arrum_u %>%
-  filter(., is.na(tmax) | is.na(tmin))
-```
-
-
-```r
-# As datas faltantes de tmax e tmin também são NA, pq 
-# são datas inválidas ou inexistentes.
-# O que pode ser mostrado com :
-dados_sm_arrum %>%
-  filter(., is.na(tmax) | is.na(tmin)) %>%
-  select(., year, month, day)
-```
 
 
 - - -
@@ -1369,33 +1382,15 @@ dados_zorra
 ```
 
 
-```r
-# solucao
-res <- dados_zorra %>%
-  gather(., key = variavel, value = valor, -date) %>%
-  separate(
-    .,
-    col = variavel,
-    into = c("varname", "hora")
-    #sep = "\\."
-    ) %>% #.$hora %>% unique()
-  mutate(.,
-         hora = ifelse(
-           nchar(hora) >= 3,
-           as.numeric(hora)/100,
-           as.numeric(hora)),
-         hora = paste0(hora,":", "00:00"),
-         date = as.Date(date, "%d-%m-%Y")
-         ) %>%
-  unite(., col = date, date, hora, sep = " ") %>%
-  mutate(., date = as.POSIXct(date)) %>%
-  spread(., varname, valor)
-res
-```
-
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
-
+```
+Rows: 16
+Columns: 3
+$ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:...
+$ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29....
+$ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16....
+```
 
 
 - - -
@@ -1408,17 +1403,17 @@ estacoes
 ```
 
 
-```r
-res7 <- inner_join(
-  x = estacoes, 
-  y = poluentes, 
-  by = c("id" = "estacao")
-)
-```
-
 Estrutura da tabela resultante:
 
-
+```
+Rows: 3
+Columns: 5
+$ id       <int> 1, 1, 2
+$ lat      <dbl> 42.46757, 42.46757, 42.04915
+$ lon      <dbl> -87.81005, -87.81005, -88.27303
+$ poluente <chr> "ozone", "so2", "ozone"
+$ duracao  <chr> "1h", "1h", "8h"
+```
 
 - - -
 
@@ -1435,33 +1430,28 @@ datas_obs
 ```
 
 
-```r
-res8a <- full_join(
-  x = datas_obs,
-  y = datas_comp,
-  by = "date") %>%
-  arrange(date)
-res8a
-```
 
 Estrutura da tabela de dados resultante:
 
-
+```
+Rows: 8
+Columns: 2
+$ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2...
+$ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, N...
+```
 
   b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
   
 
-```r
-res8b <- right_join(
-  x = datas_obs,
-  y = datas_comp,
-  by = "date") %>%
-  arrange(date)
-```
 
 Estrutura da tabela de dados resultante:
 
-
+```
+Rows: 7
+Columns: 2
+$ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2...
+$ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.326888...
+```
 
 - - - 
 
@@ -1470,69 +1460,53 @@ Utilize os dados horários de estações meteorológicas automáticas (EMA) do R
 10. Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
 
 
-```r
-ini_fim <- dados_rs_08_16 %>%
-  select(site, date) %>%
-  group_by(site) %>%
-  summarise(
-    inicio = min(date),
-    fim = max(date),
-    periodo_err = time_length(
-      fim - inicio, unit = "year"
-      )
-    ) #%>% glimpse()
-#glimpse(ini_fim)
-
-periodo <- dados_rs_08_16 %>%
-  select(site, date) %>%
-  group_by(site, year = year(date)) %>%
-  count() %>%
-  mutate(ndays = ifelse(year %% 4 == 0, 366, 365),
-         n = n/24,
-         periodo = n/ndays) %>%
-  ungroup() %>%
-  group_by(site) %>%
-  summarise(periodo = sum(periodo))
-#glimpse(periodo)
-
-per_ini_fim <- full_join(periodo, ini_fim, by = "site")
-```
 
 Estrutura da tabela de dados resultante: 
 
-
+```
+Rows: 42
+Columns: 5
+$ site        <chr> "A801", "A802", "A803", "A804", ...
+$ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322,...
+$ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31...
+$ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31...
+$ periodo_err <dbl> 9.0019393, 9.0019393, 9.0019393,...
+```
 
 
 
 11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
 
 
-```r
-perc_valid <- function(x){
-  #if(all(is.na(x))) return(0)
-  sum(!is.na(x))/length(x) * 100
-} 
-validos <- dados_rs_08_16 %>%
-  group_by(site) %>%
-  summarise_at(., vars(tair:ws), perc_valid) %>%
-  mutate_at(., vars(tair:ws), as.integer)
-```
-
 Estrutura da tabela de dados resultante:
 
-
+```
+Rows: 42
+Columns: 6
+$ site <chr> "A801", "A802", "A803", "A804", "A805",...
+$ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96,...
+$ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96,...
+$ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96,...
+$ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51,...
+$ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97,...
+```
 
 
 12. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
-  
 
-```r
-disp <- validos %>%
-  mutate(., disp_med = rowMeans(.[,-1])) %>%
-  arrange(desc(disp_med))
+
+Estrutura da tabela de dados resultante:  
 ```
-
-Estrutura da tabela de dados resultante:
+Rows: 42
+Columns: 7
+$ site     <chr> "A894", "A886", "A801", "A884", "A8...
+$ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 9...
+$ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98...
+$ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 9...
+$ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51,...
+$ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98,...
+$ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2,...
+```
 
 
 
@@ -1542,34 +1516,29 @@ Estrutura da tabela de dados resultante:
 > Dica: Para extrair as horas das datas use a função `lubridate::hour(date)`.
 
 
-
-
-```r
-id_sm <- info_emas_rs_08_16$site[info_emas_rs_08_16$name == "SANTA MARIA"]
-
-sm_tar_ciclo_medio <- dados_rs_08_16 %>%
-  select(site, date, tair) %>%
-  filter(site == id_sm) %>%
-  group_by(hour = hour(date)) %>%
-  summarise(tair_med = mean(tair, na.rm = TRUE),
-            tair_disp = perc_valid(tair)) #%>% glimpse()
-
-```
-
 Estrutura da tabela de dados resultante:
 
-
+```
+Rows: 24
+Columns: 3
+$ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...
+$ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.2...
+$ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.2...
+```
 
 
 14. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
 
 > Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
 
-
-
 Estrutura da tabela de dados resultante:
 
-
+```
+Rows: 24
+Columns: 2
+$ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21...
+$ n      <int> 720, 561, 438, 311, 196, 190, 123, 90...
+```
 
 
 
