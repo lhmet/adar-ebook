@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-08" />
+<meta name="date" content="2020-06-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -384,8 +384,12 @@ easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</c
   <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,
   <span class="dt">destfile =</span> arq_temp
 )
+<span class="kw">file.exists</span>(arq_temp)
+<span class="kw">readRDS</span>(arq_temp)
 <span class="co"># nome dos dados carregados para os exercícios</span>
-<span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</code></pre></div>
+<span class="kw">print</span>(<span class="kw">load</span>(arq_temp))
+
+<span class="kw">print</span>(<span class="kw">load</span>(<span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData&quot;</span>))</code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato &quot;arrumado&quot; e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>

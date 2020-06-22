@@ -434,7 +434,7 @@ arquivo
 4 campos para 1ª coluna e 6 campos para as 12 colunas seguintes;
 - `na.strings = "-999.9"` indica o rótulo para os dados faltantes
 - `col.names = nome_vars` especifica o nome das variáveis que será usado 
-no *data frame*.
+no *quadro de dados*.
 
 
 Por fim, salvaremos as anomalias absolutas do SOI em um arquivo CSV.
@@ -546,7 +546,7 @@ menores.
 
 Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados 
 pluviométricos lidos anteriormente (`dprec`) e selecionar as colunas de
-interesse. O *data frame* será salvo em um arquivo binário do R com a extensão
+interesse. O *quadro de dados* será salvo em um arquivo binário do R com a extensão
 `.RData`.
 
 
@@ -616,7 +616,7 @@ As funções `readRDS()` e `writeRDS()` são similares a `load()` e `save()`,
 respectivamente, exceto que elas lidam com **um único objeto**. Em 
 contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome 
 diferente do qual ele foi salvo.
-Vamos alterar o formato da data do *dataframe* `chuva_df` e salvá-lo no 
+Vamos alterar o formato da data do *quadro de dados* `chuva_df` e salvá-lo no 
 arquivo `chuva_df.rds`.
 
 
@@ -630,7 +630,7 @@ saveRDS(object = chuva_df, file = file_rds_chuva_df)
 file.exists(file_rds_chuva_df)
 ```
 
-Após salvar o *dataframe* `chuva_df` vamos removê-lo do ambiente da sessão 
+Após salvar o *quadro de dados* `chuva_df` vamos removê-lo do ambiente da sessão 
 e recuperá-lo com a função `readRDS()`.
 
 
@@ -707,7 +707,11 @@ As dimensões da *array* são: 720 (longitudes) x 360 (latitudes) x 12 (meses).
 ```r
 dados_cru_url <- "https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1"
 dest_file_nc <- file.path(tempdir(), "cru10min30_tmp.nc")
-download.file(dados_cru_url, dest_file_nc)
+download.file(
+  url = dados_cru_url,
+  destfile = dest_file_nc,
+  mode = "wb"
+)
 ```
 
 Abrindo arquivo NetCDF e obtendo informações básicas.
@@ -723,7 +727,7 @@ file.exists(dest_file_nc)
 # variável de interesse, tmp: temperatura do ar
 dname <- "tmp"  
 # abre o arquivo NetCDF
-ncin <- nc_open(dest_file_nc)
+ncin <- nc_open(filename = dest_file_nc)
 print(ncin)
 # estrutura dos dados
 #str(ncin)
@@ -737,10 +741,14 @@ Agora, vamos ler as coordenadas de longitude e latitude.
 
 
 ```r
-lon <- ncvar_get(ncin, "lon")
+lon <- ncvar_get(nc = ncin, varid = "lon")
 nlon <- dim(lon)
 head(lon)
-lat <- ncvar_get(ncin, "lat", verbose = FALSE)
+lat <- ncvar_get(
+  nc = ncin,
+  varid = "lat",
+  verbose = FALSE
+)
 nlat <- dim(lat)
 head(lat)
 c(nlon, nlat)
@@ -751,39 +759,55 @@ Vamos obter a variável temporal e seus atributos usando as funções `ncvarget(
 
 
 ```r
-tempo <- ncvar_get(ncin, "time")
-(tunits <- ncatt_get(ncin, "time", "units"))
+tempo <- ncvar_get(nc = ncin, varid = "time")
+(tunits <- ncatt_get(
+  nc = ncin,
+  varid = "time",
+  attname = "units"
+))
 (nt <- dim(tempo))
-tmp.array <- ncvar_get(ncin, dname)
+temp_arranjo <- ncvar_get(nc = ncin, varid = dname)
 # resumo da estrutura dos dados
-str(tmp.array)
+str(temp_arranjo)
 # nome longo da variável
-(dlname <- ncatt_get(ncin, dname, "long_name"))
+(dlname <- ncatt_get(
+  nc = ncin,
+  varid = dname,
+  attname = "long_name"
+))
+
 # unidades da variável
-(dunits <- ncatt_get(ncin, dname, "units"))
+(dunits <- ncatt_get(
+  nc = ncin,
+  varid = dname,
+  attname = "units"
+))
 # valor definido para valores faltantes
-(fillvalue <- ncatt_get(ncin, dname, "_FillValue"))
+(fillvalue <- ncatt_get(
+  nc = ncin,
+  varid = dname,
+  attname = "_FillValue"
+))
 # fechando arquivo
 nc_close(ncin)
 ```
 
 As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.:
-longitudes), *arrays* bidimensionais (matrizes, campo espacial de um momento),
-ou *arrays* multidimensionais (campos espaciais de uma variável em diversos 
-tempos).
+longitudes), matrizes (como o campo espacial de um momento), ou arranjos (Apêndice \@ref(oper-mat)) multidimensionais (campos espaciais de uma variável em diversos 
+tempos ou níveis de altitude).
 
-Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um 
-*data frame* onde cada linha será um ponto de grade e a coluna representa
+Vamos extrair o campo espacial de um passo de tempo (1 mês), criar um 
+*quadro de dados* onde cada linha será um ponto de grade e a coluna representa
 uma variável, por exemplo: longitude, latitude e temperatura. 
 
 
 ```r
 m <- 1
 # campo espacial do primeiro dia de dados
-tmp.slice <- tmp.array[, , m]
-str(tmp.slice)
+temp_jan <- temp_arranjo[, , m]
+str(temp_jan)
 # outra função para visualizar dados com 3D
-image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
+image.plot(lon, lat, temp_jan, col = rev(brewer.pal(10, "RdBu")))
 ```
 
 ##### Forma fácil de importar NetCDF
@@ -824,7 +848,7 @@ poderíamos ter chamado a função `raster::brick()` com
 arquivo NetCDF deste exemplo a especificação deste argumento é opcional.
 
 Os nomes das camadas, são acessados e alterados com função `names()`, da mesma 
-forma que em *data frames*.
+forma que em *quadro de dadoss*.
 
 
 ```r
@@ -842,7 +866,7 @@ plot(brick_tar_cru, col = rev(brewer.pal(10, "RdBu")))
 ```
 
 Os dados em formato `RasterBrick`, `RasterStack` ou `RasterLayer` podem ser 
-convertidos para `data frame` por meio da função `raster::as.data.frame()`.
+convertidos para `quadro de dados` por meio da função `raster::as.data.frame()`.
 
 
 ```r
@@ -863,12 +887,12 @@ ou `RasterLayer`)
 
 - `xy` é um argumento lógico, se `TRUE` (verdadeiro) inclui as coordenadas 
 espaciais (longitude e altitude) das células do *raster* como colunas no 
-*data frame* de saída
+*quadro de dados* de saída
 
 - `na.rm` é um argumento opcional lógico, tal que se for `TRUE` remove linhas 
 com valores `NA`. Isto é particularmente útil para grandes conjuntos de dados 
 com muitos valores `NA`s e em regiões oceânicas, como no arquivo de exemplo, 
-onde não há dados medidos. Note que se `na.rm = FALSE` (`TRUE`) o *data frame*
+onde não há dados medidos. Note que se `na.rm = FALSE` (`TRUE`) o *quadro de dados*
 resultante terá (poderá ter) um número de linhas igual ao (menor que o) número
 de células do `RasterBrick`.
 
@@ -882,7 +906,7 @@ são reestruturados de um formato amplo para um formato longo (veja a seção
 \@ref(formatos-dados) para definição de dados no formato longo e amplo).
 
 Como exercício, rode novamente o trecho de código anterior, mudando os valores
-dos argumentos lógicos e observe as mudanças nas dimensões do `data frame` 
+dos argumentos lógicos e observe as mudanças nas dimensões do `quadro de dados` 
 resultante.
 
 ## Arquivos Excel
@@ -930,10 +954,14 @@ Vamos baixar um arquivo `.xls` para usar com a função `import()` do pacote
 ```r
 excel_file_url <- "https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true"
 dest_file_excel <- file.path(
-  tempdir(), 
+  tempdir(),
   "Estacoes-Normal-Climatologica-1981-2010.xls"
-  )
-download.file(excel_file_url, dest_file_excel)
+)
+download.file(
+  url = excel_file_url,
+  destfile = dest_file_excel,
+  mode = "wb"
+)
 ```
 
 Agora podemos importar o arquivo baixado com o pacote **rio**.
@@ -942,14 +970,15 @@ Agora podemos importar o arquivo baixado com o pacote **rio**.
 ```r
 inmet_estacoes <- import(
   file = dest_file_excel,
-  col_names = TRUE, 
-  skip = 3)
+  col_names = TRUE,
+  skip = 3
+)
 head(inmet_estacoes)
 ```
 
 ### Escrita de arquivos excel no formato `.xls` {#export-xls}
 
-Vamos alterar os nomes das variáveis para minúsculo e escrever o *data frame* 
+Vamos alterar os nomes das variáveis para minúsculo e escrever o *quadro de dados* 
 em novo arquivo `.xls`. 
 
 
@@ -987,8 +1016,7 @@ Se algum dia, você precisa entregar uma penca de arquivos em formato Excel,
 então valerá a pena saber qual das opções de escrita de arquivos `xlsx` é mais 
 eficiente.
 
-No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados 
-da seção \@ref(export-xls)m `inmet_estacoes`. As funções avaliadas são a 
+No trecho de código abaixo vamos fazer essa comparação usando a tabela `inmet_estacoes` da seção \@ref(export-xls). As funções avaliadas são a 
 `writexl::write_xlsx` e a `openxlsx::write.xlsx`.
 
 
@@ -1012,7 +1040,7 @@ O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes
 mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 --->
 
-O resultado é que a `writexl::write_xlsx()` foi cerca de 5 vezes mais rápida 
+O resultado é que a `writexl::write_xlsx()` é bem mais rápida 
 na escrita dos dados que a `openxlsx::write.xlsx`.
 
 
@@ -1029,7 +1057,7 @@ a pena conferir os pacotes
 
 ## Para saber mais
 
-Para uma descrição mais abrangente sobre importação e exportação de dados no
+Para uma descrição abrangente sobre importação e exportação de dados no
 <img src="images/logo_r.png" width="20"> usando as funções da base do R, consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e
 a documentação de ajuda das funções citadas naquele documento.
 
@@ -1067,12 +1095,13 @@ multivariado em tempo real da Oscilação de Madden-Julian disponível em http:/
     de dados.
 
 
-    g. Interprete a saída da `tibble::glimpse()` do pacote **dplyr** aplicada 
-    aos dados importados. O resultado parece com o de alguma outra função que 
-    você já conhece, qual?
+    g. Interprete a saída da `dplyr::glimpse()` aplicada 
+    aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
 
-
-
+<!-- 
+Importar índices climáticos da pagina do CPC
+ver engie stuff
+-->
 
 2. Importe as anomalias padronizadas dos dados do 
 [SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela ou a tabela 
@@ -1082,32 +1111,34 @@ detalhes. Mostre as últimas linhas dos dados importados.
 
 
 
-
 3. Importe no R o arquivo Excel com a climatologia das temperaturas mínimas do 
 INMET no período de 1981-2010, disponível neste
 [link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas 
 dos meses e ano são numéricas.
 
-
+<!-- 
+Importar arquivos excel de exemplo do rinmetxl 
+-->
 
 4. Faça *download* de dados gradeados de precipitação diário para todo Brasil 
 com resolução horizontal de 0,25° 
 (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas 
 até encontrar o arquivo NetCDF. 
 
-    a. Importe os dados para o R. Converta-os para *data frame* incluindo 
+    a. Importe os dados para o R. Converta-os para quadro de dados incluindo 
     as coordenadas espaciais e verifique o número de colunas e linhas 
     resultantes.
 
 
 
-
-    b. Compare as dimensões do *data frame* com as dimensões do objeto 
-    importado, o número de linhas e de colunas do *data frame* correspondem a
+    b. Compare as dimensões do quadro de dados com as dimensões do objeto 
+    importado, o número de linhas e de colunas do *quadro de dados* correspondem a
     quais propriedades ou dimensões do objeto importado? Faça essa comparação 
     usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
 
-
+<!-- 
+Importar arquivo nc de TSM?
+-->
 
 
 

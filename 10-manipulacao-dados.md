@@ -72,7 +72,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 ```r
 library(tidyverse)
 #> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-#> ✔ ggplot2 3.3.1     ✔ purrr   0.3.4
+#> ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
 #> ✔ tibble  3.0.1     ✔ dplyr   1.0.0
 #> ✔ tidyr   1.1.0     ✔ stringr 1.4.0
 #> ✔ readr   1.3.1     ✔ forcats 0.5.0
@@ -1199,8 +1199,12 @@ download.file(
   "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
   destfile = arq_temp
 )
+file.exists(arq_temp)
+readRDS(arq_temp)
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
+
+print(load("https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData"))
 ```
 
 1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
