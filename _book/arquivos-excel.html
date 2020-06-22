@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-16" />
+<meta name="date" content="2020-06-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -432,20 +432,25 @@ mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <strong>rio</strong>.</p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
 <a class="sourceLine" id="cb313-2" title="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
-<a class="sourceLine" id="cb313-3" title="3">  <span class="kw">tempdir</span>(), </a>
+<a class="sourceLine" id="cb313-3" title="3">  <span class="kw">tempdir</span>(),</a>
 <a class="sourceLine" id="cb313-4" title="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
-<a class="sourceLine" id="cb313-5" title="5">  )</a>
-<a class="sourceLine" id="cb313-6" title="6"><span class="kw">download.file</span>(excel_file_url, dest_file_excel)</a></code></pre></div>
+<a class="sourceLine" id="cb313-5" title="5">)</a>
+<a class="sourceLine" id="cb313-6" title="6"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb313-7" title="7">  <span class="dt">url =</span> excel_file_url,</a>
+<a class="sourceLine" id="cb313-8" title="8">  <span class="dt">destfile =</span> dest_file_excel,</a>
+<a class="sourceLine" id="cb313-9" title="9">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
+<a class="sourceLine" id="cb313-10" title="10">)</a></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
 <a class="sourceLine" id="cb314-2" title="2">  <span class="dt">file =</span> dest_file_excel,</a>
-<a class="sourceLine" id="cb314-3" title="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb314-4" title="4">  <span class="dt">skip =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb314-5" title="5"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<a class="sourceLine" id="cb314-3" title="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb314-4" title="4">  <span class="dt">skip =</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb314-5" title="5">)</a>
+<a class="sourceLine" id="cb314-6" title="6"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
-<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>data frame</em>
+<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>quadro de dados</em>
 em novo arquivo <code>.xls</code>.</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
 <a class="sourceLine" id="cb315-2" title="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
@@ -470,8 +475,7 @@ entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PER
 <p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel,
 então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais
 eficiente.</p>
-<p>No trecho de código abaixo vamos fazer essa comparação usando os mesmos dados
-da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>m <code>inmet_estacoes</code>. As funções avaliadas são a
+<p>No trecho de código abaixo vamos fazer essa comparação usando a tabela <code>inmet_estacoes</code> da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>. As funções avaliadas são a
 <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
 <a class="sourceLine" id="cb317-2" title="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
@@ -486,7 +490,7 @@ expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes
 mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 --->
-<p>O resultado é que a <code>writexl::write_xlsx()</code> foi cerca de 5 vezes mais rápida
+<p>O resultado é que a <code>writexl::write_xlsx()</code> é bem mais rápida
 na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-não-tabulares" class="section level3">
