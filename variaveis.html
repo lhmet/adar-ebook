@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-22" />
+<meta name="date" content="2020-07-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -418,8 +418,9 @@ peso_kg
 <p>O antigo valor de <code>m_kg</code> será sobrescrito. Mas, embora <code>p_kg</code> tenha sido definida a partir de <code>m_kg</code>, seu valor permanecerá o mesmo. Esse comportamento que nos permite compreender o que acontece quando temos várias expressões em sequência num <em>script</em>.</p>
 <p>Para saber as variáveis já criadas numa sessão <img src="images/logo_r.png" width="20">, use a função <code>ls()</code><a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a> para verificar as variáveis existentes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
-<span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span>
-<span class="co">#&gt; [4] &quot;m_kg&quot;               &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;cleanup_pandoc_md&quot;  &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;     </span>
+<span class="co">#&gt; [4] &quot;g&quot;                  &quot;m_kg&quot;               &quot;peso_kg&quot;           </span>
+<span class="co">#&gt; [7] &quot;r_cran_version_win&quot;</span></code></pre></div>
 <!--
 
 ```r
@@ -454,12 +455,13 @@ Um exemplo mais elaborado de uso da função `assign()` para criar várias vari�
 <p>Para remover variáveis usa-se a função <code>rm()</code>. Vamos remover a variável <code>m</code> criada previamente e ver a lista de objetos no espaço de trabalho.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(m_kg)
 <span class="kw">ls</span>()
-<span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;g&quot;                 </span>
-<span class="co">#&gt; [4] &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;cleanup_pandoc_md&quot;  &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;     </span>
+<span class="co">#&gt; [4] &quot;g&quot;                  &quot;peso_kg&quot;            &quot;r_cran_version_win&quot;</span></code></pre></div>
 <p>Podemos remover mais de uma variável ao mesmo tempo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(g, peso_kg)
 <span class="kw">ls</span>()
-<span class="co">#&gt; [1] &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;      &quot;r_cran_version_win&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;cleanup_pandoc_md&quot;  &quot;cran_news_windows&quot;  &quot;format_hotkey&quot;     </span>
+<span class="co">#&gt; [4] &quot;r_cran_version_win&quot;</span></code></pre></div>
 <p>Para remover todas variáveis do espaço de trabalho (use com cautela):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando tudo</span>
 <span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())

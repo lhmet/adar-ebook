@@ -193,18 +193,18 @@ Quando um cálculo não tem sentido matemático ou não pode ser propriamente re
 
 Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
 
-           operação               resultado 
--------------------------------  -----------
-              2/0                    Inf    
-             -12/0                  -Inf    
-            log(0)                  -Inf    
-        (c(-3, 3))^Inf            NaN, Inf  
-             0*Inf                   NaN    
-           log(-0.5)                 NaN    
-           sqrt(-1)                  NaN    
-              0/0                    NaN    
-            Inf-Inf                  NaN    
- mean(c(NA, NA), na.rm = TRUE)       NaN    
+|           operação            | resultado |
+|:-----------------------------:|:---------:|
+|              2/0              |    Inf    |
+|             -12/0             |   -Inf    |
+|            log(0)             |   -Inf    |
+|        (c(-3, 3))^Inf         | NaN, Inf  |
+|             0*Inf             |    NaN    |
+|           log(-0.5)           |    NaN    |
+|           sqrt(-1)            |    NaN    |
+|              0/0              |    NaN    |
+|            Inf-Inf            |    NaN    |
+| mean(c(NA, NA), na.rm = TRUE) |    NaN    |
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas ao rodar um script longo.
 
@@ -240,12 +240,12 @@ A coisa mais importante a saber sobre `NA` é que qualquer operação envolvendo
 
 Table: (\#tab:tab-nas)Operações com NA.
 
- operação    resultado 
-----------  -----------
-  NA + 5        NA     
- sqrt(NA)       NA     
-   NA^2         NA     
-  NA/NaN        NA     
+| operação | resultado |
+|:--------:|:---------:|
+|  NA + 5  |    NA     |
+| sqrt(NA) |    NA     |
+|   NA^2   |    NA     |
+|  NA/NaN  |    NA     |
 
 
 
@@ -406,8 +406,9 @@ Para saber as variáveis já criadas numa sessão  <img src="images/logo_r.png" 
 
 ```r
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "m_kg"               "peso_kg"            "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "g"                  "m_kg"               "peso_kg"           
+#> [7] "r_cran_version_win"
 ```
 
 [^11]: A saída da `ls()` é a lista de variáveis ou objetos criadas na sessão do R atual. Ela também é mostrada no painel *Environment* do RStudio.
@@ -455,8 +456,8 @@ Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` 
 ```r
 rm(m_kg)
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "peso_kg"            "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "g"                  "peso_kg"            "r_cran_version_win"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
@@ -465,7 +466,8 @@ Podemos remover mais de uma variável ao mesmo tempo.
 ```r
 rm(g, peso_kg)
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "r_cran_version_win"
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
