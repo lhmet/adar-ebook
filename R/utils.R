@@ -45,3 +45,13 @@ cran_news_windows <- function() {
     r_cran_version_win()
   )
 }
+
+# Remove temp md files from pandoc that
+# appear in Windows
+cleanup_pandoc_md <- function(){
+  # check if is in the right path
+  if(!fs::file_exists("adar-ebook.Rproj")){
+    return("'adar-ebook.Rproj' not found. You are in the wrong path.")
+  }
+  fs::file_delete(fs::dir_ls(glob = "pandoc*.md"))
+}

@@ -1070,86 +1070,296 @@ Para uma descrição abrangente sobre importação e exportação de dados no
 `r rblue` usando as funções da base do R, consulte o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html) e
 a documentação de ajuda das funções citadas naquele documento.
 
+
+
+
+
+
 ## Exercícios
 
 ```{r, include = FALSE}
 easypackages::libraries(c("rio", "tidyverse", "WriteXLS"))
 ```
 
-1. a. Importe da *web* diretamente para o `r rblue` os dados do índice 
-multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt.
+```{r setup-exerc, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      comment = "",
+                      prompt = FALSE, 
+                      collapse = TRUE, 
+                      include = TRUE)
+```
+
+1. Importe os dados disponíveis em http://www.aos.wisc.edu/~dvimont/MModes/RealTime/AMM.txt. A estrutura esperada dos dados importados no R é mostrada abaixo.
+
+```
+'data.frame':	867 obs. of  4 variables:
+ $ Year: int  1948 1948 1948 1948 1948 1948 1948 1948 1948 1948 ...
+ $ Mo  : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ SST : num  0.66 0 1 1.86 1.3 2.51 1.63 0.55 -0.48 -0.24 ...
+ $ Wind: num  -0.76 5.78 -1.47 4.74 4.81 4.34 3.92 2.6 1.46 2.11 ...
+```
 
 
 
-    b. Defina o nome das variáveis como: `year, month, day, RMM1, RMM2, phase, 
-    amplitude, status`. Tente obter os nomes das variáveis do próprio link para 
-    os dados (Releia a seção \@ref(arquivos-fwf) e a 
-    seção \@ref(scan) para detalhes). Mostre os 10 primeiros valores da 
-    variável `RMM1`.
+
+
+- - -
+
+
+2. a. Leia os dados texto não estruturados disponíveis em
+https://iri.columbia.edu/~forecast/ensofcst/Data/ensofcst_ALLto0520 e salve-os em um arquivo texto nomeado `previsoes-enos.txt`, mantendo a formatação original dos dados.
 
 
 
-    c. Escreva os dados importados em um arquivo excel no **formato `xls`** 
-    e nomeado `mjo.xls`. Dê uma olhada na seção \@ref(export-xls).
+
+
+   b. Encontre a linha do arquivo `previsoes-enos.txt` que contenha o caractere \"Jun 2020\". Utilize a função `grep(pattern = "Jun 2020", x = ...)`. Salve o resultado em uma variável chamada `lin_ini`.
+
+
+
+   c. Determine o número de linhas do arquivo `previsoes-enos.txt` e atribua o resultado desta operação a uma variável chamada `lin_fin`.
+
+
+
+
+   d. Utilize a função adequada para importar os dados do arquivo `previsoes-enos.txt`, referentes à previsão iniciada em Junho de 2020. A variável da letra **b** pode ser útil. Faça as tranformações necessárias para obter os dados na estrutura mostrada abaixo, esperada como resultado. {#enosdf}
+   
+```
+#str(prev_enos_jun2020)
+'data.frame':	24 obs. of  11 variables:
+ $ JJA        : num  -77 -50 -36 -63 -53 3 -49 -48 -42 -41 ...
+ $ JAS        : num  -96 -76 -30 -52 -52 -2 -50 -60 -25 -50 ...
+ $ ASO        : num  -104 -92 -25 -25 -48 8 -52 -68 3 -70 ...
+ $ SON        : num  -111 -101 -26 -4 -39 28 -50 -74 27 -87 ...
+ $ OND        : num  -127 -103 -27 7 -31 41 -49 NA 42 -101 ...
+ $ NDJ        : num  -142 -105 NA 16 -21 50 NA NA 50 -107 ...
+ $ DJF        : num  -137 -93 NA 27 -11 59 NA NA 50 -107 ...
+ $ JFM        : num  NA -68 NA 41 2 67 NA NA 51 -97 ...
+ $ FMA        : num  NA NA NA 58 16 60 NA NA 50 -82 ...
+ $ tipo_modelo: chr  "  D" "  D" "  D" "  D" ...
+ $ modelo     : chr  " NASA GMAO" " NCEP CFSv" " JMA" " BCC_CSM11" ...
+ 
+#tail(prev_enos_jun2020)
+#     JJA  JAS  ASO  SON  OND  NDJ  DJF  JFM  FMA tipo_modelo     modelo
+# 22  -36  -35  -38  -41  -45  -48  -50  -47  -39           S   FSU REGR
+# 23  -26  -39  -52  -63  -69  -69  -64  -55  -44           S   UCLA-TCD
+# 24  -37  -47  -60  -65  -67  -67  -60   -1   13           C  CPC CONSO
+```
+
+
+
+
+
+
+- - - 
+
+
+3. a. Escreva o quadro de dados do [último item](#enosdf) da questão anterior em um arquivo excel no **formato `xlsx`** e nomeado `previsoes-enos.xlsx`. 
+
+
+
+
+   b. Verifique se o arquivo `previsoes-enos.xlsx` realmente existe em seu computador.
+
+
+
+
+   c. Importe no R o arquivo `previsoes-enos.xlsx` e mostre a estrutura dos dados importados.
+   
+
+
+```
+'data.frame':	24 obs. of  11 variables:
+ $ JJA        : num  -77 -50 -36 -63 -53 3 -49 -48 -42 -41 ...
+ $ JAS        : num  -96 -76 -30 -52 -52 -2 -50 -60 -25 -50 ...
+ $ ASO        : num  -104 -92 -25 -25 -48 8 -52 -68 3 -70 ...
+ $ SON        : num  -111 -101 -26 -4 -39 28 -50 -74 27 -87 ...
+ $ OND        : num  -127 -103 -27 7 -31 41 -49 NA 42 -101 ...
+ $ NDJ        : num  -142 -105 NA 16 -21 50 NA NA 50 -107 ...
+ $ DJF        : num  -137 -93 NA 27 -11 59 NA NA 50 -107 ...
+ $ JFM        : num  NA -68 NA 41 2 67 NA NA 51 -97 ...
+ $ FMA        : num  NA NA NA 58 16 60 NA NA 50 -82 ...
+ $ tipo_modelo: chr  "D" "D" "D" "D" ...
+ $ modelo     : chr  "NASA GMAO" "NCEP CFSv" "JMA" "BCC_CSM11" ...
+```
+
+- - -
+
+4. Importe os dados da Oscilação Antártica disponível neste [link](https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/aao/monthly.aao.index.b79.current.ascii.table). A estrutura esperada dos dados importados é:
+
+```
+#str(aao)
+'data.frame':	42 obs. of  13 variables:
+ $ Ano: int  1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 ...
+ $ Jan: num  0.209 -0.447 0.231 -0.554 -1.34 ...
+ $ Feb: num  0.356 -0.98 0.039 0.277 -1.081 ...
+ $ Mar: num  0.899 -1.424 -0.966 1.603 0.166 ...
+ $ Apr: num  0.678 -2.068 -1.462 1.531 0.149 ...
+ $ May: num  0.724 -0.479 -0.344 0.118 -0.437 ...
+ $ Jun: num  1.7 0.286 0.352 0.92 -0.263 ...
+ $ Jul: num  2.412 -1.944 -0.986 -0.415 1.114 ...
+ $ Aug: num  0.546 -0.997 -2.118 0.779 0.792 ...
+ $ Sep: num  0.629 -1.701 -1.509 1.58 -0.696 ...
+ $ Oct: num  0.16 0.577 -0.26 -0.702 1.193 ...
+ $ Nov: num  -0.423 -2.013 0.626 -0.849 0.727 ...
+ $ Dec: num  -0.951 -0.356 1.116 -1.934 0.475 ...
+```
+
+
+
+
+
+5. a. Faça o download [deste arquivo](https://www.dropbox.com/s/4hc7x9s8pmfz7gq/_SS_ANNN_CITY_NAME_pressao_inst_max_min_vento_velo_dir_raja_radiacao_precipitacao_horario.xls?raw=1) Excel.
+
+
+
+   b.  Abra o arquivo e procure entender como estão organizados os dados. Responda: (i) o que significa cada coluna e cada linha em termos de variáveis e observações para este conjunto de dados horários medidas meteorológicas; (ii) quantas variáveis meteorológicas contém esta tabela de dados? (iii) O número de observações horárias (para cada dia) é o mesmo para todas variáveis?
+
+
+
+
+
+
+
+   c. Importe o arquivo no R selecionado somente os dados das variáveis meteorológicas após a linha com a informação da hora (`HORA_UTC`).
+   
+
+
+   d. Para tornar este dados mais fáceis de entender, crie e adicione nomes às variáveis da tabela de dados importada usando os novos nomes para as variáveis, conforme tabela abaixo.
+   
+
+
+
+
+
+
+   Como não faz sentido termos variáveis com nomes repetidos, use os novos nomes apendando a eles um "_" (*underline*) a hora correspondente à observação (e.g.: `velmax_ms_12`). A estrutura dos dados com os novos nomes é representada simplificadamente como mostrado abaixo. Note que `N` e a hora inicial podem diferir para alguma(s) variável(is).
+
+
+```
+tibble [730 x 183] (S3: tbl_df/tbl/data.frame)
+ $ data           : POSIXct[1:730], format: "2010-01-01" ...
+ $ p_hpa_0        : num [1:730] 1003 999 1000 999 997 ...
+ $ p_hpa_1        : num [1:730] 1003 999 1001 1000 996 ...
+ ...
+ $ p_hpa_N       : num [1:730] 999 999 999 996 994 ...
+ $ vel_ms_0       : num [1:730] 5.1 1.3 1.9 1.5 2.3 2.2 4.5 4.2 2.8 1.9 ...
+ $ vel_ms_1       : num [1:730] 4.3 1.8 3.7 3.4 1 1.9 3.5 5.1 2 1.2 ...
+ ...
+ $ vel_ms_N      : num [1:730] 1.1 1.4 4.5 2.6 1 0.2 5 1.8 1.3 1.3 ...
+ $ dir_graus_0    : num [1:730] 100 126 93 192 124 63 149 90 149 53 ...
+ $ dir_graus_1    : num [1:730] 104 91 99 68 350 77 150 89 171 87 ...
+ ...
+ $ dir_graus_N   : num [1:730] 123 95 65 57 101 360 88 120 103 338 ...
+ ...
+  [list output truncated]
+```
+
+
+
+   
+
+
+
+
+
+
+
+
+6. a. Utilizando o R, faça o *download* [deste arquivo netCDF](https://www.dropbox.com/s/w3wp6iwxqex95ep/S_America_model_wtd_v2.nc?dl=1) com dados de profundidade do lençol freático para a América do Sul.
+
+
+
+  b. Descubra  o(s) nome(s) e a(s) unidades da(s) variável(is) armazenada(s) no arquivo netCDF usando o pacote **ncdf4**. A resposta desta questão são dois vetores do tipo caractere, um com cada informação: `var_name` e `var_unidade`.
+
+
+
+   c. Importe os dados para o R usando o pacote raster.
+
+
+
+
+
+   d. Converta os dados importados em um quadro de dados (*data frame*) incluindo as coordenadas das células do raster e ignorando as células sem informação (oceanos). 
+   
+
+
+   e. Altere os nomes das colunas do quadro de dados para "wtd", "lon", "lat"
+
+
+
+
+   f. Compare as dimensões do *quadro de dados* com as dimensões do objeto importado como raster. Por que o número de linhas do *quadro de dados* não corresponde ao número de células do raster? 
+
+
+- - -
+
+
+7. a. Importe da *web* diretamente para o R os dados do índice multivariado em tempo real da Oscilação de Madden-Julian disponível em http://www.bom.gov.au/climate/mjo/graphics/rmm.74toRealtime.txt.
+
+<!-- 
+Objetivos: 
+ - mostrar como é fácil importar dados diretamente da internet 
+ - processar cabeçalho e dados separadamente pode ser a melhor a alternativa
+ em alguns casos
+ - definir nomes das variáveis
+ - escrever e ler aruivos xls
+ - como verificar a estrutura dos dados
+-->
+
+
+
+
+
+
+
+
+
+   b. Defina o nome das variáveis como:  year  month  day  RMM1  RMM2  phase  amplitude status. Tente obter os nomes das variáveis do próprio link para os dados (a releitura [desta seção](https://lhmet.github.io/adar-ebook/arquivos-texto.html#arquivos-texto-n%C3%A3o-estruturados) do livro e [deste apêndice](https://lhmet.github.io/adar-ebook/amostras-pequenas-de-dados.html) pode ajudar). Mostre os 10 primeiros valores da variável `RMM1`.
+
+
+
+   c. Escreva os dados importados em um arquivo excel no **formato `xls`** e nomeado `mjo.xls`. Dê uma olhada [nesta seção](https://lhmet.github.io/adar-ebook/arquivos-excel.html#export-xls) do livro.
     
 
     
-    d. Importe no R o arquivo excel nomeado `mjo.xls` e mostre qual a classe 
-    dos dados importados.
+   d. Importe no R o arquivo excel nomeado `mjo.xls` e mostre qual a classe dos dados importados.
 
 
-    e. Mostre as primeiras e as últimas 10 linhas dos dados.
+   e. Mostre as primeiras e as últimas 10 linhas dos dados.
 
   
     
-    f. Qual o código para mostrar quantas linhas e colunas possui a tabela 
-    de dados.
+   f. Qual o código para mostrar quantas linhas e colunas possui a tabela de dados.
 
 
-    g. Interprete a saída da `dplyr::glimpse()` aplicada 
-    aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
-
-<!-- 
-Importar índices climáticos da pagina do CPC
-ver engie stuff
--->
-
-2. Importe as anomalias padronizadas dos dados do 
-[SOI]("http://www.cpc.ncep.noaa.gov/data/indices/soi") (2ª tabela ou a tabela 
-mais abaixo na página do *link*). Veja a seção \@ref(arquivos-fwf) para 
-detalhes. Mostre as últimas linhas dos dados importados.
+   g. Interprete a saída da `glimpse()` do pacote **dplyr** aplicada aos dados importados. O resultado parece com o de alguma outra função que você já conhece, qual?
 
 
 
 
-3. Importe no R o arquivo Excel com a climatologia das temperaturas mínimas do 
-INMET no período de 1981-2010, disponível neste
-[link](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas 
-dos meses e ano são numéricas.
 
-<!-- 
-Importar arquivos excel de exemplo do rinmetxl 
--->
+- - - 
 
-4. Faça *download* de dados gradeados de precipitação diário para todo Brasil 
-com resolução horizontal de 0,25° 
-(arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas 
-até encontrar o arquivo NetCDF. 
-
-    a. Importe os dados para o R. Converta-os para quadro de dados incluindo 
-    as coordenadas espaciais e verifique o número de colunas e linhas 
-    resultantes.
+8. Importe as **anomalias padronizadas** dos dados do [SOI](http://www.cpc.ncep.noaa.gov/data/indices/soi) (2ª tabela, linhas após  \"STANDARDIZED    DATA\"). Veja [esta seção do livro](https://lhmet.github.io/adar-ebook/arquivos-texto.html#arquivos-texto-n%C3%A3o-estruturados) para detalhes. Mostre as primeiras e as últimas linhas dos dados importados.
 
 
+- - -
 
-    b. Compare as dimensões do quadro de dados com as dimensões do objeto 
-    importado, o número de linhas e de colunas do *quadro de dados* correspondem a
-    quais propriedades ou dimensões do objeto importado? Faça essa comparação 
-    usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
 
-<!-- 
-Importar arquivo nc de TSM?
--->
+9. Importe no R o arquivo excel com a climatologia das temperaturas mínimas do INMET no período de 1981-2010, disponível
+[aqui](http://www.inmet.gov.br/webcdp/climatologia/normais2/imagens/normais/planilhas/1961-1990/Temperatura-Minima_NCB_1961-1990.xls). Mostre a estrutura dos dados e certifique-se de as colunas dos meses e ano são numéricas.
+
+- - -
+
+10. Faça *download* de dados gradeados de precipitação diário para todo Brasil com resolução horizontal de 0,25° (arquivo `prec_daily_UT_Brazil_v2.2_20100101_20151231.nc`), disponível em https://utexas.app.box.com/v/Xavier-etal-IJOC-DATA. Navegue pelas páginas até encontrar o arquivo NetCDF. 
+
+    a. Importe os dados para o R, converta-os para *data frame* e verifique o número de colunas e linhas resultantes. 
+
+
+
+    b. Compare as dimensões do *quadro de dados* com as dimensões do objeto importado, o número de linhas e de colunas do *quadro de dados* correspondem a quais propriedades ou dimensões do objeto importado? Faça essa comparação usando os diferentes valores lógicos para os argumentos `na.rm` e `xy`.
+
 
 
 

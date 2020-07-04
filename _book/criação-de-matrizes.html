@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-22" />
+<meta name="date" content="2020-07-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -404,45 +404,45 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">A.1.1</span> Função <code>matrix()</code></h3>
 <p>Uma forma mais clara de se criar uma matriz é usando a função <code>matrix()</code>.</p>
 <p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
-<a class="sourceLine" id="cb409-2" title="2"><span class="co"># atribuindo novas dimensões ao vetor</span></a>
-<a class="sourceLine" id="cb409-3" title="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span></a>
-<a class="sourceLine" id="cb409-4" title="4">m</a>
-<a class="sourceLine" id="cb409-5" title="5"><span class="co">#&gt;      [,1]</span></a>
-<a class="sourceLine" id="cb409-6" title="6"><span class="co">#&gt; [1,]    0</span></a>
-<a class="sourceLine" id="cb409-7" title="7"><span class="co">#&gt; [2,]    1</span></a>
-<a class="sourceLine" id="cb409-8" title="8"><span class="co">#&gt; [3,]   -1</span></a>
-<a class="sourceLine" id="cb409-9" title="9"><span class="co">#&gt; [4,]   -2</span></a>
-<a class="sourceLine" id="cb409-10" title="10"><span class="co">#&gt; [5,]    3</span></a>
-<a class="sourceLine" id="cb409-11" title="11"><span class="co">#&gt; [6,]    5</span></a>
-<a class="sourceLine" id="cb409-12" title="12"><span class="co">#&gt; [7,]   -5</span></a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
+<a class="sourceLine" id="cb414-2" title="2"><span class="co"># atribuindo novas dimensões ao vetor</span></a>
+<a class="sourceLine" id="cb414-3" title="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span></a>
+<a class="sourceLine" id="cb414-4" title="4">m</a>
+<a class="sourceLine" id="cb414-5" title="5"><span class="co">#&gt;      [,1]</span></a>
+<a class="sourceLine" id="cb414-6" title="6"><span class="co">#&gt; [1,]    0</span></a>
+<a class="sourceLine" id="cb414-7" title="7"><span class="co">#&gt; [2,]    1</span></a>
+<a class="sourceLine" id="cb414-8" title="8"><span class="co">#&gt; [3,]   -1</span></a>
+<a class="sourceLine" id="cb414-9" title="9"><span class="co">#&gt; [4,]   -2</span></a>
+<a class="sourceLine" id="cb414-10" title="10"><span class="co">#&gt; [5,]    3</span></a>
+<a class="sourceLine" id="cb414-11" title="11"><span class="co">#&gt; [6,]    5</span></a>
+<a class="sourceLine" id="cb414-12" title="12"><span class="co">#&gt; [7,]   -5</span></a></code></pre></div>
 <p>Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor <code>vetor</code> podemos fazer da seguinte forma:</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
-<a class="sourceLine" id="cb410-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb410-3" title="3"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um</span></a>
-<a class="sourceLine" id="cb410-4" title="4"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
-<a class="sourceLine" id="cb410-5" title="5">mat</a>
-<a class="sourceLine" id="cb410-6" title="6"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb410-7" title="7"><span class="co">#&gt; [1,]    0   -2   -5   -1</span></a>
-<a class="sourceLine" id="cb410-8" title="8"><span class="co">#&gt; [2,]    1    3    0   -2</span></a>
-<a class="sourceLine" id="cb410-9" title="9"><span class="co">#&gt; [3,]   -1    5    1    3</span></a>
-<a class="sourceLine" id="cb410-10" title="10"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span></a>
-<a class="sourceLine" id="cb410-11" title="11">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb410-12" title="12"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um</span></a>
-<a class="sourceLine" id="cb410-13" title="13"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
-<a class="sourceLine" id="cb410-14" title="14">mat</a>
-<a class="sourceLine" id="cb410-15" title="15"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
-<a class="sourceLine" id="cb410-16" title="16"><span class="co">#&gt; [1,]    0   -2   -5</span></a>
-<a class="sourceLine" id="cb410-17" title="17"><span class="co">#&gt; [2,]    1    3    0</span></a>
-<a class="sourceLine" id="cb410-18" title="18"><span class="co">#&gt; [3,]   -1    5    1</span></a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
+<a class="sourceLine" id="cb415-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb415-3" title="3"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb415-4" title="4"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb415-5" title="5">mat</a>
+<a class="sourceLine" id="cb415-6" title="6"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb415-7" title="7"><span class="co">#&gt; [1,]    0   -2   -5   -1</span></a>
+<a class="sourceLine" id="cb415-8" title="8"><span class="co">#&gt; [2,]    1    3    0   -2</span></a>
+<a class="sourceLine" id="cb415-9" title="9"><span class="co">#&gt; [3,]   -1    5    1    3</span></a>
+<a class="sourceLine" id="cb415-10" title="10"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span></a>
+<a class="sourceLine" id="cb415-11" title="11">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb415-12" title="12"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb415-13" title="13"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb415-14" title="14">mat</a>
+<a class="sourceLine" id="cb415-15" title="15"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb415-16" title="16"><span class="co">#&gt; [1,]    0   -2   -5</span></a>
+<a class="sourceLine" id="cb415-17" title="17"><span class="co">#&gt; [2,]    1    3    0</span></a>
+<a class="sourceLine" id="cb415-18" title="18"><span class="co">#&gt; [3,]   -1    5    1</span></a></code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb411-2" title="2"><span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não</span></a>
-<a class="sourceLine" id="cb411-3" title="3"><span class="co">#&gt; é um submúltiplo ou múltiplo do número de linhas [2]</span></a>
-<a class="sourceLine" id="cb411-4" title="4">mat</a>
-<a class="sourceLine" id="cb411-5" title="5"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb411-6" title="6"><span class="co">#&gt; [1,]    0    1   -1   -2</span></a>
-<a class="sourceLine" id="cb411-7" title="7"><span class="co">#&gt; [2,]    3    5   -5    0</span></a></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb416-2" title="2"><span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não</span></a>
+<a class="sourceLine" id="cb416-3" title="3"><span class="co">#&gt; é um submúltiplo ou múltiplo do número de linhas [2]</span></a>
+<a class="sourceLine" id="cb416-4" title="4">mat</a>
+<a class="sourceLine" id="cb416-5" title="5"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb416-6" title="6"><span class="co">#&gt; [1,]    0    1   -1   -2</span></a>
+<a class="sourceLine" id="cb416-7" title="7"><span class="co">#&gt; [2,]    3    5   -5    0</span></a></code></pre></div>
 </div>
 </div>
             </section>

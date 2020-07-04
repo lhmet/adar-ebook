@@ -406,8 +406,9 @@ Para saber as variáveis já criadas numa sessão  <img src="images/logo_r.png" 
 
 ```r
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "m_kg"               "peso_kg"            "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "g"                  "m_kg"               "peso_kg"           
+#> [7] "r_cran_version_win"
 ```
 
 [^11]: A saída da `ls()` é a lista de variáveis ou objetos criadas na sessão do R atual. Ela também é mostrada no painel *Environment* do RStudio.
@@ -455,8 +456,8 @@ Para remover variáveis usa-se a função `rm()`. Vamos remover a variável `m` 
 ```r
 rm(m_kg)
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "g"                 
-#> [4] "peso_kg"            "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "g"                  "peso_kg"            "r_cran_version_win"
 ```
 
 Podemos remover mais de uma variável ao mesmo tempo.
@@ -465,7 +466,8 @@ Podemos remover mais de uma variável ao mesmo tempo.
 ```r
 rm(g, peso_kg)
 ls()
-#> [1] "cran_news_windows"  "format_hotkey"      "r_cran_version_win"
+#> [1] "cleanup_pandoc_md"  "cran_news_windows"  "format_hotkey"     
+#> [4] "r_cran_version_win"
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):

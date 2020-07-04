@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-06-22" />
+<meta name="date" content="2020-07-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -401,23 +401,23 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="exercícios-3" class="section level2">
 <h2><span class="header-section-number">10.5</span> Exercícios</h2>
 <p><strong>Pacotes necessários</strong></p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
-<a class="sourceLine" id="cb385-2" title="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
+<a class="sourceLine" id="cb390-2" title="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
 <p><strong>Dados</strong></p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb386-2" title="2"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb386-3" title="3">  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,</a>
-<a class="sourceLine" id="cb386-4" title="4">  <span class="dt">destfile =</span> arq_temp, </a>
-<a class="sourceLine" id="cb386-5" title="5">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
-<a class="sourceLine" id="cb386-6" title="6">)</a>
-<a class="sourceLine" id="cb386-7" title="7"><span class="kw">file.exists</span>(arq_temp)</a>
-<a class="sourceLine" id="cb386-8" title="8"></a>
-<a class="sourceLine" id="cb386-9" title="9"><span class="co"># nome dos dados carregados para os exercícios</span></a>
-<a class="sourceLine" id="cb386-10" title="10"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb391-2" title="2"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb391-3" title="3">  <span class="st">&quot;https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true&quot;</span>,</a>
+<a class="sourceLine" id="cb391-4" title="4">  <span class="dt">destfile =</span> arq_temp, </a>
+<a class="sourceLine" id="cb391-5" title="5">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
+<a class="sourceLine" id="cb391-6" title="6">)</a>
+<a class="sourceLine" id="cb391-7" title="7"><span class="kw">file.exists</span>(arq_temp)</a>
+<a class="sourceLine" id="cb391-8" title="8"></a>
+<a class="sourceLine" id="cb391-9" title="9"><span class="co"># nome dos dados carregados para os exercícios</span></a>
+<a class="sourceLine" id="cb391-10" title="10"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>data frame</em> <code>soi</code> (dado abaixo) para o formato "arrumado" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
 </ol>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">soi </a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1">soi </a></code></pre></div>
 <p>A estrutura esperada dos dados arrumados é mostrada abaixo:</p>
 <pre><code>Rows: 36
 Columns: 3
@@ -427,7 +427,7 @@ $ soi  &lt;dbl&gt; 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, ...</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o <em>tibble</em> fornecido abaixo para o "formato arrumado". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe <em>date</em> usando a função <code>as.Date()</code>.</li>
 </ol>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">precd_ncdf</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1">precd_ncdf</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 40
 Columns: 4
@@ -438,7 +438,7 @@ $ prec &lt;dbl&gt; 0.0000000, 0.0000000, 0.0000000, 0.0000...</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Coloque os dados de poluição (<em>tibble</em> <code>poluentes</code>) no formato "arrumado".</li>
 </ol>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">poluentes</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">poluentes</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 3
 Columns: 4
@@ -449,7 +449,7 @@ $ so2     &lt;chr&gt; &quot;1h&quot;, NA, NA</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.</li>
 </ol>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">dados_sm</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1">dados_sm</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 186
 Columns: 6
@@ -480,7 +480,7 @@ $ tmin &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18....</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato "arrumado" e as informações de data e horário agregadas em uma única variável da classe <em>POSIXct</em>.</li>
 </ol>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1">dados_zorra</a></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">dados_zorra</a></code></pre></div>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 16
 Columns: 3
@@ -491,7 +491,7 @@ $ tmin &lt;dbl&gt; 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16....</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>etacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
 </ol>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1">estacoes</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">estacoes</a></code></pre></div>
 <p>Estrutura da tabela resultante:</p>
 <pre><code>Rows: 3
 Columns: 5
@@ -507,10 +507,10 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 <ol style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="co"># datas completas</span></a>
-<a class="sourceLine" id="cb400-2" title="2">datas_comp</a>
-<a class="sourceLine" id="cb400-3" title="3"><span class="co"># datas das observações de theta</span></a>
-<a class="sourceLine" id="cb400-4" title="4">datas_obs</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="co"># datas completas</span></a>
+<a class="sourceLine" id="cb405-2" title="2">datas_comp</a>
+<a class="sourceLine" id="cb405-3" title="3"><span class="co"># datas das observações de theta</span></a>
+<a class="sourceLine" id="cb405-4" title="4">datas_obs</a></code></pre></div>
 <p>Estrutura da tabela de dados resultante:</p>
 <pre><code>Rows: 8
 Columns: 2

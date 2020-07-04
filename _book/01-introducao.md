@@ -127,6 +127,8 @@ https://simplystatistics.org/2018/07/12/use-r-keynote-2018/
 http://www.sthda.com/english/wiki/what-is-r-and-why-learning-r-programming
 
 https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
+
+https://towardsdatascience.com/how-well-do-you-know-r-3feb0c160f44
 -->
 
 * [R](https://www.r-project.org/) não é uma GUI (Interface gráfica do usuário) e isso é bom
