@@ -76,7 +76,7 @@ E da mesma forma carregamos o conjunto de pacotes com:
 library(tidyverse)
 #> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
 #> ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-#> ✔ tibble  3.0.1     ✔ dplyr   1.0.0
+#> ✔ tibble  3.0.3     ✔ dplyr   1.0.0
 #> ✔ tidyr   1.1.0     ✔ stringr 1.4.0
 #> ✔ readr   1.3.1     ✔ forcats 0.5.0
 #> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -525,6 +525,19 @@ prec_anual_comp
 ```
 
 
+### Exercícios
+
+
+
+**Pacotes necessários**
+
+
+```r
+pcks <- c("rio", "tidyverse", "lubridate")
+easypackages::libraries(pcks)
+```
+
+
 
 
 ## Manipulação de dados
@@ -585,6 +598,8 @@ Essa é justamente a ideia do operador *pipe* `%>%`: passar a saída de uma fun�
 --->
 
 Os pacotes **tidyverse** integram-se muito bem com o `%>%`, por isso ele é automaticamente carregado com o **tidyverse**. Vamos ilustrar as vantagens de uso do %>% com exemplos a seguir.
+
+
 
 #### Vantagens do %>%
 
@@ -1058,7 +1073,7 @@ prec_anual_tbl %>%
 
 A grande funcionalidade da `dplyr::group_by()` surge quando combinada com a função `dplyr::summarise()`, o que nos permite obter resumos estatísticos para cada grupo da variável. 
 
-Por exemplo a chuva anual média por `site` é obtida com o seguinte código:
+Por exemplo a chuva anual média por `site` (estação meteorológica) é obtida com o seguinte código:
 
 
 ```r
@@ -1257,7 +1272,7 @@ easypackages::libraries(pcks)
 arq_temp <- tempfile(fileext = ".RData")
 download.file(
   "https://github.com/lhmet/adar-ufsm/blob/master/data/dados-lista-exerc4-cap9.RData?raw=true",
-  destfile = arq_temp, 
+  destfile = arq_temp,
   mode = "wb"
 )
 file.exists(arq_temp)
@@ -1266,7 +1281,7 @@ file.exists(arq_temp)
 print(load(arq_temp))
 ```
 
-1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *data frame* `soi` (dado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
+1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *quadro de dados* `soi` (mostrado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
 
 
 ```r
@@ -1455,11 +1470,7 @@ $ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.326888...
 
 - - - 
 
-Utilize os dados horários de estações meteorológicas automáticas (EMA) do RS (`dados_rs_08_16`) para solução das questões a seguir.
-
-10. Determinar a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
-
-
+9. Utilizando os dados horários de estações meteorológicas automáticas (EMA) do RS (`dados_rs_08_16`), determine a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
 
 Estrutura da tabela de dados resultante: 
 
@@ -1475,7 +1486,7 @@ $ periodo_err <dbl> 9.0019393, 9.0019393, 9.0019393,...
 
 
 
-11. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
+10. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
 
 
 Estrutura da tabela de dados resultante:
@@ -1492,7 +1503,7 @@ $ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97,...
 ```
 
 
-12. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
+11. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
 
 
 Estrutura da tabela de dados resultante:  
@@ -1511,7 +1522,7 @@ $ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2,...
 
 
 
-13. Para a EMA de Santa Maria (ver `info_emas_rs_08_16`) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a `tair` média de cada hora. 
+12. Para a EMA de Santa Maria (ver `info_emas_rs_08_16`) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a `tair` média de cada hora. 
 
 > Dica: Para extrair as horas das datas use a função `lubridate::hour(date)`.
 
@@ -1527,7 +1538,7 @@ $ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.2...
 ```
 
 
-14. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
+13. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
 
 > Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
 
