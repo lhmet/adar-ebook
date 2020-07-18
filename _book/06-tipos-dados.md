@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-07-13"
+#> [1] "2020-07-18"
 Sys.time()
-#> [1] "2020-07-13 13:23:54 -03"
+#> [1] "2020-07-18 18:46:53 UTC"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
@@ -598,11 +598,11 @@ Datas com horários são criados a partir da coerção de dados do tipo `charact
 ```r
 amd_hms <- as.POSIXct("2012-06-28 17:42")
 amd_hms
-#> [1] "2012-06-28 17:42:00 -03"
+#> [1] "2012-06-28 17:42:00 UTC"
 class(amd_hms)
 #> [1] "POSIXct" "POSIXt"
 as.numeric(amd_hms)
-#> [1] 1340916120
+#> [1] 1340905320
 ```
 
 A manipulação de dados da classe de datas com horários (`POSIXct`) torna-se mais versátil através do pacote `lubridate`, específico para manipulação de datas, o que será visto posteriormente.

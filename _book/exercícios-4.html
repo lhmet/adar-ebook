@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,7 +321,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -429,8 +429,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="exercícios-4" class="section level2">
 <h2><span class="header-section-number">10.5</span> Exercícios</h2>
 <p><strong>Pacotes necessários</strong></p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
-<a class="sourceLine" id="cb391-2" title="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="co"># carregue aqui os pacotes necessários para sua resolução</span></a></code></pre></div>
 <p><strong>Dados</strong></p>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
 <a class="sourceLine" id="cb392-2" title="2"><span class="kw">download.file</span>(</a>
@@ -438,88 +437,118 @@ code span.wa { color: #bf0303; } /* Warning */
 <a class="sourceLine" id="cb392-4" title="4">  <span class="dt">destfile =</span> arq_temp,</a>
 <a class="sourceLine" id="cb392-5" title="5">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
 <a class="sourceLine" id="cb392-6" title="6">)</a>
-<a class="sourceLine" id="cb392-7" title="7"><span class="kw">file.exists</span>(arq_temp)</a>
-<a class="sourceLine" id="cb392-8" title="8"></a>
-<a class="sourceLine" id="cb392-9" title="9"><span class="co"># nome dos dados carregados para os exercícios</span></a>
-<a class="sourceLine" id="cb392-10" title="10"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
+<a class="sourceLine" id="cb392-7" title="7"><span class="co"># nome dos dados carregados para os exercícios</span></a>
+<a class="sourceLine" id="cb392-8" title="8"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a></code></pre></div>
+<p><strong>Enunciados</strong></p>
 <ol style="list-style-type: decimal">
-<li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>quadro de dados</em> <code>soi</code> (mostrado abaixo) para o formato "arrumado" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função <code>tolower(names(soi_arrumado))</code>).</li>
+<li>Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no <em>quadro de dados</em> <code>soi</code> (mostrado abaixo) para o formato "arrumado" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (conheça a função <code>tolower()</code>).</li>
 </ol>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">soi </a></code></pre></div>
-<p>A estrutura esperada dos dados arrumados é mostrada abaixo:</p>
+<p>A estrutura esperada dos dados processados é mostrada abaixo:</p>
 <pre><code>Rows: 36
 Columns: 3
-$ year &lt;int&gt; 1951, 1951, 1951, 1951, 1951, 1951, 195...
-$ mes  &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ...
-$ soi  &lt;dbl&gt; 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, ...</code></pre>
+$ year &lt;int&gt; 1951, 1951, 1951, 1951, 1951, 1951, 19...
+$ mes  &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,...
+$ soi  &lt;dbl&gt; 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0,...</code></pre>
+<hr />
 <ol start="2" style="list-style-type: decimal">
-<li>Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o <em>tibble</em> fornecido abaixo para o "formato arrumado". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe <em>date</em> usando a função <code>as.Date()</code>.</li>
+<li>Faça a conversão dos dados de precipitação diária, armazenados em um <strong><code>tibble</code></strong>, para o "formato arrumado" e transforme as datas para o tipo de dados <em>date</em>.</li>
 </ol>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">precd_ncdf</a></code></pre></div>
-<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1">precd_ncdf</a></code></pre></div>
+<p>A estrutura esperada do <strong><code>tibble</code></strong> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 40
 Columns: 4
-$ x    &lt;dbl&gt; -60.625, -60.375, -60.125, -60.625, -60...
-$ y    &lt;dbl&gt; 5.125, 5.125, 5.125, 4.875, 4.875, 5.12...
-$ date &lt;date&gt; 2010-01-01, 2010-01-01, 2010-01-01, 20...
-$ prec &lt;dbl&gt; 0.0000000, 0.0000000, 0.0000000, 0.0000...</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Coloque os dados de poluição (<em>tibble</em> <code>poluentes</code>) no formato "arrumado".</li>
-</ol>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">poluentes</a></code></pre></div>
-<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
-<pre><code>Rows: 3
-Columns: 4
-$ estacao &lt;int&gt; 1, 2, 4
-$ no2     &lt;chr&gt; NA, NA, &quot;1h&quot;
-$ ozone   &lt;chr&gt; &quot;1h&quot;, &quot;8h&quot;, NA
-$ so2     &lt;chr&gt; &quot;1h&quot;, NA, NA</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.</li>
-</ol>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">dados_sm</a></code></pre></div>
-<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
-<pre><code>Rows: 186
-Columns: 6
-$ id    &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;8...
-$ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-$ year  &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 20...
-$ day   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,...
-$ tmax  &lt;dbl&gt; 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29...
-$ tmin  &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18...</code></pre>
+$ x    &lt;dbl&gt; -60.625, -60.625, -60.625, -60.625, -60.625, -60.625, -6...
+$ y    &lt;dbl&gt; 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, ...
+$ date &lt;date&gt; 2010-01-01, 2010-01-02, 2010-01-03, 2010-01-04, 2010-01...
+$ prec &lt;dbl&gt; 0.0000000, 0.0000000, 0.0000000, 0.4484863, 2.3515625, 4...</code></pre>
 <hr />
-<ol start="5" style="list-style-type: decimal">
-<li><p>Com os dados obtidos na questão 4:</p>
-<ol style="list-style-type: lower-alpha">
-<li>junte as colunas <code>year</code>, <code>month</code> e <code>day</code> em uma única coluna denominada <code>date</code> de forma que a classe dessa nova coluna seja <code>date</code>.</li>
+<ol start="3" style="list-style-type: decimal">
+<li>Coloque os dados de poluição (<strong><code>tibble</code></strong> <code>poluentes</code>) no formato "arrumado".</li>
+</ol>
+<hr />
+<ol start="4" style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li>Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria (<code>dados_sm</code>) no formato arrumado.</li>
 </ol></li>
 </ol>
-<p>Estrutura de dados esperada:</p>
-<pre><code>Rows: 186
-Columns: 4
-$ id   &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83...
-$ date &lt;date&gt; 2010-01-01, 2010-01-02, 2010-01-03, 20...
-$ tmax &lt;dbl&gt; 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29....
-$ tmin &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18....</code></pre>
+<pre><code>dados_sm
+#&gt; # A tibble: 12 x 35
+#&gt;    id    element month  year    d1    d2
+#&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 83936 tmax        1  2010  32.6  33.4
+#&gt;  2 83936 tmin        1  2010  17.9  21.4
+#&gt;  3 83936 tmax        2  2010  36.8  38.4
+#&gt;  4 83936 tmin        2  2010  25.4  25  
+#&gt;  5 83936 tmax        3  2010  32    32.4
+#&gt;  6 83936 tmin        3  2010  18.6  19  
+#&gt;  7 83936 tmax        4  2010  34.4  28.6
+#&gt;  8 83936 tmin        4  2010  17.5  21  
+#&gt;  9 83936 tmax        5  2010  27    26.4
+#&gt; 10 83936 tmin        5  2010   7.2   7  
+#&gt; 11 83936 tmax        6  2010  19.2  23.8
+#&gt; 12 83936 tmin        6  2010   4.1   8.8
+#&gt; # ... with 29 more variables: d3 &lt;dbl&gt;,
+#&gt; #   d4 &lt;dbl&gt;, d5 &lt;dbl&gt;, d6 &lt;dbl&gt;, d7 &lt;dbl&gt;,
+#&gt; #   d8 &lt;dbl&gt;, d9 &lt;dbl&gt;, d10 &lt;dbl&gt;,
+#&gt; #   d11 &lt;dbl&gt;, d12 &lt;dbl&gt;, d13 &lt;dbl&gt;,
+#&gt; #   d14 &lt;dbl&gt;, d15 &lt;dbl&gt;, d16 &lt;dbl&gt;,
+#&gt; #   d17 &lt;dbl&gt;, d18 &lt;dbl&gt;, d19 &lt;dbl&gt;,
+#&gt; #   d20 &lt;dbl&gt;, d21 &lt;dbl&gt;, d22 &lt;dbl&gt;,
+#&gt; #   d23 &lt;dbl&gt;, d24 &lt;dbl&gt;, d25 &lt;dbl&gt;,
+#&gt; #   d26 &lt;dbl&gt;, d27 &lt;dbl&gt;, d28 &lt;dbl&gt;,
+#&gt; #   d29 &lt;dbl&gt;, d30 &lt;dbl&gt;, d31 &lt;dbl&gt;</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Filtre os dados obtidos em <strong>(a)</strong> de forma a descobrir as datas em que as observações de <code>tmax</code> ou <code>tmin</code> são faltantes. Mostre o <em>tibble</em> filtrado com as datas e explique o porquê de seus valores.</li>
+<li>Deixe os dados ordenados cronologicamente e obtenha as variáveis com nomes e ordem conforme mostrado na estrutura de dados esperada.</li>
+</ol>
+<pre><code>Rows: 186
+Columns: 6
+$ id    &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;...
+$ year  &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010...
+$ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+$ day   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,...
+$ tmax  &lt;dbl&gt; 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4...
+$ tmin  &lt;dbl&gt; 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4...</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Acrescente uma nova variável <code>tmed</code> aos dados de temperatura diária arrumados, obtida da média diária da <code>tmax</code> e <code>tmin</code>.</li>
+</ol>
+<hr />
+<ol start="5" style="list-style-type: decimal">
+<li><p>Com os dados obtidos na questão 4c:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>renomeie as as colunas <code>year</code>, <code>month</code> e <code>day</code>para <code>ano</code>, <code>mes</code> e <code>dia</code>, respectivamente.</p></li>
+<li><p>junte as colunas <code>ano</code>, <code>mes</code> e <code>dia</code> em uma única coluna denominada <code>data</code> de forma que a classe dessa nova váriavel seja <code>date</code>.</p></li>
+<li><p>Filtre os dados obtidos em <strong>(b)</strong> de forma a descobrir as datas em que as observações de <code>tmax</code> ou <code>tmin</code> são faltantes. Mostre o <strong><code>tibble</code></strong> filtrado com as datas e explique o porquê de seus valores. <em>DICA: quantas observações são esperadas por ano?</em>.</p></li>
+</ol></li>
 </ol>
 <hr />
 <ol start="6" style="list-style-type: decimal">
-<li>A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato "arrumado" e as informações de data e horário agregadas em uma única variável da classe <em>POSIXct</em>.</li>
+<li>A amostra de dados abaixo (print da tabela <code>dados_zorra</code>) possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato "arrumado" e junte as informações de data e horário em uma única variável da classe <em>POSIXct</em> denominada <code>date</code>.</li>
 </ol>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1">dados_zorra</a></code></pre></div>
+<pre><code>#&gt;         date tmax.0 tmax.600 tmax.1200
+#&gt; 2 01-01-2010   22.1     21.0      26.4
+#&gt; 3 02-01-2010   26.0     25.0      29.4
+#&gt; 4 03-01-2010   25.7     26.3      28.4
+#&gt; 5 04-01-2010   23.5     24.5      27.4
+#&gt;   tmax.1800 tmin.0 tmin.600 tmin.1200
+#&gt; 2      27.0     16     13.5      18.2
+#&gt; 3      29.5     19     13.7      16.3
+#&gt; 4      29.0     21     14.1      17.2
+#&gt; 5      28.0     23     16.2      16.9
+#&gt;   tmin.1800
+#&gt; 2      24.1
+#&gt; 3      22.3
+#&gt; 4      26.0
+#&gt; 5      23.0</code></pre>
 <p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
 <pre><code>Rows: 16
 Columns: 3
-$ date &lt;dttm&gt; 2010-01-01 00:00:00, 2010-01-01 06:00:...
-$ tmax &lt;dbl&gt; 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29....
-$ tmin &lt;dbl&gt; 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16....</code></pre>
+$ date &lt;dttm&gt; 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:00:00, 2010-01-01 18:...
+$ tmax &lt;dbl&gt; 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26.3, 28.4, 29.0, 23.5, ...
+$ tmin &lt;dbl&gt; 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1, 17.2, 26.0, 23.0, ...</code></pre>
 <hr />
 <ol start="7" style="list-style-type: decimal">
-<li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>etacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
+<li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>eatacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
 </ol>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">estacoes</a></code></pre></div>
 <p>Estrutura da tabela resultante:</p>
 <pre><code>Rows: 3
 Columns: 5
@@ -533,85 +562,58 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 <li>Combine as 2 tabelas abaixo de forma que:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
+<li>A tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1"><span class="co"># datas completas</span></a>
-<a class="sourceLine" id="cb406-2" title="2">datas_comp</a>
-<a class="sourceLine" id="cb406-3" title="3"><span class="co"># datas das observações de theta</span></a>
-<a class="sourceLine" id="cb406-4" title="4">datas_obs</a></code></pre></div>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 8
-Columns: 2
-$ date  &lt;date&gt; 2018-07-13, 2018-07-14, 2018-07-15, 2...
-$ theta &lt;dbl&gt; 0.3295812, 0.4123798, 0.3917322, NA, N...</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="co"># datas completas</span></a>
+<a class="sourceLine" id="cb401-2" title="2">datas_comp</a>
+<a class="sourceLine" id="cb401-3" title="3"><span class="co"># datas das observações de theta</span></a>
+<a class="sourceLine" id="cb401-4" title="4">datas_obs</a></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha exatamente as datas da tabela <code>data_comp</code> (em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 7
-Columns: 2
-$ date  &lt;date&gt; 2018-07-14, 2018-07-15, 2018-07-16, 2...
-$ theta &lt;dbl&gt; 0.4123798, 0.3917322, NA, NA, 0.326888...</code></pre>
 <hr />
 <ol start="9" style="list-style-type: decimal">
 <li>Utilizando os dados horários de estações meteorológicas automáticas (EMA) do RS (<code>dados_rs_08_16</code>), determine a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável <code>site</code>).</li>
 </ol>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 42
-Columns: 5
-$ site        &lt;chr&gt; &quot;A801&quot;, &quot;A802&quot;, &quot;A803&quot;, &quot;A804&quot;, ...
-$ periodo     &lt;dbl&gt; 8.5027322, 8.5027322, 8.5027322,...
-$ inicio      &lt;dttm&gt; 2007-12-31 21:00:00, 2007-12-31...
-$ fim         &lt;dttm&gt; 2016-12-31 20:00:00, 2016-12-31...
-$ periodo_err &lt;dbl&gt; 9.0019393, 9.0019393, 9.0019393,...</code></pre>
+<hr />
 <ol start="10" style="list-style-type: decimal">
 <li>Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.</li>
 </ol>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 42
-Columns: 6
-$ site &lt;chr&gt; &quot;A801&quot;, &quot;A802&quot;, &quot;A803&quot;, &quot;A804&quot;, &quot;A805&quot;,...
-$ tair &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 86, 97, 96,...
-$ rh   &lt;int&gt; 99, 86, 96, 77, 93, 91, 97, 86, 95, 96,...
-$ prec &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 87, 95, 96,...
-$ rg   &lt;int&gt; 52, 49, 51, 44, 49, 50, 48, 46, 51, 51,...
-$ ws   &lt;int&gt; 99, 93, 95, 80, 93, 96, 96, 87, 97, 97,...</code></pre>
+<hr />
 <ol start="11" style="list-style-type: decimal">
-<li>Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações.</li>
+<li>Com o resultado da questão anterior, adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações.</li>
 </ol>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 42
-Columns: 7
-$ site     &lt;chr&gt; &quot;A894&quot;, &quot;A886&quot;, &quot;A801&quot;, &quot;A884&quot;, &quot;A8...
-$ tair     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 9...
-$ rh       &lt;int&gt; 100, 99, 99, 99, 99, 94, 98, 98, 98...
-$ prec     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 9...
-$ rg       &lt;int&gt; 53, 55, 52, 52, 50, 53, 52, 51, 51,...
-$ ws       &lt;int&gt; 99, 99, 99, 99, 99, 99, 98, 98, 98,...
-$ disp_med &lt;dbl&gt; 90.4, 90.2, 89.6, 89.6, 89.2, 89.2,...</code></pre>
+<hr />
 <ol start="12" style="list-style-type: decimal">
 <li>Para a EMA de Santa Maria (ver <code>info_emas_rs_08_16</code>) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a <code>tair</code> média de cada hora.</li>
 </ol>
 <blockquote>
 <p>Dica: Para extrair as horas das datas use a função <code>lubridate::hour(date)</code>.</p>
 </blockquote>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 24
-Columns: 3
-$ hour      &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...
-$ tair_med  &lt;dbl&gt; 17.26933, 16.87304, 16.52604, 16.2...
-$ tair_disp &lt;dbl&gt; 96.68384, 96.55505, 96.42627, 96.2...</code></pre>
+<hr />
 <ol start="13" style="list-style-type: decimal">
-<li>Com os dados de temperatura do ar (<code>tair</code>) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.</li>
+<li>Com os dados de temperatura do ar (<code>tair</code>) filtrados para EMA de Santa Maria (a) selecione somente os dias observações válidas nas 24 horas (dias completos, ou seja, sem nenhuma falha nas 24 h). A partir destes dados (b) obtenha a frequência de ocorrência da temperatura mínima para cada horário do dia. (c) Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.</li>
 </ol>
 <blockquote>
 <p>Dica: para obter o dia a partir da data e hora (coluna <code>date</code> do tipo <code>POSIXct</code>) use <code>lubridate::floor_date(date, unit = "day")</code>.</p>
 </blockquote>
-<p>Estrutura da tabela de dados resultante:</p>
-<pre><code>Rows: 24
-Columns: 2
-$ h_tmin &lt;int&gt; 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21...
-$ n      &lt;int&gt; 720, 561, 438, 311, 196, 190, 123, 90...</code></pre>
+<hr />
+<ol start="14" style="list-style-type: decimal">
+<li>Neste exercício aplicaremos um controle de qualidade básico de dados meteorológicos. Você irá verificar se nos dados da EMA de Santa Maria (A803, mesmos dados do item <strong>a</strong> do exercício anterior) ocorreram casos em que a temperatura máxima (mínima) diária foi acima (abaixo) dos recordes históricos registrados pela estação meteorológica convencional do INMET de Santa Maria (site 83936). Os recordes históricos de temperatura máxima e mínima estão disponíveis nos dados <code>recordes_temp</code> para cada mês do ano. Você deve obter os casos suspeitos na estrutura conforme abaixo.</li>
+</ol>
+<pre><code># A tibble: 8 x 7
+  date                 tmax  tmin   mes site 
+  &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1 2009-10-30 00:00:00  35.8  20.4    10 83936
+2 2009-10-31 00:00:00  36.8  21.8    10 83936
+3 2013-12-26 00:00:00  38.3  21.2    12 83936
+4 2014-02-05 00:00:00  38    23.8     2 83936
+5 2014-02-06 00:00:00  38.3  24.4     2 83936
+6 2014-02-07 00:00:00  39.5  23.2     2 83936
+7 2014-02-09 00:00:00  38.3  22.9     2 83936
+8 2014-10-29 00:00:00  36.8  22.4    10 83936
+# ... with 2 more variables: tmin_abs &lt;dbl&gt;,
+#   tmax_abs &lt;dbl&gt;</code></pre>
 <!-- 
 
 Controle de qualidade e validação de dados

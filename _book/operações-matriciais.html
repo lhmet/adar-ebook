@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,7 +321,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -437,37 +437,37 @@ code span.wa { color: #bf0303; } /* Warning */
 Figura A.1: Multiplicação matricial.
 </p>
 </div>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1"><span class="co"># multiplicação de duas matrizes</span></a>
-<a class="sourceLine" id="cb478-2" title="2">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb478-3" title="3">A</a>
-<a class="sourceLine" id="cb478-4" title="4">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb478-5" title="5">B</a>
-<a class="sourceLine" id="cb478-6" title="6">A <span class="op">*</span><span class="st"> </span>B <span class="co"># erro pela diferença nas dims entre as matrizes</span></a>
-<a class="sourceLine" id="cb478-7" title="7">prod_mat &lt;-<span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>B</a>
-<a class="sourceLine" id="cb478-8" title="8">prod_mat</a>
-<a class="sourceLine" id="cb478-9" title="9"><span class="co"># multiplicação de uma matriz por um escalar</span></a>
-<a class="sourceLine" id="cb478-10" title="10">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb478-11" title="11">m</a>
-<a class="sourceLine" id="cb478-12" title="12">m <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1"><span class="co"># multiplicação de duas matrizes</span></a>
+<a class="sourceLine" id="cb482-2" title="2">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb482-3" title="3">A</a>
+<a class="sourceLine" id="cb482-4" title="4">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb482-5" title="5">B</a>
+<a class="sourceLine" id="cb482-6" title="6">A <span class="op">*</span><span class="st"> </span>B <span class="co"># erro pela diferença nas dims entre as matrizes</span></a>
+<a class="sourceLine" id="cb482-7" title="7">prod_mat &lt;-<span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>B</a>
+<a class="sourceLine" id="cb482-8" title="8">prod_mat</a>
+<a class="sourceLine" id="cb482-9" title="9"><span class="co"># multiplicação de uma matriz por um escalar</span></a>
+<a class="sourceLine" id="cb482-10" title="10">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb482-11" title="11">m</a>
+<a class="sourceLine" id="cb482-12" title="12">m <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 </div>
 <div id="adição-matricial" class="section level3">
 <h3><span class="header-section-number">A.10.2</span> Adição matricial</h3>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1">m</a>
-<a class="sourceLine" id="cb479-2" title="2">m <span class="op">+</span><span class="st"> </span>m</a></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1">m</a>
+<a class="sourceLine" id="cb483-2" title="2">m <span class="op">+</span><span class="st"> </span>m</a></code></pre></div>
 </div>
 <div id="produto-escalar" class="section level3">
 <h3><span class="header-section-number">A.10.3</span> Produto escalar</h3>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1">u &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb480-2" title="2">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb480-3" title="3">u <span class="op">*</span><span class="st"> </span>v</a>
-<a class="sourceLine" id="cb480-4" title="4"><span class="co"># produto escalar = u.v = 1*5 + 2*12 + 3*13</span></a>
-<a class="sourceLine" id="cb480-5" title="5"><span class="kw">crossprod</span>(u, v)</a></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" title="1">u &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb484-2" title="2">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb484-3" title="3">u <span class="op">*</span><span class="st"> </span>v</a>
+<a class="sourceLine" id="cb484-4" title="4"><span class="co"># produto escalar = u.v = 1*5 + 2*12 + 3*13</span></a>
+<a class="sourceLine" id="cb484-5" title="5"><span class="kw">crossprod</span>(u, v)</a></code></pre></div>
 </div>
 <div id="determinante" class="section level3">
 <h3><span class="header-section-number">A.10.4</span> Determinante</h3>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1"><span class="co"># matriz exemplo</span></a>
-<a class="sourceLine" id="cb481-2" title="2">mat_ex &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-7</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb481-3" title="3"><span class="kw">det</span>(mat_ex)</a></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1"><span class="co"># matriz exemplo</span></a>
+<a class="sourceLine" id="cb485-2" title="2">mat_ex &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-7</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb485-3" title="3"><span class="kw">det</span>(mat_ex)</a></code></pre></div>
 </div>
 <div id="solução-de-sistemas-lineares" class="section level3">
 <h3><span class="header-section-number">A.10.5</span> Solução de sistemas lineares</h3>
@@ -479,11 +479,11 @@ x_1 + x_2 = 2
 \end{matrix}\right.
 \]</span></p>
 <p>Qual os valores de <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>?</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1"><span class="co"># matrizes do sistema linear</span></a>
-<a class="sourceLine" id="cb482-2" title="2">coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb482-3" title="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb482-4" title="4">x &lt;-<span class="st"> </span><span class="kw">solve</span>(coefs, y)</a>
-<a class="sourceLine" id="cb482-5" title="5">x</a></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1"><span class="co"># matrizes do sistema linear</span></a>
+<a class="sourceLine" id="cb486-2" title="2">coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb486-3" title="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb486-4" title="4">x &lt;-<span class="st"> </span><span class="kw">solve</span>(coefs, y)</a>
+<a class="sourceLine" id="cb486-5" title="5">x</a></code></pre></div>
 </div>
 <div id="produto-cartesiano" class="section level3">
 <h3><span class="header-section-number">A.10.6</span> Produto cartesiano</h3>

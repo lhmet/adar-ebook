@@ -109,15 +109,8 @@ A <- seq(
 ) %>%
   sin(x = .)
 y1 <- exp(-0.07 * A * x1) * cos(x1 + pi / 2)
-dados <- tibble(x1, y1)
-dados
-#> Warning: `...` is not empty.
-#> 
-#> We detected these problematic arguments:
-#> * `needs_dots`
-#> 
-#> These dots only exist to allow future extensions and should be empty.
-#> Did you misspecify an argument?
+onda <- tibble(x1, y1)
+onda
 #> # A tibble: 4,001 x 2
 #>        x1       y1
 #>     <dbl>    <dbl>
@@ -140,6 +133,13 @@ dados
 ```r
 #help(airquality)
 head(airquality)
+#>   Ozone Solar.R Wind Temp Month Day
+#> 1    41     190  7.4   67     5   1
+#> 2    36     118  8.0   72     5   2
+#> 3    12     149 12.6   74     5   3
+#> 4    18     313 11.5   62     5   4
+#> 5    NA      NA 14.3   56     5   5
+#> 6    28      NA 14.9   66     5   6
 # conversão da Temp de Farenheith para Celsius
 aq <- airquality %>%
   mutate(Temp = (Temp - 32)/5,
@@ -152,9 +152,16 @@ aq <- airquality %>%
   # removendo as colunas Month e Day e reordenando as colunas
   dplyr::select(., date, Ozone:Temp, -c(Month, Day))
 head(aq)
+#>         date Ozone Solar.R Wind Temp
+#> 1 1973-05-01    41     190  7.4  7.0
+#> 2 1973-05-02    36     118  8.0  8.0
+#> 3 1973-05-03    12     149 12.6  8.4
+#> 4 1973-05-04    18     313 11.5  6.0
+#> 5 1973-05-05    NA      NA 14.3  4.8
+#> 6 1973-05-06    28      NA 14.9  6.8
 ```
 
-  + Séries de dados aleatórios acumulados (**random walk**)
+  + Séries de dados aleatórios acumulados (**caminhos aleatórios**)
 
 
 ```r
@@ -165,6 +172,13 @@ set.seed(12)
 # com números aleatórios acumulados 
 mat <- sapply(1:5, function(i) cumsum(rnorm(100)))
 head(as.data.frame(mat))
+#>            V1       V2        V3        V4          V5
+#> 1 -1.48056759 1.926719 -2.986456 -1.481392  0.08712577
+#> 2  0.09660188 1.978149 -3.037003 -2.411725 -1.28105859
+#> 3 -0.86014260 3.778673 -1.737490 -3.428340 -2.67114205
+#> 4 -1.78014785 3.227215 -3.088892 -3.640028 -2.36587429
+#> 5 -3.77778995 3.334274 -4.038690 -1.987162 -2.21050291
+#> 6 -4.05008599 4.123398 -2.352589 -1.261865 -1.99605084
 ```
 
   + Precipitação climatológica mensal das estações climatológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=clima/normaisClimatologicas) 
@@ -177,6 +191,13 @@ prec <- import(
   format = "rds"
 )
 head(prec)
+#>   codigo            nome estado mes value
+#> 1  82704 Cruzeiro do Sul     AC jan 257.9
+#> 2  82915      Rio Branco     AC jan 289.0
+#> 3  82807       TarauacÃ¡     AC jan 286.6
+#> 4  83098        Coruripe     AL jan  21.6
+#> 5  82994         MaceiÃ³     AL jan  78.1
+#> 6  82988     Mata Grande     AL jan  62.1
 ```
 
  + Dados de precipitação anual de algumas capitais do mundo
@@ -190,6 +211,13 @@ rain <- import(
   header = TRUE
 )
 head(rain)
+#>   Month Tokyo NewYork London Berlin
+#> 1   Jan  49.9    83.6   48.9   42.4
+#> 2   Feb  71.5    78.8   38.8   33.2
+#> 3   Mar 106.4    98.5   39.3   34.5
+#> 4   Apr 129.2    93.4   42.4   39.7
+#> 5   May 144.0   106.0   47.0   52.6
+#> 6   Jun 176.0    84.5   48.3   70.5
 ```
 
   + anomalias de temperatura do ar global Global de 1800 a 2011
@@ -199,6 +227,13 @@ head(rain)
 data(climate, package = "gcookbook")
 #help(climate,package = "gcookbook")
 head(climate)
+#>     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+#> 1 Berkeley 1800        NA        NA     -0.435  0.505
+#> 2 Berkeley 1801        NA        NA     -0.453  0.493
+#> 3 Berkeley 1802        NA        NA     -0.460  0.486
+#> 4 Berkeley 1803        NA        NA     -0.493  0.489
+#> 5 Berkeley 1804        NA        NA     -0.536  0.483
+#> 6 Berkeley 1805        NA        NA     -0.541  0.475
 ```
 
 -  Metadados das estações meteorológicas automáticas (EMA) do INMET;
@@ -207,10 +242,29 @@ head(climate)
 ```r
 # dados de estações com localização, alt e tmed
 sulbr_md <- import(
-  "https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1", 
+  "https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1",
   format = "rds"
-)
+) %>%
+  mutate(.,
+    tmed = (tmax_med + tmin_med) / 2
+  )
 sulbr_md
+#> # A tibble: 82 x 18
+#>    site  tmax_med tmin_med dtr_med sdate      edate      period max_tair
+#>    <chr>    <dbl>    <dbl>   <dbl> <date>     <date>      <dbl>    <dbl>
+#>  1 A801      24.8     16.1    8.66 2000-09-22 2015-12-31   15.3       40
+#>  2 A802      22.1     15.3    6.77 2001-11-16 2015-12-31   14.1       38
+#>  3 A803      24.8     14.8    9.94 2001-11-26 2015-12-31   14.1       40
+#>  4 A805      24.7     15.1    9.60 2001-12-05 2015-12-31   14.1       36
+#>  5 A806      24.5     18.0    6.49 2003-01-22 2015-12-31   12.9       39
+#>  6 A807      22.9     14.3    8.65 2003-01-28 2015-12-31   12.9       34
+#>  7 A808      22.2     16.3    5.87 2006-06-01 2015-12-31    9.6       41
+#>  8 A809      25.5     15.0   10.5  2006-09-28 2015-12-31    9.3       40
+#>  9 A810      26.5     15.3   11.2  2006-11-15 2015-12-31    9.1       39
+#> 10 A811      20.9     13.0    7.84 2007-01-24 2015-12-31    8.9       37
+#> # ... with 72 more rows, and 10 more variables: min_tair <dbl>, missing <dbl>,
+#> #   long_gap <dbl>, sdate_lg <dttm>, name <chr>, state <chr>, lon <dbl>,
+#> #   lat <dbl>, alt <dbl>, tmed <dbl>
 ```
 
 
@@ -229,6 +283,17 @@ sulbr_dh <- import("https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.
 
 ```r
 glimpse(sulbr_dh)
+#> Rows: 2,806,728
+#> Columns: 9
+#> $ site  <chr> "A801", "A801", "A801", "A801", "A801", "A801", "A801", "A801...
+#> $ date  <dttm> 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:0...
+#> $ tair  <dbl> NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15....
+#> $ rh    <dbl> NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 4...
+#> $ prec  <dbl> NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
+#> $ rg    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111...
+#> $ wd    <dbl> NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, ...
+#> $ ws    <dbl> NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, ...
+#> $ wsmax <dbl> NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, ...
 #range(sulbr_dh$date)
 ```
 
@@ -242,7 +307,13 @@ tair_poa_dly <- sulbr_dh %>%
   group_by(date = as.Date(date)) %>%
   summarise(tair = mean(tair, na.rm = TRUE)) %>%
   mutate(tair = ifelse(is.nan(tair), NA, tair))
-glimpse((tair_poa_dly)
+#> `summarise()` ungrouping output (override with `.groups` argument)
+
+glimpse(tair_poa_dly)
+#> Rows: 5,579
+#> Columns: 2
+#> $ date <date> 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 2...
+#> $ tair <dbl> 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18...
 ```
 
 
@@ -251,35 +322,50 @@ tair_poa_clim <- tair_poa_dly %>%
   group_by(doy = lubridate::yday(date)) %>%
   summarise(med = mean(tair, na.rm = TRUE),
             max = max(tair, na.rm = TRUE),
-            min = max(tair, na.rm = TRUE),
+            min = min(tair, na.rm = TRUE),
             q5 = quantile(tair, p = 0.05, na.rm = TRUE),
             q95 = quantile(tair, p = 0.95, na.rm = TRUE),
             n_anos = n(),
             n_obs = sum(!is.na(tair))
             ) %>% 
   ungroup()
+#> `summarise()` ungrouping output (override with `.groups` argument)
 tair_poa_clim
+#> # A tibble: 366 x 8
+#>      doy   med   max   min    q5   q95 n_anos n_obs
+#>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <int> <int>
+#>  1     1  24.3  27.5  19.6  20.0  27.4     15    15
+#>  2     2  24.2  28.4  20.2  20.3  28.1     15    15
+#>  3     3  23.5  27.3  16.0  19.8  27.3     15    15
+#>  4     4  24.4  27.3  19.2  21.5  27.1     15    15
+#>  5     5  24.9  27.8  20.9  21.7  26.9     15    15
+#>  6     6  25.5  28.6  22.5  23.6  27.9     15    15
+#>  7     7  25.8  28.8  21.8  23.1  28.2     15    15
+#>  8     8  25.6  28.5  23.4  23.5  27.9     15    15
+#>  9     9  26.0  29.5  21.9  23.8  28.5     15    15
+#> 10    10  25.8  29.4  22.3  22.8  28.6     15    15
+#> # ... with 356 more rows
 ```
 
 
 
 
+```r
+#timePlot(filter(sulbr_dh, site == "A801"), "tair")
+```
 
 
   
 ## Sistemas Gráficos 
 
-O <img src="images/logo_r.png" width="20"> possui uma poderosa [plataforma de ferramentas gráficas](http://cran.r-project.org/web/views/Graphics.html) para análise e visualização de dados. Os sistemas gráficos são: 
+O <img src="images/logo_r.png" width="20"> possui uma poderosa [plataforma de ferramentas gráficas](http://cran.r-project.org/web/views/Graphics.html) para visualização de dados. 
 
-+ **sistema básico** (nativo do R)
-    
-   - 'modelo pintor', se errou, pega uma nova tela e começa tudo de novo;
-   
-   - a principal função é a `plot()`; 
 
-+ **[sistema de grade](https://www.stat.auckland.ac.nz/~paul/grid/grid.html)**
-   
-   - conjunto de funções gráficas mais flexíveis para o *layout* de gráficos, como a criação de múltiplas regiões (*viewports*) em uma mesma página;
+Os sistemas gráficos nativos do <img src="images/logo_r.png" width="20"> são: 
+
+- **Sistema Básico**: é um modelo similar ao de uma tela de pintura, se errar algo, tem que refazer tudo novamente numa nova tela. A principal função é a `plot()`. 
+
++ **[sistema de grade](https://www.stat.auckland.ac.nz/~paul/grid/grid.html)**: fornece funções gráficas mais flexíveis para o *layout* de gráficos, como a criação de múltiplas regiões (*viewports*) em uma mesma página;
    
    - requer especificações detalhadas de onde plotar os pontos, linhas, retângulos e consequentemente um gráfico é elaborado a partir de várias linhas de código. 
     
@@ -304,10 +390,12 @@ Um exemplo simples de uso da função `graphics::plot()` é mostrado abaixo:
 
 ```r
 with(
-  dados,
-  plot(x = x1, y = y1)
+  sulbr_md,
+  plot(x = alt, y = tmax_med)
 )
 ```
+
+<img src="images/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
 
 Para ilustrar os diferentes sistemas gráficos disponíveis no <img src="images/logo_r.png" width="20">, vamos mostrar como gerar este mesmo gráfico usando o sistema **`{grid}`**, **`{lattice}`** e **`{ggplot2}`**.
 
@@ -318,28 +406,28 @@ Para ilustrar os diferentes sistemas gráficos disponíveis no <img src="images/
     
 
 ```r
-## exemplo grid
 library(grid)
 ## define tamanho da região para plot (viewport)
 pushViewport(plotViewport(c(5, 4, 2, 2)))
 ## define intervalos de variação das escalas x e y
-pushViewport(dataViewport(
-  xData = dados$x1,
-  yData = dados$y1,
-  name = "plotRegion"
-))
+pushViewport(
+  dataViewport(
+    xData = sulbr_md$alt,
+    yData = sulbr_md$tmed
+  )
+)
 ## retângulo em torno da região do plot
 grid.rect()
 ## eixos x e y
 grid.xaxis()
 grid.yaxis()
 ## labels dos eixos x e y
-grid.text("x1", y = unit(-3, "lines"))
-grid.text("y1", x = unit(-3, "lines"), rot = 90)
+grid.text("Altitude (m)", y = unit(-3, "lines"))
+grid.text("Temperatura (°C)", x = unit(-3, "lines"), rot = 90)
 ## símbolos dos dados
 grid.points(
-  x = dados$x1,
-  y = dados$y1,
+  x = sulbr_md$alt,
+  y = sulbr_md$tmed,
   name = "dataSymbols"
 )
 ```
@@ -359,8 +447,10 @@ Um grande atrativo do **{`lattice`}** são os gráficos multipainel para anális
 # exemplo lattice
 library(lattice)
 # interface usando fórmula
- xyplot(y1 ~ x1, data = dados)
+ xyplot(tmed ~ alt, data = sulbr_md)
 ```
+
+<img src="images/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ### [ggplot2](http://ggplot2.org/)
@@ -371,13 +461,15 @@ Assim como lattice também foi construído baseado no sistema *grid*. É um sist
 ```r
 ## exemplo ggplot2
 library(ggplot2)
- qplot(x = x1, y = y1, data = dados)
+ qplot(x = alt, y = tmed, data = sulbr_md)
 ```
+
+<img src="images/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ### Terminologia: funções de alto e baixo nível
 
-- Funções de alto nível produzem um gráfico completo.
+**Funções de alto nível** produzem um gráfico completo. Por exemplo:
 
 
 ```r
@@ -385,11 +477,21 @@ library(ggplot2)
 plot(x1, y1, las = 1)
 ```
 
-- Funções de baixo nível adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. 
+<img src="images/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" />
+
+**Funções de baixo nível** adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. Considere o gráfico da onda abaixo:
 
 
 ```r
 # exemplo função gráfica de alto nível
+plot(x1, y1, las = 1)
+```
+
+<img src="images/plot-alto-nivel-1.png" width="672" style="display: block; margin: auto;" />
+As funções a seguir adicionam pontos, linhas de grade, linha horizontal dereferência em `y = 0`, título e uma borda ao gráfico básico gerado no código anterior. Todas estsa funções são de baixo nível.
+
+
+```r
 plot(x1, y1, las = 1)
 # exemplo funções gráficas de baixo nível
 points(x1, y1,                    # adiciona pontos com cor e símbolo
@@ -402,44 +504,61 @@ title(main = "Grafico a partir de funçoes de baixo nível")      # adiciona tí
 box(lwd = 2)                      # adiciona retângulo em torna da região do gráfico, com linha mais larga
 ```
 
-Ambos sistemas *base* e *grid* fornecem funções gráficas de baixo nível. O sistema *grid* também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem).
-A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.
+<img src="images/funcoes-baixo-nivel-1.png" width="672" style="display: block; margin: auto;" />
+
+Ambos os Sistemas Básico e de Grade fornecem funções gráficas de baixo nível. O Sistema de Grade também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem). A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.
   
-Nesta aula será dado foco a produção de gráficos usando o **sistema *base*** do <img src="images/logo_r.png" width="20">.
+Neste capítulo será dado foco a produção de gráficos usando o Sistema Básico do <img src="images/logo_r.png" width="20">.
 
 ## Funções gráficas básicas
 
-### Função `plot()` 
+### Diferentes entradas de dados na `plot()`
 
-#### Gráficos de diferentes dados de entrada
-
-A função `plot()` é o carro chefe do sistema base do <img src="images/logo_r.png" width="20">. Quando especificamos apenas uma variável de entrada é plotado a variável no eixo y em função de seu tamanho `1:length(x)` no eixo x.
+A função `plot()` é o carro chefe do sistema Básico do <img src="images/logo_r.png" width="20">. Quando especificamos apenas um vetor é plotado seus valores no eixo y em função de seu tamanho `1:length(x)` no eixo x.
 
 
 ```r
 plot(y1)
 ```
 
-Gerando um gráfico especificando os parâmetros x e y. 
+<img src="images/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" />
+
+Você também pode especificar os parâmetros x e y. 
 
 
 ```r
 plot(x = x1, y = y1)
 ```
 
-Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex.: `y1 ~ x1` que pode ser interpretada como y1 (variável) em função x1.
+<img src="images/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
+  
+
+Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex.: `y ~ x` que pode ser interpretada como y (variável) em função de x.
 
 
 ```r
 plot(y1 ~ x1)
 ```
 
+<img src="images/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" />
+
+Se você tem seus dados em um quadro de dados, utilize o argumento `data` e o nome das variáveis que deseja plotar na fórmula.
+
+
+```r
+plot(tmed ~ alt,  data = sulbr_md)
+```
+
+<img src="images/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" />
+
 Aplicando a `plot()` a um *quadro de dados* com duas variáveis resulta um gráfico equivalente ao caso anterior.
 
 
 ```r
-plot(dados)
+plot(onda)
 ```
+
+<img src="images/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" />
 
 #### Gráficos de dispersão
 
@@ -448,8 +567,10 @@ Aplicando a `plot()` a um quadro de dados com mais de duas variáveis resulta um
 
 ```r
 ## plot de todas colunas de aq, exceto a 1a coluna
-plot(aq[, -1])
+plot(select(aq, -date))
 ```
+
+<img src="images/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
 
 Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.
 
@@ -458,15 +579,19 @@ Existe uma função gráfica específica para produção deste tipo de gráfico:
 
 ```r
 # plote de pares
-pairs(aq[, -1])  # exclui coluna date
+pairs(select(aq, -date))
 ```
+
+<img src="images/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" />
 
 A função `pairs.panels()` do pacote `psych` fornece um gráfico de pares bastante informativo e foi expandida a partir da função `pairs()`.
 
 
 ```r
-pairs.panels(x = aq[, -1])
+pairs.panels(x = select(aq, -date))
 ```
+
+<img src="images/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" />
 
 Para fechar as janelas gráficas abertas:
 
@@ -482,12 +607,91 @@ Podemos personalisar muitas características de um gráfico (cores, eixos, títu
 
 As opções são especificadas através da função `par()`. Os parâmetros assim definidos terão efeito até o fim da sessão ou até que eles sejam mudados.
 
-Digitando `par()` sem parâmetros produz uma lista das configurações gráficas atuais. Adicionando o parâmetro `no.readonly = TRUE` produz uma lista das configurações atuais que podem ser modificadas posteriormente.
+Digitando `par()` sem parâmetros produz uma lista das configurações gráficas atuais. A diversidade de parâmetros pode ser vista pela estrutura da `par()`.
 
 
 
 ```r
 str(par())
+#> List of 72
+#>  $ xlog     : logi FALSE
+#>  $ ylog     : logi FALSE
+#>  $ adj      : num 0.5
+#>  $ ann      : logi TRUE
+#>  $ ask      : logi FALSE
+#>  $ bg       : chr "white"
+#>  $ bty      : chr "o"
+#>  $ cex      : num 1
+#>  $ cex.axis : num 1
+#>  $ cex.lab  : num 1
+#>  $ cex.main : num 1.2
+#>  $ cex.sub  : num 1
+#>  $ cin      : num [1:2] 0.15 0.2
+#>  $ col      : chr "black"
+#>  $ col.axis : chr "black"
+#>  $ col.lab  : chr "black"
+#>  $ col.main : chr "black"
+#>  $ col.sub  : chr "black"
+#>  $ cra      : num [1:2] 28.8 38.4
+#>  $ crt      : num 0
+#>  $ csi      : num 0.2
+#>  $ cxy      : num [1:2] 0.026 0.0633
+#>  $ din      : num [1:2] 7 5
+#>  $ err      : int 0
+#>  $ family   : chr ""
+#>  $ fg       : chr "black"
+#>  $ fig      : num [1:4] 0 1 0 1
+#>  $ fin      : num [1:2] 7 5
+#>  $ font     : int 1
+#>  $ font.axis: int 1
+#>  $ font.lab : int 1
+#>  $ font.main: int 2
+#>  $ font.sub : int 1
+#>  $ lab      : int [1:3] 5 5 7
+#>  $ las      : int 0
+#>  $ lend     : chr "round"
+#>  $ lheight  : num 1
+#>  $ ljoin    : chr "round"
+#>  $ lmitre   : num 10
+#>  $ lty      : chr "solid"
+#>  $ lwd      : num 1
+#>  $ mai      : num [1:4] 1.02 0.82 0.82 0.42
+#>  $ mar      : num [1:4] 5.1 4.1 4.1 2.1
+#>  $ mex      : num 1
+#>  $ mfcol    : int [1:2] 1 1
+#>  $ mfg      : int [1:4] 1 1 1 1
+#>  $ mfrow    : int [1:2] 1 1
+#>  $ mgp      : num [1:3] 3 1 0
+#>  $ mkh      : num 0.001
+#>  $ new      : logi FALSE
+#>  $ oma      : num [1:4] 0 0 0 0
+#>  $ omd      : num [1:4] 0 1 0 1
+#>  $ omi      : num [1:4] 0 0 0 0
+#>  $ page     : logi TRUE
+#>  $ pch      : int 1
+#>  $ pin      : num [1:2] 5.76 3.16
+#>  $ plt      : num [1:4] 0.117 0.94 0.204 0.836
+#>  $ ps       : int 12
+#>  $ pty      : chr "m"
+#>  $ smo      : num 1
+#>  $ srt      : num 0
+#>  $ tck      : num NA
+#>  $ tcl      : num -0.5
+#>  $ usr      : num [1:4] 0 1 0 1
+#>  $ xaxp     : num [1:3] 0 1 5
+#>  $ xaxs     : chr "r"
+#>  $ xaxt     : chr "s"
+#>  $ xpd      : logi FALSE
+#>  $ yaxp     : num [1:3] 0 1 5
+#>  $ yaxs     : chr "r"
+#>  $ yaxt     : chr "s"
+#>  $ ylbias   : num 0.2
+```
+
+O parâmetro `no.readonly = TRUE` produz uma lista das configurações atuais que podem ser modificadas posteriormente.
+
+
+```r
 # cópia das configurações atuais
 old_par <- par(no.readonly = TRUE)
 # tipo de linha pontilhada, largura da linha, símbolo para plot (triângulo sólido)
@@ -500,13 +704,18 @@ with(
     type = "b"
   )
 ) # linha e ponto desconectados
+```
+
+<img src="images/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 # restabelecendo parâmetros originais
 par(old_par)
 ```
 
 Podemos definir `par()` quantas vezes forem necessárias.
   
-A segunda forma de especificar parâmetros é `nome_opção = valor` diretamente na função gráfica de alto nível.
+A segunda forma de especificar parâmetros é `parametro = valor` diretamente na função gráfica de alto nível.
   
 Mas nesse caso, as opções terão efeito (local) apenas para aquele gráfico específico , portanto diferindo da primeira forma em que a definição pode ser para toda sessão (global).
   
@@ -525,6 +734,8 @@ with(
   )
 )
 ```
+
+<img src="images/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" />
 
 Nem todas funções de alto nível permitem especificar todos parâmetros gráficos. Veja  o `help(plot)` para determinar quais parâmetros gráficos podem configurados dessa forma.
 
@@ -546,43 +757,9 @@ Vimos que podemos especificar símbolos e linhas nos gráficos. Os parâmetros r
 | **lty**       | tipo de linha                                                                                                                                   |
 | **lwd**       | largura da linha, expresso em relação ao default (=1), então lwd = 2 gera uma linha com o dobro de largura da linha default.                    |
 
+Os símbolos são especificados conforme numeração indicada no gráfico abaixo.
 
-```r
-# plot(c(-1, 26), 0:1, type = "n", axes = FALSE, xlab = "", ylab = "")
-# text(0:25, 0.6, c(0:25), cex = 1)
-# points(0:25, rep(0.4, 26), pch = 0:25, bg = "grey")
-# mtext(text = "pch = ", side = 1, line = -14.5, cex = 2)
-# mtext(text = "símbolo", side = 1, line = -10.5, cex = 2)
-pchShow <-
-  function(extras = c("*", ".", "o", "O", "0", "+", "-", "|", "%", "#"),
-           cex = 3, ## good for both .Device=="postscript" and "x11"
-           col = "red3", bg = "gold", coltext = "brown", cextext = 1.2,
-           main = paste(
-             "Símbolos:  points(..., pch = *, cex =",
-             cex, ")"
-           )) {
-    nex <- length(extras)
-    np <- 26 + nex
-    ipch <- 0:(np - 1)
-    k <- floor(sqrt(np))
-    dd <- c(-1, 1) / 2
-    rx <- dd + range(ix <- ipch %/% k)
-    ry <- dd + range(iy <- 3 + (k - 1) - ipch %% k)
-    pch <- as.list(ipch) # list with integers & strings
-    if (nex > 0) pch[26 + 1:nex] <- as.list(extras)
-    plot(rx, ry, type = "n", axes = FALSE, xlab = "", ylab = "", main = main)
-    abline(v = ix, h = iy, col = "lightgray", lty = "dotted")
-    for (i in 1:np) {
-      pc <- pch[[i]]
-      ## 'col' symbols with a 'bg'-colored interior (where available) :
-      points(ix[i], iy[i], pch = pc, col = col, bg = bg, cex = cex)
-      if (cextext > 0) {
-        text(ix[i] - 0.3, iy[i], pc, col = coltext, cex = cextext)
-      }
-    }
-  }
-pchShow()
-```
+<img src="images/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" />
 
 As opções de tipo de linha são mostradas abaixo.
 
@@ -622,6 +799,11 @@ mtext(
   font = 2
 )
 abline(h = 1:6, lty = 1:6)
+```
+
+<img src="images/Chunk611-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
@@ -641,6 +823,8 @@ with(
   )
 )
 ```
+
+<img src="images/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ### Cores
@@ -665,10 +849,16 @@ A função `colors()` retorna o nome de todas as cores disponíveis.
 
 ```r
 colors()[1:20]
+#>  [1] "white"         "aliceblue"     "antiquewhite"  "antiquewhite1"
+#>  [5] "antiquewhite2" "antiquewhite3" "antiquewhite4" "aquamarine"   
+#>  [9] "aquamarine1"   "aquamarine2"   "aquamarine3"   "aquamarine4"  
+#> [13] "azure"         "azure1"        "azure2"        "azure3"       
+#> [17] "azure4"        "beige"         "bisque"        "bisque1"
 n <- length(colors())
 op <- par(bg = "gray60")
 plot(
-  dados$x1[1:n], dados$y1[1:n],
+  x = onda$x1[1:n], 
+  y = onda$y1[1:n],
   type = "n",
   xlab = "x",
   ylab = "y",
@@ -682,11 +872,17 @@ plot(
 usr <- par("usr")
 rect(usr[1], usr[3], usr[2], usr[4], col = "snow", border = "black", lwd = 2)
 points(
-  dados$x1[1:n], dados$y1[1:n],
+  x = onda$x1[1:n], 
+  y = onda$y1[1:n],
   col = colors()[1:n],
   pch = 20,
   cex = (1:n) / 60 * 4
 )
+```
+
+<img src="images/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
@@ -696,7 +892,7 @@ O <img src="images/logo_r.png" width="20"> também possui diversas funções par
 
 
 ```r
-
+# lista com vetor de diferentes paletas de cores
 paletas <- list(
   rainbow(n),
   heat.colors(n),
@@ -706,8 +902,8 @@ paletas <- list(
 )
 for (ipal in seq_along(paletas)) {
   plot(
-    x = dados$x1[1:n],
-    y = dados$y1[1:n],
+    x = onda$x1[1:n],
+    y = onda$y1[1:n],
     type = "p",
     xlab = "x",
     ylab = "y",
@@ -718,8 +914,9 @@ for (ipal in seq_along(paletas)) {
     cex = (1:n) / 60 * 4
   )
 }
-
 ```
+
+<img src="images/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-37-2.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-37-3.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-37-4.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-37-5.png" width="672" style="display: block; margin: auto;" />
 
 ### Características de texto
 
@@ -749,7 +946,8 @@ Parâmetros especificando família, tamanho e estilo da fonte.
 
 ```r
 op <- par(font.lab = 3, cex.lab = 2, font.main = 4, cex.main = 2)
-plot(dados$x1[1:n], dados$y1[1:n], 
+plot(x = onda$x1[1:n], 
+     y = onda$y1[1:n], 
      type = "p",
      xlab = "x",
      ylab = "y",
@@ -758,69 +956,152 @@ plot(dados$x1[1:n], dados$y1[1:n],
      col = gray.colors(n), 
      pch = 20, 
      cex = (1:n)/60 * 4)
+```
+
+<img src="images/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
 #### Tipos de Gráficos 
 
-Até aqui já vimos como criar gráficos de dispersão com a função `plot()`. Mas existe uma ampla variedade de gráficos, além daqueles: *boxplots*, histogramas, gráficos de barra, gráficos de pizza, gráficos de imagens, gráficos 3D. Alguns exemplos são mostrados a seguir.
+Até aqui já vimos como criar gráficos de dispersão com a função `plot()`. Mas existe uma ampla variedade de gráficos, além daqueles: gráficos de barra, *boxplots*, histogramas, gráficos de pizza, gráficos de imagens, gráficos 3D. Alguns exemplos são mostrados a seguir.
+
+A seguir podemos ver como construir um gráfico da amplitude térmica diária (ATD) de cada EMA. As EMAs serão apresentadas em ordem crescente de ATD.
+
+
+```r
+# ordenando amplitudes térmicas
+atd_ord <- sort(sulbr_md$dtr_med)
+# vetor do nome das EMAS ordenados
+nms_ema <- sulbr_md$site[order(sulbr_md$dtr_med)]
+#filter(sulbr_md, site %in% c("A866", "A874"))
+# gráfico de barras
+  barplot(
+    height = atd_ord,
+    names.arg = nms_ema,
+    col = 1, # cor das barras
+    border = "red", # cor das bordas das barras
+    las = 2, # orientação dos labels dos eixos
+    cex.names = 0.75, # tamnho relativo labels eixo x
+    cex.axis = 0.75, # tamnho relativo labels eixo y
+    xlab = "EMA", # label do eixo x
+    ylab = "Amplitude térmica (°C)" # labels do eixo y
+  )
+box()
+```
+
+<img src="images/unnamed-chunk-39-1.png" width="960" style="display: block; margin: auto;" />
+
+Para ilustrar um histogramam usaremos os dados de temperatura horária de Santa Maria.
+
+
+```r
+# dados de temp de SM
+th_sm <- filter(sulbr_dh, site == "A803") %>%
+  pull(tair)
+hist(x = th_sm)
+```
+
+<img src="images/unnamed-chunk-40-1.png" width="672" />
+
+O número de classes para discretização dos dados pode ser especificado no parâmetro `breaks`.
+
+
+```r
+hist(x = th_sm, breaks = 10)
+```
+
+<img src="images/unnamed-chunk-41-1.png" width="672" />
+
+Usando a interface de fórmula podemos fazer facilmente um boxplot da temperatura do ar horária de Santa Maria-RS, para cada mês.
+
+
+```r
+boxplot(tair ~ month(date),
+  data = filter(sulbr_dh, site == "A803")
+)
+```
+
+<img src="images/unnamed-chunk-42-1.png" width="672" />
+
+
+Funções matemáticas podem ser visualizadas com a função `curve()`.
+
+```r
+# Curvas
+curve(x ^ 3 - 5 * x, from = -4, to = 4)
+```
+
+<img src="images/unnamed-chunk-43-1.png" width="672" />
+
+```r
+# plot de uma função criada
+fun_curvilinea <- function(xvar) {
+  1 / (1 + exp(-xvar + 10))
+}
+curve(fun_curvilinea(x), from = 0, to = 20)
+# Add a line:
+curve(1 - fun_curvilinea(x), add = TRUE, col = "red")
+```
+
+<img src="images/unnamed-chunk-43-2.png" width="672" />
+
+Para mostrar como fazer um gráfico do tipo imagem, vamos criar uma matriz com temperatura média mensal horária em que as linhas são os meses e as colunas as horas.
+
+
+```r
+  tar_mes_hora <- sulbr_dh %>%
+    group_by(mes = month(date), hora = hour(date)) %>%
+    summarise(tmed = mean(tair, na.rm = TRUE)) %>%
+    ungroup() %>%
+    pivot_wider(names_from = "hora",
+                values_from = "tmed")
+  #View(tar_mes_hora)
+  tar_mat <- as.matrix(tar_mes_hora[, -1])
+  dim(tar_mat)
+#> [1] 12 24
+```
 
 
 
 ```r
-# gráfico de barras
-barplot(
-  height = BOD$demand,
-  names.arg = BOD$Time,
-  col = 1
-)
-# gráfico de uma tabela de contagem
-barplot(height = table(mtcars$cyl))
-# histograma
-hist(x = mtcars$mpg)
-# Especificando o número aproximado de classes com parâmetro breaks
-hist(x = mtcars$mpg, breaks = 10)
-# boxplots
-# boxplot de todas colunas
-boxplot(aq[, -1])
-# usando formula
-boxplot(Temp ~ Month, data = airquality)
-# Curvas
-curve(x ^ 3 - 5 * x, from = -4, to = 4)
-# plot de uma função criada
-minhafun <- function(xvar) {
-  1 / (1 + exp(-xvar + 10))
-}
-curve(minhafun(x), from = 0, to = 20)
-# Add a line:
-curve(1 - minhafun(x), add = TRUE, col = "red")
-# Imagem
-dim(volcano)
-x <- 10 * (1:nrow(volcano))
-y <- 10 * (1:ncol(volcano))
+x <- 1:nrow(tar_mat) 
+y <- 1:ncol(tar_mat) - 1
 image(
-  x,
-  y,
-  volcano,
-  col = terrain.colors(100),
-  axes = FALSE
+  x, # eixo x
+  y, # eixo y
+  z = tar_mat, # matriz de dados
+  col = topo.colors(n = 32), # paleta de cores
+  axes = FALSE,
+  xlab = "mês",
+  ylab = "hora"
 )
+
+# intervalo de variação
+int_var <- range(tar_mat)
+limites <- c(trunc(int_var[1]), ceiling(int_var[2]))
+
 contour(
   x,
   y,
-  volcano,
-  levels = seq(90, 200, by = 5),
+  tar_mat,
+  levels = seq(limites[1], limites[2], by = 3),
   add = TRUE,
   col = "peru"
 )
-axis(1, at = seq(100, 800, by = 100))
-axis(2, at = seq(100, 600, by = 100))
+axis(1, at = x)
+axis(2, at = y[c(TRUE, FALSE)])
 box()
 title(
-  main = "Maunga Whau Volcano",
-  font.main = 4
+  main = "Variação sazonal horária da Tar \n no Sul do Brasil",
+  cex.main = 0.9
 )
 ```
+
+<img src="images/unnamed-chunk-45-1.png" width="672" />
+
 
 
 #### Telas gráficas 
@@ -842,6 +1123,8 @@ dev.off()
 ```r
 plot(y1)
 ```
+
+<img src="images/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" />
 
 
 Vamos gerar 5 gráficos e apága-los de uma vez só.
@@ -885,6 +1168,8 @@ O <img src="images/logo_r.png" width="20"> pode exportar um gráfico para difere
 ```r
 plot(y1)
 ```
+
+<img src="images/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" />
 
 Vamos usar o exemplo da matriz `mat` para salvar os gráficos das variáveis em cada coluna em um único arquivo **pdf**.
 
@@ -982,6 +1267,11 @@ plot(1:10,
      xlab = "", 
      ylab = "")
 text(5, 5, "Gráficos \n em uma \n página", cex = 3)
+```
+
+<img src="images/Chunk1011-1.png" width="1440" style="display: block; margin: auto;" />
+
+```r
 #par()
 ```
 
@@ -1025,6 +1315,8 @@ mtext(
   adj = 0.2
 )
 ```
+
+<img src="images/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" />
 
 
 
@@ -1071,6 +1363,8 @@ legend(
 )
 ```
 
+<img src="images/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" />
+
 
 
 
@@ -1081,6 +1375,8 @@ O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20">
 <!--
  https://exts.ggplot2.tidyverse.org/ 
 https://www.curso-r.com/material/ggplot/ 
+
+http://r-statistics.co/ggplot2-Tutorial-With-R.html
 -->
 
 

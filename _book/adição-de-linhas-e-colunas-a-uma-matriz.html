@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,7 +321,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -429,25 +429,25 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="adição-de-linhas-e-colunas-a-uma-matriz" class="section level2">
 <h2><span class="header-section-number">A.5</span> Adição de linhas e colunas a uma matriz</h2>
 <p>Na construção de um vetor concatenaram-se valores com a função <code>c()</code>. A concatenação por linhas ou colunas em uma matriz pode ser feita com as funções <code>rbind()</code> e <code>cbind()</code>, respectivamente. No exemplo abaixo concatenam-se vetores de temperaturas mensais de 3 anos (ver seção <a href="nomes-lin-col-mat.html#nomes-lin-col-mat">A.2</a>), primeiro por linhas e depois por colunas.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1">(temp_mat_lin &lt;-<span class="st"> </span><span class="kw">rbind</span>(temp90, temp91, temp92))</a>
-<a class="sourceLine" id="cb472-2" title="2"><span class="co">#&gt;         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></a>
-<a class="sourceLine" id="cb472-3" title="3"><span class="co">#&gt; temp90 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb472-4" title="4"><span class="co">#&gt; temp91 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb472-5" title="5"><span class="co">#&gt; temp92 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb472-6" title="6">(temp_mat_col &lt;-<span class="st"> </span><span class="kw">cbind</span>(temp90, temp91, temp92))</a>
-<a class="sourceLine" id="cb472-7" title="7"><span class="co">#&gt;       temp90 temp91 temp92</span></a>
-<a class="sourceLine" id="cb472-8" title="8"><span class="co">#&gt;  [1,]   25.0  24.89  23.20</span></a>
-<a class="sourceLine" id="cb472-9" title="9"><span class="co">#&gt;  [2,]   23.2  24.07  26.61</span></a>
-<a class="sourceLine" id="cb472-10" title="10"><span class="co">#&gt;  [3,]   22.5  23.56  18.00</span></a>
-<a class="sourceLine" id="cb472-11" title="11"><span class="co">#&gt;  [4,]   21.0  23.11  23.11</span></a>
-<a class="sourceLine" id="cb472-12" title="12"><span class="co">#&gt;  [5,]   19.0  18.29  26.80</span></a>
-<a class="sourceLine" id="cb472-13" title="13"><span class="co">#&gt;  [6,]   17.6  18.22  21.30</span></a>
-<a class="sourceLine" id="cb472-14" title="14"><span class="co">#&gt;  [7,]   18.0  16.72  18.22</span></a>
-<a class="sourceLine" id="cb472-15" title="15"><span class="co">#&gt;  [8,]   19.7  19.37  21.45</span></a>
-<a class="sourceLine" id="cb472-16" title="16"><span class="co">#&gt;  [9,]   21.3  20.08  19.70</span></a>
-<a class="sourceLine" id="cb472-17" title="17"><span class="co">#&gt; [10,]   22.0  21.45  22.50</span></a>
-<a class="sourceLine" id="cb472-18" title="18"><span class="co">#&gt; [11,]   24.0  26.61  24.07</span></a>
-<a class="sourceLine" id="cb472-19" title="19"><span class="co">#&gt; [12,]   26.8  25.99  20.08</span></a></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1">(temp_mat_lin &lt;-<span class="st"> </span><span class="kw">rbind</span>(temp90, temp91, temp92))</a>
+<a class="sourceLine" id="cb476-2" title="2"><span class="co">#&gt;         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></a>
+<a class="sourceLine" id="cb476-3" title="3"><span class="co">#&gt; temp90 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
+<a class="sourceLine" id="cb476-4" title="4"><span class="co">#&gt; temp91 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
+<a class="sourceLine" id="cb476-5" title="5"><span class="co">#&gt; temp92 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
+<a class="sourceLine" id="cb476-6" title="6">(temp_mat_col &lt;-<span class="st"> </span><span class="kw">cbind</span>(temp90, temp91, temp92))</a>
+<a class="sourceLine" id="cb476-7" title="7"><span class="co">#&gt;       temp90 temp91 temp92</span></a>
+<a class="sourceLine" id="cb476-8" title="8"><span class="co">#&gt;  [1,]   25.0  24.89  23.20</span></a>
+<a class="sourceLine" id="cb476-9" title="9"><span class="co">#&gt;  [2,]   23.2  24.07  26.61</span></a>
+<a class="sourceLine" id="cb476-10" title="10"><span class="co">#&gt;  [3,]   22.5  23.56  18.00</span></a>
+<a class="sourceLine" id="cb476-11" title="11"><span class="co">#&gt;  [4,]   21.0  23.11  23.11</span></a>
+<a class="sourceLine" id="cb476-12" title="12"><span class="co">#&gt;  [5,]   19.0  18.29  26.80</span></a>
+<a class="sourceLine" id="cb476-13" title="13"><span class="co">#&gt;  [6,]   17.6  18.22  21.30</span></a>
+<a class="sourceLine" id="cb476-14" title="14"><span class="co">#&gt;  [7,]   18.0  16.72  18.22</span></a>
+<a class="sourceLine" id="cb476-15" title="15"><span class="co">#&gt;  [8,]   19.7  19.37  21.45</span></a>
+<a class="sourceLine" id="cb476-16" title="16"><span class="co">#&gt;  [9,]   21.3  20.08  19.70</span></a>
+<a class="sourceLine" id="cb476-17" title="17"><span class="co">#&gt; [10,]   22.0  21.45  22.50</span></a>
+<a class="sourceLine" id="cb476-18" title="18"><span class="co">#&gt; [11,]   24.0  26.61  24.07</span></a>
+<a class="sourceLine" id="cb476-19" title="19"><span class="co">#&gt; [12,]   26.8  25.99  20.08</span></a></code></pre></div>
 </div>
             </section>
 

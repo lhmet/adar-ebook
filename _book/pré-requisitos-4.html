@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,7 +321,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -431,156 +431,243 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="pacotes" class="section level3">
 <h3><span class="header-section-number">11.1.1</span> Pacotes</h3>
 <p>O pacote <strong>ggplot2</strong> faz parte do <strong>tidyverse</strong>, mas além dele precisaremos de outros pacotes com funcionalidades que complementam o <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb414-2" title="2">  <span class="st">&quot;openair&quot;</span>,</a>
-<a class="sourceLine" id="cb414-3" title="3">  <span class="st">&quot;lubridate&quot;</span>,</a>
-<a class="sourceLine" id="cb414-4" title="4">  <span class="st">&quot;scales&quot;</span>,</a>
-<a class="sourceLine" id="cb414-5" title="5">  <span class="st">&quot;rio&quot;</span>,</a>
-<a class="sourceLine" id="cb414-6" title="6">  <span class="st">&quot;tidyverse&quot;</span>,</a>
-<a class="sourceLine" id="cb414-7" title="7">  <span class="st">&quot;ggrepel&quot;</span>,</a>
-<a class="sourceLine" id="cb414-8" title="8">  <span class="st">&quot;ggthemes&quot;</span>,</a>
-<a class="sourceLine" id="cb414-9" title="9">  <span class="st">&quot;viridis&quot;</span>,</a>
-<a class="sourceLine" id="cb414-10" title="10">  <span class="st">&quot;ggpubr&quot;</span>,</a>
-<a class="sourceLine" id="cb414-11" title="11">  <span class="st">&quot;ggmap&quot;</span>,</a>
-<a class="sourceLine" id="cb414-12" title="12">  <span class="st">&quot;psych&quot;</span>,</a>
-<a class="sourceLine" id="cb414-13" title="13">  <span class="st">&quot;grid&quot;</span>,</a>
-<a class="sourceLine" id="cb414-14" title="14">  <span class="st">&quot;lattice&quot;</span>,</a>
-<a class="sourceLine" id="cb414-15" title="15">  <span class="st">&quot;gcookbook&quot;</span></a>
-<a class="sourceLine" id="cb414-16" title="16">)</a>
-<a class="sourceLine" id="cb414-17" title="17">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb403-2" title="2">  <span class="st">&quot;openair&quot;</span>,</a>
+<a class="sourceLine" id="cb403-3" title="3">  <span class="st">&quot;lubridate&quot;</span>,</a>
+<a class="sourceLine" id="cb403-4" title="4">  <span class="st">&quot;scales&quot;</span>,</a>
+<a class="sourceLine" id="cb403-5" title="5">  <span class="st">&quot;rio&quot;</span>,</a>
+<a class="sourceLine" id="cb403-6" title="6">  <span class="st">&quot;tidyverse&quot;</span>,</a>
+<a class="sourceLine" id="cb403-7" title="7">  <span class="st">&quot;ggrepel&quot;</span>,</a>
+<a class="sourceLine" id="cb403-8" title="8">  <span class="st">&quot;ggthemes&quot;</span>,</a>
+<a class="sourceLine" id="cb403-9" title="9">  <span class="st">&quot;viridis&quot;</span>,</a>
+<a class="sourceLine" id="cb403-10" title="10">  <span class="st">&quot;ggpubr&quot;</span>,</a>
+<a class="sourceLine" id="cb403-11" title="11">  <span class="st">&quot;ggmap&quot;</span>,</a>
+<a class="sourceLine" id="cb403-12" title="12">  <span class="st">&quot;psych&quot;</span>,</a>
+<a class="sourceLine" id="cb403-13" title="13">  <span class="st">&quot;grid&quot;</span>,</a>
+<a class="sourceLine" id="cb403-14" title="14">  <span class="st">&quot;lattice&quot;</span>,</a>
+<a class="sourceLine" id="cb403-15" title="15">  <span class="st">&quot;gcookbook&quot;</span></a>
+<a class="sourceLine" id="cb403-16" title="16">)</a>
+<a class="sourceLine" id="cb403-17" title="17">easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</a></code></pre></div>
 </div>
 <div id="dados-1" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Dados</h3>
 <ul>
 <li>dados simulados de uma oscilação com amplitude variável</li>
 </ul>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1">x1 &lt;-<span class="st"> </span><span class="kw">seq</span>(</a>
-<a class="sourceLine" id="cb415-2" title="2">  <span class="dt">from =</span> <span class="dv">-100</span>,</a>
-<a class="sourceLine" id="cb415-3" title="3">  <span class="dt">to =</span> <span class="dv">100</span>,</a>
-<a class="sourceLine" id="cb415-4" title="4">  <span class="dt">by =</span> <span class="fl">0.05</span></a>
-<a class="sourceLine" id="cb415-5" title="5">)</a>
-<a class="sourceLine" id="cb415-6" title="6">A &lt;-<span class="st"> </span><span class="kw">seq</span>(</a>
-<a class="sourceLine" id="cb415-7" title="7">  <span class="dt">from =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb415-8" title="8">  <span class="dt">to =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb415-9" title="9">  <span class="dt">length.out =</span> <span class="kw">length</span>(x1)</a>
-<a class="sourceLine" id="cb415-10" title="10">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb415-11" title="11"><span class="st">  </span><span class="kw">sin</span>(<span class="dt">x =</span> .)</a>
-<a class="sourceLine" id="cb415-12" title="12">y1 &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.07</span> <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>x1) <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(x1 <span class="op">+</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb415-13" title="13">dados &lt;-<span class="st"> </span><span class="kw">tibble</span>(x1, y1)</a>
-<a class="sourceLine" id="cb415-14" title="14">dados</a>
-<a class="sourceLine" id="cb415-15" title="15"><span class="co">#&gt; Warning: `...` is not empty.</span></a>
-<a class="sourceLine" id="cb415-16" title="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb415-17" title="17"><span class="co">#&gt; We detected these problematic arguments:</span></a>
-<a class="sourceLine" id="cb415-18" title="18"><span class="co">#&gt; * `needs_dots`</span></a>
-<a class="sourceLine" id="cb415-19" title="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb415-20" title="20"><span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span></a>
-<a class="sourceLine" id="cb415-21" title="21"><span class="co">#&gt; Did you misspecify an argument?</span></a>
-<a class="sourceLine" id="cb415-22" title="22"><span class="co">#&gt; # A tibble: 4,001 x 2</span></a>
-<a class="sourceLine" id="cb415-23" title="23"><span class="co">#&gt;        x1       y1</span></a>
-<a class="sourceLine" id="cb415-24" title="24"><span class="co">#&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb415-25" title="25"><span class="co">#&gt;  1 -100   -0.00140</span></a>
-<a class="sourceLine" id="cb415-26" title="26"><span class="co">#&gt;  2 -100.  -0.00153</span></a>
-<a class="sourceLine" id="cb415-27" title="27"><span class="co">#&gt;  3  -99.9 -0.00165</span></a>
-<a class="sourceLine" id="cb415-28" title="28"><span class="co">#&gt;  4  -99.8 -0.00177</span></a>
-<a class="sourceLine" id="cb415-29" title="29"><span class="co">#&gt;  5  -99.8 -0.00188</span></a>
-<a class="sourceLine" id="cb415-30" title="30"><span class="co">#&gt;  6  -99.8 -0.00199</span></a>
-<a class="sourceLine" id="cb415-31" title="31"><span class="co">#&gt;  7  -99.7 -0.00210</span></a>
-<a class="sourceLine" id="cb415-32" title="32"><span class="co">#&gt;  8  -99.6 -0.00221</span></a>
-<a class="sourceLine" id="cb415-33" title="33"><span class="co">#&gt;  9  -99.6 -0.00231</span></a>
-<a class="sourceLine" id="cb415-34" title="34"><span class="co">#&gt; 10  -99.6 -0.00240</span></a>
-<a class="sourceLine" id="cb415-35" title="35"><span class="co">#&gt; # ... with 3,991 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1">x1 &lt;-<span class="st"> </span><span class="kw">seq</span>(</a>
+<a class="sourceLine" id="cb404-2" title="2">  <span class="dt">from =</span> <span class="dv">-100</span>,</a>
+<a class="sourceLine" id="cb404-3" title="3">  <span class="dt">to =</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb404-4" title="4">  <span class="dt">by =</span> <span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb404-5" title="5">)</a>
+<a class="sourceLine" id="cb404-6" title="6">A &lt;-<span class="st"> </span><span class="kw">seq</span>(</a>
+<a class="sourceLine" id="cb404-7" title="7">  <span class="dt">from =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb404-8" title="8">  <span class="dt">to =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb404-9" title="9">  <span class="dt">length.out =</span> <span class="kw">length</span>(x1)</a>
+<a class="sourceLine" id="cb404-10" title="10">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb404-11" title="11"><span class="st">  </span><span class="kw">sin</span>(<span class="dt">x =</span> .)</a>
+<a class="sourceLine" id="cb404-12" title="12">y1 &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.07</span> <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>x1) <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(x1 <span class="op">+</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb404-13" title="13">onda &lt;-<span class="st"> </span><span class="kw">tibble</span>(x1, y1)</a>
+<a class="sourceLine" id="cb404-14" title="14">onda</a>
+<a class="sourceLine" id="cb404-15" title="15"><span class="co">#&gt; # A tibble: 4,001 x 2</span></a>
+<a class="sourceLine" id="cb404-16" title="16"><span class="co">#&gt;        x1       y1</span></a>
+<a class="sourceLine" id="cb404-17" title="17"><span class="co">#&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb404-18" title="18"><span class="co">#&gt;  1 -100   -0.00140</span></a>
+<a class="sourceLine" id="cb404-19" title="19"><span class="co">#&gt;  2 -100.  -0.00153</span></a>
+<a class="sourceLine" id="cb404-20" title="20"><span class="co">#&gt;  3  -99.9 -0.00165</span></a>
+<a class="sourceLine" id="cb404-21" title="21"><span class="co">#&gt;  4  -99.8 -0.00177</span></a>
+<a class="sourceLine" id="cb404-22" title="22"><span class="co">#&gt;  5  -99.8 -0.00188</span></a>
+<a class="sourceLine" id="cb404-23" title="23"><span class="co">#&gt;  6  -99.8 -0.00199</span></a>
+<a class="sourceLine" id="cb404-24" title="24"><span class="co">#&gt;  7  -99.7 -0.00210</span></a>
+<a class="sourceLine" id="cb404-25" title="25"><span class="co">#&gt;  8  -99.6 -0.00221</span></a>
+<a class="sourceLine" id="cb404-26" title="26"><span class="co">#&gt;  9  -99.6 -0.00231</span></a>
+<a class="sourceLine" id="cb404-27" title="27"><span class="co">#&gt; 10  -99.6 -0.00240</span></a>
+<a class="sourceLine" id="cb404-28" title="28"><span class="co">#&gt; # ... with 3,991 more rows</span></a></code></pre></div>
 <ul>
 <li>Dados de qualidade do ar em NY</li>
 </ul>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1"><span class="co">#help(airquality)</span></a>
-<a class="sourceLine" id="cb416-2" title="2"><span class="kw">head</span>(airquality)</a>
-<a class="sourceLine" id="cb416-3" title="3"><span class="co"># conversão da Temp de Farenheith para Celsius</span></a>
-<a class="sourceLine" id="cb416-4" title="4">aq &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb416-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temp =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)<span class="op">/</span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb416-6" title="6">        <span class="co"># adicionando coluna date criada das colunas Day e Month</span></a>
-<a class="sourceLine" id="cb416-7" title="7">        <span class="co"># o ano das medidas é 1973, conforme help</span></a>
-<a class="sourceLine" id="cb416-8" title="8">         <span class="dt">date =</span> <span class="kw">as.Date</span>(</a>
-<a class="sourceLine" id="cb416-9" title="9">           <span class="kw">paste</span>(Day, Month, <span class="st">&quot;1973&quot;</span>),</a>
-<a class="sourceLine" id="cb416-10" title="10">           <span class="dt">format =</span> <span class="st">&quot;%d %m %Y&quot;</span>)</a>
-<a class="sourceLine" id="cb416-11" title="11">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb416-12" title="12"><span class="st">  </span><span class="co"># removendo as colunas Month e Day e reordenando as colunas</span></a>
-<a class="sourceLine" id="cb416-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(., date, Ozone<span class="op">:</span>Temp, <span class="op">-</span><span class="kw">c</span>(Month, Day))</a>
-<a class="sourceLine" id="cb416-14" title="14"><span class="kw">head</span>(aq)</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="co">#help(airquality)</span></a>
+<a class="sourceLine" id="cb405-2" title="2"><span class="kw">head</span>(airquality)</a>
+<a class="sourceLine" id="cb405-3" title="3"><span class="co">#&gt;   Ozone Solar.R Wind Temp Month Day</span></a>
+<a class="sourceLine" id="cb405-4" title="4"><span class="co">#&gt; 1    41     190  7.4   67     5   1</span></a>
+<a class="sourceLine" id="cb405-5" title="5"><span class="co">#&gt; 2    36     118  8.0   72     5   2</span></a>
+<a class="sourceLine" id="cb405-6" title="6"><span class="co">#&gt; 3    12     149 12.6   74     5   3</span></a>
+<a class="sourceLine" id="cb405-7" title="7"><span class="co">#&gt; 4    18     313 11.5   62     5   4</span></a>
+<a class="sourceLine" id="cb405-8" title="8"><span class="co">#&gt; 5    NA      NA 14.3   56     5   5</span></a>
+<a class="sourceLine" id="cb405-9" title="9"><span class="co">#&gt; 6    28      NA 14.9   66     5   6</span></a>
+<a class="sourceLine" id="cb405-10" title="10"><span class="co"># conversão da Temp de Farenheith para Celsius</span></a>
+<a class="sourceLine" id="cb405-11" title="11">aq &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temp =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)<span class="op">/</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb405-13" title="13">        <span class="co"># adicionando coluna date criada das colunas Day e Month</span></a>
+<a class="sourceLine" id="cb405-14" title="14">        <span class="co"># o ano das medidas é 1973, conforme help</span></a>
+<a class="sourceLine" id="cb405-15" title="15">         <span class="dt">date =</span> <span class="kw">as.Date</span>(</a>
+<a class="sourceLine" id="cb405-16" title="16">           <span class="kw">paste</span>(Day, Month, <span class="st">&quot;1973&quot;</span>),</a>
+<a class="sourceLine" id="cb405-17" title="17">           <span class="dt">format =</span> <span class="st">&quot;%d %m %Y&quot;</span>)</a>
+<a class="sourceLine" id="cb405-18" title="18">         ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-19" title="19"><span class="st">  </span><span class="co"># removendo as colunas Month e Day e reordenando as colunas</span></a>
+<a class="sourceLine" id="cb405-20" title="20"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(., date, Ozone<span class="op">:</span>Temp, <span class="op">-</span><span class="kw">c</span>(Month, Day))</a>
+<a class="sourceLine" id="cb405-21" title="21"><span class="kw">head</span>(aq)</a>
+<a class="sourceLine" id="cb405-22" title="22"><span class="co">#&gt;         date Ozone Solar.R Wind Temp</span></a>
+<a class="sourceLine" id="cb405-23" title="23"><span class="co">#&gt; 1 1973-05-01    41     190  7.4  7.0</span></a>
+<a class="sourceLine" id="cb405-24" title="24"><span class="co">#&gt; 2 1973-05-02    36     118  8.0  8.0</span></a>
+<a class="sourceLine" id="cb405-25" title="25"><span class="co">#&gt; 3 1973-05-03    12     149 12.6  8.4</span></a>
+<a class="sourceLine" id="cb405-26" title="26"><span class="co">#&gt; 4 1973-05-04    18     313 11.5  6.0</span></a>
+<a class="sourceLine" id="cb405-27" title="27"><span class="co">#&gt; 5 1973-05-05    NA      NA 14.3  4.8</span></a>
+<a class="sourceLine" id="cb405-28" title="28"><span class="co">#&gt; 6 1973-05-06    28      NA 14.9  6.8</span></a></code></pre></div>
 <ul>
-<li>Séries de dados aleatórios acumulados (<strong>random walk</strong>)</li>
+<li>Séries de dados aleatórios acumulados (<strong>caminhos aleatórios</strong>)</li>
 </ul>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="co"># matriz de dados para 5 plots</span></a>
-<a class="sourceLine" id="cb417-2" title="2"><span class="co"># semente para reprodutibilidade</span></a>
-<a class="sourceLine" id="cb417-3" title="3"><span class="kw">set.seed</span>(<span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb417-4" title="4"><span class="co"># laço para gerar uma matriz de 5 colunas</span></a>
-<a class="sourceLine" id="cb417-5" title="5"><span class="co"># com números aleatórios acumulados </span></a>
-<a class="sourceLine" id="cb417-6" title="6">mat &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(i) <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb417-7" title="7"><span class="kw">head</span>(<span class="kw">as.data.frame</span>(mat))</a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" title="1"><span class="co"># matriz de dados para 5 plots</span></a>
+<a class="sourceLine" id="cb406-2" title="2"><span class="co"># semente para reprodutibilidade</span></a>
+<a class="sourceLine" id="cb406-3" title="3"><span class="kw">set.seed</span>(<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb406-4" title="4"><span class="co"># laço para gerar uma matriz de 5 colunas</span></a>
+<a class="sourceLine" id="cb406-5" title="5"><span class="co"># com números aleatórios acumulados </span></a>
+<a class="sourceLine" id="cb406-6" title="6">mat &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(i) <span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb406-7" title="7"><span class="kw">head</span>(<span class="kw">as.data.frame</span>(mat))</a>
+<a class="sourceLine" id="cb406-8" title="8"><span class="co">#&gt;            V1       V2        V3        V4          V5</span></a>
+<a class="sourceLine" id="cb406-9" title="9"><span class="co">#&gt; 1 -1.48056759 1.926719 -2.986456 -1.481392  0.08712577</span></a>
+<a class="sourceLine" id="cb406-10" title="10"><span class="co">#&gt; 2  0.09660188 1.978149 -3.037003 -2.411725 -1.28105859</span></a>
+<a class="sourceLine" id="cb406-11" title="11"><span class="co">#&gt; 3 -0.86014260 3.778673 -1.737490 -3.428340 -2.67114205</span></a>
+<a class="sourceLine" id="cb406-12" title="12"><span class="co">#&gt; 4 -1.78014785 3.227215 -3.088892 -3.640028 -2.36587429</span></a>
+<a class="sourceLine" id="cb406-13" title="13"><span class="co">#&gt; 5 -3.77778995 3.334274 -4.038690 -1.987162 -2.21050291</span></a>
+<a class="sourceLine" id="cb406-14" title="14"><span class="co">#&gt; 6 -4.05008599 4.123398 -2.352589 -1.261865 -1.99605084</span></a></code></pre></div>
 <ul>
 <li>Precipitação climatológica mensal das estações climatológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=clima/normaisClimatologicas">INMET</a></li>
 </ul>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="co"># importando dados</span></a>
-<a class="sourceLine" id="cb418-2" title="2">prec &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb418-3" title="3">  <span class="st">&quot;https://www.dropbox.com/s/9ym0845apcj38wq/PrecAccInmet_61_90.rds?dl=1&quot;</span>, </a>
-<a class="sourceLine" id="cb418-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
-<a class="sourceLine" id="cb418-5" title="5">)</a>
-<a class="sourceLine" id="cb418-6" title="6"><span class="kw">head</span>(prec)</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="co"># importando dados</span></a>
+<a class="sourceLine" id="cb407-2" title="2">prec &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb407-3" title="3">  <span class="st">&quot;https://www.dropbox.com/s/9ym0845apcj38wq/PrecAccInmet_61_90.rds?dl=1&quot;</span>, </a>
+<a class="sourceLine" id="cb407-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
+<a class="sourceLine" id="cb407-5" title="5">)</a>
+<a class="sourceLine" id="cb407-6" title="6"><span class="kw">head</span>(prec)</a>
+<a class="sourceLine" id="cb407-7" title="7"><span class="co">#&gt;   codigo            nome estado mes value</span></a>
+<a class="sourceLine" id="cb407-8" title="8"><span class="co">#&gt; 1  82704 Cruzeiro do Sul     AC jan 257.9</span></a>
+<a class="sourceLine" id="cb407-9" title="9"><span class="co">#&gt; 2  82915      Rio Branco     AC jan 289.0</span></a>
+<a class="sourceLine" id="cb407-10" title="10"><span class="co">#&gt; 3  82807       TarauacÃ¡     AC jan 286.6</span></a>
+<a class="sourceLine" id="cb407-11" title="11"><span class="co">#&gt; 4  83098        Coruripe     AL jan  21.6</span></a>
+<a class="sourceLine" id="cb407-12" title="12"><span class="co">#&gt; 5  82994         MaceiÃ³     AL jan  78.1</span></a>
+<a class="sourceLine" id="cb407-13" title="13"><span class="co">#&gt; 6  82988     Mata Grande     AL jan  62.1</span></a></code></pre></div>
 <ul>
 <li>Dados de precipitação anual de algumas capitais do mundo</li>
 </ul>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="co">## dados rain</span></a>
-<a class="sourceLine" id="cb419-2" title="2">rain &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb419-3" title="3">  <span class="dt">file =</span> <span class="st">&quot;https://www.dropbox.com/s/z873gcyjouegspk/cityrain.csv?dl=1&quot;</span>, </a>
-<a class="sourceLine" id="cb419-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, </a>
-<a class="sourceLine" id="cb419-5" title="5">  <span class="dt">header =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb419-6" title="6">)</a>
-<a class="sourceLine" id="cb419-7" title="7"><span class="kw">head</span>(rain)</a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1"><span class="co">## dados rain</span></a>
+<a class="sourceLine" id="cb408-2" title="2">rain &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb408-3" title="3">  <span class="dt">file =</span> <span class="st">&quot;https://www.dropbox.com/s/z873gcyjouegspk/cityrain.csv?dl=1&quot;</span>, </a>
+<a class="sourceLine" id="cb408-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, </a>
+<a class="sourceLine" id="cb408-5" title="5">  <span class="dt">header =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb408-6" title="6">)</a>
+<a class="sourceLine" id="cb408-7" title="7"><span class="kw">head</span>(rain)</a>
+<a class="sourceLine" id="cb408-8" title="8"><span class="co">#&gt;   Month Tokyo NewYork London Berlin</span></a>
+<a class="sourceLine" id="cb408-9" title="9"><span class="co">#&gt; 1   Jan  49.9    83.6   48.9   42.4</span></a>
+<a class="sourceLine" id="cb408-10" title="10"><span class="co">#&gt; 2   Feb  71.5    78.8   38.8   33.2</span></a>
+<a class="sourceLine" id="cb408-11" title="11"><span class="co">#&gt; 3   Mar 106.4    98.5   39.3   34.5</span></a>
+<a class="sourceLine" id="cb408-12" title="12"><span class="co">#&gt; 4   Apr 129.2    93.4   42.4   39.7</span></a>
+<a class="sourceLine" id="cb408-13" title="13"><span class="co">#&gt; 5   May 144.0   106.0   47.0   52.6</span></a>
+<a class="sourceLine" id="cb408-14" title="14"><span class="co">#&gt; 6   Jun 176.0    84.5   48.3   70.5</span></a></code></pre></div>
 <ul>
 <li>anomalias de temperatura do ar global Global de 1800 a 2011</li>
 </ul>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">data</span>(climate, <span class="dt">package =</span> <span class="st">&quot;gcookbook&quot;</span>)</a>
-<a class="sourceLine" id="cb420-2" title="2"><span class="co">#help(climate,package = &quot;gcookbook&quot;)</span></a>
-<a class="sourceLine" id="cb420-3" title="3"><span class="kw">head</span>(climate)</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1"><span class="kw">data</span>(climate, <span class="dt">package =</span> <span class="st">&quot;gcookbook&quot;</span>)</a>
+<a class="sourceLine" id="cb409-2" title="2"><span class="co">#help(climate,package = &quot;gcookbook&quot;)</span></a>
+<a class="sourceLine" id="cb409-3" title="3"><span class="kw">head</span>(climate)</a>
+<a class="sourceLine" id="cb409-4" title="4"><span class="co">#&gt;     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y</span></a>
+<a class="sourceLine" id="cb409-5" title="5"><span class="co">#&gt; 1 Berkeley 1800        NA        NA     -0.435  0.505</span></a>
+<a class="sourceLine" id="cb409-6" title="6"><span class="co">#&gt; 2 Berkeley 1801        NA        NA     -0.453  0.493</span></a>
+<a class="sourceLine" id="cb409-7" title="7"><span class="co">#&gt; 3 Berkeley 1802        NA        NA     -0.460  0.486</span></a>
+<a class="sourceLine" id="cb409-8" title="8"><span class="co">#&gt; 4 Berkeley 1803        NA        NA     -0.493  0.489</span></a>
+<a class="sourceLine" id="cb409-9" title="9"><span class="co">#&gt; 5 Berkeley 1804        NA        NA     -0.536  0.483</span></a>
+<a class="sourceLine" id="cb409-10" title="10"><span class="co">#&gt; 6 Berkeley 1805        NA        NA     -0.541  0.475</span></a></code></pre></div>
 <ul>
 <li>Metadados das estações meteorológicas automáticas (EMA) do INMET;</li>
 </ul>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1"><span class="co"># dados de estações com localização, alt e tmed</span></a>
-<a class="sourceLine" id="cb421-2" title="2">sulbr_md &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb421-3" title="3">  <span class="st">&quot;https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1&quot;</span>, </a>
-<a class="sourceLine" id="cb421-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
-<a class="sourceLine" id="cb421-5" title="5">)</a>
-<a class="sourceLine" id="cb421-6" title="6">sulbr_md</a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" title="1"><span class="co"># dados de estações com localização, alt e tmed</span></a>
+<a class="sourceLine" id="cb410-2" title="2">sulbr_md &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
+<a class="sourceLine" id="cb410-3" title="3">  <span class="st">&quot;https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1&quot;</span>,</a>
+<a class="sourceLine" id="cb410-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
+<a class="sourceLine" id="cb410-5" title="5">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb410-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(.,</a>
+<a class="sourceLine" id="cb410-7" title="7">    <span class="dt">tmed =</span> (tmax_med <span class="op">+</span><span class="st"> </span>tmin_med) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb410-8" title="8">  )</a>
+<a class="sourceLine" id="cb410-9" title="9">sulbr_md</a>
+<a class="sourceLine" id="cb410-10" title="10"><span class="co">#&gt; # A tibble: 82 x 18</span></a>
+<a class="sourceLine" id="cb410-11" title="11"><span class="co">#&gt;    site  tmax_med tmin_med dtr_med sdate      edate      period max_tair</span></a>
+<a class="sourceLine" id="cb410-12" title="12"><span class="co">#&gt;    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb410-13" title="13"><span class="co">#&gt;  1 A801      24.8     16.1    8.66 2000-09-22 2015-12-31   15.3       40</span></a>
+<a class="sourceLine" id="cb410-14" title="14"><span class="co">#&gt;  2 A802      22.1     15.3    6.77 2001-11-16 2015-12-31   14.1       38</span></a>
+<a class="sourceLine" id="cb410-15" title="15"><span class="co">#&gt;  3 A803      24.8     14.8    9.94 2001-11-26 2015-12-31   14.1       40</span></a>
+<a class="sourceLine" id="cb410-16" title="16"><span class="co">#&gt;  4 A805      24.7     15.1    9.60 2001-12-05 2015-12-31   14.1       36</span></a>
+<a class="sourceLine" id="cb410-17" title="17"><span class="co">#&gt;  5 A806      24.5     18.0    6.49 2003-01-22 2015-12-31   12.9       39</span></a>
+<a class="sourceLine" id="cb410-18" title="18"><span class="co">#&gt;  6 A807      22.9     14.3    8.65 2003-01-28 2015-12-31   12.9       34</span></a>
+<a class="sourceLine" id="cb410-19" title="19"><span class="co">#&gt;  7 A808      22.2     16.3    5.87 2006-06-01 2015-12-31    9.6       41</span></a>
+<a class="sourceLine" id="cb410-20" title="20"><span class="co">#&gt;  8 A809      25.5     15.0   10.5  2006-09-28 2015-12-31    9.3       40</span></a>
+<a class="sourceLine" id="cb410-21" title="21"><span class="co">#&gt;  9 A810      26.5     15.3   11.2  2006-11-15 2015-12-31    9.1       39</span></a>
+<a class="sourceLine" id="cb410-22" title="22"><span class="co">#&gt; 10 A811      20.9     13.0    7.84 2007-01-24 2015-12-31    8.9       37</span></a>
+<a class="sourceLine" id="cb410-23" title="23"><span class="co">#&gt; # ... with 72 more rows, and 10 more variables: min_tair &lt;dbl&gt;, missing &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb410-24" title="24"><span class="co">#&gt; #   long_gap &lt;dbl&gt;, sdate_lg &lt;dttm&gt;, name &lt;chr&gt;, state &lt;chr&gt;, lon &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb410-25" title="25"><span class="co">#&gt; #   lat &lt;dbl&gt;, alt &lt;dbl&gt;, tmed &lt;dbl&gt;</span></a></code></pre></div>
 <ul>
 <li>dados meteorológicos horários das EMAs</li>
 </ul>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="co"># dados com séries temporais</span></a>
-<a class="sourceLine" id="cb422-2" title="2">sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.rds?dl=1&quot;</span>,</a>
-<a class="sourceLine" id="cb422-3" title="3">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
-<a class="sourceLine" id="cb422-4" title="4">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb422-5" title="5"><span class="st">  </span><span class="co">#filter(year(date) &gt;= 2008, year(date) &lt;= 2015) %&gt;%</span></a>
-<a class="sourceLine" id="cb422-6" title="6"><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair, rh, prec, rg, wd, ws, wsmax) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a></code></pre></div>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1"><span class="kw">glimpse</span>(sulbr_dh)</a>
-<a class="sourceLine" id="cb423-2" title="2"><span class="co">#range(sulbr_dh$date)</span></a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1"><span class="co"># dados com séries temporais</span></a>
+<a class="sourceLine" id="cb411-2" title="2">sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.rds?dl=1&quot;</span>,</a>
+<a class="sourceLine" id="cb411-3" title="3">  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></a>
+<a class="sourceLine" id="cb411-4" title="4">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb411-5" title="5"><span class="st">  </span><span class="co">#filter(year(date) &gt;= 2008, year(date) &lt;= 2015) %&gt;%</span></a>
+<a class="sourceLine" id="cb411-6" title="6"><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair, rh, prec, rg, wd, ws, wsmax) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" title="1"><span class="kw">glimpse</span>(sulbr_dh)</a>
+<a class="sourceLine" id="cb412-2" title="2"><span class="co">#&gt; Rows: 2,806,728</span></a>
+<a class="sourceLine" id="cb412-3" title="3"><span class="co">#&gt; Columns: 9</span></a>
+<a class="sourceLine" id="cb412-4" title="4"><span class="co">#&gt; $ site  &lt;chr&gt; &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801...</span></a>
+<a class="sourceLine" id="cb412-5" title="5"><span class="co">#&gt; $ date  &lt;dttm&gt; 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:0...</span></a>
+<a class="sourceLine" id="cb412-6" title="6"><span class="co">#&gt; $ tair  &lt;dbl&gt; NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15....</span></a>
+<a class="sourceLine" id="cb412-7" title="7"><span class="co">#&gt; $ rh    &lt;dbl&gt; NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 4...</span></a>
+<a class="sourceLine" id="cb412-8" title="8"><span class="co">#&gt; $ prec  &lt;dbl&gt; NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...</span></a>
+<a class="sourceLine" id="cb412-9" title="9"><span class="co">#&gt; $ rg    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111...</span></a>
+<a class="sourceLine" id="cb412-10" title="10"><span class="co">#&gt; $ wd    &lt;dbl&gt; NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, ...</span></a>
+<a class="sourceLine" id="cb412-11" title="11"><span class="co">#&gt; $ ws    &lt;dbl&gt; NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, ...</span></a>
+<a class="sourceLine" id="cb412-12" title="12"><span class="co">#&gt; $ wsmax &lt;dbl&gt; NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, ...</span></a>
+<a class="sourceLine" id="cb412-13" title="13"><span class="co">#range(sulbr_dh$date)</span></a></code></pre></div>
 <p>Vamos obter a média da <code>tair</code> para cada dia do ano na EMA de POA.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1">tair_poa_dly &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-2" title="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;A801&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-3" title="3"><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-5" title="5"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tair =</span> <span class="kw">ifelse</span>(<span class="kw">is.nan</span>(tair), <span class="ot">NA</span>, tair))</a>
-<a class="sourceLine" id="cb424-7" title="7"><span class="kw">glimpse</span>((tair_poa_dly)</a></code></pre></div>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1">tair_poa_clim &lt;-<span class="st"> </span>tair_poa_dly <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb425-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">doy =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb425-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb425-4" title="4">            <span class="dt">max =</span> <span class="kw">max</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb425-5" title="5">            <span class="dt">min =</span> <span class="kw">max</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb425-6" title="6">            <span class="dt">q5 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb425-7" title="7">            <span class="dt">q95 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb425-8" title="8">            <span class="dt">n_anos =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb425-9" title="9">            <span class="dt">n_obs =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(tair))</a>
-<a class="sourceLine" id="cb425-10" title="10">            ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb425-11" title="11"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb425-12" title="12">tair_poa_clim</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1">tair_poa_dly &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb413-2" title="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;A801&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb413-3" title="3"><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb413-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb413-5" title="5"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb413-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tair =</span> <span class="kw">ifelse</span>(<span class="kw">is.nan</span>(tair), <span class="ot">NA</span>, tair))</a>
+<a class="sourceLine" id="cb413-7" title="7"><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></a>
+<a class="sourceLine" id="cb413-8" title="8"></a>
+<a class="sourceLine" id="cb413-9" title="9"><span class="kw">glimpse</span>(tair_poa_dly)</a>
+<a class="sourceLine" id="cb413-10" title="10"><span class="co">#&gt; Rows: 5,579</span></a>
+<a class="sourceLine" id="cb413-11" title="11"><span class="co">#&gt; Columns: 2</span></a>
+<a class="sourceLine" id="cb413-12" title="12"><span class="co">#&gt; $ date &lt;date&gt; 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 2...</span></a>
+<a class="sourceLine" id="cb413-13" title="13"><span class="co">#&gt; $ tair &lt;dbl&gt; 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18...</span></a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1">tair_poa_clim &lt;-<span class="st"> </span>tair_poa_dly <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb414-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">doy =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb414-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb414-4" title="4">            <span class="dt">max =</span> <span class="kw">max</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb414-5" title="5">            <span class="dt">min =</span> <span class="kw">min</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb414-6" title="6">            <span class="dt">q5 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb414-7" title="7">            <span class="dt">q95 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb414-8" title="8">            <span class="dt">n_anos =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb414-9" title="9">            <span class="dt">n_obs =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(tair))</a>
+<a class="sourceLine" id="cb414-10" title="10">            ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb414-11" title="11"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb414-12" title="12"><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></a>
+<a class="sourceLine" id="cb414-13" title="13">tair_poa_clim</a>
+<a class="sourceLine" id="cb414-14" title="14"><span class="co">#&gt; # A tibble: 366 x 8</span></a>
+<a class="sourceLine" id="cb414-15" title="15"><span class="co">#&gt;      doy   med   max   min    q5   q95 n_anos n_obs</span></a>
+<a class="sourceLine" id="cb414-16" title="16"><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb414-17" title="17"><span class="co">#&gt;  1     1  24.3  27.5  19.6  20.0  27.4     15    15</span></a>
+<a class="sourceLine" id="cb414-18" title="18"><span class="co">#&gt;  2     2  24.2  28.4  20.2  20.3  28.1     15    15</span></a>
+<a class="sourceLine" id="cb414-19" title="19"><span class="co">#&gt;  3     3  23.5  27.3  16.0  19.8  27.3     15    15</span></a>
+<a class="sourceLine" id="cb414-20" title="20"><span class="co">#&gt;  4     4  24.4  27.3  19.2  21.5  27.1     15    15</span></a>
+<a class="sourceLine" id="cb414-21" title="21"><span class="co">#&gt;  5     5  24.9  27.8  20.9  21.7  26.9     15    15</span></a>
+<a class="sourceLine" id="cb414-22" title="22"><span class="co">#&gt;  6     6  25.5  28.6  22.5  23.6  27.9     15    15</span></a>
+<a class="sourceLine" id="cb414-23" title="23"><span class="co">#&gt;  7     7  25.8  28.8  21.8  23.1  28.2     15    15</span></a>
+<a class="sourceLine" id="cb414-24" title="24"><span class="co">#&gt;  8     8  25.6  28.5  23.4  23.5  27.9     15    15</span></a>
+<a class="sourceLine" id="cb414-25" title="25"><span class="co">#&gt;  9     9  26.0  29.5  21.9  23.8  28.5     15    15</span></a>
+<a class="sourceLine" id="cb414-26" title="26"><span class="co">#&gt; 10    10  25.8  29.4  22.3  22.8  28.6     15    15</span></a>
+<a class="sourceLine" id="cb414-27" title="27"><span class="co">#&gt; # ... with 356 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="co">#timePlot(filter(sulbr_dh, site == &quot;A801&quot;), &quot;tair&quot;)</span></a></code></pre></div>
 </div>
 </div>
             </section>

@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,7 +321,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -428,30 +428,30 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="número-de-linhas-e-colunas-de-uma-matriz" class="section level2">
 <h2><span class="header-section-number">A.4</span> Número de linhas e colunas de uma matriz</h2>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" title="1">M</a>
-<a class="sourceLine" id="cb470-2" title="2"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb470-3" title="3"><span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span></a>
-<a class="sourceLine" id="cb470-4" title="4"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb470-5" title="5"><span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span></a>
-<a class="sourceLine" id="cb470-6" title="6"><span class="kw">ncol</span>(temp_mat)</a>
-<a class="sourceLine" id="cb470-7" title="7"><span class="co">#&gt; [1] 12</span></a>
-<a class="sourceLine" id="cb470-8" title="8"><span class="kw">nrow</span>(temp_mat)</a>
-<a class="sourceLine" id="cb470-9" title="9"><span class="co">#&gt; [1] 3</span></a>
-<a class="sourceLine" id="cb470-10" title="10"><span class="kw">dim</span>(temp_mat)</a>
-<a class="sourceLine" id="cb470-11" title="11"><span class="co">#&gt; [1]  3 12</span></a></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1">M</a>
+<a class="sourceLine" id="cb474-2" title="2"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
+<a class="sourceLine" id="cb474-3" title="3"><span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span></a>
+<a class="sourceLine" id="cb474-4" title="4"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
+<a class="sourceLine" id="cb474-5" title="5"><span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span></a>
+<a class="sourceLine" id="cb474-6" title="6"><span class="kw">ncol</span>(temp_mat)</a>
+<a class="sourceLine" id="cb474-7" title="7"><span class="co">#&gt; [1] 12</span></a>
+<a class="sourceLine" id="cb474-8" title="8"><span class="kw">nrow</span>(temp_mat)</a>
+<a class="sourceLine" id="cb474-9" title="9"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb474-10" title="10"><span class="kw">dim</span>(temp_mat)</a>
+<a class="sourceLine" id="cb474-11" title="11"><span class="co">#&gt; [1]  3 12</span></a></code></pre></div>
 <p>Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1"><span class="co"># colunas de cada elemento da matriz</span></a>
-<a class="sourceLine" id="cb471-2" title="2"><span class="kw">col</span>(temp_mat)</a>
-<a class="sourceLine" id="cb471-3" title="3"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
-<a class="sourceLine" id="cb471-4" title="4"><span class="co">#&gt; [1,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
-<a class="sourceLine" id="cb471-5" title="5"><span class="co">#&gt; [2,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
-<a class="sourceLine" id="cb471-6" title="6"><span class="co">#&gt; [3,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
-<a class="sourceLine" id="cb471-7" title="7"><span class="co"># linhas de cada elemento da matriz</span></a>
-<a class="sourceLine" id="cb471-8" title="8"><span class="kw">row</span>(temp_mat)</a>
-<a class="sourceLine" id="cb471-9" title="9"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
-<a class="sourceLine" id="cb471-10" title="10"><span class="co">#&gt; [1,]    1    1    1    1    1    1    1    1    1     1     1     1</span></a>
-<a class="sourceLine" id="cb471-11" title="11"><span class="co">#&gt; [2,]    2    2    2    2    2    2    2    2    2     2     2     2</span></a>
-<a class="sourceLine" id="cb471-12" title="12"><span class="co">#&gt; [3,]    3    3    3    3    3    3    3    3    3     3     3     3</span></a></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1"><span class="co"># colunas de cada elemento da matriz</span></a>
+<a class="sourceLine" id="cb475-2" title="2"><span class="kw">col</span>(temp_mat)</a>
+<a class="sourceLine" id="cb475-3" title="3"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
+<a class="sourceLine" id="cb475-4" title="4"><span class="co">#&gt; [1,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb475-5" title="5"><span class="co">#&gt; [2,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb475-6" title="6"><span class="co">#&gt; [3,]    1    2    3    4    5    6    7    8    9    10    11    12</span></a>
+<a class="sourceLine" id="cb475-7" title="7"><span class="co"># linhas de cada elemento da matriz</span></a>
+<a class="sourceLine" id="cb475-8" title="8"><span class="kw">row</span>(temp_mat)</a>
+<a class="sourceLine" id="cb475-9" title="9"><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]</span></a>
+<a class="sourceLine" id="cb475-10" title="10"><span class="co">#&gt; [1,]    1    1    1    1    1    1    1    1    1     1     1     1</span></a>
+<a class="sourceLine" id="cb475-11" title="11"><span class="co">#&gt; [2,]    2    2    2    2    2    2    2    2    2     2     2     2</span></a>
+<a class="sourceLine" id="cb475-12" title="12"><span class="co">#&gt; [3,]    3    3    3    3    3    3    3    3    3     3     3     3</span></a></code></pre></div>
 </div>
             </section>
 
