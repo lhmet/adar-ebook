@@ -247,24 +247,24 @@ Os formatos importados e exportados pelo **rio** são apresentados na Tabela
 
 Table: (\#tab:rio-table)Versão resumida da tabela com os formatos suportados pelo pacote **rio**.
 
-|               Formato               |         Extensão         |                      Pacote.de.importação                       |                      Pacote.de.exportação                       | Instalado.por..default. |
-|:-----------------------------------:|:------------------------:|:---------------------------------------------------------------:|:---------------------------------------------------------------:|:-----------------------:|
-|    Valores separados por vírgula    |           .csv           | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) |           Sim           |
-|       dados separados por tab       |           .tsv           | [**data.table**](https://cran.r-project.org/package=data.table) | [**data.table**](https://cran.r-project.org/package=data.table) |           Sim           |
-|                Excel                |           .xls           |     [**readxl**](https://cran.r-project.org/package=readxl)     |                                                                 |           Sim           |
-|                Excel                |          .xlsx           |     [**readxl**](https://cran.r-project.org/package=readxl)     |   [**openxlsx**](https://cran.r-project.org/package=openxlsx)   |           Sim           |
-|         objetos salvos no R         |       .RData, .rda       |                            **base**                             |                            **base**                             |           Sim           |
-|      objetos do R serializados      |           .rds           |                            **base**                             |                            **base**                             |           Sim           |
-|            dados Fortran            | Sem extensão reconhecida |                            **utils**                            |                                                                 |           Sim           |
-|  Formato de dados com largura fixa  |           .fwf           |                            **utils**                            |                            **utils**                            |           Sim           |
-| Feather R/Python interchange format |         .feather         |    [**feather**](https://cran.r-project.org/package=feather)    |    [**feather**](https://cran.r-project.org/package=feather)    |           Não           |
-| Armazenamento rápido (Fast Storage) |           .fst           |        [**fst**](https://cran.r-project.org/package=fst)        |        [**fst**](https://cran.r-project.org/package=fst)        |           Não           |
-|                JSON                 |          .json           |   [**jsonlite**](https://cran.r-project.org/package=jsonlite)   |   [**jsonlite**](https://cran.r-project.org/package=jsonlite)   |           Não           |
-|               Matlab                |           .mat           |     [**rmatio**](https://cran.r-project.org/package=rmatio)     |     [**rmatio**](https://cran.r-project.org/package=rmatio)     |           Não           |
-|        Planilha OpenDocument        |           .ods           |    [**readODS**](https://cran.r-project.org/package=readODS)    |    [**readODS**](https://cran.r-project.org/package=readODS)    |           Não           |
-|            tabelas HTML             |          .html           |       [**xml2**](https://cran.r-project.org/package=xml2)       |       [**xml2**](https://cran.r-project.org/package=xml2)       |           Não           |
-|           documentos XML            |           .xml           |       [**xml2**](https://cran.r-project.org/package=xml2)       |       [**xml2**](https://cran.r-project.org/package=xml2)       |           Não           |
-|        Área de transferência        |     *default* é tsv      |      [**clipr**](https://cran.r-project.org/package=clipr)      |      [**clipr**](https://cran.r-project.org/package=clipr)      |           Não           |
+               Formato                          Extensão                                 Pacote.de.importação                                               Pacote.de.exportação                          Instalado.por..default. 
+-------------------------------------  --------------------------  -----------------------------------------------------------------  -----------------------------------------------------------------  -------------------------
+    Valores separados por vírgula                 .csv              [**data.table**](https://cran.r-project.org/package=data.table)    [**data.table**](https://cran.r-project.org/package=data.table)              Sim           
+       dados separados por tab                    .tsv              [**data.table**](https://cran.r-project.org/package=data.table)    [**data.table**](https://cran.r-project.org/package=data.table)              Sim           
+                Excel                             .xls                  [**readxl**](https://cran.r-project.org/package=readxl)                                                                                     Sim           
+                Excel                            .xlsx                  [**readxl**](https://cran.r-project.org/package=readxl)          [**openxlsx**](https://cran.r-project.org/package=openxlsx)                Sim           
+         objetos salvos no R                  .RData, .rda                                     **base**                                                           **base**                                          Sim           
+      objetos do R serializados                   .rds                                         **base**                                                           **base**                                          Sim           
+            dados Fortran               Sem extensão reconhecida                               **utils**                                                                                                            Sim           
+  Formato de dados com largura fixa               .fwf                                         **utils**                                                          **utils**                                         Sim           
+ Feather R/Python interchange format            .feather               [**feather**](https://cran.r-project.org/package=feather)          [**feather**](https://cran.r-project.org/package=feather)                 Não           
+ Armazenamento rápido (Fast Storage)              .fst                     [**fst**](https://cran.r-project.org/package=fst)                  [**fst**](https://cran.r-project.org/package=fst)                     Não           
+                JSON                             .json                [**jsonlite**](https://cran.r-project.org/package=jsonlite)        [**jsonlite**](https://cran.r-project.org/package=jsonlite)                Não           
+               Matlab                             .mat                  [**rmatio**](https://cran.r-project.org/package=rmatio)            [**rmatio**](https://cran.r-project.org/package=rmatio)                  Não           
+        Planilha OpenDocument                     .ods                 [**readODS**](https://cran.r-project.org/package=readODS)          [**readODS**](https://cran.r-project.org/package=readODS)                 Não           
+            tabelas HTML                         .html                    [**xml2**](https://cran.r-project.org/package=xml2)                [**xml2**](https://cran.r-project.org/package=xml2)                    Não           
+           documentos XML                         .xml                    [**xml2**](https://cran.r-project.org/package=xml2)                [**xml2**](https://cran.r-project.org/package=xml2)                    Não           
+        Área de transferência               *default* é tsv              [**clipr**](https://cran.r-project.org/package=clipr)              [**clipr**](https://cran.r-project.org/package=clipr)                   Não           
 
 
 #### Como usar

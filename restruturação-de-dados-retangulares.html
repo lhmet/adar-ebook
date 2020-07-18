@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,44 +53,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,7 +145,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
+<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
@@ -291,12 +316,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -369,7 +394,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -404,7 +429,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="restruturação-de-dados-retangulares" class="section level2">
 <h2><span class="header-section-number">10.3</span> Restruturação de dados retangulares</h2>
 <blockquote>
-<p>Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados <span class="citation">(Dasu and Johnson <a href="referências.html#ref-Dasu-Johnson">2003</a>, <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">New York Times 2014/08/18</a>)</span>.</p>
+<p>Até 80% do tempo da análise dados é dedicada ao processo de limpeza e preparação dos dados <span class="citation">(Dasu and Johnson <a href="referências.html#ref-Dasu-Johnson" role="doc-biblioref">2003</a>, New York Times 2014/08/18)</span>.</p>
 </blockquote>
 <!---
 # references
@@ -412,13 +437,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 --->
 <div id="dados-arrumados" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> Dados arrumados</h3>
-<p>O conceito &quot;dados arrumados&quot; foi estabelecido por <span class="citation">H. Wickham (<a href="referências.html#ref-Wickham2014">2014</a>)</span> e representa uma forma padronizada de conectar a estrutura (formato) de um conjunto de dados a sua semântica (significado).</p>
+<p>O conceito "dados arrumados" foi estabelecido por <span class="citation">Wickham (<a href="referências.html#ref-Wickham2014" role="doc-biblioref">2014</a>)</span> e representa uma forma padronizada de conectar a estrutura (formato) de um conjunto de dados a sua semântica (significado).</p>
 <p>Dados bem estruturados servem para:</p>
 <ul>
 <li><p>fornecer dados propícios para o processamento e análise de dados por <em>softwares</em>;</p></li>
 <li><p>revelar informações e facilitar a percepção de padrões</p></li>
 </ul>
-<p>Dados no &quot;formato arrumado&quot; atendem as seguintes regras para dados retangulares:</p>
+<p>Dados no "formato arrumado" atendem as seguintes regras para dados retangulares:</p>
 <ol style="list-style-type: decimal">
 <li><p>cada <strong>variável</strong> está em uma coluna</p></li>
 <li><p>cada <strong>observação</strong> corresponde a uma linha</p></li>
@@ -436,9 +461,10 @@ Como sinônimo de observações você pode encontrar os termos: registros, casos
 </div>
 <p>Um exemplo de dados no formato arrumado é o <em>tibble</em> <code>prec_anual_tbl</code> mostrado abaixo:</p>
 <p>Os dados acima tem duas variáveis: precipitação (<code>prec</code>) e intensidade da precipitação (<code>intensidade</code>). As unidades observacionais são as colunas <code>site</code> e <code>ano</code>. A primeira unidade observacional informa o ponto de amostragem espacial e a segunda o ponto de amostragem temporal.</p>
-<p>Uma <strong>variável</strong> contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma <strong>observação</strong> contém todos valores medidos na mesma unidade observacional ao longo dos atributos. Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e uma observação.</p>
+<p>Uma <strong>variável</strong> contém todos valores que medem um mesmo atributo ao longo das unidades observacionais. Uma <strong>observação</strong> contém todos valores medidos na mesma unidade observacional ao longo dos atributos.
+Cada <strong>valor</strong> (número ou caractere) pertence a uma variável e uma observação.</p>
 <p>Exemplo de diferentes <strong>tipos de unidades observacionais</strong> são a tabela com a séries temporais dos elementos meteorológicos (exemplo acima) e a tabela com os metadados das estações de superfície que contém atributos das estações meteorológicas (<code>site</code> no exemplo acima), tais como: longitude, latitude, altitude, nome, município, estado e etc.</p>
-<p>A estrutura de dados &quot;arrumados&quot; parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
+<p>A estrutura de dados "arrumados" parece óbvia, mas na prática, dados neste formatos são raros de serem encontrados. As razões para isso incluem:</p>
 <ul>
 <li><p>quem projeta a coleta e o registro de dados nem sempre é aquele que gasta tempo trabalhando sobre os dados;</p></li>
 <li><p>a organização dos dados busca tornar o registro de dados o mais fácil possível;</p></li>
@@ -450,8 +476,8 @@ Como sinônimo de observações você pode encontrar os termos: registros, casos
 </ul>
 <p>Essas duas operações são realizadas com as principais funções do pacote <strong>tidyr</strong>:</p>
 <ul>
-<li><p><code>pivot_longer()</code>: para pivotar colunas ao longo das linhas (reunir &quot;variáveis&quot; nas linhas);</p></li>
-<li><p><code>pivot_wider()</code>: para pivotar linhas ao longo das colunas (espalhar &quot;observações&quot; nas colunas)</p></li>
+<li><p><code>pivot_longer()</code>: para pivotar colunas ao longo das linhas (reunir "variáveis" nas linhas);</p></li>
+<li><p><code>pivot_wider()</code>: para pivotar linhas ao longo das colunas (espalhar "observações" nas colunas)</p></li>
 </ul>
 <!---
 #O formato de dados arrumado pode ser ideal para muitas operações no R que envolvem *data frames* (agregação, visualização gráfica, ajuste de modelos estatísticos), mas pode não ser a estrutura ideal para todos os casos.
@@ -467,115 +493,115 @@ Como sinônimo de observações você pode encontrar os termos: registros, casos
 </ul>
 <div id="formatos-dados" class="section level4">
 <h4><span class="header-section-number">10.3.2.1</span> Formato de dados longo</h4>
-<p>Para exemplificar o formato de dados longo vamos partir dos &quot;dados arrumados&quot; do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no <img src="images/logo_r.png" width="20">.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(
-  prec_anual_tbl,
-  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span>
-) 
-prec_anual_tbl</code></pre></div>
+<p>Para exemplificar o formato de dados longo vamos partir dos "dados arrumados" do exemplo, <code>prec_anual_tbl</code>. Primeiro vamos renomear a variável <code>int prec</code> para <code>intensidade</code> para seguir um o padrão de nome das variáveis mais conveniente para o seu processamento no <img src="images/logo_r.png" width="20">.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1">prec_anual_tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(</a>
+<a class="sourceLine" id="cb339-2" title="2">  prec_anual_tbl,</a>
+<a class="sourceLine" id="cb339-3" title="3">  <span class="st">&quot;intensidade&quot;</span> =<span class="st"> `</span><span class="dt">int prec</span><span class="st">`</span></a>
+<a class="sourceLine" id="cb339-4" title="4">) </a>
+<a class="sourceLine" id="cb339-5" title="5">prec_anual_tbl</a></code></pre></div>
 <p>Vamos usar a função <code>tidyr::pivot_longer()</code> para reestruturar os dados <code>prec_anual_tbl</code> em uma nova tabela de dados que chamaremos <code>prec_anual_long</code>.</p>
 <p>Na nova tabela, manteremos as colunas <code>site</code>, <code>ano</code> e teremos dois novos pares de variáveis: <code>variavel</code> e <code>valor</code>. Na coluna <code>variavel</code> pivotaremos as variáveis <code>prec</code> e <code>intensidade</code>. Na coluna <code>valor</code> pivotaremos os valores das variáveis <code>prec</code> e <code>intensidade</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-prec_anual_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(
-  <span class="dt">data =</span> prec_anual_tbl,
-  <span class="dt">cols =</span> <span class="kw">c</span>(prec, intensidade), <span class="co"># ou c(&quot;prec&quot;, &quot;intensidade&quot;),</span>
-  <span class="dt">names_to =</span> <span class="st">&quot;variavel&quot;</span>,
-  <span class="dt">values_to =</span> <span class="st">&quot;medida&quot;</span>
-)
-prec_anual_long
-
-<span class="co"># prec_anual_long &lt;- gather(</span>
-<span class="co">#   data = prec_anual_tbl,</span>
-<span class="co">#   key = variavel,</span>
-<span class="co">#   value = medida,</span>
-<span class="co">#   prec, intensidade</span>
-<span class="co"># )</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1"></a>
+<a class="sourceLine" id="cb340-2" title="2">prec_anual_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb340-3" title="3">  <span class="dt">data =</span> prec_anual_tbl,</a>
+<a class="sourceLine" id="cb340-4" title="4">  <span class="dt">cols =</span> <span class="kw">c</span>(prec, intensidade), <span class="co"># ou c(&quot;prec&quot;, &quot;intensidade&quot;),</span></a>
+<a class="sourceLine" id="cb340-5" title="5">  <span class="dt">names_to =</span> <span class="st">&quot;variavel&quot;</span>,</a>
+<a class="sourceLine" id="cb340-6" title="6">  <span class="dt">values_to =</span> <span class="st">&quot;medida&quot;</span></a>
+<a class="sourceLine" id="cb340-7" title="7">)</a>
+<a class="sourceLine" id="cb340-8" title="8">prec_anual_long</a>
+<a class="sourceLine" id="cb340-9" title="9"></a>
+<a class="sourceLine" id="cb340-10" title="10"><span class="co"># prec_anual_long &lt;- gather(</span></a>
+<a class="sourceLine" id="cb340-11" title="11"><span class="co">#   data = prec_anual_tbl,</span></a>
+<a class="sourceLine" id="cb340-12" title="12"><span class="co">#   key = variavel,</span></a>
+<a class="sourceLine" id="cb340-13" title="13"><span class="co">#   value = medida,</span></a>
+<a class="sourceLine" id="cb340-14" title="14"><span class="co">#   prec, intensidade</span></a>
+<a class="sourceLine" id="cb340-15" title="15"><span class="co"># )</span></a></code></pre></div>
 <p>O código acima demonstra os principais argumentos requeridos pela função <code>gather</code>:</p>
 <ul>
 <li><p><code>data = prec_anual_tbl</code>, o <em>quadro de dados</em> ou <em>tibble</em> que será reestruturado;</p></li>
-<li><p><code>cols = c(&quot;prec&quot;, &quot;intensidade&quot;)</code>, variáveis a serem pivotadas no formato longo;</p></li>
+<li><p><code>cols = c("prec", "intensidade")</code>, variáveis a serem pivotadas no formato longo;</p></li>
 <li><p><code>names_to = variavel</code>, um vetor caractere com nome que nós escolhemos para dar à nova coluna que armazenará os dados nos <strong>nomes das variáveis</strong> dos dados de entrada (<code>data</code>).</p></li>
 <li><p><code>values_to = medida</code>, um caractere com o nome que nós escolhemos para dar à nova coluna que armazenará os dados contidos nos valores das células;</p></li>
 </ul>
 <p>As demais colunas dos dados (<code>site</code> e <code>ano</code>) serão mantidas inalteradas e seus valores serão repetidos quando necessário.</p>
 <p>Como em outras funções dos pacotes do <strong>tidyverse</strong> você perceberá que alguns argumentos <strong>não são especificados como caracteres</strong> e sim como nomes (ou seja o nome da variável sem aspas), como aqueles usados quando definimos variáveis (p.ex.: <code>nome_var &lt;- 10</code>). Os argumentos <code>names_to</code> e <code>values_to</code> podem ser especificados à gosto do usuário e não precisam ter relação com os dados existentes.</p>
-<p>Se nós desejássemos que todas colunas do <em>quadro de dados</em> fossem reunidas em uma nova coluna <code>variavel</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia intuitivamente ser feito simplesmente especificando as variáveis de interesse por <code>everything()</code><a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a> no trecho de código anterior.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(
-  <span class="dt">data =</span> prec_anual_tbl, 
-  <span class="dt">cols =</span> <span class="kw">everything</span>(),
-  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,
-  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span>,
-  <span class="dt">values_ptypes =</span> <span class="kw">list</span>(<span class="dt">site =</span> <span class="st">&#39;numeric&#39;</span>)
-)</code></pre></div>
+<p>Se nós desejássemos que todas colunas do <em>quadro de dados</em> fossem reunidas em uma nova coluna <code>variavel</code> e os seus valores em uma nova coluna <code>valor</code>, isso poderia intuitivamente ser feito simplesmente especificando as variáveis de interesse por <code>everything()</code><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> no trecho de código anterior.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1">prec_anual_longo &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb341-2" title="2">  <span class="dt">data =</span> prec_anual_tbl, </a>
+<a class="sourceLine" id="cb341-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>(),</a>
+<a class="sourceLine" id="cb341-4" title="4">  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,</a>
+<a class="sourceLine" id="cb341-5" title="5">  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span>,</a>
+<a class="sourceLine" id="cb341-6" title="6">  <span class="dt">values_ptypes =</span> <span class="kw">list</span>(<span class="dt">site =</span> <span class="st">&#39;numeric&#39;</span>)</a>
+<a class="sourceLine" id="cb341-7" title="7">)</a></code></pre></div>
 <p>Entretanto, como a variável site é do tipo caractere, ela não pode ser combinada com variáveis do tipo numérico. Então temos que transformar a variável <code>site</code> para numérico se isso for realmente necessário.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_tbl_num &lt;-<span class="st"> </span><span class="kw">transform</span>(
-  prec_anual_tbl,
-  <span class="dt">site =</span> <span class="kw">parse_number</span>(site)
-)
-prec_anual_tbl_num</code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1">prec_anual_tbl_num &lt;-<span class="st"> </span><span class="kw">transform</span>(</a>
+<a class="sourceLine" id="cb342-2" title="2">  prec_anual_tbl,</a>
+<a class="sourceLine" id="cb342-3" title="3">  <span class="dt">site =</span> <span class="kw">parse_number</span>(site)</a>
+<a class="sourceLine" id="cb342-4" title="4">)</a>
+<a class="sourceLine" id="cb342-5" title="5">prec_anual_tbl_num</a></code></pre></div>
 <p>A função <code>parse_number()</code> é uma função auxiliar do pacote <strong><code>readr</code></strong> para extrair números de um caractere.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pivot_longer</span>(
-  <span class="dt">data =</span> prec_anual_tbl_num, 
-  <span class="dt">cols =</span> <span class="kw">everything</span>(),
-  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,
-  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb343-2" title="2">  <span class="dt">data =</span> prec_anual_tbl_num, </a>
+<a class="sourceLine" id="cb343-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>(),</a>
+<a class="sourceLine" id="cb343-4" title="4">  <span class="dt">names_to =</span> <span class="st">&quot;atributo&quot;</span>,</a>
+<a class="sourceLine" id="cb343-5" title="5">  <span class="dt">values_to =</span> <span class="st">&quot;valor&quot;</span></a>
+<a class="sourceLine" id="cb343-6" title="6">)</a></code></pre></div>
 <p>A tabela de dados resultante conterá todos os 32 pares de valores, formados pelas 4 colunas por 8 linhas, dos dados originais.</p>
 <p>Se não forem especificados nomes para os argumentos <code>names_to</code> e <code>values_to</code> na chamada da função <code>tidyr::pivot_longer</code>, serão atribuídos os valores <em>default</em>: <code>name</code> e <code>value</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pivot_longer</span>(
-  <span class="dt">data =</span> prec_anual_tbl_num, 
-  <span class="dt">cols =</span> <span class="kw">everything</span>()
-)</code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1"><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb344-2" title="2">  <span class="dt">data =</span> prec_anual_tbl_num, </a>
+<a class="sourceLine" id="cb344-3" title="3">  <span class="dt">cols =</span> <span class="kw">everything</span>()</a>
+<a class="sourceLine" id="cb344-4" title="4">)</a></code></pre></div>
 </div>
 <div id="formato-de-dados-amplo" class="section level4">
 <h4><span class="header-section-number">10.3.2.2</span> Formato de dados amplo</h4>
 <p>Utilizando os dados <code>meteo_long</code>, vamos reestruturá-lo no formato amplo para demostrar a funcionalidade da função <code>tidyr::pivot_wider()</code>. Esta função é complementar à <code>tidyr::pivot_longer()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_long</code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1">prec_anual_long</a></code></pre></div>
 <p>Nosso objetivo é então gerar uma nova tabela de dados reestruturada, de forma que os nomes das variáveis (contidos na coluna <code>variavel</code>) sejam pivotados em duas colunas. Estas colunas receberão os nomes <code>prec</code> e <code>intensidade</code> e serão preenchidas com os dados das células da coluna <code>medida</code>. Para fazer isso usamos o seguinte código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(
-  <span class="dt">data =</span> prec_anual_long,
-  <span class="dt">names_from =</span> variavel,
-  <span class="dt">values_from =</span> medida
-)
-prec_anual_amplo</code></pre></div>
-<p>Esta operação serviu para colocar os dados originais (<code>prec_anual_long</code>) no formato &quot;arrumado&quot; (<code>prec_anual_amplo</code>).</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1">prec_anual_amplo &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb346-2" title="2">  <span class="dt">data =</span> prec_anual_long,</a>
+<a class="sourceLine" id="cb346-3" title="3">  <span class="dt">names_from =</span> variavel,</a>
+<a class="sourceLine" id="cb346-4" title="4">  <span class="dt">values_from =</span> medida</a>
+<a class="sourceLine" id="cb346-5" title="5">)</a>
+<a class="sourceLine" id="cb346-6" title="6">prec_anual_amplo</a></code></pre></div>
+<p>Esta operação serviu para colocar os dados originais (<code>prec_anual_long</code>) no formato "arrumado" (<code>prec_anual_amplo</code>).</p>
 </div>
 </div>
 <div id="funções-adicionais-do-tidyr" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> Funções adicionais do <strong>tidyr</strong></h3>
 <p>Você pode unir duas colunas inserindo um separador entre elas com a função <code>tidyr::unite()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(
-  <span class="dt">data =</span> prec_anual_long,
-  <span class="dt">col =</span> site_ano,
-  site, ano,
-  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>
-))</code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1">(prec_anual_long_u &lt;-<span class="st"> </span><span class="kw">unite</span>(</a>
+<a class="sourceLine" id="cb347-2" title="2">  <span class="dt">data =</span> prec_anual_long,</a>
+<a class="sourceLine" id="cb347-3" title="3">  <span class="dt">col =</span> site_ano,</a>
+<a class="sourceLine" id="cb347-4" title="4">  site, ano,</a>
+<a class="sourceLine" id="cb347-5" title="5">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span></a>
+<a class="sourceLine" id="cb347-6" title="6">))</a></code></pre></div>
 <p>Se ao contrário, você quer separar uma coluna em duas variáveis, utilize a função <code>tidyr::separate()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(
-  <span class="dt">data =</span> prec_anual_long_u,
-  <span class="dt">col =</span> site_ano,
-  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,
-  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb348-2" title="2">  <span class="dt">data =</span> prec_anual_long_u,</a>
+<a class="sourceLine" id="cb348-3" title="3">  <span class="dt">col =</span> site_ano,</a>
+<a class="sourceLine" id="cb348-4" title="4">  <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>,</a>
+<a class="sourceLine" id="cb348-5" title="5">  <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;ano&quot;</span>)</a>
+<a class="sourceLine" id="cb348-6" title="6">)</a></code></pre></div>
 <p>Para completar valores das variáveis para unidades observacionais faltantes podemos utilizar a função <code>tidyr::complete()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_anual
-prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(
-  <span class="dt">data =</span> prec_anual,
-  site, ano
-)
-prec_anual_comp</code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1">prec_anual</a>
+<a class="sourceLine" id="cb349-2" title="2">prec_anual_comp &lt;-<span class="st"> </span><span class="kw">complete</span>(</a>
+<a class="sourceLine" id="cb349-3" title="3">  <span class="dt">data =</span> prec_anual,</a>
+<a class="sourceLine" id="cb349-4" title="4">  site, ano</a>
+<a class="sourceLine" id="cb349-5" title="5">)</a>
+<a class="sourceLine" id="cb349-6" title="6">prec_anual_comp</a></code></pre></div>
 </div>
 <div id="exercícios-3" class="section level3">
 <h3><span class="header-section-number">10.3.4</span> Exercícios</h3>
 <p><strong>Pacotes necessários</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)
-easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" title="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rio&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
+<a class="sourceLine" id="cb350-2" title="2">easypackages<span class="op">::</span><span class="kw">libraries</span>(pcks)</a></code></pre></div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="29">
-<li id="fn29"><p>Nós veremos mais sobre funções do tipo seletoras na seção de manipulação de dados.<a href="restruturação-de-dados-retangulares.html#fnref29">↩</a></p></li>
+<li id="fn29"><p>Nós veremos mais sobre funções do tipo seletoras na seção de manipulação de dados.<a href="restruturação-de-dados-retangulares.html#fnref29" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -639,7 +665,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

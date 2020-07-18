@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,44 +53,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,7 +145,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
+<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
 <li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
@@ -291,12 +316,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#função-plot"><i class="fa fa-check"></i><b>11.4.1</b> Função <code>plot()</code></a></li>
+<li class="chapter" data-level="11.4.1" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html#diferentes-entradas-de-dados-na-plot"><i class="fa fa-check"></i><b>11.4.1</b> Diferentes entradas de dados na <code>plot()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html"><i class="fa fa-check"></i><b>11.5</b> Parâmetros gráficos</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#símbolos-e-linhas"><i class="fa fa-check"></i><b>11.5.1</b> Símbolos e linhas</a></li>
@@ -369,7 +394,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -407,49 +432,49 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">6.4.1</span> Fator</h3>
 <p>Em alguns casos variáveis do tipo caractere possuem uma ordem implícita. Este tipo de variável é geralmente chamada de <strong>categórica</strong>. Então qualquer variável que pode ser ordenada ou classificada em grupos pode ser representada como <code>factor</code> no <img src="images/logo_r.png" width="20">.</p>
 <p>Podemos por exemplo classificar eventos de ocorrência de chuva por classe de intensidade:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">intensidade &lt;-<span class="st"> </span><span class="kw">factor</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>)
-  )
-intensidade
-<span class="co">#&gt; [1] baixa    moderada alta    </span>
-<span class="co">#&gt; Levels: alta baixa moderada</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">intensidade &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
+<a class="sourceLine" id="cb109-2" title="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>)</a>
+<a class="sourceLine" id="cb109-3" title="3">  )</a>
+<a class="sourceLine" id="cb109-4" title="4">intensidade</a>
+<a class="sourceLine" id="cb109-5" title="5"><span class="co">#&gt; [1] baixa    moderada alta    </span></a>
+<a class="sourceLine" id="cb109-6" title="6"><span class="co">#&gt; Levels: alta baixa moderada</span></a></code></pre></div>
 <p>Note que a impressão de um fator na tela é diferente da de um caractere. Ele é impresso sem as aspas e há uma segunda linha de informação sobre os níveis (<em>levels</em>) da variável <code>intensidade</code>. Um fator possui o atributo adicional: níveis. Os níveis de um fator são obtidos com a função <code>levels()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(intensidade)
-<span class="co">#&gt; [1] &quot;alta&quot;     &quot;baixa&quot;    &quot;moderada&quot;</span></code></pre></div>
-<p>Por padrão os níveis são definidos em ordem alfabética. Então <code>&quot;alta&quot;</code> recebeu o índice <code>1</code>, <code>&quot;baixa&quot;</code> o índice <code>2</code> e <code>moderada</code> o índice <code>3</code>. Estes índices são mostrados com a função <code>str()</code> ou convertendo um fator para numérico:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(intensidade)
-<span class="co">#&gt;  Factor w/ 3 levels &quot;alta&quot;,&quot;baixa&quot;,..: 2 3 1</span>
-<span class="kw">as.numeric</span>(intensidade)
-<span class="co">#&gt; [1] 2 3 1</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">levels</span>(intensidade)</a>
+<a class="sourceLine" id="cb110-2" title="2"><span class="co">#&gt; [1] &quot;alta&quot;     &quot;baixa&quot;    &quot;moderada&quot;</span></a></code></pre></div>
+<p>Por padrão os níveis são definidos em ordem alfabética. Então <code>"alta"</code> recebeu o índice <code>1</code>, <code>"baixa"</code> o índice <code>2</code> e <code>moderada</code> o índice <code>3</code>. Estes índices são mostrados com a função <code>str()</code> ou convertendo um fator para numérico:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">str</span>(intensidade)</a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="co">#&gt;  Factor w/ 3 levels &quot;alta&quot;,&quot;baixa&quot;,..: 2 3 1</span></a>
+<a class="sourceLine" id="cb111-3" title="3"><span class="kw">as.numeric</span>(intensidade)</a>
+<a class="sourceLine" id="cb111-4" title="4"><span class="co">#&gt; [1] 2 3 1</span></a></code></pre></div>
 <p>A função <code>str()</code> é uma abreviação para <code>structure</code> e serve para nos fornecer um resumo da estrutura dos dados.</p>
 <p>No caso das intensidade, seria melhor que os níveis fossem ordenados como: <code>baixa &lt; moderada &lt; alta</code>. Nós podemos especificar um <strong>fator ordenado</strong> ao <img src="images/logo_r.png" width="20">, especificando no argumento <code>levels</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">intensidade_o &lt;-<span class="st"> </span><span class="kw">factor</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),
-  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),
-  <span class="dt">ordered =</span> <span class="ot">TRUE</span>
-  )
-intensidade_o
-<span class="co">#&gt; [1] baixa    moderada alta    </span>
-<span class="co">#&gt; Levels: baixa &lt; moderada &lt; alta</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">intensidade_o &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
+<a class="sourceLine" id="cb112-2" title="2">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),</a>
+<a class="sourceLine" id="cb112-3" title="3">  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>),</a>
+<a class="sourceLine" id="cb112-4" title="4">  <span class="dt">ordered =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb112-5" title="5">  )</a>
+<a class="sourceLine" id="cb112-6" title="6">intensidade_o</a>
+<a class="sourceLine" id="cb112-7" title="7"><span class="co">#&gt; [1] baixa    moderada alta    </span></a>
+<a class="sourceLine" id="cb112-8" title="8"><span class="co">#&gt; Levels: baixa &lt; moderada &lt; alta</span></a></code></pre></div>
 <p>Fatores são úteis em alguns processos analíticos e gráficos. Para ilustrar um exemplo simples, suponha que o número de casos registrados em cada intensidade tenha sido:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_casos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">30</span>, <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">n_casos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">30</span>, <span class="dv">5</span>)</a></code></pre></div>
 <p>Poderíamos representar graficamente estas informações. Veja abaixo a diferença na ordem do eixo x, ao usar o fator <code>intensidade</code>(ordem alfabética) e <code>intensidade_o</code> (ordenado):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">qplot</span>(<span class="dt">x =</span> intensidade, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</a></code></pre></div>
 <p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade_o, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">qplot</span>(<span class="dt">x =</span> intensidade_o, <span class="dt">y =</span> n_casos, <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span>)</a></code></pre></div>
 <p><img src="images/unnamed-chunk-23-2.png" width="672" /></p>
 <p>Para verificar se uma variável é um <strong>fator</strong> e se esse fator é ordenado usamos, respectivamente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.factor</span>(intensidade)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.ordered</span>(intensidade)
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">is.factor</span>(intensidade)</a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb116-3" title="3"><span class="kw">is.ordered</span>(intensidade)</a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <p>A coerção para <strong>fator</strong> é feita pela função <code>as.factor</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(intensidade_no &lt;-<span class="st"> </span><span class="kw">as.factor</span>(
-  <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>)
-))
-<span class="co">#&gt; [1] baixa    moderada alta     baixa    baixa    moderada</span>
-<span class="co">#&gt; Levels: alta baixa moderada</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">(intensidade_no &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
+<a class="sourceLine" id="cb117-2" title="2">  <span class="kw">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>, <span class="st">&quot;alta&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;moderada&quot;</span>)</a>
+<a class="sourceLine" id="cb117-3" title="3">))</a>
+<a class="sourceLine" id="cb117-4" title="4"><span class="co">#&gt; [1] baixa    moderada alta     baixa    baixa    moderada</span></a>
+<a class="sourceLine" id="cb117-5" title="5"><span class="co">#&gt; Levels: alta baixa moderada</span></a></code></pre></div>
 <!-- 
 summary(intensidade_no)
 -->
@@ -463,29 +488,29 @@ summary(intensidade_no)
 </ul>
 <p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
 <p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()
-<span class="co">#&gt; [1] &quot;2020-07-13&quot;</span>
-<span class="kw">Sys.time</span>()
-<span class="co">#&gt; [1] &quot;2020-07-13 16:30:41 UTC&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">Sys.Date</span>()</a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="co">#&gt; [1] &quot;2020-07-18&quot;</span></a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="kw">Sys.time</span>()</a>
+<a class="sourceLine" id="cb118-4" title="4"><span class="co">#&gt; [1] &quot;2020-07-18 18:46:53 UTC&quot;</span></a></code></pre></div>
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
 <p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
 <p>Datas são criadas a partir da coerção de dados do tipo <code>character</code> para <code>date</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)
-amd
-<span class="co">#&gt; [1] &quot;2012-06-28&quot;</span>
-<span class="kw">class</span>(amd)
-<span class="co">#&gt; [1] &quot;Date&quot;</span>
-<span class="co"># num. de dias de 1971</span>
-<span class="kw">as.numeric</span>(amd)
-<span class="co">#&gt; [1] 15519</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">amd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-06-28&quot;</span>)</a>
+<a class="sourceLine" id="cb119-2" title="2">amd</a>
+<a class="sourceLine" id="cb119-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28&quot;</span></a>
+<a class="sourceLine" id="cb119-4" title="4"><span class="kw">class</span>(amd)</a>
+<a class="sourceLine" id="cb119-5" title="5"><span class="co">#&gt; [1] &quot;Date&quot;</span></a>
+<a class="sourceLine" id="cb119-6" title="6"><span class="co"># num. de dias de 1971</span></a>
+<a class="sourceLine" id="cb119-7" title="7"><span class="kw">as.numeric</span>(amd)</a>
+<a class="sourceLine" id="cb119-8" title="8"><span class="co">#&gt; [1] 15519</span></a></code></pre></div>
 <p>Datas com horários são criados a partir da coerção de dados do tipo <code>character</code> para <code>POSIXct</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)
-amd_hms
-<span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 UTC&quot;</span>
-<span class="kw">class</span>(amd_hms)
-<span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span>
-<span class="kw">as.numeric</span>(amd_hms)
-<span class="co">#&gt; [1] 1340905320</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
+<a class="sourceLine" id="cb120-2" title="2">amd_hms</a>
+<a class="sourceLine" id="cb120-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 UTC&quot;</span></a>
+<a class="sourceLine" id="cb120-4" title="4"><span class="kw">class</span>(amd_hms)</a>
+<a class="sourceLine" id="cb120-5" title="5"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
+<a class="sourceLine" id="cb120-6" title="6"><span class="kw">as.numeric</span>(amd_hms)</a>
+<a class="sourceLine" id="cb120-7" title="7"><span class="co">#&gt; [1] 1340905320</span></a></code></pre></div>
 <p>A manipulação de dados da classe de datas com horários (<code>POSIXct</code>) torna-se mais versátil através do pacote <code>lubridate</code>, específico para manipulação de datas, o que será visto posteriormente.</p>
 <p>O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a <code>%</code> e outros códigos que são descritos no manual de ajuda da função <code>?strptime</code>. O formato padrão assumido pelo R para caracteres contendo datas com horas é <code>%Y-%m-%d %H:%M:%S</code>.</p>
 <table>
@@ -532,15 +557,15 @@ amd_hms
 </table>
 <p>Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como <code>Jan</code> (<code>%b</code>), e estes códigos são listados em <code>?strptime</code>.</p>
 <p>Para extrair informações de uma data, como por exemplo o ano, podemos usar a função <code>format()</code> passando o código de formato ao argumento <code>format</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)
-<span class="co">#&gt; [1] &quot;2020&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</a>
+<a class="sourceLine" id="cb121-2" title="2"><span class="co">#&gt; [1] &quot;2020&quot;</span></a></code></pre></div>
 <p>O argumento format também pode ser especificado nas funções <code>as.Date()</code> e <code>as.POSIXct()</code>, assim provendo grande versatilidade para ler datas em diferentes formatos. No exemplo a seguir, vamos converter um caractere com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.POSIXct</span>(
-  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,
-  <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>, 
-  <span class="dt">format =</span> <span class="st">&quot;prec%d%m%Y%H%M.grib&quot;</span>
-  )
-<span class="co">#&gt; [1] &quot;2000-01-01 19:42:00 UTC&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">as.POSIXct</span>(</a>
+<a class="sourceLine" id="cb122-2" title="2">  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,</a>
+<a class="sourceLine" id="cb122-3" title="3">  <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>, </a>
+<a class="sourceLine" id="cb122-4" title="4">  <span class="dt">format =</span> <span class="st">&quot;prec%d%m%Y%H%M.grib&quot;</span></a>
+<a class="sourceLine" id="cb122-5" title="5">  )</a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="co">#&gt; [1] &quot;2000-01-01 19:42:00 UTC&quot;</span></a></code></pre></div>
 
 </div>
 </div>
@@ -606,7 +631,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

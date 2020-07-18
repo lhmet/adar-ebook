@@ -399,7 +399,7 @@ mode(lst[1])
 #> [1] "list"
 # a função sum() espera como entrada um vetor
 sum(lst[1])
-#> Error in sum(lst[1]): invalid 'type' (list) of argument
+#> Error in sum(lst[1]): 'type' inválido (list) do argumento
 # acessando elemento inexistente
 lst[6]
 #> $<NA>
@@ -507,7 +507,7 @@ dados_l$sm$cidade
 
 
 ------------------------------------------------------------------------------
-           descrição                   código               resultado         
+          descriÃ§Ã£o                 cÃ³digo               resultado         
 -------------------------------- ------------------ --------------------------
        frasco de pimenta               frasco         ![](images/pepper.jpg)  
 
@@ -516,7 +516,7 @@ dados_l$sm$cidade
 
       1 pacote de pimenta           frasco[[1]]      ![](images/pepper-2.jpg) 
 
-    conteúdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
+   conteÃºdo de um pacote de      frasco[[1]][[1]]   ![](images/pepper-3.jpg) 
             pimenta                                                           
 ------------------------------------------------------------------------------
 
@@ -1231,8 +1231,8 @@ A conversão de matriz para quadro de dados, pode ser feita da seguinte forma.
 ```r
 vetor <- c(0, 1, -1, -2, 3, 5, -5)
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
-#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): data length [7] is not a sub-
-#> multiple or multiple of the number of rows [2]
+#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não
+#> é um submúltiplo ou múltiplo do número de linhas [2]
 mat
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    0    1   -1   -2

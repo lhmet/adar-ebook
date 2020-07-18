@@ -20,6 +20,11 @@ https://blog.rstudio.com/2020/05/05/wrangling-unruly-data/?utm_content=buffer24d
 
 https://rstudio.com/resources/webinars/reproducibility-in-production/
 
+https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-1-getting-started/?utm_content=buffer885dc&utm_medium=social&utm_source=linkedin&utm_campaign=buffer
+
+https://joss.theoj.org/papers/10.21105/joss.01686
+
+https://towardsdatascience.com/five-tidyverse-tricks-you-may-not-know-about-c5026d5a19da
 -->
 
 
@@ -74,14 +79,14 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-#> ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-#> ✔ tibble  3.0.3     ✔ dplyr   1.0.0
-#> ✔ tidyr   1.1.0     ✔ stringr 1.4.0
-#> ✔ readr   1.3.1     ✔ forcats 0.5.0
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
+#> -- Attaching packages --------------------------- tidyverse 1.3.0 --
+#> v ggplot2 3.3.2     v purrr   0.3.4
+#> v tibble  3.0.3     v dplyr   1.0.0
+#> v tidyr   1.1.0     v stringr 1.4.0
+#> v readr   1.3.1     v forcats 0.5.0
+#> -- Conflicts ------------------------------ tidyverse_conflicts() --
+#> x dplyr::filter() masks stats::filter()
+#> x dplyr::lag()    masks stats::lag()
 ```
 
 <div class="rmdnote">
@@ -839,13 +844,13 @@ clima_rs_tbl %>%
 
 
 <div class="rmdtip">
-<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo &quot;Sul&quot;. O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
+<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo "Sul". O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
 <p><code>str_replace_all(</code></p>
-<p><code>string = c(&quot;abc&quot;, &quot;lca&quot;),</code></p>
-<p><code>pattern = &quot;a&quot;,</code></p>
-<p><code>replacement =  &quot;A&quot;</code></p>
+<p><code>string = c("abc", "lca"),</code></p>
+<p><code>pattern = "a",</code></p>
+<p><code>replacement =  "A"</code></p>
 <p><code>)</code></p>
-<p><code>#&gt; [1] &quot;Abc&quot; &quot;lcA&quot;</code></p>
+<p><code>#&gt; [1] "Abc" "lcA"</code></p>
 </div>
 
 
@@ -1261,9 +1266,9 @@ right_join(
 
 
 ```r
-pcks <- c("rio", "tidyverse", "lubridate")
-easypackages::libraries(pcks)
+# carregue aqui os pacotes necessários para sua resolução
 ```
+
 
 **Dados**
 
@@ -1275,147 +1280,196 @@ download.file(
   destfile = arq_temp,
   mode = "wb"
 )
-file.exists(arq_temp)
-
 # nome dos dados carregados para os exercícios
 print(load(arq_temp))
 ```
 
-1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *quadro de dados* `soi` (mostrado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (Converta se for necessário usando a função `tolower(names(soi_arrumado))`).
+
+**Enunciados**
+
+1. Converta os dados de anomalias padronizadas do índice de oscilação sul armazenados no *quadro de dados* `soi` (mostrado abaixo) para o formato \"arrumado\" e em ordem cronológica. Os nomes das variáveis na tabela de dados arrumado deve estar sempre em letras minúsculas (conheça a função `tolower()`).
 
 
-```r
-soi 
-```
 
-A estrutura esperada dos dados arrumados é mostrada abaixo: 
+A estrutura esperada dos dados processados é mostrada abaixo: 
 
 ```
 Rows: 36
 Columns: 3
-$ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 195...
-$ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ...
-$ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0, ...
+$ year <int> 1951, 1951, 1951, 1951, 1951, 1951, 19...
+$ mes  <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,...
+$ soi  <dbl> 1.5, 0.9, -0.1, -0.3, -0.7, 0.2, -1.0,...
 ```
 
-2. Os dados de precipitação diária abaixo são uma pequena amostra dos dados usados na questão 4 da lista do Capítulo 8. Converta o *tibble* fornecido abaixo para o \"formato arrumado\". No data frame arrumado, transforme as datas obtidas (na classe de caractere) para classe *date* usando a função `as.Date()`.
+
+
+
+
+
+
+
+
+
+- - -
+
+2. Faça a conversão dos dados de precipitação diária, armazenados em um **`tibble`**, para o \"formato arrumado\" e transforme as datas para o tipo de dados *date*.
 
 
 ```r
 precd_ncdf
 ```
 
-A estrutura esperada do *tibble* resultante é mostrada abaixo:
-
+A estrutura esperada do **`tibble`** resultante é mostrada abaixo:
 
 ```
 Rows: 40
 Columns: 4
-$ x    <dbl> -60.625, -60.375, -60.125, -60.625, -60...
-$ y    <dbl> 5.125, 5.125, 5.125, 4.875, 4.875, 5.12...
-$ date <date> 2010-01-01, 2010-01-01, 2010-01-01, 20...
-$ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.0000...
-```
-
-3. Coloque os dados de poluição (*tibble* `poluentes`) no formato \"arrumado\".
-
-
-```r
-poluentes
+$ x    <dbl> -60.625, -60.625, -60.625, -60.625, -60.625, -60.625, -6...
+$ y    <dbl> 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, 5.125, ...
+$ date <date> 2010-01-01, 2010-01-02, 2010-01-03, 2010-01-04, 2010-01...
+$ prec <dbl> 0.0000000, 0.0000000, 0.0000000, 0.4484863, 2.3515625, 4...
 ```
 
 
 
-A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
+
+
+- - -
+
+3. Coloque os dados de poluição (**`tibble`** `poluentes`) no formato \"arrumado\".
+
+
+
+
+- - -
+
+4. a. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria (`dados_sm`) no formato arrumado. 
+
 
 ```
-Rows: 3
-Columns: 4
-$ estacao <int> 1, 2, 4
-$ no2     <chr> NA, NA, "1h"
-$ ozone   <chr> "1h", "8h", NA
-$ so2     <chr> "1h", NA, NA
-```
-
-
-4. Coloque os dados meteorológicos diários da estação meteorológica de Santa Maria no formato arrumado. Deixe os dados ordenados cronologicamente.
-
-
-```r
 dados_sm
+#> # A tibble: 12 x 35
+#>    id    element month  year    d1    d2
+#>    <chr> <chr>   <dbl> <dbl> <dbl> <dbl>
+#>  1 83936 tmax        1  2010  32.6  33.4
+#>  2 83936 tmin        1  2010  17.9  21.4
+#>  3 83936 tmax        2  2010  36.8  38.4
+#>  4 83936 tmin        2  2010  25.4  25  
+#>  5 83936 tmax        3  2010  32    32.4
+#>  6 83936 tmin        3  2010  18.6  19  
+#>  7 83936 tmax        4  2010  34.4  28.6
+#>  8 83936 tmin        4  2010  17.5  21  
+#>  9 83936 tmax        5  2010  27    26.4
+#> 10 83936 tmin        5  2010   7.2   7  
+#> 11 83936 tmax        6  2010  19.2  23.8
+#> 12 83936 tmin        6  2010   4.1   8.8
+#> # ... with 29 more variables: d3 <dbl>,
+#> #   d4 <dbl>, d5 <dbl>, d6 <dbl>, d7 <dbl>,
+#> #   d8 <dbl>, d9 <dbl>, d10 <dbl>,
+#> #   d11 <dbl>, d12 <dbl>, d13 <dbl>,
+#> #   d14 <dbl>, d15 <dbl>, d16 <dbl>,
+#> #   d17 <dbl>, d18 <dbl>, d19 <dbl>,
+#> #   d20 <dbl>, d21 <dbl>, d22 <dbl>,
+#> #   d23 <dbl>, d24 <dbl>, d25 <dbl>,
+#> #   d26 <dbl>, d27 <dbl>, d28 <dbl>,
+#> #   d29 <dbl>, d30 <dbl>, d31 <dbl>
 ```
 
 
 
-
-A estrutura esperada do *tibble* resultante é mostrada abaixo:
+   b. Deixe os dados ordenados cronologicamente e obtenha as variáveis com nomes e ordem conforme mostrado na estrutura de dados esperada.
 
 ```
 Rows: 186
 Columns: 6
-$ id    <chr> "83936", "83936", "83936", "83936", "8...
-$ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-$ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 20...
-$ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,...
-$ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29...
-$ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18...
-```
-
-
-- - -
-
-5. Com os dados obtidos na questão 4: 
-
-   a. junte as colunas `year`, `month` e `day` em uma única coluna denominada `date` de forma que a classe dessa nova coluna seja `date`.  
-
-
-Estrutura de dados esperada:
-
-```
-Rows: 186
-Columns: 4
-$ id   <chr> "83936", "83936", "83936", "83936", "83...
-$ date <date> 2010-01-01, 2010-01-02, 2010-01-03, 20...
-$ tmax <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29....
-$ tmin <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18....
+$ id    <chr> "83936", "83936", "83936", "83936", "83936", "...
+$ year  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010...
+$ month <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+$ day   <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,...
+$ tmax  <dbl> 32.6, 33.4, 24.8, 29.4, 27.0, 24.4, 29.6, 29.4...
+$ tmin  <dbl> 17.9, 21.4, 21.6, 23.4, 23.2, 21.8, 18.0, 19.4...
 ```
 
 
 
-   b. Filtre os dados obtidos em **(a)** de forma a descobrir as datas em que as observações de `tmax` ou `tmin` são faltantes. Mostre o *tibble* filtrado com as datas e explique o porquê de seus valores. 
+   c. Acrescente uma nova variável `tmed` aos dados de temperatura diária arrumados, obtida da média diária da `tmax` e `tmin`.
+
+
+
 
 
 
 
 - - -
 
-6. A amostra de dados abaixo possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato \"arrumado\" e as informações de data e horário agregadas em uma única variável da classe *POSIXct*.
+5. Com os dados obtidos na questão 4c: 
 
 
-```r
-dados_zorra
+
+
+   a. renomeie as as colunas `year`, `month` e `day`para `ano`, `mes` e `dia`, respectivamente.
+
+
+
+
+   b. junte as colunas `ano`, `mes` e `dia` em uma única coluna denominada `data` de forma que a classe dessa nova váriavel seja `date`.
+
+
+
+
+   c. Filtre os dados obtidos em **(b)** de forma a descobrir as datas em que as observações de `tmax` ou `tmin` são faltantes. Mostre o **`tibble`** filtrado com as datas e explique o porquê de seus valores. *DICA: quantas observações são esperadas por ano?*. 
+
+
+
+
+
+
+- - -
+
+6. A amostra de dados abaixo (print da tabela `dados_zorra`) possui medidas a cada 6 horas de uma estação meteorológica de superfície. Reestruture os dados no formato \"arrumado\" e junte as informações de data e horário em uma única variável da classe *POSIXct* denominada `date`.
+
+
 ```
-
+#>         date tmax.0 tmax.600 tmax.1200
+#> 2 01-01-2010   22.1     21.0      26.4
+#> 3 02-01-2010   26.0     25.0      29.4
+#> 4 03-01-2010   25.7     26.3      28.4
+#> 5 04-01-2010   23.5     24.5      27.4
+#>   tmax.1800 tmin.0 tmin.600 tmin.1200
+#> 2      27.0     16     13.5      18.2
+#> 3      29.5     19     13.7      16.3
+#> 4      29.0     21     14.1      17.2
+#> 5      28.0     23     16.2      16.9
+#>   tmin.1800
+#> 2      24.1
+#> 3      22.3
+#> 4      26.0
+#> 5      23.0
+```
 
 A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
 ```
 Rows: 16
 Columns: 3
-$ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:...
-$ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29....
-$ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16....
+$ date <dttm> 2010-01-01 00:00:00, 2010-01-01 06:00:00, 2010-01-01 12:00:00, 2010-01-01 18:...
+$ tmax <dbl> 22.1, 21.0, 26.4, 27.0, 26.0, 25.0, 29.4, 29.5, 25.7, 26.3, 28.4, 29.0, 23.5, ...
+$ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1, 17.2, 26.0, 23.0, ...
 ```
+
+
+
+
+
 
 
 - - -
 
-7. Faça uma junção da tabela de dados de informações das estações de poluição (`etacoes`, dada abaixo) com os períodos de duração de poluição crítica (`poluentes`). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.
+7. Faça uma junção da tabela de dados de informações das estações de poluição (`eatacoes`, dada abaixo) com os períodos de duração de poluição crítica (`poluentes`). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.
 
 
-```r
-estacoes
-```
+
 
 
 Estrutura da tabela resultante:
@@ -1434,7 +1488,7 @@ $ duracao  <chr> "1h", "1h", "8h"
 
 8. Combine as 2 tabelas abaixo de forma que:
 
-  a. a tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`. 
+  a. A tabela resultante contenha todas as datas compreendidas pelas duas tabelas (e em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`. 
 
 
 ```r
@@ -1446,110 +1500,88 @@ datas_obs
 
 
 
-Estrutura da tabela de dados resultante:
 
-```
-Rows: 8
-Columns: 2
-$ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2...
-$ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, N...
-```
+
+
 
   b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
   
 
 
-Estrutura da tabela de dados resultante:
 
-```
-Rows: 7
-Columns: 2
-$ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2...
-$ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.326888...
-```
 
 - - - 
 
 9. Utilizando os dados horários de estações meteorológicas automáticas (EMA) do RS (`dados_rs_08_16`), determine a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
 
-Estrutura da tabela de dados resultante: 
-
-```
-Rows: 42
-Columns: 5
-$ site        <chr> "A801", "A802", "A803", "A804", ...
-$ periodo     <dbl> 8.5027322, 8.5027322, 8.5027322,...
-$ inicio      <dttm> 2007-12-31 21:00:00, 2007-12-31...
-$ fim         <dttm> 2016-12-31 20:00:00, 2016-12-31...
-$ periodo_err <dbl> 9.0019393, 9.0019393, 9.0019393,...
-```
 
 
+
+
+
+- - -
 
 10. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
 
 
-Estrutura da tabela de dados resultante:
-
-```
-Rows: 42
-Columns: 6
-$ site <chr> "A801", "A802", "A803", "A804", "A805",...
-$ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96,...
-$ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96,...
-$ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96,...
-$ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51,...
-$ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97,...
-```
 
 
-11. Adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
+- - -
 
-
-Estrutura da tabela de dados resultante:  
-```
-Rows: 42
-Columns: 7
-$ site     <chr> "A894", "A886", "A801", "A884", "A8...
-$ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 9...
-$ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98...
-$ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 9...
-$ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51,...
-$ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98,...
-$ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2,...
-```
+11. Com o resultado da questão anterior, adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
+  
 
 
 
+- - -
 
 12. Para a EMA de Santa Maria (ver `info_emas_rs_08_16`) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a `tair` média de cada hora. 
 
 > Dica: Para extrair as horas das datas use a função `lubridate::hour(date)`.
 
 
-Estrutura da tabela de dados resultante:
-
-```
-Rows: 24
-Columns: 3
-$ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...
-$ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.2...
-$ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.2...
-```
 
 
-13. Com os dados de temperatura do ar (`tair`) da EMA de Santa Maria selecione somente os dias observações válidas nas 24 horas. Obtenha a partir destes dados a frequência de ocorrência da temperatura mínima para cada horário do dia. Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
+
+
+- - -
+
+13. Com os dados de temperatura do ar (`tair`) filtrados para EMA de Santa Maria (a) selecione somente os dias observações válidas nas 24 horas (dias completos, ou seja, sem nenhuma falha nas 24 h). A partir destes dados (b) obtenha a frequência de ocorrência da temperatura mínima para cada horário do dia. (c) Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.
 
 > Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
 
-Estrutura da tabela de dados resultante:
+
+
+
+- - -
+
+14. Neste exercício aplicaremos um controle de qualidade básico de dados meteorológicos. Você irá verificar se nos dados da EMA de Santa Maria (A803, mesmos dados do item **a** do exercício anterior) ocorreram casos em que a temperatura máxima (mínima) diária foi acima (abaixo) dos recordes históricos registrados pela estação meteorológica convencional do INMET de Santa Maria (site 83936). Os recordes históricos de temperatura máxima e mínima estão disponíveis nos dados `recordes_temp` para cada mês do ano. Você deve obter os casos suspeitos na estrutura conforme abaixo.
 
 ```
-Rows: 24
-Columns: 2
-$ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21...
-$ n      <int> 720, 561, 438, 311, 196, 190, 123, 90...
+# A tibble: 8 x 7
+  date                 tmax  tmin   mes site 
+  <dttm>              <dbl> <dbl> <dbl> <chr>
+1 2009-10-30 00:00:00  35.8  20.4    10 83936
+2 2009-10-31 00:00:00  36.8  21.8    10 83936
+3 2013-12-26 00:00:00  38.3  21.2    12 83936
+4 2014-02-05 00:00:00  38    23.8     2 83936
+5 2014-02-06 00:00:00  38.3  24.4     2 83936
+6 2014-02-07 00:00:00  39.5  23.2     2 83936
+7 2014-02-09 00:00:00  38.3  22.9     2 83936
+8 2014-10-29 00:00:00  36.8  22.4    10 83936
+# ... with 2 more variables: tmin_abs <dbl>,
+#   tmax_abs <dbl>
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
