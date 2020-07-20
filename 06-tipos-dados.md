@@ -45,12 +45,12 @@ A relação entre estes tipos de dados é mostrada na Figura \@ref(fig:data-type
 
 Table: (\#tab:classes-r)Principais tipos de dados do R.
 
-  Tipo de dados      Classe no R       exemplo     
-------------------  -------------  ----------------
- Números inteiros      integer          2, 11      
-  Números reais        double       0.1234, 1.23e4 
-    Caracteres        character         "adar"     
-     Lógicos           logical       TRUE, FALSE   
+|  Tipo de dados   | Classe no R |    exemplo     |
+|:----------------:|:-----------:|:--------------:|
+| Números inteiros |   integer   |     2, 11      |
+|  Números reais   |   double    | 0.1234, 1.23e4 |
+|    Caracteres    |  character  |     "adar"     |
+|     Lógicos      |   logical   |  TRUE, FALSE   |
 
 
 
@@ -61,7 +61,7 @@ Table: (\#tab:classes-r)Principais tipos de dados do R.
 
 
 <div class="rmdtip">
-<p>Embora existam dois tipos de vetores o termo "vetor" é em geral usado para se referir ao do tipo atômico.</p>
+<p>Embora existam dois tipos de vetores o termo &quot;vetor&quot; é em geral usado para se referir ao do tipo atômico.</p>
 </div>
 
 
@@ -242,7 +242,7 @@ cat(sentenca_2aspas, "\n")
 <p>Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:</p>
 <ul>
 <li><p><code>\\'</code> aspas simples</p></li>
-<li><p><code>\\"</code> aspas duplas</p></li>
+<li><p><code>\\&quot;</code> aspas duplas</p></li>
 <li><p><code>\\n</code> quebra de lina ou nova linha</p></li>
 <li><p><code>\\\\</code> a própria barra invertida</p></li>
 </ul>
@@ -381,11 +381,11 @@ A coerção da variável `vetor_char` para numérica ou inteiro
 vetor_char
 #> [1] "ae" NA   "ou"
 as.integer(vetor_char)
-#> Warning: NAs introduzidos por coerção
+#> Warning: NAs introduced by coercion
 #> [1] NA NA NA
 # verificação do resultado
 typeof(as.numeric(vetor_char))
-#> Warning in typeof(as.numeric(vetor_char)): NAs introduzidos por coerção
+#> Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion
 #> [1] "double"
 ```
 
@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-07-18"
+#> [1] "2020-07-20"
 Sys.time()
-#> [1] "2020-07-18 18:46:53 UTC"
+#> [1] "2020-07-20 15:26:46 UTC"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
@@ -612,14 +612,14 @@ O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos d
 
 Table: (\#tab:format-dates)Códigos de formato de datas e horas.
 
- código         Significado          Intervalo 
---------  ------------------------  -----------
-   %Y      ano (incluindo século)    1 - 9999  
-   %m               mês               01 - 12  
-   %d               dia               01 - 31  
-   %H               hora              00 - 23  
-   %M              minuto             00 - 59  
-   %S             segundo             00 - 59  
+| código |      Significado       | Intervalo |
+|:------:|:----------------------:|:---------:|
+|   %Y   | ano (incluindo século) | 1 - 9999  |
+|   %m   |          mês           |  01 - 12  |
+|   %d   |          dia           |  01 - 31  |
+|   %H   |          hora          |  00 - 23  |
+|   %M   |         minuto         |  00 - 59  |
+|   %S   |        segundo         |  00 - 59  |
 
 
 Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como `Jan` (`%b`), e estes códigos são listados em `?strptime`. 

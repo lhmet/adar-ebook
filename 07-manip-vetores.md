@@ -221,8 +221,8 @@ A constante `fator_conv = 3.6` nesse caso é reciclada 4 vezes (tamanho do vetor
 1:10 * 1:2
 #>  [1]  1  4  3  8  5 12  7 16  9 20
 1:10 * 1:3
-#> Warning in 1:10 * 1:3: comprimento do objeto maior não é múltiplo do comprimento
-#> do objeto menor
+#> Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object
+#> length
 #>  [1]  1  4  9  4 10 18  7 16 27 10
 ```
 
@@ -249,19 +249,19 @@ Vetores lógicos resultam da comparação de números ou caracteres. A Tabela \@
 
 Table: (\#tab:oper-logic)Operadores Lógicos
 
- Operador            Descrição        
------------  -------------------------
-     <               menor que        
-    <=           menor ou igual a     
-     >               maior que        
-    >=            maior ou igual      
-    ==               idêntico         
-    !=               diferente        
-    !x           não é x (negação)    
-   x | y              x ou y          
-   x & y               x e y          
- isTRUE(x)    teste se x é verdadeiro 
-   %in%           está contido em     
+|  Operador  |        Descrição        |
+|:----------:|:-----------------------:|
+|     <      |        menor que        |
+|     <=     |    menor ou igual a     |
+|     >      |        maior que        |
+|     >=     |     maior ou igual      |
+|     ==     |        idêntico         |
+|     !=     |        diferente        |
+|     !x     |    não é x (negação)    |
+| x &#124; y |         x ou y          |
+|   x & y    |          x e y          |
+| isTRUE(x)  | teste se x é verdadeiro |
+|    %in%    |     está contido em     |
 
 Este conjunto de operadores permite diversas comparações entre vetores, por exemplo: 
 
@@ -455,12 +455,12 @@ A saída da `seq()` vai sempre incluir o n° inicial (passado no argumento `from
 
 Table: (\#tab:seqs-by)Sequências com argumentos ímpares e pares.
 
- 'from'    'to'    'to' é par?    'by'    'by' é par?         sequência          resultado inclui 'to' 
---------  ------  -------------  ------  -------------  ----------------------  -----------------------
-   1        10        TRUE         2         TRUE          c(1, 3, 5, 7, 9)              FALSE         
-   1        10        TRUE         3         FALSE          c(1, 4, 7, 10)               TRUE          
-   1        11        FALSE        2         TRUE        c(1, 3, 5, 7, 9, 11)            TRUE          
-   1        11        FALSE        3         FALSE          c(1, 4, 7, 10)               FALSE         
+| 'from' | 'to' | 'to' é par? | 'by' | 'by' é par? |     sequência     | resultado inclui 'to' |
+|:------:|:----:|:-----------:|:----:|:-----------:|:-----------------:|:---------------------:|
+|   1    |  10  |    TRUE     |  2   |    TRUE     |   1, 3, 5, 7, 9   |         FALSE         |
+|   1    |  10  |    TRUE     |  3   |    FALSE    |    1, 4, 7, 10    |         TRUE          |
+|   1    |  11  |    FALSE    |  2   |    TRUE     | 1, 3, 5, 7, 9, 11 |         TRUE          |
+|   1    |  11  |    FALSE    |  3   |    FALSE    |    1, 4, 7, 10    |         FALSE         |
 
 Ao invés de usar o argumento `by`, podemos especificar um valor para o argumento `length.out` (\"tamanho de saída\") para produzir um vetor com tantos números, igualmente espaçados, entre os valores `from` e `to`.
 
@@ -1361,13 +1361,12 @@ A conversão dos eventos de lógico para numérico é opcional[^aviso] e foi usa
 As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (`lag(x)`) do elemento atual (`x`). Se a diferença for  `-1` temos o início de um evento. A tabela abaixo permite visualizar melhor isso.
 
 
-                                                                                                                                 
----------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
-elemento     1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24
-x            1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1
-lag(x)      NA    1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0
-pos_ini     NA    0    0    1    0    0    0    0   -1    0    0    0    0    0    0    1    0    0    0    0    0   -1    1   -1
----------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
+|         |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|:--------|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+|elemento |  1|  2|  3|  4|  5|  6|  7|  8|  9| 10| 11| 12| 13| 14| 15| 16| 17| 18| 19| 20| 21| 22| 23| 24|
+|x        |  1|  1|  1|  0|  0|  0|  0|  0|  1|  1|  1|  1|  1|  1|  1|  0|  0|  0|  0|  0|  0|  1|  0|  1|
+|lag(x)   | NA|  1|  1|  1|  0|  0|  0|  0|  0|  1|  1|  1|  1|  1|  1|  1|  0|  0|  0|  0|  0|  0|  1|  0|
+|pos_ini  | NA|  0|  0|  1|  0|  0|  0|  0| -1|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0| -1|  1| -1|
 
 
 
@@ -1394,13 +1393,12 @@ Temos que ter cuidado especial com o primeiro índice das posições iniciais (`
 Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (`lead(x)`) do elemento atual (`x`). Quando essa diferença é `-1` temos o fim de um evento, o que pode ser visualizado na tabela abaixo. 
 
 
-                                                                                                                                 
----------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
-elemento     1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24
-x            1    1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1
-lead(x)      1    1    0    0    0    0    0    1    1    1    1    1    1    1    0    0    0    0    0    0    1    0    1   NA
-pos_fim      0    0   -1    0    0    0    0    1    0    0    0    0    0    0   -1    0    0    0    0    0    1   -1    1   NA
----------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
+|         |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|:--------|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+|elemento |  1|  2|  3|  4|  5|  6|  7|  8|  9| 10| 11| 12| 13| 14| 15| 16| 17| 18| 19| 20| 21| 22| 23| 24|
+|x        |  1|  1|  1|  0|  0|  0|  0|  0|  1|  1|  1|  1|  1|  1|  1|  0|  0|  0|  0|  0|  0|  1|  0|  1|
+|lead(x)  |  1|  1|  0|  0|  0|  0|  0|  1|  1|  1|  1|  1|  1|  1|  0|  0|  0|  0|  0|  0|  1|  0|  1| NA|
+|pos_fim  |  0|  0| -1|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0| -1|  0|  0|  0|  0|  0|  1| -1|  1| NA|
 
 
 ```r
@@ -1833,21 +1831,21 @@ $$r = \frac{\sum_{i=1}^{n} (T_{obs}-\bar{T}_{obs})(T_{calc}-\bar{T}_{calc}))}{\s
 11. Os dados abaixo são de precipitação horária de um evento severo ocorrido em 03/12/2012 em Santa Maria-RS. 
 
 
- hora    prec 
-------  ------
-  9      0.0  
-  10     0.0  
-  11     0.0  
-  12     0.0  
-  13     0.0  
-  14     0.0  
-  15     0.0  
-  16     21.4 
-  17     41.2 
-  18     2.6  
-  19     1.0  
-  20     0.4  
-  21     0.0  
+| hora | prec |
+|:----:|:----:|
+|  9   | 0.0  |
+|  10  | 0.0  |
+|  11  | 0.0  |
+|  12  | 0.0  |
+|  13  | 0.0  |
+|  14  | 0.0  |
+|  15  | 0.0  |
+|  16  | 21.4 |
+|  17  | 41.2 |
+|  18  | 2.6  |
+|  19  | 1.0  |
+|  20  | 0.4  |
+|  21  | 0.0  |
 
   a. Como seria o código para determinar a soma cumulativa da precipitação horária? Salve o resultado em um vetor chamado `prec_acum`. Interprete o resultado de `c(NA, diff(prec_acum))`.
 
@@ -2003,17 +2001,17 @@ $$
 A tabela abaixo apresenta o resultado esperado para as variáveis derivadas.
 
 
-   u     v       ws    wd   wd_uv  dir      
-----  ----  -------  ----  ------  ---------
-  10     0   10.000   270     270  Oeste    
-   0    10   10.000   180     180  Sul      
-   0   -10   10.000   360     360  Norte    
- -10     0   10.000    90      90  Leste    
-  10    10   14.142   225     225  Sudoeste 
-  10   -10   14.142   315     315  Noroeste 
- -10    10   14.142   135     135  Sudeste  
- -10   -10   14.142    45      45  Nordeste 
-   0     0    0.000     0       0  Calmo    
+|   u|   v|     ws|  wd| wd_uv|dir      |
+|---:|---:|------:|---:|-----:|:--------|
+|  10|   0| 10.000| 270|   270|Oeste    |
+|   0|  10| 10.000| 180|   180|Sul      |
+|   0| -10| 10.000| 360|   360|Norte    |
+| -10|   0| 10.000|  90|    90|Leste    |
+|  10|  10| 14.142| 225|   225|Sudoeste |
+|  10| -10| 14.142| 315|   315|Noroeste |
+| -10|  10| 14.142| 135|   135|Sudeste  |
+| -10| -10| 14.142|  45|    45|Nordeste |
+|   0|   0|  0.000|   0|     0|Calmo    |
 
 
 

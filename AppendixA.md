@@ -38,8 +38,8 @@ Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `ve
 ```r
 # criando a matriz gerada com dim
 mat <- matrix(vetor, nrow = 3, ncol = 4)
-#> Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um
-#> submúltiplo ou múltiplo do número de linhas [3]
+#> Warning in matrix(vetor, nrow = 3, ncol = 4): data length [7] is not a sub-
+#> multiple or multiple of the number of rows [3]
 mat
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    0   -2   -5   -1
@@ -47,8 +47,8 @@ mat
 #> [3,]   -1    5    1    3
 # não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
-#> Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um
-#> submúltiplo ou múltiplo do número de linhas [3]
+#> Warning in matrix(vetor, nrow = 3): data length [7] is not a sub-multiple or
+#> multiple of the number of rows [3]
 mat
 #>      [,1] [,2] [,3]
 #> [1,]    0   -2   -5
@@ -61,8 +61,8 @@ No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas
 
 ```r
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
-#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não
-#> é um submúltiplo ou múltiplo do número de linhas [2]
+#> Warning in matrix(vetor, ncol = 4, byrow = TRUE): data length [7] is not a sub-
+#> multiple or multiple of the number of rows [2]
 mat
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    0    1   -1   -2

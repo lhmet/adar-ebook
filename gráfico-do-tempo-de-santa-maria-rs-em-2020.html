@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5 R | Análise de Dados Ambientais com R</title>
+  <title>11.7 Gráfico do tempo de Santa Maria-RS em 2020 | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5 R | Análise de Dados Ambientais com R" />
+  <meta property="og:title" content="11.7 Gráfico do tempo de Santa Maria-RS em 2020 | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/TB1.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5 R | Análise de Dados Ambientais com R" />
+  <meta name="twitter:title" content="11.7 Gráfico do tempo de Santa Maria-RS em 2020 | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="twitter:image" content="images/TB1.jpg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="programação-computacional.html"/>
-<link rel="next" href="por-que-o-r.html"/>
+<link rel="prev" href="ggplot2-1.html"/>
+<link rel="next" href="histograma-e-colunas.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -402,28 +402,253 @@ code > span. { color: #1f1c1b; } /* Normal */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level2">
-<h2><span class="header-section-number">1.5</span> R</h2>
-<!-- 
-https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html 
+<div id="gráfico-do-tempo-de-santa-maria-rs-em-2020" class="section level2">
+<h2><span class="header-section-number">11.7</span> Gráfico do tempo de Santa Maria-RS em 2020</h2>
+<p>Para ilustrar a abordagem de construção de gráficos por camadas do <strong><code>{ggplot2}</code></strong> vamos visualizar a variação temperatura diária do ar para o ano corrente e compará-la com a climatologia e estatísticas baseadas em 58 anos de dados. Nós vamos explorar diferentes geometrias (linhas, pontos, intervalos)</p>
+<p>Nós criamos um gráfico a partir da função <code>ggplot()</code>, especificando os dados de entrada.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> clima)</code></pre></div>
+<p>O resultado é um painel em branco. A construção de um gráfico com o <strong><code>{ggplot2}</code></strong> envolve a especificação atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes.</p>
+<p>Podemos adicionar geometrias usando o operador <code>+</code>, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (<code>tar</code>) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x. Este mapeamento das variáveis nos exos é feito pela função <code>aes()</code> (de <em>aesthetics</em>, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você está construindo.</p>
+<p>Nossa primeira camada de geometria será uma linha vertical unindo o valor mínimo até o máximo absoluto de <code>tar</code> (variáveis <code>tar_min</code> e <code>tar_max</code>) associado a cada dia do ano (<code>dda</code>). A variável <code>dda</code> é especificada no eixo x. Para inserir uma linha vertical a <code>geom_linerange()</code> requer os argumentos <code>x</code>, <code>ymin</code> e <code>ymax</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( <span class="dt">data =</span> clima) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_min, <span class="dt">ymax =</span> tar_max),
+    <span class="dt">color =</span> <span class="st">&quot;wheat2&quot;</span>
+   <span class="co"># alpha = .1</span>
+  ) </code></pre></div>
+<p>Além de identificar as variáveis de cada eixo nós adicionamos o argumento <code>color</code> para distinguir os intervalos variação entre os máximos e mínimos absolutos registrados.</p>
+<p>Uma versatilidade do <strong><code>{ggplot2}</code></strong> é de podermos armazenar os gráficos em objetos. Então o gráfico básico acima pode ser armazenado numa váriavel. A estrutura do gráfico é uma lista com todas componentes necessárias para construção do gráfico.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graf_base &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>( <span class="dt">data =</span> clima) <span class="op">+</span>
+<span class="st">  </span><span class="co">#geom_point(size = 0.01, colour = &quot;green&quot;) +</span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_min, <span class="dt">ymax =</span> tar_max),
+    <span class="dt">color =</span> <span class="st">&quot;wheat2&quot;</span>
+   <span class="co"># alpha = .1</span>
+  ) <span class="op">+</span>
+<span class="st">   </span><span class="kw">theme</span>(<span class="co">#plot.background = element_blank(),</span>
+          <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.border =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="co">#axis.text = element_blank(),  </span>
+          <span class="dt">axis.title =</span> <span class="kw">element_blank</span>()
+  )
 
--->
-<ul>
-<li><p><a href="https://www.r-project.org/">R</a> é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.</p></li>
-<li><p>Comunidade fantástica</p></li>
-<li><p><a href="https://www.r-project.org/contributors.html">Contribuidores</a> (<span class="citation">R Core Team (<a href="referências.html#ref-R-base">2020</a>)</span>)</p></li>
-<li><p>milhares de pessoas usam o R diariamente e ajudam outras pessoas</p></li>
-<li><strong>Software Livre</strong> (GPL), <a href="https://github.com/wch/r-source">Código aberto</a> e multiplataforma <br/></li>
-<li><p>Ambiente para Análise de dados interativa</p></li>
-</ul>
+<span class="kw">glimpse</span>(graf_base, <span class="dt">max.level =</span> <span class="dv">1</span>)</code></pre></div>
+<p>Na sequência vamos adicionar uma segunda camada com os dados que representam o intervalo de confiança de 95% da temperatura média diária para o período de 1952-2019.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggp_sm &lt;-<span class="st"> </span>graf_base <span class="op">+</span><span class="st"> </span>
+<span class="kw">geom_linerange</span>(
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_med_min, <span class="dt">ymax =</span> tar_med_max),
+    <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span>
+  )
+ggp_sm</code></pre></div>
+<p>Agora vamos incorporar ao gráfico os dados de temperatura do ano atual e uma linha vertical (<code>geom_vline</code>) na borda esquerda do eixo y.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(
+    <span class="dt">data =</span> tempo,
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar),
+    <span class="co"># size = 1</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span>, <span class="dt">linetype =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>)
+ggp_sm</code></pre></div>
+<p>Agora vamos ajustar a escala do eixo y ao intervalo de variação da dos extremos e definir 8 marcas para os labels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">int_var &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(clima<span class="op">$</span>tar_max, clima<span class="op">$</span>tar_min))
+int_var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">floor</span>(int_var[<span class="dv">1</span>]), <span class="kw">ceiling</span>(int_var[<span class="dv">2</span>]))
+int_var
+ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(
+    <span class="dt">limits =</span> int_var,
+    <span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">8</span>),
+    <span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_number</span>(<span class="dt">suffix =</span> <span class="st">&quot; °C&quot;</span>, <span class="dt">accuracy =</span> <span class="dv">5</span>)
+  ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), 
+                     <span class="dt">breaks =</span> marcas_x<span class="op">$</span>metade, 
+                     <span class="dt">labels =</span> marcas_x<span class="op">$</span>labels,
+                     )
+ggp_sm</code></pre></div>
+<p>Podemos adicionar linhas de grade horizontais e verticais como referência. As linhas verticais serão adicionadas no último dia de cada mês. As horizontais serão espaçadas de 5°C.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(
+    <span class="dt">yintercept =</span> <span class="kw">seq</span>(int_var[<span class="dv">1</span>], int_var[<span class="dv">2</span>], <span class="dt">by =</span> <span class="dv">5</span>), 
+    <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, 
+    <span class="dt">linetype =</span> <span class="dv">1</span>
+    ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_vline</span>(
+    <span class="dt">xintercept =</span> marcas_x<span class="op">$</span>final, 
+    <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span>, 
+    <span class="dt">linetype =</span> <span class="dv">3</span>,
+    <span class="dt">size =</span> <span class="fl">0.5</span>
+    ) 
+ggp_sm</code></pre></div>
+<p>Neste ponto, vamos identificar os dias que em 2020 ultrapassaram os recordes históricos de temperatura.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>(
+     <span class="dt">data =</span> <span class="kw">filter</span>(recordes_atual, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>),
+     <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar), <span class="dt">color =</span> <span class="st">&quot;blue3&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>(
+     <span class="dt">data =</span> <span class="kw">filter</span>(recordes_atual, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>),
+     <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar), <span class="dt">color =</span> <span class="st">&quot;firebrick3&quot;</span>)
+ggp_sm</code></pre></div>
+<p>Com todos dados plotados agora podemos incrementá-lo com texto apropriado. Primeiramente vamos adicionar um título e subtítulo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Tempo em Santa Maria, 2020&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(
+    <span class="dt">plot.title =</span> <span class="kw">element_text</span>(
+      <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>,
+      <span class="dt">hjust =</span> .<span class="dv">012</span>,
+      <span class="dt">vjust =</span> .<span class="dv">8</span>,
+      <span class="dt">colour =</span> <span class="st">&quot;#3C3C3C&quot;</span>,
+      <span class="dt">size =</span> <span class="dv">20</span>
+    )
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">138</span>,
+    <span class="dt">y =</span> <span class="dv">36</span>,
+    <span class="dt">label =</span> <span class="st">&quot;Temperatura&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">4</span>,
+    <span class="dt">fontface =</span> <span class="st">&quot;bold&quot;</span>
+  ) 
+ggp_sm</code></pre></div>
+<p>Nós podemos adicionar um parágrafo abaixo do subtítulo para dar uma pequena explanação dobre os dados. O texto será separado em 4 anotações.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">texto &lt;-<span class="st"> &quot;Os dados representam as médias diárias de temperatura. Os dados iniciam efetivamente em 1951. Dados para 2020 são disponíveis somente até Julho. A Temperatura média anual até este mês foi de 22°C, caracterizando 2020 como o 8° ano mais quente.&quot;</span>
+
+ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">120</span>,
+    <span class="dt">y =</span> <span class="fl">32.5</span>,
+    <span class="dt">label =</span> <span class="kw">str_wrap</span>(texto, <span class="dt">width =</span> <span class="dv">70</span>),
+    <span class="dt">size =</span> <span class="dv">3</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>,
+    <span class="dt">hjust =</span> <span class="dv">0</span>
+  )
+ggp_sm</code></pre></div>
+<p>Anotações que explicam os pontos representando os dias nos quais ocorreram recordes de temperatura máxima e mínima.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x_rec_tmin &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(dda)
+y_rec_tmin &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(tar_min)
+
+x_rec_tmax &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(dda) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">extract</span>(<span class="dv">3</span>)
+y_rec_tmax &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(tar_max) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">extract</span>(<span class="dv">3</span>)
+
+
+ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,
+           <span class="dt">x =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">xend =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">12</span>,
+           <span class="dt">y =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">yend =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">3</span>,
+           <span class="dt">color =</span> <span class="st">&quot;blue3&quot;</span>
+           ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, 
+           <span class="dt">x =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">12</span>, 
+           <span class="dt">y =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">3</span> <span class="op">-</span><span class="fl">0.5</span>, 
+           <span class="dt">label =</span> <span class="st">&quot;Recorde de Tmin&quot;</span>,
+           <span class="dt">size=</span><span class="fl">2.9</span>, 
+           <span class="dt">colour=</span><span class="st">&quot;blue3&quot;</span>
+           ) <span class="op">+</span>
+<span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,
+           <span class="dt">x =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">xend =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">12</span>,
+           <span class="dt">y =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">yend =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">2</span>,
+           <span class="dt">color =</span> <span class="st">&quot;firebrick3&quot;</span>
+           ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, 
+           <span class="dt">x =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">13</span>, 
+           <span class="dt">y =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">3</span>, 
+           <span class="dt">label =</span> <span class="st">&quot;Recordes de Tmax&quot;</span>,
+           <span class="dt">size =</span> <span class="fl">2.9</span>, 
+           <span class="dt">colour=</span><span class="st">&quot;firebrick3&quot;</span>
+           )
+ggp_sm</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leg_dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">53</span>, <span class="dv">61</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">9</span>, <span class="dt">mean =</span> <span class="dv">12</span>, <span class="dv">1</span>))
+
+ggp_sm <span class="op">+</span>
+<span class="st">  </span><span class="co"># limites extremos</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,
+    <span class="dt">x =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],
+    <span class="dt">xend =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],
+    <span class="dt">y =</span> <span class="dv">9</span>,
+    <span class="dt">yend =</span> <span class="dv">15</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;wheat2&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">3</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="co"># intervalo intermediário</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,
+    <span class="dt">x =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],
+    <span class="dt">xend =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],
+    <span class="dt">y =</span> <span class="fl">10.5</span>,
+    <span class="dt">yend =</span> <span class="fl">13.5</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">3</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> leg_dados, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span>
+<span class="st">  </span><span class="co"># labels intermediários</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">36</span>,
+    <span class="dt">y =</span> <span class="dv">12</span>,
+    <span class="dt">label =</span> <span class="st">&quot;TEMPERATURA 2020&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">2</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">84</span>,
+    <span class="dt">y =</span> <span class="dv">12</span>,
+    <span class="dt">label =</span> <span class="st">&quot;INTERVALO NORMAL&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">2</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="co"># labels extremos</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">70</span>,
+    <span class="dt">y =</span> <span class="dv">15</span>,
+    <span class="dt">label =</span> <span class="st">&quot;MÁXIMO&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">2</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,
+    <span class="dt">x =</span> <span class="dv">70</span>,
+    <span class="dt">y =</span> <span class="fl">9.5</span>,
+    <span class="dt">label =</span> <span class="st">&quot;MÌNIMO&quot;</span>,
+    <span class="dt">size =</span> <span class="dv">2</span>,
+    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="co"># segmentos do intervalo normal</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, 
+           <span class="dt">x =</span> <span class="dv">63</span>, 
+           <span class="dt">xend =</span> <span class="dv">65</span>, 
+           <span class="dt">y =</span> <span class="fl">10.5</span>,
+           <span class="dt">yend =</span> <span class="fl">10.5</span>,
+           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, 
+           <span class="dt">size=</span>.<span class="dv">5</span>
+           ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, 
+           <span class="dt">x =</span> <span class="dv">63</span>, 
+           <span class="dt">xend =</span> <span class="dv">65</span>, 
+           <span class="dt">y =</span> <span class="fl">13.5</span>,
+           <span class="dt">yend =</span> <span class="fl">13.5</span>,
+           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, 
+           <span class="dt">size=</span>.<span class="dv">5</span>
+           ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, 
+           <span class="dt">x =</span> <span class="dv">65</span>, 
+           <span class="dt">xend =</span> <span class="dv">65</span>, 
+           <span class="dt">y =</span> <span class="fl">10.5</span>,
+           <span class="dt">yend =</span> <span class="fl">13.5</span>,
+           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, 
+           <span class="dt">size=</span>.<span class="dv">5</span>
+           )</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="programação-computacional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="por-que-o-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ggplot2-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="histograma-e-colunas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

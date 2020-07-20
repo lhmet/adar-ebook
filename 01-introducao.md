@@ -19,6 +19,10 @@
 
 
 
+```
+## Warning in options(stringsAsFactors = TRUE): 'options(stringsAsFactors = TRUE)'
+## is deprecated and will be disabled
+```
 
 ![](images/HeHeartlandPark2601underconstructionbar9.gif)
 
