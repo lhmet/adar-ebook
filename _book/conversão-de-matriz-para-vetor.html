@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -429,42 +430,42 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="conversão-de-matriz-para-vetor" class="section level2">
 <h2><span class="header-section-number">A.7</span> Conversão de matriz para vetor</h2>
 <p>Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: <code>temp_mat</code>) no início da seção ela foi baseada em um vetor (<code>vtemp</code>). Como fazemos para voltar aquele vetor original a partir da matriz?</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1">temp_mat[<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">ncol</span>(temp_mat) ]</a>
-<a class="sourceLine" id="cb478-2" title="2"><span class="co"># vetor de temperaturas</span></a>
-<a class="sourceLine" id="cb478-3" title="3">vtemp &lt;-<span class="st"> </span>temp_mat[<span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(temp_mat))]</a>
-<a class="sourceLine" id="cb478-4" title="4">vtemp</a>
-<a class="sourceLine" id="cb478-5" title="5"><span class="co"># outra forma de converte temp_mat para vetor</span></a>
-<a class="sourceLine" id="cb478-6" title="6"><span class="kw">c</span>(temp_mat)</a>
-<a class="sourceLine" id="cb478-7" title="7"><span class="co"># função formal para converter</span></a>
-<a class="sourceLine" id="cb478-8" title="8"><span class="kw">as.vector</span>(temp_mat)</a>
-<a class="sourceLine" id="cb478-9" title="9"><span class="co"># para desmanchar a matriz com os elementos seguindo a ordem das linhas</span></a>
-<a class="sourceLine" id="cb478-10" title="10"><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</a>
-<a class="sourceLine" id="cb478-11" title="11"><span class="kw">as.vector</span>(<span class="kw">t</span>(temp_mat))</a>
-<a class="sourceLine" id="cb478-12" title="12"><span class="co"># serie temporal de temp_mat</span></a>
-<a class="sourceLine" id="cb478-13" title="13">stemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</a>
-<a class="sourceLine" id="cb478-14" title="14"><span class="kw">plot</span>(stemp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</a>
-<a class="sourceLine" id="cb478-15" title="15"><span class="co"># criar matriz com colunas temp e meses 1:12</span></a>
-<a class="sourceLine" id="cb478-16" title="16"><span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">nrow</span>(temp_mat)), stemp)</a>
-<a class="sourceLine" id="cb478-17" title="17"><span class="co"># dados de temp e meses</span></a>
-<a class="sourceLine" id="cb478-18" title="18">tempdat &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, stemp)</a>
-<a class="sourceLine" id="cb478-19" title="19"><span class="co"># plot da temperatura pelos meses (os meses repetem)</span></a>
-<a class="sourceLine" id="cb478-20" title="20"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb478-21" title="21">  tempdat,</a>
-<a class="sourceLine" id="cb478-22" title="22">  <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="co"># tipo de grafico: pontos</span></a>
-<a class="sourceLine" id="cb478-23" title="23">  <span class="dt">pch =</span> <span class="dv">20</span>, <span class="co"># codigo numérico do simbolo do ponto</span></a>
-<a class="sourceLine" id="cb478-24" title="24">  <span class="dt">col =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores dos pontos</span></a>
-<a class="sourceLine" id="cb478-25" title="25">  <span class="dt">cex =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># aumenta tamanho dos pontos</span></a>
-<a class="sourceLine" id="cb478-26" title="26">  <span class="dt">las =</span> <span class="dv">1</span>, <span class="co"># orientação dos labels dos eixos perpendiculares ao eixo</span></a>
-<a class="sourceLine" id="cb478-27" title="27">  <span class="dt">ylab =</span> <span class="kw">expression</span>(Tar <span class="op">~</span><span class="st"> </span>(degree <span class="op">~</span><span class="st"> </span>C)), <span class="co"># label da variável y</span></a>
-<a class="sourceLine" id="cb478-28" title="28">  <span class="dt">xlab =</span> <span class="st">&quot;meses&quot;</span>, <span class="co"># label da variavel x</span></a>
-<a class="sourceLine" id="cb478-29" title="29">  <span class="dt">main =</span> <span class="st">&quot;Temperatura mensal (1990-1992)&quot;</span> <span class="co"># título</span></a>
-<a class="sourceLine" id="cb478-30" title="30">) <span class="co"># end plot</span></a>
-<a class="sourceLine" id="cb478-31" title="31"><span class="co"># para entender a variação nas cores e símbolos usadas no gráfico</span></a>
-<a class="sourceLine" id="cb478-32" title="32"><span class="kw">cbind</span>(</a>
-<a class="sourceLine" id="cb478-33" title="33">  <span class="dt">meses =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">temp =</span> stemp,</a>
-<a class="sourceLine" id="cb478-34" title="34">  <span class="dt">cores =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores</span></a>
-<a class="sourceLine" id="cb478-35" title="35">  <span class="dt">simb_tam =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat))</a>
-<a class="sourceLine" id="cb478-36" title="36">) <span class="co"># tamanho dos símbolos</span></a></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1">temp_mat[<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">ncol</span>(temp_mat) ]</a>
+<a class="sourceLine" id="cb486-2" title="2"><span class="co"># vetor de temperaturas</span></a>
+<a class="sourceLine" id="cb486-3" title="3">vtemp &lt;-<span class="st"> </span>temp_mat[<span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(temp_mat))]</a>
+<a class="sourceLine" id="cb486-4" title="4">vtemp</a>
+<a class="sourceLine" id="cb486-5" title="5"><span class="co"># outra forma de converte temp_mat para vetor</span></a>
+<a class="sourceLine" id="cb486-6" title="6"><span class="kw">c</span>(temp_mat)</a>
+<a class="sourceLine" id="cb486-7" title="7"><span class="co"># função formal para converter</span></a>
+<a class="sourceLine" id="cb486-8" title="8"><span class="kw">as.vector</span>(temp_mat)</a>
+<a class="sourceLine" id="cb486-9" title="9"><span class="co"># para desmanchar a matriz com os elementos seguindo a ordem das linhas</span></a>
+<a class="sourceLine" id="cb486-10" title="10"><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</a>
+<a class="sourceLine" id="cb486-11" title="11"><span class="kw">as.vector</span>(<span class="kw">t</span>(temp_mat))</a>
+<a class="sourceLine" id="cb486-12" title="12"><span class="co"># serie temporal de temp_mat</span></a>
+<a class="sourceLine" id="cb486-13" title="13">stemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</a>
+<a class="sourceLine" id="cb486-14" title="14"><span class="kw">plot</span>(stemp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</a>
+<a class="sourceLine" id="cb486-15" title="15"><span class="co"># criar matriz com colunas temp e meses 1:12</span></a>
+<a class="sourceLine" id="cb486-16" title="16"><span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">nrow</span>(temp_mat)), stemp)</a>
+<a class="sourceLine" id="cb486-17" title="17"><span class="co"># dados de temp e meses</span></a>
+<a class="sourceLine" id="cb486-18" title="18">tempdat &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, stemp)</a>
+<a class="sourceLine" id="cb486-19" title="19"><span class="co"># plot da temperatura pelos meses (os meses repetem)</span></a>
+<a class="sourceLine" id="cb486-20" title="20"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb486-21" title="21">  tempdat,</a>
+<a class="sourceLine" id="cb486-22" title="22">  <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="co"># tipo de grafico: pontos</span></a>
+<a class="sourceLine" id="cb486-23" title="23">  <span class="dt">pch =</span> <span class="dv">20</span>, <span class="co"># codigo numérico do simbolo do ponto</span></a>
+<a class="sourceLine" id="cb486-24" title="24">  <span class="dt">col =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores dos pontos</span></a>
+<a class="sourceLine" id="cb486-25" title="25">  <span class="dt">cex =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># aumenta tamanho dos pontos</span></a>
+<a class="sourceLine" id="cb486-26" title="26">  <span class="dt">las =</span> <span class="dv">1</span>, <span class="co"># orientação dos labels dos eixos perpendiculares ao eixo</span></a>
+<a class="sourceLine" id="cb486-27" title="27">  <span class="dt">ylab =</span> <span class="kw">expression</span>(Tar <span class="op">~</span><span class="st"> </span>(degree <span class="op">~</span><span class="st"> </span>C)), <span class="co"># label da variável y</span></a>
+<a class="sourceLine" id="cb486-28" title="28">  <span class="dt">xlab =</span> <span class="st">&quot;meses&quot;</span>, <span class="co"># label da variavel x</span></a>
+<a class="sourceLine" id="cb486-29" title="29">  <span class="dt">main =</span> <span class="st">&quot;Temperatura mensal (1990-1992)&quot;</span> <span class="co"># título</span></a>
+<a class="sourceLine" id="cb486-30" title="30">) <span class="co"># end plot</span></a>
+<a class="sourceLine" id="cb486-31" title="31"><span class="co"># para entender a variação nas cores e símbolos usadas no gráfico</span></a>
+<a class="sourceLine" id="cb486-32" title="32"><span class="kw">cbind</span>(</a>
+<a class="sourceLine" id="cb486-33" title="33">  <span class="dt">meses =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">temp =</span> stemp,</a>
+<a class="sourceLine" id="cb486-34" title="34">  <span class="dt">cores =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores</span></a>
+<a class="sourceLine" id="cb486-35" title="35">  <span class="dt">simb_tam =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat))</a>
+<a class="sourceLine" id="cb486-36" title="36">) <span class="co"># tamanho dos símbolos</span></a></code></pre></div>
 </div>
             </section>
 

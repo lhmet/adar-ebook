@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -430,37 +431,29 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">11.4</span> Funções gráficas básicas</h2>
 <div id="diferentes-entradas-de-dados-na-plot" class="section level3">
 <h3><span class="header-section-number">11.4.1</span> Diferentes entradas de dados na <code>plot()</code></h3>
-<p>A função <code>plot()</code> é o carro chefe do sistema Básico do <img src="images/logo_r.png" width="20">. Quando especificamos apenas um vetor é plotado seus valores no eixo y em função de seu tamanho <code>1:length(x)</code> no eixo x.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1"><span class="kw">plot</span>(y1)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>A função <code>plot()</code> é o carro chefe do Sistema Básico do <img src="images/logo_r.png" width="20">. Quando especificamos apenas um vetor é plotado seus valores no eixo y em função de seu tamanho <code>1:length(x)</code> no eixo x.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1"><span class="kw">plot</span>(y1)</a></code></pre></div>
 <p>Você também pode especificar os parâmetros x e y.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">plot</span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1"><span class="kw">plot</span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1)</a></code></pre></div>
 <p>Também podemos especificar no primeiro argumento da <code>plot()</code> uma fórmula, p.ex.: <code>y ~ x</code> que pode ser interpretada como y (variável) em função de x.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">plot</span>(y1 <span class="op">~</span><span class="st"> </span>x1)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">plot</span>(y1 <span class="op">~</span><span class="st"> </span>x1)</a></code></pre></div>
 <p>Se você tem seus dados em um quadro de dados, utilize o argumento <code>data</code> e o nome das variáveis que deseja plotar na fórmula.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="kw">plot</span>(tmed <span class="op">~</span><span class="st"> </span>alt,  <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">plot</span>(tmed <span class="op">~</span><span class="st"> </span>alt,  <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
 <p>Aplicando a <code>plot()</code> a um <em>quadro de dados</em> com duas variáveis resulta um gráfico equivalente ao caso anterior.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">plot</span>(onda)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="kw">plot</span>(onda)</a></code></pre></div>
 <div id="gráficos-de-dispersão" class="section level4">
 <h4><span class="header-section-number">11.4.1.1</span> Gráficos de dispersão</h4>
 <p>Aplicando a <code>plot()</code> a um quadro de dados com mais de duas variáveis resulta um gráfico de dispersão entre todas as variáveis do <em>quadro de dados</em>.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="co">## plot de todas colunas de aq, exceto a 1a coluna</span></a>
-<a class="sourceLine" id="cb429-2" title="2"><span class="kw">plot</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
-<p><img src="images/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="co">## plot de todas colunas de aq, exceto a 1a coluna</span></a>
+<a class="sourceLine" id="cb428-2" title="2"><span class="kw">plot</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
 <p>Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.</p>
 <p>Existe uma função gráfica específica para produção deste tipo de gráfico: a função <code>pairs()</code>.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="co"># plote de pares</span></a>
-<a class="sourceLine" id="cb430-2" title="2"><span class="kw">pairs</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
-<p><img src="images/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="co"># plote de pares</span></a>
+<a class="sourceLine" id="cb429-2" title="2"><span class="kw">pairs</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
 <p>A função <code>pairs.panels()</code> do pacote <code>psych</code> fornece um gráfico de pares bastante informativo e foi expandida a partir da função <code>pairs()</code>.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">pairs.panels</span>(<span class="dt">x =</span> <span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
-<p><img src="images/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">pairs.panels</span>(<span class="dt">x =</span> <span class="kw">select</span>(aq, <span class="op">-</span>date))</a></code></pre></div>
 <p>Para fechar as janelas gráficas abertas:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="kw">graphics.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">graphics.off</span>()</a></code></pre></div>
 </div>
 </div>
 </div>

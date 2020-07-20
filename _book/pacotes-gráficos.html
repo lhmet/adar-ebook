@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -431,88 +432,81 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="graphics" class="section level3">
 <h3><span class="header-section-number">11.3.1</span> graphics</h3>
 <p>O sistema básico de gráficos do <img src="images/logo_r.png" width="20"> está implementado no pacote <strong><code>{graphics}</code></strong>. Ele é carregado quando iniciamos o R. Veja a saída da função <code>sessionInfo()</code> para verificar nas informações de sua sessão os pacotes carregados.
-Para ver exemplos de gráficos báscos digite <code>demo("graphics")</code> e <code>library(help = "graphics")</code> para listar as funções disponíveis no <strong><code>{graphics}</code></strong>.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1"><span class="co"># lista de funções do pacote graphics</span></a>
-<a class="sourceLine" id="cb416-2" title="2"><span class="kw">library</span>(<span class="dt">help =</span> <span class="st">&quot;graphics&quot;</span>)</a>
-<a class="sourceLine" id="cb416-3" title="3"><span class="co"># exemplos de gráficos</span></a>
-<a class="sourceLine" id="cb416-4" title="4"><span class="kw">demo</span>(<span class="st">&quot;graphics&quot;</span>)</a></code></pre></div>
+Para ver exemplos de gráficos básicos digite <code>demo("graphics")</code> e <code>library(help = "graphics")</code> para listar as funções disponíveis no <strong><code>{graphics}</code></strong>.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="co"># lista de funções do pacote graphics</span></a>
+<a class="sourceLine" id="cb415-2" title="2"><span class="kw">library</span>(<span class="dt">help =</span> <span class="st">&quot;graphics&quot;</span>)</a>
+<a class="sourceLine" id="cb415-3" title="3"><span class="co"># exemplos de gráficos</span></a>
+<a class="sourceLine" id="cb415-4" title="4"><span class="kw">demo</span>(<span class="st">&quot;graphics&quot;</span>)</a></code></pre></div>
 <p>Um exemplo simples de uso da função <code>graphics::plot()</code> é mostrado abaixo:</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">with</span>(</a>
-<a class="sourceLine" id="cb417-2" title="2">  sulbr_md,</a>
-<a class="sourceLine" id="cb417-3" title="3">  <span class="kw">plot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmax_med)</a>
-<a class="sourceLine" id="cb417-4" title="4">)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1"><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb416-2" title="2">  sulbr_md,</a>
+<a class="sourceLine" id="cb416-3" title="3">  <span class="kw">plot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmax_med)</a>
+<a class="sourceLine" id="cb416-4" title="4">)</a></code></pre></div>
 <p>Para ilustrar os diferentes sistemas gráficos disponíveis no <img src="images/logo_r.png" width="20">, vamos mostrar como gerar este mesmo gráfico usando o sistema <strong><code>{grid}</code></strong>, <strong><code>{lattice}</code></strong> e <strong><code>{ggplot2}</code></strong>.</p>
 </div>
 <div id="grid" class="section level3">
 <h3><span class="header-section-number">11.3.2</span> grid</h3>
 <p>O sistema <strong>{grid}</strong> também faz parte da distribuição básica do <img src="images/logo_r.png" width="20">, mas o pacote precisa ser carregado (<code>library(grid)</code>)</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="kw">library</span>(grid)</a>
-<a class="sourceLine" id="cb418-2" title="2"><span class="co">## define tamanho da região para plot (viewport)</span></a>
-<a class="sourceLine" id="cb418-3" title="3"><span class="kw">pushViewport</span>(<span class="kw">plotViewport</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb418-4" title="4"><span class="co">## define intervalos de variação das escalas x e y</span></a>
-<a class="sourceLine" id="cb418-5" title="5"><span class="kw">pushViewport</span>(</a>
-<a class="sourceLine" id="cb418-6" title="6">  <span class="kw">dataViewport</span>(</a>
-<a class="sourceLine" id="cb418-7" title="7">    <span class="dt">xData =</span> sulbr_md<span class="op">$</span>alt,</a>
-<a class="sourceLine" id="cb418-8" title="8">    <span class="dt">yData =</span> sulbr_md<span class="op">$</span>tmed</a>
-<a class="sourceLine" id="cb418-9" title="9">  )</a>
-<a class="sourceLine" id="cb418-10" title="10">)</a>
-<a class="sourceLine" id="cb418-11" title="11"><span class="co">## retângulo em torno da região do plot</span></a>
-<a class="sourceLine" id="cb418-12" title="12"><span class="kw">grid.rect</span>()</a>
-<a class="sourceLine" id="cb418-13" title="13"><span class="co">## eixos x e y</span></a>
-<a class="sourceLine" id="cb418-14" title="14"><span class="kw">grid.xaxis</span>()</a>
-<a class="sourceLine" id="cb418-15" title="15"><span class="kw">grid.yaxis</span>()</a>
-<a class="sourceLine" id="cb418-16" title="16"><span class="co">## labels dos eixos x e y</span></a>
-<a class="sourceLine" id="cb418-17" title="17"><span class="kw">grid.text</span>(<span class="st">&quot;Altitude (m)&quot;</span>, <span class="dt">y =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>))</a>
-<a class="sourceLine" id="cb418-18" title="18"><span class="kw">grid.text</span>(<span class="st">&quot;Temperatura (°C)&quot;</span>, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>), <span class="dt">rot =</span> <span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb418-19" title="19"><span class="co">## símbolos dos dados</span></a>
-<a class="sourceLine" id="cb418-20" title="20"><span class="kw">grid.points</span>(</a>
-<a class="sourceLine" id="cb418-21" title="21">  <span class="dt">x =</span> sulbr_md<span class="op">$</span>alt,</a>
-<a class="sourceLine" id="cb418-22" title="22">  <span class="dt">y =</span> sulbr_md<span class="op">$</span>tmed,</a>
-<a class="sourceLine" id="cb418-23" title="23">  <span class="dt">name =</span> <span class="st">&quot;dataSymbols&quot;</span></a>
-<a class="sourceLine" id="cb418-24" title="24">)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb417-2" title="2"><span class="co">## define tamanho da região para plot (viewport)</span></a>
+<a class="sourceLine" id="cb417-3" title="3"><span class="kw">pushViewport</span>(<span class="kw">plotViewport</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb417-4" title="4"><span class="co">## define intervalos de variação das escalas x e y</span></a>
+<a class="sourceLine" id="cb417-5" title="5"><span class="kw">pushViewport</span>(</a>
+<a class="sourceLine" id="cb417-6" title="6">  <span class="kw">dataViewport</span>(</a>
+<a class="sourceLine" id="cb417-7" title="7">    <span class="dt">xData =</span> sulbr_md<span class="op">$</span>alt,</a>
+<a class="sourceLine" id="cb417-8" title="8">    <span class="dt">yData =</span> sulbr_md<span class="op">$</span>tmed</a>
+<a class="sourceLine" id="cb417-9" title="9">  )</a>
+<a class="sourceLine" id="cb417-10" title="10">)</a>
+<a class="sourceLine" id="cb417-11" title="11"><span class="co">## retângulo em torno da região do plot</span></a>
+<a class="sourceLine" id="cb417-12" title="12"><span class="kw">grid.rect</span>()</a>
+<a class="sourceLine" id="cb417-13" title="13"><span class="co">## eixos x e y</span></a>
+<a class="sourceLine" id="cb417-14" title="14"><span class="kw">grid.xaxis</span>()</a>
+<a class="sourceLine" id="cb417-15" title="15"><span class="kw">grid.yaxis</span>()</a>
+<a class="sourceLine" id="cb417-16" title="16"><span class="co">## labels dos eixos x e y</span></a>
+<a class="sourceLine" id="cb417-17" title="17"><span class="kw">grid.text</span>(<span class="st">&quot;Altitude (m)&quot;</span>, <span class="dt">y =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>))</a>
+<a class="sourceLine" id="cb417-18" title="18"><span class="kw">grid.text</span>(<span class="st">&quot;Temperatura (°C)&quot;</span>, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>), <span class="dt">rot =</span> <span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb417-19" title="19"><span class="co">## símbolos dos dados</span></a>
+<a class="sourceLine" id="cb417-20" title="20"><span class="kw">grid.points</span>(</a>
+<a class="sourceLine" id="cb417-21" title="21">  <span class="dt">x =</span> sulbr_md<span class="op">$</span>alt,</a>
+<a class="sourceLine" id="cb417-22" title="22">  <span class="dt">y =</span> sulbr_md<span class="op">$</span>tmed,</a>
+<a class="sourceLine" id="cb417-23" title="23">  <span class="dt">name =</span> <span class="st">&quot;dataSymbols&quot;</span></a>
+<a class="sourceLine" id="cb417-24" title="24">)</a></code></pre></div>
 </div>
 <div id="lattice" class="section level3">
 <h3><span class="header-section-number">11.3.3</span> <a href="http://lattice.r-forge.r-project.org/">lattice</a></h3>
 <p>É baseado no sistema <em>grid</em> e os gráficos são armazenados como variáveis (objetos que podem ser salvos). Isto possibilita plotar, fazer alterações e atualizações no objeto.</p>
 <p>Um grande atrativo do <strong>{<code>lattice</code>}</strong> são os gráficos multipainel para análise de dados multivariados.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="co"># exemplo lattice</span></a>
-<a class="sourceLine" id="cb419-2" title="2"><span class="kw">library</span>(lattice)</a>
-<a class="sourceLine" id="cb419-3" title="3"><span class="co"># interface usando fórmula</span></a>
-<a class="sourceLine" id="cb419-4" title="4"> <span class="kw">xyplot</span>(tmed <span class="op">~</span><span class="st"> </span>alt, <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="co"># exemplo lattice</span></a>
+<a class="sourceLine" id="cb418-2" title="2"><span class="kw">library</span>(lattice)</a>
+<a class="sourceLine" id="cb418-3" title="3"><span class="co"># interface usando fórmula</span></a>
+<a class="sourceLine" id="cb418-4" title="4"> <span class="kw">xyplot</span>(tmed <span class="op">~</span><span class="st"> </span>alt, <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
 </div>
 <div id="ggplot2" class="section level3">
 <h3><span class="header-section-number">11.3.4</span> <a href="http://ggplot2.org/">ggplot2</a></h3>
 <p>Assim como lattice também foi construído baseado no sistema <em>grid</em>. É um sistema poderoso de gráficos que torna mais fácil a produção de gráficos complexos com multicamadas. Usa os aspectos bons de ambos sistemas <strong>base</strong> e <strong>lattice</strong>. O principal fator da popularidade do <strong><code>{ggplot2}</code></strong> é o seu modelo mental mais claro e ser altamente customizável, apesar de um processamento mais lento.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="co">## exemplo ggplot2</span></a>
-<a class="sourceLine" id="cb420-2" title="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb420-3" title="3"> <span class="kw">qplot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmed, <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="co">## exemplo ggplot2</span></a>
+<a class="sourceLine" id="cb419-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb419-3" title="3"> <span class="kw">qplot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmed, <span class="dt">data =</span> sulbr_md)</a></code></pre></div>
 </div>
 <div id="terminologia-funções-de-alto-e-baixo-nível" class="section level3">
 <h3><span class="header-section-number">11.3.5</span> Terminologia: funções de alto e baixo nível</h3>
 <p><strong>Funções de alto nível</strong> produzem um gráfico completo. Por exemplo:</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="co"># exemplo função gráfica de alto nível</span></a>
+<a class="sourceLine" id="cb420-2" title="2"><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><strong>Funções de baixo nível</strong> adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. Considere o gráfico da onda abaixo:</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1"><span class="co"># exemplo função gráfica de alto nível</span></a>
 <a class="sourceLine" id="cb421-2" title="2"><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="images/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Funções de baixo nível</strong> adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. Considere o gráfico da onda abaixo:</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="co"># exemplo função gráfica de alto nível</span></a>
-<a class="sourceLine" id="cb422-2" title="2"><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="images/plot-alto-nivel-1.png" width="672" style="display: block; margin: auto;" />
-As funções a seguir adicionam pontos, linhas de grade, linha horizontal dereferência em <code>y = 0</code>, título e uma borda ao gráfico básico gerado no código anterior. Todas estsa funções são de baixo nível.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1"><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb423-2" title="2"><span class="co"># exemplo funções gráficas de baixo nível</span></a>
-<a class="sourceLine" id="cb423-3" title="3"><span class="kw">points</span>(x1, y1,                    <span class="co"># adiciona pontos com cor e símbolo</span></a>
-<a class="sourceLine" id="cb423-4" title="4">       <span class="dt">col =</span> <span class="dv">2</span>,                   <span class="co"># cor do ponto</span></a>
-<a class="sourceLine" id="cb423-5" title="5">       <span class="dt">pch =</span> <span class="dv">20</span>,                  <span class="co"># tipo (círculo preenchido)</span></a>
-<a class="sourceLine" id="cb423-6" title="6">       <span class="dt">cex =</span> <span class="fl">0.8</span>)                 <span class="co"># tamanho relativo do símbolo (default =1) </span></a>
-<a class="sourceLine" id="cb423-7" title="7"><span class="kw">grid</span>()                            <span class="co"># adiciona linhas de grade</span></a>
-<a class="sourceLine" id="cb423-8" title="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>,<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)        <span class="co"># linhade referência (y = 0)</span></a>
-<a class="sourceLine" id="cb423-9" title="9"><span class="kw">title</span>(<span class="dt">main =</span> <span class="st">&quot;Grafico a partir de funçoes de baixo nível&quot;</span>)      <span class="co"># adiciona título ao gráfico</span></a>
-<a class="sourceLine" id="cb423-10" title="10"><span class="kw">box</span>(<span class="dt">lwd =</span> <span class="dv">2</span>)                      <span class="co"># adiciona retângulo em torna da região do gráfico, com linha mais larga</span></a></code></pre></div>
-<p><img src="images/funcoes-baixo-nivel-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As expressões a seguir adicionam pontos, linhas de grade, uma linha horizontal de referência em <code>y = 0</code>, título e uma borda ao gráfico básico gerado no código anterior. Todas estas funções são de baixo nível.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb422-2" title="2"><span class="co"># exemplo funções gráficas de baixo nível</span></a>
+<a class="sourceLine" id="cb422-3" title="3"><span class="kw">points</span>(x1, y1,                    <span class="co"># adiciona pontos com cor e símbolo</span></a>
+<a class="sourceLine" id="cb422-4" title="4">       <span class="dt">col =</span> <span class="dv">2</span>,                   <span class="co"># cor do ponto</span></a>
+<a class="sourceLine" id="cb422-5" title="5">       <span class="dt">pch =</span> <span class="dv">20</span>,                  <span class="co"># tipo (círculo preenchido)</span></a>
+<a class="sourceLine" id="cb422-6" title="6">       <span class="dt">cex =</span> <span class="fl">0.8</span>)                 <span class="co"># tamanho relativo do símbolo (default =1) </span></a>
+<a class="sourceLine" id="cb422-7" title="7"><span class="kw">grid</span>()                            <span class="co"># adiciona linhas de grade</span></a>
+<a class="sourceLine" id="cb422-8" title="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>,<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)        <span class="co"># linhade referência (y = 0)</span></a>
+<a class="sourceLine" id="cb422-9" title="9"><span class="kw">title</span>(<span class="dt">main =</span> <span class="st">&quot;Gráfico a partir de funções de baixo nível&quot;</span>)      <span class="co"># adiciona título ao gráfico</span></a>
+<a class="sourceLine" id="cb422-10" title="10"><span class="kw">box</span>(<span class="dt">lwd =</span> <span class="dv">2</span>)                      <span class="co"># adiciona retângulo em torna da região do gráfico, com linha mais larga</span></a></code></pre></div>
 <p>Ambos os Sistemas Básico e de Grade fornecem funções gráficas de baixo nível. O Sistema de Grade também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem). A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.</p>
 <p>Neste capítulo será dado foco a produção de gráficos usando o Sistema Básico do <img src="images/logo_r.png" width="20">.</p>
 </div>

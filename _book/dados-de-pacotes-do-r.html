@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -429,16 +430,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dados-de-pacotes-do-r" class="section level2">
 <h2><span class="header-section-number">B.3</span> Dados de pacotes do R</h2>
 <p>O <code>R</code> possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do <code>help()</code> de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função <code>data()</code>.</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1"><span class="co"># lista de dados disponíveis</span></a>
-<a class="sourceLine" id="cb502-2" title="2"><span class="kw">data</span>()</a>
-<a class="sourceLine" id="cb502-3" title="3"><span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span></a>
-<a class="sourceLine" id="cb502-4" title="4"><span class="kw">data</span>(precip)</a>
-<a class="sourceLine" id="cb502-5" title="5"><span class="co"># primeiros 30 elementos dos dados precip</span></a>
-<a class="sourceLine" id="cb502-6" title="6"><span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb502-7" title="7"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span></a>
-<a class="sourceLine" id="cb502-8" title="8"><span class="kw">data</span>(airquality)</a>
-<a class="sourceLine" id="cb502-9" title="9"><span class="co"># primeiras linhas dos dados</span></a>
-<a class="sourceLine" id="cb502-10" title="10"><span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1"><span class="co"># lista de dados disponíveis</span></a>
+<a class="sourceLine" id="cb510-2" title="2"><span class="kw">data</span>()</a>
+<a class="sourceLine" id="cb510-3" title="3"><span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span></a>
+<a class="sourceLine" id="cb510-4" title="4"><span class="kw">data</span>(precip)</a>
+<a class="sourceLine" id="cb510-5" title="5"><span class="co"># primeiros 30 elementos dos dados precip</span></a>
+<a class="sourceLine" id="cb510-6" title="6"><span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb510-7" title="7"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span></a>
+<a class="sourceLine" id="cb510-8" title="8"><span class="kw">data</span>(airquality)</a>
+<a class="sourceLine" id="cb510-9" title="9"><span class="co"># primeiras linhas dos dados</span></a>
+<a class="sourceLine" id="cb510-10" title="10"><span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 </div>
             </section>
 

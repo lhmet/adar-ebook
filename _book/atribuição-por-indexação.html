@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -429,26 +430,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="atribuição-por-indexação" class="section level2">
 <h2><span class="header-section-number">A.9</span> Atribuição por indexação</h2>
 <p>Uma matriz <code>mat</code> poderia ser criada especificando os valores de cada elemento :</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
-<a class="sourceLine" id="cb480-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb480-3" title="3">mat</a>
-<a class="sourceLine" id="cb480-4" title="4">mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb480-5" title="5">mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb480-6" title="6">mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb480-7" title="7">mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb480-8" title="8">mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb480-9" title="9">mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb480-10" title="10">mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb480-11" title="11">mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></a>
-<a class="sourceLine" id="cb480-12" title="12">mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb480-13" title="13">mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb480-14" title="14">mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></a>
-<a class="sourceLine" id="cb480-15" title="15">mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb480-16" title="16">mat</a></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
+<a class="sourceLine" id="cb488-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb488-3" title="3">mat</a>
+<a class="sourceLine" id="cb488-4" title="4">mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb488-5" title="5">mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb488-6" title="6">mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb488-7" title="7">mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb488-8" title="8">mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb488-9" title="9">mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb488-10" title="10">mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb488-11" title="11">mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb488-12" title="12">mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb488-13" title="13">mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb488-14" title="14">mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></a>
+<a class="sourceLine" id="cb488-15" title="15">mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb488-16" title="16">mat</a></code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1">vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb481-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb481-3" title="3">mat</a></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1">vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb489-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb489-3" title="3">mat</a></code></pre></div>
 </div>
             </section>
 

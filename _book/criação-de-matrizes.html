@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -432,45 +433,45 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">A.1.1</span> Função <code>matrix()</code></h3>
 <p>Uma forma mais clara de se criar uma matriz é usando a função <code>matrix()</code>.</p>
 <p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
-<a class="sourceLine" id="cb465-2" title="2"><span class="co"># atribuindo novas dimensões ao vetor</span></a>
-<a class="sourceLine" id="cb465-3" title="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span></a>
-<a class="sourceLine" id="cb465-4" title="4">m</a>
-<a class="sourceLine" id="cb465-5" title="5"><span class="co">#&gt;      [,1]</span></a>
-<a class="sourceLine" id="cb465-6" title="6"><span class="co">#&gt; [1,]    0</span></a>
-<a class="sourceLine" id="cb465-7" title="7"><span class="co">#&gt; [2,]    1</span></a>
-<a class="sourceLine" id="cb465-8" title="8"><span class="co">#&gt; [3,]   -1</span></a>
-<a class="sourceLine" id="cb465-9" title="9"><span class="co">#&gt; [4,]   -2</span></a>
-<a class="sourceLine" id="cb465-10" title="10"><span class="co">#&gt; [5,]    3</span></a>
-<a class="sourceLine" id="cb465-11" title="11"><span class="co">#&gt; [6,]    5</span></a>
-<a class="sourceLine" id="cb465-12" title="12"><span class="co">#&gt; [7,]   -5</span></a></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" title="1">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</a>
+<a class="sourceLine" id="cb473-2" title="2"><span class="co"># atribuindo novas dimensões ao vetor</span></a>
+<a class="sourceLine" id="cb473-3" title="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor) <span class="co"># matriz de uma coluna</span></a>
+<a class="sourceLine" id="cb473-4" title="4">m</a>
+<a class="sourceLine" id="cb473-5" title="5"><span class="co">#&gt;      [,1]</span></a>
+<a class="sourceLine" id="cb473-6" title="6"><span class="co">#&gt; [1,]    0</span></a>
+<a class="sourceLine" id="cb473-7" title="7"><span class="co">#&gt; [2,]    1</span></a>
+<a class="sourceLine" id="cb473-8" title="8"><span class="co">#&gt; [3,]   -1</span></a>
+<a class="sourceLine" id="cb473-9" title="9"><span class="co">#&gt; [4,]   -2</span></a>
+<a class="sourceLine" id="cb473-10" title="10"><span class="co">#&gt; [5,]    3</span></a>
+<a class="sourceLine" id="cb473-11" title="11"><span class="co">#&gt; [6,]    5</span></a>
+<a class="sourceLine" id="cb473-12" title="12"><span class="co">#&gt; [7,]   -5</span></a></code></pre></div>
 <p>Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor <code>vetor</code> podemos fazer da seguinte forma:</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
-<a class="sourceLine" id="cb466-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb466-3" title="3"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um</span></a>
-<a class="sourceLine" id="cb466-4" title="4"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
-<a class="sourceLine" id="cb466-5" title="5">mat</a>
-<a class="sourceLine" id="cb466-6" title="6"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb466-7" title="7"><span class="co">#&gt; [1,]    0   -2   -5   -1</span></a>
-<a class="sourceLine" id="cb466-8" title="8"><span class="co">#&gt; [2,]    1    3    0   -2</span></a>
-<a class="sourceLine" id="cb466-9" title="9"><span class="co">#&gt; [3,]   -1    5    1    3</span></a>
-<a class="sourceLine" id="cb466-10" title="10"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span></a>
-<a class="sourceLine" id="cb466-11" title="11">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb466-12" title="12"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um</span></a>
-<a class="sourceLine" id="cb466-13" title="13"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
-<a class="sourceLine" id="cb466-14" title="14">mat</a>
-<a class="sourceLine" id="cb466-15" title="15"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
-<a class="sourceLine" id="cb466-16" title="16"><span class="co">#&gt; [1,]    0   -2   -5</span></a>
-<a class="sourceLine" id="cb466-17" title="17"><span class="co">#&gt; [2,]    1    3    0</span></a>
-<a class="sourceLine" id="cb466-18" title="18"><span class="co">#&gt; [3,]   -1    5    1</span></a></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1"><span class="co"># criando a matriz gerada com dim</span></a>
+<a class="sourceLine" id="cb474-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb474-3" title="3"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3, ncol = 4): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb474-4" title="4"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb474-5" title="5">mat</a>
+<a class="sourceLine" id="cb474-6" title="6"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb474-7" title="7"><span class="co">#&gt; [1,]    0   -2   -5   -1</span></a>
+<a class="sourceLine" id="cb474-8" title="8"><span class="co">#&gt; [2,]    1    3    0   -2</span></a>
+<a class="sourceLine" id="cb474-9" title="9"><span class="co">#&gt; [3,]   -1    5    1    3</span></a>
+<a class="sourceLine" id="cb474-10" title="10"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span></a>
+<a class="sourceLine" id="cb474-11" title="11">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb474-12" title="12"><span class="co">#&gt; Warning in matrix(vetor, nrow = 3): comprimento dos dados [7] não é um</span></a>
+<a class="sourceLine" id="cb474-13" title="13"><span class="co">#&gt; submúltiplo ou múltiplo do número de linhas [3]</span></a>
+<a class="sourceLine" id="cb474-14" title="14">mat</a>
+<a class="sourceLine" id="cb474-15" title="15"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb474-16" title="16"><span class="co">#&gt; [1,]    0   -2   -5</span></a>
+<a class="sourceLine" id="cb474-17" title="17"><span class="co">#&gt; [2,]    1    3    0</span></a>
+<a class="sourceLine" id="cb474-18" title="18"><span class="co">#&gt; [3,]   -1    5    1</span></a></code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb467-2" title="2"><span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não</span></a>
-<a class="sourceLine" id="cb467-3" title="3"><span class="co">#&gt; é um submúltiplo ou múltiplo do número de linhas [2]</span></a>
-<a class="sourceLine" id="cb467-4" title="4">mat</a>
-<a class="sourceLine" id="cb467-5" title="5"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb467-6" title="6"><span class="co">#&gt; [1,]    0    1   -1   -2</span></a>
-<a class="sourceLine" id="cb467-7" title="7"><span class="co">#&gt; [2,]    3    5   -5    0</span></a></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb475-2" title="2"><span class="co">#&gt; Warning in matrix(vetor, ncol = 4, byrow = TRUE): comprimento dos dados [7] não</span></a>
+<a class="sourceLine" id="cb475-3" title="3"><span class="co">#&gt; é um submúltiplo ou múltiplo do número de linhas [2]</span></a>
+<a class="sourceLine" id="cb475-4" title="4">mat</a>
+<a class="sourceLine" id="cb475-5" title="5"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb475-6" title="6"><span class="co">#&gt; [1,]    0    1   -1   -2</span></a>
+<a class="sourceLine" id="cb475-7" title="7"><span class="co">#&gt; [2,]    3    5   -5    0</span></a></code></pre></div>
 </div>
 </div>
             </section>

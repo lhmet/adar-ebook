@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -429,19 +430,19 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="aparência" class="section level2">
 <h2><span class="header-section-number">C.3</span> Aparência</h2>
 <p>A aparência e formato do documento final impresso é definido por parâmetros definidos no cabeçalho, mais conhecido como <strong>YAML</strong> documento. Veja no exemplo abaixo, onde são definidos parâmetros para o formato de saída do arquivo (<code>output: html_document</code>), a inclusão de índice (<code>toc = TRUE</code>), opções para figuras (<code>fig_width: 7</code>, <code>fig_height: 6</code>, <code>fig_caption: true</code>), a opção para realce da sintaxe do código R (<code>highlight: tango</code>), o tema do <code>html</code> (<code>theme: united</code>). Para mais informações consulte <a href="http://rmarkdown.rstudio.com/markdown_document_format.html" class="uri">http://rmarkdown.rstudio.com/markdown_document_format.html</a>.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb535-1" title="1">    <span class="op">---</span></a>
-<a class="sourceLine" id="cb535-2" title="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
-<a class="sourceLine" id="cb535-3" title="3">    author: Nome Sobrenome</a>
-<a class="sourceLine" id="cb535-4" title="4">    output:</a>
-<a class="sourceLine" id="cb535-5" title="5">         html_document:</a>
-<a class="sourceLine" id="cb535-6" title="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
-<a class="sourceLine" id="cb535-7" title="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
-<a class="sourceLine" id="cb535-8" title="8">            number_sections: true</a>
-<a class="sourceLine" id="cb535-9" title="9">            toc: true</a>
-<a class="sourceLine" id="cb535-10" title="10">            fig_width: <span class="dv">7</span></a>
-<a class="sourceLine" id="cb535-11" title="11">            fig_height: <span class="dv">6</span></a>
-<a class="sourceLine" id="cb535-12" title="12">            fig_caption: true</a>
-<a class="sourceLine" id="cb535-13" title="13">    <span class="op">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb543-1" title="1">    <span class="op">---</span></a>
+<a class="sourceLine" id="cb543-2" title="2">    title: <span class="st">&quot;Meu novo projeto&quot;</span></a>
+<a class="sourceLine" id="cb543-3" title="3">    author: Nome Sobrenome</a>
+<a class="sourceLine" id="cb543-4" title="4">    output:</a>
+<a class="sourceLine" id="cb543-5" title="5">         html_document:</a>
+<a class="sourceLine" id="cb543-6" title="6">            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]</a>
+<a class="sourceLine" id="cb543-7" title="7">            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]</a>
+<a class="sourceLine" id="cb543-8" title="8">            number_sections: true</a>
+<a class="sourceLine" id="cb543-9" title="9">            toc: true</a>
+<a class="sourceLine" id="cb543-10" title="10">            fig_width: <span class="dv">7</span></a>
+<a class="sourceLine" id="cb543-11" title="11">            fig_height: <span class="dv">6</span></a>
+<a class="sourceLine" id="cb543-12" title="12">            fig_caption: true</a>
+<a class="sourceLine" id="cb543-13" title="13">    <span class="op">---</span></a></code></pre></div>
 </div>
             </section>
 

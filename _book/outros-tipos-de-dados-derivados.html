@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -489,9 +490,9 @@ summary(intensidade_no)
 <p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
 <p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">Sys.Date</span>()</a>
-<a class="sourceLine" id="cb118-2" title="2"><span class="co">#&gt; [1] &quot;2020-07-18&quot;</span></a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="co">#&gt; [1] &quot;2020-07-20&quot;</span></a>
 <a class="sourceLine" id="cb118-3" title="3"><span class="kw">Sys.time</span>()</a>
-<a class="sourceLine" id="cb118-4" title="4"><span class="co">#&gt; [1] &quot;2020-07-18 18:46:53 UTC&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb118-4" title="4"><span class="co">#&gt; [1] &quot;2020-07-20 12:20:05 -03&quot;</span></a></code></pre></div>
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
 <p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
 <p>Datas são criadas a partir da coerção de dados do tipo <code>character</code> para <code>date</code>:</p>
@@ -506,11 +507,11 @@ summary(intensidade_no)
 <p>Datas com horários são criados a partir da coerção de dados do tipo <code>character</code> para <code>POSIXct</code>:</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">amd_hms &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)</a>
 <a class="sourceLine" id="cb120-2" title="2">amd_hms</a>
-<a class="sourceLine" id="cb120-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 UTC&quot;</span></a>
+<a class="sourceLine" id="cb120-3" title="3"><span class="co">#&gt; [1] &quot;2012-06-28 17:42:00 -03&quot;</span></a>
 <a class="sourceLine" id="cb120-4" title="4"><span class="kw">class</span>(amd_hms)</a>
 <a class="sourceLine" id="cb120-5" title="5"><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></a>
 <a class="sourceLine" id="cb120-6" title="6"><span class="kw">as.numeric</span>(amd_hms)</a>
-<a class="sourceLine" id="cb120-7" title="7"><span class="co">#&gt; [1] 1340905320</span></a></code></pre></div>
+<a class="sourceLine" id="cb120-7" title="7"><span class="co">#&gt; [1] 1340916120</span></a></code></pre></div>
 <p>A manipulação de dados da classe de datas com horários (<code>POSIXct</code>) torna-se mais versátil através do pacote <code>lubridate</code>, específico para manipulação de datas, o que será visto posteriormente.</p>
 <p>O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos dados sejam especificados usando a <code>%</code> e outros códigos que são descritos no manual de ajuda da função <code>?strptime</code>. O formato padrão assumido pelo R para caracteres contendo datas com horas é <code>%Y-%m-%d %H:%M:%S</code>.</p>
 <table>

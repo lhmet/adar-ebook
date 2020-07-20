@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="parâmetros-gráficos.html"/>
-<link rel="next" href="gráfico-de-dispersão.html"/>
+<link rel="next" href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -331,13 +331,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.5" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#gráfico-com-2-eixos"><i class="fa fa-check"></i><b>11.5.5</b> Gráfico com 2 eixos</a></li>
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-de-dispersão.html"><a href="gráfico-de-dispersão.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico de dispersão</a></li>
-<li class="chapter" data-level="11.8" data-path="série-temporal.html"><a href="série-temporal.html"><i class="fa fa-check"></i><b>11.8</b> Série temporal</a></li>
-<li class="chapter" data-level="11.9" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.9</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.10" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.10</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.11" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.11</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.11.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.11.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -428,13 +429,96 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="ggplot2-1" class="section level2">
 <h2><span class="header-section-number">11.6</span> ggplot2</h2>
-<p>O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20"> da <strong>G</strong>ramática de <strong>G</strong>ráficos <span class="citation">(Wilkinson et al. <a href="referências.html#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span> (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a idéia central do ggplot2.</p>
+<p>O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20"> da <strong>G</strong>ramática de <strong>G</strong>ráficos <span class="citation">(Wilkinson et al. <a href="referências.html#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span> (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a ideia central do <strong><code>{ggplot2}</code></strong>.</p>
+<p>A documentação do ggplot2 está disponível <a href="https://ggplot2.tidyverse.org/reference/index.html">aqui</a>.</p>
+<p>Para conhecer mais extensões do <strong><code>{ggplot2}</code></strong> consulte a galeria <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>.
 <!--
  https://exts.ggplot2.tidyverse.org/ 
+ 
 https://www.curso-r.com/material/ggplot/ 
 
 http://r-statistics.co/ggplot2-Tutorial-With-R.html
--->
+
+http://blog.revolutionanalytics.com/2015/01/a-beautiful-story-about-nyc-weather.html
+
+
+# gráfico clássico 
+https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00014g
+
+https://weatherspark.com/y/30268/Average-Weather-in-S%C3%A3o-Paulo-Brazil-Year-Round
+
+https://weatherspark.com/compare/y/147567~144671/Comparison-of-the-Average-Weather-at-Salgado-Filho-International-Airport-and-Brisbane
+--></p>
+<div id="dados-2" class="section level3">
+<h3><span class="header-section-number">11.6.1</span> Dados</h3>
+<p>Como exemplo de aplicação usaremos os dados históricos do INME da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados podem ser baixados com o código abaixo.</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="co"># link dos dados</span></a>
+<a class="sourceLine" id="cb458-2" title="2">url_data &lt;-<span class="st"> &quot;https://www.dropbox.com/s/wqw42gp9vw54k87/dados-cap11-adar.RData?dl=1&quot;</span></a>
+<a class="sourceLine" id="cb458-3" title="3"><span class="co"># arquivo temporário</span></a>
+<a class="sourceLine" id="cb458-4" title="4">arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb458-5" title="5"><span class="kw">download.file</span>(</a>
+<a class="sourceLine" id="cb458-6" title="6">  <span class="dt">url =</span> url_data,</a>
+<a class="sourceLine" id="cb458-7" title="7">  <span class="dt">destfile =</span> arq_temp,</a>
+<a class="sourceLine" id="cb458-8" title="8">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
+<a class="sourceLine" id="cb458-9" title="9">)</a>
+<a class="sourceLine" id="cb458-10" title="10"><span class="co"># nome dos dados carregados para os exercícios</span></a>
+<a class="sourceLine" id="cb458-11" title="11"><span class="kw">print</span>(<span class="kw">load</span>(arq_temp))</a>
+<a class="sourceLine" id="cb458-12" title="12"><span class="kw">str</span>(dados_sm)</a></code></pre></div>
+<p>Os dados foram armazenados em uma lista com 3 elementos, cada é um tibble. Vamos extrair cada elemento em tibbles separados. Após isso podemos apagar a lista de dados <code>dados_sm</code>.</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="co"># criando quadro de dados separados</span></a>
+<a class="sourceLine" id="cb459-2" title="2">clima &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>clima <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb459-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(date<span class="op">:</span>prec)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb459-4" title="4"><span class="st">  </span><span class="kw">distinct</span>()</a>
+<a class="sourceLine" id="cb459-5" title="5">tempo &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>tempo</a>
+<a class="sourceLine" id="cb459-6" title="6">recordes_atual &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>recordes_atual</a>
+<a class="sourceLine" id="cb459-7" title="7"><span class="co">#rm(dados_sm)</span></a></code></pre></div>
+<p>O tibble <code>clima</code> contém os dados históricos de temperatura (<code>tar</code>) e precipitação diária (<code>prec</code>), onde:</p>
+<ul>
+<li><p><code>tar_max</code>, <code>tar_min</code>: extremos diários absolutos registrados para cada dia do ano (variável <code>dda</code>)</p></li>
+<li><p><code>tar_med</code>: temperatura média de cada <code>dda</code>;</p></li>
+<li><p><code>tar_valid</code>: número de observações válidas usada nas estatísticas de cada <code>dda</code>;</p></li>
+<li><p><code>tar_se</code>: erro padrão da média (<code>tar_med</code>)</p></li>
+<li><p><code>n</code>: número de anos</p></li>
+<li><p><code>tar_95</code> e <code>tar_05</code>: percentis de 95% e 5% de <code>tar</code></p></li>
+</ul>
+<p>O tibble <code>tempo</code> contém os dados observados no último ano, onde:</p>
+<ul>
+<li><p><code>date</code> é a data em formato <code>POSIXct</code></p></li>
+<li><p><code>dda</code> é o dia do ano (de 1 a 366)</p></li>
+</ul>
+<p>O tibble <code>recordes_atual</code> apresenta as datas em houve quebra de recorde dos valores extremos absolutos de <code>tar</code>.</p>
+<p>Para plotar os dados de 2020, precisaremos especificar a posição dos nomes dos meses no eixo x. Por isso vamos criar abaixo um tibble com o dia do ano correspondente ao dia 15 de cada mês.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1">datas_atual &lt;-<span class="st"> </span><span class="kw">seq</span>(</a>
+<a class="sourceLine" id="cb460-2" title="2">  <span class="dt">from =</span> <span class="kw">as.Date</span>(<span class="st">&#39;2020-01-01&#39;</span>), </a>
+<a class="sourceLine" id="cb460-3" title="3">  <span class="dt">to =</span> <span class="kw">as.Date</span>(<span class="st">&#39;2020-12-31&#39;</span>), </a>
+<a class="sourceLine" id="cb460-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;day&quot;</span></a>
+<a class="sourceLine" id="cb460-5" title="5">)</a>
+<a class="sourceLine" id="cb460-6" title="6"></a>
+<a class="sourceLine" id="cb460-7" title="7"><span class="co"># dda do meio do mês</span></a>
+<a class="sourceLine" id="cb460-8" title="8">meio_mes &lt;-<span class="st"> </span><span class="kw">yday</span>(datas_atual)[<span class="kw">day</span>(datas_atual) <span class="op">==</span><span class="st"> </span><span class="dv">15</span>]</a>
+<a class="sourceLine" id="cb460-9" title="9"></a>
+<a class="sourceLine" id="cb460-10" title="10"><span class="co"># dda do final do mês</span></a>
+<a class="sourceLine" id="cb460-11" title="11">fim_mes &lt;-<span class="st"> </span><span class="kw">tibble</span>(datas_atual, </a>
+<a class="sourceLine" id="cb460-12" title="12">       <span class="dt">mes =</span> <span class="kw">month</span>(datas_atual), </a>
+<a class="sourceLine" id="cb460-13" title="13">       <span class="dt">day =</span> <span class="kw">day</span>(datas_atual),</a>
+<a class="sourceLine" id="cb460-14" title="14">       <span class="dt">yday =</span> <span class="kw">yday</span>(datas_atual)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb460-15" title="15"><span class="st">  </span><span class="kw">group_by</span>(mes) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb460-16" title="16"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ult_dia =</span> yday[<span class="kw">which.max</span>(day)], <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb460-17" title="17"><span class="st">  </span><span class="kw">pull</span>(ult_dia)</a>
+<a class="sourceLine" id="cb460-18" title="18"></a>
+<a class="sourceLine" id="cb460-19" title="19"><span class="co"># junção em tibble</span></a>
+<a class="sourceLine" id="cb460-20" title="20">marcas_x &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb460-21" title="21">  <span class="dt">metade =</span> meio_mes,</a>
+<a class="sourceLine" id="cb460-22" title="22">  <span class="dt">final =</span> fim_mes,</a>
+<a class="sourceLine" id="cb460-23" title="23">  <span class="dt">labels =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb460-24" title="24">    <span class="st">&quot;Janeiro&quot;</span>, <span class="st">&quot;Fevereiro&quot;</span>, <span class="st">&quot;Março&quot;</span>, <span class="st">&quot;Abril&quot;</span>,</a>
+<a class="sourceLine" id="cb460-25" title="25">    <span class="st">&quot;Maio&quot;</span>, <span class="st">&quot;Junho&quot;</span>, <span class="st">&quot;Julho&quot;</span>, <span class="st">&quot;Agosto&quot;</span>, <span class="st">&quot;Setembro&quot;</span>,</a>
+<a class="sourceLine" id="cb460-26" title="26">    <span class="st">&quot;Outubro&quot;</span>, <span class="st">&quot;Novembro&quot;</span>, <span class="st">&quot;Dezembro&quot;</span></a>
+<a class="sourceLine" id="cb460-27" title="27">  )</a>
+<a class="sourceLine" id="cb460-28" title="28">)</a>
+<a class="sourceLine" id="cb460-29" title="29"></a>
+<a class="sourceLine" id="cb460-30" title="30">marcas_x</a></code></pre></div>
+</div>
 </div>
             </section>
 
@@ -442,7 +526,7 @@ http://r-statistics.co/ggplot2-Tutorial-With-R.html
         </div>
       </div>
 <a href="parâmetros-gráficos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gráfico-de-dispersão.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
