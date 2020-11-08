@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Arquivos Excel | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Arquivos Excel | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="9.6 Arquivos Excel | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2020-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,77 +50,49 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -323,8 +295,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -401,7 +373,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -435,108 +407,72 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="arquivos-excel" class="section level2">
 <h2><span class="header-section-number">9.6</span> Arquivos Excel</h2>
-<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e
-<code>.xlsx</code>) é uma prática muito popular, principalmente em empresas privadas.
-Entretanto, arquivos em formato Excel tem problemas de interação com
-<a href="https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es">sistemas de controle de versões</a>.
-Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com
-arquivo texto é uma boa opção. O formato CSV é facilmente importado no Excel
-e por isso é um formato texto amplamente utilizado. Uma solução é converter as
-planilhas Excel para <code>csv</code> usando algum programa.</p>
-<p>Mas caso isso não seja viável, você verá as opções mais eficientes para
-processar arquivos Excel no R.</p>
-<p>Importar ou exportar dados neste formato para o R era trabalhoso devido a
-dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas
-nos últimos esta tarefa deixou de ser um obstáculo.</p>
-<p>Há uma variedade de pacotes para processar dados em Excel, entre eles estão:
-<a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>,
-<a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>, <a href="https://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a>, <a href="https://cran.r-project.org/web/packages/openxlsx/index.html">openxlsx</a>,
-<a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://github.com/ropensci/writexl">writexl</a>
-e <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>.</p>
-<p>Na seção <a href="arquivos-texto.html#Rio">9.4.1</a> vimos que o pacote <strong>rio</strong> importa diversos formatos de
-arquivos, inclusive Excel (Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). A função <code>import()</code>
-utiliza a função <code>read_excel()</code>do pacote <strong>readr</strong> para importar arquivos
-Excel. A função <code>export()</code>, por outro lado, utiliza a função <code>write.xlsx()</code>
-do pacote <strong>openxlsx</strong>.</p>
-<p>Além do uso do pacote <strong>rio</strong> para exportar arquivos <code>xlsx</code>, veremos também
-o pacote <a href="https://github.com/ropensci/writexl">writexl</a> por ter uma exportação
-mais rápida que a usada no pacote <strong>rio</strong>.</p>
+<p>O armazenamento de dados em formato Excel (arquivos com extensões <code>.xls</code> e <code>.xlsx</code>) é uma prática muito popular, principalmente em empresas privadas. Entretanto, arquivos em formato Excel tem problemas de interação com <a href="https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es">sistemas de controle de versões</a>. Se a rastreabilidade das mudanças em seus dados é importante, trabalhar com arquivo texto é uma boa opção. O formato CSV é facilmente importado no Excel e por isso é um formato texto amplamente utilizado. Uma solução é converter as planilhas Excel para <code>csv</code> usando algum programa.</p>
+<p>Mas caso isso não seja viável, você verá as opções mais eficientes para processar arquivos Excel no R.</p>
+<p>Importar ou exportar dados neste formato para o R era trabalhoso devido a dependências dos pacotes em programas externos (Excel, Java, Perl, etc). Mas nos últimos esta tarefa deixou de ser um obstáculo.</p>
+<p>Há uma variedade de pacotes para processar dados em Excel, entre eles estão: <a href="https://cran.r-project.org/web/packages/gdata/index.html">gdata</a>, <a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a>, <a href="https://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a>, <a href="https://cran.r-project.org/web/packages/openxlsx/index.html">openxlsx</a>, <a href="https://readxl.tidyverse.org/">readxl</a>, <a href="https://github.com/ropensci/writexl">writexl</a> e <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>.</p>
+<p>Na seção <a href="arquivos-texto.html#Rio">9.4.1</a> vimos que o pacote <strong>rio</strong> importa diversos formatos de arquivos, inclusive Excel (Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). A função <code>import()</code> utiliza a função <code>read_excel()</code>do pacote <strong>readr</strong> para importar arquivos Excel. A função <code>export()</code>, por outro lado, utiliza a função <code>write.xlsx()</code> do pacote <strong>openxlsx</strong>.</p>
+<p>Além do uso do pacote <strong>rio</strong> para exportar arquivos <code>xlsx</code>, veremos também o pacote <a href="https://github.com/ropensci/writexl">writexl</a> por ter uma exportação mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <div id="como-usar-1" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Como usar</h3>
-<p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote
-<strong>rio</strong>.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="arquivos-excel.html#cb313-1"></a>excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></span>
-<span id="cb313-2"><a href="arquivos-excel.html#cb313-2"></a>dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</span>
-<span id="cb313-3"><a href="arquivos-excel.html#cb313-3"></a>  <span class="kw">tempdir</span>(),</span>
-<span id="cb313-4"><a href="arquivos-excel.html#cb313-4"></a>  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></span>
-<span id="cb313-5"><a href="arquivos-excel.html#cb313-5"></a>)</span>
-<span id="cb313-6"><a href="arquivos-excel.html#cb313-6"></a><span class="kw">download.file</span>(</span>
-<span id="cb313-7"><a href="arquivos-excel.html#cb313-7"></a>  <span class="dt">url =</span> excel_file_url,</span>
-<span id="cb313-8"><a href="arquivos-excel.html#cb313-8"></a>  <span class="dt">destfile =</span> dest_file_excel,</span>
-<span id="cb313-9"><a href="arquivos-excel.html#cb313-9"></a>  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></span>
-<span id="cb313-10"><a href="arquivos-excel.html#cb313-10"></a>)</span></code></pre></div>
+<p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote <strong>rio</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span>
+dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(
+  <span class="kw">tempdir</span>(),
+  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span>
+)
+<span class="kw">download.file</span>(
+  <span class="dt">url =</span> excel_file_url,
+  <span class="dt">destfile =</span> dest_file_excel,
+  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>
+)</code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="arquivos-excel.html#cb314-1"></a>inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</span>
-<span id="cb314-2"><a href="arquivos-excel.html#cb314-2"></a>  <span class="dt">file =</span> dest_file_excel,</span>
-<span id="cb314-3"><a href="arquivos-excel.html#cb314-3"></a>  <span class="dt">col_names =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb314-4"><a href="arquivos-excel.html#cb314-4"></a>  <span class="dt">skip =</span> <span class="dv">3</span></span>
-<span id="cb314-5"><a href="arquivos-excel.html#cb314-5"></a>)</span>
-<span id="cb314-6"><a href="arquivos-excel.html#cb314-6"></a><span class="kw">head</span>(inmet_estacoes)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(
+  <span class="dt">file =</span> dest_file_excel,
+  <span class="dt">col_names =</span> <span class="ot">TRUE</span>,
+  <span class="dt">skip =</span> <span class="dv">3</span>
+)
+<span class="kw">head</span>(inmet_estacoes)</code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
-<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>quadro de dados</em>
-em novo arquivo <code>.xls</code>.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="arquivos-excel.html#cb315-1"></a><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</span>
-<span id="cb315-2"><a href="arquivos-excel.html#cb315-2"></a><span class="kw">head</span>(inmet_estacoes)</span></code></pre></div>
-<p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato
-<code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). Uma alternativa, caso você
-ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no
-entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="arquivos-excel.html#cb316-1"></a><span class="kw">library</span>(WriteXLS)</span>
-<span id="cb316-2"><a href="arquivos-excel.html#cb316-2"></a>arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</span>
-<span id="cb316-3"><a href="arquivos-excel.html#cb316-3"></a><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</span>
-<span id="cb316-4"><a href="arquivos-excel.html#cb316-4"></a><span class="kw">file.exists</span>(arq_xls_temp)</span>
-<span id="cb316-5"><a href="arquivos-excel.html#cb316-5"></a><span class="co"># conferindo</span></span>
-<span id="cb316-6"><a href="arquivos-excel.html#cb316-6"></a><span class="kw">head</span>(</span>
-<span id="cb316-7"><a href="arquivos-excel.html#cb316-7"></a>  <span class="kw">import</span>(</span>
-<span id="cb316-8"><a href="arquivos-excel.html#cb316-8"></a>    <span class="dt">file =</span> arq_xls_temp,</span>
-<span id="cb316-9"><a href="arquivos-excel.html#cb316-9"></a>    <span class="dt">col_names =</span> <span class="ot">TRUE</span></span>
-<span id="cb316-10"><a href="arquivos-excel.html#cb316-10"></a>  )</span>
-<span id="cb316-11"><a href="arquivos-excel.html#cb316-11"></a>)</span></code></pre></div>
+<p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>quadro de dados</em> em novo arquivo <code>.xls</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))
+<span class="kw">head</span>(inmet_estacoes)</code></pre></div>
+<p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). Uma alternativa, caso você ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(WriteXLS)
+arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))
+<span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)
+<span class="kw">file.exists</span>(arq_xls_temp)
+<span class="co"># conferindo</span>
+<span class="kw">head</span>(
+  <span class="kw">import</span>(
+    <span class="dt">file =</span> arq_xls_temp,
+    <span class="dt">col_names =</span> <span class="ot">TRUE</span>
+  )
+)</code></pre></div>
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">9.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
-<p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel,
-então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais
-eficiente.</p>
-<p>No trecho de código abaixo vamos fazer essa comparação usando a tabela <code>inmet_estacoes</code> da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>. As funções avaliadas são a
-<code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="arquivos-excel.html#cb317-1"></a>tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</span>
-<span id="cb317-2"><a href="arquivos-excel.html#cb317-2"></a>  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</span>
-<span id="cb317-3"><a href="arquivos-excel.html#cb317-3"></a>  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</span>
-<span id="cb317-4"><a href="arquivos-excel.html#cb317-4"></a>  <span class="dt">times =</span> <span class="dv">5</span></span>
-<span id="cb317-5"><a href="arquivos-excel.html#cb317-5"></a>)</span>
-<span id="cb317-6"><a href="arquivos-excel.html#cb317-6"></a>tempos_escrita_xlsx</span></code></pre></div>
-<p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das
-expressões que foram avaliadas arbitrariamente 5 vezes.</p>
+<p>Se algum dia, você precisa entregar uma penca de arquivos em formato Excel, então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx</code> é mais eficiente.</p>
+<p>No trecho de código abaixo vamos fazer essa comparação usando a tabela <code>inmet_estacoes</code> da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>. As funções avaliadas são a <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(
+  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
+  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),
+  <span class="dt">times =</span> <span class="dv">5</span>
+)
+tempos_escrita_xlsx</code></pre></div>
+<p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <!---
 # substituição para teste +rápido de construção do livro no travis
 O resultado é que a `writexl::write_xlsx()` foi cerca de r mais_rapido vezes
 mais rápida na escrita dos dados que a `openxlsx::write.xlsx`.
 --->
-<p>O resultado é que a <code>writexl::write_xlsx()</code> é bem mais rápida
-na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
+<p>O resultado é que a <code>writexl::write_xlsx()</code> é bem mais rápida na escrita dos dados que a <code>openxlsx::write.xlsx</code>.</p>
 </div>
 <div id="estrutura-de-dados-não-tabulares" class="section level3">
 <h3><span class="header-section-number">9.6.4</span> Estrutura de dados não tabulares</h3>
-<p>Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente
-de forma que sua estrutura pode não ser tabular, com mais de uma tabela por
-planilha, comentários em células vizinhas aos valores, células aninhadas,
-células formatadas e etc. Se você precisa arrumar dados nessas condições, vale
-a pena conferir os pacotes
-<a href="https://cran.r-project.org/web/packages/tidyxl/index.html">tidyxl</a> e
-<a href="https://cran.r-project.org/web/packages/unpivotr/index.html">unpivotr</a>.</p>
+<p>Dados em arquivos Excel estão geralmente sujeitos a manipulação mais frequente de forma que sua estrutura pode não ser tabular, com mais de uma tabela por planilha, comentários em células vizinhas aos valores, células aninhadas, células formatadas e etc. Se você precisa arrumar dados nessas condições, vale a pena conferir os pacotes <a href="https://cran.r-project.org/web/packages/tidyxl/index.html">tidyxl</a> e <a href="https://cran.r-project.org/web/packages/unpivotr/index.html">unpivotr</a>.</p>
 </div>
 </div>
             </section>
@@ -600,7 +536,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

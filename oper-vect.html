@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.3 Operações com vetores | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="7.3 Operações com vetores | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2020-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,77 +50,49 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -323,8 +295,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -401,7 +373,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -437,52 +409,52 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">7.3</span> Operações com vetores</h2>
 <p>Como o <code>R</code> é uma linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esta é uma das grandes vantagens do <img src="images/logo_r.png" width="20">.</p>
 <p>Operações aritméticas podem ser aplicadas diretamente entre vetores.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="oper-vect.html#cb133-1"></a><span class="co"># desvios da prec em relação a média climatológica</span></span>
-<span id="cb133-2"><a href="oper-vect.html#cb133-2"></a>prec <span class="op">-</span><span class="st"> </span>prec_clim</span>
-<span id="cb133-3"><a href="oper-vect.html#cb133-3"></a><span class="co">#&gt;  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez </span></span>
-<span id="cb133-4"><a href="oper-vect.html#cb133-4"></a><span class="co">#&gt;   70   -5   50  -88  -60  -30  -28  -38  -10  -45 -190   60</span></span>
-<span id="cb133-5"><a href="oper-vect.html#cb133-5"></a><span class="co"># anomalia em % relativa</span></span>
-<span id="cb133-6"><a href="oper-vect.html#cb133-6"></a>prec<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb133-7"><a href="oper-vect.html#cb133-7"></a><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></span>
-<span id="cb133-8"><a href="oper-vect.html#cb133-8"></a><span class="co">#&gt; 130.43478  97.56098 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 </span></span>
-<span id="cb133-9"><a href="oper-vect.html#cb133-9"></a><span class="co">#&gt;       set       out       nov       dez </span></span>
-<span id="cb133-10"><a href="oper-vect.html#cb133-10"></a><span class="co">#&gt;  90.90909  72.72727   5.00000 127.27273</span></span>
-<span id="cb133-11"><a href="oper-vect.html#cb133-11"></a><span class="co"># transformação boxcox da prec com alpha = 0.335</span></span>
-<span id="cb133-12"><a href="oper-vect.html#cb133-12"></a>((prec<span class="op">^</span><span class="fl">0.335</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="fl">0.335</span>)</span>
-<span id="cb133-13"><a href="oper-vect.html#cb133-13"></a><span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span></span>
-<span id="cb133-14"><a href="oper-vect.html#cb133-14"></a><span class="co">#&gt; 17.188869 14.626583 14.916806  3.877403 -2.985075 -2.985075  3.877403  5.422424 </span></span>
-<span id="cb133-15"><a href="oper-vect.html#cb133-15"></a><span class="co">#&gt;       set       out       nov       dez </span></span>
-<span id="cb133-16"><a href="oper-vect.html#cb133-16"></a><span class="co">#&gt; 10.977168 11.856532  3.470802 16.727944</span></span>
-<span id="cb133-17"><a href="oper-vect.html#cb133-17"></a><span class="co"># cte^intervalo</span></span>
-<span id="cb133-18"><a href="oper-vect.html#cb133-18"></a><span class="kw">mean</span>(prec)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)</span>
-<span id="cb133-19"><a href="oper-vect.html#cb133-19"></a><span class="co">#&gt; [1] 10.271319  4.725171  3.204890  2.538929</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># desvios da prec em relação a média climatológica</span>
+prec <span class="op">-</span><span class="st"> </span>prec_clim
+<span class="co">#&gt;  jan  fev  mar  abr  mai  jun  jul  ago  set  out  nov  dez </span>
+<span class="co">#&gt;   70   -5   50  -88  -60  -30  -28  -38  -10  -45 -190   60</span>
+<span class="co"># anomalia em % relativa</span>
+prec<span class="op">/</span>prec_clim <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span>
+<span class="co">#&gt; 130.43478  97.56098 131.25000  12.00000   0.00000   0.00000  30.00000  36.66667 </span>
+<span class="co">#&gt;       set       out       nov       dez </span>
+<span class="co">#&gt;  90.90909  72.72727   5.00000 127.27273</span>
+<span class="co"># transformação boxcox da prec com alpha = 0.335</span>
+((prec<span class="op">^</span><span class="fl">0.335</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="fl">0.335</span>)
+<span class="co">#&gt;       jan       fev       mar       abr       mai       jun       jul       ago </span>
+<span class="co">#&gt; 17.188869 14.626583 14.916806  3.877403 -2.985075 -2.985075  3.877403  5.422424 </span>
+<span class="co">#&gt;       set       out       nov       dez </span>
+<span class="co">#&gt; 10.977168 11.856532  3.470802 16.727944</span>
+<span class="co"># cte^intervalo</span>
+<span class="kw">mean</span>(prec)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)
+<span class="co">#&gt; [1] 10.271319  4.725171  3.204890  2.538929</span></code></pre></div>
 <p>Uma peculiaridade do <img src="images/logo_r.png" width="20"> é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="oper-vect.html#cb134-1"></a><span class="co"># velocidades em m s-1</span></span>
-<span id="cb134-2"><a href="oper-vect.html#cb134-2"></a>(vel_ms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">0.3</span>, <span class="fl">1.4</span>, <span class="fl">2.0</span>))</span>
-<span id="cb134-3"><a href="oper-vect.html#cb134-3"></a><span class="co">#&gt; [1] 1.5 0.3 1.4 2.0</span></span>
-<span id="cb134-4"><a href="oper-vect.html#cb134-4"></a><span class="co"># fator de conversão para km h-1</span></span>
-<span id="cb134-5"><a href="oper-vect.html#cb134-5"></a>fator_conv &lt;-<span class="st"> </span><span class="fl">3.6</span></span>
-<span id="cb134-6"><a href="oper-vect.html#cb134-6"></a>vel_ms <span class="op">*</span><span class="st"> </span>fator_conv</span>
-<span id="cb134-7"><a href="oper-vect.html#cb134-7"></a><span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></span>
-<span id="cb134-8"><a href="oper-vect.html#cb134-8"></a><span class="co"># equivalência</span></span>
-<span id="cb134-9"><a href="oper-vect.html#cb134-9"></a>fator_conv &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>)</span>
-<span id="cb134-10"><a href="oper-vect.html#cb134-10"></a>vel_ms <span class="op">*</span><span class="st"> </span>fator_conv</span>
-<span id="cb134-11"><a href="oper-vect.html#cb134-11"></a><span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># velocidades em m s-1</span>
+(vel_ms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">0.3</span>, <span class="fl">1.4</span>, <span class="fl">2.0</span>))
+<span class="co">#&gt; [1] 1.5 0.3 1.4 2.0</span>
+<span class="co"># fator de conversão para km h-1</span>
+fator_conv &lt;-<span class="st"> </span><span class="fl">3.6</span>
+vel_ms <span class="op">*</span><span class="st"> </span>fator_conv
+<span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span>
+<span class="co"># equivalência</span>
+fator_conv &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>)
+vel_ms <span class="op">*</span><span class="st"> </span>fator_conv
+<span class="co">#&gt; [1] 5.40 1.08 5.04 7.20</span></code></pre></div>
 <p>A constante <code>fator_conv = 3.6</code> nesse caso é reciclada 4 vezes (tamanho do vetor <code>vel_ms</code>) e então multiplicada por cada elemento de <code>vetor_dbl</code>. Por isso os resultados no código acima são idênticos. Essa funcionalidade de fazer um vetor do mesmo tamanho de outro é conhecida como <strong>reciclagem</strong>. Se o vetor mais longo não tem tamanho múltiplo do mais curto, o <img src="images/logo_r.png" width="20"> realiza a operação com uma mensagem de aviso.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="oper-vect.html#cb135-1"></a><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span></span>
-<span id="cb135-2"><a href="oper-vect.html#cb135-2"></a><span class="co">#&gt;  [1]  1  4  3  8  5 12  7 16  9 20</span></span>
-<span id="cb135-3"><a href="oper-vect.html#cb135-3"></a><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
-<span id="cb135-4"><a href="oper-vect.html#cb135-4"></a><span class="co">#&gt; Warning in 1:10 * 1:3: comprimento do objeto maior não é múltiplo do comprimento</span></span>
-<span id="cb135-5"><a href="oper-vect.html#cb135-5"></a><span class="co">#&gt; do objeto menor</span></span>
-<span id="cb135-6"><a href="oper-vect.html#cb135-6"></a><span class="co">#&gt;  [1]  1  4  9  4 10 18  7 16 27 10</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>
+<span class="co">#&gt;  [1]  1  4  3  8  5 12  7 16  9 20</span>
+<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+<span class="co">#&gt; Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object</span>
+<span class="co">#&gt; length</span>
+<span class="co">#&gt;  [1]  1  4  9  4 10 18  7 16 27 10</span></code></pre></div>
 <p>A reciclagem é um recurso útil, mas também perigoso. Seu código pode ficar mais elegante ou gerar resultados inesperados.</p>
 <p>Operações aritméticas podem ser feitas com vetores lógicos, como nos exemplos abaixo:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="oper-vect.html#cb136-1"></a><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span></span>
-<span id="cb136-2"><a href="oper-vect.html#cb136-2"></a><span class="co">#&gt; [1] -1</span></span>
-<span id="cb136-3"><a href="oper-vect.html#cb136-3"></a>prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb136-4"><a href="oper-vect.html#cb136-4"></a><span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span></span>
-<span id="cb136-5"><a href="oper-vect.html#cb136-5"></a>(prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></span>
-<span id="cb136-6"><a href="oper-vect.html#cb136-6"></a><span class="co">#&gt;  [1]  1  2  3  4  0  0  0  0  9 10 11 12</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">FALSE</span> <span class="op">-</span><span class="st"> </span><span class="ot">TRUE</span>
+<span class="co">#&gt; [1] -1</span>
+prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</span>
+(prec_clim <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>) <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+<span class="co">#&gt;  [1]  1  2  3  4  0  0  0  0  9 10 11 12</span></code></pre></div>
 <div id="comparações" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Comparações</h3>
 <p>Vetores lógicos resultam da comparação de números ou caracteres. A Tabela <a href="oper-vect.html#tab:oper-logic">7.1</a> apresenta os principais operadores lógicos para comparações.</p>
@@ -545,21 +517,21 @@ code span.wa { color: #bf0303; } /* Warning */
 <ul>
 <li>quais meses de <code>prec</code> foram abaixo do normal?</li>
 </ul>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="oper-vect.html#cb137-1"></a>prec</span>
-<span id="cb137-2"><a href="oper-vect.html#cb137-2"></a><span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span></span>
-<span id="cb137-3"><a href="oper-vect.html#cb137-3"></a><span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span></span>
-<span id="cb137-4"><a href="oper-vect.html#cb137-4"></a>prec_clim</span>
-<span id="cb137-5"><a href="oper-vect.html#cb137-5"></a><span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span></span>
-<span id="cb137-6"><a href="oper-vect.html#cb137-6"></a>prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span></span>
-<span id="cb137-7"><a href="oper-vect.html#cb137-7"></a><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></span>
-<span id="cb137-8"><a href="oper-vect.html#cb137-8"></a><span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec
+<span class="co">#&gt; jan fev mar abr mai jun jul ago set out nov dez </span>
+<span class="co">#&gt; 300 200 210  12   0   0  12  22 100 120  10 280</span>
+prec_clim
+<span class="co">#&gt;  [1] 230 205 160 100  60  30  40  60 110 165 200 220</span>
+prec <span class="op">-</span><span class="st"> </span>prec_clim <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt; FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></code></pre></div>
 <p>O operador <code>%in%</code> serve para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="oper-vect.html#cb138-1"></a><span class="co"># operador está contido em</span></span>
-<span id="cb138-2"><a href="oper-vect.html#cb138-2"></a><span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec</span>
-<span id="cb138-3"><a href="oper-vect.html#cb138-3"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
-<span id="cb138-4"><a href="oper-vect.html#cb138-4"></a><span class="co"># 2:4 são elementos de x?</span></span>
-<span id="cb138-5"><a href="oper-vect.html#cb138-5"></a><span class="kw">is.element</span>(<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>), prec)</span>
-<span id="cb138-6"><a href="oper-vect.html#cb138-6"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># operador está contido em</span>
+<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>) <span class="op">%in%</span><span class="st"> </span>prec
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span>
+<span class="co"># 2:4 são elementos de x?</span>
+<span class="kw">is.element</span>(<span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">100</span>), prec)
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></code></pre></div>
 <p>Nos exemplos acima, vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto, frequentemente precisamos testar mais condições, ou seja, combinar comparações. Por exemplo, para condições do tipo:</p>
 <ul>
 <li><span class="math inline">\(0 &lt; prec \leq 100\)</span></li>
@@ -567,29 +539,29 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul>
 <p>precisamos usar os operadores relacionais:</p>
 <ul>
-<li><p><code>&amp;</code> e <code>&amp;&amp;</code> ("e")</p></li>
-<li><p><code>|</code> e <code>||</code> ("ou")</p></li>
+<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e&quot;)</p></li>
+<li><p><code>|</code> e <code>||</code> (&quot;ou&quot;)</p></li>
 </ul>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="oper-vect.html#cb139-1"></a><span class="co"># prec entre 0 e 100 mm</span></span>
-<span id="cb139-2"><a href="oper-vect.html#cb139-2"></a>prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>prec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb139-3"><a href="oper-vect.html#cb139-3"></a><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></span>
-<span id="cb139-4"><a href="oper-vect.html#cb139-4"></a><span class="co">#&gt; FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></span>
-<span id="cb139-5"><a href="oper-vect.html#cb139-5"></a><span class="co"># prec abaixo de 50 e acima de 150 mm</span></span>
-<span id="cb139-6"><a href="oper-vect.html#cb139-6"></a>prec <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">|</span><span class="st"> </span>prec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">150</span></span>
-<span id="cb139-7"><a href="oper-vect.html#cb139-7"></a><span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span></span>
-<span id="cb139-8"><a href="oper-vect.html#cb139-8"></a><span class="co">#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec entre 0 e 100 mm</span>
+prec <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>prec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt; FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span>
+<span class="co"># prec abaixo de 50 e acima de 150 mm</span>
+prec <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">|</span><span class="st"> </span>prec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">150</span>
+<span class="co">#&gt;   jan   fev   mar   abr   mai   jun   jul   ago   set   out   nov   dez </span>
+<span class="co">#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE</span></code></pre></div>
 <p>A ordem das operações pode ser controlada por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
 <p>A forma dupla (<code>&amp;&amp;</code> ou <code>||</code>) compara somente um elemento de cada lado, enquanto a forma normal (<code>&amp;</code> e <code>|</code>), compara cada elemento dos vetores em cada lado.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="oper-vect.html#cb140-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb140-2"><a href="oper-vect.html#cb140-2"></a>b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb140-3"><a href="oper-vect.html#cb140-3"></a><span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span></span>
-<span id="cb140-4"><a href="oper-vect.html#cb140-4"></a>a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb140-5"><a href="oper-vect.html#cb140-5"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span></span>
-<span id="cb140-6"><a href="oper-vect.html#cb140-6"></a><span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b</span></span>
-<span id="cb140-7"><a href="oper-vect.html#cb140-7"></a><span class="co"># retornando somente um resultado</span></span>
-<span id="cb140-8"><a href="oper-vect.html#cb140-8"></a>a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb140-9"><a href="oper-vect.html#cb140-9"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
-<table style="width:85%;">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+<span class="co"># forma normal verifica cada elemento de a e cada elemento de b</span>
+a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; [1] FALSE  TRUE FALSE  TRUE</span>
+<span class="co"># forma dupla verifica somente o primeiro elemento de a e o primeiro elemento de b</span>
+<span class="co"># retornando somente um resultado</span>
+a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<table style="width:83%;">
 <caption>Demonstração da diferença entre &amp; e &amp;&amp;.</caption>
 <colgroup>
 <col width="5%" />
@@ -597,7 +569,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <col width="11%" />
 <col width="11%" />
 <col width="25%" />
-<col width="26%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -648,32 +620,32 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="testes-de-igualdade" class="section level4">
 <h4><span class="header-section-number">7.3.1.1</span> Testes de igualdade</h4>
 <p>A comparação de igualdade no <img src="images/logo_r.png" width="20"> pode ser meio confusa devido as forma de armazenamento diferentes dos números.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="oper-vect.html#cb141-1"></a><span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span></span>
-<span id="cb141-2"><a href="oper-vect.html#cb141-2"></a><span class="co">#&gt; [1] 0.3</span></span>
-<span id="cb141-3"><a href="oper-vect.html#cb141-3"></a><span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span></span>
-<span id="cb141-4"><a href="oper-vect.html#cb141-4"></a><span class="co">#&gt; [1] 0.3</span></span>
-<span id="cb141-5"><a href="oper-vect.html#cb141-5"></a><span class="fl">0.3</span> <span class="op">==</span><span class="st"> </span><span class="fl">0.3</span></span>
-<span id="cb141-6"><a href="oper-vect.html#cb141-6"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>
+<span class="co">#&gt; [1] 0.3</span>
+<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>
+<span class="co">#&gt; [1] 0.3</span>
+<span class="fl">0.3</span> <span class="op">==</span><span class="st"> </span><span class="fl">0.3</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>Tudo normal, mas ao comparar operações com valores decimais, você pode se surpreender:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="oper-vect.html#cb142-1"></a>(<span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>) <span class="op">==</span><span class="st"> </span>(<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>)</span>
-<span id="cb142-2"><a href="oper-vect.html#cb142-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>) <span class="op">==</span><span class="st"> </span>(<span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>)
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
 <p>Isso ocorre por imprecisão no final da parte decimal que pode ser arrendondada incorretamente. Isso não acarreta problema na maioria dos cálculos. Para evitar esse problema é melhor comparar os resultados usando a função <code>all.equal()</code>.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="oper-vect.html#cb143-1"></a><span class="kw">all.equal</span>(</span>
-<span id="cb143-2"><a href="oper-vect.html#cb143-2"></a>  <span class="dt">target =</span> <span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>,</span>
-<span id="cb143-3"><a href="oper-vect.html#cb143-3"></a>  <span class="dt">current =</span> <span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span></span>
-<span id="cb143-4"><a href="oper-vect.html#cb143-4"></a>)</span>
-<span id="cb143-5"><a href="oper-vect.html#cb143-5"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(
+  <span class="dt">target =</span> <span class="fl">0.6</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.3</span>,
+  <span class="dt">current =</span> <span class="fl">0.9</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>
+)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>A <code>all.equal()</code> inclui uma tolerância na comparação (<span class="math inline">\(1,5\times10^{-8}\)</span>) fazendo com aquela imprecisão seja ignorada. Para mais detalhes consulte <code>?all.equal</code>.</p>
 </div>
 </div>
 <div id="funções-any-e-all" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Funções <code>any</code> e <code>all</code></h3>
 <p>Estas funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="oper-vect.html#cb144-1"></a>vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">-5</span>)</span>
-<span id="cb144-2"><a href="oper-vect.html#cb144-2"></a><span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># todas as posições são maiores que 0 ?</span></span>
-<span id="cb144-3"><a href="oper-vect.html#cb144-3"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb144-4"><a href="oper-vect.html#cb144-4"></a><span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># alguma posição é maior que 0?</span></span>
-<span id="cb144-5"><a href="oper-vect.html#cb144-5"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>)
+<span class="kw">all</span>(vetor <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># todas as posições são maiores que 0 ?</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">any</span>(vetor <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="co"># alguma posição é maior que 0?</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <ul>
 <li><p><code>all()</code> verifica se a condição avaliada é válida para todos elementos de um vetor;</p></li>
 <li><p><code>any()</code> verifica se a condição avaliada é válida para pelo menos um dos elementos de um vetor;</p></li>
@@ -741,7 +713,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

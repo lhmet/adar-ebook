@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.11 Arranjo | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.11 Arranjo | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="A.11 Arranjo | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2020-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,77 +50,49 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -323,8 +295,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -401,7 +373,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -440,265 +412,265 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="criação-2" class="section level3">
 <h3><span class="header-section-number">A.11.1</span> Criação</h3>
 <p>Suponha que os campos espaciais médios mensais de temperatura sejam dados pelo vetor <code>temp_vetor</code> abaixo.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="arranjo.html#cb504-1"></a>temp_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb504-2"><a href="arranjo.html#cb504-2"></a>  <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">27</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">17</span>,</span>
-<span id="cb504-3"><a href="arranjo.html#cb504-3"></a>  <span class="dv">9</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">29</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">26</span>,</span>
-<span id="cb504-4"><a href="arranjo.html#cb504-4"></a>  <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span></span>
-<span id="cb504-5"><a href="arranjo.html#cb504-5"></a>)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">27</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">17</span>,
+  <span class="dv">9</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">29</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">26</span>,
+  <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span>
+)</code></pre></div>
 <p>O vetor <code>temp_vetor</code> pode ser convertido em um arranjo dos campos espaciais usando a função <code>array()</code>, com o argumento <code>dim</code> especificando as dimensões.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="arranjo.html#cb505-1"></a>temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span>
-<span id="cb505-2"><a href="arranjo.html#cb505-2"></a>temp_array</span>
-<span id="cb505-3"><a href="arranjo.html#cb505-3"></a><span class="co">#&gt; , , 1</span></span>
-<span id="cb505-4"><a href="arranjo.html#cb505-4"></a><span class="co">#&gt; </span></span>
-<span id="cb505-5"><a href="arranjo.html#cb505-5"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb505-6"><a href="arranjo.html#cb505-6"></a><span class="co">#&gt; [1,]   18   23   24   20</span></span>
-<span id="cb505-7"><a href="arranjo.html#cb505-7"></a><span class="co">#&gt; [2,]   24   19   18   25</span></span>
-<span id="cb505-8"><a href="arranjo.html#cb505-8"></a><span class="co">#&gt; [3,]   19   27   13   19</span></span>
-<span id="cb505-9"><a href="arranjo.html#cb505-9"></a><span class="co">#&gt; </span></span>
-<span id="cb505-10"><a href="arranjo.html#cb505-10"></a><span class="co">#&gt; , , 2</span></span>
-<span id="cb505-11"><a href="arranjo.html#cb505-11"></a><span class="co">#&gt; </span></span>
-<span id="cb505-12"><a href="arranjo.html#cb505-12"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb505-13"><a href="arranjo.html#cb505-13"></a><span class="co">#&gt; [1,]   18    9   13   18</span></span>
-<span id="cb505-14"><a href="arranjo.html#cb505-14"></a><span class="co">#&gt; [2,]   22   17   19   19</span></span>
-<span id="cb505-15"><a href="arranjo.html#cb505-15"></a><span class="co">#&gt; [3,]   17   22   29   18</span></span>
-<span id="cb505-16"><a href="arranjo.html#cb505-16"></a><span class="co">#&gt; </span></span>
-<span id="cb505-17"><a href="arranjo.html#cb505-17"></a><span class="co">#&gt; , , 3</span></span>
-<span id="cb505-18"><a href="arranjo.html#cb505-18"></a><span class="co">#&gt; </span></span>
-<span id="cb505-19"><a href="arranjo.html#cb505-19"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb505-20"><a href="arranjo.html#cb505-20"></a><span class="co">#&gt; [1,]   11   17   26   20</span></span>
-<span id="cb505-21"><a href="arranjo.html#cb505-21"></a><span class="co">#&gt; [2,]   18   13   21   14</span></span>
-<span id="cb505-22"><a href="arranjo.html#cb505-22"></a><span class="co">#&gt; [3,]   19   17   22   17</span></span>
-<span id="cb505-23"><a href="arranjo.html#cb505-23"></a><span class="kw">dim</span>(temp_array)</span>
-<span id="cb505-24"><a href="arranjo.html#cb505-24"></a><span class="co">#&gt; [1] 3 4 3</span></span>
-<span id="cb505-25"><a href="arranjo.html#cb505-25"></a><span class="kw">class</span>(temp_array)</span>
-<span id="cb505-26"><a href="arranjo.html#cb505-26"></a><span class="co">#&gt; [1] &quot;array&quot;</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> temp_vetor, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>))
+temp_array
+<span class="co">#&gt; , , 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]   18   23   24   20</span>
+<span class="co">#&gt; [2,]   24   19   18   25</span>
+<span class="co">#&gt; [3,]   19   27   13   19</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]   18    9   13   18</span>
+<span class="co">#&gt; [2,]   22   17   19   19</span>
+<span class="co">#&gt; [3,]   17   22   29   18</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]   11   17   26   20</span>
+<span class="co">#&gt; [2,]   18   13   21   14</span>
+<span class="co">#&gt; [3,]   19   17   22   17</span>
+<span class="kw">dim</span>(temp_array)
+<span class="co">#&gt; [1] 3 4 3</span>
+<span class="kw">class</span>(temp_array)
+<span class="co">#&gt; [1] &quot;array&quot;</span></code></pre></div>
 <p>O arranjo também pode ter atributos, como o nomes das linhas, colunas e camadas.</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="arranjo.html#cb506-1"></a><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">45</span><span class="op">:</span><span class="dv">42</span>)</span>
-<span id="cb506-2"><a href="arranjo.html#cb506-2"></a><span class="kw">rownames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">19</span><span class="op">:</span><span class="dv">21</span>)</span>
-<span id="cb506-3"><a href="arranjo.html#cb506-3"></a><span class="co"># nomes das dimensões</span></span>
-<span id="cb506-4"><a href="arranjo.html#cb506-4"></a><span class="kw">dimnames</span>(temp_array)</span>
-<span id="cb506-5"><a href="arranjo.html#cb506-5"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb506-6"><a href="arranjo.html#cb506-6"></a><span class="co">#&gt; [1] &quot;-19&quot; &quot;-20&quot; &quot;-21&quot;</span></span>
-<span id="cb506-7"><a href="arranjo.html#cb506-7"></a><span class="co">#&gt; </span></span>
-<span id="cb506-8"><a href="arranjo.html#cb506-8"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb506-9"><a href="arranjo.html#cb506-9"></a><span class="co">#&gt; [1] &quot;-45&quot; &quot;-44&quot; &quot;-43&quot; &quot;-42&quot;</span></span>
-<span id="cb506-10"><a href="arranjo.html#cb506-10"></a><span class="co">#&gt; </span></span>
-<span id="cb506-11"><a href="arranjo.html#cb506-11"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb506-12"><a href="arranjo.html#cb506-12"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb506-13"><a href="arranjo.html#cb506-13"></a><span class="co"># nomes para camadas</span></span>
-<span id="cb506-14"><a href="arranjo.html#cb506-14"></a><span class="kw">dimnames</span>(temp_array)[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>)</span>
-<span id="cb506-15"><a href="arranjo.html#cb506-15"></a>temp_array</span>
-<span id="cb506-16"><a href="arranjo.html#cb506-16"></a><span class="co">#&gt; , , Jan</span></span>
-<span id="cb506-17"><a href="arranjo.html#cb506-17"></a><span class="co">#&gt; </span></span>
-<span id="cb506-18"><a href="arranjo.html#cb506-18"></a><span class="co">#&gt;     -45 -44 -43 -42</span></span>
-<span id="cb506-19"><a href="arranjo.html#cb506-19"></a><span class="co">#&gt; -19  18  23  24  20</span></span>
-<span id="cb506-20"><a href="arranjo.html#cb506-20"></a><span class="co">#&gt; -20  24  19  18  25</span></span>
-<span id="cb506-21"><a href="arranjo.html#cb506-21"></a><span class="co">#&gt; -21  19  27  13  19</span></span>
-<span id="cb506-22"><a href="arranjo.html#cb506-22"></a><span class="co">#&gt; </span></span>
-<span id="cb506-23"><a href="arranjo.html#cb506-23"></a><span class="co">#&gt; , , Fev</span></span>
-<span id="cb506-24"><a href="arranjo.html#cb506-24"></a><span class="co">#&gt; </span></span>
-<span id="cb506-25"><a href="arranjo.html#cb506-25"></a><span class="co">#&gt;     -45 -44 -43 -42</span></span>
-<span id="cb506-26"><a href="arranjo.html#cb506-26"></a><span class="co">#&gt; -19  18   9  13  18</span></span>
-<span id="cb506-27"><a href="arranjo.html#cb506-27"></a><span class="co">#&gt; -20  22  17  19  19</span></span>
-<span id="cb506-28"><a href="arranjo.html#cb506-28"></a><span class="co">#&gt; -21  17  22  29  18</span></span>
-<span id="cb506-29"><a href="arranjo.html#cb506-29"></a><span class="co">#&gt; </span></span>
-<span id="cb506-30"><a href="arranjo.html#cb506-30"></a><span class="co">#&gt; , , Mar</span></span>
-<span id="cb506-31"><a href="arranjo.html#cb506-31"></a><span class="co">#&gt; </span></span>
-<span id="cb506-32"><a href="arranjo.html#cb506-32"></a><span class="co">#&gt;     -45 -44 -43 -42</span></span>
-<span id="cb506-33"><a href="arranjo.html#cb506-33"></a><span class="co">#&gt; -19  11  17  26  20</span></span>
-<span id="cb506-34"><a href="arranjo.html#cb506-34"></a><span class="co">#&gt; -20  18  13  21  14</span></span>
-<span id="cb506-35"><a href="arranjo.html#cb506-35"></a><span class="co">#&gt; -21  19  17  22  17</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">45</span><span class="op">:</span><span class="dv">42</span>)
+<span class="kw">rownames</span>(temp_array) &lt;-<span class="st"> </span><span class="op">-</span>(<span class="dv">19</span><span class="op">:</span><span class="dv">21</span>)
+<span class="co"># nomes das dimensões</span>
+<span class="kw">dimnames</span>(temp_array)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;-19&quot; &quot;-20&quot; &quot;-21&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;-45&quot; &quot;-44&quot; &quot;-43&quot; &quot;-42&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; NULL</span>
+<span class="co"># nomes para camadas</span>
+<span class="kw">dimnames</span>(temp_array)[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
+temp_array
+<span class="co">#&gt; , , Jan</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19  18  23  24  20</span>
+<span class="co">#&gt; -20  24  19  18  25</span>
+<span class="co">#&gt; -21  19  27  13  19</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , Fev</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19  18   9  13  18</span>
+<span class="co">#&gt; -20  22  17  19  19</span>
+<span class="co">#&gt; -21  17  22  29  18</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , Mar</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -45 -44 -43 -42</span>
+<span class="co">#&gt; -19  11  17  26  20</span>
+<span class="co">#&gt; -20  18  13  21  14</span>
+<span class="co">#&gt; -21  19  17  22  17</span></code></pre></div>
 </div>
 <div id="indexação-1" class="section level3">
 <h3><span class="header-section-number">A.11.2</span> Indexação</h3>
 <p>Os mesmo procedimentos de indexação usados para matriz são aplicados a um arranjo (A), mas com a seguinte convenção de índices <code>A[linha, coluna, camada]</code>.</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="arranjo.html#cb507-1"></a><span class="co"># serie temporal do 1º ponto</span></span>
-<span id="cb507-2"><a href="arranjo.html#cb507-2"></a>temp_array[<span class="dv">1</span>, <span class="dv">1</span>, ]</span>
-<span id="cb507-3"><a href="arranjo.html#cb507-3"></a><span class="co">#&gt; Jan Fev Mar </span></span>
-<span id="cb507-4"><a href="arranjo.html#cb507-4"></a><span class="co">#&gt;  18  18  11</span></span>
-<span id="cb507-5"><a href="arranjo.html#cb507-5"></a>temp_array[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]</span>
-<span id="cb507-6"><a href="arranjo.html#cb507-6"></a><span class="co">#&gt; Jan Fev Mar </span></span>
-<span id="cb507-7"><a href="arranjo.html#cb507-7"></a><span class="co">#&gt;  18  18  11</span></span>
-<span id="cb507-8"><a href="arranjo.html#cb507-8"></a><span class="co"># para 1a faixa de latitude (-19),</span></span>
-<span id="cb507-9"><a href="arranjo.html#cb507-9"></a><span class="co"># os valores de temp das longitudes em todos tempos</span></span>
-<span id="cb507-10"><a href="arranjo.html#cb507-10"></a>temp_array[<span class="dv">1</span>, , ]</span>
-<span id="cb507-11"><a href="arranjo.html#cb507-11"></a><span class="co">#&gt;     Jan Fev Mar</span></span>
-<span id="cb507-12"><a href="arranjo.html#cb507-12"></a><span class="co">#&gt; -45  18  18  11</span></span>
-<span id="cb507-13"><a href="arranjo.html#cb507-13"></a><span class="co">#&gt; -44  23   9  17</span></span>
-<span id="cb507-14"><a href="arranjo.html#cb507-14"></a><span class="co">#&gt; -43  24  13  26</span></span>
-<span id="cb507-15"><a href="arranjo.html#cb507-15"></a><span class="co">#&gt; -42  20  18  20</span></span>
-<span id="cb507-16"><a href="arranjo.html#cb507-16"></a><span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos</span></span>
-<span id="cb507-17"><a href="arranjo.html#cb507-17"></a>temp_array[, <span class="dv">2</span>, ]</span>
-<span id="cb507-18"><a href="arranjo.html#cb507-18"></a><span class="co">#&gt;     Jan Fev Mar</span></span>
-<span id="cb507-19"><a href="arranjo.html#cb507-19"></a><span class="co">#&gt; -19  23   9  17</span></span>
-<span id="cb507-20"><a href="arranjo.html#cb507-20"></a><span class="co">#&gt; -20  19  17  13</span></span>
-<span id="cb507-21"><a href="arranjo.html#cb507-21"></a><span class="co">#&gt; -21  27  22  17</span></span>
-<span id="cb507-22"><a href="arranjo.html#cb507-22"></a><span class="co"># média meridional</span></span>
-<span id="cb507-23"><a href="arranjo.html#cb507-23"></a><span class="kw">colMeans</span>(temp_array[, <span class="dv">2</span>, ])</span>
-<span id="cb507-24"><a href="arranjo.html#cb507-24"></a><span class="co">#&gt;      Jan      Fev      Mar </span></span>
-<span id="cb507-25"><a href="arranjo.html#cb507-25"></a><span class="co">#&gt; 23.00000 16.00000 15.66667</span></span>
-<span id="cb507-26"><a href="arranjo.html#cb507-26"></a><span class="co"># subdominio &quot;espacial&quot;</span></span>
-<span id="cb507-27"><a href="arranjo.html#cb507-27"></a>temp_array[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]</span>
-<span id="cb507-28"><a href="arranjo.html#cb507-28"></a><span class="co">#&gt; , , Jan</span></span>
-<span id="cb507-29"><a href="arranjo.html#cb507-29"></a><span class="co">#&gt; </span></span>
-<span id="cb507-30"><a href="arranjo.html#cb507-30"></a><span class="co">#&gt;     -44 -43</span></span>
-<span id="cb507-31"><a href="arranjo.html#cb507-31"></a><span class="co">#&gt; -20  19  18</span></span>
-<span id="cb507-32"><a href="arranjo.html#cb507-32"></a><span class="co">#&gt; -21  27  13</span></span>
-<span id="cb507-33"><a href="arranjo.html#cb507-33"></a><span class="co">#&gt; </span></span>
-<span id="cb507-34"><a href="arranjo.html#cb507-34"></a><span class="co">#&gt; , , Fev</span></span>
-<span id="cb507-35"><a href="arranjo.html#cb507-35"></a><span class="co">#&gt; </span></span>
-<span id="cb507-36"><a href="arranjo.html#cb507-36"></a><span class="co">#&gt;     -44 -43</span></span>
-<span id="cb507-37"><a href="arranjo.html#cb507-37"></a><span class="co">#&gt; -20  17  19</span></span>
-<span id="cb507-38"><a href="arranjo.html#cb507-38"></a><span class="co">#&gt; -21  22  29</span></span>
-<span id="cb507-39"><a href="arranjo.html#cb507-39"></a><span class="co">#&gt; </span></span>
-<span id="cb507-40"><a href="arranjo.html#cb507-40"></a><span class="co">#&gt; , , Mar</span></span>
-<span id="cb507-41"><a href="arranjo.html#cb507-41"></a><span class="co">#&gt; </span></span>
-<span id="cb507-42"><a href="arranjo.html#cb507-42"></a><span class="co">#&gt;     -44 -43</span></span>
-<span id="cb507-43"><a href="arranjo.html#cb507-43"></a><span class="co">#&gt; -20  13  21</span></span>
-<span id="cb507-44"><a href="arranjo.html#cb507-44"></a><span class="co">#&gt; -21  17  22</span></span>
-<span id="cb507-45"><a href="arranjo.html#cb507-45"></a><span class="co"># média espacial do 1o mês</span></span>
-<span id="cb507-46"><a href="arranjo.html#cb507-46"></a><span class="kw">mean</span>(temp_array[, , <span class="dv">1</span>])</span>
-<span id="cb507-47"><a href="arranjo.html#cb507-47"></a><span class="co">#&gt; [1] 20.75</span></span>
-<span id="cb507-48"><a href="arranjo.html#cb507-48"></a><span class="co"># média espacial do segundo mês</span></span>
-<span id="cb507-49"><a href="arranjo.html#cb507-49"></a><span class="kw">mean</span>(temp_array[, , <span class="st">&quot;Jan&quot;</span>])</span>
-<span id="cb507-50"><a href="arranjo.html#cb507-50"></a><span class="co">#&gt; [1] 20.75</span></span>
-<span id="cb507-51"><a href="arranjo.html#cb507-51"></a><span class="co"># demanchando o arranjo (conversão para vetor)</span></span>
-<span id="cb507-52"><a href="arranjo.html#cb507-52"></a><span class="kw">c</span>(temp_array)</span>
-<span id="cb507-53"><a href="arranjo.html#cb507-53"></a><span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19 18 22 17  9 17 22 13 19 29 18 19 18 11</span></span>
-<span id="cb507-54"><a href="arranjo.html#cb507-54"></a><span class="co">#&gt; [26] 18 19 17 13 17 26 21 22 20 14 17</span></span>
-<span id="cb507-55"><a href="arranjo.html#cb507-55"></a><span class="kw">c</span>(temp_array[, , <span class="dv">1</span>])</span>
-<span id="cb507-56"><a href="arranjo.html#cb507-56"></a><span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19</span></span>
-<span id="cb507-57"><a href="arranjo.html#cb507-57"></a><span class="co"># para entender a forma como a matriz é convertida para vetor</span></span>
-<span id="cb507-58"><a href="arranjo.html#cb507-58"></a>mat_temp &lt;-<span class="st"> </span><span class="kw">cbind</span>(</span>
-<span id="cb507-59"><a href="arranjo.html#cb507-59"></a>  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">20</span>),</span>
-<span id="cb507-60"><a href="arranjo.html#cb507-60"></a>  <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">6</span>),</span>
-<span id="cb507-61"><a href="arranjo.html#cb507-61"></a>  <span class="dt">valores =</span> <span class="kw">c</span>(temp_array),</span>
-<span id="cb507-62"><a href="arranjo.html#cb507-62"></a>  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(temp_array))[<span class="dv">3</span>])</span>
-<span id="cb507-63"><a href="arranjo.html#cb507-63"></a>)</span>
-<span id="cb507-64"><a href="arranjo.html#cb507-64"></a><span class="co">#&gt; Warning in cbind(mes = rep(1:3, each = 20), elemat = rep(1:20, times = 6), :</span></span>
-<span id="cb507-65"><a href="arranjo.html#cb507-65"></a><span class="co">#&gt; number of rows of result is not a multiple of vector length (arg 3)</span></span>
-<span id="cb507-66"><a href="arranjo.html#cb507-66"></a>mat_temp</span>
-<span id="cb507-67"><a href="arranjo.html#cb507-67"></a><span class="co">#&gt;        mes elemat valores elearr</span></span>
-<span id="cb507-68"><a href="arranjo.html#cb507-68"></a><span class="co">#&gt;   [1,]   1      1      18      1</span></span>
-<span id="cb507-69"><a href="arranjo.html#cb507-69"></a><span class="co">#&gt;   [2,]   1      2      24      2</span></span>
-<span id="cb507-70"><a href="arranjo.html#cb507-70"></a><span class="co">#&gt;   [3,]   1      3      19      3</span></span>
-<span id="cb507-71"><a href="arranjo.html#cb507-71"></a><span class="co">#&gt;   [4,]   1      4      23      4</span></span>
-<span id="cb507-72"><a href="arranjo.html#cb507-72"></a><span class="co">#&gt;   [5,]   1      5      19      5</span></span>
-<span id="cb507-73"><a href="arranjo.html#cb507-73"></a><span class="co">#&gt;   [6,]   1      6      27      6</span></span>
-<span id="cb507-74"><a href="arranjo.html#cb507-74"></a><span class="co">#&gt;   [7,]   1      7      24      7</span></span>
-<span id="cb507-75"><a href="arranjo.html#cb507-75"></a><span class="co">#&gt;   [8,]   1      8      18      8</span></span>
-<span id="cb507-76"><a href="arranjo.html#cb507-76"></a><span class="co">#&gt;   [9,]   1      9      13      9</span></span>
-<span id="cb507-77"><a href="arranjo.html#cb507-77"></a><span class="co">#&gt;  [10,]   1     10      20     10</span></span>
-<span id="cb507-78"><a href="arranjo.html#cb507-78"></a><span class="co">#&gt;  [11,]   1     11      25     11</span></span>
-<span id="cb507-79"><a href="arranjo.html#cb507-79"></a><span class="co">#&gt;  [12,]   1     12      19     12</span></span>
-<span id="cb507-80"><a href="arranjo.html#cb507-80"></a><span class="co">#&gt;  [13,]   1     13      18     13</span></span>
-<span id="cb507-81"><a href="arranjo.html#cb507-81"></a><span class="co">#&gt;  [14,]   1     14      22     14</span></span>
-<span id="cb507-82"><a href="arranjo.html#cb507-82"></a><span class="co">#&gt;  [15,]   1     15      17     15</span></span>
-<span id="cb507-83"><a href="arranjo.html#cb507-83"></a><span class="co">#&gt;  [16,]   1     16       9     16</span></span>
-<span id="cb507-84"><a href="arranjo.html#cb507-84"></a><span class="co">#&gt;  [17,]   1     17      17     17</span></span>
-<span id="cb507-85"><a href="arranjo.html#cb507-85"></a><span class="co">#&gt;  [18,]   1     18      22     18</span></span>
-<span id="cb507-86"><a href="arranjo.html#cb507-86"></a><span class="co">#&gt;  [19,]   1     19      13     19</span></span>
-<span id="cb507-87"><a href="arranjo.html#cb507-87"></a><span class="co">#&gt;  [20,]   1     20      19     20</span></span>
-<span id="cb507-88"><a href="arranjo.html#cb507-88"></a><span class="co">#&gt;  [21,]   2      1      29     21</span></span>
-<span id="cb507-89"><a href="arranjo.html#cb507-89"></a><span class="co">#&gt;  [22,]   2      2      18     22</span></span>
-<span id="cb507-90"><a href="arranjo.html#cb507-90"></a><span class="co">#&gt;  [23,]   2      3      19     23</span></span>
-<span id="cb507-91"><a href="arranjo.html#cb507-91"></a><span class="co">#&gt;  [24,]   2      4      18     24</span></span>
-<span id="cb507-92"><a href="arranjo.html#cb507-92"></a><span class="co">#&gt;  [25,]   2      5      11     25</span></span>
-<span id="cb507-93"><a href="arranjo.html#cb507-93"></a><span class="co">#&gt;  [26,]   2      6      18     26</span></span>
-<span id="cb507-94"><a href="arranjo.html#cb507-94"></a><span class="co">#&gt;  [27,]   2      7      19     27</span></span>
-<span id="cb507-95"><a href="arranjo.html#cb507-95"></a><span class="co">#&gt;  [28,]   2      8      17     28</span></span>
-<span id="cb507-96"><a href="arranjo.html#cb507-96"></a><span class="co">#&gt;  [29,]   2      9      13     29</span></span>
-<span id="cb507-97"><a href="arranjo.html#cb507-97"></a><span class="co">#&gt;  [30,]   2     10      17     30</span></span>
-<span id="cb507-98"><a href="arranjo.html#cb507-98"></a><span class="co">#&gt;  [31,]   2     11      26     31</span></span>
-<span id="cb507-99"><a href="arranjo.html#cb507-99"></a><span class="co">#&gt;  [32,]   2     12      21     32</span></span>
-<span id="cb507-100"><a href="arranjo.html#cb507-100"></a><span class="co">#&gt;  [33,]   2     13      22     33</span></span>
-<span id="cb507-101"><a href="arranjo.html#cb507-101"></a><span class="co">#&gt;  [34,]   2     14      20     34</span></span>
-<span id="cb507-102"><a href="arranjo.html#cb507-102"></a><span class="co">#&gt;  [35,]   2     15      14     35</span></span>
-<span id="cb507-103"><a href="arranjo.html#cb507-103"></a><span class="co">#&gt;  [36,]   2     16      17     36</span></span>
-<span id="cb507-104"><a href="arranjo.html#cb507-104"></a><span class="co">#&gt;  [37,]   2     17      18      1</span></span>
-<span id="cb507-105"><a href="arranjo.html#cb507-105"></a><span class="co">#&gt;  [38,]   2     18      24      2</span></span>
-<span id="cb507-106"><a href="arranjo.html#cb507-106"></a><span class="co">#&gt;  [39,]   2     19      19      3</span></span>
-<span id="cb507-107"><a href="arranjo.html#cb507-107"></a><span class="co">#&gt;  [40,]   2     20      23      4</span></span>
-<span id="cb507-108"><a href="arranjo.html#cb507-108"></a><span class="co">#&gt;  [41,]   3      1      19      5</span></span>
-<span id="cb507-109"><a href="arranjo.html#cb507-109"></a><span class="co">#&gt;  [42,]   3      2      27      6</span></span>
-<span id="cb507-110"><a href="arranjo.html#cb507-110"></a><span class="co">#&gt;  [43,]   3      3      24      7</span></span>
-<span id="cb507-111"><a href="arranjo.html#cb507-111"></a><span class="co">#&gt;  [44,]   3      4      18      8</span></span>
-<span id="cb507-112"><a href="arranjo.html#cb507-112"></a><span class="co">#&gt;  [45,]   3      5      13      9</span></span>
-<span id="cb507-113"><a href="arranjo.html#cb507-113"></a><span class="co">#&gt;  [46,]   3      6      20     10</span></span>
-<span id="cb507-114"><a href="arranjo.html#cb507-114"></a><span class="co">#&gt;  [47,]   3      7      25     11</span></span>
-<span id="cb507-115"><a href="arranjo.html#cb507-115"></a><span class="co">#&gt;  [48,]   3      8      19     12</span></span>
-<span id="cb507-116"><a href="arranjo.html#cb507-116"></a><span class="co">#&gt;  [49,]   3      9      18     13</span></span>
-<span id="cb507-117"><a href="arranjo.html#cb507-117"></a><span class="co">#&gt;  [50,]   3     10      22     14</span></span>
-<span id="cb507-118"><a href="arranjo.html#cb507-118"></a><span class="co">#&gt;  [51,]   3     11      17     15</span></span>
-<span id="cb507-119"><a href="arranjo.html#cb507-119"></a><span class="co">#&gt;  [52,]   3     12       9     16</span></span>
-<span id="cb507-120"><a href="arranjo.html#cb507-120"></a><span class="co">#&gt;  [53,]   3     13      17     17</span></span>
-<span id="cb507-121"><a href="arranjo.html#cb507-121"></a><span class="co">#&gt;  [54,]   3     14      22     18</span></span>
-<span id="cb507-122"><a href="arranjo.html#cb507-122"></a><span class="co">#&gt;  [55,]   3     15      13     19</span></span>
-<span id="cb507-123"><a href="arranjo.html#cb507-123"></a><span class="co">#&gt;  [56,]   3     16      19     20</span></span>
-<span id="cb507-124"><a href="arranjo.html#cb507-124"></a><span class="co">#&gt;  [57,]   3     17      29     21</span></span>
-<span id="cb507-125"><a href="arranjo.html#cb507-125"></a><span class="co">#&gt;  [58,]   3     18      18     22</span></span>
-<span id="cb507-126"><a href="arranjo.html#cb507-126"></a><span class="co">#&gt;  [59,]   3     19      19     23</span></span>
-<span id="cb507-127"><a href="arranjo.html#cb507-127"></a><span class="co">#&gt;  [60,]   3     20      18     24</span></span>
-<span id="cb507-128"><a href="arranjo.html#cb507-128"></a><span class="co">#&gt;  [61,]   1      1      11     25</span></span>
-<span id="cb507-129"><a href="arranjo.html#cb507-129"></a><span class="co">#&gt;  [62,]   1      2      18     26</span></span>
-<span id="cb507-130"><a href="arranjo.html#cb507-130"></a><span class="co">#&gt;  [63,]   1      3      19     27</span></span>
-<span id="cb507-131"><a href="arranjo.html#cb507-131"></a><span class="co">#&gt;  [64,]   1      4      17     28</span></span>
-<span id="cb507-132"><a href="arranjo.html#cb507-132"></a><span class="co">#&gt;  [65,]   1      5      13     29</span></span>
-<span id="cb507-133"><a href="arranjo.html#cb507-133"></a><span class="co">#&gt;  [66,]   1      6      17     30</span></span>
-<span id="cb507-134"><a href="arranjo.html#cb507-134"></a><span class="co">#&gt;  [67,]   1      7      26     31</span></span>
-<span id="cb507-135"><a href="arranjo.html#cb507-135"></a><span class="co">#&gt;  [68,]   1      8      21     32</span></span>
-<span id="cb507-136"><a href="arranjo.html#cb507-136"></a><span class="co">#&gt;  [69,]   1      9      22     33</span></span>
-<span id="cb507-137"><a href="arranjo.html#cb507-137"></a><span class="co">#&gt;  [70,]   1     10      20     34</span></span>
-<span id="cb507-138"><a href="arranjo.html#cb507-138"></a><span class="co">#&gt;  [71,]   1     11      14     35</span></span>
-<span id="cb507-139"><a href="arranjo.html#cb507-139"></a><span class="co">#&gt;  [72,]   1     12      17     36</span></span>
-<span id="cb507-140"><a href="arranjo.html#cb507-140"></a><span class="co">#&gt;  [73,]   1     13      18      1</span></span>
-<span id="cb507-141"><a href="arranjo.html#cb507-141"></a><span class="co">#&gt;  [74,]   1     14      24      2</span></span>
-<span id="cb507-142"><a href="arranjo.html#cb507-142"></a><span class="co">#&gt;  [75,]   1     15      19      3</span></span>
-<span id="cb507-143"><a href="arranjo.html#cb507-143"></a><span class="co">#&gt;  [76,]   1     16      23      4</span></span>
-<span id="cb507-144"><a href="arranjo.html#cb507-144"></a><span class="co">#&gt;  [77,]   1     17      19      5</span></span>
-<span id="cb507-145"><a href="arranjo.html#cb507-145"></a><span class="co">#&gt;  [78,]   1     18      27      6</span></span>
-<span id="cb507-146"><a href="arranjo.html#cb507-146"></a><span class="co">#&gt;  [79,]   1     19      24      7</span></span>
-<span id="cb507-147"><a href="arranjo.html#cb507-147"></a><span class="co">#&gt;  [80,]   1     20      18      8</span></span>
-<span id="cb507-148"><a href="arranjo.html#cb507-148"></a><span class="co">#&gt;  [81,]   2      1      13      9</span></span>
-<span id="cb507-149"><a href="arranjo.html#cb507-149"></a><span class="co">#&gt;  [82,]   2      2      20     10</span></span>
-<span id="cb507-150"><a href="arranjo.html#cb507-150"></a><span class="co">#&gt;  [83,]   2      3      25     11</span></span>
-<span id="cb507-151"><a href="arranjo.html#cb507-151"></a><span class="co">#&gt;  [84,]   2      4      19     12</span></span>
-<span id="cb507-152"><a href="arranjo.html#cb507-152"></a><span class="co">#&gt;  [85,]   2      5      18     13</span></span>
-<span id="cb507-153"><a href="arranjo.html#cb507-153"></a><span class="co">#&gt;  [86,]   2      6      22     14</span></span>
-<span id="cb507-154"><a href="arranjo.html#cb507-154"></a><span class="co">#&gt;  [87,]   2      7      17     15</span></span>
-<span id="cb507-155"><a href="arranjo.html#cb507-155"></a><span class="co">#&gt;  [88,]   2      8       9     16</span></span>
-<span id="cb507-156"><a href="arranjo.html#cb507-156"></a><span class="co">#&gt;  [89,]   2      9      17     17</span></span>
-<span id="cb507-157"><a href="arranjo.html#cb507-157"></a><span class="co">#&gt;  [90,]   2     10      22     18</span></span>
-<span id="cb507-158"><a href="arranjo.html#cb507-158"></a><span class="co">#&gt;  [91,]   2     11      13     19</span></span>
-<span id="cb507-159"><a href="arranjo.html#cb507-159"></a><span class="co">#&gt;  [92,]   2     12      19     20</span></span>
-<span id="cb507-160"><a href="arranjo.html#cb507-160"></a><span class="co">#&gt;  [93,]   2     13      29     21</span></span>
-<span id="cb507-161"><a href="arranjo.html#cb507-161"></a><span class="co">#&gt;  [94,]   2     14      18     22</span></span>
-<span id="cb507-162"><a href="arranjo.html#cb507-162"></a><span class="co">#&gt;  [95,]   2     15      19     23</span></span>
-<span id="cb507-163"><a href="arranjo.html#cb507-163"></a><span class="co">#&gt;  [96,]   2     16      18     24</span></span>
-<span id="cb507-164"><a href="arranjo.html#cb507-164"></a><span class="co">#&gt;  [97,]   2     17      11     25</span></span>
-<span id="cb507-165"><a href="arranjo.html#cb507-165"></a><span class="co">#&gt;  [98,]   2     18      18     26</span></span>
-<span id="cb507-166"><a href="arranjo.html#cb507-166"></a><span class="co">#&gt;  [99,]   2     19      19     27</span></span>
-<span id="cb507-167"><a href="arranjo.html#cb507-167"></a><span class="co">#&gt; [100,]   2     20      17     28</span></span>
-<span id="cb507-168"><a href="arranjo.html#cb507-168"></a><span class="co">#&gt; [101,]   3      1      13     29</span></span>
-<span id="cb507-169"><a href="arranjo.html#cb507-169"></a><span class="co">#&gt; [102,]   3      2      17     30</span></span>
-<span id="cb507-170"><a href="arranjo.html#cb507-170"></a><span class="co">#&gt; [103,]   3      3      26     31</span></span>
-<span id="cb507-171"><a href="arranjo.html#cb507-171"></a><span class="co">#&gt; [104,]   3      4      21     32</span></span>
-<span id="cb507-172"><a href="arranjo.html#cb507-172"></a><span class="co">#&gt; [105,]   3      5      22     33</span></span>
-<span id="cb507-173"><a href="arranjo.html#cb507-173"></a><span class="co">#&gt; [106,]   3      6      20     34</span></span>
-<span id="cb507-174"><a href="arranjo.html#cb507-174"></a><span class="co">#&gt; [107,]   3      7      14     35</span></span>
-<span id="cb507-175"><a href="arranjo.html#cb507-175"></a><span class="co">#&gt; [108,]   3      8      17     36</span></span>
-<span id="cb507-176"><a href="arranjo.html#cb507-176"></a><span class="co">#&gt; [109,]   3      9      18      1</span></span>
-<span id="cb507-177"><a href="arranjo.html#cb507-177"></a><span class="co">#&gt; [110,]   3     10      24      2</span></span>
-<span id="cb507-178"><a href="arranjo.html#cb507-178"></a><span class="co">#&gt; [111,]   3     11      19      3</span></span>
-<span id="cb507-179"><a href="arranjo.html#cb507-179"></a><span class="co">#&gt; [112,]   3     12      23      4</span></span>
-<span id="cb507-180"><a href="arranjo.html#cb507-180"></a><span class="co">#&gt; [113,]   3     13      19      5</span></span>
-<span id="cb507-181"><a href="arranjo.html#cb507-181"></a><span class="co">#&gt; [114,]   3     14      27      6</span></span>
-<span id="cb507-182"><a href="arranjo.html#cb507-182"></a><span class="co">#&gt; [115,]   3     15      24      7</span></span>
-<span id="cb507-183"><a href="arranjo.html#cb507-183"></a><span class="co">#&gt; [116,]   3     16      18      8</span></span>
-<span id="cb507-184"><a href="arranjo.html#cb507-184"></a><span class="co">#&gt; [117,]   3     17      13      9</span></span>
-<span id="cb507-185"><a href="arranjo.html#cb507-185"></a><span class="co">#&gt; [118,]   3     18      20     10</span></span>
-<span id="cb507-186"><a href="arranjo.html#cb507-186"></a><span class="co">#&gt; [119,]   3     19      25     11</span></span>
-<span id="cb507-187"><a href="arranjo.html#cb507-187"></a><span class="co">#&gt; [120,]   3     20      19     12</span></span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># serie temporal do 1º ponto</span>
+temp_array[<span class="dv">1</span>, <span class="dv">1</span>, ]
+<span class="co">#&gt; Jan Fev Mar </span>
+<span class="co">#&gt;  18  18  11</span>
+temp_array[<span class="st">&quot;-19&quot;</span>, <span class="st">&quot;-45&quot;</span>, ]
+<span class="co">#&gt; Jan Fev Mar </span>
+<span class="co">#&gt;  18  18  11</span>
+<span class="co"># para 1a faixa de latitude (-19),</span>
+<span class="co"># os valores de temp das longitudes em todos tempos</span>
+temp_array[<span class="dv">1</span>, , ]
+<span class="co">#&gt;     Jan Fev Mar</span>
+<span class="co">#&gt; -45  18  18  11</span>
+<span class="co">#&gt; -44  23   9  17</span>
+<span class="co">#&gt; -43  24  13  26</span>
+<span class="co">#&gt; -42  20  18  20</span>
+<span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos</span>
+temp_array[, <span class="dv">2</span>, ]
+<span class="co">#&gt;     Jan Fev Mar</span>
+<span class="co">#&gt; -19  23   9  17</span>
+<span class="co">#&gt; -20  19  17  13</span>
+<span class="co">#&gt; -21  27  22  17</span>
+<span class="co"># média meridional</span>
+<span class="kw">colMeans</span>(temp_array[, <span class="dv">2</span>, ])
+<span class="co">#&gt;      Jan      Fev      Mar </span>
+<span class="co">#&gt; 23.00000 16.00000 15.66667</span>
+<span class="co"># subdominio &quot;espacial&quot;</span>
+temp_array[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ]
+<span class="co">#&gt; , , Jan</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20  19  18</span>
+<span class="co">#&gt; -21  27  13</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , Fev</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20  17  19</span>
+<span class="co">#&gt; -21  22  29</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; , , Mar</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     -44 -43</span>
+<span class="co">#&gt; -20  13  21</span>
+<span class="co">#&gt; -21  17  22</span>
+<span class="co"># média espacial do 1o mês</span>
+<span class="kw">mean</span>(temp_array[, , <span class="dv">1</span>])
+<span class="co">#&gt; [1] 20.75</span>
+<span class="co"># média espacial do segundo mês</span>
+<span class="kw">mean</span>(temp_array[, , <span class="st">&quot;Jan&quot;</span>])
+<span class="co">#&gt; [1] 20.75</span>
+<span class="co"># demanchando o arranjo (conversão para vetor)</span>
+<span class="kw">c</span>(temp_array)
+<span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19 18 22 17  9 17 22 13 19 29 18 19 18 11</span>
+<span class="co">#&gt; [26] 18 19 17 13 17 26 21 22 20 14 17</span>
+<span class="kw">c</span>(temp_array[, , <span class="dv">1</span>])
+<span class="co">#&gt;  [1] 18 24 19 23 19 27 24 18 13 20 25 19</span>
+<span class="co"># para entender a forma como a matriz é convertida para vetor</span>
+mat_temp &lt;-<span class="st"> </span><span class="kw">cbind</span>(
+  <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">20</span>),
+  <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">6</span>),
+  <span class="dt">valores =</span> <span class="kw">c</span>(temp_array),
+  <span class="dt">elearr =</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">cumprod</span>(<span class="kw">dim</span>(temp_array))[<span class="dv">3</span>])
+)
+<span class="co">#&gt; Warning in cbind(mes = rep(1:3, each = 20), elemat = rep(1:20, times = 6), :</span>
+<span class="co">#&gt; number of rows of result is not a multiple of vector length (arg 3)</span>
+mat_temp
+<span class="co">#&gt;        mes elemat valores elearr</span>
+<span class="co">#&gt;   [1,]   1      1      18      1</span>
+<span class="co">#&gt;   [2,]   1      2      24      2</span>
+<span class="co">#&gt;   [3,]   1      3      19      3</span>
+<span class="co">#&gt;   [4,]   1      4      23      4</span>
+<span class="co">#&gt;   [5,]   1      5      19      5</span>
+<span class="co">#&gt;   [6,]   1      6      27      6</span>
+<span class="co">#&gt;   [7,]   1      7      24      7</span>
+<span class="co">#&gt;   [8,]   1      8      18      8</span>
+<span class="co">#&gt;   [9,]   1      9      13      9</span>
+<span class="co">#&gt;  [10,]   1     10      20     10</span>
+<span class="co">#&gt;  [11,]   1     11      25     11</span>
+<span class="co">#&gt;  [12,]   1     12      19     12</span>
+<span class="co">#&gt;  [13,]   1     13      18     13</span>
+<span class="co">#&gt;  [14,]   1     14      22     14</span>
+<span class="co">#&gt;  [15,]   1     15      17     15</span>
+<span class="co">#&gt;  [16,]   1     16       9     16</span>
+<span class="co">#&gt;  [17,]   1     17      17     17</span>
+<span class="co">#&gt;  [18,]   1     18      22     18</span>
+<span class="co">#&gt;  [19,]   1     19      13     19</span>
+<span class="co">#&gt;  [20,]   1     20      19     20</span>
+<span class="co">#&gt;  [21,]   2      1      29     21</span>
+<span class="co">#&gt;  [22,]   2      2      18     22</span>
+<span class="co">#&gt;  [23,]   2      3      19     23</span>
+<span class="co">#&gt;  [24,]   2      4      18     24</span>
+<span class="co">#&gt;  [25,]   2      5      11     25</span>
+<span class="co">#&gt;  [26,]   2      6      18     26</span>
+<span class="co">#&gt;  [27,]   2      7      19     27</span>
+<span class="co">#&gt;  [28,]   2      8      17     28</span>
+<span class="co">#&gt;  [29,]   2      9      13     29</span>
+<span class="co">#&gt;  [30,]   2     10      17     30</span>
+<span class="co">#&gt;  [31,]   2     11      26     31</span>
+<span class="co">#&gt;  [32,]   2     12      21     32</span>
+<span class="co">#&gt;  [33,]   2     13      22     33</span>
+<span class="co">#&gt;  [34,]   2     14      20     34</span>
+<span class="co">#&gt;  [35,]   2     15      14     35</span>
+<span class="co">#&gt;  [36,]   2     16      17     36</span>
+<span class="co">#&gt;  [37,]   2     17      18      1</span>
+<span class="co">#&gt;  [38,]   2     18      24      2</span>
+<span class="co">#&gt;  [39,]   2     19      19      3</span>
+<span class="co">#&gt;  [40,]   2     20      23      4</span>
+<span class="co">#&gt;  [41,]   3      1      19      5</span>
+<span class="co">#&gt;  [42,]   3      2      27      6</span>
+<span class="co">#&gt;  [43,]   3      3      24      7</span>
+<span class="co">#&gt;  [44,]   3      4      18      8</span>
+<span class="co">#&gt;  [45,]   3      5      13      9</span>
+<span class="co">#&gt;  [46,]   3      6      20     10</span>
+<span class="co">#&gt;  [47,]   3      7      25     11</span>
+<span class="co">#&gt;  [48,]   3      8      19     12</span>
+<span class="co">#&gt;  [49,]   3      9      18     13</span>
+<span class="co">#&gt;  [50,]   3     10      22     14</span>
+<span class="co">#&gt;  [51,]   3     11      17     15</span>
+<span class="co">#&gt;  [52,]   3     12       9     16</span>
+<span class="co">#&gt;  [53,]   3     13      17     17</span>
+<span class="co">#&gt;  [54,]   3     14      22     18</span>
+<span class="co">#&gt;  [55,]   3     15      13     19</span>
+<span class="co">#&gt;  [56,]   3     16      19     20</span>
+<span class="co">#&gt;  [57,]   3     17      29     21</span>
+<span class="co">#&gt;  [58,]   3     18      18     22</span>
+<span class="co">#&gt;  [59,]   3     19      19     23</span>
+<span class="co">#&gt;  [60,]   3     20      18     24</span>
+<span class="co">#&gt;  [61,]   1      1      11     25</span>
+<span class="co">#&gt;  [62,]   1      2      18     26</span>
+<span class="co">#&gt;  [63,]   1      3      19     27</span>
+<span class="co">#&gt;  [64,]   1      4      17     28</span>
+<span class="co">#&gt;  [65,]   1      5      13     29</span>
+<span class="co">#&gt;  [66,]   1      6      17     30</span>
+<span class="co">#&gt;  [67,]   1      7      26     31</span>
+<span class="co">#&gt;  [68,]   1      8      21     32</span>
+<span class="co">#&gt;  [69,]   1      9      22     33</span>
+<span class="co">#&gt;  [70,]   1     10      20     34</span>
+<span class="co">#&gt;  [71,]   1     11      14     35</span>
+<span class="co">#&gt;  [72,]   1     12      17     36</span>
+<span class="co">#&gt;  [73,]   1     13      18      1</span>
+<span class="co">#&gt;  [74,]   1     14      24      2</span>
+<span class="co">#&gt;  [75,]   1     15      19      3</span>
+<span class="co">#&gt;  [76,]   1     16      23      4</span>
+<span class="co">#&gt;  [77,]   1     17      19      5</span>
+<span class="co">#&gt;  [78,]   1     18      27      6</span>
+<span class="co">#&gt;  [79,]   1     19      24      7</span>
+<span class="co">#&gt;  [80,]   1     20      18      8</span>
+<span class="co">#&gt;  [81,]   2      1      13      9</span>
+<span class="co">#&gt;  [82,]   2      2      20     10</span>
+<span class="co">#&gt;  [83,]   2      3      25     11</span>
+<span class="co">#&gt;  [84,]   2      4      19     12</span>
+<span class="co">#&gt;  [85,]   2      5      18     13</span>
+<span class="co">#&gt;  [86,]   2      6      22     14</span>
+<span class="co">#&gt;  [87,]   2      7      17     15</span>
+<span class="co">#&gt;  [88,]   2      8       9     16</span>
+<span class="co">#&gt;  [89,]   2      9      17     17</span>
+<span class="co">#&gt;  [90,]   2     10      22     18</span>
+<span class="co">#&gt;  [91,]   2     11      13     19</span>
+<span class="co">#&gt;  [92,]   2     12      19     20</span>
+<span class="co">#&gt;  [93,]   2     13      29     21</span>
+<span class="co">#&gt;  [94,]   2     14      18     22</span>
+<span class="co">#&gt;  [95,]   2     15      19     23</span>
+<span class="co">#&gt;  [96,]   2     16      18     24</span>
+<span class="co">#&gt;  [97,]   2     17      11     25</span>
+<span class="co">#&gt;  [98,]   2     18      18     26</span>
+<span class="co">#&gt;  [99,]   2     19      19     27</span>
+<span class="co">#&gt; [100,]   2     20      17     28</span>
+<span class="co">#&gt; [101,]   3      1      13     29</span>
+<span class="co">#&gt; [102,]   3      2      17     30</span>
+<span class="co">#&gt; [103,]   3      3      26     31</span>
+<span class="co">#&gt; [104,]   3      4      21     32</span>
+<span class="co">#&gt; [105,]   3      5      22     33</span>
+<span class="co">#&gt; [106,]   3      6      20     34</span>
+<span class="co">#&gt; [107,]   3      7      14     35</span>
+<span class="co">#&gt; [108,]   3      8      17     36</span>
+<span class="co">#&gt; [109,]   3      9      18      1</span>
+<span class="co">#&gt; [110,]   3     10      24      2</span>
+<span class="co">#&gt; [111,]   3     11      19      3</span>
+<span class="co">#&gt; [112,]   3     12      23      4</span>
+<span class="co">#&gt; [113,]   3     13      19      5</span>
+<span class="co">#&gt; [114,]   3     14      27      6</span>
+<span class="co">#&gt; [115,]   3     15      24      7</span>
+<span class="co">#&gt; [116,]   3     16      18      8</span>
+<span class="co">#&gt; [117,]   3     17      13      9</span>
+<span class="co">#&gt; [118,]   3     18      20     10</span>
+<span class="co">#&gt; [119,]   3     19      25     11</span>
+<span class="co">#&gt; [120,]   3     20      19     12</span></code></pre></div>
 
 </div>
 </div>
@@ -764,7 +736,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
