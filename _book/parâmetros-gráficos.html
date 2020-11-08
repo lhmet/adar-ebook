@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.5 Parâmetros gráficos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.5 Parâmetros gráficos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -432,38 +438,113 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Podemos personalizar muitas características de um gráfico (cores, eixos, títulos) através de opções chamadas <strong>parâmetros gráficos</strong>.</p>
 <p>As opções são especificadas através da função <code>par()</code>. Os parâmetros assim definidos terão efeito até o fim da sessão ou até que eles sejam mudados.</p>
 <p>Digitando <code>par()</code> sem parâmetros produz uma lista das configurações gráficas atuais. A diversidade de parâmetros pode ser vista pela estrutura da <code>par()</code>.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="kw">str</span>(<span class="kw">par</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="parâmetros-gráficos.html#cb432-1"></a><span class="kw">str</span>(<span class="kw">par</span>())</span>
+<span id="cb432-2"><a href="parâmetros-gráficos.html#cb432-2"></a><span class="co">#&gt; List of 72</span></span>
+<span id="cb432-3"><a href="parâmetros-gráficos.html#cb432-3"></a><span class="co">#&gt;  $ xlog     : logi FALSE</span></span>
+<span id="cb432-4"><a href="parâmetros-gráficos.html#cb432-4"></a><span class="co">#&gt;  $ ylog     : logi FALSE</span></span>
+<span id="cb432-5"><a href="parâmetros-gráficos.html#cb432-5"></a><span class="co">#&gt;  $ adj      : num 0.5</span></span>
+<span id="cb432-6"><a href="parâmetros-gráficos.html#cb432-6"></a><span class="co">#&gt;  $ ann      : logi TRUE</span></span>
+<span id="cb432-7"><a href="parâmetros-gráficos.html#cb432-7"></a><span class="co">#&gt;  $ ask      : logi FALSE</span></span>
+<span id="cb432-8"><a href="parâmetros-gráficos.html#cb432-8"></a><span class="co">#&gt;  $ bg       : chr &quot;white&quot;</span></span>
+<span id="cb432-9"><a href="parâmetros-gráficos.html#cb432-9"></a><span class="co">#&gt;  $ bty      : chr &quot;o&quot;</span></span>
+<span id="cb432-10"><a href="parâmetros-gráficos.html#cb432-10"></a><span class="co">#&gt;  $ cex      : num 1</span></span>
+<span id="cb432-11"><a href="parâmetros-gráficos.html#cb432-11"></a><span class="co">#&gt;  $ cex.axis : num 1</span></span>
+<span id="cb432-12"><a href="parâmetros-gráficos.html#cb432-12"></a><span class="co">#&gt;  $ cex.lab  : num 1</span></span>
+<span id="cb432-13"><a href="parâmetros-gráficos.html#cb432-13"></a><span class="co">#&gt;  $ cex.main : num 1.2</span></span>
+<span id="cb432-14"><a href="parâmetros-gráficos.html#cb432-14"></a><span class="co">#&gt;  $ cex.sub  : num 1</span></span>
+<span id="cb432-15"><a href="parâmetros-gráficos.html#cb432-15"></a><span class="co">#&gt;  $ cin      : num [1:2] 0.15 0.2</span></span>
+<span id="cb432-16"><a href="parâmetros-gráficos.html#cb432-16"></a><span class="co">#&gt;  $ col      : chr &quot;black&quot;</span></span>
+<span id="cb432-17"><a href="parâmetros-gráficos.html#cb432-17"></a><span class="co">#&gt;  $ col.axis : chr &quot;black&quot;</span></span>
+<span id="cb432-18"><a href="parâmetros-gráficos.html#cb432-18"></a><span class="co">#&gt;  $ col.lab  : chr &quot;black&quot;</span></span>
+<span id="cb432-19"><a href="parâmetros-gráficos.html#cb432-19"></a><span class="co">#&gt;  $ col.main : chr &quot;black&quot;</span></span>
+<span id="cb432-20"><a href="parâmetros-gráficos.html#cb432-20"></a><span class="co">#&gt;  $ col.sub  : chr &quot;black&quot;</span></span>
+<span id="cb432-21"><a href="parâmetros-gráficos.html#cb432-21"></a><span class="co">#&gt;  $ cra      : num [1:2] 28.8 38.4</span></span>
+<span id="cb432-22"><a href="parâmetros-gráficos.html#cb432-22"></a><span class="co">#&gt;  $ crt      : num 0</span></span>
+<span id="cb432-23"><a href="parâmetros-gráficos.html#cb432-23"></a><span class="co">#&gt;  $ csi      : num 0.2</span></span>
+<span id="cb432-24"><a href="parâmetros-gráficos.html#cb432-24"></a><span class="co">#&gt;  $ cxy      : num [1:2] 0.026 0.0633</span></span>
+<span id="cb432-25"><a href="parâmetros-gráficos.html#cb432-25"></a><span class="co">#&gt;  $ din      : num [1:2] 7 5</span></span>
+<span id="cb432-26"><a href="parâmetros-gráficos.html#cb432-26"></a><span class="co">#&gt;  $ err      : int 0</span></span>
+<span id="cb432-27"><a href="parâmetros-gráficos.html#cb432-27"></a><span class="co">#&gt;  $ family   : chr &quot;&quot;</span></span>
+<span id="cb432-28"><a href="parâmetros-gráficos.html#cb432-28"></a><span class="co">#&gt;  $ fg       : chr &quot;black&quot;</span></span>
+<span id="cb432-29"><a href="parâmetros-gráficos.html#cb432-29"></a><span class="co">#&gt;  $ fig      : num [1:4] 0 1 0 1</span></span>
+<span id="cb432-30"><a href="parâmetros-gráficos.html#cb432-30"></a><span class="co">#&gt;  $ fin      : num [1:2] 7 5</span></span>
+<span id="cb432-31"><a href="parâmetros-gráficos.html#cb432-31"></a><span class="co">#&gt;  $ font     : int 1</span></span>
+<span id="cb432-32"><a href="parâmetros-gráficos.html#cb432-32"></a><span class="co">#&gt;  $ font.axis: int 1</span></span>
+<span id="cb432-33"><a href="parâmetros-gráficos.html#cb432-33"></a><span class="co">#&gt;  $ font.lab : int 1</span></span>
+<span id="cb432-34"><a href="parâmetros-gráficos.html#cb432-34"></a><span class="co">#&gt;  $ font.main: int 2</span></span>
+<span id="cb432-35"><a href="parâmetros-gráficos.html#cb432-35"></a><span class="co">#&gt;  $ font.sub : int 1</span></span>
+<span id="cb432-36"><a href="parâmetros-gráficos.html#cb432-36"></a><span class="co">#&gt;  $ lab      : int [1:3] 5 5 7</span></span>
+<span id="cb432-37"><a href="parâmetros-gráficos.html#cb432-37"></a><span class="co">#&gt;  $ las      : int 0</span></span>
+<span id="cb432-38"><a href="parâmetros-gráficos.html#cb432-38"></a><span class="co">#&gt;  $ lend     : chr &quot;round&quot;</span></span>
+<span id="cb432-39"><a href="parâmetros-gráficos.html#cb432-39"></a><span class="co">#&gt;  $ lheight  : num 1</span></span>
+<span id="cb432-40"><a href="parâmetros-gráficos.html#cb432-40"></a><span class="co">#&gt;  $ ljoin    : chr &quot;round&quot;</span></span>
+<span id="cb432-41"><a href="parâmetros-gráficos.html#cb432-41"></a><span class="co">#&gt;  $ lmitre   : num 10</span></span>
+<span id="cb432-42"><a href="parâmetros-gráficos.html#cb432-42"></a><span class="co">#&gt;  $ lty      : chr &quot;solid&quot;</span></span>
+<span id="cb432-43"><a href="parâmetros-gráficos.html#cb432-43"></a><span class="co">#&gt;  $ lwd      : num 1</span></span>
+<span id="cb432-44"><a href="parâmetros-gráficos.html#cb432-44"></a><span class="co">#&gt;  $ mai      : num [1:4] 1.02 0.82 0.82 0.42</span></span>
+<span id="cb432-45"><a href="parâmetros-gráficos.html#cb432-45"></a><span class="co">#&gt;  $ mar      : num [1:4] 5.1 4.1 4.1 2.1</span></span>
+<span id="cb432-46"><a href="parâmetros-gráficos.html#cb432-46"></a><span class="co">#&gt;  $ mex      : num 1</span></span>
+<span id="cb432-47"><a href="parâmetros-gráficos.html#cb432-47"></a><span class="co">#&gt;  $ mfcol    : int [1:2] 1 1</span></span>
+<span id="cb432-48"><a href="parâmetros-gráficos.html#cb432-48"></a><span class="co">#&gt;  $ mfg      : int [1:4] 1 1 1 1</span></span>
+<span id="cb432-49"><a href="parâmetros-gráficos.html#cb432-49"></a><span class="co">#&gt;  $ mfrow    : int [1:2] 1 1</span></span>
+<span id="cb432-50"><a href="parâmetros-gráficos.html#cb432-50"></a><span class="co">#&gt;  $ mgp      : num [1:3] 3 1 0</span></span>
+<span id="cb432-51"><a href="parâmetros-gráficos.html#cb432-51"></a><span class="co">#&gt;  $ mkh      : num 0.001</span></span>
+<span id="cb432-52"><a href="parâmetros-gráficos.html#cb432-52"></a><span class="co">#&gt;  $ new      : logi FALSE</span></span>
+<span id="cb432-53"><a href="parâmetros-gráficos.html#cb432-53"></a><span class="co">#&gt;  $ oma      : num [1:4] 0 0 0 0</span></span>
+<span id="cb432-54"><a href="parâmetros-gráficos.html#cb432-54"></a><span class="co">#&gt;  $ omd      : num [1:4] 0 1 0 1</span></span>
+<span id="cb432-55"><a href="parâmetros-gráficos.html#cb432-55"></a><span class="co">#&gt;  $ omi      : num [1:4] 0 0 0 0</span></span>
+<span id="cb432-56"><a href="parâmetros-gráficos.html#cb432-56"></a><span class="co">#&gt;  $ page     : logi TRUE</span></span>
+<span id="cb432-57"><a href="parâmetros-gráficos.html#cb432-57"></a><span class="co">#&gt;  $ pch      : int 1</span></span>
+<span id="cb432-58"><a href="parâmetros-gráficos.html#cb432-58"></a><span class="co">#&gt;  $ pin      : num [1:2] 5.76 3.16</span></span>
+<span id="cb432-59"><a href="parâmetros-gráficos.html#cb432-59"></a><span class="co">#&gt;  $ plt      : num [1:4] 0.117 0.94 0.204 0.836</span></span>
+<span id="cb432-60"><a href="parâmetros-gráficos.html#cb432-60"></a><span class="co">#&gt;  $ ps       : int 12</span></span>
+<span id="cb432-61"><a href="parâmetros-gráficos.html#cb432-61"></a><span class="co">#&gt;  $ pty      : chr &quot;m&quot;</span></span>
+<span id="cb432-62"><a href="parâmetros-gráficos.html#cb432-62"></a><span class="co">#&gt;  $ smo      : num 1</span></span>
+<span id="cb432-63"><a href="parâmetros-gráficos.html#cb432-63"></a><span class="co">#&gt;  $ srt      : num 0</span></span>
+<span id="cb432-64"><a href="parâmetros-gráficos.html#cb432-64"></a><span class="co">#&gt;  $ tck      : num NA</span></span>
+<span id="cb432-65"><a href="parâmetros-gráficos.html#cb432-65"></a><span class="co">#&gt;  $ tcl      : num -0.5</span></span>
+<span id="cb432-66"><a href="parâmetros-gráficos.html#cb432-66"></a><span class="co">#&gt;  $ usr      : num [1:4] 0 1 0 1</span></span>
+<span id="cb432-67"><a href="parâmetros-gráficos.html#cb432-67"></a><span class="co">#&gt;  $ xaxp     : num [1:3] 0 1 5</span></span>
+<span id="cb432-68"><a href="parâmetros-gráficos.html#cb432-68"></a><span class="co">#&gt;  $ xaxs     : chr &quot;r&quot;</span></span>
+<span id="cb432-69"><a href="parâmetros-gráficos.html#cb432-69"></a><span class="co">#&gt;  $ xaxt     : chr &quot;s&quot;</span></span>
+<span id="cb432-70"><a href="parâmetros-gráficos.html#cb432-70"></a><span class="co">#&gt;  $ xpd      : logi FALSE</span></span>
+<span id="cb432-71"><a href="parâmetros-gráficos.html#cb432-71"></a><span class="co">#&gt;  $ yaxp     : num [1:3] 0 1 5</span></span>
+<span id="cb432-72"><a href="parâmetros-gráficos.html#cb432-72"></a><span class="co">#&gt;  $ yaxs     : chr &quot;r&quot;</span></span>
+<span id="cb432-73"><a href="parâmetros-gráficos.html#cb432-73"></a><span class="co">#&gt;  $ yaxt     : chr &quot;s&quot;</span></span>
+<span id="cb432-74"><a href="parâmetros-gráficos.html#cb432-74"></a><span class="co">#&gt;  $ ylbias   : num 0.2</span></span></code></pre></div>
 <p>O parâmetro <code>no.readonly = TRUE</code> produz uma lista das configurações atuais que podem ser modificadas posteriormente.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" title="1"><span class="co"># cópia das configurações atuais</span></a>
-<a class="sourceLine" id="cb433-2" title="2">old_par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">no.readonly =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb433-3" title="3"><span class="co"># tipo de linha pontilhada, largura da linha, símbolo para plot (triângulo sólido)</span></a>
-<a class="sourceLine" id="cb433-4" title="4"><span class="kw">par</span>(<span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">17</span>)</a>
-<a class="sourceLine" id="cb433-5" title="5"><span class="kw">with</span>(</a>
-<a class="sourceLine" id="cb433-6" title="6">  aq,</a>
-<a class="sourceLine" id="cb433-7" title="7">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb433-8" title="8">    <span class="dt">x =</span> date,</a>
-<a class="sourceLine" id="cb433-9" title="9">    <span class="dt">y =</span> Wind,</a>
-<a class="sourceLine" id="cb433-10" title="10">    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span></a>
-<a class="sourceLine" id="cb433-11" title="11">  )</a>
-<a class="sourceLine" id="cb433-12" title="12">) <span class="co"># linha e ponto desconectados</span></a>
-<a class="sourceLine" id="cb433-13" title="13"><span class="co"># restabelecendo parâmetros originais</span></a>
-<a class="sourceLine" id="cb433-14" title="14"><span class="kw">par</span>(old_par)</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="parâmetros-gráficos.html#cb433-1"></a><span class="co"># cópia das configurações atuais</span></span>
+<span id="cb433-2"><a href="parâmetros-gráficos.html#cb433-2"></a>old_par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">no.readonly =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb433-3"><a href="parâmetros-gráficos.html#cb433-3"></a><span class="co"># tipo de linha pontilhada, largura da linha, símbolo para plot (triângulo sólido)</span></span>
+<span id="cb433-4"><a href="parâmetros-gráficos.html#cb433-4"></a><span class="kw">par</span>(<span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">17</span>)</span>
+<span id="cb433-5"><a href="parâmetros-gráficos.html#cb433-5"></a><span class="kw">with</span>(</span>
+<span id="cb433-6"><a href="parâmetros-gráficos.html#cb433-6"></a>  aq,</span>
+<span id="cb433-7"><a href="parâmetros-gráficos.html#cb433-7"></a>  <span class="kw">plot</span>(</span>
+<span id="cb433-8"><a href="parâmetros-gráficos.html#cb433-8"></a>    <span class="dt">x =</span> date,</span>
+<span id="cb433-9"><a href="parâmetros-gráficos.html#cb433-9"></a>    <span class="dt">y =</span> Wind,</span>
+<span id="cb433-10"><a href="parâmetros-gráficos.html#cb433-10"></a>    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span></span>
+<span id="cb433-11"><a href="parâmetros-gráficos.html#cb433-11"></a>  )</span>
+<span id="cb433-12"><a href="parâmetros-gráficos.html#cb433-12"></a>) <span class="co"># linha e ponto desconectados</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="parâmetros-gráficos.html#cb434-1"></a><span class="co"># restabelecendo parâmetros originais</span></span>
+<span id="cb434-2"><a href="parâmetros-gráficos.html#cb434-2"></a><span class="kw">par</span>(old_par)</span></code></pre></div>
 <p>Podemos definir <code>par()</code> quantas vezes forem necessárias.</p>
 <p>A segunda forma de especificar parâmetros é <code>parametro = valor</code> diretamente na função gráfica de alto nível.</p>
 <p>Mas nesse caso, as opções terão efeito (local) apenas para aquele gráfico específico , portanto diferindo da primeira forma em que a definição pode ser para toda sessão (global).</p>
 <p>Poderíamos gerar o mesmo gráfico anterior da seguinte forma:</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">with</span>(</a>
-<a class="sourceLine" id="cb434-2" title="2">  aq,</a>
-<a class="sourceLine" id="cb434-3" title="3">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb434-4" title="4">    <span class="dt">x =</span> date,</a>
-<a class="sourceLine" id="cb434-5" title="5">    <span class="dt">y =</span> Wind,</a>
-<a class="sourceLine" id="cb434-6" title="6">    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</a>
-<a class="sourceLine" id="cb434-7" title="7">    <span class="dt">lty =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb434-8" title="8">    <span class="dt">pch =</span> <span class="dv">17</span></a>
-<a class="sourceLine" id="cb434-9" title="9">  )</a>
-<a class="sourceLine" id="cb434-10" title="10">)</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="parâmetros-gráficos.html#cb435-1"></a><span class="kw">with</span>(</span>
+<span id="cb435-2"><a href="parâmetros-gráficos.html#cb435-2"></a>  aq,</span>
+<span id="cb435-3"><a href="parâmetros-gráficos.html#cb435-3"></a>  <span class="kw">plot</span>(</span>
+<span id="cb435-4"><a href="parâmetros-gráficos.html#cb435-4"></a>    <span class="dt">x =</span> date,</span>
+<span id="cb435-5"><a href="parâmetros-gráficos.html#cb435-5"></a>    <span class="dt">y =</span> Wind,</span>
+<span id="cb435-6"><a href="parâmetros-gráficos.html#cb435-6"></a>    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</span>
+<span id="cb435-7"><a href="parâmetros-gráficos.html#cb435-7"></a>    <span class="dt">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb435-8"><a href="parâmetros-gráficos.html#cb435-8"></a>    <span class="dt">pch =</span> <span class="dv">17</span></span>
+<span id="cb435-9"><a href="parâmetros-gráficos.html#cb435-9"></a>  )</span>
+<span id="cb435-10"><a href="parâmetros-gráficos.html#cb435-10"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Nem todas funções de alto nível permitem especificar todos parâmetros gráficos. Veja o <code>help(plot)</code> para determinar quais parâmetros gráficos podem configurados dessa forma.</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1">?plot</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="parâmetros-gráficos.html#cb436-1"></a>?plot</span></code></pre></div>
 <p>A seguir veremos alguns importantes parâmetros gráficos que podemos configurar.</p>
 <div id="símbolos-e-linhas" class="section level3">
 <h3><span class="header-section-number">11.5.1</span> Símbolos e linhas</h3>
@@ -499,54 +580,57 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <p>Os símbolos são especificados conforme numeração indicada no gráfico abaixo.</p>
+<p><img src="images/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As opções de tipo de linha são mostradas abaixo.</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="co"># linhas</span></a>
-<a class="sourceLine" id="cb436-2" title="2">op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">lwd =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb436-3" title="3">          <span class="dt">cex =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb436-4" title="4">          <span class="dt">cex.axis =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb436-5" title="5">          <span class="dt">cex.lab =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb436-6" title="6">          <span class="dt">font =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb436-7" title="7">          <span class="dt">font.axis =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb436-8" title="8">          <span class="dt">font.lab =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb436-9" title="9"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb436-10" title="10">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb436-11" title="11">  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb436-12" title="12">  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb436-13" title="13">  <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb436-14" title="14">  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb436-15" title="15">  <span class="dt">main =</span> <span class="st">&quot;Amostra de tipo de linhas&quot;</span>,</a>
-<a class="sourceLine" id="cb436-16" title="16">  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb436-17" title="17">  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb436-18" title="18">)</a>
-<a class="sourceLine" id="cb436-19" title="19"><span class="kw">axis</span>(</a>
-<a class="sourceLine" id="cb436-20" title="20">  <span class="dt">side =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb436-21" title="21">  <span class="dt">lwd =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb436-22" title="22">  <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dt">by =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb436-23" title="23">  <span class="dt">cex =</span> <span class="fl">1.25</span>,</a>
-<a class="sourceLine" id="cb436-24" title="24">  <span class="dt">font =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb436-25" title="25">  <span class="dt">col =</span> <span class="st">&quot;white&quot;</span></a>
-<a class="sourceLine" id="cb436-26" title="26">)</a>
-<a class="sourceLine" id="cb436-27" title="27"><span class="kw">mtext</span>(</a>
-<a class="sourceLine" id="cb436-28" title="28">  <span class="st">&quot;Nº do tipo de linha (lty = )&quot;</span>,</a>
-<a class="sourceLine" id="cb436-29" title="29">  <span class="dt">side =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb436-30" title="30">  <span class="dt">line =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb436-31" title="31">  <span class="dt">cex =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb436-32" title="32">  <span class="dt">font =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb436-33" title="33">)</a>
-<a class="sourceLine" id="cb436-34" title="34"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb436-35" title="35"><span class="kw">par</span>(op)</a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="parâmetros-gráficos.html#cb437-1"></a><span class="co"># linhas</span></span>
+<span id="cb437-2"><a href="parâmetros-gráficos.html#cb437-2"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb437-3"><a href="parâmetros-gráficos.html#cb437-3"></a>          <span class="dt">cex =</span> <span class="fl">1.5</span>,</span>
+<span id="cb437-4"><a href="parâmetros-gráficos.html#cb437-4"></a>          <span class="dt">cex.axis =</span> <span class="dv">1</span>, </span>
+<span id="cb437-5"><a href="parâmetros-gráficos.html#cb437-5"></a>          <span class="dt">cex.lab =</span> <span class="dv">1</span>, </span>
+<span id="cb437-6"><a href="parâmetros-gráficos.html#cb437-6"></a>          <span class="dt">font =</span> <span class="dv">2</span>, </span>
+<span id="cb437-7"><a href="parâmetros-gráficos.html#cb437-7"></a>          <span class="dt">font.axis =</span> <span class="dv">2</span>, </span>
+<span id="cb437-8"><a href="parâmetros-gráficos.html#cb437-8"></a>          <span class="dt">font.lab =</span> <span class="dv">2</span>)</span>
+<span id="cb437-9"><a href="parâmetros-gráficos.html#cb437-9"></a><span class="kw">plot</span>(</span>
+<span id="cb437-10"><a href="parâmetros-gráficos.html#cb437-10"></a>  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb437-11"><a href="parâmetros-gráficos.html#cb437-11"></a>  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>),</span>
+<span id="cb437-12"><a href="parâmetros-gráficos.html#cb437-12"></a>  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb437-13"><a href="parâmetros-gráficos.html#cb437-13"></a>  <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb437-14"><a href="parâmetros-gráficos.html#cb437-14"></a>  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb437-15"><a href="parâmetros-gráficos.html#cb437-15"></a>  <span class="dt">main =</span> <span class="st">&quot;Amostra de tipo de linhas&quot;</span>,</span>
+<span id="cb437-16"><a href="parâmetros-gráficos.html#cb437-16"></a>  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb437-17"><a href="parâmetros-gráficos.html#cb437-17"></a>  <span class="dt">frame.plot =</span> <span class="ot">FALSE</span></span>
+<span id="cb437-18"><a href="parâmetros-gráficos.html#cb437-18"></a>)</span>
+<span id="cb437-19"><a href="parâmetros-gráficos.html#cb437-19"></a><span class="kw">axis</span>(</span>
+<span id="cb437-20"><a href="parâmetros-gráficos.html#cb437-20"></a>  <span class="dt">side =</span> <span class="dv">2</span>,</span>
+<span id="cb437-21"><a href="parâmetros-gráficos.html#cb437-21"></a>  <span class="dt">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb437-22"><a href="parâmetros-gráficos.html#cb437-22"></a>  <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dt">by =</span> <span class="dv">1</span>),</span>
+<span id="cb437-23"><a href="parâmetros-gráficos.html#cb437-23"></a>  <span class="dt">cex =</span> <span class="fl">1.25</span>,</span>
+<span id="cb437-24"><a href="parâmetros-gráficos.html#cb437-24"></a>  <span class="dt">font =</span> <span class="dv">2</span>,</span>
+<span id="cb437-25"><a href="parâmetros-gráficos.html#cb437-25"></a>  <span class="dt">col =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb437-26"><a href="parâmetros-gráficos.html#cb437-26"></a>)</span>
+<span id="cb437-27"><a href="parâmetros-gráficos.html#cb437-27"></a><span class="kw">mtext</span>(</span>
+<span id="cb437-28"><a href="parâmetros-gráficos.html#cb437-28"></a>  <span class="st">&quot;Nº do tipo de linha (lty = )&quot;</span>,</span>
+<span id="cb437-29"><a href="parâmetros-gráficos.html#cb437-29"></a>  <span class="dt">side =</span> <span class="dv">2</span>,</span>
+<span id="cb437-30"><a href="parâmetros-gráficos.html#cb437-30"></a>  <span class="dt">line =</span> <span class="dv">2</span>,</span>
+<span id="cb437-31"><a href="parâmetros-gráficos.html#cb437-31"></a>  <span class="dt">cex =</span> <span class="fl">1.5</span>,</span>
+<span id="cb437-32"><a href="parâmetros-gráficos.html#cb437-32"></a>  <span class="dt">font =</span> <span class="dv">2</span></span>
+<span id="cb437-33"><a href="parâmetros-gráficos.html#cb437-33"></a>)</span>
+<span id="cb437-34"><a href="parâmetros-gráficos.html#cb437-34"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
+<p><img src="images/Chunk611-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="parâmetros-gráficos.html#cb438-1"></a><span class="kw">par</span>(op)</span></code></pre></div>
 <p>Exemplo com as opções.</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1"><span class="kw">with</span>(</a>
-<a class="sourceLine" id="cb437-2" title="2">  aq,</a>
-<a class="sourceLine" id="cb437-3" title="3">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb437-4" title="4">    <span class="dt">x =</span> date,</a>
-<a class="sourceLine" id="cb437-5" title="5">    <span class="dt">y =</span> Temp,</a>
-<a class="sourceLine" id="cb437-6" title="6">    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</a>
-<a class="sourceLine" id="cb437-7" title="7">    <span class="dt">lty =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb437-8" title="8">    <span class="dt">pch =</span> <span class="dv">15</span>,</a>
-<a class="sourceLine" id="cb437-9" title="9">    <span class="dt">cex =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb437-10" title="10">  )</a>
-<a class="sourceLine" id="cb437-11" title="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="parâmetros-gráficos.html#cb439-1"></a><span class="kw">with</span>(</span>
+<span id="cb439-2"><a href="parâmetros-gráficos.html#cb439-2"></a>  aq,</span>
+<span id="cb439-3"><a href="parâmetros-gráficos.html#cb439-3"></a>  <span class="kw">plot</span>(</span>
+<span id="cb439-4"><a href="parâmetros-gráficos.html#cb439-4"></a>    <span class="dt">x =</span> date,</span>
+<span id="cb439-5"><a href="parâmetros-gráficos.html#cb439-5"></a>    <span class="dt">y =</span> Temp,</span>
+<span id="cb439-6"><a href="parâmetros-gráficos.html#cb439-6"></a>    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</span>
+<span id="cb439-7"><a href="parâmetros-gráficos.html#cb439-7"></a>    <span class="dt">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb439-8"><a href="parâmetros-gráficos.html#cb439-8"></a>    <span class="dt">pch =</span> <span class="dv">15</span>,</span>
+<span id="cb439-9"><a href="parâmetros-gráficos.html#cb439-9"></a>    <span class="dt">cex =</span> <span class="dv">2</span></span>
+<span id="cb439-10"><a href="parâmetros-gráficos.html#cb439-10"></a>  )</span>
+<span id="cb439-11"><a href="parâmetros-gráficos.html#cb439-11"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="cores" class="section level3">
 <h3><span class="header-section-number">11.5.2</span> Cores</h3>
@@ -595,56 +679,63 @@ code span.wa { color: #bf0303; } /* Warning */
 </table>
 <p>Podemos especificar as cores no <img src="images/logo_r.png" width="20"> por índice, nome, hexadecimal, RGB ou HSV. Por exemplo <code>col = 0</code>, <code>col = "white"</code>, <code>col =FFFFF</code>, <code>col = rgb(1,1,1)</code> e <code>col = hsv(1,1,1)</code> são formas equivalentes de especificar a cor branca.</p>
 <p>A função <code>colors()</code> retorna o nome de todas as cores disponíveis.</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="kw">colors</span>()[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a>
-<a class="sourceLine" id="cb438-2" title="2">n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">colors</span>())</a>
-<a class="sourceLine" id="cb438-3" title="3">op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;gray60&quot;</span>)</a>
-<a class="sourceLine" id="cb438-4" title="4"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb438-5" title="5">  <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </a>
-<a class="sourceLine" id="cb438-6" title="6">  <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb438-7" title="7">  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb438-8" title="8">  <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</a>
-<a class="sourceLine" id="cb438-9" title="9">  <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb438-10" title="10">  <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</a>
-<a class="sourceLine" id="cb438-11" title="11">  <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</a>
-<a class="sourceLine" id="cb438-12" title="12">  <span class="dt">col.axis =</span> <span class="st">&quot;green&quot;</span>,</a>
-<a class="sourceLine" id="cb438-13" title="13">  <span class="dt">col.lab =</span> <span class="st">&quot;green&quot;</span>,</a>
-<a class="sourceLine" id="cb438-14" title="14">  <span class="dt">col.axis =</span> <span class="st">&quot;yellow&quot;</span>,</a>
-<a class="sourceLine" id="cb438-15" title="15">  <span class="dt">col.sub =</span> <span class="st">&quot;red&quot;</span></a>
-<a class="sourceLine" id="cb438-16" title="16">)</a>
-<a class="sourceLine" id="cb438-17" title="17">usr &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="st">&quot;usr&quot;</span>)</a>
-<a class="sourceLine" id="cb438-18" title="18"><span class="kw">rect</span>(usr[<span class="dv">1</span>], usr[<span class="dv">3</span>], usr[<span class="dv">2</span>], usr[<span class="dv">4</span>], <span class="dt">col =</span> <span class="st">&quot;snow&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb438-19" title="19"><span class="kw">points</span>(</a>
-<a class="sourceLine" id="cb438-20" title="20">  <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </a>
-<a class="sourceLine" id="cb438-21" title="21">  <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb438-22" title="22">  <span class="dt">col =</span> <span class="kw">colors</span>()[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb438-23" title="23">  <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb438-24" title="24">  <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb438-25" title="25">)</a>
-<a class="sourceLine" id="cb438-26" title="26"><span class="kw">par</span>(op)</a></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="parâmetros-gráficos.html#cb440-1"></a><span class="kw">colors</span>()[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</span>
+<span id="cb440-2"><a href="parâmetros-gráficos.html#cb440-2"></a><span class="co">#&gt;  [1] &quot;white&quot;         &quot;aliceblue&quot;     &quot;antiquewhite&quot;  &quot;antiquewhite1&quot;</span></span>
+<span id="cb440-3"><a href="parâmetros-gráficos.html#cb440-3"></a><span class="co">#&gt;  [5] &quot;antiquewhite2&quot; &quot;antiquewhite3&quot; &quot;antiquewhite4&quot; &quot;aquamarine&quot;   </span></span>
+<span id="cb440-4"><a href="parâmetros-gráficos.html#cb440-4"></a><span class="co">#&gt;  [9] &quot;aquamarine1&quot;   &quot;aquamarine2&quot;   &quot;aquamarine3&quot;   &quot;aquamarine4&quot;  </span></span>
+<span id="cb440-5"><a href="parâmetros-gráficos.html#cb440-5"></a><span class="co">#&gt; [13] &quot;azure&quot;         &quot;azure1&quot;        &quot;azure2&quot;        &quot;azure3&quot;       </span></span>
+<span id="cb440-6"><a href="parâmetros-gráficos.html#cb440-6"></a><span class="co">#&gt; [17] &quot;azure4&quot;        &quot;beige&quot;         &quot;bisque&quot;        &quot;bisque1&quot;</span></span>
+<span id="cb440-7"><a href="parâmetros-gráficos.html#cb440-7"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">colors</span>())</span>
+<span id="cb440-8"><a href="parâmetros-gráficos.html#cb440-8"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;gray60&quot;</span>)</span>
+<span id="cb440-9"><a href="parâmetros-gráficos.html#cb440-9"></a><span class="kw">plot</span>(</span>
+<span id="cb440-10"><a href="parâmetros-gráficos.html#cb440-10"></a>  <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </span>
+<span id="cb440-11"><a href="parâmetros-gráficos.html#cb440-11"></a>  <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb440-12"><a href="parâmetros-gráficos.html#cb440-12"></a>  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb440-13"><a href="parâmetros-gráficos.html#cb440-13"></a>  <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb440-14"><a href="parâmetros-gráficos.html#cb440-14"></a>  <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb440-15"><a href="parâmetros-gráficos.html#cb440-15"></a>  <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</span>
+<span id="cb440-16"><a href="parâmetros-gráficos.html#cb440-16"></a>  <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</span>
+<span id="cb440-17"><a href="parâmetros-gráficos.html#cb440-17"></a>  <span class="dt">col.axis =</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb440-18"><a href="parâmetros-gráficos.html#cb440-18"></a>  <span class="dt">col.lab =</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb440-19"><a href="parâmetros-gráficos.html#cb440-19"></a>  <span class="dt">col.axis =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb440-20"><a href="parâmetros-gráficos.html#cb440-20"></a>  <span class="dt">col.sub =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb440-21"><a href="parâmetros-gráficos.html#cb440-21"></a>)</span>
+<span id="cb440-22"><a href="parâmetros-gráficos.html#cb440-22"></a>usr &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="st">&quot;usr&quot;</span>)</span>
+<span id="cb440-23"><a href="parâmetros-gráficos.html#cb440-23"></a><span class="kw">rect</span>(usr[<span class="dv">1</span>], usr[<span class="dv">3</span>], usr[<span class="dv">2</span>], usr[<span class="dv">4</span>], <span class="dt">col =</span> <span class="st">&quot;snow&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb440-24"><a href="parâmetros-gráficos.html#cb440-24"></a><span class="kw">points</span>(</span>
+<span id="cb440-25"><a href="parâmetros-gráficos.html#cb440-25"></a>  <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </span>
+<span id="cb440-26"><a href="parâmetros-gráficos.html#cb440-26"></a>  <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb440-27"><a href="parâmetros-gráficos.html#cb440-27"></a>  <span class="dt">col =</span> <span class="kw">colors</span>()[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb440-28"><a href="parâmetros-gráficos.html#cb440-28"></a>  <span class="dt">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb440-29"><a href="parâmetros-gráficos.html#cb440-29"></a>  <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb440-30"><a href="parâmetros-gráficos.html#cb440-30"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="parâmetros-gráficos.html#cb441-1"></a><span class="kw">par</span>(op)</span></code></pre></div>
 <p>Para visualizar as cores e os nomes associados a cada uma veja <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a>.</p>
 <p>O <img src="images/logo_r.png" width="20"> também possui diversas funções para criar vetores de cores contínuas (paletas):</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1"><span class="co"># lista com vetor de diferentes paletas de cores</span></a>
-<a class="sourceLine" id="cb439-2" title="2">paletas &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb439-3" title="3">  <span class="kw">rainbow</span>(n),</a>
-<a class="sourceLine" id="cb439-4" title="4">  <span class="kw">heat.colors</span>(n),</a>
-<a class="sourceLine" id="cb439-5" title="5">  <span class="kw">terrain.colors</span>(n),</a>
-<a class="sourceLine" id="cb439-6" title="6">  <span class="kw">topo.colors</span>(n),</a>
-<a class="sourceLine" id="cb439-7" title="7">  <span class="kw">cm.colors</span>(n)</a>
-<a class="sourceLine" id="cb439-8" title="8">)</a>
-<a class="sourceLine" id="cb439-9" title="9"><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</a>
-<a class="sourceLine" id="cb439-10" title="10">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb439-11" title="11">    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb439-12" title="12">    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb439-13" title="13">    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</a>
-<a class="sourceLine" id="cb439-14" title="14">    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</a>
-<a class="sourceLine" id="cb439-15" title="15">    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb439-16" title="16">    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</a>
-<a class="sourceLine" id="cb439-17" title="17">    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</a>
-<a class="sourceLine" id="cb439-18" title="18">    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></a>
-<a class="sourceLine" id="cb439-19" title="19">    <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb439-20" title="20">    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb439-21" title="21">  )</a>
-<a class="sourceLine" id="cb439-22" title="22">}</a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="parâmetros-gráficos.html#cb442-1"></a><span class="co"># lista com vetor de diferentes paletas de cores</span></span>
+<span id="cb442-2"><a href="parâmetros-gráficos.html#cb442-2"></a>paletas &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb442-3"><a href="parâmetros-gráficos.html#cb442-3"></a>  <span class="kw">rainbow</span>(n),</span>
+<span id="cb442-4"><a href="parâmetros-gráficos.html#cb442-4"></a>  <span class="kw">heat.colors</span>(n),</span>
+<span id="cb442-5"><a href="parâmetros-gráficos.html#cb442-5"></a>  <span class="kw">terrain.colors</span>(n),</span>
+<span id="cb442-6"><a href="parâmetros-gráficos.html#cb442-6"></a>  <span class="kw">topo.colors</span>(n),</span>
+<span id="cb442-7"><a href="parâmetros-gráficos.html#cb442-7"></a>  <span class="kw">cm.colors</span>(n)</span>
+<span id="cb442-8"><a href="parâmetros-gráficos.html#cb442-8"></a>)</span>
+<span id="cb442-9"><a href="parâmetros-gráficos.html#cb442-9"></a><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</span>
+<span id="cb442-10"><a href="parâmetros-gráficos.html#cb442-10"></a>  <span class="kw">plot</span>(</span>
+<span id="cb442-11"><a href="parâmetros-gráficos.html#cb442-11"></a>    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb442-12"><a href="parâmetros-gráficos.html#cb442-12"></a>    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb442-13"><a href="parâmetros-gráficos.html#cb442-13"></a>    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb442-14"><a href="parâmetros-gráficos.html#cb442-14"></a>    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb442-15"><a href="parâmetros-gráficos.html#cb442-15"></a>    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb442-16"><a href="parâmetros-gráficos.html#cb442-16"></a>    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</span>
+<span id="cb442-17"><a href="parâmetros-gráficos.html#cb442-17"></a>    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</span>
+<span id="cb442-18"><a href="parâmetros-gráficos.html#cb442-18"></a>    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></span>
+<span id="cb442-19"><a href="parâmetros-gráficos.html#cb442-19"></a>    <span class="dt">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb442-20"><a href="parâmetros-gráficos.html#cb442-20"></a>    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb442-21"><a href="parâmetros-gráficos.html#cb442-21"></a>  )</span>
+<span id="cb442-22"><a href="parâmetros-gráficos.html#cb442-22"></a>}</span></code></pre></div>
+<p><img src="images/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-2.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-3.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-4.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-5.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="características-de-texto" class="section level3">
 <h3><span class="header-section-number">11.5.3</span> Características de texto</h3>
@@ -726,316 +817,333 @@ code span.wa { color: #bf0303; } /* Warning */
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1">op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">font.lab =</span> <span class="dv">3</span>, <span class="dt">cex.lab =</span> <span class="dv">2</span>, <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="dt">cex.main =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb440-2" title="2"><span class="kw">plot</span>(<span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </a>
-<a class="sourceLine" id="cb440-3" title="3">     <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n], </a>
-<a class="sourceLine" id="cb440-4" title="4">     <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</a>
-<a class="sourceLine" id="cb440-5" title="5">     <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</a>
-<a class="sourceLine" id="cb440-6" title="6">     <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb440-7" title="7">     <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</a>
-<a class="sourceLine" id="cb440-8" title="8">     <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</a>
-<a class="sourceLine" id="cb440-9" title="9">     <span class="dt">col =</span> <span class="kw">gray.colors</span>(n), </a>
-<a class="sourceLine" id="cb440-10" title="10">     <span class="dt">pch =</span> <span class="dv">20</span>, </a>
-<a class="sourceLine" id="cb440-11" title="11">     <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n)<span class="op">/</span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb440-12" title="12"><span class="kw">par</span>(op)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="parâmetros-gráficos.html#cb443-1"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">font.lab =</span> <span class="dv">3</span>, <span class="dt">cex.lab =</span> <span class="dv">2</span>, <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="dt">cex.main =</span> <span class="dv">2</span>)</span>
+<span id="cb443-2"><a href="parâmetros-gráficos.html#cb443-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n], </span>
+<span id="cb443-3"><a href="parâmetros-gráficos.html#cb443-3"></a>     <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n], </span>
+<span id="cb443-4"><a href="parâmetros-gráficos.html#cb443-4"></a>     <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb443-5"><a href="parâmetros-gráficos.html#cb443-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb443-6"><a href="parâmetros-gráficos.html#cb443-6"></a>     <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb443-7"><a href="parâmetros-gráficos.html#cb443-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</span>
+<span id="cb443-8"><a href="parâmetros-gráficos.html#cb443-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</span>
+<span id="cb443-9"><a href="parâmetros-gráficos.html#cb443-9"></a>     <span class="dt">col =</span> <span class="kw">gray.colors</span>(n), </span>
+<span id="cb443-10"><a href="parâmetros-gráficos.html#cb443-10"></a>     <span class="dt">pch =</span> <span class="dv">20</span>, </span>
+<span id="cb443-11"><a href="parâmetros-gráficos.html#cb443-11"></a>     <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n)<span class="op">/</span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="parâmetros-gráficos.html#cb444-1"></a><span class="kw">par</span>(op)</span></code></pre></div>
 <div id="tipos-de-gráficos" class="section level4">
 <h4><span class="header-section-number">11.5.3.1</span> Tipos de Gráficos</h4>
 <p>Até aqui já vimos como criar gráficos de dispersão com a função <code>plot()</code>. Mas existe uma ampla variedade de gráficos, além daqueles: gráficos de barra, <em>boxplots</em>, histogramas, gráficos de pizza, gráficos de imagens, gráficos 3D. Alguns exemplos são mostrados a seguir.</p>
 <p>A seguir podemos ver como construir um gráfico da amplitude térmica diária (ATD) de cada EMA. As EMAs serão apresentadas em ordem crescente de ATD.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1"><span class="co"># ordenando amplitudes térmicas</span></a>
-<a class="sourceLine" id="cb441-2" title="2">atd_ord &lt;-<span class="st"> </span><span class="kw">sort</span>(sulbr_md<span class="op">$</span>dtr_med)</a>
-<a class="sourceLine" id="cb441-3" title="3"><span class="co"># vetor do nome das EMAS ordenados</span></a>
-<a class="sourceLine" id="cb441-4" title="4">nms_ema &lt;-<span class="st"> </span>sulbr_md<span class="op">$</span>site[<span class="kw">order</span>(sulbr_md<span class="op">$</span>dtr_med)]</a>
-<a class="sourceLine" id="cb441-5" title="5"><span class="co">#filter(sulbr_md, site %in% c(&quot;A866&quot;, &quot;A874&quot;))</span></a>
-<a class="sourceLine" id="cb441-6" title="6"><span class="co"># gráfico de barras</span></a>
-<a class="sourceLine" id="cb441-7" title="7">  <span class="kw">barplot</span>(</a>
-<a class="sourceLine" id="cb441-8" title="8">    <span class="dt">height =</span> atd_ord,</a>
-<a class="sourceLine" id="cb441-9" title="9">    <span class="dt">names.arg =</span> nms_ema,</a>
-<a class="sourceLine" id="cb441-10" title="10">    <span class="dt">col =</span> <span class="dv">1</span>, <span class="co"># cor das barras</span></a>
-<a class="sourceLine" id="cb441-11" title="11">    <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>, <span class="co"># cor das bordas das barras</span></a>
-<a class="sourceLine" id="cb441-12" title="12">    <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># orientação dos labels dos eixos</span></a>
-<a class="sourceLine" id="cb441-13" title="13">    <span class="dt">cex.names =</span> <span class="fl">0.75</span>, <span class="co"># tamnho relativo labels eixo x</span></a>
-<a class="sourceLine" id="cb441-14" title="14">    <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="co"># tamnho relativo labels eixo y</span></a>
-<a class="sourceLine" id="cb441-15" title="15">    <span class="dt">xlab =</span> <span class="st">&quot;EMA&quot;</span>, <span class="co"># label do eixo x</span></a>
-<a class="sourceLine" id="cb441-16" title="16">    <span class="dt">ylab =</span> <span class="st">&quot;Amplitude térmica (°C)&quot;</span> <span class="co"># labels do eixo y</span></a>
-<a class="sourceLine" id="cb441-17" title="17">  )</a>
-<a class="sourceLine" id="cb441-18" title="18"><span class="kw">box</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="parâmetros-gráficos.html#cb445-1"></a><span class="co"># ordenando amplitudes térmicas</span></span>
+<span id="cb445-2"><a href="parâmetros-gráficos.html#cb445-2"></a>atd_ord &lt;-<span class="st"> </span><span class="kw">sort</span>(sulbr_md<span class="op">$</span>dtr_med)</span>
+<span id="cb445-3"><a href="parâmetros-gráficos.html#cb445-3"></a><span class="co"># vetor do nome das EMAS ordenados</span></span>
+<span id="cb445-4"><a href="parâmetros-gráficos.html#cb445-4"></a>nms_ema &lt;-<span class="st"> </span>sulbr_md<span class="op">$</span>site[<span class="kw">order</span>(sulbr_md<span class="op">$</span>dtr_med)]</span>
+<span id="cb445-5"><a href="parâmetros-gráficos.html#cb445-5"></a><span class="co">#filter(sulbr_md, site %in% c(&quot;A866&quot;, &quot;A874&quot;))</span></span>
+<span id="cb445-6"><a href="parâmetros-gráficos.html#cb445-6"></a><span class="co"># gráfico de barras</span></span>
+<span id="cb445-7"><a href="parâmetros-gráficos.html#cb445-7"></a>  <span class="kw">barplot</span>(</span>
+<span id="cb445-8"><a href="parâmetros-gráficos.html#cb445-8"></a>    <span class="dt">height =</span> atd_ord,</span>
+<span id="cb445-9"><a href="parâmetros-gráficos.html#cb445-9"></a>    <span class="dt">names.arg =</span> nms_ema,</span>
+<span id="cb445-10"><a href="parâmetros-gráficos.html#cb445-10"></a>    <span class="dt">col =</span> <span class="dv">1</span>, <span class="co"># cor das barras</span></span>
+<span id="cb445-11"><a href="parâmetros-gráficos.html#cb445-11"></a>    <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>, <span class="co"># cor das bordas das barras</span></span>
+<span id="cb445-12"><a href="parâmetros-gráficos.html#cb445-12"></a>    <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># orientação dos labels dos eixos</span></span>
+<span id="cb445-13"><a href="parâmetros-gráficos.html#cb445-13"></a>    <span class="dt">cex.names =</span> <span class="fl">0.75</span>, <span class="co"># tamnho relativo labels eixo x</span></span>
+<span id="cb445-14"><a href="parâmetros-gráficos.html#cb445-14"></a>    <span class="dt">cex.axis =</span> <span class="fl">0.75</span>, <span class="co"># tamnho relativo labels eixo y</span></span>
+<span id="cb445-15"><a href="parâmetros-gráficos.html#cb445-15"></a>    <span class="dt">xlab =</span> <span class="st">&quot;EMA&quot;</span>, <span class="co"># label do eixo x</span></span>
+<span id="cb445-16"><a href="parâmetros-gráficos.html#cb445-16"></a>    <span class="dt">ylab =</span> <span class="st">&quot;Amplitude térmica (°C)&quot;</span> <span class="co"># labels do eixo y</span></span>
+<span id="cb445-17"><a href="parâmetros-gráficos.html#cb445-17"></a>  )</span>
+<span id="cb445-18"><a href="parâmetros-gráficos.html#cb445-18"></a><span class="kw">box</span>()</span></code></pre></div>
+<p><img src="images/unnamed-chunk-38-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Para ilustrar um histograma usaremos os dados de temperatura horária de Santa Maria.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1"><span class="co"># dados de temp de SM</span></a>
-<a class="sourceLine" id="cb442-2" title="2">th_sm &lt;-<span class="st"> </span><span class="kw">filter</span>(sulbr_dh, site <span class="op">==</span><span class="st"> &quot;A803&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb442-3" title="3"><span class="st">  </span><span class="kw">pull</span>(tair)</a>
-<a class="sourceLine" id="cb442-4" title="4"><span class="kw">hist</span>(<span class="dt">x =</span> th_sm)</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="parâmetros-gráficos.html#cb446-1"></a><span class="co"># dados de temp de SM</span></span>
+<span id="cb446-2"><a href="parâmetros-gráficos.html#cb446-2"></a>th_sm &lt;-<span class="st"> </span><span class="kw">filter</span>(sulbr_dh, site <span class="op">==</span><span class="st"> &quot;A803&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb446-3"><a href="parâmetros-gráficos.html#cb446-3"></a><span class="st">  </span><span class="kw">pull</span>(tair)</span>
+<span id="cb446-4"><a href="parâmetros-gráficos.html#cb446-4"></a><span class="kw">hist</span>(<span class="dt">x =</span> th_sm)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-39-1.png" width="672" /></p>
 <p>O número de classes para discretização dos dados pode ser especificado no parâmetro <code>breaks</code>.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">hist</span>(<span class="dt">x =</span> th_sm, <span class="dt">breaks =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="parâmetros-gráficos.html#cb447-1"></a><span class="kw">hist</span>(<span class="dt">x =</span> th_sm, <span class="dt">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Usando a interface de fórmula podemos fazer facilmente um boxplot da temperatura do ar horária de Santa Maria-RS, para cada mês.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">boxplot</span>(tair <span class="op">~</span><span class="st"> </span><span class="kw">month</span>(date),</a>
-<a class="sourceLine" id="cb444-2" title="2">  <span class="dt">data =</span> <span class="kw">filter</span>(sulbr_dh, site <span class="op">==</span><span class="st"> &quot;A803&quot;</span>)</a>
-<a class="sourceLine" id="cb444-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="parâmetros-gráficos.html#cb448-1"></a><span class="kw">boxplot</span>(tair <span class="op">~</span><span class="st"> </span><span class="kw">month</span>(date),</span>
+<span id="cb448-2"><a href="parâmetros-gráficos.html#cb448-2"></a>  <span class="dt">data =</span> <span class="kw">filter</span>(sulbr_dh, site <span class="op">==</span><span class="st"> &quot;A803&quot;</span>)</span>
+<span id="cb448-3"><a href="parâmetros-gráficos.html#cb448-3"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Funções matemáticas podem ser visualizadas com a função <code>curve()</code>.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1"><span class="co"># Curvas</span></a>
-<a class="sourceLine" id="cb445-2" title="2"><span class="kw">curve</span>(x <span class="op">^</span><span class="st"> </span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>x, <span class="dt">from =</span> <span class="dv">-4</span>, <span class="dt">to =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb445-3" title="3"><span class="co"># plot de uma função criada</span></a>
-<a class="sourceLine" id="cb445-4" title="4">fun_curvilinea &lt;-<span class="st"> </span><span class="cf">function</span>(xvar) {</a>
-<a class="sourceLine" id="cb445-5" title="5">  <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>xvar <span class="op">+</span><span class="st"> </span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb445-6" title="6">}</a>
-<a class="sourceLine" id="cb445-7" title="7"><span class="kw">curve</span>(<span class="kw">fun_curvilinea</span>(x), <span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb445-8" title="8"><span class="co"># Add a line:</span></a>
-<a class="sourceLine" id="cb445-9" title="9"><span class="kw">curve</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">fun_curvilinea</span>(x), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="parâmetros-gráficos.html#cb449-1"></a><span class="co"># Curvas</span></span>
+<span id="cb449-2"><a href="parâmetros-gráficos.html#cb449-2"></a><span class="kw">curve</span>(x <span class="op">^</span><span class="st"> </span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>x, <span class="dt">from =</span> <span class="dv">-4</span>, <span class="dt">to =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="parâmetros-gráficos.html#cb450-1"></a><span class="co"># plot de uma função criada</span></span>
+<span id="cb450-2"><a href="parâmetros-gráficos.html#cb450-2"></a>fun_curvilinea &lt;-<span class="st"> </span><span class="cf">function</span>(xvar) {</span>
+<span id="cb450-3"><a href="parâmetros-gráficos.html#cb450-3"></a>  <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>xvar <span class="op">+</span><span class="st"> </span><span class="dv">10</span>))</span>
+<span id="cb450-4"><a href="parâmetros-gráficos.html#cb450-4"></a>}</span>
+<span id="cb450-5"><a href="parâmetros-gráficos.html#cb450-5"></a><span class="kw">curve</span>(<span class="kw">fun_curvilinea</span>(x), <span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">20</span>)</span>
+<span id="cb450-6"><a href="parâmetros-gráficos.html#cb450-6"></a><span class="co"># Add a line:</span></span>
+<span id="cb450-7"><a href="parâmetros-gráficos.html#cb450-7"></a><span class="kw">curve</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">fun_curvilinea</span>(x), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-42-2.png" width="672" /></p>
 <p>Para mostrar como fazer um gráfico do tipo imagem, vamos criar uma matriz com temperatura média mensal horária em que as linhas são os meses e as colunas as horas.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1">  tar_mes_hora &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb446-2" title="2"><span class="st">    </span><span class="kw">group_by</span>(<span class="dt">mes =</span> <span class="kw">month</span>(date), <span class="dt">hora =</span> <span class="kw">hour</span>(date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb446-3" title="3"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">tmed =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb446-4" title="4"><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb446-5" title="5"><span class="st">    </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;hora&quot;</span>,</a>
-<a class="sourceLine" id="cb446-6" title="6">                <span class="dt">values_from =</span> <span class="st">&quot;tmed&quot;</span>)</a>
-<a class="sourceLine" id="cb446-7" title="7">  <span class="co">#View(tar_mes_hora)</span></a>
-<a class="sourceLine" id="cb446-8" title="8">  tar_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(tar_mes_hora[, <span class="dv">-1</span>])</a>
-<a class="sourceLine" id="cb446-9" title="9">  <span class="kw">dim</span>(tar_mat)</a></code></pre></div>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tar_mat) </a>
-<a class="sourceLine" id="cb447-2" title="2">y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(tar_mat) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb447-3" title="3"><span class="kw">image</span>(</a>
-<a class="sourceLine" id="cb447-4" title="4">  x, <span class="co"># eixo x</span></a>
-<a class="sourceLine" id="cb447-5" title="5">  y, <span class="co"># eixo y</span></a>
-<a class="sourceLine" id="cb447-6" title="6">  <span class="dt">z =</span> tar_mat, <span class="co"># matriz de dados</span></a>
-<a class="sourceLine" id="cb447-7" title="7">  <span class="dt">col =</span> <span class="kw">topo.colors</span>(<span class="dt">n =</span> <span class="dv">32</span>), <span class="co"># paleta de cores</span></a>
-<a class="sourceLine" id="cb447-8" title="8">  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb447-9" title="9">  <span class="dt">xlab =</span> <span class="st">&quot;mês&quot;,</span></a>
-<a class="sourceLine" id="cb447-10" title="10"><span class="st">  ylab = &quot;</span>hora<span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb447-11" title="11"><span class="st">)</span></a>
-<a class="sourceLine" id="cb447-12" title="12"></a>
-<a class="sourceLine" id="cb447-13" title="13"><span class="st"># intervalo de variação</span></a>
-<a class="sourceLine" id="cb447-14" title="14"><span class="st">int_var &lt;- range(tar_mat)</span></a>
-<a class="sourceLine" id="cb447-15" title="15"><span class="st">limites &lt;- c(trunc(int_var[1]), ceiling(int_var[2]))</span></a>
-<a class="sourceLine" id="cb447-16" title="16"></a>
-<a class="sourceLine" id="cb447-17" title="17"><span class="st">contour(</span></a>
-<a class="sourceLine" id="cb447-18" title="18"><span class="st">  x,</span></a>
-<a class="sourceLine" id="cb447-19" title="19"><span class="st">  y,</span></a>
-<a class="sourceLine" id="cb447-20" title="20"><span class="st">  tar_mat,</span></a>
-<a class="sourceLine" id="cb447-21" title="21"><span class="st">  levels = seq(limites[1], limites[2], by = 3),</span></a>
-<a class="sourceLine" id="cb447-22" title="22"><span class="st">  add = TRUE,</span></a>
-<a class="sourceLine" id="cb447-23" title="23"><span class="st">  col = &quot;</span>peru<span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb447-24" title="24"><span class="st">)</span></a>
-<a class="sourceLine" id="cb447-25" title="25"><span class="st">axis(1, at = x)</span></a>
-<a class="sourceLine" id="cb447-26" title="26"><span class="st">axis(2, at = y[c(TRUE, FALSE)])</span></a>
-<a class="sourceLine" id="cb447-27" title="27"><span class="st">box()</span></a>
-<a class="sourceLine" id="cb447-28" title="28"><span class="st">title(</span></a>
-<a class="sourceLine" id="cb447-29" title="29"><span class="st">  main = &quot;</span>Variação sazonal horária da Tar \n no Sul do Brasil<span class="st">&quot;,</span></a>
-<a class="sourceLine" id="cb447-30" title="30"><span class="st">  cex.main = 0.9</span></a>
-<a class="sourceLine" id="cb447-31" title="31"><span class="st">)</span></a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="parâmetros-gráficos.html#cb451-1"></a>  tar_mes_hora &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span></span>
+<span id="cb451-2"><a href="parâmetros-gráficos.html#cb451-2"></a><span class="st">    </span><span class="kw">group_by</span>(<span class="dt">mes =</span> <span class="kw">month</span>(date), <span class="dt">hora =</span> <span class="kw">hour</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb451-3"><a href="parâmetros-gráficos.html#cb451-3"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">tmed =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb451-4"><a href="parâmetros-gráficos.html#cb451-4"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb451-5"><a href="parâmetros-gráficos.html#cb451-5"></a><span class="st">    </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;hora&quot;</span>,</span>
+<span id="cb451-6"><a href="parâmetros-gráficos.html#cb451-6"></a>                <span class="dt">values_from =</span> <span class="st">&quot;tmed&quot;</span>)</span>
+<span id="cb451-7"><a href="parâmetros-gráficos.html#cb451-7"></a>  <span class="co">#View(tar_mes_hora)</span></span>
+<span id="cb451-8"><a href="parâmetros-gráficos.html#cb451-8"></a>  tar_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(tar_mes_hora[, <span class="dv">-1</span>])</span>
+<span id="cb451-9"><a href="parâmetros-gráficos.html#cb451-9"></a>  <span class="kw">dim</span>(tar_mat)</span>
+<span id="cb451-10"><a href="parâmetros-gráficos.html#cb451-10"></a><span class="co">#&gt; [1] 12 24</span></span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="parâmetros-gráficos.html#cb452-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tar_mat) </span>
+<span id="cb452-2"><a href="parâmetros-gráficos.html#cb452-2"></a>y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(tar_mat) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb452-3"><a href="parâmetros-gráficos.html#cb452-3"></a><span class="kw">image</span>(</span>
+<span id="cb452-4"><a href="parâmetros-gráficos.html#cb452-4"></a>  x, <span class="co"># eixo x</span></span>
+<span id="cb452-5"><a href="parâmetros-gráficos.html#cb452-5"></a>  y, <span class="co"># eixo y</span></span>
+<span id="cb452-6"><a href="parâmetros-gráficos.html#cb452-6"></a>  <span class="dt">z =</span> tar_mat, <span class="co"># matriz de dados</span></span>
+<span id="cb452-7"><a href="parâmetros-gráficos.html#cb452-7"></a>  <span class="dt">col =</span> <span class="kw">topo.colors</span>(<span class="dt">n =</span> <span class="dv">32</span>), <span class="co"># paleta de cores</span></span>
+<span id="cb452-8"><a href="parâmetros-gráficos.html#cb452-8"></a>  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb452-9"><a href="parâmetros-gráficos.html#cb452-9"></a>  <span class="dt">xlab =</span> <span class="st">&quot;mês&quot;,</span></span>
+<span id="cb452-10"><a href="parâmetros-gráficos.html#cb452-10"></a><span class="st">  ylab = &quot;</span>hora<span class="st">&quot;</span></span>
+<span id="cb452-11"><a href="parâmetros-gráficos.html#cb452-11"></a><span class="st">)</span></span>
+<span id="cb452-12"><a href="parâmetros-gráficos.html#cb452-12"></a></span>
+<span id="cb452-13"><a href="parâmetros-gráficos.html#cb452-13"></a><span class="st"># intervalo de variação</span></span>
+<span id="cb452-14"><a href="parâmetros-gráficos.html#cb452-14"></a><span class="st">int_var &lt;- range(tar_mat)</span></span>
+<span id="cb452-15"><a href="parâmetros-gráficos.html#cb452-15"></a><span class="st">limites &lt;- c(trunc(int_var[1]), ceiling(int_var[2]))</span></span>
+<span id="cb452-16"><a href="parâmetros-gráficos.html#cb452-16"></a></span>
+<span id="cb452-17"><a href="parâmetros-gráficos.html#cb452-17"></a><span class="st">contour(</span></span>
+<span id="cb452-18"><a href="parâmetros-gráficos.html#cb452-18"></a><span class="st">  x,</span></span>
+<span id="cb452-19"><a href="parâmetros-gráficos.html#cb452-19"></a><span class="st">  y,</span></span>
+<span id="cb452-20"><a href="parâmetros-gráficos.html#cb452-20"></a><span class="st">  tar_mat,</span></span>
+<span id="cb452-21"><a href="parâmetros-gráficos.html#cb452-21"></a><span class="st">  levels = seq(limites[1], limites[2], by = 3),</span></span>
+<span id="cb452-22"><a href="parâmetros-gráficos.html#cb452-22"></a><span class="st">  add = TRUE,</span></span>
+<span id="cb452-23"><a href="parâmetros-gráficos.html#cb452-23"></a><span class="st">  col = &quot;</span>peru<span class="st">&quot;</span></span>
+<span id="cb452-24"><a href="parâmetros-gráficos.html#cb452-24"></a><span class="st">)</span></span>
+<span id="cb452-25"><a href="parâmetros-gráficos.html#cb452-25"></a><span class="st">axis(1, at = x)</span></span>
+<span id="cb452-26"><a href="parâmetros-gráficos.html#cb452-26"></a><span class="st">axis(2, at = y[c(TRUE, FALSE)])</span></span>
+<span id="cb452-27"><a href="parâmetros-gráficos.html#cb452-27"></a><span class="st">box()</span></span>
+<span id="cb452-28"><a href="parâmetros-gráficos.html#cb452-28"></a><span class="st">title(</span></span>
+<span id="cb452-29"><a href="parâmetros-gráficos.html#cb452-29"></a><span class="st">  main = &quot;</span>Variação sazonal horária da Tar \n no Sul do Brasil<span class="st">&quot;,</span></span>
+<span id="cb452-30"><a href="parâmetros-gráficos.html#cb452-30"></a><span class="st">  cex.main = 0.9</span></span>
+<span id="cb452-31"><a href="parâmetros-gráficos.html#cb452-31"></a><span class="st">)</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="telas-gráficas" class="section level4">
 <h4><span class="header-section-number">11.5.3.2</span> Telas gráficas</h4>
 <p>A executar a função <code>plot()</code> o RStudio automaticamente abre uma tela gráfica e plota o gráfico. Para remover o gráfico gerado é executar <code>dev.off()</code>.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1"><span class="kw">plot</span>(y1)</a>
-<a class="sourceLine" id="cb448-2" title="2"><span class="co"># fechar a tela gráfica</span></a>
-<a class="sourceLine" id="cb448-3" title="3"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="parâmetros-gráficos.html#cb453-1"></a><span class="kw">plot</span>(y1)</span>
+<span id="cb453-2"><a href="parâmetros-gráficos.html#cb453-2"></a><span class="co"># fechar a tela gráfica</span></span>
+<span id="cb453-3"><a href="parâmetros-gráficos.html#cb453-3"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 <p>Eventualmente você pode exibir um gráfico fora do painel de gráficos do RStudio. Para isso antes de gerar o gráfico, rode a função <code>x11()</code> ou <code>dev.new()</code>.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1"><span class="kw">x11</span>()</a>
-<a class="sourceLine" id="cb449-2" title="2"><span class="kw">plot</span>(y1)</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="parâmetros-gráficos.html#cb454-1"></a><span class="kw">x11</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="parâmetros-gráficos.html#cb455-1"></a><span class="kw">plot</span>(y1)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Seu gráfico aparecerá em uma janela gráfica fora do ambiente do RStudio. Você abrir mais janelas gráficas repetindo a expressão <code>x11()</code> (<code>dev.new()</code>). Abaixo nós abriremos uma janela para fazer outro plot.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1"><span class="kw">x11</span>()</a>
-<a class="sourceLine" id="cb450-2" title="2"><span class="kw">plot</span>(y1<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="parâmetros-gráficos.html#cb456-1"></a><span class="kw">x11</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="parâmetros-gráficos.html#cb457-1"></a><span class="kw">plot</span>(y1<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Você poderia fechar um gráfico de cada vez digitando <code>dev.off()</code>, mas se houver muitos gráficos você tem a opção de usar a função <code>graphics.off()</code>. Ela fechará todas as telas gráficas abertas, inclusive as qu estiverem no painel de gráficos do RStudio.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" title="1"><span class="kw">graphics.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="parâmetros-gráficos.html#cb458-1"></a><span class="kw">graphics.off</span>()</span></code></pre></div>
 <p>O Rstudio permite que você visualize um gráfico com mais detalhe e ajustando a janela de acordo com sua preferência através do botão zoom no painel de gráficos.</p>
 </div>
 <div id="salvando-gráficos" class="section level4">
 <h4><span class="header-section-number">11.5.3.3</span> Salvando gráficos</h4>
 <p>O <img src="images/logo_r.png" width="20"> pode exportar um gráfico para diferentes saídas gráficas (<em>png, pdf, ps, jpeg</em> e etc). Uma lista completa das opções disponíveis está disponível em <code>?device</code>.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">plot</span>(y1)</a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="parâmetros-gráficos.html#cb459-1"></a><span class="kw">plot</span>(y1)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Vamos usar o exemplo do gráfico com diferentes paleta de cores para demonstrar como salvar vários gráficos em um único arquivo <strong>pdf</strong>.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1"><span class="co">## fechando qualquer tela gráfica aberta</span></a>
-<a class="sourceLine" id="cb453-2" title="2"><span class="kw">graphics.off</span>()</a>
-<a class="sourceLine" id="cb453-3" title="3"><span class="co">## abrindo saída gráfica</span></a>
-<a class="sourceLine" id="cb453-4" title="4">arquivo &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;5plots-1arquivo.pdf&quot;</span>)</a>
-<a class="sourceLine" id="cb453-5" title="5"><span class="kw">pdf</span>(</a>
-<a class="sourceLine" id="cb453-6" title="6">  <span class="dt">file =</span> arquivo,</a>
-<a class="sourceLine" id="cb453-7" title="7">  <span class="dt">onefile =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb453-8" title="8">  <span class="dt">width =</span> <span class="dv">7</span>, </a>
-<a class="sourceLine" id="cb453-9" title="9">  <span class="dt">height =</span> <span class="dv">4</span></a>
-<a class="sourceLine" id="cb453-10" title="10">)</a>
-<a class="sourceLine" id="cb453-11" title="11"></a>
-<a class="sourceLine" id="cb453-12" title="12"><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</a>
-<a class="sourceLine" id="cb453-13" title="13">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb453-14" title="14">    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb453-15" title="15">    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb453-16" title="16">    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</a>
-<a class="sourceLine" id="cb453-17" title="17">    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</a>
-<a class="sourceLine" id="cb453-18" title="18">    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb453-19" title="19">    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</a>
-<a class="sourceLine" id="cb453-20" title="20">    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</a>
-<a class="sourceLine" id="cb453-21" title="21">    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></a>
-<a class="sourceLine" id="cb453-22" title="22">    <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb453-23" title="23">    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb453-24" title="24">  )</a>
-<a class="sourceLine" id="cb453-25" title="25">}</a>
-<a class="sourceLine" id="cb453-26" title="26"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="parâmetros-gráficos.html#cb460-1"></a><span class="co">## fechando qualquer tela gráfica aberta</span></span>
+<span id="cb460-2"><a href="parâmetros-gráficos.html#cb460-2"></a><span class="kw">graphics.off</span>()</span>
+<span id="cb460-3"><a href="parâmetros-gráficos.html#cb460-3"></a><span class="co">## abrindo saída gráfica</span></span>
+<span id="cb460-4"><a href="parâmetros-gráficos.html#cb460-4"></a>arquivo &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;5plots-1arquivo.pdf&quot;</span>)</span>
+<span id="cb460-5"><a href="parâmetros-gráficos.html#cb460-5"></a><span class="kw">pdf</span>(</span>
+<span id="cb460-6"><a href="parâmetros-gráficos.html#cb460-6"></a>  <span class="dt">file =</span> arquivo,</span>
+<span id="cb460-7"><a href="parâmetros-gráficos.html#cb460-7"></a>  <span class="dt">onefile =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb460-8"><a href="parâmetros-gráficos.html#cb460-8"></a>  <span class="dt">width =</span> <span class="dv">7</span>, </span>
+<span id="cb460-9"><a href="parâmetros-gráficos.html#cb460-9"></a>  <span class="dt">height =</span> <span class="dv">4</span></span>
+<span id="cb460-10"><a href="parâmetros-gráficos.html#cb460-10"></a>)</span>
+<span id="cb460-11"><a href="parâmetros-gráficos.html#cb460-11"></a></span>
+<span id="cb460-12"><a href="parâmetros-gráficos.html#cb460-12"></a><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</span>
+<span id="cb460-13"><a href="parâmetros-gráficos.html#cb460-13"></a>  <span class="kw">plot</span>(</span>
+<span id="cb460-14"><a href="parâmetros-gráficos.html#cb460-14"></a>    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb460-15"><a href="parâmetros-gráficos.html#cb460-15"></a>    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb460-16"><a href="parâmetros-gráficos.html#cb460-16"></a>    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb460-17"><a href="parâmetros-gráficos.html#cb460-17"></a>    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb460-18"><a href="parâmetros-gráficos.html#cb460-18"></a>    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb460-19"><a href="parâmetros-gráficos.html#cb460-19"></a>    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</span>
+<span id="cb460-20"><a href="parâmetros-gráficos.html#cb460-20"></a>    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</span>
+<span id="cb460-21"><a href="parâmetros-gráficos.html#cb460-21"></a>    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></span>
+<span id="cb460-22"><a href="parâmetros-gráficos.html#cb460-22"></a>    <span class="dt">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb460-23"><a href="parâmetros-gráficos.html#cb460-23"></a>    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb460-24"><a href="parâmetros-gráficos.html#cb460-24"></a>  )</span>
+<span id="cb460-25"><a href="parâmetros-gráficos.html#cb460-25"></a>}</span>
+<span id="cb460-26"><a href="parâmetros-gráficos.html#cb460-26"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 <p>Você pode abrir o arquivo salvo digitando <code>file.show(arquivo)</code>.</p>
 <p>Para salvar cada gráfico em um arquivo separado a chamada da função <code>pdf()</code> precisa ser feita antes de cada gráfico e dentro do laço do <code>for()</code>.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" title="1"><span class="co">## fechando qualquer tela gráfica aberta</span></a>
-<a class="sourceLine" id="cb454-2" title="2"><span class="kw">graphics.off</span>()</a>
-<a class="sourceLine" id="cb454-3" title="3"><span class="co">## looping em cada coluna da matriz mat</span></a>
-<a class="sourceLine" id="cb454-4" title="4"><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</a>
-<a class="sourceLine" id="cb454-5" title="5">  <span class="co">## mostra tela o índice do looping em execução</span></a>
-<a class="sourceLine" id="cb454-6" title="6">  <span class="kw">cat</span>(ipal, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb454-7" title="7">  <span class="co">## criando nome do arquivo</span></a>
-<a class="sourceLine" id="cb454-8" title="8">  arquivo &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
-<a class="sourceLine" id="cb454-9" title="9">    <span class="kw">tempdir</span>(),</a>
-<a class="sourceLine" id="cb454-10" title="10">    <span class="kw">paste0</span>(<span class="st">&quot;plot&quot;</span>, ipal, <span class="st">&quot;_arquivo&quot;</span>, ipal, <span class="st">&quot;.pdf&quot;</span>)</a>
-<a class="sourceLine" id="cb454-11" title="11">  )</a>
-<a class="sourceLine" id="cb454-12" title="12">  <span class="co">## abrindo saída gráfica</span></a>
-<a class="sourceLine" id="cb454-13" title="13">  <span class="kw">pdf</span>(<span class="dt">file =</span> arquivo, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">height =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb454-14" title="14">  <span class="co"># plot da variável de cada coluna da matriz</span></a>
-<a class="sourceLine" id="cb454-15" title="15">  <span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb454-16" title="16">    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb454-17" title="17">    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</a>
-<a class="sourceLine" id="cb454-18" title="18">    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</a>
-<a class="sourceLine" id="cb454-19" title="19">    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</a>
-<a class="sourceLine" id="cb454-20" title="20">    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb454-21" title="21">    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</a>
-<a class="sourceLine" id="cb454-22" title="22">    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</a>
-<a class="sourceLine" id="cb454-23" title="23">    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></a>
-<a class="sourceLine" id="cb454-24" title="24">    <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb454-25" title="25">    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb454-26" title="26">  )</a>
-<a class="sourceLine" id="cb454-27" title="27">  <span class="co">## fechando pdf</span></a>
-<a class="sourceLine" id="cb454-28" title="28">  <span class="kw">dev.off</span>()</a>
-<a class="sourceLine" id="cb454-29" title="29">}</a>
-<a class="sourceLine" id="cb454-30" title="30"><span class="co">#file.show(arquivo)</span></a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="parâmetros-gráficos.html#cb461-1"></a><span class="co">## fechando qualquer tela gráfica aberta</span></span>
+<span id="cb461-2"><a href="parâmetros-gráficos.html#cb461-2"></a><span class="kw">graphics.off</span>()</span>
+<span id="cb461-3"><a href="parâmetros-gráficos.html#cb461-3"></a><span class="co">## looping em cada coluna da matriz mat</span></span>
+<span id="cb461-4"><a href="parâmetros-gráficos.html#cb461-4"></a><span class="cf">for</span> (ipal <span class="cf">in</span> <span class="kw">seq_along</span>(paletas)) {</span>
+<span id="cb461-5"><a href="parâmetros-gráficos.html#cb461-5"></a>  <span class="co">## mostra tela o índice do looping em execução</span></span>
+<span id="cb461-6"><a href="parâmetros-gráficos.html#cb461-6"></a>  <span class="kw">cat</span>(ipal, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb461-7"><a href="parâmetros-gráficos.html#cb461-7"></a>  <span class="co">## criando nome do arquivo</span></span>
+<span id="cb461-8"><a href="parâmetros-gráficos.html#cb461-8"></a>  arquivo &lt;-<span class="st"> </span><span class="kw">file.path</span>(</span>
+<span id="cb461-9"><a href="parâmetros-gráficos.html#cb461-9"></a>    <span class="kw">tempdir</span>(),</span>
+<span id="cb461-10"><a href="parâmetros-gráficos.html#cb461-10"></a>    <span class="kw">paste0</span>(<span class="st">&quot;plot&quot;</span>, ipal, <span class="st">&quot;_arquivo&quot;</span>, ipal, <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb461-11"><a href="parâmetros-gráficos.html#cb461-11"></a>  )</span>
+<span id="cb461-12"><a href="parâmetros-gráficos.html#cb461-12"></a>  <span class="co">## abrindo saída gráfica</span></span>
+<span id="cb461-13"><a href="parâmetros-gráficos.html#cb461-13"></a>  <span class="kw">pdf</span>(<span class="dt">file =</span> arquivo, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">height =</span> <span class="dv">4</span>)</span>
+<span id="cb461-14"><a href="parâmetros-gráficos.html#cb461-14"></a>  <span class="co"># plot da variável de cada coluna da matriz</span></span>
+<span id="cb461-15"><a href="parâmetros-gráficos.html#cb461-15"></a>  <span class="kw">plot</span>(</span>
+<span id="cb461-16"><a href="parâmetros-gráficos.html#cb461-16"></a>    <span class="dt">x =</span> onda<span class="op">$</span>x1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb461-17"><a href="parâmetros-gráficos.html#cb461-17"></a>    <span class="dt">y =</span> onda<span class="op">$</span>y1[<span class="dv">1</span><span class="op">:</span>n],</span>
+<span id="cb461-18"><a href="parâmetros-gráficos.html#cb461-18"></a>    <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb461-19"><a href="parâmetros-gráficos.html#cb461-19"></a>    <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb461-20"><a href="parâmetros-gráficos.html#cb461-20"></a>    <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb461-21"><a href="parâmetros-gráficos.html#cb461-21"></a>    <span class="dt">main =</span> <span class="st">&quot;Várias cores&quot;</span>,</span>
+<span id="cb461-22"><a href="parâmetros-gráficos.html#cb461-22"></a>    <span class="dt">sub =</span> <span class="st">&quot;Onda colorida&quot;</span>,</span>
+<span id="cb461-23"><a href="parâmetros-gráficos.html#cb461-23"></a>    <span class="dt">col =</span> paletas[[ipal]], <span class="co"># função para paleta arco-íris</span></span>
+<span id="cb461-24"><a href="parâmetros-gráficos.html#cb461-24"></a>    <span class="dt">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb461-25"><a href="parâmetros-gráficos.html#cb461-25"></a>    <span class="dt">cex =</span> (<span class="dv">1</span><span class="op">:</span>n) <span class="op">/</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb461-26"><a href="parâmetros-gráficos.html#cb461-26"></a>  )</span>
+<span id="cb461-27"><a href="parâmetros-gráficos.html#cb461-27"></a>  <span class="co">## fechando pdf</span></span>
+<span id="cb461-28"><a href="parâmetros-gráficos.html#cb461-28"></a>  <span class="kw">dev.off</span>()</span>
+<span id="cb461-29"><a href="parâmetros-gráficos.html#cb461-29"></a>}</span>
+<span id="cb461-30"><a href="parâmetros-gráficos.html#cb461-30"></a><span class="co">#file.show(arquivo)</span></span></code></pre></div>
 </div>
 </div>
 <div id="plotando-vários-gráficos-em-uma-mesma-página" class="section level3">
 <h3><span class="header-section-number">11.5.4</span> Plotando vários gráficos em uma mesma página</h3>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">las =</span><span class="dv">1</span>, <span class="dt">cex.lab =</span> <span class="fl">1.2</span>, <span class="dt">cex.axis =</span> <span class="fl">1.2</span>)</a>
-<a class="sourceLine" id="cb455-2" title="2"></a>
-<a class="sourceLine" id="cb455-3" title="3"><span class="kw">with</span>(sulbr_md, {</a>
-<a class="sourceLine" id="cb455-4" title="4"><span class="kw">plot</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(site), </a>
-<a class="sourceLine" id="cb455-5" title="5">     <span class="dt">y =</span> period,</a>
-<a class="sourceLine" id="cb455-6" title="6">     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>,</a>
-<a class="sourceLine" id="cb455-7" title="7">     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span>,</a>
-<a class="sourceLine" id="cb455-8" title="8">     <span class="dt">ylab =</span> <span class="st">&quot;Período (anos)&quot;</span></a>
-<a class="sourceLine" id="cb455-9" title="9">     ) <span class="co"># linha e ponto conectados</span></a>
-<a class="sourceLine" id="cb455-10" title="10"></a>
-<a class="sourceLine" id="cb455-11" title="11"><span class="kw">plot</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(site), </a>
-<a class="sourceLine" id="cb455-12" title="12">     <span class="dt">y =</span> missing, </a>
-<a class="sourceLine" id="cb455-13" title="13">     <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>,</a>
-<a class="sourceLine" id="cb455-14" title="14">     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span>,</a>
-<a class="sourceLine" id="cb455-15" title="15">     <span class="dt">ylab =</span> <span class="st">&quot;Dados faltantes (%)&quot;</span></a>
-<a class="sourceLine" id="cb455-16" title="16">     ) <span class="co"># linha</span></a>
-<a class="sourceLine" id="cb455-17" title="17"></a>
-<a class="sourceLine" id="cb455-18" title="18"><span class="kw">plot</span>(<span class="dt">x =</span> period, </a>
-<a class="sourceLine" id="cb455-19" title="19">     <span class="dt">y =</span> long_gap<span class="op">/</span><span class="dv">24</span>,</a>
-<a class="sourceLine" id="cb455-20" title="20">     <span class="dt">log =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb455-21" title="21">     <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</a>
-<a class="sourceLine" id="cb455-22" title="22">     <span class="dt">pch =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb455-23" title="23">     <span class="dt">ylab =</span> <span class="st">&quot;Log. Tamanho da falha (dias)&quot;</span>,</a>
-<a class="sourceLine" id="cb455-24" title="24">     <span class="dt">xlab =</span> <span class="st">&quot;Período de dados&quot;</span>) <span class="co"># linha e ponto desconectados</span></a>
-<a class="sourceLine" id="cb455-25" title="25"><span class="kw">plot</span>(<span class="dt">x =</span> sdate, </a>
-<a class="sourceLine" id="cb455-26" title="26">     <span class="dt">y =</span> dtr_med, </a>
-<a class="sourceLine" id="cb455-27" title="27">     <span class="dt">col =</span> <span class="kw">recode</span>(state, <span class="dt">RS =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">SC =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">PR =</span> <span class="st">&quot;red&quot;</span>),</a>
-<a class="sourceLine" id="cb455-28" title="28">     <span class="dt">cex =</span> <span class="fl">1.2</span>,</a>
-<a class="sourceLine" id="cb455-29" title="29">     <span class="dt">pch =</span> <span class="kw">recode</span>(state, <span class="dt">RS =</span> <span class="dv">20</span>, <span class="dt">SC =</span> <span class="dv">6</span>, <span class="dt">PR =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb455-30" title="30">     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span></a>
-<a class="sourceLine" id="cb455-31" title="31">     )</a>
-<a class="sourceLine" id="cb455-32" title="32"><span class="kw">hist</span>(max_tair, </a>
-<a class="sourceLine" id="cb455-33" title="33">     <span class="dt">xlab =</span> <span class="st">&quot;Tmax absoluta (°C)&quot;</span>,</a>
-<a class="sourceLine" id="cb455-34" title="34">     <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb455-35" title="35">     <span class="dt">col =</span> <span class="st">&quot;salmon&quot;</span>,</a>
-<a class="sourceLine" id="cb455-36" title="36">     <span class="dt">ylab =</span> <span class="st">&quot;Frequência&quot;</span></a>
-<a class="sourceLine" id="cb455-37" title="37"><span class="st">     ) # linha e ponto</span></a>
-<a class="sourceLine" id="cb455-38" title="38"><span class="st">box()</span></a>
-<a class="sourceLine" id="cb455-39" title="39"><span class="st">plot(1:10, </span></a>
-<a class="sourceLine" id="cb455-40" title="40"><span class="st">     1:10, </span></a>
-<a class="sourceLine" id="cb455-41" title="41"><span class="st">     type = &quot;</span>n<span class="st">&quot;, </span></a>
-<a class="sourceLine" id="cb455-42" title="42"><span class="st">     frame = F, </span></a>
-<a class="sourceLine" id="cb455-43" title="43"><span class="st">     axes = F, </span></a>
-<a class="sourceLine" id="cb455-44" title="44"><span class="st">     xlab = &quot;&quot;, </span></a>
-<a class="sourceLine" id="cb455-45" title="45"><span class="st">     ylab = &quot;&quot;)</span></a>
-<a class="sourceLine" id="cb455-46" title="46"><span class="st">text(5, 5, &quot;</span><span class="dv">5</span> gráficos \n em uma \n página<span class="st">&quot;, cex = 3)</span></a>
-<a class="sourceLine" id="cb455-47" title="47"><span class="st">})</span></a>
-<a class="sourceLine" id="cb455-48" title="48"></a>
-<a class="sourceLine" id="cb455-49" title="49"></a>
-<a class="sourceLine" id="cb455-50" title="50"><span class="st">#par()</span></a></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="parâmetros-gráficos.html#cb462-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">las =</span><span class="dv">1</span>, <span class="dt">cex.lab =</span> <span class="fl">1.2</span>, <span class="dt">cex.axis =</span> <span class="fl">1.2</span>)</span>
+<span id="cb462-2"><a href="parâmetros-gráficos.html#cb462-2"></a></span>
+<span id="cb462-3"><a href="parâmetros-gráficos.html#cb462-3"></a><span class="kw">with</span>(sulbr_md, {</span>
+<span id="cb462-4"><a href="parâmetros-gráficos.html#cb462-4"></a><span class="kw">plot</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(site), </span>
+<span id="cb462-5"><a href="parâmetros-gráficos.html#cb462-5"></a>     <span class="dt">y =</span> period,</span>
+<span id="cb462-6"><a href="parâmetros-gráficos.html#cb462-6"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>,</span>
+<span id="cb462-7"><a href="parâmetros-gráficos.html#cb462-7"></a>     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span>,</span>
+<span id="cb462-8"><a href="parâmetros-gráficos.html#cb462-8"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Período (anos)&quot;</span></span>
+<span id="cb462-9"><a href="parâmetros-gráficos.html#cb462-9"></a>     ) <span class="co"># linha e ponto conectados</span></span>
+<span id="cb462-10"><a href="parâmetros-gráficos.html#cb462-10"></a></span>
+<span id="cb462-11"><a href="parâmetros-gráficos.html#cb462-11"></a><span class="kw">plot</span>(<span class="dt">x =</span> <span class="kw">seq_along</span>(site), </span>
+<span id="cb462-12"><a href="parâmetros-gráficos.html#cb462-12"></a>     <span class="dt">y =</span> missing, </span>
+<span id="cb462-13"><a href="parâmetros-gráficos.html#cb462-13"></a>     <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>,</span>
+<span id="cb462-14"><a href="parâmetros-gráficos.html#cb462-14"></a>     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span>,</span>
+<span id="cb462-15"><a href="parâmetros-gráficos.html#cb462-15"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Dados faltantes (%)&quot;</span></span>
+<span id="cb462-16"><a href="parâmetros-gráficos.html#cb462-16"></a>     ) <span class="co"># linha</span></span>
+<span id="cb462-17"><a href="parâmetros-gráficos.html#cb462-17"></a></span>
+<span id="cb462-18"><a href="parâmetros-gráficos.html#cb462-18"></a><span class="kw">plot</span>(<span class="dt">x =</span> period, </span>
+<span id="cb462-19"><a href="parâmetros-gráficos.html#cb462-19"></a>     <span class="dt">y =</span> long_gap<span class="op">/</span><span class="dv">24</span>,</span>
+<span id="cb462-20"><a href="parâmetros-gráficos.html#cb462-20"></a>     <span class="dt">log =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb462-21"><a href="parâmetros-gráficos.html#cb462-21"></a>     <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,</span>
+<span id="cb462-22"><a href="parâmetros-gráficos.html#cb462-22"></a>     <span class="dt">pch =</span> <span class="dv">9</span>,</span>
+<span id="cb462-23"><a href="parâmetros-gráficos.html#cb462-23"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Log. Tamanho da falha (dias)&quot;</span>,</span>
+<span id="cb462-24"><a href="parâmetros-gráficos.html#cb462-24"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Período de dados&quot;</span>) <span class="co"># linha e ponto desconectados</span></span>
+<span id="cb462-25"><a href="parâmetros-gráficos.html#cb462-25"></a><span class="kw">plot</span>(<span class="dt">x =</span> sdate, </span>
+<span id="cb462-26"><a href="parâmetros-gráficos.html#cb462-26"></a>     <span class="dt">y =</span> dtr_med, </span>
+<span id="cb462-27"><a href="parâmetros-gráficos.html#cb462-27"></a>     <span class="dt">col =</span> <span class="kw">recode</span>(state, <span class="dt">RS =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">SC =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">PR =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb462-28"><a href="parâmetros-gráficos.html#cb462-28"></a>     <span class="dt">cex =</span> <span class="fl">1.2</span>,</span>
+<span id="cb462-29"><a href="parâmetros-gráficos.html#cb462-29"></a>     <span class="dt">pch =</span> <span class="kw">recode</span>(state, <span class="dt">RS =</span> <span class="dv">20</span>, <span class="dt">SC =</span> <span class="dv">6</span>, <span class="dt">PR =</span> <span class="dv">3</span>),</span>
+<span id="cb462-30"><a href="parâmetros-gráficos.html#cb462-30"></a>     <span class="dt">xlab =</span> <span class="st">&quot;#site&quot;</span></span>
+<span id="cb462-31"><a href="parâmetros-gráficos.html#cb462-31"></a>     )</span>
+<span id="cb462-32"><a href="parâmetros-gráficos.html#cb462-32"></a><span class="kw">hist</span>(max_tair, </span>
+<span id="cb462-33"><a href="parâmetros-gráficos.html#cb462-33"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Tmax absoluta (°C)&quot;</span>,</span>
+<span id="cb462-34"><a href="parâmetros-gráficos.html#cb462-34"></a>     <span class="dt">border =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb462-35"><a href="parâmetros-gráficos.html#cb462-35"></a>     <span class="dt">col =</span> <span class="st">&quot;salmon&quot;</span>,</span>
+<span id="cb462-36"><a href="parâmetros-gráficos.html#cb462-36"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Frequência&quot;</span></span>
+<span id="cb462-37"><a href="parâmetros-gráficos.html#cb462-37"></a><span class="st">     ) # linha e ponto</span></span>
+<span id="cb462-38"><a href="parâmetros-gráficos.html#cb462-38"></a><span class="st">box()</span></span>
+<span id="cb462-39"><a href="parâmetros-gráficos.html#cb462-39"></a><span class="st">plot(1:10, </span></span>
+<span id="cb462-40"><a href="parâmetros-gráficos.html#cb462-40"></a><span class="st">     1:10, </span></span>
+<span id="cb462-41"><a href="parâmetros-gráficos.html#cb462-41"></a><span class="st">     type = &quot;</span>n<span class="st">&quot;, </span></span>
+<span id="cb462-42"><a href="parâmetros-gráficos.html#cb462-42"></a><span class="st">     frame = F, </span></span>
+<span id="cb462-43"><a href="parâmetros-gráficos.html#cb462-43"></a><span class="st">     axes = F, </span></span>
+<span id="cb462-44"><a href="parâmetros-gráficos.html#cb462-44"></a><span class="st">     xlab = &quot;&quot;, </span></span>
+<span id="cb462-45"><a href="parâmetros-gráficos.html#cb462-45"></a><span class="st">     ylab = &quot;&quot;)</span></span>
+<span id="cb462-46"><a href="parâmetros-gráficos.html#cb462-46"></a><span class="st">text(5, 5, &quot;</span><span class="dv">5</span> gráficos \n em uma \n página<span class="st">&quot;, cex = 3)</span></span>
+<span id="cb462-47"><a href="parâmetros-gráficos.html#cb462-47"></a><span class="st">})</span></span></code></pre></div>
+<p><img src="images/Chunk1011-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="parâmetros-gráficos.html#cb463-1"></a></span>
+<span id="cb463-2"><a href="parâmetros-gráficos.html#cb463-2"></a></span>
+<span id="cb463-3"><a href="parâmetros-gráficos.html#cb463-3"></a><span class="co">#par()</span></span></code></pre></div>
 </div>
 <div id="gráfico-com-2-eixos" class="section level3">
 <h3><span class="header-section-number">11.5.5</span> Gráfico com 2 eixos</h3>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb456-2" title="2">  <span class="dt">x =</span> aq<span class="op">$</span>date,</a>
-<a class="sourceLine" id="cb456-3" title="3">  <span class="dt">y =</span> aq<span class="op">$</span>Ozone,</a>
-<a class="sourceLine" id="cb456-4" title="4">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb456-5" title="5">  <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb456-6" title="6">  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb456-7" title="7">  <span class="dt">xlab =</span> <span class="st">&quot;Data&quot;</span></a>
-<a class="sourceLine" id="cb456-8" title="8">)</a>
-<a class="sourceLine" id="cb456-9" title="9"><span class="kw">par</span>(<span class="dt">new =</span> T)</a>
-<a class="sourceLine" id="cb456-10" title="10"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb456-11" title="11">  <span class="dt">x =</span> aq<span class="op">$</span>date,</a>
-<a class="sourceLine" id="cb456-12" title="12">  <span class="dt">y =</span> aq<span class="op">$</span>Temp,</a>
-<a class="sourceLine" id="cb456-13" title="13">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb456-14" title="14">  <span class="dt">col =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb456-15" title="15">  <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb456-16" title="16">  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb456-17" title="17">  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb456-18" title="18">  <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb456-19" title="19">)</a>
-<a class="sourceLine" id="cb456-20" title="20"><span class="co"># eixo secundário</span></a>
-<a class="sourceLine" id="cb456-21" title="21"><span class="kw">axis</span>(</a>
-<a class="sourceLine" id="cb456-22" title="22">  <span class="dt">side =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb456-23" title="23">  <span class="dt">col =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb456-24" title="24">  <span class="dt">col.axis =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb456-25" title="25">)</a>
-<a class="sourceLine" id="cb456-26" title="26"><span class="co"># anotação das variáveis</span></a>
-<a class="sourceLine" id="cb456-27" title="27"><span class="kw">mtext</span>(</a>
-<a class="sourceLine" id="cb456-28" title="28">  <span class="dt">text =</span> <span class="st">&quot;Ozônio&quot;</span>,</a>
-<a class="sourceLine" id="cb456-29" title="29">  <span class="dt">line =</span> <span class="dv">-2</span>,</a>
-<a class="sourceLine" id="cb456-30" title="30">  <span class="dt">adj =</span> <span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb456-31" title="31">)</a>
-<a class="sourceLine" id="cb456-32" title="32"><span class="kw">mtext</span>(</a>
-<a class="sourceLine" id="cb456-33" title="33">  <span class="dt">text =</span> <span class="st">&quot;Temperatura&quot;</span>,</a>
-<a class="sourceLine" id="cb456-34" title="34">  <span class="dt">col =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb456-35" title="35">  <span class="dt">line =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb456-36" title="36">  <span class="dt">adj =</span> <span class="fl">0.2</span></a>
-<a class="sourceLine" id="cb456-37" title="37">)</a></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="parâmetros-gráficos.html#cb464-1"></a><span class="kw">plot</span>(</span>
+<span id="cb464-2"><a href="parâmetros-gráficos.html#cb464-2"></a>  <span class="dt">x =</span> aq<span class="op">$</span>date,</span>
+<span id="cb464-3"><a href="parâmetros-gráficos.html#cb464-3"></a>  <span class="dt">y =</span> aq<span class="op">$</span>Ozone,</span>
+<span id="cb464-4"><a href="parâmetros-gráficos.html#cb464-4"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb464-5"><a href="parâmetros-gráficos.html#cb464-5"></a>  <span class="dt">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb464-6"><a href="parâmetros-gráficos.html#cb464-6"></a>  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb464-7"><a href="parâmetros-gráficos.html#cb464-7"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Data&quot;</span></span>
+<span id="cb464-8"><a href="parâmetros-gráficos.html#cb464-8"></a>)</span>
+<span id="cb464-9"><a href="parâmetros-gráficos.html#cb464-9"></a><span class="kw">par</span>(<span class="dt">new =</span> T)</span>
+<span id="cb464-10"><a href="parâmetros-gráficos.html#cb464-10"></a><span class="kw">plot</span>(</span>
+<span id="cb464-11"><a href="parâmetros-gráficos.html#cb464-11"></a>  <span class="dt">x =</span> aq<span class="op">$</span>date,</span>
+<span id="cb464-12"><a href="parâmetros-gráficos.html#cb464-12"></a>  <span class="dt">y =</span> aq<span class="op">$</span>Temp,</span>
+<span id="cb464-13"><a href="parâmetros-gráficos.html#cb464-13"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb464-14"><a href="parâmetros-gráficos.html#cb464-14"></a>  <span class="dt">col =</span> <span class="dv">2</span>,</span>
+<span id="cb464-15"><a href="parâmetros-gráficos.html#cb464-15"></a>  <span class="dt">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb464-16"><a href="parâmetros-gráficos.html#cb464-16"></a>  <span class="dt">axes =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb464-17"><a href="parâmetros-gráficos.html#cb464-17"></a>  <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb464-18"><a href="parâmetros-gráficos.html#cb464-18"></a>  <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb464-19"><a href="parâmetros-gráficos.html#cb464-19"></a>)</span>
+<span id="cb464-20"><a href="parâmetros-gráficos.html#cb464-20"></a><span class="co"># eixo secundário</span></span>
+<span id="cb464-21"><a href="parâmetros-gráficos.html#cb464-21"></a><span class="kw">axis</span>(</span>
+<span id="cb464-22"><a href="parâmetros-gráficos.html#cb464-22"></a>  <span class="dt">side =</span> <span class="dv">4</span>,</span>
+<span id="cb464-23"><a href="parâmetros-gráficos.html#cb464-23"></a>  <span class="dt">col =</span> <span class="dv">2</span>,</span>
+<span id="cb464-24"><a href="parâmetros-gráficos.html#cb464-24"></a>  <span class="dt">col.axis =</span> <span class="dv">2</span></span>
+<span id="cb464-25"><a href="parâmetros-gráficos.html#cb464-25"></a>)</span>
+<span id="cb464-26"><a href="parâmetros-gráficos.html#cb464-26"></a><span class="co"># anotação das variáveis</span></span>
+<span id="cb464-27"><a href="parâmetros-gráficos.html#cb464-27"></a><span class="kw">mtext</span>(</span>
+<span id="cb464-28"><a href="parâmetros-gráficos.html#cb464-28"></a>  <span class="dt">text =</span> <span class="st">&quot;Ozônio&quot;</span>,</span>
+<span id="cb464-29"><a href="parâmetros-gráficos.html#cb464-29"></a>  <span class="dt">line =</span> <span class="dv">-2</span>,</span>
+<span id="cb464-30"><a href="parâmetros-gráficos.html#cb464-30"></a>  <span class="dt">adj =</span> <span class="fl">0.2</span></span>
+<span id="cb464-31"><a href="parâmetros-gráficos.html#cb464-31"></a>)</span>
+<span id="cb464-32"><a href="parâmetros-gráficos.html#cb464-32"></a><span class="kw">mtext</span>(</span>
+<span id="cb464-33"><a href="parâmetros-gráficos.html#cb464-33"></a>  <span class="dt">text =</span> <span class="st">&quot;Temperatura&quot;</span>,</span>
+<span id="cb464-34"><a href="parâmetros-gráficos.html#cb464-34"></a>  <span class="dt">col =</span> <span class="dv">2</span>,</span>
+<span id="cb464-35"><a href="parâmetros-gráficos.html#cb464-35"></a>  <span class="dt">line =</span> <span class="dv">-1</span>,</span>
+<span id="cb464-36"><a href="parâmetros-gráficos.html#cb464-36"></a>  <span class="dt">adj =</span> <span class="fl">0.2</span></span>
+<span id="cb464-37"><a href="parâmetros-gráficos.html#cb464-37"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="adicionando-legenda" class="section level3">
 <h3><span class="header-section-number">11.5.6</span> Adicionando legenda</h3>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb457-2" title="2">  rain<span class="op">$</span>Tokyo,</a>
-<a class="sourceLine" id="cb457-3" title="3">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb457-4" title="4">  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</a>
-<a class="sourceLine" id="cb457-5" title="5">  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">300</span>),</a>
-<a class="sourceLine" id="cb457-6" title="6">  <span class="dt">main =</span> <span class="st">&quot;Chuva mensal em grandes cidades&quot;</span>,</a>
-<a class="sourceLine" id="cb457-7" title="7">  <span class="dt">xlab =</span> <span class="st">&quot;Mês do ano&quot;</span>,</a>
-<a class="sourceLine" id="cb457-8" title="8">  <span class="dt">ylab =</span> <span class="st">&quot;Chuva (mm)&quot;</span>,</a>
-<a class="sourceLine" id="cb457-9" title="9">  <span class="dt">lwd =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb457-10" title="10">)</a>
-<a class="sourceLine" id="cb457-11" title="11"><span class="kw">lines</span>(</a>
-<a class="sourceLine" id="cb457-12" title="12">  rain<span class="op">$</span>NewYork,</a>
-<a class="sourceLine" id="cb457-13" title="13">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb457-14" title="14">  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</a>
-<a class="sourceLine" id="cb457-15" title="15">  <span class="dt">lwd =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb457-16" title="16">)</a>
-<a class="sourceLine" id="cb457-17" title="17"><span class="kw">lines</span>(</a>
-<a class="sourceLine" id="cb457-18" title="18">  rain<span class="op">$</span>London,</a>
-<a class="sourceLine" id="cb457-19" title="19">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb457-20" title="20">  <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>,</a>
-<a class="sourceLine" id="cb457-21" title="21">  <span class="dt">lwd =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb457-22" title="22">)</a>
-<a class="sourceLine" id="cb457-23" title="23"><span class="kw">lines</span>(</a>
-<a class="sourceLine" id="cb457-24" title="24">  rain<span class="op">$</span>Berlin,</a>
-<a class="sourceLine" id="cb457-25" title="25">  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb457-26" title="26">  <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>,</a>
-<a class="sourceLine" id="cb457-27" title="27">  <span class="dt">lwd =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb457-28" title="28">)</a>
-<a class="sourceLine" id="cb457-29" title="29"><span class="co">## legenda</span></a>
-<a class="sourceLine" id="cb457-30" title="30"><span class="kw">legend</span>(</a>
-<a class="sourceLine" id="cb457-31" title="31">  <span class="st">&quot;topright&quot;</span>,</a>
-<a class="sourceLine" id="cb457-32" title="32">  <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Tokyo&quot;</span>, <span class="st">&quot;NewYork&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Berlin&quot;</span>),</a>
-<a class="sourceLine" id="cb457-33" title="33">  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>),</a>
-<a class="sourceLine" id="cb457-34" title="34">  <span class="dt">lty =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb457-35" title="35">  <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb457-36" title="36">  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span></a>
-<a class="sourceLine" id="cb457-37" title="37">)</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="parâmetros-gráficos.html#cb465-1"></a><span class="kw">plot</span>(</span>
+<span id="cb465-2"><a href="parâmetros-gráficos.html#cb465-2"></a>  rain<span class="op">$</span>Tokyo,</span>
+<span id="cb465-3"><a href="parâmetros-gráficos.html#cb465-3"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb465-4"><a href="parâmetros-gráficos.html#cb465-4"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb465-5"><a href="parâmetros-gráficos.html#cb465-5"></a>  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">300</span>),</span>
+<span id="cb465-6"><a href="parâmetros-gráficos.html#cb465-6"></a>  <span class="dt">main =</span> <span class="st">&quot;Chuva mensal em grandes cidades&quot;</span>,</span>
+<span id="cb465-7"><a href="parâmetros-gráficos.html#cb465-7"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Mês do ano&quot;</span>,</span>
+<span id="cb465-8"><a href="parâmetros-gráficos.html#cb465-8"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Chuva (mm)&quot;</span>,</span>
+<span id="cb465-9"><a href="parâmetros-gráficos.html#cb465-9"></a>  <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb465-10"><a href="parâmetros-gráficos.html#cb465-10"></a>)</span>
+<span id="cb465-11"><a href="parâmetros-gráficos.html#cb465-11"></a><span class="kw">lines</span>(</span>
+<span id="cb465-12"><a href="parâmetros-gráficos.html#cb465-12"></a>  rain<span class="op">$</span>NewYork,</span>
+<span id="cb465-13"><a href="parâmetros-gráficos.html#cb465-13"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb465-14"><a href="parâmetros-gráficos.html#cb465-14"></a>  <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb465-15"><a href="parâmetros-gráficos.html#cb465-15"></a>  <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb465-16"><a href="parâmetros-gráficos.html#cb465-16"></a>)</span>
+<span id="cb465-17"><a href="parâmetros-gráficos.html#cb465-17"></a><span class="kw">lines</span>(</span>
+<span id="cb465-18"><a href="parâmetros-gráficos.html#cb465-18"></a>  rain<span class="op">$</span>London,</span>
+<span id="cb465-19"><a href="parâmetros-gráficos.html#cb465-19"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb465-20"><a href="parâmetros-gráficos.html#cb465-20"></a>  <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb465-21"><a href="parâmetros-gráficos.html#cb465-21"></a>  <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb465-22"><a href="parâmetros-gráficos.html#cb465-22"></a>)</span>
+<span id="cb465-23"><a href="parâmetros-gráficos.html#cb465-23"></a><span class="kw">lines</span>(</span>
+<span id="cb465-24"><a href="parâmetros-gráficos.html#cb465-24"></a>  rain<span class="op">$</span>Berlin,</span>
+<span id="cb465-25"><a href="parâmetros-gráficos.html#cb465-25"></a>  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb465-26"><a href="parâmetros-gráficos.html#cb465-26"></a>  <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb465-27"><a href="parâmetros-gráficos.html#cb465-27"></a>  <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb465-28"><a href="parâmetros-gráficos.html#cb465-28"></a>)</span>
+<span id="cb465-29"><a href="parâmetros-gráficos.html#cb465-29"></a><span class="co">## legenda</span></span>
+<span id="cb465-30"><a href="parâmetros-gráficos.html#cb465-30"></a><span class="kw">legend</span>(</span>
+<span id="cb465-31"><a href="parâmetros-gráficos.html#cb465-31"></a>  <span class="st">&quot;topright&quot;</span>,</span>
+<span id="cb465-32"><a href="parâmetros-gráficos.html#cb465-32"></a>  <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Tokyo&quot;</span>, <span class="st">&quot;NewYork&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Berlin&quot;</span>),</span>
+<span id="cb465-33"><a href="parâmetros-gráficos.html#cb465-33"></a>  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb465-34"><a href="parâmetros-gráficos.html#cb465-34"></a>  <span class="dt">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb465-35"><a href="parâmetros-gráficos.html#cb465-35"></a>  <span class="dt">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb465-36"><a href="parâmetros-gráficos.html#cb465-36"></a>  <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span></span>
+<span id="cb465-37"><a href="parâmetros-gráficos.html#cb465-37"></a>)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<!-- ```{r} -->
+<!-- knitr::knit_exit() -->
+<!-- ``` -->
 </div>
 </div>
             </section>

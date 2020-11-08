@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Arquivos binários | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Arquivos binários | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -446,27 +452,27 @@ menores.</p>
 pluviométricos lidos anteriormente (<code>dprec</code>) e selecionar as colunas de
 interesse. O <em>quadro de dados</em> será salvo em um arquivo binário do R com a extensão
 <code>.RData</code>.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1"><span class="co"># início dos dados dprec</span></a>
-<a class="sourceLine" id="cb294-2" title="2"><span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a>
-<a class="sourceLine" id="cb294-3" title="3"><span class="co"># colunas referentes do dia 1 a 31 de cada ano</span></a>
-<a class="sourceLine" id="cb294-4" title="4">chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span><span class="op">:</span><span class="dv">44</span>)]</a>
-<a class="sourceLine" id="cb294-5" title="5"><span class="co"># gerando arquivo em um diretório temporário</span></a>
-<a class="sourceLine" id="cb294-6" title="6">arq_chuva &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb294-7" title="7"><span class="kw">save</span>(chuva_df, <span class="dt">file =</span> arq_chuva)</a>
-<a class="sourceLine" id="cb294-8" title="8"><span class="co"># verificando se arquivo foi salvo no diretório</span></a>
-<a class="sourceLine" id="cb294-9" title="9"><span class="kw">file.exists</span>(arq_chuva)</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="arquivos-binários.html#cb294-1"></a><span class="co"># início dos dados dprec</span></span>
+<span id="cb294-2"><a href="arquivos-binários.html#cb294-2"></a><span class="kw">head</span>(dprec[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</span>
+<span id="cb294-3"><a href="arquivos-binários.html#cb294-3"></a><span class="co"># colunas referentes do dia 1 a 31 de cada ano</span></span>
+<span id="cb294-4"><a href="arquivos-binários.html#cb294-4"></a>chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span><span class="op">:</span><span class="dv">44</span>)]</span>
+<span id="cb294-5"><a href="arquivos-binários.html#cb294-5"></a><span class="co"># gerando arquivo em um diretório temporário</span></span>
+<span id="cb294-6"><a href="arquivos-binários.html#cb294-6"></a>arq_chuva &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)</span>
+<span id="cb294-7"><a href="arquivos-binários.html#cb294-7"></a><span class="kw">save</span>(chuva_df, <span class="dt">file =</span> arq_chuva)</span>
+<span id="cb294-8"><a href="arquivos-binários.html#cb294-8"></a><span class="co"># verificando se arquivo foi salvo no diretório</span></span>
+<span id="cb294-9"><a href="arquivos-binários.html#cb294-9"></a><span class="kw">file.exists</span>(arq_chuva)</span></code></pre></div>
 <p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então
 recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="co"># apagando chuva_df do ambiente de trabalho</span></a>
-<a class="sourceLine" id="cb295-2" title="2"><span class="kw">rm</span>(chuva_df)</a>
-<a class="sourceLine" id="cb295-3" title="3"><span class="co"># verifica existência de objeto</span></a>
-<a class="sourceLine" id="cb295-4" title="4"><span class="kw">exists</span>(chuva_df)</a>
-<a class="sourceLine" id="cb295-5" title="5"><span class="co"># carregando chuva_df</span></a>
-<a class="sourceLine" id="cb295-6" title="6"><span class="kw">load</span>(<span class="dt">file =</span> arq_chuva)</a>
-<a class="sourceLine" id="cb295-7" title="7"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb295-8" title="8"><span class="co"># para carregar os dados e saber o nome com que foram salvos</span></a>
-<a class="sourceLine" id="cb295-9" title="9"><span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> arq_chuva))</a>
-<a class="sourceLine" id="cb295-10" title="10"><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="arquivos-binários.html#cb295-1"></a><span class="co"># apagando chuva_df do ambiente de trabalho</span></span>
+<span id="cb295-2"><a href="arquivos-binários.html#cb295-2"></a><span class="kw">rm</span>(chuva_df)</span>
+<span id="cb295-3"><a href="arquivos-binários.html#cb295-3"></a><span class="co"># verifica existência de objeto</span></span>
+<span id="cb295-4"><a href="arquivos-binários.html#cb295-4"></a><span class="kw">exists</span>(chuva_df)</span>
+<span id="cb295-5"><a href="arquivos-binários.html#cb295-5"></a><span class="co"># carregando chuva_df</span></span>
+<span id="cb295-6"><a href="arquivos-binários.html#cb295-6"></a><span class="kw">load</span>(<span class="dt">file =</span> arq_chuva)</span>
+<span id="cb295-7"><a href="arquivos-binários.html#cb295-7"></a><span class="kw">ls</span>()</span>
+<span id="cb295-8"><a href="arquivos-binários.html#cb295-8"></a><span class="co"># para carregar os dados e saber o nome com que foram salvos</span></span>
+<span id="cb295-9"><a href="arquivos-binários.html#cb295-9"></a><span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> arq_chuva))</span>
+<span id="cb295-10"><a href="arquivos-binários.html#cb295-10"></a><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
 <p>Um <strong>vantagem desse formato</strong> é que os objetos criados podem ser lidos pelo
 <img src="images/logo_r.png" width="20"> independente do sistema operacional e da arquitetura do computador,
 tornando muito prático o acesso aos dados.
@@ -482,15 +488,15 @@ Se você deseja salvar o espaço de trabalho em outro momento use a função
 (uma abreviação de <strong>remove</strong>) para remover objetos que não são de interesse
 antes de finalizar a sessão do R. A função <code>save()</code>permite salvar <em>mais de um
 objeto</em> em um mesmo arquivo.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1">file_dados_prec &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>) </a>
-<a class="sourceLine" id="cb296-2" title="2"><span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> file_dados_prec)</a>
-<a class="sourceLine" id="cb296-3" title="3"><span class="co">#save(cab, chuva_df, file = &quot;../output-adar/dados_prec.RData&quot;)</span></a>
-<a class="sourceLine" id="cb296-4" title="4"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb296-5" title="5"><span class="kw">rm</span>(cab, chuva_df)</a>
-<a class="sourceLine" id="cb296-6" title="6"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb296-7" title="7"><span class="co"># carrega e imprime na tela nome dos dados carregados</span></a>
-<a class="sourceLine" id="cb296-8" title="8"><span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))</a>
-<a class="sourceLine" id="cb296-9" title="9"><span class="kw">ls</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="arquivos-binários.html#cb296-1"></a>file_dados_prec &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>) </span>
+<span id="cb296-2"><a href="arquivos-binários.html#cb296-2"></a><span class="kw">save</span>(cab, chuva_df, <span class="dt">file =</span> file_dados_prec)</span>
+<span id="cb296-3"><a href="arquivos-binários.html#cb296-3"></a><span class="co">#save(cab, chuva_df, file = &quot;../output-adar/dados_prec.RData&quot;)</span></span>
+<span id="cb296-4"><a href="arquivos-binários.html#cb296-4"></a><span class="kw">ls</span>()</span>
+<span id="cb296-5"><a href="arquivos-binários.html#cb296-5"></a><span class="kw">rm</span>(cab, chuva_df)</span>
+<span id="cb296-6"><a href="arquivos-binários.html#cb296-6"></a><span class="kw">ls</span>()</span>
+<span id="cb296-7"><a href="arquivos-binários.html#cb296-7"></a><span class="co"># carrega e imprime na tela nome dos dados carregados</span></span>
+<span id="cb296-8"><a href="arquivos-binários.html#cb296-8"></a><span class="kw">print</span>(<span class="kw">load</span>(file_dados_prec))</span>
+<span id="cb296-9"><a href="arquivos-binários.html#cb296-9"></a><span class="kw">ls</span>()</span></code></pre></div>
 </div>
 <div id="rds" class="section level4">
 <h4><span class="header-section-number">9.5.1.2</span> RDS</h4>
@@ -500,20 +506,20 @@ contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome
 diferente do qual ele foi salvo.
 Vamos alterar o formato da data do <em>quadro de dados</em> <code>chuva_df</code> e salvá-lo no
 arquivo <code>chuva_df.rds</code>.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="co"># salvar dados em um arquivo rds</span></a>
-<a class="sourceLine" id="cb297-2" title="2"><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a>
-<a class="sourceLine" id="cb297-3" title="3"><span class="co"># alterando formato de datas da coluna Data</span></a>
-<a class="sourceLine" id="cb297-4" title="4">chuva_df<span class="op">$</span>Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="dt">x =</span> chuva_df<span class="op">$</span>Data, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</a>
-<a class="sourceLine" id="cb297-5" title="5">file_rds_chuva_df &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>)</a>
-<a class="sourceLine" id="cb297-6" title="6"><span class="kw">saveRDS</span>(<span class="dt">object =</span> chuva_df, <span class="dt">file =</span> file_rds_chuva_df)</a>
-<a class="sourceLine" id="cb297-7" title="7"><span class="kw">file.exists</span>(file_rds_chuva_df)</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="arquivos-binários.html#cb297-1"></a><span class="co"># salvar dados em um arquivo rds</span></span>
+<span id="cb297-2"><a href="arquivos-binários.html#cb297-2"></a><span class="kw">head</span>(chuva_df[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</span>
+<span id="cb297-3"><a href="arquivos-binários.html#cb297-3"></a><span class="co"># alterando formato de datas da coluna Data</span></span>
+<span id="cb297-4"><a href="arquivos-binários.html#cb297-4"></a>chuva_df<span class="op">$</span>Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="dt">x =</span> chuva_df<span class="op">$</span>Data, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
+<span id="cb297-5"><a href="arquivos-binários.html#cb297-5"></a>file_rds_chuva_df &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.Rdata&quot;</span>)</span>
+<span id="cb297-6"><a href="arquivos-binários.html#cb297-6"></a><span class="kw">saveRDS</span>(<span class="dt">object =</span> chuva_df, <span class="dt">file =</span> file_rds_chuva_df)</span>
+<span id="cb297-7"><a href="arquivos-binários.html#cb297-7"></a><span class="kw">file.exists</span>(file_rds_chuva_df)</span></code></pre></div>
 <p>Após salvar o <em>quadro de dados</em> <code>chuva_df</code> vamos removê-lo do ambiente da sessão
 e recuperá-lo com a função <code>readRDS()</code>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co"># removendo chuva_df do ambiente</span></a>
-<a class="sourceLine" id="cb298-2" title="2"><span class="kw">rm</span>(chuva_df)</a>
-<a class="sourceLine" id="cb298-3" title="3"><span class="co"># recuperando dados do arquivo em uma variável com nome diferente do original</span></a>
-<a class="sourceLine" id="cb298-4" title="4">prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_chuva_df)</a>
-<a class="sourceLine" id="cb298-5" title="5"><span class="kw">head</span>(prec_ana[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="arquivos-binários.html#cb298-1"></a><span class="co"># removendo chuva_df do ambiente</span></span>
+<span id="cb298-2"><a href="arquivos-binários.html#cb298-2"></a><span class="kw">rm</span>(chuva_df)</span>
+<span id="cb298-3"><a href="arquivos-binários.html#cb298-3"></a><span class="co"># recuperando dados do arquivo em uma variável com nome diferente do original</span></span>
+<span id="cb298-4"><a href="arquivos-binários.html#cb298-4"></a>prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_rds_chuva_df)</span>
+<span id="cb298-5"><a href="arquivos-binários.html#cb298-5"></a><span class="kw">head</span>(prec_ana[, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
 </div>
 </div>
 <div id="netcdf-network-common-data-form" class="section level3">
@@ -541,13 +547,13 @@ fácil de dados NetCDF com o R.</p>
 <h4><span class="header-section-number">9.5.2.1</span> Pré-requisitos</h4>
 <p>Para utilizar o pacote <code>ncdf4</code> é necessário instalar os pacotes linux mostrados
 abaixo.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb299-1" title="1"><span class="co">## Install pacotes NetCDF</span></a>
-<a class="sourceLine" id="cb299-2" title="2">$ <span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb299-1"><a href="arquivos-binários.html#cb299-1"></a><span class="co">## Install pacotes NetCDF</span></span>
+<span id="cb299-2"><a href="arquivos-binários.html#cb299-2"></a>$ <span class="fu">sudo</span> apt-get install libnetcdf-dev libudunits2-dev</span></code></pre></div>
 <p>Pacotes necessários:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="kw">library</span>(ncdf4)</a></code></pre></div>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb301-2" title="2"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb301-3" title="3"><span class="kw">library</span>(fields)</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="arquivos-binários.html#cb300-1"></a><span class="kw">library</span>(ncdf4)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="arquivos-binários.html#cb301-1"></a><span class="kw">library</span>(raster)</span>
+<span id="cb301-2"><a href="arquivos-binários.html#cb301-2"></a><span class="kw">library</span>(RColorBrewer)</span>
+<span id="cb301-3"><a href="arquivos-binários.html#cb301-3"></a><span class="kw">library</span>(fields)</span></code></pre></div>
 </div>
 <div id="arquivo-exemplo" class="section level4">
 <h4><span class="header-section-number">9.5.2.2</span> Arquivo exemplo</h4>
@@ -558,84 +564,84 @@ arquivo NetCDF com dados climáticos do
 valores médios de longo prazo (1961-1990) da temperatura do ar próximo à
 superfície com resolução espacial de 0,5 º na área continental.
 As dimensões da <em>array</em> são: 720 (longitudes) x 360 (latitudes) x 12 (meses).</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1">dados_cru_url &lt;-<span class="st"> &quot;https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1&quot;</span></a>
-<a class="sourceLine" id="cb302-2" title="2">dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;cru10min30_tmp.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb302-3" title="3"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb302-4" title="4">  <span class="dt">url =</span> dados_cru_url,</a>
-<a class="sourceLine" id="cb302-5" title="5">  <span class="dt">destfile =</span> dest_file_nc,</a>
-<a class="sourceLine" id="cb302-6" title="6">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
-<a class="sourceLine" id="cb302-7" title="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="arquivos-binários.html#cb302-1"></a>dados_cru_url &lt;-<span class="st"> &quot;https://www.dropbox.com/s/ynp9i42is1flg43/cru10min30_tmp.nc?dl=1&quot;</span></span>
+<span id="cb302-2"><a href="arquivos-binários.html#cb302-2"></a>dest_file_nc &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;cru10min30_tmp.nc&quot;</span>)</span>
+<span id="cb302-3"><a href="arquivos-binários.html#cb302-3"></a><span class="kw">download.file</span>(</span>
+<span id="cb302-4"><a href="arquivos-binários.html#cb302-4"></a>  <span class="dt">url =</span> dados_cru_url,</span>
+<span id="cb302-5"><a href="arquivos-binários.html#cb302-5"></a>  <span class="dt">destfile =</span> dest_file_nc,</span>
+<span id="cb302-6"><a href="arquivos-binários.html#cb302-6"></a>  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></span>
+<span id="cb302-7"><a href="arquivos-binários.html#cb302-7"></a>)</span></code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1">dest_file_nc</a>
-<a class="sourceLine" id="cb303-2" title="2"><span class="kw">file.exists</span>(dest_file_nc)</a></code></pre></div>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="co"># variável de interesse, tmp: temperatura do ar</span></a>
-<a class="sourceLine" id="cb304-2" title="2">dname &lt;-<span class="st"> &quot;tmp&quot;</span>  </a>
-<a class="sourceLine" id="cb304-3" title="3"><span class="co"># abre o arquivo NetCDF</span></a>
-<a class="sourceLine" id="cb304-4" title="4">ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="dt">filename =</span> dest_file_nc)</a>
-<a class="sourceLine" id="cb304-5" title="5"><span class="kw">print</span>(ncin)</a>
-<a class="sourceLine" id="cb304-6" title="6"><span class="co"># estrutura dos dados</span></a>
-<a class="sourceLine" id="cb304-7" title="7"><span class="co">#str(ncin)</span></a>
-<a class="sourceLine" id="cb304-8" title="8"><span class="co"># classe</span></a>
-<a class="sourceLine" id="cb304-9" title="9"><span class="kw">class</span>(ncin)</a>
-<a class="sourceLine" id="cb304-10" title="10"><span class="co"># modo</span></a>
-<a class="sourceLine" id="cb304-11" title="11"><span class="kw">mode</span>(ncin)</a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="arquivos-binários.html#cb303-1"></a>dest_file_nc</span>
+<span id="cb303-2"><a href="arquivos-binários.html#cb303-2"></a><span class="kw">file.exists</span>(dest_file_nc)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="arquivos-binários.html#cb304-1"></a><span class="co"># variável de interesse, tmp: temperatura do ar</span></span>
+<span id="cb304-2"><a href="arquivos-binários.html#cb304-2"></a>dname &lt;-<span class="st"> &quot;tmp&quot;</span>  </span>
+<span id="cb304-3"><a href="arquivos-binários.html#cb304-3"></a><span class="co"># abre o arquivo NetCDF</span></span>
+<span id="cb304-4"><a href="arquivos-binários.html#cb304-4"></a>ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="dt">filename =</span> dest_file_nc)</span>
+<span id="cb304-5"><a href="arquivos-binários.html#cb304-5"></a><span class="kw">print</span>(ncin)</span>
+<span id="cb304-6"><a href="arquivos-binários.html#cb304-6"></a><span class="co"># estrutura dos dados</span></span>
+<span id="cb304-7"><a href="arquivos-binários.html#cb304-7"></a><span class="co">#str(ncin)</span></span>
+<span id="cb304-8"><a href="arquivos-binários.html#cb304-8"></a><span class="co"># classe</span></span>
+<span id="cb304-9"><a href="arquivos-binários.html#cb304-9"></a><span class="kw">class</span>(ncin)</span>
+<span id="cb304-10"><a href="arquivos-binários.html#cb304-10"></a><span class="co"># modo</span></span>
+<span id="cb304-11"><a href="arquivos-binários.html#cb304-11"></a><span class="kw">mode</span>(ncin)</span></code></pre></div>
 <p>Agora, vamos ler as coordenadas de longitude e latitude.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1">lon &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> <span class="st">&quot;lon&quot;</span>)</a>
-<a class="sourceLine" id="cb305-2" title="2">nlon &lt;-<span class="st"> </span><span class="kw">dim</span>(lon)</a>
-<a class="sourceLine" id="cb305-3" title="3"><span class="kw">head</span>(lon)</a>
-<a class="sourceLine" id="cb305-4" title="4">lat &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(</a>
-<a class="sourceLine" id="cb305-5" title="5">  <span class="dt">nc =</span> ncin,</a>
-<a class="sourceLine" id="cb305-6" title="6">  <span class="dt">varid =</span> <span class="st">&quot;lat&quot;</span>,</a>
-<a class="sourceLine" id="cb305-7" title="7">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb305-8" title="8">)</a>
-<a class="sourceLine" id="cb305-9" title="9">nlat &lt;-<span class="st"> </span><span class="kw">dim</span>(lat)</a>
-<a class="sourceLine" id="cb305-10" title="10"><span class="kw">head</span>(lat)</a>
-<a class="sourceLine" id="cb305-11" title="11"><span class="kw">c</span>(nlon, nlat)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="arquivos-binários.html#cb305-1"></a>lon &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> <span class="st">&quot;lon&quot;</span>)</span>
+<span id="cb305-2"><a href="arquivos-binários.html#cb305-2"></a>nlon &lt;-<span class="st"> </span><span class="kw">dim</span>(lon)</span>
+<span id="cb305-3"><a href="arquivos-binários.html#cb305-3"></a><span class="kw">head</span>(lon)</span>
+<span id="cb305-4"><a href="arquivos-binários.html#cb305-4"></a>lat &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(</span>
+<span id="cb305-5"><a href="arquivos-binários.html#cb305-5"></a>  <span class="dt">nc =</span> ncin,</span>
+<span id="cb305-6"><a href="arquivos-binários.html#cb305-6"></a>  <span class="dt">varid =</span> <span class="st">&quot;lat&quot;</span>,</span>
+<span id="cb305-7"><a href="arquivos-binários.html#cb305-7"></a>  <span class="dt">verbose =</span> <span class="ot">FALSE</span></span>
+<span id="cb305-8"><a href="arquivos-binários.html#cb305-8"></a>)</span>
+<span id="cb305-9"><a href="arquivos-binários.html#cb305-9"></a>nlat &lt;-<span class="st"> </span><span class="kw">dim</span>(lat)</span>
+<span id="cb305-10"><a href="arquivos-binários.html#cb305-10"></a><span class="kw">head</span>(lat)</span>
+<span id="cb305-11"><a href="arquivos-binários.html#cb305-11"></a><span class="kw">c</span>(nlon, nlat)</span></code></pre></div>
 <p>Vamos obter a variável temporal e seus atributos usando as funções <code>ncvarget()</code>
 e <code>ncatt_get</code>. Depois fechamos o acesso ao arquivo NetCDF.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1">tempo &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> <span class="st">&quot;time&quot;</span>)</a>
-<a class="sourceLine" id="cb306-2" title="2">(tunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</a>
-<a class="sourceLine" id="cb306-3" title="3">  <span class="dt">nc =</span> ncin,</a>
-<a class="sourceLine" id="cb306-4" title="4">  <span class="dt">varid =</span> <span class="st">&quot;time&quot;</span>,</a>
-<a class="sourceLine" id="cb306-5" title="5">  <span class="dt">attname =</span> <span class="st">&quot;units&quot;</span></a>
-<a class="sourceLine" id="cb306-6" title="6">))</a>
-<a class="sourceLine" id="cb306-7" title="7">(nt &lt;-<span class="st"> </span><span class="kw">dim</span>(tempo))</a>
-<a class="sourceLine" id="cb306-8" title="8">temp_arranjo &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> dname)</a>
-<a class="sourceLine" id="cb306-9" title="9"><span class="co"># resumo da estrutura dos dados</span></a>
-<a class="sourceLine" id="cb306-10" title="10"><span class="kw">str</span>(temp_arranjo)</a>
-<a class="sourceLine" id="cb306-11" title="11"><span class="co"># nome longo da variável</span></a>
-<a class="sourceLine" id="cb306-12" title="12">(dlname &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</a>
-<a class="sourceLine" id="cb306-13" title="13">  <span class="dt">nc =</span> ncin,</a>
-<a class="sourceLine" id="cb306-14" title="14">  <span class="dt">varid =</span> dname,</a>
-<a class="sourceLine" id="cb306-15" title="15">  <span class="dt">attname =</span> <span class="st">&quot;long_name&quot;</span></a>
-<a class="sourceLine" id="cb306-16" title="16">))</a>
-<a class="sourceLine" id="cb306-17" title="17"></a>
-<a class="sourceLine" id="cb306-18" title="18"><span class="co"># unidades da variável</span></a>
-<a class="sourceLine" id="cb306-19" title="19">(dunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</a>
-<a class="sourceLine" id="cb306-20" title="20">  <span class="dt">nc =</span> ncin,</a>
-<a class="sourceLine" id="cb306-21" title="21">  <span class="dt">varid =</span> dname,</a>
-<a class="sourceLine" id="cb306-22" title="22">  <span class="dt">attname =</span> <span class="st">&quot;units&quot;</span></a>
-<a class="sourceLine" id="cb306-23" title="23">))</a>
-<a class="sourceLine" id="cb306-24" title="24"><span class="co"># valor definido para valores faltantes</span></a>
-<a class="sourceLine" id="cb306-25" title="25">(fillvalue &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</a>
-<a class="sourceLine" id="cb306-26" title="26">  <span class="dt">nc =</span> ncin,</a>
-<a class="sourceLine" id="cb306-27" title="27">  <span class="dt">varid =</span> dname,</a>
-<a class="sourceLine" id="cb306-28" title="28">  <span class="dt">attname =</span> <span class="st">&quot;_FillValue&quot;</span></a>
-<a class="sourceLine" id="cb306-29" title="29">))</a>
-<a class="sourceLine" id="cb306-30" title="30"><span class="co"># fechando arquivo</span></a>
-<a class="sourceLine" id="cb306-31" title="31"><span class="kw">nc_close</span>(ncin)</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="arquivos-binários.html#cb306-1"></a>tempo &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb306-2"><a href="arquivos-binários.html#cb306-2"></a>(tunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</span>
+<span id="cb306-3"><a href="arquivos-binários.html#cb306-3"></a>  <span class="dt">nc =</span> ncin,</span>
+<span id="cb306-4"><a href="arquivos-binários.html#cb306-4"></a>  <span class="dt">varid =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb306-5"><a href="arquivos-binários.html#cb306-5"></a>  <span class="dt">attname =</span> <span class="st">&quot;units&quot;</span></span>
+<span id="cb306-6"><a href="arquivos-binários.html#cb306-6"></a>))</span>
+<span id="cb306-7"><a href="arquivos-binários.html#cb306-7"></a>(nt &lt;-<span class="st"> </span><span class="kw">dim</span>(tempo))</span>
+<span id="cb306-8"><a href="arquivos-binários.html#cb306-8"></a>temp_arranjo &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(<span class="dt">nc =</span> ncin, <span class="dt">varid =</span> dname)</span>
+<span id="cb306-9"><a href="arquivos-binários.html#cb306-9"></a><span class="co"># resumo da estrutura dos dados</span></span>
+<span id="cb306-10"><a href="arquivos-binários.html#cb306-10"></a><span class="kw">str</span>(temp_arranjo)</span>
+<span id="cb306-11"><a href="arquivos-binários.html#cb306-11"></a><span class="co"># nome longo da variável</span></span>
+<span id="cb306-12"><a href="arquivos-binários.html#cb306-12"></a>(dlname &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</span>
+<span id="cb306-13"><a href="arquivos-binários.html#cb306-13"></a>  <span class="dt">nc =</span> ncin,</span>
+<span id="cb306-14"><a href="arquivos-binários.html#cb306-14"></a>  <span class="dt">varid =</span> dname,</span>
+<span id="cb306-15"><a href="arquivos-binários.html#cb306-15"></a>  <span class="dt">attname =</span> <span class="st">&quot;long_name&quot;</span></span>
+<span id="cb306-16"><a href="arquivos-binários.html#cb306-16"></a>))</span>
+<span id="cb306-17"><a href="arquivos-binários.html#cb306-17"></a></span>
+<span id="cb306-18"><a href="arquivos-binários.html#cb306-18"></a><span class="co"># unidades da variável</span></span>
+<span id="cb306-19"><a href="arquivos-binários.html#cb306-19"></a>(dunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</span>
+<span id="cb306-20"><a href="arquivos-binários.html#cb306-20"></a>  <span class="dt">nc =</span> ncin,</span>
+<span id="cb306-21"><a href="arquivos-binários.html#cb306-21"></a>  <span class="dt">varid =</span> dname,</span>
+<span id="cb306-22"><a href="arquivos-binários.html#cb306-22"></a>  <span class="dt">attname =</span> <span class="st">&quot;units&quot;</span></span>
+<span id="cb306-23"><a href="arquivos-binários.html#cb306-23"></a>))</span>
+<span id="cb306-24"><a href="arquivos-binários.html#cb306-24"></a><span class="co"># valor definido para valores faltantes</span></span>
+<span id="cb306-25"><a href="arquivos-binários.html#cb306-25"></a>(fillvalue &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(</span>
+<span id="cb306-26"><a href="arquivos-binários.html#cb306-26"></a>  <span class="dt">nc =</span> ncin,</span>
+<span id="cb306-27"><a href="arquivos-binários.html#cb306-27"></a>  <span class="dt">varid =</span> dname,</span>
+<span id="cb306-28"><a href="arquivos-binários.html#cb306-28"></a>  <span class="dt">attname =</span> <span class="st">&quot;_FillValue&quot;</span></span>
+<span id="cb306-29"><a href="arquivos-binários.html#cb306-29"></a>))</span>
+<span id="cb306-30"><a href="arquivos-binários.html#cb306-30"></a><span class="co"># fechando arquivo</span></span>
+<span id="cb306-31"><a href="arquivos-binários.html#cb306-31"></a><span class="kw">nc_close</span>(ncin)</span></code></pre></div>
 <p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.:
 longitudes), matrizes (como o campo espacial de um momento), ou arranjos (Apêndice <a href="oper-mat.html#oper-mat">A</a>) multidimensionais (campos espaciais de uma variável em diversos
 tempos ou níveis de altitude).</p>
 <p>Vamos extrair o campo espacial de um passo de tempo (1 mês), criar um
 <em>quadro de dados</em> onde cada linha será um ponto de grade e a coluna representa
 uma variável, por exemplo: longitude, latitude e temperatura.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1">m &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb307-2" title="2"><span class="co"># campo espacial do primeiro dia de dados</span></a>
-<a class="sourceLine" id="cb307-3" title="3">temp_jan &lt;-<span class="st"> </span>temp_arranjo[, , m]</a>
-<a class="sourceLine" id="cb307-4" title="4"><span class="kw">str</span>(temp_jan)</a>
-<a class="sourceLine" id="cb307-5" title="5"><span class="co"># outra função para visualizar dados com 3D</span></a>
-<a class="sourceLine" id="cb307-6" title="6"><span class="kw">image.plot</span>(lon, lat, temp_jan, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="arquivos-binários.html#cb307-1"></a>m &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb307-2"><a href="arquivos-binários.html#cb307-2"></a><span class="co"># campo espacial do primeiro dia de dados</span></span>
+<span id="cb307-3"><a href="arquivos-binários.html#cb307-3"></a>temp_jan &lt;-<span class="st"> </span>temp_arranjo[, , m]</span>
+<span id="cb307-4"><a href="arquivos-binários.html#cb307-4"></a><span class="kw">str</span>(temp_jan)</span>
+<span id="cb307-5"><a href="arquivos-binários.html#cb307-5"></a><span class="co"># outra função para visualizar dados com 3D</span></span>
+<span id="cb307-6"><a href="arquivos-binários.html#cb307-6"></a><span class="kw">image.plot</span>(lon, lat, temp_jan, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</span></code></pre></div>
 <div id="forma-fácil-de-importar-netcdf" class="section level5">
 <h5><span class="header-section-number">9.5.2.2.1</span> Forma fácil de importar NetCDF</h5>
 <p>O pacote <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a>
@@ -652,8 +658,8 @@ como no casos de campos espaciais de temperatura em diferentes meses (cada mês
 é uma camada) a classe de dados é denominada <code>Rasterbrick</code>.</p>
 <p>Para importar dados em formato NetCDF que tenham mais uma camada no R, usamos
 a função <code>brick()</code> do pacote <strong>raster</strong>.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1">brick_tar_cru &lt;-<span class="st"> </span><span class="kw">brick</span>(dest_file_nc)</a>
-<a class="sourceLine" id="cb308-2" title="2">brick_tar_cru</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="arquivos-binários.html#cb308-1"></a>brick_tar_cru &lt;-<span class="st"> </span><span class="kw">brick</span>(dest_file_nc)</span>
+<span id="cb308-2"><a href="arquivos-binários.html#cb308-2"></a>brick_tar_cru</span></code></pre></div>
 <p>O resultado da importação de um <code>RasterBrick</code> mostra no console do R informações
 sobre as dimensões dos dados, a resolução espacial, os limites do domínio
 espacial, o sistema de coordenadas de referência, o arquivo fonte dos dados,
@@ -666,22 +672,22 @@ poderíamos ter chamado a função <code>raster::brick()</code> com
 arquivo NetCDF deste exemplo a especificação deste argumento é opcional.</p>
 <p>Os nomes das camadas, são acessados e alterados com função <code>names()</code>, da mesma
 forma que em <em>quadro de dadoss</em>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1"><span class="co"># substituindo a letra &quot;X&quot; dos nomes por &quot;Mes_&quot;</span></a>
-<a class="sourceLine" id="cb309-2" title="2"><span class="kw">names</span>(brick_tar_cru) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mes_&quot;</span>, <span class="kw">names</span>(brick_tar_cru))</a>
-<a class="sourceLine" id="cb309-3" title="3"><span class="kw">names</span>(brick_tar_cru)</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="arquivos-binários.html#cb309-1"></a><span class="co"># substituindo a letra &quot;X&quot; dos nomes por &quot;Mes_&quot;</span></span>
+<span id="cb309-2"><a href="arquivos-binários.html#cb309-2"></a><span class="kw">names</span>(brick_tar_cru) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mes_&quot;</span>, <span class="kw">names</span>(brick_tar_cru))</span>
+<span id="cb309-3"><a href="arquivos-binários.html#cb309-3"></a><span class="kw">names</span>(brick_tar_cru)</span></code></pre></div>
 <p>Um gráfico pode ser gerado através da funções <code>plot()</code>. Por default são
 mostrados no máximo 16 camadas de um <code>RasteBrick</code>.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="kw">plot</span>(brick_tar_cru, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="arquivos-binários.html#cb310-1"></a><span class="kw">plot</span>(brick_tar_cru, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</span></code></pre></div>
 <p>Os dados em formato <code>RasterBrick</code>, <code>RasterStack</code> ou <code>RasterLayer</code> podem ser
 convertidos para <code>quadro de dados</code> por meio da função <code>raster::as.data.frame()</code>.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1">df_tar_cru &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(</a>
-<a class="sourceLine" id="cb311-2" title="2">  <span class="dt">x =</span> brick_tar_cru,</a>
-<a class="sourceLine" id="cb311-3" title="3">  <span class="dt">xy =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb311-4" title="4">  <span class="dt">na.rm =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb311-5" title="5">  <span class="co">#long = TRUE</span></a>
-<a class="sourceLine" id="cb311-6" title="6">)</a>
-<a class="sourceLine" id="cb311-7" title="7"><span class="kw">str</span>(df_tar_cru)</a>
-<a class="sourceLine" id="cb311-8" title="8"><span class="kw">head</span>(df_tar_cru)</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="arquivos-binários.html#cb311-1"></a>df_tar_cru &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(</span>
+<span id="cb311-2"><a href="arquivos-binários.html#cb311-2"></a>  <span class="dt">x =</span> brick_tar_cru,</span>
+<span id="cb311-3"><a href="arquivos-binários.html#cb311-3"></a>  <span class="dt">xy =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb311-4"><a href="arquivos-binários.html#cb311-4"></a>  <span class="dt">na.rm =</span> <span class="ot">TRUE</span></span>
+<span id="cb311-5"><a href="arquivos-binários.html#cb311-5"></a>  <span class="co">#long = TRUE</span></span>
+<span id="cb311-6"><a href="arquivos-binários.html#cb311-6"></a>)</span>
+<span id="cb311-7"><a href="arquivos-binários.html#cb311-7"></a><span class="kw">str</span>(df_tar_cru)</span>
+<span id="cb311-8"><a href="arquivos-binários.html#cb311-8"></a><span class="kw">head</span>(df_tar_cru)</span></code></pre></div>
 <p>Os argumentos usados na função <code>as.dataframe()</code> correspondem a:</p>
 <ul>
 <li><p><code>x</code> é o objeto <code>Raster*</code> (onde * significa <code>RasterBrick</code>, <code>RasterStack</code>
@@ -696,7 +702,7 @@ onde não há dados medidos. Note que se <code>na.rm = FALSE</code> (<code>TRUE<
 resultante terá (poderá ter) um número de linhas igual ao (menor que o) número
 de células do <code>RasterBrick</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="kw">nrow</span>(df_tar_cru) <span class="op">&lt;</span><span class="st"> </span><span class="kw">ncell</span>(brick_tar_cru)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="arquivos-binários.html#cb312-1"></a><span class="kw">nrow</span>(df_tar_cru) <span class="op">&lt;</span><span class="st"> </span><span class="kw">ncell</span>(brick_tar_cru)</span></code></pre></div>
 <ul>
 <li><code>long</code> é um argumento opcional lógico. Se for <code>TRUE</code> (verdadeiro) os valores
 são reestruturados de um formato amplo para um formato longo (veja a seção

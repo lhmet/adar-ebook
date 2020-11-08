@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.1 Vetores e tipos de dados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.1 Vetores e tipos de dados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -484,16 +490,16 @@ Embora existam dois tipos de vetores o termo “vetor” é em geral usado para 
 <div id="build-vectors" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Construindo vetores</h3>
 <p><strong>Vetores atômicos</strong> são geralmente criados com a função <code>c()</code>, abreviatura para <strong>combinar ou concatenar</strong>. Os argumentos dessa função podem ser especificados separados por vírgula. Por exemplo, para criar um vetor com números reais chamado <code>vetor_dbl</code>, escrevemos:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">(vetor_dbl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.51</span>, <span class="fl">0.33</span>, <span class="fl">1.46</span>, <span class="fl">2.04</span>))</a>
-<a class="sourceLine" id="cb83-2" title="2"><span class="co">#&gt; [1] -1.51  0.33  1.46  2.04</span></a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tipos-dados.html#cb83-1"></a>(vetor_dbl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.51</span>, <span class="fl">0.33</span>, <span class="fl">1.46</span>, <span class="fl">2.04</span>))</span>
+<span id="cb83-2"><a href="tipos-dados.html#cb83-2"></a><span class="co">#&gt; [1] -1.51  0.33  1.46  2.04</span></span></code></pre></div>
 <div class="rmdnote">
 <p>
 A função <code>c()</code> aceita um <strong>número variado de argumentos</strong>, o que é representado por três pontos ou reticências (<code>…</code>) na sua documentação de ajuda (<code>?c</code>).
 </p>
 </div>
 <p>Para saber qual a classe ou tipo de uma variável podemos usar a função <code>class()</code>.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="kw">class</span>(vetor_dbl)</a>
-<a class="sourceLine" id="cb84-2" title="2"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tipos-dados.html#cb84-1"></a><span class="kw">class</span>(vetor_dbl)</span>
+<span id="cb84-2"><a href="tipos-dados.html#cb84-2"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
 </div>
 <div id="números" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Números</h3>
@@ -506,22 +512,22 @@ Medidas são compostas de um número e uma escala. Você pode estar trabalhando 
 </p>
 </div>
 <p>Como todo n° inteiro pode ser representado como real, por padrão números (ou operações envolvendo números) são definidos como <strong><code>double</code></strong> (<a href="https://pt.wikipedia.org/wiki/Dupla_precis%C3%A3o_no_formato_de_ponto_flutuante">dupla precisão no formato de ponto flutuante</a>) no <img src="images/logo_r.png" width="20">. Por exemplo o vetor <code>vetor_num</code> é numérico:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">(vetor_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA_real_</span>))</a>
-<a class="sourceLine" id="cb85-2" title="2"><span class="co">#&gt; [1] -1  0  1  2 NA</span></a>
-<a class="sourceLine" id="cb85-3" title="3"><span class="kw">class</span>(vetor_num)</a>
-<a class="sourceLine" id="cb85-4" title="4"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tipos-dados.html#cb85-1"></a>(vetor_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA_real_</span>))</span>
+<span id="cb85-2"><a href="tipos-dados.html#cb85-2"></a><span class="co">#&gt; [1] -1  0  1  2 NA</span></span>
+<span id="cb85-3"><a href="tipos-dados.html#cb85-3"></a><span class="kw">class</span>(vetor_num)</span>
+<span id="cb85-4"><a href="tipos-dados.html#cb85-4"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
 <p>Podemos determinar se uma variável é do tipo real ou inteiro com a função <code>typeof()</code>:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="kw">typeof</span>(vetor_num)</a>
-<a class="sourceLine" id="cb86-2" title="2"><span class="co">#&gt; [1] &quot;double&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tipos-dados.html#cb86-1"></a><span class="kw">typeof</span>(vetor_num)</span>
+<span id="cb86-2"><a href="tipos-dados.html#cb86-2"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>Para definirmos um vetor como do tipo <strong><code>integer</code></strong> é necessário usar o sufixo <code>L</code> em cada elemento numérico do vetor.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">(vetor_int &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 6L, 10L, <span class="ot">NA_integer_</span>))</a>
-<a class="sourceLine" id="cb87-2" title="2"><span class="co">#&gt; [1]  1  6 10 NA</span></a>
-<a class="sourceLine" id="cb87-3" title="3"><span class="kw">typeof</span>(vetor_int)</a>
-<a class="sourceLine" id="cb87-4" title="4"><span class="co">#&gt; [1] &quot;integer&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tipos-dados.html#cb87-1"></a>(vetor_int &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 6L, 10L, <span class="ot">NA_integer_</span>))</span>
+<span id="cb87-2"><a href="tipos-dados.html#cb87-2"></a><span class="co">#&gt; [1]  1  6 10 NA</span></span>
+<span id="cb87-3"><a href="tipos-dados.html#cb87-3"></a><span class="kw">typeof</span>(vetor_int)</span>
+<span id="cb87-4"><a href="tipos-dados.html#cb87-4"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
 <p>Há outra forma, bem mais prática, de criar vetores de inteiros: a partir da conversão de uma variável do tipo real (<code>double</code>) usando a função <code>as.integer()</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1">vetor_num_fi &lt;-<span class="st"> </span><span class="kw">as.integer</span>(vetor_num)</a>
-<a class="sourceLine" id="cb88-2" title="2"><span class="kw">typeof</span>(vetor_num_fi)</a>
-<a class="sourceLine" id="cb88-3" title="3"><span class="co">#&gt; [1] &quot;integer&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tipos-dados.html#cb88-1"></a>vetor_num_fi &lt;-<span class="st"> </span><span class="kw">as.integer</span>(vetor_num)</span>
+<span id="cb88-2"><a href="tipos-dados.html#cb88-2"></a><span class="kw">typeof</span>(vetor_num_fi)</span>
+<span id="cb88-3"><a href="tipos-dados.html#cb88-3"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
 <p>Na exemplo acima nós forçamos a conversão da variável <code>vetor_num</code> do tipo real para inteiro e verificamos qual seu tipo.</p>
 <div class="rmdnote">
 <p>
@@ -532,47 +538,47 @@ Há outros tipos de dados numéricos no R, como: complexos e hexadecimais.
 <div id="caractere" class="section level3">
 <h3><span class="header-section-number">6.1.3</span> Caractere</h3>
 <p>Um grupo de caracteres (ou <em>strings</em>), letras ou qualquer forma de texto são dados do tipo <strong><code>character</code></strong>. Eles são identificados por aspas dupla (<code>"</code>) ou simples (<code>'</code>) no início e fim de uma sequência de caracteres. Qualquer um destes delimitadores de caracteres podem ser usados para definir um dado como caractere:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">(vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ae&#39;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;ou&quot;</span>))</a>
-<a class="sourceLine" id="cb89-2" title="2"><span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span></a>
-<a class="sourceLine" id="cb89-3" title="3"><span class="kw">class</span>(vetor_char)</a>
-<a class="sourceLine" id="cb89-4" title="4"><span class="co">#&gt; [1] &quot;character&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tipos-dados.html#cb89-1"></a>(vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ae&#39;</span>, <span class="ot">NA_character_</span>, <span class="st">&quot;ou&quot;</span>))</span>
+<span id="cb89-2"><a href="tipos-dados.html#cb89-2"></a><span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span></span>
+<span id="cb89-3"><a href="tipos-dados.html#cb89-3"></a><span class="kw">class</span>(vetor_char)</span>
+<span id="cb89-4"><a href="tipos-dados.html#cb89-4"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Dados do tipo caractere são usados para descrição qualitativa de uma variável, como no caso de identificadores (por exemplo: nome de pessoas, cidades, IP de computadores em uma rede, cores, etc).</p>
 <p>O número de letras em cada elemento de um vetor do tipo <strong><code>character</code></strong> podemos determinar com <code>nchar()</code>.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="kw">nchar</span>(vetor_char)</a>
-<a class="sourceLine" id="cb90-2" title="2"><span class="co">#&gt; [1]  2 NA  2</span></a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tipos-dados.html#cb90-1"></a><span class="kw">nchar</span>(vetor_char)</span>
+<span id="cb90-2"><a href="tipos-dados.html#cb90-2"></a><span class="co">#&gt; [1]  2 NA  2</span></span></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> vem com alguns vetores de caracteres pré-definidos:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># alfabeto inglês em letras minúsculas</span></a>
-<a class="sourceLine" id="cb91-2" title="2">letters</a>
-<a class="sourceLine" id="cb91-3" title="3"><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;</span></a>
-<a class="sourceLine" id="cb91-4" title="4"><span class="co">#&gt; [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></a>
-<a class="sourceLine" id="cb91-5" title="5"><span class="co"># alfabeto inglês em letras maiúsculas</span></a>
-<a class="sourceLine" id="cb91-6" title="6">LETTERS</a>
-<a class="sourceLine" id="cb91-7" title="7"><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;</span></a>
-<a class="sourceLine" id="cb91-8" title="8"><span class="co">#&gt; [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></a>
-<a class="sourceLine" id="cb91-9" title="9"><span class="co"># nomes dos meses em inglês</span></a>
-<a class="sourceLine" id="cb91-10" title="10">month.name</a>
-<a class="sourceLine" id="cb91-11" title="11"><span class="co">#&gt;  [1] &quot;January&quot;   &quot;February&quot;  &quot;March&quot;     &quot;April&quot;     &quot;May&quot;       &quot;June&quot;     </span></a>
-<a class="sourceLine" id="cb91-12" title="12"><span class="co">#&gt;  [7] &quot;July&quot;      &quot;August&quot;    &quot;September&quot; &quot;October&quot;   &quot;November&quot;  &quot;December&quot;</span></a>
-<a class="sourceLine" id="cb91-13" title="13"><span class="co"># abreviatura dos nomes dos meses em inglês</span></a>
-<a class="sourceLine" id="cb91-14" title="14">month.abb</a>
-<a class="sourceLine" id="cb91-15" title="15"><span class="co">#&gt;  [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; &quot;May&quot; &quot;Jun&quot; &quot;Jul&quot; &quot;Aug&quot; &quot;Sep&quot; &quot;Oct&quot; &quot;Nov&quot; &quot;Dec&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tipos-dados.html#cb91-1"></a><span class="co"># alfabeto inglês em letras minúsculas</span></span>
+<span id="cb91-2"><a href="tipos-dados.html#cb91-2"></a>letters</span>
+<span id="cb91-3"><a href="tipos-dados.html#cb91-3"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;</span></span>
+<span id="cb91-4"><a href="tipos-dados.html#cb91-4"></a><span class="co">#&gt; [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span>
+<span id="cb91-5"><a href="tipos-dados.html#cb91-5"></a><span class="co"># alfabeto inglês em letras maiúsculas</span></span>
+<span id="cb91-6"><a href="tipos-dados.html#cb91-6"></a>LETTERS</span>
+<span id="cb91-7"><a href="tipos-dados.html#cb91-7"></a><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;</span></span>
+<span id="cb91-8"><a href="tipos-dados.html#cb91-8"></a><span class="co">#&gt; [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></span>
+<span id="cb91-9"><a href="tipos-dados.html#cb91-9"></a><span class="co"># nomes dos meses em inglês</span></span>
+<span id="cb91-10"><a href="tipos-dados.html#cb91-10"></a>month.name</span>
+<span id="cb91-11"><a href="tipos-dados.html#cb91-11"></a><span class="co">#&gt;  [1] &quot;January&quot;   &quot;February&quot;  &quot;March&quot;     &quot;April&quot;     &quot;May&quot;       &quot;June&quot;     </span></span>
+<span id="cb91-12"><a href="tipos-dados.html#cb91-12"></a><span class="co">#&gt;  [7] &quot;July&quot;      &quot;August&quot;    &quot;September&quot; &quot;October&quot;   &quot;November&quot;  &quot;December&quot;</span></span>
+<span id="cb91-13"><a href="tipos-dados.html#cb91-13"></a><span class="co"># abreviatura dos nomes dos meses em inglês</span></span>
+<span id="cb91-14"><a href="tipos-dados.html#cb91-14"></a>month.abb</span>
+<span id="cb91-15"><a href="tipos-dados.html#cb91-15"></a><span class="co">#&gt;  [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; &quot;May&quot; &quot;Jun&quot; &quot;Jul&quot; &quot;Aug&quot; &quot;Sep&quot; &quot;Oct&quot; &quot;Nov&quot; &quot;Dec&quot;</span></span></code></pre></div>
 <p>Se você precisar incluir aspas duplas ou apóstrofe em um caractere usando os dois delimitadores juntos, como nos dois exemplos, respectivamente:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">citacao &lt;-<span class="st"> &#39;Me diga o que é pior: &quot;Desistir do que quer ou se contentar com o que nunca quis?&quot; - Reverb Poesia.&#39;</span></a>
-<a class="sourceLine" id="cb92-2" title="2">citacao</a>
-<a class="sourceLine" id="cb92-3" title="3"><span class="co">#&gt; [1] &quot;Me diga o que é pior: \&quot;Desistir do que quer ou se contentar com o que nunca quis?\&quot; - Reverb Poesia.&quot;</span></a>
-<a class="sourceLine" id="cb92-4" title="4"></a>
-<a class="sourceLine" id="cb92-5" title="5">sentenca_apos &lt;-<span class="st"> &quot;Marca d&#39;água&quot;</span></a>
-<a class="sourceLine" id="cb92-6" title="6">sentenca_apos</a>
-<a class="sourceLine" id="cb92-7" title="7"><span class="co">#&gt; [1] &quot;Marca d&#39;água&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tipos-dados.html#cb92-1"></a>citacao &lt;-<span class="st"> &#39;Me diga o que é pior: &quot;Desistir do que quer ou se contentar com o que nunca quis?&quot; - Reverb Poesia.&#39;</span></span>
+<span id="cb92-2"><a href="tipos-dados.html#cb92-2"></a>citacao</span>
+<span id="cb92-3"><a href="tipos-dados.html#cb92-3"></a><span class="co">#&gt; [1] &quot;Me diga o que é pior: \&quot;Desistir do que quer ou se contentar com o que nunca quis?\&quot; - Reverb Poesia.&quot;</span></span>
+<span id="cb92-4"><a href="tipos-dados.html#cb92-4"></a></span>
+<span id="cb92-5"><a href="tipos-dados.html#cb92-5"></a>sentenca_apos &lt;-<span class="st"> &quot;Marca d&#39;água&quot;</span></span>
+<span id="cb92-6"><a href="tipos-dados.html#cb92-6"></a>sentenca_apos</span>
+<span id="cb92-7"><a href="tipos-dados.html#cb92-7"></a><span class="co">#&gt; [1] &quot;Marca d&#39;água&quot;</span></span></code></pre></div>
 <p>Se precisar usar ambos delimitadores dentro um mesmo caractere, use a barra invertida (<code>\</code>) antes do delimitador que deseja desconsiderar.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">(sentenca_2aspas &lt;-<span class="st"> &quot;Ele disse: </span><span class="ch">\&quot;</span><span class="st">Me sinto como um peixe fora d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb93-2" title="2"><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tipos-dados.html#cb93-1"></a>(sentenca_2aspas &lt;-<span class="st"> &quot;Ele disse: </span><span class="ch">\&quot;</span><span class="st">Me sinto como um peixe fora d&#39;água</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</span>
+<span id="cb93-2"><a href="tipos-dados.html#cb93-2"></a><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></span></code></pre></div>
 <p>Note que a impressão de caracteres no console inclui a barra invertida para maior clareza. Esse padrão também ocorre com a função <code>print()</code>:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">print</span>(sentenca_2aspas)</a>
-<a class="sourceLine" id="cb94-2" title="2"><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tipos-dados.html#cb94-1"></a><span class="kw">print</span>(sentenca_2aspas)</span>
+<span id="cb94-2"><a href="tipos-dados.html#cb94-2"></a><span class="co">#&gt; [1] &quot;Ele disse: \&quot;Me sinto como um peixe fora d&#39;água\&quot;&quot;</span></span></code></pre></div>
 <p>Já a função <code>cat()</code><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, interpreta caracteres especiais (como a barra invertida <code>\</code> e a quebra de linha <code>\n</code>), para então dar saída na tela.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">cat</span>(sentenca_2aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb95-2" title="2"><span class="co">#&gt; Ele disse: &quot;Me sinto como um peixe fora d&#39;água&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tipos-dados.html#cb95-1"></a><span class="kw">cat</span>(sentenca_2aspas, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb95-2"><a href="tipos-dados.html#cb95-2"></a><span class="co">#&gt; Ele disse: &quot;Me sinto como um peixe fora d&#39;água&quot;</span></span></code></pre></div>
 <div class="rmdnote">
 <p>
 Há diversos caracteres especiais com interpretação especial dentro de caracteres (strings). Eles são precedidos por uma barra invertida (<em>escape</em>). Os mais comuns são:
@@ -604,33 +610,33 @@ Há diversos caracteres especiais com interpretação especial dentro de caracte
 <div id="logico" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Lógico</h3>
 <p>Valores lógicos são um tipo de vetores atômicos extremamente úteis simples, pois só podem assumir os valores <code>TRUE</code> (verdadeiro), <code>FALSE</code> (falso) e <code>NA</code>. No <img src="images/logo_r.png" width="20"> eles são da classe de dados do tipo <code>logical</code>.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># variável lógica</span></a>
-<a class="sourceLine" id="cb96-2" title="2">vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb96-3" title="3">vetor_log</a>
-<a class="sourceLine" id="cb96-4" title="4"><span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb96-5" title="5"><span class="kw">class</span>(vetor_log)</a>
-<a class="sourceLine" id="cb96-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tipos-dados.html#cb96-1"></a><span class="co"># variável lógica</span></span>
+<span id="cb96-2"><a href="tipos-dados.html#cb96-2"></a>vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">NA</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb96-3"><a href="tipos-dados.html#cb96-3"></a>vetor_log</span>
+<span id="cb96-4"><a href="tipos-dados.html#cb96-4"></a><span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span></span>
+<span id="cb96-5"><a href="tipos-dados.html#cb96-5"></a><span class="kw">class</span>(vetor_log)</span>
+<span id="cb96-6"><a href="tipos-dados.html#cb96-6"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
 <p>O <img src="images/logo_r.png" width="20"> aceita as abreviaturas <code>T</code> e <code>F</code> para representar <code>TRUE</code> e <code>FALSE</code>. Entretanto, esta não é uma prática recomendável, pois <code>T</code> e <code>F</code> não fazem parte das palavras reservadas do <img src="images/logo_r.png" width="20">. Consequentemente isso pode levar a confusão, como no exemplo abaixo.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb97-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb97-3" title="3">T</a>
-<a class="sourceLine" id="cb97-4" title="4"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb97-5" title="5"><span class="kw">class</span>(T)</a>
-<a class="sourceLine" id="cb97-6" title="6"><span class="co">#&gt; [1] &quot;logical&quot;</span></a>
-<a class="sourceLine" id="cb97-7" title="7">T &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb97-8" title="8"><span class="kw">class</span>(T)</a>
-<a class="sourceLine" id="cb97-9" title="9"><span class="co">#&gt; [1] &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb97-10" title="10"><span class="kw">c</span>(T, F)</a>
-<a class="sourceLine" id="cb97-11" title="11"><span class="co">#&gt; [1] 10  0</span></a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tipos-dados.html#cb97-1"></a><span class="ot">TRUE</span></span>
+<span id="cb97-2"><a href="tipos-dados.html#cb97-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb97-3"><a href="tipos-dados.html#cb97-3"></a>T</span>
+<span id="cb97-4"><a href="tipos-dados.html#cb97-4"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb97-5"><a href="tipos-dados.html#cb97-5"></a><span class="kw">class</span>(T)</span>
+<span id="cb97-6"><a href="tipos-dados.html#cb97-6"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
+<span id="cb97-7"><a href="tipos-dados.html#cb97-7"></a>T &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb97-8"><a href="tipos-dados.html#cb97-8"></a><span class="kw">class</span>(T)</span>
+<span id="cb97-9"><a href="tipos-dados.html#cb97-9"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
+<span id="cb97-10"><a href="tipos-dados.html#cb97-10"></a><span class="kw">c</span>(T, F)</span>
+<span id="cb97-11"><a href="tipos-dados.html#cb97-11"></a><span class="co">#&gt; [1] 10  0</span></span></code></pre></div>
 <p>Vetores lógicos resultam de comparações e são amplamente usados em estruturas de controle condicional do código (como por exemplo nas funções <code>if()</code> e <code>ifelse()</code>).</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="19">
-<li id="fn19"><p>Diferente de outras linguagens de programação no R, um <strong>escalar</strong> é um vetor com um elemento. Então, vetores são o menor tipo de dados no R.<a href="tipos-dados.html#fnref19" class="footnote-back">↩</a></p></li>
-<li id="fn20"><p>Lista é um tipo de vetor chamado <code>list</code> que é capaz de armazenar dados de diferentes tipos (heterogêneos), o que será visto na seção <a href="listas.html#listas">8.1</a>.<a href="tipos-dados.html#fnref20" class="footnote-back">↩</a></p></li>
-<li id="fn21"><p>Em comparação a função <code>print()</code>, a função <code>cat()</code> tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a coerção deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.<a href="tipos-dados.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p>Diferente de outras linguagens de programação no R, um <strong>escalar</strong> é um vetor com um elemento. Então, vetores são o menor tipo de dados no R.<a href="tipos-dados.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Lista é um tipo de vetor chamado <code>list</code> que é capaz de armazenar dados de diferentes tipos (heterogêneos), o que será visto na seção <a href="listas.html#listas">8.1</a>.<a href="tipos-dados.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>Em comparação a função <code>print()</code>, a função <code>cat()</code> tem a vantagem de concatenar os dados fornecidos em seus argumentos, fazendo a coerção deles para caracteres se necessário. Isso faz dela uma função bastante útil para imprimir mensagens e avisos dentro de funções.<a href="tipos-dados.html#fnref21" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

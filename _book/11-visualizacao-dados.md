@@ -11,6 +11,7 @@ output:
 
 
 
+
 > \"Uma imagem vale mais que mil palavras\"
 
 é uma expressão popular atribuída ao filósofo chinês [Confúcio](https://en.wikipedia.org/wiki/Confucius) utilizada para transmitir a ideia do poder da comunicação através das imagens.
@@ -78,7 +79,7 @@ pacotes <- c(
   #"viridis",
   #"ggpubr",
   #"ggmap",
-  #"psych",
+  "psych",
   "grid",
   "lattice",
   "gcookbook"
@@ -111,6 +112,20 @@ A <- seq(
 y1 <- exp(-0.07 * A * x1) * cos(x1 + pi / 2)
 onda <- tibble(x1, y1)
 onda
+#> # A tibble: 4,001 x 2
+#>        x1       y1
+#>     <dbl>    <dbl>
+#>  1 -100   -0.00140
+#>  2 -100.  -0.00153
+#>  3  -99.9 -0.00165
+#>  4  -99.8 -0.00177
+#>  5  -99.8 -0.00188
+#>  6  -99.8 -0.00199
+#>  7  -99.7 -0.00210
+#>  8  -99.6 -0.00221
+#>  9  -99.6 -0.00231
+#> 10  -99.6 -0.00240
+#> # ... with 3,991 more rows
 ```
 
   + Dados de qualidade do ar em NY
@@ -119,6 +134,13 @@ onda
 ```r
 #help(airquality)
 head(airquality)
+#>   Ozone Solar.R Wind Temp Month Day
+#> 1    41     190  7.4   67     5   1
+#> 2    36     118  8.0   72     5   2
+#> 3    12     149 12.6   74     5   3
+#> 4    18     313 11.5   62     5   4
+#> 5    NA      NA 14.3   56     5   5
+#> 6    28      NA 14.9   66     5   6
 # conversão da Temp de Farenheith para Celsius
 aq <- airquality %>%
   mutate(Temp = (Temp - 32)/5,
@@ -131,6 +153,13 @@ aq <- airquality %>%
   # removendo as colunas Month e Day e reordenando as colunas
   dplyr::select(., date, Ozone:Temp, -c(Month, Day))
 head(aq)
+#>         date Ozone Solar.R Wind Temp
+#> 1 1973-05-01    41     190  7.4  7.0
+#> 2 1973-05-02    36     118  8.0  8.0
+#> 3 1973-05-03    12     149 12.6  8.4
+#> 4 1973-05-04    18     313 11.5  6.0
+#> 5 1973-05-05    NA      NA 14.3  4.8
+#> 6 1973-05-06    28      NA 14.9  6.8
 ```
 
   
@@ -145,6 +174,13 @@ prec <- import(
   format = "rds"
 )
 head(prec)
+#>   codigo            nome estado mes value
+#> 1  82704 Cruzeiro do Sul     AC jan 257.9
+#> 2  82915      Rio Branco     AC jan 289.0
+#> 3  82807       TarauacÃ¡     AC jan 286.6
+#> 4  83098        Coruripe     AL jan  21.6
+#> 5  82994         MaceiÃ³     AL jan  78.1
+#> 6  82988     Mata Grande     AL jan  62.1
 ```
 
  + Dados de precipitação anual de algumas capitais do mundo
@@ -158,6 +194,13 @@ rain <- import(
   header = TRUE
 )
 head(rain)
+#>   Month Tokyo NewYork London Berlin
+#> 1   Jan  49.9    83.6   48.9   42.4
+#> 2   Feb  71.5    78.8   38.8   33.2
+#> 3   Mar 106.4    98.5   39.3   34.5
+#> 4   Apr 129.2    93.4   42.4   39.7
+#> 5   May 144.0   106.0   47.0   52.6
+#> 6   Jun 176.0    84.5   48.3   70.5
 ```
 
   + anomalias de temperatura do ar global Global de 1800 a 2011
@@ -167,6 +210,13 @@ head(rain)
 data(climate, package = "gcookbook")
 #help(climate,package = "gcookbook")
 head(climate)
+#>     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+#> 1 Berkeley 1800        NA        NA     -0.435  0.505
+#> 2 Berkeley 1801        NA        NA     -0.453  0.493
+#> 3 Berkeley 1802        NA        NA     -0.460  0.486
+#> 4 Berkeley 1803        NA        NA     -0.493  0.489
+#> 5 Berkeley 1804        NA        NA     -0.536  0.483
+#> 6 Berkeley 1805        NA        NA     -0.541  0.475
 ```
 
 -  Metadados das estações meteorológicas automáticas (EMA) do INMET;
@@ -182,6 +232,22 @@ sulbr_md <- import(
     tmed = (tmax_med + tmin_med) / 2
   )
 sulbr_md
+#> # A tibble: 82 x 18
+#>    site  tmax_med tmin_med dtr_med sdate      edate      period max_tair
+#>    <chr>    <dbl>    <dbl>   <dbl> <date>     <date>      <dbl>    <dbl>
+#>  1 A801      24.8     16.1    8.66 2000-09-22 2015-12-31   15.3       40
+#>  2 A802      22.1     15.3    6.77 2001-11-16 2015-12-31   14.1       38
+#>  3 A803      24.8     14.8    9.94 2001-11-26 2015-12-31   14.1       40
+#>  4 A805      24.7     15.1    9.60 2001-12-05 2015-12-31   14.1       36
+#>  5 A806      24.5     18.0    6.49 2003-01-22 2015-12-31   12.9       39
+#>  6 A807      22.9     14.3    8.65 2003-01-28 2015-12-31   12.9       34
+#>  7 A808      22.2     16.3    5.87 2006-06-01 2015-12-31    9.6       41
+#>  8 A809      25.5     15.0   10.5  2006-09-28 2015-12-31    9.3       40
+#>  9 A810      26.5     15.3   11.2  2006-11-15 2015-12-31    9.1       39
+#> 10 A811      20.9     13.0    7.84 2007-01-24 2015-12-31    8.9       37
+#> # ... with 72 more rows, and 10 more variables: min_tair <dbl>, missing <dbl>,
+#> #   long_gap <dbl>, sdate_lg <dttm>, name <chr>, state <chr>, lon <dbl>,
+#> #   lat <dbl>, alt <dbl>, tmed <dbl>
 ```
 
 
@@ -200,6 +266,17 @@ sulbr_dh <- import("https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.
 
 ```r
 glimpse(sulbr_dh)
+#> Rows: 2,806,728
+#> Columns: 9
+#> $ site  <chr> "A801", "A801", "A801", "A801", "A801", "A801", "A801", "A801...
+#> $ date  <dttm> 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:0...
+#> $ tair  <dbl> NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15....
+#> $ rh    <dbl> NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 4...
+#> $ prec  <dbl> NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
+#> $ rg    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111...
+#> $ wd    <dbl> NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, ...
+#> $ ws    <dbl> NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, ...
+#> $ wsmax <dbl> NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, ...
 #range(sulbr_dh$date)
 ```
 
@@ -213,8 +290,13 @@ tair_poa_dly <- sulbr_dh %>%
   group_by(date = as.Date(date)) %>%
   summarise(tair = mean(tair, na.rm = TRUE)) %>%
   mutate(tair = ifelse(is.nan(tair), NA, tair))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 
 glimpse(tair_poa_dly)
+#> Rows: 5,579
+#> Columns: 2
+#> $ date <date> 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 2...
+#> $ tair <dbl> 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18...
 ```
 
 
@@ -230,7 +312,22 @@ tair_poa_clim <- tair_poa_dly %>%
             n_obs = sum(!is.na(tair))
             ) %>% 
   ungroup()
+#> `summarise()` ungrouping output (override with `.groups` argument)
 tair_poa_clim
+#> # A tibble: 366 x 8
+#>      doy   med   max   min    q5   q95 n_anos n_obs
+#>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <int> <int>
+#>  1     1  24.3  27.5  19.6  20.0  27.4     15    15
+#>  2     2  24.2  28.4  20.2  20.3  28.1     15    15
+#>  3     3  23.5  27.3  16.0  19.8  27.3     15    15
+#>  4     4  24.4  27.3  19.2  21.5  27.1     15    15
+#>  5     5  24.9  27.8  20.9  21.7  26.9     15    15
+#>  6     6  25.5  28.6  22.5  23.6  27.9     15    15
+#>  7     7  25.8  28.8  21.8  23.1  28.2     15    15
+#>  8     8  25.6  28.5  23.4  23.5  27.9     15    15
+#>  9     9  26.0  29.5  21.9  23.8  28.5     15    15
+#> 10    10  25.8  29.4  22.3  22.8  28.6     15    15
+#> # ... with 356 more rows
 ```
 
 
@@ -281,6 +378,8 @@ with(
 )
 ```
 
+<img src="images/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
+
 Para ilustrar os diferentes sistemas gráficos disponíveis no <img src="images/logo_r.png" width="20">, vamos mostrar como gerar este mesmo gráfico usando o sistema **`{grid}`**, **`{lattice}`** e **`{ggplot2}`**.
 
 ### grid
@@ -316,6 +415,8 @@ grid.points(
 )
 ```
 
+<img src="images/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
+
     
 ### [lattice](http://lattice.r-forge.r-project.org/)
 
@@ -332,6 +433,8 @@ library(lattice)
  xyplot(tmed ~ alt, data = sulbr_md)
 ```
 
+<img src="images/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
+
 
 ### [ggplot2](http://ggplot2.org/)
 
@@ -344,6 +447,8 @@ library(ggplot2)
  qplot(x = alt, y = tmed, data = sulbr_md)
 ```
 
+<img src="images/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
+
 
 ### Terminologia: funções de alto e baixo nível
 
@@ -355,6 +460,8 @@ library(ggplot2)
 plot(x1, y1, las = 1)
 ```
 
+<img src="images/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" />
+
 **Funções de baixo nível** adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. Considere o gráfico da onda abaixo:
 
 
@@ -362,6 +469,8 @@ plot(x1, y1, las = 1)
 # exemplo função gráfica de alto nível
 plot(x1, y1, las = 1)
 ```
+
+<img src="images/plot-alto-nivel-1.png" width="672" style="display: block; margin: auto;" />
 
 As expressões a seguir adicionam pontos, linhas de grade, uma linha horizontal de referência em `y = 0`, título e uma borda ao gráfico básico gerado no código anterior. Todas estas funções são de baixo nível.
 
@@ -379,6 +488,8 @@ title(main = "Gráfico a partir de funções de baixo nível")      # adiciona t
 box(lwd = 2)                      # adiciona retângulo em torna da região do gráfico, com linha mais larga
 ```
 
+<img src="images/funcoes-baixo-nivel-1.png" width="672" style="display: block; margin: auto;" />
+
 Ambos os Sistemas Básico e de Grade fornecem funções gráficas de baixo nível. O Sistema de Grade também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem). A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.
   
 Neste capítulo será dado foco a produção de gráficos usando o Sistema Básico do <img src="images/logo_r.png" width="20">.
@@ -394,12 +505,16 @@ A função `plot()` é o carro chefe do Sistema Básico do <img src="images/logo
 plot(y1)
 ```
 
+<img src="images/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" />
+
 Você também pode especificar os parâmetros x e y. 
 
 
 ```r
 plot(x = x1, y = y1)
 ```
+
+<img src="images/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" />
   
 
 Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex.: `y ~ x` que pode ser interpretada como y (variável) em função de x.
@@ -409,6 +524,8 @@ Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex
 plot(y1 ~ x1)
 ```
 
+<img src="images/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
+
 Se você tem seus dados em um quadro de dados, utilize o argumento `data` e o nome das variáveis que deseja plotar na fórmula.
 
 
@@ -416,12 +533,16 @@ Se você tem seus dados em um quadro de dados, utilize o argumento `data` e o no
 plot(tmed ~ alt,  data = sulbr_md)
 ```
 
+<img src="images/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" />
+
 Aplicando a `plot()` a um *quadro de dados* com duas variáveis resulta um gráfico equivalente ao caso anterior.
 
 
 ```r
 plot(onda)
 ```
+
+<img src="images/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" />
 
 #### Gráficos de dispersão
 
@@ -433,6 +554,8 @@ Aplicando a `plot()` a um quadro de dados com mais de duas variáveis resulta um
 plot(select(aq, -date))
 ```
 
+<img src="images/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" />
+
 Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.
 
 Existe uma função gráfica específica para produção deste tipo de gráfico: a função `pairs()`. 
@@ -443,12 +566,16 @@ Existe uma função gráfica específica para produção deste tipo de gráfico:
 pairs(select(aq, -date))
 ```
 
+<img src="images/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
+
 A função `pairs.panels()` do pacote `psych` fornece um gráfico de pares bastante informativo e foi expandida a partir da função `pairs()`.
 
 
 ```r
 pairs.panels(x = select(aq, -date))
 ```
+
+<img src="images/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" />
 
 Para fechar as janelas gráficas abertas:
 
@@ -470,6 +597,79 @@ Digitando `par()` sem parâmetros produz uma lista das configurações gráficas
 
 ```r
 str(par())
+#> List of 72
+#>  $ xlog     : logi FALSE
+#>  $ ylog     : logi FALSE
+#>  $ adj      : num 0.5
+#>  $ ann      : logi TRUE
+#>  $ ask      : logi FALSE
+#>  $ bg       : chr "white"
+#>  $ bty      : chr "o"
+#>  $ cex      : num 1
+#>  $ cex.axis : num 1
+#>  $ cex.lab  : num 1
+#>  $ cex.main : num 1.2
+#>  $ cex.sub  : num 1
+#>  $ cin      : num [1:2] 0.15 0.2
+#>  $ col      : chr "black"
+#>  $ col.axis : chr "black"
+#>  $ col.lab  : chr "black"
+#>  $ col.main : chr "black"
+#>  $ col.sub  : chr "black"
+#>  $ cra      : num [1:2] 28.8 38.4
+#>  $ crt      : num 0
+#>  $ csi      : num 0.2
+#>  $ cxy      : num [1:2] 0.026 0.0633
+#>  $ din      : num [1:2] 7 5
+#>  $ err      : int 0
+#>  $ family   : chr ""
+#>  $ fg       : chr "black"
+#>  $ fig      : num [1:4] 0 1 0 1
+#>  $ fin      : num [1:2] 7 5
+#>  $ font     : int 1
+#>  $ font.axis: int 1
+#>  $ font.lab : int 1
+#>  $ font.main: int 2
+#>  $ font.sub : int 1
+#>  $ lab      : int [1:3] 5 5 7
+#>  $ las      : int 0
+#>  $ lend     : chr "round"
+#>  $ lheight  : num 1
+#>  $ ljoin    : chr "round"
+#>  $ lmitre   : num 10
+#>  $ lty      : chr "solid"
+#>  $ lwd      : num 1
+#>  $ mai      : num [1:4] 1.02 0.82 0.82 0.42
+#>  $ mar      : num [1:4] 5.1 4.1 4.1 2.1
+#>  $ mex      : num 1
+#>  $ mfcol    : int [1:2] 1 1
+#>  $ mfg      : int [1:4] 1 1 1 1
+#>  $ mfrow    : int [1:2] 1 1
+#>  $ mgp      : num [1:3] 3 1 0
+#>  $ mkh      : num 0.001
+#>  $ new      : logi FALSE
+#>  $ oma      : num [1:4] 0 0 0 0
+#>  $ omd      : num [1:4] 0 1 0 1
+#>  $ omi      : num [1:4] 0 0 0 0
+#>  $ page     : logi TRUE
+#>  $ pch      : int 1
+#>  $ pin      : num [1:2] 5.76 3.16
+#>  $ plt      : num [1:4] 0.117 0.94 0.204 0.836
+#>  $ ps       : int 12
+#>  $ pty      : chr "m"
+#>  $ smo      : num 1
+#>  $ srt      : num 0
+#>  $ tck      : num NA
+#>  $ tcl      : num -0.5
+#>  $ usr      : num [1:4] 0 1 0 1
+#>  $ xaxp     : num [1:3] 0 1 5
+#>  $ xaxs     : chr "r"
+#>  $ xaxt     : chr "s"
+#>  $ xpd      : logi FALSE
+#>  $ yaxp     : num [1:3] 0 1 5
+#>  $ yaxs     : chr "r"
+#>  $ yaxt     : chr "s"
+#>  $ ylbias   : num 0.2
 ```
 
 O parâmetro `no.readonly = TRUE` produz uma lista das configurações atuais que podem ser modificadas posteriormente.
@@ -488,6 +688,11 @@ with(
     type = "b"
   )
 ) # linha e ponto desconectados
+```
+
+<img src="images/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 # restabelecendo parâmetros originais
 par(old_par)
 ```
@@ -514,6 +719,8 @@ with(
 )
 ```
 
+<img src="images/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
+
 Nem todas funções de alto nível permitem especificar todos parâmetros gráficos. Veja  o `help(plot)` para determinar quais parâmetros gráficos podem configurados dessa forma.
 
 
@@ -536,7 +743,7 @@ Vimos que podemos especificar símbolos e linhas nos gráficos. Os parâmetros r
 
 Os símbolos são especificados conforme numeração indicada no gráfico abaixo.
 
-
+<img src="images/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
 
 As opções de tipo de linha são mostradas abaixo.
 
@@ -576,6 +783,11 @@ mtext(
   font = 2
 )
 abline(h = 1:6, lty = 1:6)
+```
+
+<img src="images/Chunk611-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
@@ -595,6 +807,8 @@ with(
   )
 )
 ```
+
+<img src="images/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ### Cores
@@ -619,6 +833,11 @@ A função `colors()` retorna o nome de todas as cores disponíveis.
 
 ```r
 colors()[1:20]
+#>  [1] "white"         "aliceblue"     "antiquewhite"  "antiquewhite1"
+#>  [5] "antiquewhite2" "antiquewhite3" "antiquewhite4" "aquamarine"   
+#>  [9] "aquamarine1"   "aquamarine2"   "aquamarine3"   "aquamarine4"  
+#> [13] "azure"         "azure1"        "azure2"        "azure3"       
+#> [17] "azure4"        "beige"         "bisque"        "bisque1"
 n <- length(colors())
 op <- par(bg = "gray60")
 plot(
@@ -643,6 +862,11 @@ points(
   pch = 20,
   cex = (1:n) / 60 * 4
 )
+```
+
+<img src="images/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
@@ -675,6 +899,8 @@ for (ipal in seq_along(paletas)) {
   )
 }
 ```
+
+<img src="images/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-2.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-3.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-4.png" width="672" style="display: block; margin: auto;" /><img src="images/unnamed-chunk-36-5.png" width="672" style="display: block; margin: auto;" />
 
 ### Características de texto
 
@@ -714,6 +940,11 @@ plot(x = onda$x1[1:n],
      col = gray.colors(n), 
      pch = 20, 
      cex = (1:n)/60 * 4)
+```
+
+<img src="images/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
 par(op)
 ```
 
@@ -745,6 +976,8 @@ nms_ema <- sulbr_md$site[order(sulbr_md$dtr_med)]
 box()
 ```
 
+<img src="images/unnamed-chunk-38-1.png" width="960" style="display: block; margin: auto;" />
+
 Para ilustrar um histograma usaremos os dados de temperatura horária de Santa Maria.
 
 
@@ -755,12 +988,16 @@ th_sm <- filter(sulbr_dh, site == "A803") %>%
 hist(x = th_sm)
 ```
 
+<img src="images/unnamed-chunk-39-1.png" width="672" />
+
 O número de classes para discretização dos dados pode ser especificado no parâmetro `breaks`.
 
 
 ```r
 hist(x = th_sm, breaks = 10)
 ```
+
+<img src="images/unnamed-chunk-40-1.png" width="672" />
 
 Usando a interface de fórmula podemos fazer facilmente um boxplot da temperatura do ar horária de Santa Maria-RS, para cada mês.
 
@@ -771,6 +1008,8 @@ boxplot(tair ~ month(date),
 )
 ```
 
+<img src="images/unnamed-chunk-41-1.png" width="672" />
+
 
 Funções matemáticas podem ser visualizadas com a função `curve()`.
 
@@ -778,6 +1017,11 @@ Funções matemáticas podem ser visualizadas com a função `curve()`.
 ```r
 # Curvas
 curve(x ^ 3 - 5 * x, from = -4, to = 4)
+```
+
+<img src="images/unnamed-chunk-42-1.png" width="672" />
+
+```r
 # plot de uma função criada
 fun_curvilinea <- function(xvar) {
   1 / (1 + exp(-xvar + 10))
@@ -786,6 +1030,8 @@ curve(fun_curvilinea(x), from = 0, to = 20)
 # Add a line:
 curve(1 - fun_curvilinea(x), add = TRUE, col = "red")
 ```
+
+<img src="images/unnamed-chunk-42-2.png" width="672" />
 
 Para mostrar como fazer um gráfico do tipo imagem, vamos criar uma matriz com temperatura média mensal horária em que as linhas são os meses e as colunas as horas.
 
@@ -800,6 +1046,7 @@ Para mostrar como fazer um gráfico do tipo imagem, vamos criar uma matriz com t
   #View(tar_mes_hora)
   tar_mat <- as.matrix(tar_mes_hora[, -1])
   dim(tar_mat)
+#> [1] 12 24
 ```
 
 
@@ -836,8 +1083,9 @@ title(
   main = "Variação sazonal horária da Tar \n no Sul do Brasil",
   cex.main = 0.9
 )
-
 ```
+
+<img src="images/unnamed-chunk-44-1.png" width="672" />
 
 
 
@@ -857,14 +1105,24 @@ Eventualmente você pode exibir um gráfico fora do painel de gráficos do RStud
 
 ```r
 x11()
+```
+
+
+```r
 plot(y1)
 ```
+
+<img src="images/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" />
 
 Seu gráfico aparecerá em uma janela gráfica fora do ambiente do RStudio. Você abrir mais janelas gráficas repetindo a expressão `x11()` (`dev.new()`). Abaixo nós abriremos uma janela para fazer outro plot.
 
 
 ```r
 x11()
+```
+
+
+```r
 plot(y1^2)
 ```
 
@@ -885,6 +1143,8 @@ O <img src="images/logo_r.png" width="20"> pode exportar um gráfico para difere
 ```r
 plot(y1)
 ```
+
+<img src="images/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" />
 
 Vamos usar o exemplo do gráfico com diferentes paleta de cores para demonstrar  como salvar vários gráficos em um único arquivo **pdf**.
 
@@ -1011,6 +1271,11 @@ plot(1:10,
      ylab = "")
 text(5, 5, "5 gráficos \n em uma \n página", cex = 3)
 })
+```
+
+<img src="images/Chunk1011-1.png" width="1440" style="display: block; margin: auto;" />
+
+```r
 
 
 #par()
@@ -1059,6 +1324,8 @@ mtext(
 )
 ```
 
+<img src="images/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" />
+
 
 
 ### Adicionando legenda
@@ -1104,16 +1371,26 @@ legend(
 )
 ```
 
+<img src="images/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" />
 
+
+<!-- ```{r} -->
+<!-- knitr::knit_exit() -->
+<!-- ``` -->
 
 
 ## ggplot2
+
+<!-- 
+https://bookdown.org/aschmi11/RESMHandbook/data-visualization-with-ggplot.html 
+-->
 
 O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20"> da **G**ramática de **G**ráficos [@Wilkinson2005] (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a ideia central do **`{ggplot2}`**.
 
 A documentação do ggplot2 está disponível [aqui](https://ggplot2.tidyverse.org/reference/index.html).
 
 Para conhecer mais extensões do **`{ggplot2}`** consulte a galeria https://exts.ggplot2.tidyverse.org/gallery/.
+
 <!--
  https://exts.ggplot2.tidyverse.org/ 
  
@@ -1123,6 +1400,7 @@ http://r-statistics.co/ggplot2-Tutorial-With-R.html
 
 http://blog.revolutionanalytics.com/2015/01/a-beautiful-story-about-nyc-weather.html
 
+https://rc2e.com/graphics
 
 # gráfico clássico 
 https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00014g
@@ -1132,74 +1410,47 @@ https://weatherspark.com/y/30268/Average-Weather-in-S%C3%A3o-Paulo-Brazil-Year-R
 https://weatherspark.com/compare/y/147567~144671/Comparison-of-the-Average-Weather-at-Salgado-Filho-International-Airport-and-Brisbane
 -->
 
+### Exemplo de aplicação
+
+
+
 ### Dados
 
 
-Como exemplo de aplicação usaremos os dados históricos do INME da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados podem ser baixados com o código abaixo.
+Como exemplo de aplicação usaremos os dados históricos do INMET da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados utilizados podem ser acessados carregando o pacote **`{ADARdata}`**.
 
 
 ```r
-# link dos dados
-url_data <- "https://www.dropbox.com/s/wqw42gp9vw54k87/dados-cap11-adar.RData?dl=1"
-# arquivo temporário
-arq_temp <- tempfile(fileext = ".RData")
-download.file(
-  url = url_data,
-  destfile = arq_temp,
-  mode = "wb"
-)
-# nome dos dados carregados para os exercícios
-print(load(arq_temp))
-str(dados_sm)
+#devtools::install_github("lhmet/ADARdata")
+library(ADARdata)
+```
+O pacote disponibiliza os seguinte conjunto de dados formado por 3 quadro de dados que serão usados a seguir:
+
+- `clima_sm` contém estatísticas e as observações históricas de temperatura do ar (`tar`) e precipitação diária (`prec`) para cada dia do ano em Santa Maria-RS
+
+- `tempo_sm` contém os dados meteorológicos do último ano
+
+- `recordes_atual_sm` contém os recordes de temperatura e precipitação do último ano
+
+Você pode obter mais informações sobre cada  um dos quadro de dados consultado o *help*.
+
+
+```r
+?dados_sm
 ```
 
-Os dados foram armazenados em uma lista com 3 elementos, cada é um tibble. Vamos extrair cada elemento em tibbles separados. Após isso podemos apagar a lista de dados `dados_sm`.
-
-
-
-```r
-# criando quadro de dados separados
-clima <- dados_sm$clima %>%
-  select(-(date:prec)) %>%
-  distinct()
-tempo <- dados_sm$tempo
-recordes_atual <- dados_sm$recordes_atual
-#rm(dados_sm)
-```
-
-O tibble `clima` contém os dados históricos de temperatura (`tar`) e precipitação diária (`prec`), onde:
-
-- `tar_max`, `tar_min`: extremos diários absolutos registrados para cada dia do ano (variável `dda`)
-
-- `tar_med`: temperatura média de cada `dda`;
-
-- `tar_valid`: número de observações válidas usada nas estatísticas de cada `dda`;
-
-- `tar_se`: erro padrão da média (`tar_med`)
-
-- `n`: número de anos
-
-- `tar_95` e `tar_05`: percentis de 95% e 5% de `tar`
-
-
-O tibble `tempo` contém os dados observados no último ano, onde:
-
-- `date` é a data em formato `POSIXct`
-
-- `dda` é o dia do ano (de 1 a 366)
-
-O tibble `recordes_atual` apresenta as datas em houve quebra de recorde dos valores extremos absolutos de `tar`.
-
-
-Para plotar os dados de 2020, precisaremos especificar a posição dos nomes dos meses no eixo x. Por isso vamos criar abaixo um tibble com o dia do ano correspondente ao dia 15 de cada mês.
+Para construção do gráfico precisaremos das posições dos dia 15 e do último dia de cada mês. Esta informação será útil para especificar onde colocar os nomes dos meses no eixo x. Por isso vamos criar abaixo um `tibble` com o dia do ano correspondente aquelas datas.
 
 
 ```r
+ultimo_ano <- unique(year(tempo_sm$date))
 datas_atual <- seq(
-  from = as.Date('2020-01-01'), 
-  to = as.Date('2020-12-31'), 
+  from = as.Date(paste0(ultimo_ano, '-01-01')), 
+  to = as.Date(paste0(ultimo_ano, '-12-31')), 
   by = "day"
 )
+
+library(scales)
 
 # dda do meio do mês
 meio_mes <- yday(datas_atual)[day(datas_atual) == 15]
@@ -1223,13 +1474,26 @@ marcas_x <- tibble(
     "Outubro", "Novembro", "Dezembro"
   )
 )
-
 marcas_x
-
+#> # A tibble: 12 x 3
+#>    metade final labels   
+#>     <dbl> <dbl> <chr>    
+#>  1     15    31 Janeiro  
+#>  2     46    60 Fevereiro
+#>  3     75    91 Março    
+#>  4    106   121 Abril    
+#>  5    136   152 Maio     
+#>  6    167   182 Junho    
+#>  7    197   213 Julho    
+#>  8    228   244 Agosto   
+#>  9    259   274 Setembro 
+#> 10    289   305 Outubro  
+#> 11    320   335 Novembro 
+#> 12    350   366 Dezembro
 ```
+> PAREI AQUI
 
-
-## Gráfico do tempo de Santa Maria-RS em 2020
+### Gráfico do tempo de Santa Maria-RS em 2020
 
 Para ilustrar a abordagem de construção de gráficos por camadas do **`{ggplot2}`** vamos visualizar a variação temperatura diária do ar para o ano corrente e compará-la com a climatologia e estatísticas baseadas em 58 anos de dados. Nós vamos explorar diferentes geometrias (linhas, pontos, intervalos)
 
@@ -1238,25 +1502,37 @@ Nós criamos um gráfico a partir da função `ggplot()`, especificando os dados
 
 
 ```r
-ggplot(data = clima)
+ggplot(data = clima_sm)
 ```
 
-O resultado é um painel em branco. A construção de um gráfico com o **`{ggplot2}`** envolve a especificação atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes. 
+<img src="images/unnamed-chunk-59-1.png" width="960" />
 
-Podemos adicionar geometrias usando o operador `+`, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (`tar`) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x. Este mapeamento das variáveis nos exos é feito pela função `aes()` (de *aesthetics*, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você está construindo.
+O resultado é um painel em branco. A construção de um gráfico com o **`{ggplot2}`** envolve a especificação de atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes. 
 
-Nossa primeira camada de geometria será uma linha vertical unindo o valor mínimo até o máximo absoluto de `tar` (variáveis `tar_min` e `tar_max`) associado a cada dia do ano (`dda`). A variável `dda` é especificada no eixo x. Para inserir uma linha vertical a `geom_linerange()` requer os argumentos `x`, `ymin` e `ymax`.
+Podemos adicionar geometrias usando o operador `+`, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (`tar`) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x. 
+
+O mapeamento das variáveis nos eixos é feito pela função `aes()` (de *aesthetics*, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc. 
+
+
+
+Os aspectos que podem ou devem ser mapeados dependem do tipo de gráfico que você está construindo.
+
+Nossa 1ª camada de geometria será uma linha vertical que se estende dos valores mínimo até o máximo absoluto de `tar` (variáveis `tar_min` e `tar_max`) registrado no dia do ano (`dda`). 
+
+O `dda` é especificado no eixo x. Para inserir uma linha vertical a `geom_linerange()` requer os argumentos `x`, `ymin` e `ymax`.
 
 
 
 ```r
-ggplot( data = clima) +
+ggplot(data = clima_sm) +
   geom_linerange(
     mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
     color = "wheat2"
    # alpha = .1
   ) 
 ```
+
+<img src="images/unnamed-chunk-60-1.png" width="960" />
 
 Além de identificar as variáveis de cada eixo nós adicionamos o argumento `color` para distinguir os intervalos variação entre os máximos e mínimos absolutos registrados.
 
@@ -1266,24 +1542,40 @@ Uma versatilidade do **`{ggplot2}`** é de podermos armazenar os gráficos em ob
 
 ```r
 graf_base <- 
-  ggplot( data = clima) +
+  ggplot( data = clima_sm) +
   #geom_point(size = 0.01, colour = "green") +
   geom_linerange(
     mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
     color = "wheat2"
    # alpha = .1
   ) +
-   theme(#plot.background = element_blank(),
-          panel.grid.minor.x = element_blank(),
-          panel.grid.major.y = element_blank(),
-          panel.border = element_blank(),
-          panel.background = element_blank(),
-          axis.ticks = element_blank(),
-          #axis.text = element_blank(),  
-          axis.title = element_blank()
-  )
+   theme_void()
 
-glimpse(graf_base, max.level = 1)
+#glimpse(graf_base, max.level = 1)
+graf_base
+```
+
+<img src="images/unnamed-chunk-61-1.png" width="960" />
+
+```r
+
+ # ggplot( data = clima_sm) +
+ #  #geom_point(size = 0.01, colour = "green") +
+ #  geom_linerange(
+ #    mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
+ #    color = "wheat2"
+ #   # alpha = .1
+ #  ) +
+ #   #theme_void()
+ #   theme(#plot.background = element_blank(),
+ #          panel.grid.minor.x = element_blank(),
+ #          panel.grid.major.y = element_blank(),
+ #          panel.border = element_blank(),
+ #          panel.background = element_blank(),
+ #          axis.ticks = element_blank(),
+ #          #axis.text = element_blank(),  
+ #          axis.title = element_blank()
+ #  )
 ```
 
 Na sequência vamos adicionar uma segunda camada com os dados que representam o intervalo de confiança de 95% da temperatura média diária para o período de 1952-2019.
@@ -1298,28 +1590,38 @@ geom_linerange(
 ggp_sm
 ```
 
+<img src="images/unnamed-chunk-62-1.png" width="960" />
+
 Agora vamos incorporar ao gráfico os dados de temperatura do ano atual e uma linha vertical (`geom_vline`) na borda esquerda do eixo y.
 
 
 ```r
 ggp_sm <- ggp_sm +
   geom_line(
-    data = tempo,
+    data = tempo_sm,
     mapping = aes(x = dda, y = tar),
     # size = 1
   ) +
-  geom_vline(xintercept = 0, color = "wheat4", linetype = 1, size = 1)
+  geom_vline(
+    xintercept = 0,
+    color = "wheat4",
+    linetype = 1,
+    size = 1
+  )
 ggp_sm
 ```
+
+<img src="images/unnamed-chunk-63-1.png" width="960" />
 
 Agora vamos ajustar a escala do eixo y ao intervalo de variação da dos extremos e definir 8 marcas para os labels.
 
 
 
 ```r
-int_var <- range(c(clima$tar_max, clima$tar_min))
+int_var <- range(c(clima_sm$tar_max, clima_sm$tar_min))
 int_var <- c(floor(int_var[1]), ceiling(int_var[2]))
 int_var
+#> [1]  3 35
 ggp_sm <- ggp_sm +
   scale_y_continuous(
     limits = int_var,
@@ -1332,6 +1634,8 @@ ggp_sm <- ggp_sm +
                      )
 ggp_sm
 ```
+
+<img src="images/unnamed-chunk-64-1.png" width="960" />
 
 Podemos adicionar linhas de grade horizontais e verticais como referência. As linhas verticais serão adicionadas no último dia de cada mês. As horizontais serão espaçadas de 5°C.
 
@@ -1353,19 +1657,23 @@ ggp_sm <- ggp_sm +
 ggp_sm
 ```
 
+<img src="images/unnamed-chunk-65-1.png" width="960" />
+
 Neste ponto, vamos identificar os dias que em 2020 ultrapassaram os recordes históricos de temperatura. 
 
 
 ```r
 ggp_sm <- ggp_sm + 
    geom_point(
-     data = filter(recordes_atual, record_min == "S"),
+     data = filter(recordes_atual_sm, record_min == "S"),
      aes(x = dda, y = tar), color = "blue3") + 
    geom_point(
-     data = filter(recordes_atual, record_max == "S"),
+     data = filter(recordes_atual_sm, record_max == "S"),
      aes(x = dda, y = tar), color = "firebrick3")
 ggp_sm
 ```
+
+<img src="images/unnamed-chunk-66-1.png" width="960" />
 
 Com todos dados plotados agora podemos incrementá-lo com texto apropriado. Primeiramente vamos adicionar um título e subtítulo.
 
@@ -1390,7 +1698,10 @@ ggp_sm <- ggp_sm +
     fontface = "bold"
   ) 
 ggp_sm
+#> Warning: Removed 1 rows containing missing values (geom_text).
 ```
+
+<img src="images/unnamed-chunk-67-1.png" width="960" />
 
 Nós podemos adicionar um parágrafo abaixo do subtítulo para dar uma pequena explanação dobre os dados. O texto será separado em 4 anotações.
 
@@ -1409,23 +1720,26 @@ ggp_sm <- ggp_sm +
     hjust = 0
   )
 ggp_sm
+#> Warning: Removed 1 rows containing missing values (geom_text).
 ```
+
+<img src="images/unnamed-chunk-68-1.png" width="960" />
 
 Anotações que explicam os pontos representando os dias nos quais ocorreram recordes de temperatura máxima e mínima.
 
 
 ```r
-x_rec_tmin <- filter(recordes_atual, record_min == "S") %>% 
+x_rec_tmin <- filter(recordes_atual_sm, record_min == "S") %>% 
   pull(dda)
-y_rec_tmin <- filter(recordes_atual, record_min == "S") %>% 
+y_rec_tmin <- filter(recordes_atual_sm, record_min == "S") %>% 
   pull(tar_min)
 
-x_rec_tmax <- filter(recordes_atual, record_max == "S") %>% 
+x_rec_tmax <- filter(recordes_atual_sm, record_max == "S") %>% 
   pull(dda) %>% 
-  extract(3)
-y_rec_tmax <- filter(recordes_atual, record_max == "S") %>% 
+  nth(3)
+y_rec_tmax <- filter(recordes_atual_sm, record_max == "S") %>% 
   pull(tar_max) %>%
-  extract(3)
+  nth(3)
 
 
 ggp_sm <- ggp_sm +
@@ -1454,7 +1768,10 @@ ggp_sm <- ggp_sm +
            colour="firebrick3"
            )
 ggp_sm
+#> Warning: Removed 1 rows containing missing values (geom_text).
 ```
+
+<img src="images/unnamed-chunk-69-1.png" width="960" />
 
 
 ```r
@@ -1535,19 +1852,21 @@ ggp_sm +
            colour = "wheat4", 
            size=.5
            )
+#> Warning: Removed 1 rows containing missing values (geom_text).
 ```
 
-
-## Histograma e colunas
-
-
-## Imagem 2D
+<img src="images/unnamed-chunk-70-1.png" width="960" />
 
 
+### Histograma e colunas
 
-## Dados espaciais
 
-### Mapas básicos
+
+### Imagem 2D
+
+
+### Facetas
+
 
 <!-- 
 earthdatascience.org/courses/earth-analytics/lidar-raster-data-r/ggmap-basemap/ 

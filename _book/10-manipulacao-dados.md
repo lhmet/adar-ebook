@@ -79,12 +79,12 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> -- Attaching packages ---------------------------------------------------------------------- tidyverse 1.3.0 --
+#> -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
 #> v ggplot2 3.3.2     v purrr   0.3.4
-#> v tibble  3.0.3     v dplyr   1.0.0
-#> v tidyr   1.1.0     v stringr 1.4.0
-#> v readr   1.3.1     v forcats 0.5.0
-#> -- Conflicts ------------------------------------------------------------------------- tidyverse_conflicts() --
+#> v tibble  3.0.4     v dplyr   1.0.2
+#> v tidyr   1.1.2     v stringr 1.4.0
+#> v readr   1.4.0     v forcats 0.5.0
+#> -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
 ```
@@ -1586,7 +1586,6 @@ datas_obs
 
 
 <!-- 
-
 Controle de qualidade e validação de dados
 
 # pacote útil para controle de qualidade e validação de dados
@@ -1601,6 +1600,14 @@ https://github.com/sfirke/janitor
 
 # dataPreparation
 https://cran.r-project.org/web/packages/dataPreparation/vignettes/dataPreparation.html
+https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html
+
+- Para um futuro capítulo de EDA
+ https://www.udemy.com/course/automating-data-exploration-with-r/
+ 
+# top demais!
+https://github.com/mstaniak/autoEDA-resources
+https://boxuancui.github.io/DataExplorer/
 -->
 
 

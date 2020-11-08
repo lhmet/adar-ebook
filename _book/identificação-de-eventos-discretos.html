@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.12 Identificação de eventos discretos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.12 Identificação de eventos discretos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -433,10 +439,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Para caracterização destes eventos as informação essencias são o <strong>início</strong>, o <strong>fim</strong> e a <strong>duração</strong> de cada evento. Com essas informações podemos identificar cada evento e extrair outros atributos, na escala de evento, para aprofundar a análise.</p>
 <p>Para ilustrar a conveniência das funções vistas até agora, veremos uma forma geral para identificação de eventos. O evento de interesse será o período da estação chuvosa nos dados <code>prec</code>. Neste exemplo, a estação chuvosa é definida quando <code>prec &gt; 100</code> mm mês<sup>-1</sup>.</p>
 <p>O primeiro passo é identificar a ocorrência dos eventos.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">limiar &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb206-2" title="2"><span class="co"># definição de evento (condição)</span></a>
-<a class="sourceLine" id="cb206-3" title="3">(x &lt;-<span class="st"> </span>evts &lt;-<span class="st"> </span><span class="kw">as.integer</span>(prec <span class="op">&gt;</span><span class="st"> </span>limiar))</a>
-<a class="sourceLine" id="cb206-4" title="4"><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="identificação-de-eventos-discretos.html#cb206-1"></a>limiar &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb206-2"><a href="identificação-de-eventos-discretos.html#cb206-2"></a><span class="co"># definição de evento (condição)</span></span>
+<span id="cb206-3"><a href="identificação-de-eventos-discretos.html#cb206-3"></a>(x &lt;-<span class="st"> </span>evts &lt;-<span class="st"> </span><span class="kw">as.integer</span>(prec <span class="op">&gt;</span><span class="st"> </span>limiar))</span>
+<span id="cb206-4"><a href="identificação-de-eventos-discretos.html#cb206-4"></a><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 1</span></span></code></pre></div>
 <p>A conversão dos eventos de lógico para numérico é opcional<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> e foi usada apenas para facilitar a localização dos eventos visualmente (1: ocorrência de evento, 0: não ocorrência). A partir daí, o problema consiste em identificar sequências de elementos adjacentes iguais (sequências de 1 repetidos).</p>
 <p>As posições iniciais de cada evento podem ser encontradas subtraindo o elemento prévio (<code>lag(x)</code>) do elemento atual (<code>x</code>). Se a diferença for <code>-1</code> temos o início de um evento. A tabela abaixo permite visualizar melhor isso.</p>
 <table>
@@ -551,19 +557,19 @@ code span.wa { color: #bf0303; } /* Warning */
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="co"># x atrasado: desloca os elementos para para frente</span></a>
-<a class="sourceLine" id="cb207-2" title="2">pos_ini &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lag</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb207-3" title="3"><span class="co"># ajuste do primeiro elemento de pos_ini</span></a>
-<a class="sourceLine" id="cb207-4" title="4">pos_prim &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb207-5" title="5">  <span class="dt">test =</span> x[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb207-6" title="6">  <span class="dt">yes =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb207-7" title="7">  <span class="dt">no =</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb207-8" title="8">)</a>
-<a class="sourceLine" id="cb207-9" title="9">(pos_ini &lt;-<span class="st"> </span><span class="kw">c</span>(pos_prim, pos_ini))</a>
-<a class="sourceLine" id="cb207-10" title="10"><span class="co">#&gt; [1]  1  9 22 24</span></a>
-<a class="sourceLine" id="cb207-11" title="11"><span class="co"># datas de início dos eventos</span></a>
-<a class="sourceLine" id="cb207-12" title="12">dts[pos_ini]</a>
-<a class="sourceLine" id="cb207-13" title="13"><span class="co">#&gt; [1] &quot;2010-01-01&quot; &quot;2010-09-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="identificação-de-eventos-discretos.html#cb207-1"></a><span class="co"># x atrasado: desloca os elementos para para frente</span></span>
+<span id="cb207-2"><a href="identificação-de-eventos-discretos.html#cb207-2"></a>pos_ini &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lag</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb207-3"><a href="identificação-de-eventos-discretos.html#cb207-3"></a><span class="co"># ajuste do primeiro elemento de pos_ini</span></span>
+<span id="cb207-4"><a href="identificação-de-eventos-discretos.html#cb207-4"></a>pos_prim &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</span>
+<span id="cb207-5"><a href="identificação-de-eventos-discretos.html#cb207-5"></a>  <span class="dt">test =</span> x[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb207-6"><a href="identificação-de-eventos-discretos.html#cb207-6"></a>  <span class="dt">yes =</span> <span class="dv">1</span>,</span>
+<span id="cb207-7"><a href="identificação-de-eventos-discretos.html#cb207-7"></a>  <span class="dt">no =</span> <span class="dv">0</span></span>
+<span id="cb207-8"><a href="identificação-de-eventos-discretos.html#cb207-8"></a>)</span>
+<span id="cb207-9"><a href="identificação-de-eventos-discretos.html#cb207-9"></a>(pos_ini &lt;-<span class="st"> </span><span class="kw">c</span>(pos_prim, pos_ini))</span>
+<span id="cb207-10"><a href="identificação-de-eventos-discretos.html#cb207-10"></a><span class="co">#&gt; [1]  1  9 22 24</span></span>
+<span id="cb207-11"><a href="identificação-de-eventos-discretos.html#cb207-11"></a><span class="co"># datas de início dos eventos</span></span>
+<span id="cb207-12"><a href="identificação-de-eventos-discretos.html#cb207-12"></a>dts[pos_ini]</span>
+<span id="cb207-13"><a href="identificação-de-eventos-discretos.html#cb207-13"></a><span class="co">#&gt; [1] &quot;2010-01-01&quot; &quot;2010-09-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></span></code></pre></div>
 <p>Temos que ter cuidado especial com o primeiro índice das posições iniciais (<code>pos_prim</code>), ajustando-o para considerar adequadamente eventos começando logo início do vetor. Esse ajuste é necessário porque usando a diferença do vetor defasado não há como detectar se o primeiro elemento é evento ou não.</p>
 <p>Analogamente, as posições finais de cada evento podem ser encontradas subtraindo o elemento seguinte (<code>lead(x)</code>) do elemento atual (<code>x</code>). Quando essa diferença é <code>-1</code> temos o fim de um evento, o que pode ser visualizado na tabela abaixo.</p>
 <table>
@@ -678,39 +684,39 @@ code span.wa { color: #bf0303; } /* Warning */
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">pos_fim &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lead</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb208-2" title="2"><span class="co"># ajuste do último elemento de pos_fim</span></a>
-<a class="sourceLine" id="cb208-3" title="3">pos_ult &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb208-4" title="4">  <span class="dt">test =</span> x[<span class="kw">length</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb208-5" title="5">  <span class="dt">yes =</span> <span class="kw">length</span>(x),</a>
-<a class="sourceLine" id="cb208-6" title="6">  <span class="dt">no =</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb208-7" title="7">)</a>
-<a class="sourceLine" id="cb208-8" title="8">(pos_fim &lt;-<span class="st"> </span><span class="kw">c</span>(pos_fim, pos_ult))</a>
-<a class="sourceLine" id="cb208-9" title="9"><span class="co">#&gt; [1]  3 15 22 24</span></a>
-<a class="sourceLine" id="cb208-10" title="10"><span class="co"># datas do fim dos eventos</span></a>
-<a class="sourceLine" id="cb208-11" title="11">dts[pos_fim]</a>
-<a class="sourceLine" id="cb208-12" title="12"><span class="co">#&gt; [1] &quot;2010-03-01&quot; &quot;2011-03-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="identificação-de-eventos-discretos.html#cb208-1"></a>pos_fim &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">lead</span>(x) <span class="op">-</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb208-2"><a href="identificação-de-eventos-discretos.html#cb208-2"></a><span class="co"># ajuste do último elemento de pos_fim</span></span>
+<span id="cb208-3"><a href="identificação-de-eventos-discretos.html#cb208-3"></a>pos_ult &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</span>
+<span id="cb208-4"><a href="identificação-de-eventos-discretos.html#cb208-4"></a>  <span class="dt">test =</span> x[<span class="kw">length</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb208-5"><a href="identificação-de-eventos-discretos.html#cb208-5"></a>  <span class="dt">yes =</span> <span class="kw">length</span>(x),</span>
+<span id="cb208-6"><a href="identificação-de-eventos-discretos.html#cb208-6"></a>  <span class="dt">no =</span> <span class="dv">0</span></span>
+<span id="cb208-7"><a href="identificação-de-eventos-discretos.html#cb208-7"></a>)</span>
+<span id="cb208-8"><a href="identificação-de-eventos-discretos.html#cb208-8"></a>(pos_fim &lt;-<span class="st"> </span><span class="kw">c</span>(pos_fim, pos_ult))</span>
+<span id="cb208-9"><a href="identificação-de-eventos-discretos.html#cb208-9"></a><span class="co">#&gt; [1]  3 15 22 24</span></span>
+<span id="cb208-10"><a href="identificação-de-eventos-discretos.html#cb208-10"></a><span class="co"># datas do fim dos eventos</span></span>
+<span id="cb208-11"><a href="identificação-de-eventos-discretos.html#cb208-11"></a>dts[pos_fim]</span>
+<span id="cb208-12"><a href="identificação-de-eventos-discretos.html#cb208-12"></a><span class="co">#&gt; [1] &quot;2010-03-01&quot; &quot;2011-03-01&quot; &quot;2011-10-01&quot; &quot;2011-12-01&quot;</span></span></code></pre></div>
 <p>O último índice do vetor de posições finais requer tratamento similar ao do 1° elemento das posições iniciais. Ele deve ser ajustado para tratar dos casos com eventos no último elemento de <code>x</code>.</p>
 <p>A duração de cada evento é facilmente obtida do fim e início de cada evento:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1">duracao &lt;-<span class="st"> </span>pos_fim <span class="op">-</span><span class="st"> </span>pos_ini <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb209-2" title="2">duracao</a>
-<a class="sourceLine" id="cb209-3" title="3"><span class="co">#&gt; [1] 3 7 1 1</span></a>
-<a class="sourceLine" id="cb209-4" title="4"><span class="co"># rbind(x, atras = lag(x), adiant = lead(x), pos_ini = lag(x)-x, pos_fim = lead(x) - x)</span></a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="identificação-de-eventos-discretos.html#cb209-1"></a>duracao &lt;-<span class="st"> </span>pos_fim <span class="op">-</span><span class="st"> </span>pos_ini <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb209-2"><a href="identificação-de-eventos-discretos.html#cb209-2"></a>duracao</span>
+<span id="cb209-3"><a href="identificação-de-eventos-discretos.html#cb209-3"></a><span class="co">#&gt; [1] 3 7 1 1</span></span>
+<span id="cb209-4"><a href="identificação-de-eventos-discretos.html#cb209-4"></a><span class="co"># rbind(x, atras = lag(x), adiant = lead(x), pos_ini = lag(x)-x, pos_fim = lead(x) - x)</span></span></code></pre></div>
 <p>Eventualmente você pode precisar de um vetor identificando cada evento, o que pode ser feito usando:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">evts_id &lt;-<span class="st"> </span>evts</a>
-<a class="sourceLine" id="cb210-2" title="2">evts_id[evts <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">seq_along</span>(duracao), <span class="dt">times =</span> duracao)</a>
-<a class="sourceLine" id="cb210-3" title="3">evts_id</a>
-<a class="sourceLine" id="cb210-4" title="4"><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="identificação-de-eventos-discretos.html#cb210-1"></a>evts_id &lt;-<span class="st"> </span>evts</span>
+<span id="cb210-2"><a href="identificação-de-eventos-discretos.html#cb210-2"></a>evts_id[evts <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">seq_along</span>(duracao), <span class="dt">times =</span> duracao)</span>
+<span id="cb210-3"><a href="identificação-de-eventos-discretos.html#cb210-3"></a>evts_id</span>
+<span id="cb210-4"><a href="identificação-de-eventos-discretos.html#cb210-4"></a><span class="co">#&gt;  [1] 1 1 1 0 0 0 0 0 2 2 2 2 2 2 2 0 0 0 0 0 0 3 0 4</span></span></code></pre></div>
 <p>Este vetor pode ser usado, para obter estatísticas de cada evento. Por exemplo, a precipitação média em cada evento pode ser determinada passando este vetor como argumento da função <code>tapply()</code>. Como só queremos informação nos eventos vamos substituir os valores = 0 por NA em <code>evts_id</code>. Assim, a <code>tapply()</code> retornará a média só para os eventos de interesse.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1">evts_id &lt;-<span class="st"> </span><span class="kw">ifelse</span>(evts_id <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="ot">NA</span>, evts_id)</a>
-<a class="sourceLine" id="cb211-2" title="2"><span class="co"># prec média em cada evento</span></a>
-<a class="sourceLine" id="cb211-3" title="3"><span class="kw">tapply</span>(</a>
-<a class="sourceLine" id="cb211-4" title="4">  <span class="dt">X =</span> prec,</a>
-<a class="sourceLine" id="cb211-5" title="5">  <span class="dt">INDEX =</span> evts_id,</a>
-<a class="sourceLine" id="cb211-6" title="6">  <span class="dt">FUN =</span> mean</a>
-<a class="sourceLine" id="cb211-7" title="7">)</a>
-<a class="sourceLine" id="cb211-8" title="8"><span class="co">#&gt;        1        2        3        4 </span></a>
-<a class="sourceLine" id="cb211-9" title="9"><span class="co">#&gt; 198.3333 193.5714 120.0000 208.0000</span></a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="identificação-de-eventos-discretos.html#cb211-1"></a>evts_id &lt;-<span class="st"> </span><span class="kw">ifelse</span>(evts_id <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="ot">NA</span>, evts_id)</span>
+<span id="cb211-2"><a href="identificação-de-eventos-discretos.html#cb211-2"></a><span class="co"># prec média em cada evento</span></span>
+<span id="cb211-3"><a href="identificação-de-eventos-discretos.html#cb211-3"></a><span class="kw">tapply</span>(</span>
+<span id="cb211-4"><a href="identificação-de-eventos-discretos.html#cb211-4"></a>  <span class="dt">X =</span> prec,</span>
+<span id="cb211-5"><a href="identificação-de-eventos-discretos.html#cb211-5"></a>  <span class="dt">INDEX =</span> evts_id,</span>
+<span id="cb211-6"><a href="identificação-de-eventos-discretos.html#cb211-6"></a>  <span class="dt">FUN =</span> mean</span>
+<span id="cb211-7"><a href="identificação-de-eventos-discretos.html#cb211-7"></a>)</span>
+<span id="cb211-8"><a href="identificação-de-eventos-discretos.html#cb211-8"></a><span class="co">#&gt;        1        2        3        4 </span></span>
+<span id="cb211-9"><a href="identificação-de-eventos-discretos.html#cb211-9"></a><span class="co">#&gt; 198.3333 193.5714 120.0000 208.0000</span></span></code></pre></div>
 <p>A <code>tapply()</code> tem três argumentos:</p>
 <ul>
 <li><p><code>X</code>: dados que queremos aplicar a função</p></li>
@@ -751,7 +757,7 @@ frequência de ocorrência, contagens, porcentagem e proporção
 <div class="footnotes">
 <hr />
 <ol start="26">
-<li id="fn26"><p>Isso significa que os resultados nos códigos abaixo não se alteram se removermos essa conversão.<a href="identificação-de-eventos-discretos.html#fnref26" class="footnote-back">↩</a></p></li>
+<li id="fn26"><p>Isso significa que os resultados nos códigos abaixo não se alteram se removermos essa conversão.<a href="identificação-de-eventos-discretos.html#fnref26" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

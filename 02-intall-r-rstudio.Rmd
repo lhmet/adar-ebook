@@ -34,7 +34,6 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 
 ```{r setup, echo = FALSE, message=FALSE}
 rm(list = ls())
-options(stringsAsFactors = TRUE)
 pcks <- c(
   "knitr"
   # , "tint"
@@ -135,7 +134,22 @@ por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [ape
 As novas versões do `r rblue` vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
 
 Para atualizar o `r rblue` no Windows, ao invés de baixar o executável a 
-cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no `r rblue` será vista na seção \@ref(install-pck).
+cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html), usando o código abaixo e seguindo as instruções da interface.
+
+```{r, eval = FALSE}
+#install.packages("installr")
+library("installr")
+installr()
+```
+
+Em seguida, atualize os atalhos do `r rblue` de sua área trabalho ou da barra de tarefas para o caminho da versão do R. Ao abrir a nova versão verifique a versão instalada com:
+
+```{r}
+# nova versão instalada
+R.Version()$version.string
+```
+
+O próximo passo é atualizar os pacotes para a nova versão que será visto na seção \@ref(updatepcks).
 
 #### Linux 
 
@@ -184,7 +198,7 @@ foi a R r stringr::str_extract(cran_news_windows(), "[0-9].[0-9].[0-9]").
 -->
 
 [^rversion-recente]: A versão mais atual no período de elaboração deste texto 
-foi a R 4.0.
+foi a R 4.0.3.
 
 
 1. Incluímos o endereço do repositório externo mantido pelo CRAN [^cran-mirror]
@@ -199,7 +213,7 @@ tenha, consulte o administrador do sistema.
 
 ```{bash, eval = FALSE}
 $ sudo touch /etc/apt/sources.list.d/cran.list
-$ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
+$ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran40/' >> /etc/apt/sources.list.d/cran.list" 
 ```
 
 
@@ -371,10 +385,9 @@ Para iniciar o `r rblue` no Linux, digite `R` no cursor do terminal:
 
     $ R
 
-A partir desse momento já começamos uma sessão no `r rblue`. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
+A partir desse momento já começamos uma sessão no `r rblue`. Vamos simplesmente plotar uma sequência numérica.
 
-```{r Chunck4, comment="", fig.align='center', fig.cap="Gráfico da sequência de 10 números.", prompt=TRUE, collapse=TRUE}
-1:10
+```{r plot-teste, comment="", fig.align='center', prompt=TRUE}
 plot(1:10)
 ```
 
@@ -483,20 +496,18 @@ Para instalar um pacote de um repositório do GitHub usa-se a função `install_
 #Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
 -->
 
-A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
+A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `ADARdata` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
 
 ```{r, eval = FALSE}
 library(remotes)
-# instala o pacote inmetr do repositório 
-# https://github.com/lhmet/inmetr 
-install_github("lhmet/inmetr")
+install_github("lhmet/ADARdata")
 ```
 
 
 ```{block, dica-2ptos2ptos, type='rmdtip'}
 Você pode acessar uma função de um pacote instalado com a forma especial `pacote::funcao`. O trecho de código anterior poderia ser reduzido a: 
 
-`remotes::install_github("lhmet/inmetr")`
+`remotes::install_github("lhmet/ADARdata")`
 
 Essa forma deixa explícito que estamos usando a função `install_github()` do pacote **remotes**.
 
@@ -524,7 +535,7 @@ install.packages("remotes_2.1.1.tar.gz", repos = NULL)
 ```
 
 
-### Atualização de pacotes 
+### Atualização de pacotes {#updatepcks}
 
 Se o seu `r rblue` foi atualizado, os pacotes da versão prévia do `r rblue` devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do `r rblue` atual. 
 
@@ -533,7 +544,9 @@ Se o seu `r rblue` foi atualizado, os pacotes da versão prévia do `r rblue` de
 update.packages(checkBuilt=TRUE, ask=FALSE)
 ```
 
-Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
+
+<!-- 
+Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck). 
 
 ```{r, eval = FALSE}
 install.packages("rvcheck")
@@ -567,6 +580,9 @@ update_all(check_R = TRUE)
 Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote [pkgsnap](https://github.com/MangoTheCat/pkgsnap) é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.
 ```
 
+-->
+
+
 ## Pacotes necessários e dependências
 
 Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o `r rblue`.
@@ -577,41 +593,37 @@ Alguns pacotes dependenm de bibliotecas do Linux e precisamos instalá-las antes
 $ sudo apt-get install libnetcdf-dev netcdf-bin libudunits2-dev libssl-dev
 ```
 
-```{r, eval = TRUE}
+```{r pcks-needed, eval = TRUE}
 pcks <- c(
   "easypackages",
   "rmarkdown",
   "knitr",
-  "pander", 
-  "htmlTable",
   "styler",
   "tidyverse", 
-  "rio",   # instala readxl, openlxlsx, data.table, foreign, haven, feather, 
-           # readODS, jsonlite, rmatio
+  "rio",
   "writexl",
   "microbenchmark",
   "ncdf4",
   "raster",
-  "openair",
   "lubridate",
-  "fields",
   "viridis",
-  "WriteXLS",
-  "gcookbook"
+  "WriteXLS"
   )
 
-pcks_dev <- c(
-  "vembedr",
-  "inmetr"
-)
+pcks_dev <- c("lhmet/lhmetools")
 ```
 
 ```{r, eval = FALSE}
 install.packages(pcks) 
+install_github(pcks_dev)
 ```
 
 
 <!-- 
+# para R4.0, ubuntu 20.04
+sudo add-apt-repository --yes "ppa:edd/r-4.0"
+sudo apt dist-upgrade
+
 # rJava
 https://github.com/hannarud/r-best-practices/wiki/Installing-RJava-(Ubuntu)
 # java -version
@@ -658,7 +670,7 @@ $ lsb_release -sr
 ```
 
 ```
-18.04
+20.04
 ```
 
 Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). 
@@ -719,29 +731,6 @@ $ sudo apt-get install git
 
 Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do `r gsub(" LTS", "", sessioninfo::platform_info()$os)` quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
 
-
-#### Git no RStudio
-
-Nesta seção vamos usar a funcionalidade do **`git`** através do RStudio. Um procedimento muito comum em um projeto com controle de versão é clonar um repositório do **`github`** (repositório remoto) para o seu computador (repositório local). Neste exemplo será usado o repositório remoto `lhmet/gittutor-adar`. Siga as instruções a seguir para reproduzir este processo.
-
-Abra o RStudio, acesse *`File ▶ New Project ▶ Version Control`* .
-
-- Em *Repository URL* insira `https://github.com/lhmet/gittutor-adar` 
-
-- Em *Create project as subdirectory of:*: navegue até a pasta onde deseja salvar o diretório que conterá o repositório [^pasta-adar]. 
-
-[^pasta-adar]: Sugere-se salvar o projeto numa subpasta nomeado **github** localizado na pasta com o material do curso de ADAR ;)
-
-- Clique em *Create Project* e siga os passos indicados na Figura \@ref(fig:git-proj-rstudio).
-
-
-
-```{r git-proj-rstudio, ref.label='git-proj-rstudio', echo = FALSE, fig.align='center', fig.cap="Procedimentos para clonar um repositório do github no seu computador.", out.width = '100%'}
-knitr::include_graphics('images/anim-setup-git-win.gif')
-```
-
-
-Após estes procedimentos você tem o **`git`** instalado e já sabe como clonar um repositório do **`github`** em um diretório do seu computador. 
 
 
 

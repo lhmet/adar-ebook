@@ -9,6 +9,7 @@ output:
 # Visualização de dados {#data-vis}
 
 
+
 ```{r setup, eval = TRUE, include = FALSE}
 rm(list = ls())
 pcks <- c("knitr", "pander") 
@@ -19,7 +20,7 @@ opts_chunk$set(
   fig.path = "images/",
   comment = "#>",
   collapse = TRUE,
-  eval = FALSE
+  eval = TRUE
 )
 # rblue <- "<code class='sourceCode bash'><span class='ex'>R</span></code>"
 rblue <- '<img src="images/logo_r.png" width="20">'
@@ -91,7 +92,7 @@ pacotes <- c(
   #"viridis",
   #"ggpubr",
   #"ggmap",
-  #"psych",
+  "psych",
   "grid",
   "lattice",
   "gcookbook"
@@ -860,15 +861,21 @@ dev.off()
 
 Eventualmente você pode exibir um gráfico fora do painel de gráficos do RStudio. Para isso antes de gerar o gráfico, rode a função `x11()` ou `dev.new()`.
 
-```{r , fig.align='center'}
+```{r, eval = FALSE}
 x11()
+```
+
+```{r , fig.align='center'}
 plot(y1)
 ```    
 
 Seu gráfico aparecerá em uma janela gráfica fora do ambiente do RStudio. Você abrir mais janelas gráficas repetindo a expressão `x11()` (`dev.new()`). Abaixo nós abriremos uma janela para fazer outro plot.
 
-```{r , fig.align='center', eval = FALSE}
+```{r , eval = FALSE}
 x11()
+```
+
+```{r , fig.align='center', eval = FALSE}
 plot(y1^2)
 ```
 
@@ -1102,15 +1109,23 @@ legend(
 ```
 
 
+<!-- ```{r} -->
+<!-- knitr::knit_exit() -->
+<!-- ``` -->
 
 
 ## ggplot2
+
+<!-- 
+https://bookdown.org/aschmi11/RESMHandbook/data-visualization-with-ggplot.html 
+-->
 
 O ggplot2 é uma implementação para o `r rblue` da **G**ramática de **G**ráficos [@Wilkinson2005] (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a ideia central do **`{ggplot2}`**.
 
 A documentação do ggplot2 está disponível [aqui](https://ggplot2.tidyverse.org/reference/index.html).
 
 Para conhecer mais extensões do **`{ggplot2}`** consulte a galeria https://exts.ggplot2.tidyverse.org/gallery/.
+
 <!--
  https://exts.ggplot2.tidyverse.org/ 
  
@@ -1120,6 +1135,7 @@ http://r-statistics.co/ggplot2-Tutorial-With-R.html
 
 http://blog.revolutionanalytics.com/2015/01/a-beautiful-story-about-nyc-weather.html
 
+https://rc2e.com/graphics
 
 # gráfico clássico 
 https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00014g
@@ -1129,71 +1145,44 @@ https://weatherspark.com/y/30268/Average-Weather-in-S%C3%A3o-Paulo-Brazil-Year-R
 https://weatherspark.com/compare/y/147567~144671/Comparison-of-the-Average-Weather-at-Salgado-Filho-International-Airport-and-Brisbane
 -->
 
+### Exemplo de aplicação
+
+
+
 ### Dados
 
 
-Como exemplo de aplicação usaremos os dados históricos do INME da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados podem ser baixados com o código abaixo.
+Como exemplo de aplicação usaremos os dados históricos do INMET da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados utilizados podem ser acessados carregando o pacote **`{ADARdata}`**.
 
-```{r}
-# link dos dados
-url_data <- "https://www.dropbox.com/s/wqw42gp9vw54k87/dados-cap11-adar.RData?dl=1"
-# arquivo temporário
-arq_temp <- tempfile(fileext = ".RData")
-download.file(
-  url = url_data,
-  destfile = arq_temp,
-  mode = "wb"
-)
-# nome dos dados carregados para os exercícios
-print(load(arq_temp))
-str(dados_sm)
+```{r, eval = TRUE}
+#devtools::install_github("lhmet/ADARdata")
+library(ADARdata)
+```
+O pacote disponibiliza os seguinte conjunto de dados formado por 3 quadro de dados que serão usados a seguir:
+
+- `clima_sm` contém estatísticas e as observações históricas de temperatura do ar (`tar`) e precipitação diária (`prec`) para cada dia do ano em Santa Maria-RS
+
+- `tempo_sm` contém os dados meteorológicos do último ano
+
+- `recordes_atual_sm` contém os recordes de temperatura e precipitação do último ano
+
+Você pode obter mais informações sobre cada  um dos quadro de dados consultado o *help*.
+
+```{r, eval = FALSE}
+?dados_sm
 ```
 
-Os dados foram armazenados em uma lista com 3 elementos, cada é um tibble. Vamos extrair cada elemento em tibbles separados. Após isso podemos apagar a lista de dados `dados_sm`.
-
-
-```{r}
-# criando quadro de dados separados
-clima <- dados_sm$clima %>%
-  select(-(date:prec)) %>%
-  distinct()
-tempo <- dados_sm$tempo
-recordes_atual <- dados_sm$recordes_atual
-#rm(dados_sm)
-```
-
-O tibble `clima` contém os dados históricos de temperatura (`tar`) e precipitação diária (`prec`), onde:
-
-- `tar_max`, `tar_min`: extremos diários absolutos registrados para cada dia do ano (variável `dda`)
-
-- `tar_med`: temperatura média de cada `dda`;
-
-- `tar_valid`: número de observações válidas usada nas estatísticas de cada `dda`;
-
-- `tar_se`: erro padrão da média (`tar_med`)
-
-- `n`: número de anos
-
-- `tar_95` e `tar_05`: percentis de 95% e 5% de `tar`
-
-
-O tibble `tempo` contém os dados observados no último ano, onde:
-
-- `date` é a data em formato `POSIXct`
-
-- `dda` é o dia do ano (de 1 a 366)
-
-O tibble `recordes_atual` apresenta as datas em houve quebra de recorde dos valores extremos absolutos de `tar`.
-
-
-Para plotar os dados de 2020, precisaremos especificar a posição dos nomes dos meses no eixo x. Por isso vamos criar abaixo um tibble com o dia do ano correspondente ao dia 15 de cada mês.
+Para construção do gráfico precisaremos das posições dos dia 15 e do último dia de cada mês. Esta informação será útil para especificar onde colocar os nomes dos meses no eixo x. Por isso vamos criar abaixo um `tibble` com o dia do ano correspondente aquelas datas.
 
 ```{r}
+ultimo_ano <- unique(year(tempo_sm$date))
 datas_atual <- seq(
-  from = as.Date('2020-01-01'), 
-  to = as.Date('2020-12-31'), 
+  from = as.Date(paste0(ultimo_ano, '-01-01')), 
+  to = as.Date(paste0(ultimo_ano, '-12-31')), 
   by = "day"
 )
+
+library(scales)
 
 # dda do meio do mês
 meio_mes <- yday(datas_atual)[day(datas_atual) == 15]
@@ -1217,13 +1206,11 @@ marcas_x <- tibble(
     "Outubro", "Novembro", "Dezembro"
   )
 )
-
 marcas_x
-
 ```
+> PAREI AQUI
 
-
-## Gráfico do tempo de Santa Maria-RS em 2020
+### Gráfico do tempo de Santa Maria-RS em 2020
 
 Para ilustrar a abordagem de construção de gráficos por camadas do **`{ggplot2}`** vamos visualizar a variação temperatura diária do ar para o ano corrente e compará-la com a climatologia e estatísticas baseadas em 58 anos de dados. Nós vamos explorar diferentes geometrias (linhas, pontos, intervalos)
 
@@ -1231,18 +1218,26 @@ Para ilustrar a abordagem de construção de gráficos por camadas do **`{ggplot
 Nós criamos um gráfico a partir da função `ggplot()`, especificando os dados de entrada.
 
 ```{r, fig.width=10, fig.height=5}
-ggplot(data = clima)
+ggplot(data = clima_sm)
 ```
 
-O resultado é um painel em branco. A construção de um gráfico com o **`{ggplot2}`** envolve a especificação atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes. 
+O resultado é um painel em branco. A construção de um gráfico com o **`{ggplot2}`** envolve a especificação de atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes. 
 
-Podemos adicionar geometrias usando o operador `+`, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (`tar`) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x. Este mapeamento das variáveis nos exos é feito pela função `aes()` (de *aesthetics*, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você está construindo.
+Podemos adicionar geometrias usando o operador `+`, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (`tar`) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x. 
 
-Nossa primeira camada de geometria será uma linha vertical unindo o valor mínimo até o máximo absoluto de `tar` (variáveis `tar_min` e `tar_max`) associado a cada dia do ano (`dda`). A variável `dda` é especificada no eixo x. Para inserir uma linha vertical a `geom_linerange()` requer os argumentos `x`, `ymin` e `ymax`.
+O mapeamento das variáveis nos eixos é feito pela função `aes()` (de *aesthetics*, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc. 
+
+
+
+Os aspectos que podem ou devem ser mapeados dependem do tipo de gráfico que você está construindo.
+
+Nossa 1ª camada de geometria será uma linha vertical que se estende dos valores mínimo até o máximo absoluto de `tar` (variáveis `tar_min` e `tar_max`) registrado no dia do ano (`dda`). 
+
+O `dda` é especificado no eixo x. Para inserir uma linha vertical a `geom_linerange()` requer os argumentos `x`, `ymin` e `ymax`.
 
 
 ```{r, fig.width=10, fig.height=5}
-ggplot( data = clima) +
+ggplot(data = clima_sm) +
   geom_linerange(
     mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
     color = "wheat2"
@@ -1257,24 +1252,35 @@ Uma versatilidade do **`{ggplot2}`** é de podermos armazenar os gráficos em ob
 
 ```{r, fig.width=10, fig.height=5}
 graf_base <- 
-  ggplot( data = clima) +
+  ggplot( data = clima_sm) +
   #geom_point(size = 0.01, colour = "green") +
   geom_linerange(
     mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
     color = "wheat2"
    # alpha = .1
   ) +
-   theme(#plot.background = element_blank(),
-          panel.grid.minor.x = element_blank(),
-          panel.grid.major.y = element_blank(),
-          panel.border = element_blank(),
-          panel.background = element_blank(),
-          axis.ticks = element_blank(),
-          #axis.text = element_blank(),  
-          axis.title = element_blank()
-  )
+   theme_void()
 
-glimpse(graf_base, max.level = 1)
+#glimpse(graf_base, max.level = 1)
+graf_base
+
+ # ggplot( data = clima_sm) +
+ #  #geom_point(size = 0.01, colour = "green") +
+ #  geom_linerange(
+ #    mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),
+ #    color = "wheat2"
+ #   # alpha = .1
+ #  ) +
+ #   #theme_void()
+ #   theme(#plot.background = element_blank(),
+ #          panel.grid.minor.x = element_blank(),
+ #          panel.grid.major.y = element_blank(),
+ #          panel.border = element_blank(),
+ #          panel.background = element_blank(),
+ #          axis.ticks = element_blank(),
+ #          #axis.text = element_blank(),  
+ #          axis.title = element_blank()
+ #  )
 ```
 
 Na sequência vamos adicionar uma segunda camada com os dados que representam o intervalo de confiança de 95% da temperatura média diária para o período de 1952-2019.
@@ -1293,11 +1299,16 @@ Agora vamos incorporar ao gráfico os dados de temperatura do ano atual e uma li
 ```{r, fig.width=10, fig.height=5}
 ggp_sm <- ggp_sm +
   geom_line(
-    data = tempo,
+    data = tempo_sm,
     mapping = aes(x = dda, y = tar),
     # size = 1
   ) +
-  geom_vline(xintercept = 0, color = "wheat4", linetype = 1, size = 1)
+  geom_vline(
+    xintercept = 0,
+    color = "wheat4",
+    linetype = 1,
+    size = 1
+  )
 ggp_sm
 ```
 
@@ -1305,7 +1316,7 @@ Agora vamos ajustar a escala do eixo y ao intervalo de variação da dos extremo
 
 
 ```{r, fig.width=10, fig.height=5}
-int_var <- range(c(clima$tar_max, clima$tar_min))
+int_var <- range(c(clima_sm$tar_max, clima_sm$tar_min))
 int_var <- c(floor(int_var[1]), ceiling(int_var[2]))
 int_var
 ggp_sm <- ggp_sm +
@@ -1345,10 +1356,10 @@ Neste ponto, vamos identificar os dias que em 2020 ultrapassaram os recordes his
 ```{r, fig.width=10, fig.height=5}
 ggp_sm <- ggp_sm + 
    geom_point(
-     data = filter(recordes_atual, record_min == "S"),
+     data = filter(recordes_atual_sm, record_min == "S"),
      aes(x = dda, y = tar), color = "blue3") + 
    geom_point(
-     data = filter(recordes_atual, record_max == "S"),
+     data = filter(recordes_atual_sm, record_max == "S"),
      aes(x = dda, y = tar), color = "firebrick3")
 ggp_sm
 ```
@@ -1398,17 +1409,17 @@ ggp_sm
 Anotações que explicam os pontos representando os dias nos quais ocorreram recordes de temperatura máxima e mínima.
 
 ```{r, fig.width=10, fig.height=5}
-x_rec_tmin <- filter(recordes_atual, record_min == "S") %>% 
+x_rec_tmin <- filter(recordes_atual_sm, record_min == "S") %>% 
   pull(dda)
-y_rec_tmin <- filter(recordes_atual, record_min == "S") %>% 
+y_rec_tmin <- filter(recordes_atual_sm, record_min == "S") %>% 
   pull(tar_min)
 
-x_rec_tmax <- filter(recordes_atual, record_max == "S") %>% 
+x_rec_tmax <- filter(recordes_atual_sm, record_max == "S") %>% 
   pull(dda) %>% 
-  extract(3)
-y_rec_tmax <- filter(recordes_atual, record_max == "S") %>% 
+  nth(3)
+y_rec_tmax <- filter(recordes_atual_sm, record_max == "S") %>% 
   pull(tar_max) %>%
-  extract(3)
+  nth(3)
 
 
 ggp_sm <- ggp_sm +
@@ -1520,16 +1531,15 @@ ggp_sm +
 ```
 
 
-## Histograma e colunas
-
-
-## Imagem 2D
+### Histograma e colunas
 
 
 
-## Dados espaciais
+### Imagem 2D
 
-### Mapas básicos
+
+### Facetas
+
 
 <!-- 
 earthdatascience.org/courses/earth-analytics/lidar-raster-data-r/ggmap-basemap/ 

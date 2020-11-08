@@ -45,12 +45,12 @@ A relação entre estes tipos de dados é mostrada na Figura \@ref(fig:data-type
 
 Table: (\#tab:classes-r)Principais tipos de dados do R.
 
-  Tipo de dados      Classe no R       exemplo     
-------------------  -------------  ----------------
- Números inteiros      integer          2, 11      
-  Números reais        double       0.1234, 1.23e4 
-    Caracteres        character         "adar"     
-     Lógicos           logical       TRUE, FALSE   
+|  Tipo de dados   | Classe no R |    exemplo     |
+|:----------------:|:-----------:|:--------------:|
+| Números inteiros |   integer   |     2, 11      |
+|  Números reais   |   double    | 0.1234, 1.23e4 |
+|    Caracteres    |  character  |     "adar"     |
+|     Lógicos      |   logical   |  TRUE, FALSE   |
 
 
 
@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-07-20"
+#> [1] "2020-11-07"
 Sys.time()
-#> [1] "2020-07-20 12:20:05 -03"
+#> [1] "2020-11-07 21:35:28 -03"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
@@ -612,14 +612,14 @@ O <img src="images/logo_r.png" width="20"> requer que o formato de entrada dos d
 
 Table: (\#tab:format-dates)Códigos de formato de datas e horas.
 
- código         Significado          Intervalo 
---------  ------------------------  -----------
-   %Y      ano (incluindo século)    1 - 9999  
-   %m               mês               01 - 12  
-   %d               dia               01 - 31  
-   %H               hora              00 - 23  
-   %M              minuto             00 - 59  
-   %S             segundo             00 - 59  
+| código |      Significado       | Intervalo |
+|:------:|:----------------------:|:---------:|
+|   %Y   | ano (incluindo século) | 1 - 9999  |
+|   %m   |          mês           |  01 - 12  |
+|   %d   |          dia           |  01 - 31  |
+|   %H   |          hora          |  00 - 23  |
+|   %M   |         minuto         |  00 - 59  |
+|   %S   |        segundo         |  00 - 59  |
 
 
 Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como `Jan` (`%b`), e estes códigos são listados em `?strptime`. 

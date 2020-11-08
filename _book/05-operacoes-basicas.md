@@ -193,18 +193,18 @@ Quando um cálculo não tem sentido matemático ou não pode ser propriamente re
 
 Table: (\#tab:tab-num-esp)Exemplos de operações que resultam em NaN ou $\pm\infty$ .
 
-           operação               resultado 
--------------------------------  -----------
-              2/0                    Inf    
-             -12/0                  -Inf    
-            log(0)                  -Inf    
-        (c(-3, 3))^Inf            NaN, Inf  
-             0*Inf                   NaN    
-           log(-0.5)                 NaN    
-           sqrt(-1)                  NaN    
-              0/0                    NaN    
-            Inf-Inf                  NaN    
- mean(c(NA, NA), na.rm = TRUE)       NaN    
+|           operação            | resultado |
+|:-----------------------------:|:---------:|
+|              2/0              |    Inf    |
+|             -12/0             |   -Inf    |
+|            log(0)             |   -Inf    |
+|        (c(-3, 3))^Inf         | NaN, Inf  |
+|             0*Inf             |    NaN    |
+|           log(-0.5)           |    NaN    |
+|           sqrt(-1)            |    NaN    |
+|              0/0              |    NaN    |
+|            Inf-Inf            |    NaN    |
+| mean(c(NA, NA), na.rm = TRUE) |    NaN    |
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas ao rodar um script longo.
 
@@ -240,12 +240,12 @@ A coisa mais importante a saber sobre `NA` é que qualquer operação envolvendo
 
 Table: (\#tab:tab-nas)Operações com NA.
 
- operação    resultado 
-----------  -----------
-  NA + 5        NA     
- sqrt(NA)       NA     
-   NA^2         NA     
-  NA/NaN        NA     
+| operação | resultado |
+|:--------:|:---------:|
+|  NA + 5  |    NA     |
+| sqrt(NA) |    NA     |
+|   NA^2   |    NA     |
+|  NA/NaN  |    NA     |
 
 
 
@@ -491,13 +491,14 @@ srt(2)
 #> Error in srt(2): não foi possível encontrar a função "srt"
 m * g
 #> Error in eval(expr, envir, enclos): objeto 'm' não encontrado
+2 + 4(log(5))
+#> Error in eval(expr, envir, enclos): tentativa de aplicar uma não-função
 setwd("algum/caminho/no/alem")
 #> Error in setwd("algum/caminho/no/alem"): não é possível mudar o diretório de trabalho
-save(file = "algum/outro/caminho/no/alem")
-#> Warning in save(file = "algum/outro/caminho/no/alem"): nothing specified to be
-#> save()d
+save(file = "outro/caminho/no/alem")
+#> Warning in save(file = "outro/caminho/no/alem"): nothing specified to be save()d
 #> Warning in gzfile(file, "wb"): não foi possível abrir o arquivo comprimido
-#> 'algum/outro/caminho/no/alem', motivo provável 'No such file or directory'
+#> 'outro/caminho/no/alem', motivo provável 'No such file or directory'
 #> Error in gzfile(file, "wb"): não é possível abrir a conexão
 ```
 
@@ -522,13 +523,13 @@ sqrt(-1)
 Na expressão acima foi possível obter um resultado, mas o R avisa que foi produzido `NaN`. Como visto na seção \@ref(nans), qualquer operação derivada deste resultado produzirá `NaN`. 
 
 
-Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura \@ref(fig:google-it)).
+Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura \@ref(fig:books-joke) ;) ) sobre as duas técnicas mais importantes para desvendar os mistérios das mensagens de erros.
+
 
 <div class="figure" style="text-align: center">
-<img src="images/practicalDev_googleErrorMessage.jpg" alt="Aprenda como descobrir qual o significado das mensagens de erro." width="50%" />
-<p class="caption">(\#fig:google-it)Aprenda como descobrir qual o significado das mensagens de erro.</p>
+<img src="images/practical_dev_both.png" alt="Livros para maestria em programação." width="100%" />
+<p class="caption">(\#fig:books-joke)Livros para maestria em programação.</p>
 </div>
-
 <!--
 https://br.pinterest.com/marcusoh/funny/
 -->
@@ -581,7 +582,7 @@ As funções são acessíveis Através do menu  *`Addins`* do RStudio e incluem 
 </div>
 
 
-A convenção de estilo dos seus códigos é uma escolha sua.  Eu indico o estilo tidyverse, mas você pode optar por outro. O mais importante é ser consistente.
+A convenção de estilo dos seus códigos é uma escolha sua. Por exemplo, alguns preferem usar a notação camelo (`nomeVariavel`) ao invés da notação cobra (`nome_variavel`) na definição do nome de variáveis e funções. Eu indico seguir o estilo tidyverse (notação cobra), mas você pode optar por outro. O mais importante é ser consistente e não fazer lambança.
 
 ### Nomes de variáveis
 

@@ -1,0 +1,1 @@
+Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote [pkgsnap](https://github.com/MangoTheCat/pkgsnap) é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.

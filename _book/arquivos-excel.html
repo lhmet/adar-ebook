@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Arquivos Excel | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Arquivos Excel | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -459,45 +465,45 @@ mais rápida que a usada no pacote <strong>rio</strong>.</p>
 <h3><span class="header-section-number">9.6.1</span> Como usar</h3>
 <p>Vamos baixar um arquivo <code>.xls</code> para usar com a função <code>import()</code> do pacote
 <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1">excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></a>
-<a class="sourceLine" id="cb313-2" title="2">dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</a>
-<a class="sourceLine" id="cb313-3" title="3">  <span class="kw">tempdir</span>(),</a>
-<a class="sourceLine" id="cb313-4" title="4">  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></a>
-<a class="sourceLine" id="cb313-5" title="5">)</a>
-<a class="sourceLine" id="cb313-6" title="6"><span class="kw">download.file</span>(</a>
-<a class="sourceLine" id="cb313-7" title="7">  <span class="dt">url =</span> excel_file_url,</a>
-<a class="sourceLine" id="cb313-8" title="8">  <span class="dt">destfile =</span> dest_file_excel,</a>
-<a class="sourceLine" id="cb313-9" title="9">  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></a>
-<a class="sourceLine" id="cb313-10" title="10">)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="arquivos-excel.html#cb313-1"></a>excel_file_url &lt;-<span class="st"> &quot;https://github.com/lhmet/adar-ufsm/blob/master/data/Esta%C3%A7%C3%B5es%20Normal%20Climato%C3%B3gica%201981-2010.xls?raw=true&quot;</span></span>
+<span id="cb313-2"><a href="arquivos-excel.html#cb313-2"></a>dest_file_excel &lt;-<span class="st"> </span><span class="kw">file.path</span>(</span>
+<span id="cb313-3"><a href="arquivos-excel.html#cb313-3"></a>  <span class="kw">tempdir</span>(),</span>
+<span id="cb313-4"><a href="arquivos-excel.html#cb313-4"></a>  <span class="st">&quot;Estacoes-Normal-Climatologica-1981-2010.xls&quot;</span></span>
+<span id="cb313-5"><a href="arquivos-excel.html#cb313-5"></a>)</span>
+<span id="cb313-6"><a href="arquivos-excel.html#cb313-6"></a><span class="kw">download.file</span>(</span>
+<span id="cb313-7"><a href="arquivos-excel.html#cb313-7"></a>  <span class="dt">url =</span> excel_file_url,</span>
+<span id="cb313-8"><a href="arquivos-excel.html#cb313-8"></a>  <span class="dt">destfile =</span> dest_file_excel,</span>
+<span id="cb313-9"><a href="arquivos-excel.html#cb313-9"></a>  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span></span>
+<span id="cb313-10"><a href="arquivos-excel.html#cb313-10"></a>)</span></code></pre></div>
 <p>Agora podemos importar o arquivo baixado com o pacote <strong>rio</strong>.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1">inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb314-2" title="2">  <span class="dt">file =</span> dest_file_excel,</a>
-<a class="sourceLine" id="cb314-3" title="3">  <span class="dt">col_names =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb314-4" title="4">  <span class="dt">skip =</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb314-5" title="5">)</a>
-<a class="sourceLine" id="cb314-6" title="6"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="arquivos-excel.html#cb314-1"></a>inmet_estacoes &lt;-<span class="st"> </span><span class="kw">import</span>(</span>
+<span id="cb314-2"><a href="arquivos-excel.html#cb314-2"></a>  <span class="dt">file =</span> dest_file_excel,</span>
+<span id="cb314-3"><a href="arquivos-excel.html#cb314-3"></a>  <span class="dt">col_names =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb314-4"><a href="arquivos-excel.html#cb314-4"></a>  <span class="dt">skip =</span> <span class="dv">3</span></span>
+<span id="cb314-5"><a href="arquivos-excel.html#cb314-5"></a>)</span>
+<span id="cb314-6"><a href="arquivos-excel.html#cb314-6"></a><span class="kw">head</span>(inmet_estacoes)</span></code></pre></div>
 </div>
 <div id="export-xls" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Escrita de arquivos excel no formato <code>.xls</code></h3>
 <p>Vamos alterar os nomes das variáveis para minúsculo e escrever o <em>quadro de dados</em>
 em novo arquivo <code>.xls</code>.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</a>
-<a class="sourceLine" id="cb315-2" title="2"><span class="kw">head</span>(inmet_estacoes)</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="arquivos-excel.html#cb315-1"></a><span class="kw">names</span>(inmet_estacoes) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(inmet_estacoes))</span>
+<span id="cb315-2"><a href="arquivos-excel.html#cb315-2"></a><span class="kw">head</span>(inmet_estacoes)</span></code></pre></div>
 <p>Peraí! Mas o <strong>rio</strong> não suporta a opção de exportar arquivos no formato
 <code>.xls</code> (confira na Tabela <a href="arquivos-texto.html#tab:rio-table">9.1</a>). Uma alternativa, caso você
 ainda realmente precise escrever os dados no formato <code>xls</code>, é o pacote <a href="https://cran.r-project.org/web/packages/WriteXLS/index.html">WriteXLS</a>, no
 entanto ele possui dependência da linguagem <a href="https://www.perl.org/">PERL</a>.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">library</span>(WriteXLS)</a>
-<a class="sourceLine" id="cb316-2" title="2">arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</a>
-<a class="sourceLine" id="cb316-3" title="3"><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</a>
-<a class="sourceLine" id="cb316-4" title="4"><span class="kw">file.exists</span>(arq_xls_temp)</a>
-<a class="sourceLine" id="cb316-5" title="5"><span class="co"># conferindo</span></a>
-<a class="sourceLine" id="cb316-6" title="6"><span class="kw">head</span>(</a>
-<a class="sourceLine" id="cb316-7" title="7">  <span class="kw">import</span>(</a>
-<a class="sourceLine" id="cb316-8" title="8">    <span class="dt">file =</span> arq_xls_temp,</a>
-<a class="sourceLine" id="cb316-9" title="9">    <span class="dt">col_names =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb316-10" title="10">  )</a>
-<a class="sourceLine" id="cb316-11" title="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="arquivos-excel.html#cb316-1"></a><span class="kw">library</span>(WriteXLS)</span>
+<span id="cb316-2"><a href="arquivos-excel.html#cb316-2"></a>arq_xls_temp &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="kw">basename</span>(dest_file_excel))</span>
+<span id="cb316-3"><a href="arquivos-excel.html#cb316-3"></a><span class="kw">WriteXLS</span>(<span class="dt">x =</span> inmet_estacoes, <span class="dt">ExcelFileName =</span> arq_xls_temp)</span>
+<span id="cb316-4"><a href="arquivos-excel.html#cb316-4"></a><span class="kw">file.exists</span>(arq_xls_temp)</span>
+<span id="cb316-5"><a href="arquivos-excel.html#cb316-5"></a><span class="co"># conferindo</span></span>
+<span id="cb316-6"><a href="arquivos-excel.html#cb316-6"></a><span class="kw">head</span>(</span>
+<span id="cb316-7"><a href="arquivos-excel.html#cb316-7"></a>  <span class="kw">import</span>(</span>
+<span id="cb316-8"><a href="arquivos-excel.html#cb316-8"></a>    <span class="dt">file =</span> arq_xls_temp,</span>
+<span id="cb316-9"><a href="arquivos-excel.html#cb316-9"></a>    <span class="dt">col_names =</span> <span class="ot">TRUE</span></span>
+<span id="cb316-10"><a href="arquivos-excel.html#cb316-10"></a>  )</span>
+<span id="cb316-11"><a href="arquivos-excel.html#cb316-11"></a>)</span></code></pre></div>
 </div>
 <div id="escrita-de-arquivos-excel-no-formato-.xlsx" class="section level3">
 <h3><span class="header-section-number">9.6.3</span> Escrita de arquivos excel no formato <code>.xlsx</code></h3>
@@ -506,12 +512,12 @@ então valerá a pena saber qual das opções de escrita de arquivos <code>xlsx<
 eficiente.</p>
 <p>No trecho de código abaixo vamos fazer essa comparação usando a tabela <code>inmet_estacoes</code> da seção <a href="arquivos-excel.html#export-xls">9.6.2</a>. As funções avaliadas são a
 <code>writexl::write_xlsx</code> e a <code>openxlsx::write.xlsx</code>.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1">tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</a>
-<a class="sourceLine" id="cb317-2" title="2">  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb317-3" title="3">  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</a>
-<a class="sourceLine" id="cb317-4" title="4">  <span class="dt">times =</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb317-5" title="5">)</a>
-<a class="sourceLine" id="cb317-6" title="6">tempos_escrita_xlsx</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="arquivos-excel.html#cb317-1"></a>tempos_escrita_xlsx &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</span>
+<span id="cb317-2"><a href="arquivos-excel.html#cb317-2"></a>  <span class="dt">writexl =</span> <span class="kw">write_xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</span>
+<span id="cb317-3"><a href="arquivos-excel.html#cb317-3"></a>  <span class="dt">openxlsx =</span> <span class="kw">write.xlsx</span>(inmet_estacoes, <span class="kw">tempfile</span>()),</span>
+<span id="cb317-4"><a href="arquivos-excel.html#cb317-4"></a>  <span class="dt">times =</span> <span class="dv">5</span></span>
+<span id="cb317-5"><a href="arquivos-excel.html#cb317-5"></a>)</span>
+<span id="cb317-6"><a href="arquivos-excel.html#cb317-6"></a>tempos_escrita_xlsx</span></code></pre></div>
 <p>A função <code>microbenckmar::microbenckmark</code> usada acima toma os tempos das
 expressões que foram avaliadas arbitrariamente 5 vezes.</p>
 <!---

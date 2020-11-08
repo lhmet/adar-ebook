@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.3 Indexação de matrizes | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.3 Indexação de matrizes | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,15 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +67,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -145,8 +150,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso.html"><a href="no-final-deste-curso.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso …</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -155,7 +159,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -172,11 +176,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -332,13 +339,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -430,128 +436,128 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="indexação-de-matrizes" class="section level2">
 <h2><span class="header-section-number">A.3</span> Indexação de matrizes</h2>
 <p>Como acessamos o valor de temperatura de maio de 1991 na matriz <code>temp_mat</code>?</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1">temp_mat <span class="co"># matriz de temperaturas com nomes</span></a>
-<a class="sourceLine" id="cb478-2" title="2"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb478-3" title="3"><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb478-4" title="4"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb478-5" title="5"><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb478-6" title="6">temp_matO <span class="co"># matriz de temperaturas sem nomes</span></a>
-<a class="sourceLine" id="cb478-7" title="7"><span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></a>
-<a class="sourceLine" id="cb478-8" title="8"><span class="co">#&gt; [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb478-9" title="9"><span class="co">#&gt; [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb478-10" title="10"><span class="co">#&gt; [3,] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb478-11" title="11"><span class="co"># qual a linha do ano de 1991</span></a>
-<a class="sourceLine" id="cb478-12" title="12">linha &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb478-13" title="13"><span class="co"># qual a coluna do mês de maio</span></a>
-<a class="sourceLine" id="cb478-14" title="14">coluna &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb478-15" title="15"><span class="co"># extraindo</span></a>
-<a class="sourceLine" id="cb478-16" title="16">temp_mat[linha, coluna]</a>
-<a class="sourceLine" id="cb478-17" title="17"><span class="co">#&gt; [1] 18.29</span></a>
-<a class="sourceLine" id="cb478-18" title="18"><span class="co"># ou usando os nomes</span></a>
-<a class="sourceLine" id="cb478-19" title="19">temp_mat[<span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;Mai&quot;</span>]</a>
-<a class="sourceLine" id="cb478-20" title="20"><span class="co">#&gt; [1] 18.29</span></a></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="indexação-de-matrizes.html#cb487-1"></a>temp_mat <span class="co"># matriz de temperaturas com nomes</span></span>
+<span id="cb487-2"><a href="indexação-de-matrizes.html#cb487-2"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb487-3"><a href="indexação-de-matrizes.html#cb487-3"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb487-4"><a href="indexação-de-matrizes.html#cb487-4"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb487-5"><a href="indexação-de-matrizes.html#cb487-5"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb487-6"><a href="indexação-de-matrizes.html#cb487-6"></a>temp_matO <span class="co"># matriz de temperaturas sem nomes</span></span>
+<span id="cb487-7"><a href="indexação-de-matrizes.html#cb487-7"></a><span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></span>
+<span id="cb487-8"><a href="indexação-de-matrizes.html#cb487-8"></a><span class="co">#&gt; [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb487-9"><a href="indexação-de-matrizes.html#cb487-9"></a><span class="co">#&gt; [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb487-10"><a href="indexação-de-matrizes.html#cb487-10"></a><span class="co">#&gt; [3,] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb487-11"><a href="indexação-de-matrizes.html#cb487-11"></a><span class="co"># qual a linha do ano de 1991</span></span>
+<span id="cb487-12"><a href="indexação-de-matrizes.html#cb487-12"></a>linha &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb487-13"><a href="indexação-de-matrizes.html#cb487-13"></a><span class="co"># qual a coluna do mês de maio</span></span>
+<span id="cb487-14"><a href="indexação-de-matrizes.html#cb487-14"></a>coluna &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb487-15"><a href="indexação-de-matrizes.html#cb487-15"></a><span class="co"># extraindo</span></span>
+<span id="cb487-16"><a href="indexação-de-matrizes.html#cb487-16"></a>temp_mat[linha, coluna]</span>
+<span id="cb487-17"><a href="indexação-de-matrizes.html#cb487-17"></a><span class="co">#&gt; [1] 18.29</span></span>
+<span id="cb487-18"><a href="indexação-de-matrizes.html#cb487-18"></a><span class="co"># ou usando os nomes</span></span>
+<span id="cb487-19"><a href="indexação-de-matrizes.html#cb487-19"></a>temp_mat[<span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;Mai&quot;</span>]</span>
+<span id="cb487-20"><a href="indexação-de-matrizes.html#cb487-20"></a><span class="co">#&gt; [1] 18.29</span></span></code></pre></div>
 <p>Com o operador <code>[</code> podemos usar todos os esquemas de indexação vistos em vetores.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1"><span class="co"># temperaturas de todos janeiros</span></a>
-<a class="sourceLine" id="cb479-2" title="2">temp_mat[, <span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb479-3" title="3"><span class="co">#&gt; ano1990 ano1991 ano1992 </span></a>
-<a class="sourceLine" id="cb479-4" title="4"><span class="co">#&gt;   25.00   24.89   23.20</span></a>
-<a class="sourceLine" id="cb479-5" title="5">temp_mat[, <span class="st">&quot;Jan&quot;</span>]</a>
-<a class="sourceLine" id="cb479-6" title="6"><span class="co">#&gt; ano1990 ano1991 ano1992 </span></a>
-<a class="sourceLine" id="cb479-7" title="7"><span class="co">#&gt;   25.00   24.89   23.20</span></a>
-<a class="sourceLine" id="cb479-8" title="8"><span class="co"># só as temperaturas de 1990 e 1993</span></a>
-<a class="sourceLine" id="cb479-9" title="9">temp_mat[ <span class="dv">-2</span>, ]</a>
-<a class="sourceLine" id="cb479-10" title="10"><span class="co">#&gt;          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb479-11" title="11"><span class="co">#&gt; ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80</span></a>
-<a class="sourceLine" id="cb479-12" title="12"><span class="co">#&gt; ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08</span></a>
-<a class="sourceLine" id="cb479-13" title="13"><span class="co"># só as temperaturas dos verões</span></a>
-<a class="sourceLine" id="cb479-14" title="14">temp_mat[, <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">2</span>)]</a>
-<a class="sourceLine" id="cb479-15" title="15"><span class="co">#&gt;           Dez   Jan   Fev</span></a>
-<a class="sourceLine" id="cb479-16" title="16"><span class="co">#&gt; ano1990 26.80 25.00 23.20</span></a>
-<a class="sourceLine" id="cb479-17" title="17"><span class="co">#&gt; ano1991 25.99 24.89 24.07</span></a>
-<a class="sourceLine" id="cb479-18" title="18"><span class="co">#&gt; ano1992 20.08 23.20 26.61</span></a>
-<a class="sourceLine" id="cb479-19" title="19"><span class="co"># invertendo ordem das colunas</span></a>
-<a class="sourceLine" id="cb479-20" title="20">temp_mat[, <span class="kw">ncol</span>(temp_mat)<span class="op">:</span><span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb479-21" title="21"><span class="co">#&gt;           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev   Jan</span></a>
-<a class="sourceLine" id="cb479-22" title="22"><span class="co">#&gt; ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20 25.00</span></a>
-<a class="sourceLine" id="cb479-23" title="23"><span class="co">#&gt; ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07 24.89</span></a>
-<a class="sourceLine" id="cb479-24" title="24"><span class="co">#&gt; ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61 23.20</span></a>
-<a class="sourceLine" id="cb479-25" title="25"><span class="co"># invertendo ordem das colunas e das linhas</span></a>
-<a class="sourceLine" id="cb479-26" title="26">temp_mat[ <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb479-27" title="27"><span class="co">#&gt;           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev   Jan</span></a>
-<a class="sourceLine" id="cb479-28" title="28"><span class="co">#&gt; ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61 23.20</span></a>
-<a class="sourceLine" id="cb479-29" title="29"><span class="co">#&gt; ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07 24.89</span></a>
-<a class="sourceLine" id="cb479-30" title="30"><span class="co">#&gt; ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20 25.00</span></a>
-<a class="sourceLine" id="cb479-31" title="31"><span class="co"># invertendo ordem das colunas e das linhas</span></a>
-<a class="sourceLine" id="cb479-32" title="32">temp_mat[ <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">8</span>)]</a>
-<a class="sourceLine" id="cb479-33" title="33"><span class="co">#&gt;           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago</span></a>
-<a class="sourceLine" id="cb479-34" title="34"><span class="co">#&gt; ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37</span></a>
-<a class="sourceLine" id="cb479-35" title="35"><span class="co">#&gt; ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70</span></a>
-<a class="sourceLine" id="cb479-36" title="36"><span class="co">#&gt; ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45</span></a>
-<a class="sourceLine" id="cb479-37" title="37"><span class="co"># só as temperaturas dos invernos</span></a>
-<a class="sourceLine" id="cb479-38" title="38">temp_mat[, <span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>) ]</a>
-<a class="sourceLine" id="cb479-39" title="39"><span class="co">#&gt;           Jun   Jul   Ago</span></a>
-<a class="sourceLine" id="cb479-40" title="40"><span class="co">#&gt; ano1990 17.60 18.00 19.70</span></a>
-<a class="sourceLine" id="cb479-41" title="41"><span class="co">#&gt; ano1991 18.22 16.72 19.37</span></a>
-<a class="sourceLine" id="cb479-42" title="42"><span class="co">#&gt; ano1992 21.30 18.22 21.45</span></a>
-<a class="sourceLine" id="cb479-43" title="43"><span class="co"># exceto as temperaturas dos invernos</span></a>
-<a class="sourceLine" id="cb479-44" title="44">temp_mat[, <span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)) ]</a>
-<a class="sourceLine" id="cb479-45" title="45"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb479-46" title="46"><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb479-47" title="47"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb479-48" title="48"><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb479-49" title="49"><span class="co"># seleção de colunas intercaladas da matriz: mês sim, mês nao</span></a>
-<a class="sourceLine" id="cb479-50" title="50">temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a>
-<a class="sourceLine" id="cb479-51" title="51"><span class="co">#&gt;           Jan   Mar   Mai   Jul   Set   Nov</span></a>
-<a class="sourceLine" id="cb479-52" title="52"><span class="co">#&gt; ano1990 25.00 22.50 19.00 18.00 21.30 24.00</span></a>
-<a class="sourceLine" id="cb479-53" title="53"><span class="co">#&gt; ano1991 24.89 23.56 18.29 16.72 20.08 26.61</span></a>
-<a class="sourceLine" id="cb479-54" title="54"><span class="co">#&gt; ano1992 23.20 18.00 26.80 18.22 19.70 24.07</span></a>
-<a class="sourceLine" id="cb479-55" title="55"><span class="co"># 2 meses sim, 1 mes não</span></a>
-<a class="sourceLine" id="cb479-56" title="56">temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a>
-<a class="sourceLine" id="cb479-57" title="57"><span class="co">#&gt;           Jan   Fev   Abr   Mai   Jul   Ago   Out   Nov</span></a>
-<a class="sourceLine" id="cb479-58" title="58"><span class="co">#&gt; ano1990 25.00 23.20 21.00 19.00 18.00 19.70 22.00 24.00</span></a>
-<a class="sourceLine" id="cb479-59" title="59"><span class="co">#&gt; ano1991 24.89 24.07 23.11 18.29 16.72 19.37 21.45 26.61</span></a>
-<a class="sourceLine" id="cb479-60" title="60"><span class="co">#&gt; ano1992 23.20 26.61 23.11 26.80 18.22 21.45 22.50 24.07</span></a></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="indexação-de-matrizes.html#cb488-1"></a><span class="co"># temperaturas de todos janeiros</span></span>
+<span id="cb488-2"><a href="indexação-de-matrizes.html#cb488-2"></a>temp_mat[, <span class="dv">1</span>]</span>
+<span id="cb488-3"><a href="indexação-de-matrizes.html#cb488-3"></a><span class="co">#&gt; ano1990 ano1991 ano1992 </span></span>
+<span id="cb488-4"><a href="indexação-de-matrizes.html#cb488-4"></a><span class="co">#&gt;   25.00   24.89   23.20</span></span>
+<span id="cb488-5"><a href="indexação-de-matrizes.html#cb488-5"></a>temp_mat[, <span class="st">&quot;Jan&quot;</span>]</span>
+<span id="cb488-6"><a href="indexação-de-matrizes.html#cb488-6"></a><span class="co">#&gt; ano1990 ano1991 ano1992 </span></span>
+<span id="cb488-7"><a href="indexação-de-matrizes.html#cb488-7"></a><span class="co">#&gt;   25.00   24.89   23.20</span></span>
+<span id="cb488-8"><a href="indexação-de-matrizes.html#cb488-8"></a><span class="co"># só as temperaturas de 1990 e 1993</span></span>
+<span id="cb488-9"><a href="indexação-de-matrizes.html#cb488-9"></a>temp_mat[ <span class="dv">-2</span>, ]</span>
+<span id="cb488-10"><a href="indexação-de-matrizes.html#cb488-10"></a><span class="co">#&gt;          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez</span></span>
+<span id="cb488-11"><a href="indexação-de-matrizes.html#cb488-11"></a><span class="co">#&gt; ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80</span></span>
+<span id="cb488-12"><a href="indexação-de-matrizes.html#cb488-12"></a><span class="co">#&gt; ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08</span></span>
+<span id="cb488-13"><a href="indexação-de-matrizes.html#cb488-13"></a><span class="co"># só as temperaturas dos verões</span></span>
+<span id="cb488-14"><a href="indexação-de-matrizes.html#cb488-14"></a>temp_mat[, <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">2</span>)]</span>
+<span id="cb488-15"><a href="indexação-de-matrizes.html#cb488-15"></a><span class="co">#&gt;           Dez   Jan   Fev</span></span>
+<span id="cb488-16"><a href="indexação-de-matrizes.html#cb488-16"></a><span class="co">#&gt; ano1990 26.80 25.00 23.20</span></span>
+<span id="cb488-17"><a href="indexação-de-matrizes.html#cb488-17"></a><span class="co">#&gt; ano1991 25.99 24.89 24.07</span></span>
+<span id="cb488-18"><a href="indexação-de-matrizes.html#cb488-18"></a><span class="co">#&gt; ano1992 20.08 23.20 26.61</span></span>
+<span id="cb488-19"><a href="indexação-de-matrizes.html#cb488-19"></a><span class="co"># invertendo ordem das colunas</span></span>
+<span id="cb488-20"><a href="indexação-de-matrizes.html#cb488-20"></a>temp_mat[, <span class="kw">ncol</span>(temp_mat)<span class="op">:</span><span class="dv">1</span>]</span>
+<span id="cb488-21"><a href="indexação-de-matrizes.html#cb488-21"></a><span class="co">#&gt;           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev   Jan</span></span>
+<span id="cb488-22"><a href="indexação-de-matrizes.html#cb488-22"></a><span class="co">#&gt; ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20 25.00</span></span>
+<span id="cb488-23"><a href="indexação-de-matrizes.html#cb488-23"></a><span class="co">#&gt; ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07 24.89</span></span>
+<span id="cb488-24"><a href="indexação-de-matrizes.html#cb488-24"></a><span class="co">#&gt; ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61 23.20</span></span>
+<span id="cb488-25"><a href="indexação-de-matrizes.html#cb488-25"></a><span class="co"># invertendo ordem das colunas e das linhas</span></span>
+<span id="cb488-26"><a href="indexação-de-matrizes.html#cb488-26"></a>temp_mat[ <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">1</span>]</span>
+<span id="cb488-27"><a href="indexação-de-matrizes.html#cb488-27"></a><span class="co">#&gt;           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev   Jan</span></span>
+<span id="cb488-28"><a href="indexação-de-matrizes.html#cb488-28"></a><span class="co">#&gt; ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61 23.20</span></span>
+<span id="cb488-29"><a href="indexação-de-matrizes.html#cb488-29"></a><span class="co">#&gt; ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07 24.89</span></span>
+<span id="cb488-30"><a href="indexação-de-matrizes.html#cb488-30"></a><span class="co">#&gt; ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20 25.00</span></span>
+<span id="cb488-31"><a href="indexação-de-matrizes.html#cb488-31"></a><span class="co"># invertendo ordem das colunas e das linhas</span></span>
+<span id="cb488-32"><a href="indexação-de-matrizes.html#cb488-32"></a>temp_mat[ <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">8</span>)]</span>
+<span id="cb488-33"><a href="indexação-de-matrizes.html#cb488-33"></a><span class="co">#&gt;           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago</span></span>
+<span id="cb488-34"><a href="indexação-de-matrizes.html#cb488-34"></a><span class="co">#&gt; ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37</span></span>
+<span id="cb488-35"><a href="indexação-de-matrizes.html#cb488-35"></a><span class="co">#&gt; ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70</span></span>
+<span id="cb488-36"><a href="indexação-de-matrizes.html#cb488-36"></a><span class="co">#&gt; ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45</span></span>
+<span id="cb488-37"><a href="indexação-de-matrizes.html#cb488-37"></a><span class="co"># só as temperaturas dos invernos</span></span>
+<span id="cb488-38"><a href="indexação-de-matrizes.html#cb488-38"></a>temp_mat[, <span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>) ]</span>
+<span id="cb488-39"><a href="indexação-de-matrizes.html#cb488-39"></a><span class="co">#&gt;           Jun   Jul   Ago</span></span>
+<span id="cb488-40"><a href="indexação-de-matrizes.html#cb488-40"></a><span class="co">#&gt; ano1990 17.60 18.00 19.70</span></span>
+<span id="cb488-41"><a href="indexação-de-matrizes.html#cb488-41"></a><span class="co">#&gt; ano1991 18.22 16.72 19.37</span></span>
+<span id="cb488-42"><a href="indexação-de-matrizes.html#cb488-42"></a><span class="co">#&gt; ano1992 21.30 18.22 21.45</span></span>
+<span id="cb488-43"><a href="indexação-de-matrizes.html#cb488-43"></a><span class="co"># exceto as temperaturas dos invernos</span></span>
+<span id="cb488-44"><a href="indexação-de-matrizes.html#cb488-44"></a>temp_mat[, <span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(temp_mat) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)) ]</span>
+<span id="cb488-45"><a href="indexação-de-matrizes.html#cb488-45"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez</span></span>
+<span id="cb488-46"><a href="indexação-de-matrizes.html#cb488-46"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80</span></span>
+<span id="cb488-47"><a href="indexação-de-matrizes.html#cb488-47"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99</span></span>
+<span id="cb488-48"><a href="indexação-de-matrizes.html#cb488-48"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 19.70 22.50 24.07 20.08</span></span>
+<span id="cb488-49"><a href="indexação-de-matrizes.html#cb488-49"></a><span class="co"># seleção de colunas intercaladas da matriz: mês sim, mês nao</span></span>
+<span id="cb488-50"><a href="indexação-de-matrizes.html#cb488-50"></a>temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</span>
+<span id="cb488-51"><a href="indexação-de-matrizes.html#cb488-51"></a><span class="co">#&gt;           Jan   Mar   Mai   Jul   Set   Nov</span></span>
+<span id="cb488-52"><a href="indexação-de-matrizes.html#cb488-52"></a><span class="co">#&gt; ano1990 25.00 22.50 19.00 18.00 21.30 24.00</span></span>
+<span id="cb488-53"><a href="indexação-de-matrizes.html#cb488-53"></a><span class="co">#&gt; ano1991 24.89 23.56 18.29 16.72 20.08 26.61</span></span>
+<span id="cb488-54"><a href="indexação-de-matrizes.html#cb488-54"></a><span class="co">#&gt; ano1992 23.20 18.00 26.80 18.22 19.70 24.07</span></span>
+<span id="cb488-55"><a href="indexação-de-matrizes.html#cb488-55"></a><span class="co"># 2 meses sim, 1 mes não</span></span>
+<span id="cb488-56"><a href="indexação-de-matrizes.html#cb488-56"></a>temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</span>
+<span id="cb488-57"><a href="indexação-de-matrizes.html#cb488-57"></a><span class="co">#&gt;           Jan   Fev   Abr   Mai   Jul   Ago   Out   Nov</span></span>
+<span id="cb488-58"><a href="indexação-de-matrizes.html#cb488-58"></a><span class="co">#&gt; ano1990 25.00 23.20 21.00 19.00 18.00 19.70 22.00 24.00</span></span>
+<span id="cb488-59"><a href="indexação-de-matrizes.html#cb488-59"></a><span class="co">#&gt; ano1991 24.89 24.07 23.11 18.29 16.72 19.37 21.45 26.61</span></span>
+<span id="cb488-60"><a href="indexação-de-matrizes.html#cb488-60"></a><span class="co">#&gt; ano1992 23.20 26.61 23.11 26.80 18.22 21.45 22.50 24.07</span></span></code></pre></div>
 <p>Podemos fazer uso do operador <code>[</code> de forma aninhada:</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1">temp_mat</a>
-<a class="sourceLine" id="cb480-2" title="2"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb480-3" title="3"><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb480-4" title="4"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb480-5" title="5"><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb480-6" title="6">temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
-<a class="sourceLine" id="cb480-7" title="7"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun</span></a>
-<a class="sourceLine" id="cb480-8" title="8"><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60</span></a>
-<a class="sourceLine" id="cb480-9" title="9"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22</span></a>
-<a class="sourceLine" id="cb480-10" title="10"><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30</span></a>
-<a class="sourceLine" id="cb480-11" title="11">temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>][<span class="st">&quot;ano1991&quot;</span>, ]</a>
-<a class="sourceLine" id="cb480-12" title="12"><span class="co">#&gt;   Jan   Fev   Mar   Abr   Mai   Jun </span></a>
-<a class="sourceLine" id="cb480-13" title="13"><span class="co">#&gt; 24.89 24.07 23.56 23.11 18.29 18.22</span></a>
-<a class="sourceLine" id="cb480-14" title="14">temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>][<span class="st">&quot;ano1991&quot;</span>, ][<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb480-15" title="15"><span class="co">#&gt;   Fev   Mar   Abr </span></a>
-<a class="sourceLine" id="cb480-16" title="16"><span class="co">#&gt; 24.07 23.56 23.11</span></a></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="indexação-de-matrizes.html#cb489-1"></a>temp_mat</span>
+<span id="cb489-2"><a href="indexação-de-matrizes.html#cb489-2"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb489-3"><a href="indexação-de-matrizes.html#cb489-3"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb489-4"><a href="indexação-de-matrizes.html#cb489-4"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb489-5"><a href="indexação-de-matrizes.html#cb489-5"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb489-6"><a href="indexação-de-matrizes.html#cb489-6"></a>temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</span>
+<span id="cb489-7"><a href="indexação-de-matrizes.html#cb489-7"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun</span></span>
+<span id="cb489-8"><a href="indexação-de-matrizes.html#cb489-8"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60</span></span>
+<span id="cb489-9"><a href="indexação-de-matrizes.html#cb489-9"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22</span></span>
+<span id="cb489-10"><a href="indexação-de-matrizes.html#cb489-10"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30</span></span>
+<span id="cb489-11"><a href="indexação-de-matrizes.html#cb489-11"></a>temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>][<span class="st">&quot;ano1991&quot;</span>, ]</span>
+<span id="cb489-12"><a href="indexação-de-matrizes.html#cb489-12"></a><span class="co">#&gt;   Jan   Fev   Mar   Abr   Mai   Jun </span></span>
+<span id="cb489-13"><a href="indexação-de-matrizes.html#cb489-13"></a><span class="co">#&gt; 24.89 24.07 23.56 23.11 18.29 18.22</span></span>
+<span id="cb489-14"><a href="indexação-de-matrizes.html#cb489-14"></a>temp_mat[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>][<span class="st">&quot;ano1991&quot;</span>, ][<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</span>
+<span id="cb489-15"><a href="indexação-de-matrizes.html#cb489-15"></a><span class="co">#&gt;   Fev   Mar   Abr </span></span>
+<span id="cb489-16"><a href="indexação-de-matrizes.html#cb489-16"></a><span class="co">#&gt; 24.07 23.56 23.11</span></span></code></pre></div>
 <p>Podemos substituir valores de uma submatriz da matriz:</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1">M &lt;-<span class="st"> </span>temp_mat</a>
-<a class="sourceLine" id="cb481-2" title="2">M</a>
-<a class="sourceLine" id="cb481-3" title="3"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb481-4" title="4"><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></a>
-<a class="sourceLine" id="cb481-5" title="5"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb481-6" title="6"><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></a>
-<a class="sourceLine" id="cb481-7" title="7"><span class="co"># 1990 e 1992 os meses de jan e dez</span></a>
-<a class="sourceLine" id="cb481-8" title="8">M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)]</a>
-<a class="sourceLine" id="cb481-9" title="9"><span class="co">#&gt;          Jan   Dez</span></a>
-<a class="sourceLine" id="cb481-10" title="10"><span class="co">#&gt; ano1990 25.0 26.80</span></a>
-<a class="sourceLine" id="cb481-11" title="11"><span class="co">#&gt; ano1992 23.2 20.08</span></a>
-<a class="sourceLine" id="cb481-12" title="12"><span class="co"># matriz com novos valores</span></a>
-<a class="sourceLine" id="cb481-13" title="13"><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb481-14" title="14"><span class="co">#&gt;      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb481-15" title="15"><span class="co">#&gt; [1,]   21   23</span></a>
-<a class="sourceLine" id="cb481-16" title="16"><span class="co">#&gt; [2,]   22   24</span></a>
-<a class="sourceLine" id="cb481-17" title="17"><span class="co"># substituindo</span></a>
-<a class="sourceLine" id="cb481-18" title="18">M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)] &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb481-19" title="19">M</a>
-<a class="sourceLine" id="cb481-20" title="20"><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></a>
-<a class="sourceLine" id="cb481-21" title="21"><span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span></a>
-<a class="sourceLine" id="cb481-22" title="22"><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></a>
-<a class="sourceLine" id="cb481-23" title="23"><span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span></a></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="indexação-de-matrizes.html#cb490-1"></a>M &lt;-<span class="st"> </span>temp_mat</span>
+<span id="cb490-2"><a href="indexação-de-matrizes.html#cb490-2"></a>M</span>
+<span id="cb490-3"><a href="indexação-de-matrizes.html#cb490-3"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb490-4"><a href="indexação-de-matrizes.html#cb490-4"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb490-5"><a href="indexação-de-matrizes.html#cb490-5"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb490-6"><a href="indexação-de-matrizes.html#cb490-6"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb490-7"><a href="indexação-de-matrizes.html#cb490-7"></a><span class="co"># 1990 e 1992 os meses de jan e dez</span></span>
+<span id="cb490-8"><a href="indexação-de-matrizes.html#cb490-8"></a>M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)]</span>
+<span id="cb490-9"><a href="indexação-de-matrizes.html#cb490-9"></a><span class="co">#&gt;          Jan   Dez</span></span>
+<span id="cb490-10"><a href="indexação-de-matrizes.html#cb490-10"></a><span class="co">#&gt; ano1990 25.0 26.80</span></span>
+<span id="cb490-11"><a href="indexação-de-matrizes.html#cb490-11"></a><span class="co">#&gt; ano1992 23.2 20.08</span></span>
+<span id="cb490-12"><a href="indexação-de-matrizes.html#cb490-12"></a><span class="co"># matriz com novos valores</span></span>
+<span id="cb490-13"><a href="indexação-de-matrizes.html#cb490-13"></a><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb490-14"><a href="indexação-de-matrizes.html#cb490-14"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb490-15"><a href="indexação-de-matrizes.html#cb490-15"></a><span class="co">#&gt; [1,]   21   23</span></span>
+<span id="cb490-16"><a href="indexação-de-matrizes.html#cb490-16"></a><span class="co">#&gt; [2,]   22   24</span></span>
+<span id="cb490-17"><a href="indexação-de-matrizes.html#cb490-17"></a><span class="co"># substituindo</span></span>
+<span id="cb490-18"><a href="indexação-de-matrizes.html#cb490-18"></a>M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)] &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb490-19"><a href="indexação-de-matrizes.html#cb490-19"></a>M</span>
+<span id="cb490-20"><a href="indexação-de-matrizes.html#cb490-20"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb490-21"><a href="indexação-de-matrizes.html#cb490-21"></a><span class="co">#&gt; ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 23.00</span></span>
+<span id="cb490-22"><a href="indexação-de-matrizes.html#cb490-22"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb490-23"><a href="indexação-de-matrizes.html#cb490-23"></a><span class="co">#&gt; ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 24.00</span></span></code></pre></div>
 </div>
             </section>
 

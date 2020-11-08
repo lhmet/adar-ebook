@@ -151,11 +151,17 @@ No <img src="images/logo_r.png" width="20">, a cerquilha `#` (hashtag) é um car
 [1] 20
 ```
 
-> Comentários que não desejo ver você fazendo após este curso:
+
+Nos seus códigos use comentários para registrar descobertas importantes e decisões de análise. Procure comentar o porquê, ao invés de o que. Se você precisar de comentários para explicar o que seu código está fazendo, considere reescrever seu código para ficar mais claro. Se você descobrir que tem mais comentários do que código, considere mudar para R Markdown.
 
 <!-- 
+> Comentários que não desejo ver você fazendo após este curso:
+
+
+Enfatizar como e quando usar efetivamente comentários.
+
 https://medium.com/javascript-in-plain-english/part-2-the-most-hilarious-code-comments-ever-9586592e3bec 
--->
+
 
 
 ```r
@@ -182,7 +188,7 @@ https://medium.com/javascript-in-plain-english/part-2-the-most-hilarious-code-co
 # Traduzido e adaptado de
 # https://medium.com/javascript-in-plain-english/part-2-the-most-hilarious-code-comments-ever-9586592e3bec 
 ```
-
+-->
 
 
 
@@ -219,12 +225,10 @@ O trecho de código abaixo apresenta nas primeiras linhas algumas expressões do
 # salvando um gráfico em um arquivo pdf
 arquivo_pdf <- "plot-script1.pdf"
 pdf(arquivo_pdf)        # cria e abre um arquivo pdf
-plot(1:100)             # gera o gráfico
+x <- seq(-2*pi, 2*pi, by = 0.1)
+plot(x = x, y = exp(-x/5)*sin(x)^2, type = "o")
 dev.off()               # fecha o arquivo pdf
 #----------------------------------------------------------------
-# definindo uma variável x
-x <- 1:100
-x
 ```
 
 Este conjunto de linhas de código, quando inseridos em um arquivo texto[^newtextfile] formam um primeiro *script* <img src="images/logo_r.png" width="20">. Este *script* pode ser executado pelo <img src="images/logo_r.png" width="20"> através da função `source()`, usando como argumento o caminho para o local do *script*. 
@@ -242,6 +246,7 @@ Este *script* produzirá como saída o arquivo `/home/usuario/adar/plot-script1.
 
 ## R no modo de processamento em lote
 
+### Linux
 
 Para rodar um *script* no modo de processamento em lote do <img src="images/logo_r.png" width="20"> através do seguinte comando no terminal Linux:
 
@@ -271,7 +276,32 @@ Você pode especificar o nome do `arqsaida` como desejar. No exemplo abaixo, mos
 ```
 $ R CMD BATCH script1.R script1-saida-`date "+%Y%m%d"`.log
 ```
-Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20200720.Rout `.
+Após a execução do último comando, os mesmos arquivos resultantes do comando anterior serão gerados, exceto pelo primeiro (`.Rout`), que será nomeado ` script1-saida-20201107.Rout `.
 
 Para mais opções do comando `R CMD BATCH` digite no terminal do Linux `R --help`.
+
+### Windows
+
+A execução no modo de processamento em lote no Windows é feita da mesma forma, porém substituindo `R` pelo caminho completo ao executável do <img src="images/logo_r.png" width="20">. Esse caminho pode ser obtido com os códigos:
+
+
+```r
+> r_exe <- file.path((R.home("bin")), "R.exe")
+> r_exe
+> library(fs)
+> fs::path_real(r_exe)
+```
+
+```
+[1] "C:/PROGRA~1/R/R-4.0.3/bin/x64/R.exe"
+C:/Program Files/R/R-4.0.3/bin/x64/R.exe
+```
+
+O terminal do Windows é acessível digitando `cmd` na barra de pesquisa ao lado no meu iniciar e digitando *enter*. O *Prompt* de comando (cmd.exe) do SO Windows abrirá e você poderá rodar o `script1.R`, digitando o comando abaixo com a adequação dos caminhos para os arquivos:
+
+```
+"C:\Program Files\R\R-4.0.2\bin\R.exe" CMD BATCH "C:\Users\usuario\adar\script1.R"
+```
+
+
 
