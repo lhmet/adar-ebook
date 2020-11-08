@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.1 Amostras pequenas de dados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.1 Amostras pequenas de dados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,47 +50,77 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,8 +150,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -130,7 +159,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -147,11 +176,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -291,8 +323,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -307,13 +339,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -370,7 +401,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -408,83 +439,83 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">B.1.1</span> scan()</h3>
 <p>A função <code>scan()</code> também pode ler dados de arquivos, mas a sua saída é um vetor, ou seja ela não mantém a estrutura dos dados contidos no arquivo.</p>
 <p>Vamos baixar um arquivo de dados da internet para ilustrar o uso da <code>scan()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download dados de exemplo</span>
-aq_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt&quot;</span>
-<span class="co"># arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span>
-(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())
-<span class="kw">download.file</span>(aq_url, <span class="dt">destfile =</span> aq_dest_file)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
-vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(aq_dest_file)
-<span class="co"># parte inicial dos dados</span>
-<span class="kw">head</span>(vetor_aq, <span class="dv">100</span>)
-<span class="co"># parte final</span>
-<span class="kw">tail</span>(vetor_aq, <span class="dv">100</span>)
-<span class="co"># dados são importados como vetor</span>
-<span class="kw">is.vector</span>(vetor_aq)
-<span class="kw">mode</span>(vetor_aq)</code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="amostras-pequenas-de-dados.html#cb508-1"></a><span class="co"># download dados de exemplo</span></span>
+<span id="cb508-2"><a href="amostras-pequenas-de-dados.html#cb508-2"></a>aq_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/lhmet/adar-ufsm/master/data/airquality.txt&quot;</span></span>
+<span id="cb508-3"><a href="amostras-pequenas-de-dados.html#cb508-3"></a><span class="co"># arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></span>
+<span id="cb508-4"><a href="amostras-pequenas-de-dados.html#cb508-4"></a>(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
+<span id="cb508-5"><a href="amostras-pequenas-de-dados.html#cb508-5"></a><span class="kw">download.file</span>(aq_url, <span class="dt">destfile =</span> aq_dest_file)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="amostras-pequenas-de-dados.html#cb509-1"></a><span class="co"># Exemplo: vetor</span></span>
+<span id="cb509-2"><a href="amostras-pequenas-de-dados.html#cb509-2"></a>vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(aq_dest_file)</span>
+<span id="cb509-3"><a href="amostras-pequenas-de-dados.html#cb509-3"></a><span class="co"># parte inicial dos dados</span></span>
+<span id="cb509-4"><a href="amostras-pequenas-de-dados.html#cb509-4"></a><span class="kw">head</span>(vetor_aq, <span class="dv">100</span>)</span>
+<span id="cb509-5"><a href="amostras-pequenas-de-dados.html#cb509-5"></a><span class="co"># parte final</span></span>
+<span id="cb509-6"><a href="amostras-pequenas-de-dados.html#cb509-6"></a><span class="kw">tail</span>(vetor_aq, <span class="dv">100</span>)</span>
+<span id="cb509-7"><a href="amostras-pequenas-de-dados.html#cb509-7"></a><span class="co"># dados são importados como vetor</span></span>
+<span id="cb509-8"><a href="amostras-pequenas-de-dados.html#cb509-8"></a><span class="kw">is.vector</span>(vetor_aq)</span>
+<span id="cb509-9"><a href="amostras-pequenas-de-dados.html#cb509-9"></a><span class="kw">mode</span>(vetor_aq)</span></code></pre></div>
 </div>
 <div id="readline" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> readline()</h3>
 <p>Para ler apenas uma linha de dados a partir do teclado como <code>character</code> usamos a função <strong><code>readline()</code></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sentenca &lt;-<span class="st"> </span><span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;digite alguma coisa e tecle enter para continuar: &quot;</span>)
-sentenca</code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="amostras-pequenas-de-dados.html#cb510-1"></a>sentenca &lt;-<span class="st"> </span><span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;digite alguma coisa e tecle enter para continuar: &quot;</span>)</span>
+<span id="cb510-2"><a href="amostras-pequenas-de-dados.html#cb510-2"></a>sentenca</span></code></pre></div>
 <p>Esta função pode ser utilizada como uma forma de controlar um <em>looping</em>. Esse exemplo ilustra o uso da função <code>lapply()</code> para execução de laços ou <em>loopings</em> ao longo de um vetor de índices. Essa função será vista futuramente no curso.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para reprodutibilidade</span>
-<span class="kw">set.seed</span>(<span class="dv">123</span>)
-<span class="co"># looping ao longo da sequência de 1 a 5</span>
-l &lt;-<span class="st"> </span><span class="kw">sapply</span>(
-  <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
-  <span class="cf">function</span>(i) {
-    <span class="co"># cria vetor com números aleatórios com distribuição uniforme</span>
-    x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>)
-    <span class="co"># anomalia acumulada</span>
-    y &lt;-<span class="st"> </span><span class="kw">cumsum</span>(x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))
-    <span class="kw">plot</span>(y, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)
-    <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)
-    <span class="co"># leitura de linha, só após teclar enter vai gerar próximo gráfico</span>
-    <span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;tecle &lt;enter&gt; para continuar: &quot;</span>)
-  }
-)
-l</code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="amostras-pequenas-de-dados.html#cb511-1"></a><span class="co"># para reprodutibilidade</span></span>
+<span id="cb511-2"><a href="amostras-pequenas-de-dados.html#cb511-2"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb511-3"><a href="amostras-pequenas-de-dados.html#cb511-3"></a><span class="co"># looping ao longo da sequência de 1 a 5</span></span>
+<span id="cb511-4"><a href="amostras-pequenas-de-dados.html#cb511-4"></a>l &lt;-<span class="st"> </span><span class="kw">sapply</span>(</span>
+<span id="cb511-5"><a href="amostras-pequenas-de-dados.html#cb511-5"></a>  <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb511-6"><a href="amostras-pequenas-de-dados.html#cb511-6"></a>  <span class="cf">function</span>(i) {</span>
+<span id="cb511-7"><a href="amostras-pequenas-de-dados.html#cb511-7"></a>    <span class="co"># cria vetor com números aleatórios com distribuição uniforme</span></span>
+<span id="cb511-8"><a href="amostras-pequenas-de-dados.html#cb511-8"></a>    x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>)</span>
+<span id="cb511-9"><a href="amostras-pequenas-de-dados.html#cb511-9"></a>    <span class="co"># anomalia acumulada</span></span>
+<span id="cb511-10"><a href="amostras-pequenas-de-dados.html#cb511-10"></a>    y &lt;-<span class="st"> </span><span class="kw">cumsum</span>(x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))</span>
+<span id="cb511-11"><a href="amostras-pequenas-de-dados.html#cb511-11"></a>    <span class="kw">plot</span>(y, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span>
+<span id="cb511-12"><a href="amostras-pequenas-de-dados.html#cb511-12"></a>    <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb511-13"><a href="amostras-pequenas-de-dados.html#cb511-13"></a>    <span class="co"># leitura de linha, só após teclar enter vai gerar próximo gráfico</span></span>
+<span id="cb511-14"><a href="amostras-pequenas-de-dados.html#cb511-14"></a>    <span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;tecle &lt;enter&gt; para continuar: &quot;</span>)</span>
+<span id="cb511-15"><a href="amostras-pequenas-de-dados.html#cb511-15"></a>  }</span>
+<span id="cb511-16"><a href="amostras-pequenas-de-dados.html#cb511-16"></a>)</span>
+<span id="cb511-17"><a href="amostras-pequenas-de-dados.html#cb511-17"></a>l</span></code></pre></div>
 </div>
 <div id="impressão-na-tela" class="section level3">
 <h3><span class="header-section-number">B.1.3</span> Impressão na tela</h3>
 <p>No modo interativo do R podemos imprimir os valores de um objeto na tela digitando o nome do objeto.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
-y &lt;-<span class="st"> </span>x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>
-y
-<span class="co"># ou</span>
-<span class="kw">print</span>(y)</code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="amostras-pequenas-de-dados.html#cb512-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
+<span id="cb512-2"><a href="amostras-pequenas-de-dados.html#cb512-2"></a>y &lt;-<span class="st"> </span>x <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb512-3"><a href="amostras-pequenas-de-dados.html#cb512-3"></a>y</span>
+<span id="cb512-4"><a href="amostras-pequenas-de-dados.html#cb512-4"></a><span class="co"># ou</span></span>
+<span id="cb512-5"><a href="amostras-pequenas-de-dados.html#cb512-5"></a><span class="kw">print</span>(y)</span></code></pre></div>
 <p>Entretanto isso não é possível quando precisamos mostrar o valor de uma variável dentro do corpo de uma função ou dentro de um laço (<em>looping</em>). Nesse caso podemos usar a função <code>print()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dentro de uma função</span>
-<span class="co"># digitando o nome do objeto não imprimi na tela</span>
-fcubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-  classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)
-  <span class="co"># intenção de mostrar objeto de entrada</span>
-  classe
-  x <span class="op">^</span><span class="st"> </span><span class="dv">3</span>
-}
-<span class="kw">fcubo</span>(<span class="dv">2</span>)
-<span class="co"># adicionando print</span>
-cubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-  <span class="co"># mostra objeto de entrada</span>
-  classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)
-  <span class="kw">print</span>(classe)
-  x <span class="op">^</span><span class="st"> </span><span class="dv">3</span>
-}
-<span class="kw">fcubo</span>(<span class="op">-</span><span class="dv">3</span>) <span class="co"># não imprime classe do objeto de entrada</span>
-<span class="kw">cubo</span>(<span class="op">-</span><span class="dv">3</span>) <span class="co"># imprime classe do objeto de entrada</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="amostras-pequenas-de-dados.html#cb513-1"></a><span class="co"># dentro de uma função</span></span>
+<span id="cb513-2"><a href="amostras-pequenas-de-dados.html#cb513-2"></a><span class="co"># digitando o nome do objeto não imprimi na tela</span></span>
+<span id="cb513-3"><a href="amostras-pequenas-de-dados.html#cb513-3"></a>fcubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb513-4"><a href="amostras-pequenas-de-dados.html#cb513-4"></a>  classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)</span>
+<span id="cb513-5"><a href="amostras-pequenas-de-dados.html#cb513-5"></a>  <span class="co"># intenção de mostrar objeto de entrada</span></span>
+<span id="cb513-6"><a href="amostras-pequenas-de-dados.html#cb513-6"></a>  classe</span>
+<span id="cb513-7"><a href="amostras-pequenas-de-dados.html#cb513-7"></a>  x <span class="op">^</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb513-8"><a href="amostras-pequenas-de-dados.html#cb513-8"></a>}</span>
+<span id="cb513-9"><a href="amostras-pequenas-de-dados.html#cb513-9"></a><span class="kw">fcubo</span>(<span class="dv">2</span>)</span>
+<span id="cb513-10"><a href="amostras-pequenas-de-dados.html#cb513-10"></a><span class="co"># adicionando print</span></span>
+<span id="cb513-11"><a href="amostras-pequenas-de-dados.html#cb513-11"></a>cubo &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb513-12"><a href="amostras-pequenas-de-dados.html#cb513-12"></a>  <span class="co"># mostra objeto de entrada</span></span>
+<span id="cb513-13"><a href="amostras-pequenas-de-dados.html#cb513-13"></a>  classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)</span>
+<span id="cb513-14"><a href="amostras-pequenas-de-dados.html#cb513-14"></a>  <span class="kw">print</span>(classe)</span>
+<span id="cb513-15"><a href="amostras-pequenas-de-dados.html#cb513-15"></a>  x <span class="op">^</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb513-16"><a href="amostras-pequenas-de-dados.html#cb513-16"></a>}</span>
+<span id="cb513-17"><a href="amostras-pequenas-de-dados.html#cb513-17"></a><span class="kw">fcubo</span>(<span class="op">-</span><span class="dv">3</span>) <span class="co"># não imprime classe do objeto de entrada</span></span>
+<span id="cb513-18"><a href="amostras-pequenas-de-dados.html#cb513-18"></a><span class="kw">cubo</span>(<span class="op">-</span><span class="dv">3</span>) <span class="co"># imprime classe do objeto de entrada</span></span></code></pre></div>
 <div id="cat-ao-invés-de-print" class="section level4">
 <h4><span class="header-section-number">B.1.3.1</span> <code>cat()</code> ao invés de <code>print()</code></h4>
 <p>É melhor usar a função <code>cat()</code> ao invés da função <code>print()</code>, já que a <code>print()</code> permite a impressão de apenas um único objeto enquanto a <code>cat()</code> não. Compare os resultados das duas funções:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;abc&quot;</span>)
-<span class="kw">cat</span>(<span class="st">&quot;abc</span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="co"># \n indica quebra de linha</span>
-x
-<span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-<span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-<span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">8</span>, <span class="dv">88</span>)
-<span class="kw">cat</span>(k, <span class="dt">sep =</span> <span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;___&quot;</span>, <span class="st">&quot; ---&gt; &quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="amostras-pequenas-de-dados.html#cb514-1"></a><span class="kw">print</span>(<span class="st">&quot;abc&quot;</span>)</span>
+<span id="cb514-2"><a href="amostras-pequenas-de-dados.html#cb514-2"></a><span class="kw">cat</span>(<span class="st">&quot;abc</span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="co"># \n indica quebra de linha</span></span>
+<span id="cb514-3"><a href="amostras-pequenas-de-dados.html#cb514-3"></a>x</span>
+<span id="cb514-4"><a href="amostras-pequenas-de-dados.html#cb514-4"></a><span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb514-5"><a href="amostras-pequenas-de-dados.html#cb514-5"></a><span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb514-6"><a href="amostras-pequenas-de-dados.html#cb514-6"></a><span class="kw">cat</span>(<span class="st">&quot;os elementos de x são: &quot;</span>, x, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb514-7"><a href="amostras-pequenas-de-dados.html#cb514-7"></a>k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">8</span>, <span class="dv">88</span>)</span>
+<span id="cb514-8"><a href="amostras-pequenas-de-dados.html#cb514-8"></a><span class="kw">cat</span>(k, <span class="dt">sep =</span> <span class="kw">c</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;___&quot;</span>, <span class="st">&quot; ---&gt; &quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="textconnection" class="section level3">
@@ -495,15 +526,15 @@ k &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</sp
 2013-01-01 SS          30    10
 2013-01-01 CV          22    12</code></pre>
 <p>Para converter essa pequena amostra de dados em um <em>dataframe</em> nós podemos selecionar, copiar e colar o texto no primeiro argumento da função <code>textConnection</code>, e então usar a função <code>read.table</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">texto &lt;-<span class="st"> &quot;       dates      cidade temperatura chuva</span>
-<span class="st">    2013-01-01 SM          31     3</span>
-<span class="st">    2013-01-01 SS          35    10</span>
-<span class="st">    2013-01-01 CV          21    14&quot;</span>
-<span class="co"># conexão de texto</span>
-tc &lt;-<span class="st"> </span><span class="kw">textConnection</span>(<span class="dt">object =</span> texto)
-tc
-x &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> tc, <span class="dt">header =</span> <span class="ot">TRUE</span>)
-x</code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="amostras-pequenas-de-dados.html#cb516-1"></a>texto &lt;-<span class="st"> &quot;       dates      cidade temperatura chuva</span></span>
+<span id="cb516-2"><a href="amostras-pequenas-de-dados.html#cb516-2"></a><span class="st">    2013-01-01 SM          31     3</span></span>
+<span id="cb516-3"><a href="amostras-pequenas-de-dados.html#cb516-3"></a><span class="st">    2013-01-01 SS          35    10</span></span>
+<span id="cb516-4"><a href="amostras-pequenas-de-dados.html#cb516-4"></a><span class="st">    2013-01-01 CV          21    14&quot;</span></span>
+<span id="cb516-5"><a href="amostras-pequenas-de-dados.html#cb516-5"></a><span class="co"># conexão de texto</span></span>
+<span id="cb516-6"><a href="amostras-pequenas-de-dados.html#cb516-6"></a>tc &lt;-<span class="st"> </span><span class="kw">textConnection</span>(<span class="dt">object =</span> texto)</span>
+<span id="cb516-7"><a href="amostras-pequenas-de-dados.html#cb516-7"></a>tc</span>
+<span id="cb516-8"><a href="amostras-pequenas-de-dados.html#cb516-8"></a>x &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> tc, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb516-9"><a href="amostras-pequenas-de-dados.html#cb516-9"></a>x</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -567,7 +598,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

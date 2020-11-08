@@ -19,10 +19,6 @@
 
 
 
-```
-## Warning in options(stringsAsFactors = TRUE): 'options(stringsAsFactors = TRUE)'
-## is deprecated and will be disabled
-```
 
 ![](images/HeHeartlandPark2601underconstructionbar9.gif)
 
@@ -143,9 +139,12 @@ https://towardsdatascience.com/how-well-do-you-know-r-3feb0c160f44
 
     - scripts favorecem a **automatização** e **reprodutibilidade**
 
+
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </center>
+
+
 
     - força você a ter um conhecimneto mais aprofundado do que está fazendo
 
@@ -230,12 +229,8 @@ Logo, requer ferramentas específicas para:
  
 * Há muito o que melhorar
 
-## No final deste curso ...
 
-<div class="figure" style="text-align: center">
-<img src="images/practical_dev_both.png" alt="Livros para maestria em programação." width="100%" />
-<p class="caption">(\#fig:books-joke)Livros para maestria em programação.</p>
-</div>
+
 
 
 ## Para saber mais sobre o R

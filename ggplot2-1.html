@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.6 ggplot2 | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.6 ggplot2 | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="parâmetros-gráficos.html"/>
-<link rel="next" href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"/>
+<link rel="next" href="referências.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,47 +50,77 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,8 +150,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -130,7 +159,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -147,11 +176,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -291,8 +323,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -307,13 +339,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -370,7 +401,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -404,9 +435,13 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="ggplot2-1" class="section level2">
 <h2><span class="header-section-number">11.6</span> ggplot2</h2>
-<p>O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20"> da <strong>G</strong>ramática de <strong>G</strong>ráficos <span class="citation">(Wilkinson et al. <a href="referências.html#ref-Wilkinson2005">2005</a>)</span> (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a ideia central do <strong><code>{ggplot2}</code></strong>.</p>
+<!-- 
+https://bookdown.org/aschmi11/RESMHandbook/data-visualization-with-ggplot.html 
+-->
+<p>O ggplot2 é uma implementação para o <img src="images/logo_r.png" width="20"> da <strong>G</strong>ramática de <strong>G</strong>ráficos <span class="citation">(Wilkinson et al. <a href="referências.html#ref-Wilkinson2005" role="doc-biblioref">2005</a>)</span> (GG). A GG estabelece princípios fundamentais para a construção de gráficos. Um gráfico consiste no mapeamento dos dados a partir de atributos estéticos (posição, cor, forma, tamanho) de objetos geométricos (pontos, linhas, barras, caixas). Os principais aspectos de um gráfico são os dados, o sistema de coordenadas, os rótulos e as anotações, os quais podem ser combinados em camadas para elaboração do gráfico. Esse é a ideia central do <strong><code>{ggplot2}</code></strong>.</p>
 <p>A documentação do ggplot2 está disponível <a href="https://ggplot2.tidyverse.org/reference/index.html">aqui</a>.</p>
-<p>Para conhecer mais extensões do <strong><code>{ggplot2}</code></strong> consulte a galeria <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>. <!--
+<p>Para conhecer mais extensões do <strong><code>{ggplot2}</code></strong> consulte a galeria <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>.</p>
+<!--
  https://exts.ggplot2.tidyverse.org/ 
  
 https://www.curso-r.com/material/ggplot/ 
@@ -415,6 +450,7 @@ http://r-statistics.co/ggplot2-Tutorial-With-R.html
 
 http://blog.revolutionanalytics.com/2015/01/a-beautiful-story-about-nyc-weather.html
 
+https://rc2e.com/graphics
 
 # gráfico clássico 
 https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00014g
@@ -422,85 +458,373 @@ https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00014g
 https://weatherspark.com/y/30268/Average-Weather-in-S%C3%A3o-Paulo-Brazil-Year-Round
 
 https://weatherspark.com/compare/y/147567~144671/Comparison-of-the-Average-Weather-at-Salgado-Filho-International-Airport-and-Brisbane
---></p>
+-->
+<div id="exemplo-de-aplicação" class="section level3">
+<h3><span class="header-section-number">11.6.1</span> Exemplo de aplicação</h3>
+</div>
 <div id="dados-2" class="section level3">
-<h3><span class="header-section-number">11.6.1</span> Dados</h3>
-<p>Como exemplo de aplicação usaremos os dados históricos do INME da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados podem ser baixados com o código abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link dos dados</span>
-url_data &lt;-<span class="st"> &quot;https://www.dropbox.com/s/wqw42gp9vw54k87/dados-cap11-adar.RData?dl=1&quot;</span>
-<span class="co"># arquivo temporário</span>
-arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.RData&quot;</span>)
-<span class="kw">download.file</span>(
-  <span class="dt">url =</span> url_data,
-  <span class="dt">destfile =</span> arq_temp,
-  <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>
-)
-<span class="co"># nome dos dados carregados para os exercícios</span>
-<span class="kw">print</span>(<span class="kw">load</span>(arq_temp))
-<span class="kw">str</span>(dados_sm)</code></pre></div>
-<p>Os dados foram armazenados em uma lista com 3 elementos, cada é um tibble. Vamos extrair cada elemento em tibbles separados. Após isso podemos apagar a lista de dados <code>dados_sm</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando quadro de dados separados</span>
-clima &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>clima <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(date<span class="op">:</span>prec)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">distinct</span>()
-tempo &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>tempo
-recordes_atual &lt;-<span class="st"> </span>dados_sm<span class="op">$</span>recordes_atual
-<span class="co">#rm(dados_sm)</span></code></pre></div>
-<p>O tibble <code>clima</code> contém os dados históricos de temperatura (<code>tar</code>) e precipitação diária (<code>prec</code>), onde:</p>
+<h3><span class="header-section-number">11.6.2</span> Dados</h3>
+<p>Como exemplo de aplicação usaremos os dados históricos do INMET da estação meteorológica convencional (EMC) de Santa Maria-RS. Os dados utilizados podem ser acessados carregando o pacote <strong><code>{ADARdata}</code></strong>.</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="ggplot2-1.html#cb466-1"></a><span class="co">#devtools::install_github(&quot;lhmet/ADARdata&quot;)</span></span>
+<span id="cb466-2"><a href="ggplot2-1.html#cb466-2"></a><span class="kw">library</span>(ADARdata)</span></code></pre></div>
+<p>O pacote disponibiliza os seguinte conjunto de dados formado por 3 quadro de dados que serão usados a seguir:</p>
 <ul>
-<li><p><code>tar_max</code>, <code>tar_min</code>: extremos diários absolutos registrados para cada dia do ano (variável <code>dda</code>)</p></li>
-<li><p><code>tar_med</code>: temperatura média de cada <code>dda</code>;</p></li>
-<li><p><code>tar_valid</code>: número de observações válidas usada nas estatísticas de cada <code>dda</code>;</p></li>
-<li><p><code>tar_se</code>: erro padrão da média (<code>tar_med</code>)</p></li>
-<li><p><code>n</code>: número de anos</p></li>
-<li><p><code>tar_95</code> e <code>tar_05</code>: percentis de 95% e 5% de <code>tar</code></p></li>
+<li><p><code>clima_sm</code> contém estatísticas e as observações históricas de temperatura do ar (<code>tar</code>) e precipitação diária (<code>prec</code>) para cada dia do ano em Santa Maria-RS</p></li>
+<li><p><code>tempo_sm</code> contém os dados meteorológicos do último ano</p></li>
+<li><p><code>recordes_atual_sm</code> contém os recordes de temperatura e precipitação do último ano</p></li>
 </ul>
-<p>O tibble <code>tempo</code> contém os dados observados no último ano, onde:</p>
-<ul>
-<li><p><code>date</code> é a data em formato <code>POSIXct</code></p></li>
-<li><p><code>dda</code> é o dia do ano (de 1 a 366)</p></li>
-</ul>
-<p>O tibble <code>recordes_atual</code> apresenta as datas em houve quebra de recorde dos valores extremos absolutos de <code>tar</code>.</p>
-<p>Para plotar os dados de 2020, precisaremos especificar a posição dos nomes dos meses no eixo x. Por isso vamos criar abaixo um tibble com o dia do ano correspondente ao dia 15 de cada mês.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datas_atual &lt;-<span class="st"> </span><span class="kw">seq</span>(
-  <span class="dt">from =</span> <span class="kw">as.Date</span>(<span class="st">&#39;2020-01-01&#39;</span>), 
-  <span class="dt">to =</span> <span class="kw">as.Date</span>(<span class="st">&#39;2020-12-31&#39;</span>), 
-  <span class="dt">by =</span> <span class="st">&quot;day&quot;</span>
-)
+<p>Você pode obter mais informações sobre cada um dos quadro de dados consultado o <em>help</em>.</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="ggplot2-1.html#cb467-1"></a>?dados_sm</span></code></pre></div>
+<p>Para construção do gráfico precisaremos das posições dos dia 15 e do último dia de cada mês. Esta informação será útil para especificar onde colocar os nomes dos meses no eixo x. Por isso vamos criar abaixo um <code>tibble</code> com o dia do ano correspondente aquelas datas.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="ggplot2-1.html#cb468-1"></a>ultimo_ano &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">year</span>(tempo_sm<span class="op">$</span>date))</span>
+<span id="cb468-2"><a href="ggplot2-1.html#cb468-2"></a>datas_atual &lt;-<span class="st"> </span><span class="kw">seq</span>(</span>
+<span id="cb468-3"><a href="ggplot2-1.html#cb468-3"></a>  <span class="dt">from =</span> <span class="kw">as.Date</span>(<span class="kw">paste0</span>(ultimo_ano, <span class="st">&#39;-01-01&#39;</span>)), </span>
+<span id="cb468-4"><a href="ggplot2-1.html#cb468-4"></a>  <span class="dt">to =</span> <span class="kw">as.Date</span>(<span class="kw">paste0</span>(ultimo_ano, <span class="st">&#39;-12-31&#39;</span>)), </span>
+<span id="cb468-5"><a href="ggplot2-1.html#cb468-5"></a>  <span class="dt">by =</span> <span class="st">&quot;day&quot;</span></span>
+<span id="cb468-6"><a href="ggplot2-1.html#cb468-6"></a>)</span>
+<span id="cb468-7"><a href="ggplot2-1.html#cb468-7"></a></span>
+<span id="cb468-8"><a href="ggplot2-1.html#cb468-8"></a><span class="kw">library</span>(scales)</span>
+<span id="cb468-9"><a href="ggplot2-1.html#cb468-9"></a></span>
+<span id="cb468-10"><a href="ggplot2-1.html#cb468-10"></a><span class="co"># dda do meio do mês</span></span>
+<span id="cb468-11"><a href="ggplot2-1.html#cb468-11"></a>meio_mes &lt;-<span class="st"> </span><span class="kw">yday</span>(datas_atual)[<span class="kw">day</span>(datas_atual) <span class="op">==</span><span class="st"> </span><span class="dv">15</span>]</span>
+<span id="cb468-12"><a href="ggplot2-1.html#cb468-12"></a></span>
+<span id="cb468-13"><a href="ggplot2-1.html#cb468-13"></a><span class="co"># dda do final do mês</span></span>
+<span id="cb468-14"><a href="ggplot2-1.html#cb468-14"></a>fim_mes &lt;-<span class="st"> </span><span class="kw">tibble</span>(datas_atual, </span>
+<span id="cb468-15"><a href="ggplot2-1.html#cb468-15"></a>       <span class="dt">mes =</span> <span class="kw">month</span>(datas_atual), </span>
+<span id="cb468-16"><a href="ggplot2-1.html#cb468-16"></a>       <span class="dt">day =</span> <span class="kw">day</span>(datas_atual),</span>
+<span id="cb468-17"><a href="ggplot2-1.html#cb468-17"></a>       <span class="dt">yday =</span> <span class="kw">yday</span>(datas_atual)) <span class="op">%&gt;%</span></span>
+<span id="cb468-18"><a href="ggplot2-1.html#cb468-18"></a><span class="st">  </span><span class="kw">group_by</span>(mes) <span class="op">%&gt;%</span></span>
+<span id="cb468-19"><a href="ggplot2-1.html#cb468-19"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ult_dia =</span> yday[<span class="kw">which.max</span>(day)], <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb468-20"><a href="ggplot2-1.html#cb468-20"></a><span class="st">  </span><span class="kw">pull</span>(ult_dia)</span>
+<span id="cb468-21"><a href="ggplot2-1.html#cb468-21"></a></span>
+<span id="cb468-22"><a href="ggplot2-1.html#cb468-22"></a><span class="co"># junção em tibble</span></span>
+<span id="cb468-23"><a href="ggplot2-1.html#cb468-23"></a>marcas_x &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb468-24"><a href="ggplot2-1.html#cb468-24"></a>  <span class="dt">metade =</span> meio_mes,</span>
+<span id="cb468-25"><a href="ggplot2-1.html#cb468-25"></a>  <span class="dt">final =</span> fim_mes,</span>
+<span id="cb468-26"><a href="ggplot2-1.html#cb468-26"></a>  <span class="dt">labels =</span> <span class="kw">c</span>(</span>
+<span id="cb468-27"><a href="ggplot2-1.html#cb468-27"></a>    <span class="st">&quot;Janeiro&quot;</span>, <span class="st">&quot;Fevereiro&quot;</span>, <span class="st">&quot;Março&quot;</span>, <span class="st">&quot;Abril&quot;</span>,</span>
+<span id="cb468-28"><a href="ggplot2-1.html#cb468-28"></a>    <span class="st">&quot;Maio&quot;</span>, <span class="st">&quot;Junho&quot;</span>, <span class="st">&quot;Julho&quot;</span>, <span class="st">&quot;Agosto&quot;</span>, <span class="st">&quot;Setembro&quot;</span>,</span>
+<span id="cb468-29"><a href="ggplot2-1.html#cb468-29"></a>    <span class="st">&quot;Outubro&quot;</span>, <span class="st">&quot;Novembro&quot;</span>, <span class="st">&quot;Dezembro&quot;</span></span>
+<span id="cb468-30"><a href="ggplot2-1.html#cb468-30"></a>  )</span>
+<span id="cb468-31"><a href="ggplot2-1.html#cb468-31"></a>)</span>
+<span id="cb468-32"><a href="ggplot2-1.html#cb468-32"></a>marcas_x</span>
+<span id="cb468-33"><a href="ggplot2-1.html#cb468-33"></a><span class="co">#&gt; # A tibble: 12 x 3</span></span>
+<span id="cb468-34"><a href="ggplot2-1.html#cb468-34"></a><span class="co">#&gt;    metade final labels   </span></span>
+<span id="cb468-35"><a href="ggplot2-1.html#cb468-35"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb468-36"><a href="ggplot2-1.html#cb468-36"></a><span class="co">#&gt;  1     15    31 Janeiro  </span></span>
+<span id="cb468-37"><a href="ggplot2-1.html#cb468-37"></a><span class="co">#&gt;  2     46    60 Fevereiro</span></span>
+<span id="cb468-38"><a href="ggplot2-1.html#cb468-38"></a><span class="co">#&gt;  3     75    91 Março    </span></span>
+<span id="cb468-39"><a href="ggplot2-1.html#cb468-39"></a><span class="co">#&gt;  4    106   121 Abril    </span></span>
+<span id="cb468-40"><a href="ggplot2-1.html#cb468-40"></a><span class="co">#&gt;  5    136   152 Maio     </span></span>
+<span id="cb468-41"><a href="ggplot2-1.html#cb468-41"></a><span class="co">#&gt;  6    167   182 Junho    </span></span>
+<span id="cb468-42"><a href="ggplot2-1.html#cb468-42"></a><span class="co">#&gt;  7    197   213 Julho    </span></span>
+<span id="cb468-43"><a href="ggplot2-1.html#cb468-43"></a><span class="co">#&gt;  8    228   244 Agosto   </span></span>
+<span id="cb468-44"><a href="ggplot2-1.html#cb468-44"></a><span class="co">#&gt;  9    259   274 Setembro </span></span>
+<span id="cb468-45"><a href="ggplot2-1.html#cb468-45"></a><span class="co">#&gt; 10    289   305 Outubro  </span></span>
+<span id="cb468-46"><a href="ggplot2-1.html#cb468-46"></a><span class="co">#&gt; 11    320   335 Novembro </span></span>
+<span id="cb468-47"><a href="ggplot2-1.html#cb468-47"></a><span class="co">#&gt; 12    350   366 Dezembro</span></span></code></pre></div>
+<blockquote>
+<p>PAREI AQUI</p>
+</blockquote>
+</div>
+<div id="gráfico-do-tempo-de-santa-maria-rs-em-2020" class="section level3">
+<h3><span class="header-section-number">11.6.3</span> Gráfico do tempo de Santa Maria-RS em 2020</h3>
+<p>Para ilustrar a abordagem de construção de gráficos por camadas do <strong><code>{ggplot2}</code></strong> vamos visualizar a variação temperatura diária do ar para o ano corrente e compará-la com a climatologia e estatísticas baseadas em 58 anos de dados. Nós vamos explorar diferentes geometrias (linhas, pontos, intervalos)</p>
+<p>Nós criamos um gráfico a partir da função <code>ggplot()</code>, especificando os dados de entrada.</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="ggplot2-1.html#cb469-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> clima_sm)</span></code></pre></div>
+<p><img src="images/unnamed-chunk-59-1.png" width="960" /></p>
+<p>O resultado é um painel em branco. A construção de um gráfico com o <strong><code>{ggplot2}</code></strong> envolve a especificação de atributos estéticos (eixos x e y), adição de elementos geométricos aos nossos dados, operações estatísticas, escalas, coordenadas e várias utras componentes.</p>
+<p>Podemos adicionar geometrias usando o operador <code>+</code>, conforme mostrado abaixo. Para criar o gráfico da temperatura do ar (<code>tar</code>) de Santa Maria-RS, precisamos mapear as variáveis de interesse dos dados de entrada para o eixo y e x.</p>
+<p>O mapeamento das variáveis nos eixos é feito pela função <code>aes()</code> (de <em>aesthetics</em>, estética em inglês). Ela indica a relação entre os dados, a variável que será representada no eixo x, a que será representada no eixo y, a cor, o tamanho dos componentes geométricos etc.</p>
+<p>Os aspectos que podem ou devem ser mapeados dependem do tipo de gráfico que você está construindo.</p>
+<p>Nossa 1ª camada de geometria será uma linha vertical que se estende dos valores mínimo até o máximo absoluto de <code>tar</code> (variáveis <code>tar_min</code> e <code>tar_max</code>) registrado no dia do ano (<code>dda</code>).</p>
+<p>O <code>dda</code> é especificado no eixo x. Para inserir uma linha vertical a <code>geom_linerange()</code> requer os argumentos <code>x</code>, <code>ymin</code> e <code>ymax</code>.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="ggplot2-1.html#cb470-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> clima_sm) <span class="op">+</span></span>
+<span id="cb470-2"><a href="ggplot2-1.html#cb470-2"></a><span class="st">  </span><span class="kw">geom_linerange</span>(</span>
+<span id="cb470-3"><a href="ggplot2-1.html#cb470-3"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_min, <span class="dt">ymax =</span> tar_max),</span>
+<span id="cb470-4"><a href="ggplot2-1.html#cb470-4"></a>    <span class="dt">color =</span> <span class="st">&quot;wheat2&quot;</span></span>
+<span id="cb470-5"><a href="ggplot2-1.html#cb470-5"></a>   <span class="co"># alpha = .1</span></span>
+<span id="cb470-6"><a href="ggplot2-1.html#cb470-6"></a>  ) </span></code></pre></div>
+<p><img src="images/unnamed-chunk-60-1.png" width="960" /></p>
+<p>Além de identificar as variáveis de cada eixo nós adicionamos o argumento <code>color</code> para distinguir os intervalos variação entre os máximos e mínimos absolutos registrados.</p>
+<p>Uma versatilidade do <strong><code>{ggplot2}</code></strong> é de podermos armazenar os gráficos em objetos. Então o gráfico básico acima pode ser armazenado numa váriavel. A estrutura do gráfico é uma lista com todas componentes necessárias para construção do gráfico.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="ggplot2-1.html#cb471-1"></a>graf_base &lt;-<span class="st"> </span></span>
+<span id="cb471-2"><a href="ggplot2-1.html#cb471-2"></a><span class="st">  </span><span class="kw">ggplot</span>( <span class="dt">data =</span> clima_sm) <span class="op">+</span></span>
+<span id="cb471-3"><a href="ggplot2-1.html#cb471-3"></a><span class="st">  </span><span class="co">#geom_point(size = 0.01, colour = &quot;green&quot;) +</span></span>
+<span id="cb471-4"><a href="ggplot2-1.html#cb471-4"></a><span class="st">  </span><span class="kw">geom_linerange</span>(</span>
+<span id="cb471-5"><a href="ggplot2-1.html#cb471-5"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_min, <span class="dt">ymax =</span> tar_max),</span>
+<span id="cb471-6"><a href="ggplot2-1.html#cb471-6"></a>    <span class="dt">color =</span> <span class="st">&quot;wheat2&quot;</span></span>
+<span id="cb471-7"><a href="ggplot2-1.html#cb471-7"></a>   <span class="co"># alpha = .1</span></span>
+<span id="cb471-8"><a href="ggplot2-1.html#cb471-8"></a>  ) <span class="op">+</span></span>
+<span id="cb471-9"><a href="ggplot2-1.html#cb471-9"></a><span class="st">   </span><span class="kw">theme_void</span>()</span>
+<span id="cb471-10"><a href="ggplot2-1.html#cb471-10"></a></span>
+<span id="cb471-11"><a href="ggplot2-1.html#cb471-11"></a><span class="co">#glimpse(graf_base, max.level = 1)</span></span>
+<span id="cb471-12"><a href="ggplot2-1.html#cb471-12"></a>graf_base</span></code></pre></div>
+<p><img src="images/unnamed-chunk-61-1.png" width="960" /></p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="ggplot2-1.html#cb472-1"></a></span>
+<span id="cb472-2"><a href="ggplot2-1.html#cb472-2"></a> <span class="co"># ggplot( data = clima_sm) +</span></span>
+<span id="cb472-3"><a href="ggplot2-1.html#cb472-3"></a> <span class="co">#  #geom_point(size = 0.01, colour = &quot;green&quot;) +</span></span>
+<span id="cb472-4"><a href="ggplot2-1.html#cb472-4"></a> <span class="co">#  geom_linerange(</span></span>
+<span id="cb472-5"><a href="ggplot2-1.html#cb472-5"></a> <span class="co">#    mapping = aes(x = dda, ymin = tar_min, ymax = tar_max),</span></span>
+<span id="cb472-6"><a href="ggplot2-1.html#cb472-6"></a> <span class="co">#    color = &quot;wheat2&quot;</span></span>
+<span id="cb472-7"><a href="ggplot2-1.html#cb472-7"></a> <span class="co">#   # alpha = .1</span></span>
+<span id="cb472-8"><a href="ggplot2-1.html#cb472-8"></a> <span class="co">#  ) +</span></span>
+<span id="cb472-9"><a href="ggplot2-1.html#cb472-9"></a> <span class="co">#   #theme_void()</span></span>
+<span id="cb472-10"><a href="ggplot2-1.html#cb472-10"></a> <span class="co">#   theme(#plot.background = element_blank(),</span></span>
+<span id="cb472-11"><a href="ggplot2-1.html#cb472-11"></a> <span class="co">#          panel.grid.minor.x = element_blank(),</span></span>
+<span id="cb472-12"><a href="ggplot2-1.html#cb472-12"></a> <span class="co">#          panel.grid.major.y = element_blank(),</span></span>
+<span id="cb472-13"><a href="ggplot2-1.html#cb472-13"></a> <span class="co">#          panel.border = element_blank(),</span></span>
+<span id="cb472-14"><a href="ggplot2-1.html#cb472-14"></a> <span class="co">#          panel.background = element_blank(),</span></span>
+<span id="cb472-15"><a href="ggplot2-1.html#cb472-15"></a> <span class="co">#          axis.ticks = element_blank(),</span></span>
+<span id="cb472-16"><a href="ggplot2-1.html#cb472-16"></a> <span class="co">#          #axis.text = element_blank(),  </span></span>
+<span id="cb472-17"><a href="ggplot2-1.html#cb472-17"></a> <span class="co">#          axis.title = element_blank()</span></span>
+<span id="cb472-18"><a href="ggplot2-1.html#cb472-18"></a> <span class="co">#  )</span></span></code></pre></div>
+<p>Na sequência vamos adicionar uma segunda camada com os dados que representam o intervalo de confiança de 95% da temperatura média diária para o período de 1952-2019.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="ggplot2-1.html#cb473-1"></a>ggp_sm &lt;-<span class="st"> </span>graf_base <span class="op">+</span><span class="st"> </span></span>
+<span id="cb473-2"><a href="ggplot2-1.html#cb473-2"></a><span class="kw">geom_linerange</span>(</span>
+<span id="cb473-3"><a href="ggplot2-1.html#cb473-3"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">ymin =</span> tar_med_min, <span class="dt">ymax =</span> tar_med_max),</span>
+<span id="cb473-4"><a href="ggplot2-1.html#cb473-4"></a>    <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span></span>
+<span id="cb473-5"><a href="ggplot2-1.html#cb473-5"></a>  )</span>
+<span id="cb473-6"><a href="ggplot2-1.html#cb473-6"></a>ggp_sm</span></code></pre></div>
+<p><img src="images/unnamed-chunk-62-1.png" width="960" /></p>
+<p>Agora vamos incorporar ao gráfico os dados de temperatura do ano atual e uma linha vertical (<code>geom_vline</code>) na borda esquerda do eixo y.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="ggplot2-1.html#cb474-1"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span></span>
+<span id="cb474-2"><a href="ggplot2-1.html#cb474-2"></a><span class="st">  </span><span class="kw">geom_line</span>(</span>
+<span id="cb474-3"><a href="ggplot2-1.html#cb474-3"></a>    <span class="dt">data =</span> tempo_sm,</span>
+<span id="cb474-4"><a href="ggplot2-1.html#cb474-4"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar),</span>
+<span id="cb474-5"><a href="ggplot2-1.html#cb474-5"></a>    <span class="co"># size = 1</span></span>
+<span id="cb474-6"><a href="ggplot2-1.html#cb474-6"></a>  ) <span class="op">+</span></span>
+<span id="cb474-7"><a href="ggplot2-1.html#cb474-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(</span>
+<span id="cb474-8"><a href="ggplot2-1.html#cb474-8"></a>    <span class="dt">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb474-9"><a href="ggplot2-1.html#cb474-9"></a>    <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span>,</span>
+<span id="cb474-10"><a href="ggplot2-1.html#cb474-10"></a>    <span class="dt">linetype =</span> <span class="dv">1</span>,</span>
+<span id="cb474-11"><a href="ggplot2-1.html#cb474-11"></a>    <span class="dt">size =</span> <span class="dv">1</span></span>
+<span id="cb474-12"><a href="ggplot2-1.html#cb474-12"></a>  )</span>
+<span id="cb474-13"><a href="ggplot2-1.html#cb474-13"></a>ggp_sm</span></code></pre></div>
+<p><img src="images/unnamed-chunk-63-1.png" width="960" /></p>
+<p>Agora vamos ajustar a escala do eixo y ao intervalo de variação da dos extremos e definir 8 marcas para os labels.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="ggplot2-1.html#cb475-1"></a>int_var &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(clima_sm<span class="op">$</span>tar_max, clima_sm<span class="op">$</span>tar_min))</span>
+<span id="cb475-2"><a href="ggplot2-1.html#cb475-2"></a>int_var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">floor</span>(int_var[<span class="dv">1</span>]), <span class="kw">ceiling</span>(int_var[<span class="dv">2</span>]))</span>
+<span id="cb475-3"><a href="ggplot2-1.html#cb475-3"></a>int_var</span>
+<span id="cb475-4"><a href="ggplot2-1.html#cb475-4"></a><span class="co">#&gt; [1]  3 35</span></span>
+<span id="cb475-5"><a href="ggplot2-1.html#cb475-5"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span></span>
+<span id="cb475-6"><a href="ggplot2-1.html#cb475-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(</span>
+<span id="cb475-7"><a href="ggplot2-1.html#cb475-7"></a>    <span class="dt">limits =</span> int_var,</span>
+<span id="cb475-8"><a href="ggplot2-1.html#cb475-8"></a>    <span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">8</span>),</span>
+<span id="cb475-9"><a href="ggplot2-1.html#cb475-9"></a>    <span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">label_number</span>(<span class="dt">suffix =</span> <span class="st">&quot; °C&quot;</span>, <span class="dt">accuracy =</span> <span class="dv">5</span>)</span>
+<span id="cb475-10"><a href="ggplot2-1.html#cb475-10"></a>  ) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb475-11"><a href="ggplot2-1.html#cb475-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb475-12"><a href="ggplot2-1.html#cb475-12"></a>                     <span class="dt">breaks =</span> marcas_x<span class="op">$</span>metade, </span>
+<span id="cb475-13"><a href="ggplot2-1.html#cb475-13"></a>                     <span class="dt">labels =</span> marcas_x<span class="op">$</span>labels,</span>
+<span id="cb475-14"><a href="ggplot2-1.html#cb475-14"></a>                     )</span>
+<span id="cb475-15"><a href="ggplot2-1.html#cb475-15"></a>ggp_sm</span></code></pre></div>
+<p><img src="images/unnamed-chunk-64-1.png" width="960" /></p>
+<p>Podemos adicionar linhas de grade horizontais e verticais como referência. As linhas verticais serão adicionadas no último dia de cada mês. As horizontais serão espaçadas de 5°C.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="ggplot2-1.html#cb476-1"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span><span class="st"> </span></span>
+<span id="cb476-2"><a href="ggplot2-1.html#cb476-2"></a><span class="st">  </span><span class="kw">geom_hline</span>(</span>
+<span id="cb476-3"><a href="ggplot2-1.html#cb476-3"></a>    <span class="dt">yintercept =</span> <span class="kw">seq</span>(int_var[<span class="dv">1</span>], int_var[<span class="dv">2</span>], <span class="dt">by =</span> <span class="dv">5</span>), </span>
+<span id="cb476-4"><a href="ggplot2-1.html#cb476-4"></a>    <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb476-5"><a href="ggplot2-1.html#cb476-5"></a>    <span class="dt">linetype =</span> <span class="dv">1</span></span>
+<span id="cb476-6"><a href="ggplot2-1.html#cb476-6"></a>    ) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb476-7"><a href="ggplot2-1.html#cb476-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(</span>
+<span id="cb476-8"><a href="ggplot2-1.html#cb476-8"></a>    <span class="dt">xintercept =</span> marcas_x<span class="op">$</span>final, </span>
+<span id="cb476-9"><a href="ggplot2-1.html#cb476-9"></a>    <span class="dt">color =</span> <span class="st">&quot;wheat4&quot;</span>, </span>
+<span id="cb476-10"><a href="ggplot2-1.html#cb476-10"></a>    <span class="dt">linetype =</span> <span class="dv">3</span>,</span>
+<span id="cb476-11"><a href="ggplot2-1.html#cb476-11"></a>    <span class="dt">size =</span> <span class="fl">0.5</span></span>
+<span id="cb476-12"><a href="ggplot2-1.html#cb476-12"></a>    ) </span>
+<span id="cb476-13"><a href="ggplot2-1.html#cb476-13"></a>ggp_sm</span></code></pre></div>
+<p><img src="images/unnamed-chunk-65-1.png" width="960" /></p>
+<p>Neste ponto, vamos identificar os dias que em 2020 ultrapassaram os recordes históricos de temperatura.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="ggplot2-1.html#cb477-1"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span><span class="st"> </span></span>
+<span id="cb477-2"><a href="ggplot2-1.html#cb477-2"></a><span class="st">   </span><span class="kw">geom_point</span>(</span>
+<span id="cb477-3"><a href="ggplot2-1.html#cb477-3"></a>     <span class="dt">data =</span> <span class="kw">filter</span>(recordes_atual_sm, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>),</span>
+<span id="cb477-4"><a href="ggplot2-1.html#cb477-4"></a>     <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar), <span class="dt">color =</span> <span class="st">&quot;blue3&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb477-5"><a href="ggplot2-1.html#cb477-5"></a><span class="st">   </span><span class="kw">geom_point</span>(</span>
+<span id="cb477-6"><a href="ggplot2-1.html#cb477-6"></a>     <span class="dt">data =</span> <span class="kw">filter</span>(recordes_atual_sm, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>),</span>
+<span id="cb477-7"><a href="ggplot2-1.html#cb477-7"></a>     <span class="kw">aes</span>(<span class="dt">x =</span> dda, <span class="dt">y =</span> tar), <span class="dt">color =</span> <span class="st">&quot;firebrick3&quot;</span>)</span>
+<span id="cb477-8"><a href="ggplot2-1.html#cb477-8"></a>ggp_sm</span></code></pre></div>
+<p><img src="images/unnamed-chunk-66-1.png" width="960" /></p>
+<p>Com todos dados plotados agora podemos incrementá-lo com texto apropriado. Primeiramente vamos adicionar um título e subtítulo.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="ggplot2-1.html#cb478-1"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span></span>
+<span id="cb478-2"><a href="ggplot2-1.html#cb478-2"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Tempo em Santa Maria, 2020&quot;</span>) <span class="op">+</span></span>
+<span id="cb478-3"><a href="ggplot2-1.html#cb478-3"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb478-4"><a href="ggplot2-1.html#cb478-4"></a>    <span class="dt">plot.title =</span> <span class="kw">element_text</span>(</span>
+<span id="cb478-5"><a href="ggplot2-1.html#cb478-5"></a>      <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb478-6"><a href="ggplot2-1.html#cb478-6"></a>      <span class="dt">hjust =</span> <span class="fl">.012</span>,</span>
+<span id="cb478-7"><a href="ggplot2-1.html#cb478-7"></a>      <span class="dt">vjust =</span> <span class="fl">.8</span>,</span>
+<span id="cb478-8"><a href="ggplot2-1.html#cb478-8"></a>      <span class="dt">colour =</span> <span class="st">&quot;#3C3C3C&quot;</span>,</span>
+<span id="cb478-9"><a href="ggplot2-1.html#cb478-9"></a>      <span class="dt">size =</span> <span class="dv">20</span></span>
+<span id="cb478-10"><a href="ggplot2-1.html#cb478-10"></a>    )</span>
+<span id="cb478-11"><a href="ggplot2-1.html#cb478-11"></a>  ) <span class="op">+</span></span>
+<span id="cb478-12"><a href="ggplot2-1.html#cb478-12"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb478-13"><a href="ggplot2-1.html#cb478-13"></a>    <span class="dt">x =</span> <span class="dv">138</span>,</span>
+<span id="cb478-14"><a href="ggplot2-1.html#cb478-14"></a>    <span class="dt">y =</span> <span class="dv">36</span>,</span>
+<span id="cb478-15"><a href="ggplot2-1.html#cb478-15"></a>    <span class="dt">label =</span> <span class="st">&quot;Temperatura&quot;</span>,</span>
+<span id="cb478-16"><a href="ggplot2-1.html#cb478-16"></a>    <span class="dt">size =</span> <span class="dv">4</span>,</span>
+<span id="cb478-17"><a href="ggplot2-1.html#cb478-17"></a>    <span class="dt">fontface =</span> <span class="st">&quot;bold&quot;</span></span>
+<span id="cb478-18"><a href="ggplot2-1.html#cb478-18"></a>  ) </span>
+<span id="cb478-19"><a href="ggplot2-1.html#cb478-19"></a>ggp_sm</span>
+<span id="cb478-20"><a href="ggplot2-1.html#cb478-20"></a><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_text).</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-67-1.png" width="960" /></p>
+<p>Nós podemos adicionar um parágrafo abaixo do subtítulo para dar uma pequena explanação dobre os dados. O texto será separado em 4 anotações.</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="ggplot2-1.html#cb479-1"></a>texto &lt;-<span class="st"> &quot;Os dados representam as médias diárias de temperatura. Os dados iniciam efetivamente em 1951. Dados para 2020 são disponíveis somente até Julho. A Temperatura média anual até este mês foi de 22°C, caracterizando 2020 como o 8° ano mais quente.&quot;</span></span>
+<span id="cb479-2"><a href="ggplot2-1.html#cb479-2"></a></span>
+<span id="cb479-3"><a href="ggplot2-1.html#cb479-3"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span></span>
+<span id="cb479-4"><a href="ggplot2-1.html#cb479-4"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb479-5"><a href="ggplot2-1.html#cb479-5"></a>    <span class="dt">x =</span> <span class="dv">120</span>,</span>
+<span id="cb479-6"><a href="ggplot2-1.html#cb479-6"></a>    <span class="dt">y =</span> <span class="fl">32.5</span>,</span>
+<span id="cb479-7"><a href="ggplot2-1.html#cb479-7"></a>    <span class="dt">label =</span> <span class="kw">str_wrap</span>(texto, <span class="dt">width =</span> <span class="dv">70</span>),</span>
+<span id="cb479-8"><a href="ggplot2-1.html#cb479-8"></a>    <span class="dt">size =</span> <span class="dv">3</span>,</span>
+<span id="cb479-9"><a href="ggplot2-1.html#cb479-9"></a>    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span>,</span>
+<span id="cb479-10"><a href="ggplot2-1.html#cb479-10"></a>    <span class="dt">hjust =</span> <span class="dv">0</span></span>
+<span id="cb479-11"><a href="ggplot2-1.html#cb479-11"></a>  )</span>
+<span id="cb479-12"><a href="ggplot2-1.html#cb479-12"></a>ggp_sm</span>
+<span id="cb479-13"><a href="ggplot2-1.html#cb479-13"></a><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_text).</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-68-1.png" width="960" /></p>
+<p>Anotações que explicam os pontos representando os dias nos quais ocorreram recordes de temperatura máxima e mínima.</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="ggplot2-1.html#cb480-1"></a>x_rec_tmin &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual_sm, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-2"><a href="ggplot2-1.html#cb480-2"></a><span class="st">  </span><span class="kw">pull</span>(dda)</span>
+<span id="cb480-3"><a href="ggplot2-1.html#cb480-3"></a>y_rec_tmin &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual_sm, record_min <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-4"><a href="ggplot2-1.html#cb480-4"></a><span class="st">  </span><span class="kw">pull</span>(tar_min)</span>
+<span id="cb480-5"><a href="ggplot2-1.html#cb480-5"></a></span>
+<span id="cb480-6"><a href="ggplot2-1.html#cb480-6"></a>x_rec_tmax &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual_sm, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-7"><a href="ggplot2-1.html#cb480-7"></a><span class="st">  </span><span class="kw">pull</span>(dda) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-8"><a href="ggplot2-1.html#cb480-8"></a><span class="st">  </span><span class="kw">nth</span>(<span class="dv">3</span>)</span>
+<span id="cb480-9"><a href="ggplot2-1.html#cb480-9"></a>y_rec_tmax &lt;-<span class="st"> </span><span class="kw">filter</span>(recordes_atual_sm, record_max <span class="op">==</span><span class="st"> &quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-10"><a href="ggplot2-1.html#cb480-10"></a><span class="st">  </span><span class="kw">pull</span>(tar_max) <span class="op">%&gt;%</span></span>
+<span id="cb480-11"><a href="ggplot2-1.html#cb480-11"></a><span class="st">  </span><span class="kw">nth</span>(<span class="dv">3</span>)</span>
+<span id="cb480-12"><a href="ggplot2-1.html#cb480-12"></a></span>
+<span id="cb480-13"><a href="ggplot2-1.html#cb480-13"></a></span>
+<span id="cb480-14"><a href="ggplot2-1.html#cb480-14"></a>ggp_sm &lt;-<span class="st"> </span>ggp_sm <span class="op">+</span></span>
+<span id="cb480-15"><a href="ggplot2-1.html#cb480-15"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,</span>
+<span id="cb480-16"><a href="ggplot2-1.html#cb480-16"></a>           <span class="dt">x =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">xend =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">12</span>,</span>
+<span id="cb480-17"><a href="ggplot2-1.html#cb480-17"></a>           <span class="dt">y =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">yend =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">3</span>,</span>
+<span id="cb480-18"><a href="ggplot2-1.html#cb480-18"></a>           <span class="dt">color =</span> <span class="st">&quot;blue3&quot;</span></span>
+<span id="cb480-19"><a href="ggplot2-1.html#cb480-19"></a>           ) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb480-20"><a href="ggplot2-1.html#cb480-20"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, </span>
+<span id="cb480-21"><a href="ggplot2-1.html#cb480-21"></a>           <span class="dt">x =</span> x_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">12</span>, </span>
+<span id="cb480-22"><a href="ggplot2-1.html#cb480-22"></a>           <span class="dt">y =</span> y_rec_tmin <span class="op">-</span><span class="st"> </span><span class="dv">3</span> <span class="fl">-0.5</span>, </span>
+<span id="cb480-23"><a href="ggplot2-1.html#cb480-23"></a>           <span class="dt">label =</span> <span class="st">&quot;Recorde de Tmin&quot;</span>,</span>
+<span id="cb480-24"><a href="ggplot2-1.html#cb480-24"></a>           <span class="dt">size=</span><span class="fl">2.9</span>, </span>
+<span id="cb480-25"><a href="ggplot2-1.html#cb480-25"></a>           <span class="dt">colour=</span><span class="st">&quot;blue3&quot;</span></span>
+<span id="cb480-26"><a href="ggplot2-1.html#cb480-26"></a>           ) <span class="op">+</span></span>
+<span id="cb480-27"><a href="ggplot2-1.html#cb480-27"></a><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,</span>
+<span id="cb480-28"><a href="ggplot2-1.html#cb480-28"></a>           <span class="dt">x =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">xend =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">12</span>,</span>
+<span id="cb480-29"><a href="ggplot2-1.html#cb480-29"></a>           <span class="dt">y =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">yend =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">2</span>,</span>
+<span id="cb480-30"><a href="ggplot2-1.html#cb480-30"></a>           <span class="dt">color =</span> <span class="st">&quot;firebrick3&quot;</span></span>
+<span id="cb480-31"><a href="ggplot2-1.html#cb480-31"></a>           ) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb480-32"><a href="ggplot2-1.html#cb480-32"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, </span>
+<span id="cb480-33"><a href="ggplot2-1.html#cb480-33"></a>           <span class="dt">x =</span> x_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">13</span>, </span>
+<span id="cb480-34"><a href="ggplot2-1.html#cb480-34"></a>           <span class="dt">y =</span> y_rec_tmax <span class="op">+</span><span class="st"> </span><span class="dv">3</span>, </span>
+<span id="cb480-35"><a href="ggplot2-1.html#cb480-35"></a>           <span class="dt">label =</span> <span class="st">&quot;Recordes de Tmax&quot;</span>,</span>
+<span id="cb480-36"><a href="ggplot2-1.html#cb480-36"></a>           <span class="dt">size =</span> <span class="fl">2.9</span>, </span>
+<span id="cb480-37"><a href="ggplot2-1.html#cb480-37"></a>           <span class="dt">colour=</span><span class="st">&quot;firebrick3&quot;</span></span>
+<span id="cb480-38"><a href="ggplot2-1.html#cb480-38"></a>           )</span>
+<span id="cb480-39"><a href="ggplot2-1.html#cb480-39"></a>ggp_sm</span>
+<span id="cb480-40"><a href="ggplot2-1.html#cb480-40"></a><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_text).</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-69-1.png" width="960" /></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="ggplot2-1.html#cb481-1"></a>leg_dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dv">53</span>, <span class="dv">61</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">9</span>, <span class="dt">mean =</span> <span class="dv">12</span>, <span class="dv">1</span>))</span>
+<span id="cb481-2"><a href="ggplot2-1.html#cb481-2"></a></span>
+<span id="cb481-3"><a href="ggplot2-1.html#cb481-3"></a>ggp_sm <span class="op">+</span></span>
+<span id="cb481-4"><a href="ggplot2-1.html#cb481-4"></a><span class="st">  </span><span class="co"># limites extremos</span></span>
+<span id="cb481-5"><a href="ggplot2-1.html#cb481-5"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,</span>
+<span id="cb481-6"><a href="ggplot2-1.html#cb481-6"></a>    <span class="dt">x =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],</span>
+<span id="cb481-7"><a href="ggplot2-1.html#cb481-7"></a>    <span class="dt">xend =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],</span>
+<span id="cb481-8"><a href="ggplot2-1.html#cb481-8"></a>    <span class="dt">y =</span> <span class="dv">9</span>,</span>
+<span id="cb481-9"><a href="ggplot2-1.html#cb481-9"></a>    <span class="dt">yend =</span> <span class="dv">15</span>,</span>
+<span id="cb481-10"><a href="ggplot2-1.html#cb481-10"></a>    <span class="dt">colour =</span> <span class="st">&quot;wheat2&quot;</span>,</span>
+<span id="cb481-11"><a href="ggplot2-1.html#cb481-11"></a>    <span class="dt">size =</span> <span class="dv">3</span></span>
+<span id="cb481-12"><a href="ggplot2-1.html#cb481-12"></a>  ) <span class="op">+</span></span>
+<span id="cb481-13"><a href="ggplot2-1.html#cb481-13"></a><span class="st">  </span><span class="co"># intervalo intermediário</span></span>
+<span id="cb481-14"><a href="ggplot2-1.html#cb481-14"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,</span>
+<span id="cb481-15"><a href="ggplot2-1.html#cb481-15"></a>    <span class="dt">x =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],</span>
+<span id="cb481-16"><a href="ggplot2-1.html#cb481-16"></a>    <span class="dt">xend =</span> marcas_x<span class="op">$</span>final[<span class="dv">2</span>],</span>
+<span id="cb481-17"><a href="ggplot2-1.html#cb481-17"></a>    <span class="dt">y =</span> <span class="fl">10.5</span>,</span>
+<span id="cb481-18"><a href="ggplot2-1.html#cb481-18"></a>    <span class="dt">yend =</span> <span class="fl">13.5</span>,</span>
+<span id="cb481-19"><a href="ggplot2-1.html#cb481-19"></a>    <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>,</span>
+<span id="cb481-20"><a href="ggplot2-1.html#cb481-20"></a>    <span class="dt">size =</span> <span class="dv">3</span></span>
+<span id="cb481-21"><a href="ggplot2-1.html#cb481-21"></a>  ) <span class="op">+</span></span>
+<span id="cb481-22"><a href="ggplot2-1.html#cb481-22"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> leg_dados, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb481-23"><a href="ggplot2-1.html#cb481-23"></a><span class="st">  </span><span class="co"># labels intermediários</span></span>
+<span id="cb481-24"><a href="ggplot2-1.html#cb481-24"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb481-25"><a href="ggplot2-1.html#cb481-25"></a>    <span class="dt">x =</span> <span class="dv">36</span>,</span>
+<span id="cb481-26"><a href="ggplot2-1.html#cb481-26"></a>    <span class="dt">y =</span> <span class="dv">12</span>,</span>
+<span id="cb481-27"><a href="ggplot2-1.html#cb481-27"></a>    <span class="dt">label =</span> <span class="st">&quot;TEMPERATURA 2020&quot;</span>,</span>
+<span id="cb481-28"><a href="ggplot2-1.html#cb481-28"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb481-29"><a href="ggplot2-1.html#cb481-29"></a>    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span></span>
+<span id="cb481-30"><a href="ggplot2-1.html#cb481-30"></a>  ) <span class="op">+</span></span>
+<span id="cb481-31"><a href="ggplot2-1.html#cb481-31"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb481-32"><a href="ggplot2-1.html#cb481-32"></a>    <span class="dt">x =</span> <span class="dv">84</span>,</span>
+<span id="cb481-33"><a href="ggplot2-1.html#cb481-33"></a>    <span class="dt">y =</span> <span class="dv">12</span>,</span>
+<span id="cb481-34"><a href="ggplot2-1.html#cb481-34"></a>    <span class="dt">label =</span> <span class="st">&quot;INTERVALO NORMAL&quot;</span>,</span>
+<span id="cb481-35"><a href="ggplot2-1.html#cb481-35"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb481-36"><a href="ggplot2-1.html#cb481-36"></a>    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span></span>
+<span id="cb481-37"><a href="ggplot2-1.html#cb481-37"></a>  ) <span class="op">+</span></span>
+<span id="cb481-38"><a href="ggplot2-1.html#cb481-38"></a><span class="st">  </span><span class="co"># labels extremos</span></span>
+<span id="cb481-39"><a href="ggplot2-1.html#cb481-39"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb481-40"><a href="ggplot2-1.html#cb481-40"></a>    <span class="dt">x =</span> <span class="dv">70</span>,</span>
+<span id="cb481-41"><a href="ggplot2-1.html#cb481-41"></a>    <span class="dt">y =</span> <span class="dv">15</span>,</span>
+<span id="cb481-42"><a href="ggplot2-1.html#cb481-42"></a>    <span class="dt">label =</span> <span class="st">&quot;MÁXIMO&quot;</span>,</span>
+<span id="cb481-43"><a href="ggplot2-1.html#cb481-43"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb481-44"><a href="ggplot2-1.html#cb481-44"></a>    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span></span>
+<span id="cb481-45"><a href="ggplot2-1.html#cb481-45"></a>  ) <span class="op">+</span></span>
+<span id="cb481-46"><a href="ggplot2-1.html#cb481-46"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb481-47"><a href="ggplot2-1.html#cb481-47"></a>    <span class="dt">x =</span> <span class="dv">70</span>,</span>
+<span id="cb481-48"><a href="ggplot2-1.html#cb481-48"></a>    <span class="dt">y =</span> <span class="fl">9.5</span>,</span>
+<span id="cb481-49"><a href="ggplot2-1.html#cb481-49"></a>    <span class="dt">label =</span> <span class="st">&quot;MÌNIMO&quot;</span>,</span>
+<span id="cb481-50"><a href="ggplot2-1.html#cb481-50"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb481-51"><a href="ggplot2-1.html#cb481-51"></a>    <span class="dt">colour =</span> <span class="st">&quot;gray30&quot;</span></span>
+<span id="cb481-52"><a href="ggplot2-1.html#cb481-52"></a>  ) <span class="op">+</span></span>
+<span id="cb481-53"><a href="ggplot2-1.html#cb481-53"></a><span class="st">  </span><span class="co"># segmentos do intervalo normal</span></span>
+<span id="cb481-54"><a href="ggplot2-1.html#cb481-54"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, </span>
+<span id="cb481-55"><a href="ggplot2-1.html#cb481-55"></a>           <span class="dt">x =</span> <span class="dv">63</span>, </span>
+<span id="cb481-56"><a href="ggplot2-1.html#cb481-56"></a>           <span class="dt">xend =</span> <span class="dv">65</span>, </span>
+<span id="cb481-57"><a href="ggplot2-1.html#cb481-57"></a>           <span class="dt">y =</span> <span class="fl">10.5</span>,</span>
+<span id="cb481-58"><a href="ggplot2-1.html#cb481-58"></a>           <span class="dt">yend =</span> <span class="fl">10.5</span>,</span>
+<span id="cb481-59"><a href="ggplot2-1.html#cb481-59"></a>           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, </span>
+<span id="cb481-60"><a href="ggplot2-1.html#cb481-60"></a>           <span class="dt">size=</span>.<span class="dv">5</span></span>
+<span id="cb481-61"><a href="ggplot2-1.html#cb481-61"></a>           ) <span class="op">+</span></span>
+<span id="cb481-62"><a href="ggplot2-1.html#cb481-62"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, </span>
+<span id="cb481-63"><a href="ggplot2-1.html#cb481-63"></a>           <span class="dt">x =</span> <span class="dv">63</span>, </span>
+<span id="cb481-64"><a href="ggplot2-1.html#cb481-64"></a>           <span class="dt">xend =</span> <span class="dv">65</span>, </span>
+<span id="cb481-65"><a href="ggplot2-1.html#cb481-65"></a>           <span class="dt">y =</span> <span class="fl">13.5</span>,</span>
+<span id="cb481-66"><a href="ggplot2-1.html#cb481-66"></a>           <span class="dt">yend =</span> <span class="fl">13.5</span>,</span>
+<span id="cb481-67"><a href="ggplot2-1.html#cb481-67"></a>           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, </span>
+<span id="cb481-68"><a href="ggplot2-1.html#cb481-68"></a>           <span class="dt">size=</span>.<span class="dv">5</span></span>
+<span id="cb481-69"><a href="ggplot2-1.html#cb481-69"></a>           ) <span class="op">+</span></span>
+<span id="cb481-70"><a href="ggplot2-1.html#cb481-70"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>, </span>
+<span id="cb481-71"><a href="ggplot2-1.html#cb481-71"></a>           <span class="dt">x =</span> <span class="dv">65</span>, </span>
+<span id="cb481-72"><a href="ggplot2-1.html#cb481-72"></a>           <span class="dt">xend =</span> <span class="dv">65</span>, </span>
+<span id="cb481-73"><a href="ggplot2-1.html#cb481-73"></a>           <span class="dt">y =</span> <span class="fl">10.5</span>,</span>
+<span id="cb481-74"><a href="ggplot2-1.html#cb481-74"></a>           <span class="dt">yend =</span> <span class="fl">13.5</span>,</span>
+<span id="cb481-75"><a href="ggplot2-1.html#cb481-75"></a>           <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>, </span>
+<span id="cb481-76"><a href="ggplot2-1.html#cb481-76"></a>           <span class="dt">size=</span>.<span class="dv">5</span></span>
+<span id="cb481-77"><a href="ggplot2-1.html#cb481-77"></a>           )</span>
+<span id="cb481-78"><a href="ggplot2-1.html#cb481-78"></a><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_text).</span></span></code></pre></div>
+<p><img src="images/unnamed-chunk-70-1.png" width="960" /></p>
+</div>
+<div id="histograma-e-colunas" class="section level3">
+<h3><span class="header-section-number">11.6.4</span> Histograma e colunas</h3>
+</div>
+<div id="imagem-2d" class="section level3">
+<h3><span class="header-section-number">11.6.5</span> Imagem 2D</h3>
+</div>
+<div id="facetas" class="section level3">
+<h3><span class="header-section-number">11.6.6</span> Facetas</h3>
+<!-- 
+earthdatascience.org/courses/earth-analytics/lidar-raster-data-r/ggmap-basemap/ 
+-->
 
-<span class="co"># dda do meio do mês</span>
-meio_mes &lt;-<span class="st"> </span><span class="kw">yday</span>(datas_atual)[<span class="kw">day</span>(datas_atual) <span class="op">==</span><span class="st"> </span><span class="dv">15</span>]
-
-<span class="co"># dda do final do mês</span>
-fim_mes &lt;-<span class="st"> </span><span class="kw">tibble</span>(datas_atual, 
-       <span class="dt">mes =</span> <span class="kw">month</span>(datas_atual), 
-       <span class="dt">day =</span> <span class="kw">day</span>(datas_atual),
-       <span class="dt">yday =</span> <span class="kw">yday</span>(datas_atual)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(mes) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ult_dia =</span> yday[<span class="kw">which.max</span>(day)], <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(ult_dia)
-
-<span class="co"># junção em tibble</span>
-marcas_x &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">metade =</span> meio_mes,
-  <span class="dt">final =</span> fim_mes,
-  <span class="dt">labels =</span> <span class="kw">c</span>(
-    <span class="st">&quot;Janeiro&quot;</span>, <span class="st">&quot;Fevereiro&quot;</span>, <span class="st">&quot;Março&quot;</span>, <span class="st">&quot;Abril&quot;</span>,
-    <span class="st">&quot;Maio&quot;</span>, <span class="st">&quot;Junho&quot;</span>, <span class="st">&quot;Julho&quot;</span>, <span class="st">&quot;Agosto&quot;</span>, <span class="st">&quot;Setembro&quot;</span>,
-    <span class="st">&quot;Outubro&quot;</span>, <span class="st">&quot;Novembro&quot;</span>, <span class="st">&quot;Dezembro&quot;</span>
-  )
-)
-
-marcas_x</code></pre></div>
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="parâmetros-gráficos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -555,7 +879,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

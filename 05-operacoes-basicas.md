@@ -72,7 +72,7 @@ Além de números e operadores artiméticos a expressão acima inclui a constant
 
 
 <div class="rmdwarning">
-<p>Note que no R, o separador decimal é o ponto &quot;.&quot;, ao invés da vírgula &quot;,&quot; usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção @ref(matfuns) .</p>
+<p>Note que no R, o separador decimal é o ponto ".", ao invés da vírgula "," usada na notação brasileira. As vírgulas tem a finalidade de separar os argumentos nas chamadas de funções, tal como <code>log(10, 10)</code>, que veremos na seção @ref(matfuns) .</p>
 </div>
 
 As operações no <img src="images/logo_r.png" width="20"> seguem a mesma ordem de precedência que aprendemos em matemática na escola: 
@@ -343,7 +343,7 @@ O <img src="images/logo_r.png" width="20"> diferencia letras maiúsculas de min�
 m_kg
 #> [1] 100
 M_KG
-#> Error in eval(expr, envir, enclos): object 'M_KG' not found
+#> Error in eval(expr, envir, enclos): objeto 'M_KG' não encontrado
 ```
 
 Como criamos apenas a variável `m_kg`, `M_kg` não foi encontrada. 
@@ -488,17 +488,18 @@ As expressões abaixo ilustram o que acontece quando cometemos alguns erros bem 
 
 ```r
 srt(2)
-#> Error in srt(2): could not find function "srt"
+#> Error in srt(2): não foi possível encontrar a função "srt"
 m * g
-#> Error in eval(expr, envir, enclos): object 'm' not found
+#> Error in eval(expr, envir, enclos): objeto 'm' não encontrado
+2 + 4(log(5))
+#> Error in eval(expr, envir, enclos): tentativa de aplicar uma não-função
 setwd("algum/caminho/no/alem")
-#> Error in setwd("algum/caminho/no/alem"): cannot change working directory
-save(file = "algum/outro/caminho/no/alem")
-#> Warning in save(file = "algum/outro/caminho/no/alem"): nothing specified to be
-#> save()d
-#> Warning in gzfile(file, "wb"): cannot open compressed file 'algum/outro/caminho/
-#> no/alem', probable reason 'No such file or directory'
-#> Error in gzfile(file, "wb"): cannot open the connection
+#> Error in setwd("algum/caminho/no/alem"): não é possível mudar o diretório de trabalho
+save(file = "outro/caminho/no/alem")
+#> Warning in save(file = "outro/caminho/no/alem"): nothing specified to be save()d
+#> Warning in gzfile(file, "wb"): não foi possível abrir o arquivo comprimido
+#> 'outro/caminho/no/alem', motivo provável 'No such file or directory'
+#> Error in gzfile(file, "wb"): não é possível abrir a conexão
 ```
 
 
@@ -515,20 +516,20 @@ No trecho de código acima, na avaliação da expressão com a função `save()`
 
 ```r
 sqrt(-1)
-#> Warning in sqrt(-1): NaNs produced
+#> Warning in sqrt(-1): NaNs produzidos
 #> [1] NaN
 ```
 
 Na expressão acima foi possível obter um resultado, mas o R avisa que foi produzido `NaN`. Como visto na seção \@ref(nans), qualquer operação derivada deste resultado produzirá `NaN`. 
 
 
-Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura \@ref(fig:google-it)).
+Algumas vezes, as mensagens de erro e aviso podem não fazer sentido nem mesmo para usuários experientes, então fica a dica de consulta para referência (Figura \@ref(fig:books-joke) ;) ) sobre as duas técnicas mais importantes para desvendar os mistérios das mensagens de erros.
+
 
 <div class="figure" style="text-align: center">
-<img src="images/practicalDev_googleErrorMessage.jpg" alt="Aprenda como descobrir qual o significado das mensagens de erro." width="50%" />
-<p class="caption">(\#fig:google-it)Aprenda como descobrir qual o significado das mensagens de erro.</p>
+<img src="images/practical_dev_both.png" alt="Livros para maestria em programação." width="100%" />
+<p class="caption">(\#fig:books-joke)Livros para maestria em programação.</p>
 </div>
-
 <!--
 https://br.pinterest.com/marcusoh/funny/
 -->
@@ -581,7 +582,7 @@ As funções são acessíveis Através do menu  *`Addins`* do RStudio e incluem 
 </div>
 
 
-A convenção de estilo dos seus códigos é uma escolha sua.  Eu indico o estilo tidyverse, mas você pode optar por outro. O mais importante é ser consistente.
+A convenção de estilo dos seus códigos é uma escolha sua. Por exemplo, alguns preferem usar a notação camelo (`nomeVariavel`) ao invés da notação cobra (`nome_variavel`) na definição do nome de variáveis e funções. Eu indico seguir o estilo tidyverse (notação cobra), mas você pode optar por outro. O mais importante é ser consistente e não fazer lambança.
 
 ### Nomes de variáveis
 

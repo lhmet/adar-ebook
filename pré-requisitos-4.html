@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,47 +50,77 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,8 +150,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -130,7 +159,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -147,11 +176,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -291,8 +323,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -307,13 +339,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -370,7 +401,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -407,130 +438,226 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="pacotes" class="section level3">
 <h3><span class="header-section-number">11.1.1</span> Pacotes</h3>
 <p>O pacote <strong><code>{ggplot2}</code></strong> faz parte do <strong><code>{tidyverse}</code></strong>, mas além dele precisaremos de outros pacotes com funcionalidades que complementam o <strong><code>{ggplot2}</code></strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;openair&quot;</span>,
-  <span class="st">&quot;lubridate&quot;</span>,
-  <span class="st">&quot;scales&quot;</span>,
-  <span class="st">&quot;rio&quot;</span>,
-  <span class="st">&quot;tidyverse&quot;</span>,
-  <span class="co">#&quot;ggrepel&quot;,</span>
-  <span class="co">#&quot;ggthemes&quot;,</span>
-  <span class="co">#&quot;viridis&quot;,</span>
-  <span class="co">#&quot;ggpubr&quot;,</span>
-  <span class="co">#&quot;ggmap&quot;,</span>
-  <span class="co">#&quot;psych&quot;,</span>
-  <span class="st">&quot;grid&quot;</span>,
-  <span class="st">&quot;lattice&quot;</span>,
-  <span class="st">&quot;gcookbook&quot;</span>
-)
-easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="pré-requisitos-4.html#cb403-1"></a>pacotes &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb403-2"><a href="pré-requisitos-4.html#cb403-2"></a>  <span class="st">&quot;openair&quot;</span>,</span>
+<span id="cb403-3"><a href="pré-requisitos-4.html#cb403-3"></a>  <span class="st">&quot;lubridate&quot;</span>,</span>
+<span id="cb403-4"><a href="pré-requisitos-4.html#cb403-4"></a>  <span class="st">&quot;scales&quot;</span>,</span>
+<span id="cb403-5"><a href="pré-requisitos-4.html#cb403-5"></a>  <span class="st">&quot;rio&quot;</span>,</span>
+<span id="cb403-6"><a href="pré-requisitos-4.html#cb403-6"></a>  <span class="st">&quot;tidyverse&quot;</span>,</span>
+<span id="cb403-7"><a href="pré-requisitos-4.html#cb403-7"></a>  <span class="co">#&quot;ggrepel&quot;,</span></span>
+<span id="cb403-8"><a href="pré-requisitos-4.html#cb403-8"></a>  <span class="co">#&quot;ggthemes&quot;,</span></span>
+<span id="cb403-9"><a href="pré-requisitos-4.html#cb403-9"></a>  <span class="co">#&quot;viridis&quot;,</span></span>
+<span id="cb403-10"><a href="pré-requisitos-4.html#cb403-10"></a>  <span class="co">#&quot;ggpubr&quot;,</span></span>
+<span id="cb403-11"><a href="pré-requisitos-4.html#cb403-11"></a>  <span class="co">#&quot;ggmap&quot;,</span></span>
+<span id="cb403-12"><a href="pré-requisitos-4.html#cb403-12"></a>  <span class="st">&quot;psych&quot;</span>,</span>
+<span id="cb403-13"><a href="pré-requisitos-4.html#cb403-13"></a>  <span class="st">&quot;grid&quot;</span>,</span>
+<span id="cb403-14"><a href="pré-requisitos-4.html#cb403-14"></a>  <span class="st">&quot;lattice&quot;</span>,</span>
+<span id="cb403-15"><a href="pré-requisitos-4.html#cb403-15"></a>  <span class="st">&quot;gcookbook&quot;</span></span>
+<span id="cb403-16"><a href="pré-requisitos-4.html#cb403-16"></a>)</span>
+<span id="cb403-17"><a href="pré-requisitos-4.html#cb403-17"></a>easypackages<span class="op">::</span><span class="kw">libraries</span>(pacotes)</span></code></pre></div>
 </div>
 <div id="dados-1" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Dados</h3>
 <ul>
 <li>dados simulados de uma oscilação com amplitude variável</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">seq</span>(
-  <span class="dt">from =</span> <span class="op">-</span><span class="dv">100</span>,
-  <span class="dt">to =</span> <span class="dv">100</span>,
-  <span class="dt">by =</span> <span class="fl">0.05</span>
-)
-A &lt;-<span class="st"> </span><span class="kw">seq</span>(
-  <span class="dt">from =</span> <span class="op">-</span><span class="dv">1</span>,
-  <span class="dt">to =</span> <span class="dv">1</span>,
-  <span class="dt">length.out =</span> <span class="kw">length</span>(x1)
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">sin</span>(<span class="dt">x =</span> .)
-y1 &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.07</span> <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>x1) <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(x1 <span class="op">+</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-onda &lt;-<span class="st"> </span><span class="kw">tibble</span>(x1, y1)
-onda</code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="pré-requisitos-4.html#cb404-1"></a>x1 &lt;-<span class="st"> </span><span class="kw">seq</span>(</span>
+<span id="cb404-2"><a href="pré-requisitos-4.html#cb404-2"></a>  <span class="dt">from =</span> <span class="dv">-100</span>,</span>
+<span id="cb404-3"><a href="pré-requisitos-4.html#cb404-3"></a>  <span class="dt">to =</span> <span class="dv">100</span>,</span>
+<span id="cb404-4"><a href="pré-requisitos-4.html#cb404-4"></a>  <span class="dt">by =</span> <span class="fl">0.05</span></span>
+<span id="cb404-5"><a href="pré-requisitos-4.html#cb404-5"></a>)</span>
+<span id="cb404-6"><a href="pré-requisitos-4.html#cb404-6"></a>A &lt;-<span class="st"> </span><span class="kw">seq</span>(</span>
+<span id="cb404-7"><a href="pré-requisitos-4.html#cb404-7"></a>  <span class="dt">from =</span> <span class="dv">-1</span>,</span>
+<span id="cb404-8"><a href="pré-requisitos-4.html#cb404-8"></a>  <span class="dt">to =</span> <span class="dv">1</span>,</span>
+<span id="cb404-9"><a href="pré-requisitos-4.html#cb404-9"></a>  <span class="dt">length.out =</span> <span class="kw">length</span>(x1)</span>
+<span id="cb404-10"><a href="pré-requisitos-4.html#cb404-10"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb404-11"><a href="pré-requisitos-4.html#cb404-11"></a><span class="st">  </span><span class="kw">sin</span>(<span class="dt">x =</span> .)</span>
+<span id="cb404-12"><a href="pré-requisitos-4.html#cb404-12"></a>y1 &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.07</span> <span class="op">*</span><span class="st"> </span>A <span class="op">*</span><span class="st"> </span>x1) <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(x1 <span class="op">+</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb404-13"><a href="pré-requisitos-4.html#cb404-13"></a>onda &lt;-<span class="st"> </span><span class="kw">tibble</span>(x1, y1)</span>
+<span id="cb404-14"><a href="pré-requisitos-4.html#cb404-14"></a>onda</span>
+<span id="cb404-15"><a href="pré-requisitos-4.html#cb404-15"></a><span class="co">#&gt; # A tibble: 4,001 x 2</span></span>
+<span id="cb404-16"><a href="pré-requisitos-4.html#cb404-16"></a><span class="co">#&gt;        x1       y1</span></span>
+<span id="cb404-17"><a href="pré-requisitos-4.html#cb404-17"></a><span class="co">#&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb404-18"><a href="pré-requisitos-4.html#cb404-18"></a><span class="co">#&gt;  1 -100   -0.00140</span></span>
+<span id="cb404-19"><a href="pré-requisitos-4.html#cb404-19"></a><span class="co">#&gt;  2 -100.  -0.00153</span></span>
+<span id="cb404-20"><a href="pré-requisitos-4.html#cb404-20"></a><span class="co">#&gt;  3  -99.9 -0.00165</span></span>
+<span id="cb404-21"><a href="pré-requisitos-4.html#cb404-21"></a><span class="co">#&gt;  4  -99.8 -0.00177</span></span>
+<span id="cb404-22"><a href="pré-requisitos-4.html#cb404-22"></a><span class="co">#&gt;  5  -99.8 -0.00188</span></span>
+<span id="cb404-23"><a href="pré-requisitos-4.html#cb404-23"></a><span class="co">#&gt;  6  -99.8 -0.00199</span></span>
+<span id="cb404-24"><a href="pré-requisitos-4.html#cb404-24"></a><span class="co">#&gt;  7  -99.7 -0.00210</span></span>
+<span id="cb404-25"><a href="pré-requisitos-4.html#cb404-25"></a><span class="co">#&gt;  8  -99.6 -0.00221</span></span>
+<span id="cb404-26"><a href="pré-requisitos-4.html#cb404-26"></a><span class="co">#&gt;  9  -99.6 -0.00231</span></span>
+<span id="cb404-27"><a href="pré-requisitos-4.html#cb404-27"></a><span class="co">#&gt; 10  -99.6 -0.00240</span></span>
+<span id="cb404-28"><a href="pré-requisitos-4.html#cb404-28"></a><span class="co">#&gt; # ... with 3,991 more rows</span></span></code></pre></div>
 <ul>
 <li>Dados de qualidade do ar em NY</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#help(airquality)</span>
-<span class="kw">head</span>(airquality)
-<span class="co"># conversão da Temp de Farenheith para Celsius</span>
-aq &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temp =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)<span class="op">/</span><span class="dv">5</span>,
-        <span class="co"># adicionando coluna date criada das colunas Day e Month</span>
-        <span class="co"># o ano das medidas é 1973, conforme help</span>
-         <span class="dt">date =</span> <span class="kw">as.Date</span>(
-           <span class="kw">paste</span>(Day, Month, <span class="st">&quot;1973&quot;</span>),
-           <span class="dt">format =</span> <span class="st">&quot;%d %m %Y&quot;</span>)
-         ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># removendo as colunas Month e Day e reordenando as colunas</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(., date, Ozone<span class="op">:</span>Temp, <span class="op">-</span><span class="kw">c</span>(Month, Day))
-<span class="kw">head</span>(aq)</code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="pré-requisitos-4.html#cb405-1"></a><span class="co">#help(airquality)</span></span>
+<span id="cb405-2"><a href="pré-requisitos-4.html#cb405-2"></a><span class="kw">head</span>(airquality)</span>
+<span id="cb405-3"><a href="pré-requisitos-4.html#cb405-3"></a><span class="co">#&gt;   Ozone Solar.R Wind Temp Month Day</span></span>
+<span id="cb405-4"><a href="pré-requisitos-4.html#cb405-4"></a><span class="co">#&gt; 1    41     190  7.4   67     5   1</span></span>
+<span id="cb405-5"><a href="pré-requisitos-4.html#cb405-5"></a><span class="co">#&gt; 2    36     118  8.0   72     5   2</span></span>
+<span id="cb405-6"><a href="pré-requisitos-4.html#cb405-6"></a><span class="co">#&gt; 3    12     149 12.6   74     5   3</span></span>
+<span id="cb405-7"><a href="pré-requisitos-4.html#cb405-7"></a><span class="co">#&gt; 4    18     313 11.5   62     5   4</span></span>
+<span id="cb405-8"><a href="pré-requisitos-4.html#cb405-8"></a><span class="co">#&gt; 5    NA      NA 14.3   56     5   5</span></span>
+<span id="cb405-9"><a href="pré-requisitos-4.html#cb405-9"></a><span class="co">#&gt; 6    28      NA 14.9   66     5   6</span></span>
+<span id="cb405-10"><a href="pré-requisitos-4.html#cb405-10"></a><span class="co"># conversão da Temp de Farenheith para Celsius</span></span>
+<span id="cb405-11"><a href="pré-requisitos-4.html#cb405-11"></a>aq &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb405-12"><a href="pré-requisitos-4.html#cb405-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Temp =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)<span class="op">/</span><span class="dv">5</span>,</span>
+<span id="cb405-13"><a href="pré-requisitos-4.html#cb405-13"></a>        <span class="co"># adicionando coluna date criada das colunas Day e Month</span></span>
+<span id="cb405-14"><a href="pré-requisitos-4.html#cb405-14"></a>        <span class="co"># o ano das medidas é 1973, conforme help</span></span>
+<span id="cb405-15"><a href="pré-requisitos-4.html#cb405-15"></a>         <span class="dt">date =</span> <span class="kw">as.Date</span>(</span>
+<span id="cb405-16"><a href="pré-requisitos-4.html#cb405-16"></a>           <span class="kw">paste</span>(Day, Month, <span class="st">&quot;1973&quot;</span>),</span>
+<span id="cb405-17"><a href="pré-requisitos-4.html#cb405-17"></a>           <span class="dt">format =</span> <span class="st">&quot;%d %m %Y&quot;</span>)</span>
+<span id="cb405-18"><a href="pré-requisitos-4.html#cb405-18"></a>         ) <span class="op">%&gt;%</span></span>
+<span id="cb405-19"><a href="pré-requisitos-4.html#cb405-19"></a><span class="st">  </span><span class="co"># removendo as colunas Month e Day e reordenando as colunas</span></span>
+<span id="cb405-20"><a href="pré-requisitos-4.html#cb405-20"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(., date, Ozone<span class="op">:</span>Temp, <span class="op">-</span><span class="kw">c</span>(Month, Day))</span>
+<span id="cb405-21"><a href="pré-requisitos-4.html#cb405-21"></a><span class="kw">head</span>(aq)</span>
+<span id="cb405-22"><a href="pré-requisitos-4.html#cb405-22"></a><span class="co">#&gt;         date Ozone Solar.R Wind Temp</span></span>
+<span id="cb405-23"><a href="pré-requisitos-4.html#cb405-23"></a><span class="co">#&gt; 1 1973-05-01    41     190  7.4  7.0</span></span>
+<span id="cb405-24"><a href="pré-requisitos-4.html#cb405-24"></a><span class="co">#&gt; 2 1973-05-02    36     118  8.0  8.0</span></span>
+<span id="cb405-25"><a href="pré-requisitos-4.html#cb405-25"></a><span class="co">#&gt; 3 1973-05-03    12     149 12.6  8.4</span></span>
+<span id="cb405-26"><a href="pré-requisitos-4.html#cb405-26"></a><span class="co">#&gt; 4 1973-05-04    18     313 11.5  6.0</span></span>
+<span id="cb405-27"><a href="pré-requisitos-4.html#cb405-27"></a><span class="co">#&gt; 5 1973-05-05    NA      NA 14.3  4.8</span></span>
+<span id="cb405-28"><a href="pré-requisitos-4.html#cb405-28"></a><span class="co">#&gt; 6 1973-05-06    28      NA 14.9  6.8</span></span></code></pre></div>
 <ul>
 <li>Precipitação climatológica mensal das estações climatológicas do <a href="http://www.inmet.gov.br/portal/index.php?r=clima/normaisClimatologicas">INMET</a></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># importando dados</span>
-prec &lt;-<span class="st"> </span><span class="kw">import</span>(
-  <span class="st">&quot;https://www.dropbox.com/s/9ym0845apcj38wq/PrecAccInmet_61_90.rds?dl=1&quot;</span>, 
-  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span>
-)
-<span class="kw">head</span>(prec)</code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="pré-requisitos-4.html#cb406-1"></a><span class="co"># importando dados</span></span>
+<span id="cb406-2"><a href="pré-requisitos-4.html#cb406-2"></a>prec &lt;-<span class="st"> </span><span class="kw">import</span>(</span>
+<span id="cb406-3"><a href="pré-requisitos-4.html#cb406-3"></a>  <span class="st">&quot;https://www.dropbox.com/s/9ym0845apcj38wq/PrecAccInmet_61_90.rds?dl=1&quot;</span>, </span>
+<span id="cb406-4"><a href="pré-requisitos-4.html#cb406-4"></a>  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></span>
+<span id="cb406-5"><a href="pré-requisitos-4.html#cb406-5"></a>)</span>
+<span id="cb406-6"><a href="pré-requisitos-4.html#cb406-6"></a><span class="kw">head</span>(prec)</span>
+<span id="cb406-7"><a href="pré-requisitos-4.html#cb406-7"></a><span class="co">#&gt;   codigo            nome estado mes value</span></span>
+<span id="cb406-8"><a href="pré-requisitos-4.html#cb406-8"></a><span class="co">#&gt; 1  82704 Cruzeiro do Sul     AC jan 257.9</span></span>
+<span id="cb406-9"><a href="pré-requisitos-4.html#cb406-9"></a><span class="co">#&gt; 2  82915      Rio Branco     AC jan 289.0</span></span>
+<span id="cb406-10"><a href="pré-requisitos-4.html#cb406-10"></a><span class="co">#&gt; 3  82807       TarauacÃ¡     AC jan 286.6</span></span>
+<span id="cb406-11"><a href="pré-requisitos-4.html#cb406-11"></a><span class="co">#&gt; 4  83098        Coruripe     AL jan  21.6</span></span>
+<span id="cb406-12"><a href="pré-requisitos-4.html#cb406-12"></a><span class="co">#&gt; 5  82994         MaceiÃ³     AL jan  78.1</span></span>
+<span id="cb406-13"><a href="pré-requisitos-4.html#cb406-13"></a><span class="co">#&gt; 6  82988     Mata Grande     AL jan  62.1</span></span></code></pre></div>
 <ul>
 <li>Dados de precipitação anual de algumas capitais do mundo</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dados rain
-rain &lt;-<span class="st"> </span><span class="kw">import</span>(
-  <span class="dt">file =</span> <span class="st">&quot;https://www.dropbox.com/s/z873gcyjouegspk/cityrain.csv?dl=1&quot;</span>, 
-  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, 
-  <span class="dt">header =</span> <span class="ot">TRUE</span>
-)
-<span class="kw">head</span>(rain)</code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="pré-requisitos-4.html#cb407-1"></a><span class="co">## dados rain</span></span>
+<span id="cb407-2"><a href="pré-requisitos-4.html#cb407-2"></a>rain &lt;-<span class="st"> </span><span class="kw">import</span>(</span>
+<span id="cb407-3"><a href="pré-requisitos-4.html#cb407-3"></a>  <span class="dt">file =</span> <span class="st">&quot;https://www.dropbox.com/s/z873gcyjouegspk/cityrain.csv?dl=1&quot;</span>, </span>
+<span id="cb407-4"><a href="pré-requisitos-4.html#cb407-4"></a>  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, </span>
+<span id="cb407-5"><a href="pré-requisitos-4.html#cb407-5"></a>  <span class="dt">header =</span> <span class="ot">TRUE</span></span>
+<span id="cb407-6"><a href="pré-requisitos-4.html#cb407-6"></a>)</span>
+<span id="cb407-7"><a href="pré-requisitos-4.html#cb407-7"></a><span class="kw">head</span>(rain)</span>
+<span id="cb407-8"><a href="pré-requisitos-4.html#cb407-8"></a><span class="co">#&gt;   Month Tokyo NewYork London Berlin</span></span>
+<span id="cb407-9"><a href="pré-requisitos-4.html#cb407-9"></a><span class="co">#&gt; 1   Jan  49.9    83.6   48.9   42.4</span></span>
+<span id="cb407-10"><a href="pré-requisitos-4.html#cb407-10"></a><span class="co">#&gt; 2   Feb  71.5    78.8   38.8   33.2</span></span>
+<span id="cb407-11"><a href="pré-requisitos-4.html#cb407-11"></a><span class="co">#&gt; 3   Mar 106.4    98.5   39.3   34.5</span></span>
+<span id="cb407-12"><a href="pré-requisitos-4.html#cb407-12"></a><span class="co">#&gt; 4   Apr 129.2    93.4   42.4   39.7</span></span>
+<span id="cb407-13"><a href="pré-requisitos-4.html#cb407-13"></a><span class="co">#&gt; 5   May 144.0   106.0   47.0   52.6</span></span>
+<span id="cb407-14"><a href="pré-requisitos-4.html#cb407-14"></a><span class="co">#&gt; 6   Jun 176.0    84.5   48.3   70.5</span></span></code></pre></div>
 <ul>
 <li>anomalias de temperatura do ar global Global de 1800 a 2011</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(climate, <span class="dt">package =</span> <span class="st">&quot;gcookbook&quot;</span>)
-<span class="co">#help(climate,package = &quot;gcookbook&quot;)</span>
-<span class="kw">head</span>(climate)</code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="pré-requisitos-4.html#cb408-1"></a><span class="kw">data</span>(climate, <span class="dt">package =</span> <span class="st">&quot;gcookbook&quot;</span>)</span>
+<span id="cb408-2"><a href="pré-requisitos-4.html#cb408-2"></a><span class="co">#help(climate,package = &quot;gcookbook&quot;)</span></span>
+<span id="cb408-3"><a href="pré-requisitos-4.html#cb408-3"></a><span class="kw">head</span>(climate)</span>
+<span id="cb408-4"><a href="pré-requisitos-4.html#cb408-4"></a><span class="co">#&gt;     Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y</span></span>
+<span id="cb408-5"><a href="pré-requisitos-4.html#cb408-5"></a><span class="co">#&gt; 1 Berkeley 1800        NA        NA     -0.435  0.505</span></span>
+<span id="cb408-6"><a href="pré-requisitos-4.html#cb408-6"></a><span class="co">#&gt; 2 Berkeley 1801        NA        NA     -0.453  0.493</span></span>
+<span id="cb408-7"><a href="pré-requisitos-4.html#cb408-7"></a><span class="co">#&gt; 3 Berkeley 1802        NA        NA     -0.460  0.486</span></span>
+<span id="cb408-8"><a href="pré-requisitos-4.html#cb408-8"></a><span class="co">#&gt; 4 Berkeley 1803        NA        NA     -0.493  0.489</span></span>
+<span id="cb408-9"><a href="pré-requisitos-4.html#cb408-9"></a><span class="co">#&gt; 5 Berkeley 1804        NA        NA     -0.536  0.483</span></span>
+<span id="cb408-10"><a href="pré-requisitos-4.html#cb408-10"></a><span class="co">#&gt; 6 Berkeley 1805        NA        NA     -0.541  0.475</span></span></code></pre></div>
 <ul>
 <li>Metadados das estações meteorológicas automáticas (EMA) do INMET;</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dados de estações com localização, alt e tmed</span>
-sulbr_md &lt;-<span class="st"> </span><span class="kw">import</span>(
-  <span class="st">&quot;https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1&quot;</span>,
-  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span>
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(.,
-    <span class="dt">tmed =</span> (tmax_med <span class="op">+</span><span class="st"> </span>tmin_med) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
-  )
-sulbr_md</code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="pré-requisitos-4.html#cb409-1"></a><span class="co"># dados de estações com localização, alt e tmed</span></span>
+<span id="cb409-2"><a href="pré-requisitos-4.html#cb409-2"></a>sulbr_md &lt;-<span class="st"> </span><span class="kw">import</span>(</span>
+<span id="cb409-3"><a href="pré-requisitos-4.html#cb409-3"></a>  <span class="st">&quot;https://www.dropbox.com/s/3ddxq5v5a8i7dnw/info_sumary_tair_sul.rds?dl=1&quot;</span>,</span>
+<span id="cb409-4"><a href="pré-requisitos-4.html#cb409-4"></a>  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></span>
+<span id="cb409-5"><a href="pré-requisitos-4.html#cb409-5"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb409-6"><a href="pré-requisitos-4.html#cb409-6"></a><span class="st">  </span><span class="kw">mutate</span>(.,</span>
+<span id="cb409-7"><a href="pré-requisitos-4.html#cb409-7"></a>    <span class="dt">tmed =</span> (tmax_med <span class="op">+</span><span class="st"> </span>tmin_med) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb409-8"><a href="pré-requisitos-4.html#cb409-8"></a>  )</span>
+<span id="cb409-9"><a href="pré-requisitos-4.html#cb409-9"></a>sulbr_md</span>
+<span id="cb409-10"><a href="pré-requisitos-4.html#cb409-10"></a><span class="co">#&gt; # A tibble: 82 x 18</span></span>
+<span id="cb409-11"><a href="pré-requisitos-4.html#cb409-11"></a><span class="co">#&gt;    site  tmax_med tmin_med dtr_med sdate      edate      period max_tair</span></span>
+<span id="cb409-12"><a href="pré-requisitos-4.html#cb409-12"></a><span class="co">#&gt;    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb409-13"><a href="pré-requisitos-4.html#cb409-13"></a><span class="co">#&gt;  1 A801      24.8     16.1    8.66 2000-09-22 2015-12-31   15.3       40</span></span>
+<span id="cb409-14"><a href="pré-requisitos-4.html#cb409-14"></a><span class="co">#&gt;  2 A802      22.1     15.3    6.77 2001-11-16 2015-12-31   14.1       38</span></span>
+<span id="cb409-15"><a href="pré-requisitos-4.html#cb409-15"></a><span class="co">#&gt;  3 A803      24.8     14.8    9.94 2001-11-26 2015-12-31   14.1       40</span></span>
+<span id="cb409-16"><a href="pré-requisitos-4.html#cb409-16"></a><span class="co">#&gt;  4 A805      24.7     15.1    9.60 2001-12-05 2015-12-31   14.1       36</span></span>
+<span id="cb409-17"><a href="pré-requisitos-4.html#cb409-17"></a><span class="co">#&gt;  5 A806      24.5     18.0    6.49 2003-01-22 2015-12-31   12.9       39</span></span>
+<span id="cb409-18"><a href="pré-requisitos-4.html#cb409-18"></a><span class="co">#&gt;  6 A807      22.9     14.3    8.65 2003-01-28 2015-12-31   12.9       34</span></span>
+<span id="cb409-19"><a href="pré-requisitos-4.html#cb409-19"></a><span class="co">#&gt;  7 A808      22.2     16.3    5.87 2006-06-01 2015-12-31    9.6       41</span></span>
+<span id="cb409-20"><a href="pré-requisitos-4.html#cb409-20"></a><span class="co">#&gt;  8 A809      25.5     15.0   10.5  2006-09-28 2015-12-31    9.3       40</span></span>
+<span id="cb409-21"><a href="pré-requisitos-4.html#cb409-21"></a><span class="co">#&gt;  9 A810      26.5     15.3   11.2  2006-11-15 2015-12-31    9.1       39</span></span>
+<span id="cb409-22"><a href="pré-requisitos-4.html#cb409-22"></a><span class="co">#&gt; 10 A811      20.9     13.0    7.84 2007-01-24 2015-12-31    8.9       37</span></span>
+<span id="cb409-23"><a href="pré-requisitos-4.html#cb409-23"></a><span class="co">#&gt; # ... with 72 more rows, and 10 more variables: min_tair &lt;dbl&gt;, missing &lt;dbl&gt;,</span></span>
+<span id="cb409-24"><a href="pré-requisitos-4.html#cb409-24"></a><span class="co">#&gt; #   long_gap &lt;dbl&gt;, sdate_lg &lt;dttm&gt;, name &lt;chr&gt;, state &lt;chr&gt;, lon &lt;dbl&gt;,</span></span>
+<span id="cb409-25"><a href="pré-requisitos-4.html#cb409-25"></a><span class="co">#&gt; #   lat &lt;dbl&gt;, alt &lt;dbl&gt;, tmed &lt;dbl&gt;</span></span></code></pre></div>
 <ul>
 <li>dados meteorológicos horários das EMAs</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dados com séries temporais</span>
-sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.rds?dl=1&quot;</span>,
-  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span>
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co">#filter(year(date) &gt;= 2008, year(date) &lt;= 2015) %&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair, rh, prec, rg, wd, ws, wsmax) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(sulbr_dh)
-<span class="co">#range(sulbr_dh$date)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="pré-requisitos-4.html#cb410-1"></a><span class="co"># dados com séries temporais</span></span>
+<span id="cb410-2"><a href="pré-requisitos-4.html#cb410-2"></a>sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.rds?dl=1&quot;</span>,</span>
+<span id="cb410-3"><a href="pré-requisitos-4.html#cb410-3"></a>  <span class="dt">format =</span> <span class="st">&quot;rds&quot;</span></span>
+<span id="cb410-4"><a href="pré-requisitos-4.html#cb410-4"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb410-5"><a href="pré-requisitos-4.html#cb410-5"></a><span class="st">  </span><span class="co">#filter(year(date) &gt;= 2008, year(date) &lt;= 2015) %&gt;%</span></span>
+<span id="cb410-6"><a href="pré-requisitos-4.html#cb410-6"></a><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair, rh, prec, rg, wd, ws, wsmax) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="pré-requisitos-4.html#cb411-1"></a><span class="kw">glimpse</span>(sulbr_dh)</span>
+<span id="cb411-2"><a href="pré-requisitos-4.html#cb411-2"></a><span class="co">#&gt; Rows: 2,806,728</span></span>
+<span id="cb411-3"><a href="pré-requisitos-4.html#cb411-3"></a><span class="co">#&gt; Columns: 9</span></span>
+<span id="cb411-4"><a href="pré-requisitos-4.html#cb411-4"></a><span class="co">#&gt; $ site  &lt;chr&gt; &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801&quot;, &quot;A801...</span></span>
+<span id="cb411-5"><a href="pré-requisitos-4.html#cb411-5"></a><span class="co">#&gt; $ date  &lt;dttm&gt; 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:0...</span></span>
+<span id="cb411-6"><a href="pré-requisitos-4.html#cb411-6"></a><span class="co">#&gt; $ tair  &lt;dbl&gt; NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15....</span></span>
+<span id="cb411-7"><a href="pré-requisitos-4.html#cb411-7"></a><span class="co">#&gt; $ rh    &lt;dbl&gt; NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 4...</span></span>
+<span id="cb411-8"><a href="pré-requisitos-4.html#cb411-8"></a><span class="co">#&gt; $ prec  &lt;dbl&gt; NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...</span></span>
+<span id="cb411-9"><a href="pré-requisitos-4.html#cb411-9"></a><span class="co">#&gt; $ rg    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111...</span></span>
+<span id="cb411-10"><a href="pré-requisitos-4.html#cb411-10"></a><span class="co">#&gt; $ wd    &lt;dbl&gt; NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, ...</span></span>
+<span id="cb411-11"><a href="pré-requisitos-4.html#cb411-11"></a><span class="co">#&gt; $ ws    &lt;dbl&gt; NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, ...</span></span>
+<span id="cb411-12"><a href="pré-requisitos-4.html#cb411-12"></a><span class="co">#&gt; $ wsmax &lt;dbl&gt; NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, ...</span></span>
+<span id="cb411-13"><a href="pré-requisitos-4.html#cb411-13"></a><span class="co">#range(sulbr_dh$date)</span></span></code></pre></div>
 <p>Vamos obter a média da <code>tair</code> para cada dia do ano na EMA de POA.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tair_poa_dly &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;A801&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tair =</span> <span class="kw">ifelse</span>(<span class="kw">is.nan</span>(tair), <span class="ot">NA</span>, tair))
-
-<span class="kw">glimpse</span>(tair_poa_dly)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tair_poa_clim &lt;-<span class="st"> </span>tair_poa_dly <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">doy =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">max =</span> <span class="kw">max</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">min =</span> <span class="kw">min</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">q5 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">q95 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">n_anos =</span> <span class="kw">n</span>(),
-            <span class="dt">n_obs =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(tair))
-            ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-tair_poa_clim</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#timePlot(filter(sulbr_dh, site == &quot;A801&quot;), &quot;tair&quot;)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="pré-requisitos-4.html#cb412-1"></a>tair_poa_dly &lt;-<span class="st"> </span>sulbr_dh <span class="op">%&gt;%</span></span>
+<span id="cb412-2"><a href="pré-requisitos-4.html#cb412-2"></a><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;A801&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb412-3"><a href="pré-requisitos-4.html#cb412-3"></a><span class="st">  </span><span class="kw">select</span>(site<span class="op">:</span>tair) <span class="op">%&gt;%</span></span>
+<span id="cb412-4"><a href="pré-requisitos-4.html#cb412-4"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb412-5"><a href="pré-requisitos-4.html#cb412-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb412-6"><a href="pré-requisitos-4.html#cb412-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tair =</span> <span class="kw">ifelse</span>(<span class="kw">is.nan</span>(tair), <span class="ot">NA</span>, tair))</span>
+<span id="cb412-7"><a href="pré-requisitos-4.html#cb412-7"></a><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></span>
+<span id="cb412-8"><a href="pré-requisitos-4.html#cb412-8"></a></span>
+<span id="cb412-9"><a href="pré-requisitos-4.html#cb412-9"></a><span class="kw">glimpse</span>(tair_poa_dly)</span>
+<span id="cb412-10"><a href="pré-requisitos-4.html#cb412-10"></a><span class="co">#&gt; Rows: 5,579</span></span>
+<span id="cb412-11"><a href="pré-requisitos-4.html#cb412-11"></a><span class="co">#&gt; Columns: 2</span></span>
+<span id="cb412-12"><a href="pré-requisitos-4.html#cb412-12"></a><span class="co">#&gt; $ date &lt;date&gt; 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 2...</span></span>
+<span id="cb412-13"><a href="pré-requisitos-4.html#cb412-13"></a><span class="co">#&gt; $ tair &lt;dbl&gt; 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18...</span></span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="pré-requisitos-4.html#cb413-1"></a>tair_poa_clim &lt;-<span class="st"> </span>tair_poa_dly <span class="op">%&gt;%</span></span>
+<span id="cb413-2"><a href="pré-requisitos-4.html#cb413-2"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">doy =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb413-3"><a href="pré-requisitos-4.html#cb413-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb413-4"><a href="pré-requisitos-4.html#cb413-4"></a>            <span class="dt">max =</span> <span class="kw">max</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb413-5"><a href="pré-requisitos-4.html#cb413-5"></a>            <span class="dt">min =</span> <span class="kw">min</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb413-6"><a href="pré-requisitos-4.html#cb413-6"></a>            <span class="dt">q5 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb413-7"><a href="pré-requisitos-4.html#cb413-7"></a>            <span class="dt">q95 =</span> <span class="kw">quantile</span>(tair, <span class="dt">p =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb413-8"><a href="pré-requisitos-4.html#cb413-8"></a>            <span class="dt">n_anos =</span> <span class="kw">n</span>(),</span>
+<span id="cb413-9"><a href="pré-requisitos-4.html#cb413-9"></a>            <span class="dt">n_obs =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(tair))</span>
+<span id="cb413-10"><a href="pré-requisitos-4.html#cb413-10"></a>            ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb413-11"><a href="pré-requisitos-4.html#cb413-11"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb413-12"><a href="pré-requisitos-4.html#cb413-12"></a><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></span>
+<span id="cb413-13"><a href="pré-requisitos-4.html#cb413-13"></a>tair_poa_clim</span>
+<span id="cb413-14"><a href="pré-requisitos-4.html#cb413-14"></a><span class="co">#&gt; # A tibble: 366 x 8</span></span>
+<span id="cb413-15"><a href="pré-requisitos-4.html#cb413-15"></a><span class="co">#&gt;      doy   med   max   min    q5   q95 n_anos n_obs</span></span>
+<span id="cb413-16"><a href="pré-requisitos-4.html#cb413-16"></a><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb413-17"><a href="pré-requisitos-4.html#cb413-17"></a><span class="co">#&gt;  1     1  24.3  27.5  19.6  20.0  27.4     15    15</span></span>
+<span id="cb413-18"><a href="pré-requisitos-4.html#cb413-18"></a><span class="co">#&gt;  2     2  24.2  28.4  20.2  20.3  28.1     15    15</span></span>
+<span id="cb413-19"><a href="pré-requisitos-4.html#cb413-19"></a><span class="co">#&gt;  3     3  23.5  27.3  16.0  19.8  27.3     15    15</span></span>
+<span id="cb413-20"><a href="pré-requisitos-4.html#cb413-20"></a><span class="co">#&gt;  4     4  24.4  27.3  19.2  21.5  27.1     15    15</span></span>
+<span id="cb413-21"><a href="pré-requisitos-4.html#cb413-21"></a><span class="co">#&gt;  5     5  24.9  27.8  20.9  21.7  26.9     15    15</span></span>
+<span id="cb413-22"><a href="pré-requisitos-4.html#cb413-22"></a><span class="co">#&gt;  6     6  25.5  28.6  22.5  23.6  27.9     15    15</span></span>
+<span id="cb413-23"><a href="pré-requisitos-4.html#cb413-23"></a><span class="co">#&gt;  7     7  25.8  28.8  21.8  23.1  28.2     15    15</span></span>
+<span id="cb413-24"><a href="pré-requisitos-4.html#cb413-24"></a><span class="co">#&gt;  8     8  25.6  28.5  23.4  23.5  27.9     15    15</span></span>
+<span id="cb413-25"><a href="pré-requisitos-4.html#cb413-25"></a><span class="co">#&gt;  9     9  26.0  29.5  21.9  23.8  28.5     15    15</span></span>
+<span id="cb413-26"><a href="pré-requisitos-4.html#cb413-26"></a><span class="co">#&gt; 10    10  25.8  29.4  22.3  22.8  28.6     15    15</span></span>
+<span id="cb413-27"><a href="pré-requisitos-4.html#cb413-27"></a><span class="co">#&gt; # ... with 356 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="pré-requisitos-4.html#cb414-1"></a><span class="co">#timePlot(filter(sulbr_dh, site == &quot;A801&quot;), &quot;tair&quot;)</span></span></code></pre></div>
 </div>
 </div>
             </section>
@@ -594,7 +721,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

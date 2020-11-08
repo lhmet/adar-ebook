@@ -33,10 +33,6 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 -->
 
 
-```
-## Warning in options(stringsAsFactors = TRUE): 'options(stringsAsFactors = TRUE)'
-## is deprecated and will be disabled
-```
 
 
 Para tirar melhor proveito deste livro, você precisará:
@@ -124,7 +120,25 @@ por ano. Recomenda-se manter o R atualizado, pois as novas versões incluem [ape
 As novas versões do <img src="images/logo_r.png" width="20"> vem com os [pacotes padrões do R](https://cran.r-project.org/doc/manuals/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f). Os demais pacotes instalados pelo usuário na versão anterior precisam ser reinstalados.
 
 Para atualizar o <img src="images/logo_r.png" width="20"> no Windows, ao invés de baixar o executável a 
-cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html). A instalação de pacotes no <img src="images/logo_r.png" width="20"> será vista na seção \@ref(install-pck).
+cada nova versão e repetir o processo da seção anterior, você pode utilizar o pacote [**installr**](https://cran.r-project.org/web/packages/installr/index.html), usando o código abaixo e seguindo as instruções da interface.
+
+
+```r
+#install.packages("installr")
+library("installr")
+installr()
+```
+
+Em seguida, atualize os atalhos do <img src="images/logo_r.png" width="20"> de sua área trabalho ou da barra de tarefas para o caminho da versão do R. Ao abrir a nova versão verifique a versão instalada com:
+
+
+```r
+# nova versão instalada
+R.Version()$version.string
+## [1] "R version 4.0.3 (2020-10-10)"
+```
+
+O próximo passo é atualizar os pacotes para a nova versão que será visto na seção \@ref(updatepcks).
 
 #### Linux 
 
@@ -175,7 +189,7 @@ foi a R r stringr::str_extract(cran_news_windows(), "[0-9].[0-9].[0-9]").
 -->
 
 [^rversion-recente]: A versão mais atual no período de elaboração deste texto 
-foi a R 4.0.
+foi a R 4.0.3.
 
 
 1. Incluímos o endereço do repositório externo mantido pelo CRAN [^cran-mirror]
@@ -191,7 +205,7 @@ tenha, consulte o administrador do sistema.
 
 ```bash
 $ sudo touch /etc/apt/sources.list.d/cran.list
-$ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran35/' >> /etc/apt/sources.list.d/cran.list" 
+$ sudo sh -c "echo 'deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -sc`-cran40/' >> /etc/apt/sources.list.d/cran.list" 
 ```
 
 
@@ -366,19 +380,14 @@ Para iniciar o <img src="images/logo_r.png" width="20"> no Linux, digite `R` no 
 
     $ R
 
-A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
+A partir desse momento já começamos uma sessão no <img src="images/logo_r.png" width="20">. Vamos simplesmente plotar uma sequência numérica.
 
 
 ```r
-> 1:10
- [1]  1  2  3  4  5  6  7  8  9 10
 > plot(1:10)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="images/Chunck4-1.png" alt="Gráfico da sequência de 10 números." width="672" />
-<p class="caption">(\#fig:Chunck4)Gráfico da sequência de 10 números.</p>
-</div>
+<img src="images/plot-teste-1.png" width="672" style="display: block; margin: auto;" />
 
 Após este teste, podemos sair do <img src="images/logo_r.png" width="20">, sem salvar os dados da seção, com a expressão abaixo:
 
@@ -424,8 +433,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
-[3] "/home/travis/R-bin/lib/R/library"
+[1] "C:/Users/bitev/Documents/R/win-library/4.0"
+[2] "C:/Program Files/R/R-4.0.3/library"        
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -494,20 +503,18 @@ Para instalar um pacote de um repositório do GitHub usa-se a função `install_
 #Antes de instalar o pacote **devtools**, usuários Windows precisam instalar o programa [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). 
 -->
 
-A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `inmetr` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
+A função para instalar um pacote do GitHub requer como argumento o `nome do usuário/nome do repositório`. Por exemplo, para instalar o pacote `ADARdata` do repositório mantido pelo [lhmet](https://github.com/lhmet), usa-se:
 
 
 ```r
 library(remotes)
-# instala o pacote inmetr do repositório 
-# https://github.com/lhmet/inmetr 
-install_github("lhmet/inmetr")
+install_github("lhmet/ADARdata")
 ```
 
 
 <div class="rmdtip">
 <p>Você pode acessar uma função de um pacote instalado com a forma especial <code>pacote::funcao</code>. O trecho de código anterior poderia ser reduzido a:</p>
-<p><code>remotes::install_github(&quot;lhmet/inmetr&quot;)</code></p>
+<p><code>remotes::install_github("lhmet/ADARdata")</code></p>
 <p>Essa forma deixa explícito que estamos usando a função <code>install_github()</code> do pacote <strong>remotes</strong>.</p>
 <p>As vezes você pode estar com diversos pacotes carregados e eles podem ter funções de mesmo nome. Portanto, essa é a alternativa mais segura de avaliar funções afim de evitar conflitos.</p>
 </div>
@@ -535,7 +542,7 @@ install.packages("remotes_2.1.1.tar.gz", repos = NULL)
 ```
 
 
-### Atualização de pacotes 
+### Atualização de pacotes {#updatepcks}
 
 Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da versão prévia do <img src="images/logo_r.png" width="20"> devem ser reinstalados para evitar problemas de compatibilidade. O comando abaixo atualiza todos pacotes para a última versão. A opção `checkbuild = TRUE` reinstala os pacotes que foram construídos uma versão mais antiga que a do <img src="images/logo_r.png" width="20"> atual. 
 
@@ -545,7 +552,9 @@ Se o seu <img src="images/logo_r.png" width="20"> foi atualizado, os pacotes da 
 update.packages(checkBuilt=TRUE, ask=FALSE)
 ```
 
-Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck).
+
+<!-- 
+Se você usa muitos pacotes, este processo pode tornar-se trabalhoso e problemático, devido a cadeia de dependências de alguns pacotes. Por esta razão, há pacotes para facilitar este processo, como o [rvcheck](https://github.com/GuangchuangYu/rvcheck). 
 
 
 ```r
@@ -583,6 +592,9 @@ update_all(check_R = TRUE)
 <p>Se você precisa manter a versão dos seus pacotes em uma nova versão do R, o pacote <a href="https://github.com/MangoTheCat/pkgsnap">pkgsnap</a> é uma solução. Esta opção é útil para evitar que mudanças nas versões dos pacotes possam fazer com que seu código se comporte de maneira diferente.</p>
 </div>
 
+-->
+
+
 ## Pacotes necessários e dependências
 
 Ao longo deste livro serão usados diversos pacotes para o processamento de dados ambientais. A maioria dos pacotes não vêm com o <img src="images/logo_r.png" width="20">.
@@ -600,37 +612,33 @@ pcks <- c(
   "easypackages",
   "rmarkdown",
   "knitr",
-  "pander", 
-  "htmlTable",
   "styler",
   "tidyverse", 
-  "rio",   # instala readxl, openlxlsx, data.table, foreign, haven, feather, 
-           # readODS, jsonlite, rmatio
+  "rio",
   "writexl",
   "microbenchmark",
   "ncdf4",
   "raster",
-  "openair",
   "lubridate",
-  "fields",
   "viridis",
-  "WriteXLS",
-  "gcookbook"
+  "WriteXLS"
   )
 
-pcks_dev <- c(
-  "vembedr",
-  "inmetr"
-)
+pcks_dev <- c("lhmet/lhmetools")
 ```
 
 
 ```r
 install.packages(pcks) 
+install_github(pcks_dev)
 ```
 
 
 <!-- 
+# para R4.0, ubuntu 20.04
+sudo add-apt-repository --yes "ppa:edd/r-4.0"
+sudo apt dist-upgrade
+
 # rJava
 https://github.com/hannarud/r-best-practices/wiki/Installing-RJava-(Ubuntu)
 # java -version
@@ -679,7 +687,7 @@ $ lsb_release -sr
 ```
 
 ```
-18.04
+20.04
 ```
 
 Com essas informações, você pode selecionar o [RStudio](https://www.rstudio.com/products/rstudio/download/) adequado para o seu sistema e baixá-lo (Figura \@ref(fig:rstudio-download)). 
@@ -740,32 +748,8 @@ $ sudo apt-get install git
 ```
 
 
-Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Ubuntu 16.04.6 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
+Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Windows 10 x64 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
 
-
-#### Git no RStudio
-
-Nesta seção vamos usar a funcionalidade do **`git`** através do RStudio. Um procedimento muito comum em um projeto com controle de versão é clonar um repositório do **`github`** (repositório remoto) para o seu computador (repositório local). Neste exemplo será usado o repositório remoto `lhmet/gittutor-adar`. Siga as instruções a seguir para reproduzir este processo.
-
-Abra o RStudio, acesse *`File ▶ New Project ▶ Version Control`* .
-
-- Em *Repository URL* insira `https://github.com/lhmet/gittutor-adar` 
-
-- Em *Create project as subdirectory of:*: navegue até a pasta onde deseja salvar o diretório que conterá o repositório [^pasta-adar]. 
-
-[^pasta-adar]: Sugere-se salvar o projeto numa subpasta nomeado **github** localizado na pasta com o material do curso de ADAR ;)
-
-- Clique em *Create Project* e siga os passos indicados na Figura \@ref(fig:git-proj-rstudio).
-
-
-
-<div class="figure" style="text-align: center">
-<img src="images/anim-setup-git-win.gif" alt="Procedimentos para clonar um repositório do github no seu computador." width="100%" />
-<p class="caption">(\#fig:git-proj-rstudio)Procedimentos para clonar um repositório do github no seu computador.</p>
-</div>
-
-
-Após estes procedimentos você tem o **`git`** instalado e já sabe como clonar um repositório do **`github`** em um diretório do seu computador. 
 
 
 

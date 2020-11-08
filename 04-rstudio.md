@@ -93,7 +93,10 @@ A **Folha de referência do RStudio** (Figura \@ref(fig:rstudio-cheat-sheet))) f
 
 
 
-## Verificação ortográfica
+<!-- 
+## Verificação ortográfica 
+
+
 
 O RStudio oferece o recurso de verificação ortográfica do texto. No caso de línguas diferentes da Inglesa é necessário instalar os dicionários para outras línguas. Os dicionários podem ser instalados indo em *`Tools ▶ Global Options`*, selecionando *`Spelling`* no painel à esquerda e *`Install More Languages`* na caixa de seleção dos dicionários de línguas (Figura \@ref(fig:rstudio-spell-config)). Dessa forma, os dicionários de 28 linguagens serão instalados.
 
@@ -115,10 +118,9 @@ Agora você pode evitar erros ortográficos nos seus relatórios e demais docume
 
 
 
-<!-- rstudio.cloud -->
+rstudio.cloud 
 
 
-<!--
 ### Configurando dicionários customizados 
 
 Se você quer usar um diferente variação de dicionário ou algum dicionário customizado, siga as orientações disponibilizadas no [suporte do RStudio](https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries) e na vinheta do pacote [hunspell](https://docs.ropensci.org/hunspell/articles/intro.html#hunspell-dictionaries).
@@ -137,6 +139,31 @@ A verificação de que o dicionário foi instalado pode ser feita se ele aparece
 ```bash
 > ll /usr/share/hunspell
 ```
+
 -->
+
+## Git no RStudio
+
+Nesta seção vamos usar a funcionalidade do **`git`** através do RStudio. Um procedimento muito comum em um projeto com controle de versão é clonar um repositório do **`github`** (repositório remoto) para o seu computador (repositório local). Neste exemplo será usado o repositório remoto `lhmet/gittutor-adar`. Siga as instruções a seguir para reproduzir este processo.
+
+Abra o RStudio, acesse *`File ▶ New Project ▶ Version Control`* .
+
+- Em *Repository URL* insira `https://github.com/lhmet/gittutor-adar` 
+
+- Em *Create project as subdirectory of:*: navegue até a pasta onde deseja salvar o diretório que conterá o repositório [^pasta-adar]. 
+
+[^pasta-adar]: Sugere-se salvar o projeto numa subpasta nomeado **github** localizado na pasta com o material do curso de ADAR ;)
+
+- Clique em *Create Project* e siga os passos indicados na Figura \@ref(fig:git-proj-rstudio).
+
+
+
+<div class="figure" style="text-align: center">
+<img src="images/anim-setup-git-win.gif" alt="Procedimentos para clonar um repositório do github no seu computador." width="100%" />
+<p class="caption">(\#fig:git-proj-rstudio)Procedimentos para clonar um repositório do github no seu computador.</p>
+</div>
+
+
+Após estes procedimentos você tem o **`git`** instalado e já sabe como clonar um repositório do **`github`** em um diretório do seu computador. 
 
 

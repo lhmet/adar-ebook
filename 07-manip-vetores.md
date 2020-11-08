@@ -221,8 +221,8 @@ A constante `fator_conv = 3.6` nesse caso é reciclada 4 vezes (tamanho do vetor
 1:10 * 1:2
 #>  [1]  1  4  3  8  5 12  7 16  9 20
 1:10 * 1:3
-#> Warning in 1:10 * 1:3: longer object length is not a multiple of shorter object
-#> length
+#> Warning in 1:10 * 1:3: comprimento do objeto maior não é múltiplo do comprimento
+#> do objeto menor
 #>  [1]  1  4  9  4 10 18  7 16 27 10
 ```
 

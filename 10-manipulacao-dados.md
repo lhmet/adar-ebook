@@ -79,14 +79,14 @@ E da mesma forma carregamos o conjunto de pacotes com:
 
 ```r
 library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-#> ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-#> ✔ tibble  3.0.3     ✔ dplyr   1.0.0
-#> ✔ tidyr   1.1.0     ✔ stringr 1.4.0
-#> ✔ readr   1.3.1     ✔ forcats 0.5.0
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
+#> -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+#> v ggplot2 3.3.2     v purrr   0.3.4
+#> v tibble  3.0.4     v dplyr   1.0.2
+#> v tidyr   1.1.2     v stringr 1.4.0
+#> v readr   1.4.0     v forcats 0.5.0
+#> -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+#> x dplyr::filter() masks stats::filter()
+#> x dplyr::lag()    masks stats::lag()
 ```
 
 <div class="rmdnote">
@@ -844,13 +844,13 @@ clima_rs_tbl %>%
 
 
 <div class="rmdtip">
-<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo &quot;Sul&quot;. O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
+<p>O exemplo acima é mais uma operação com caracteres onde foi usada a função <code>stringr::str_detect()</code> para detectar os elementos da variável do tipo caractere que contenham o termo "Sul". O pacote <strong>stringr</strong> <span class="citation">[@Wickham-stringr]</span> fornece funções para casar padrões de caracteres de texto e os nomes das funções são fáceis de lembrar. Todos começam com <code>str_</code> (de string) seguido do verbo, p.ex.:</p>
 <p><code>str_replace_all(</code></p>
-<p><code>string = c(&quot;abc&quot;, &quot;lca&quot;),</code></p>
-<p><code>pattern = &quot;a&quot;,</code></p>
-<p><code>replacement =  &quot;A&quot;</code></p>
+<p><code>string = c("abc", "lca"),</code></p>
+<p><code>pattern = "a",</code></p>
+<p><code>replacement =  "A"</code></p>
 <p><code>)</code></p>
-<p><code>#&gt; [1] &quot;Abc&quot; &quot;lcA&quot;</code></p>
+<p><code>#&gt; [1] "Abc" "lcA"</code></p>
 </div>
 
 
@@ -1586,7 +1586,6 @@ datas_obs
 
 
 <!-- 
-
 Controle de qualidade e validação de dados
 
 # pacote útil para controle de qualidade e validação de dados
@@ -1601,6 +1600,14 @@ https://github.com/sfirke/janitor
 
 # dataPreparation
 https://cran.r-project.org/web/packages/dataPreparation/vignettes/dataPreparation.html
+https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html
+
+- Para um futuro capítulo de EDA
+ https://www.udemy.com/course/automating-data-exploration-with-r/
+ 
+# top demais!
+https://github.com/mstaniak/autoEDA-resources
+https://boxuancui.github.io/DataExplorer/
 -->
 
 

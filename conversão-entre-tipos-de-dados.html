@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.3 Conversão entre tipos de dados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,47 +50,77 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -120,8 +150,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.6" data-path="por-que-o-r.html"><a href="por-que-o-r.html"><i class="fa fa-check"></i><b>1.6</b> Por que o R?</a></li>
 <li class="chapter" data-level="1.7" data-path="pacotes-da-comunidade-do-r.html"><a href="pacotes-da-comunidade-do-r.html"><i class="fa fa-check"></i><b>1.7</b> Pacotes da comunidade do R</a></li>
 <li class="chapter" data-level="1.8" data-path="r-não-é-perfeito.html"><a href="r-não-é-perfeito.html"><i class="fa fa-check"></i><b>1.8</b> R não é perfeito!</a></li>
-<li class="chapter" data-level="1.9" data-path="no-final-deste-curso-.html"><a href="no-final-deste-curso-.html"><i class="fa fa-check"></i><b>1.9</b> No final deste curso ...</a></li>
-<li class="chapter" data-level="1.10" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.10</b> Para saber mais sobre o R</a></li>
+<li class="chapter" data-level="1.9" data-path="para-saber-mais-sobre-o-r.html"><a href="para-saber-mais-sobre-o-r.html"><i class="fa fa-check"></i><b>1.9</b> Para saber mais sobre o R</a></li>
 </ul></li>
 <li class="part"><span><b>II Configuração do Sistema</b></span></li>
 <li class="chapter" data-level="2" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i><b>2</b> Pré-requisitos</a><ul>
@@ -130,7 +159,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install-pck.html"><a href="install-pck.html"><i class="fa fa-check"></i><b>2.2</b> Instalação de Pacotes</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="install-pck.html"><a href="install-pck.html#da-internet"><i class="fa fa-check"></i><b>2.2.1</b> Da internet</a></li>
-<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#atualização-de-pacotes"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-pck.html"><a href="install-pck.html#updatepcks"><i class="fa fa-check"></i><b>2.2.2</b> Atualização de pacotes</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="pacotes-necessários-e-dependências.html"><a href="pacotes-necessários-e-dependências.html"><i class="fa fa-check"></i><b>2.3</b> Pacotes necessários e dependências</a></li>
 <li class="chapter" data-level="2.4" data-path="install-rstudio.html"><a href="install-rstudio.html"><i class="fa fa-check"></i><b>2.4</b> RStudio no Ubuntu</a></li>
@@ -147,11 +176,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="3.1.4" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#auto-preenchimento-de-funções"><i class="fa fa-check"></i><b>3.1.4</b> Auto preenchimento de funções</a></li>
 <li class="chapter" data-level="3.1.5" data-path="r-no-modo-interativo.html"><a href="r-no-modo-interativo.html#primeiro-script"><i class="fa fa-check"></i><b>3.1.5</b> Primeiro <em>script</em></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a></li>
+<li class="chapter" data-level="3.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html"><i class="fa fa-check"></i><b>3.2</b> R no modo de processamento em lote</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#linux-1"><i class="fa fa-check"></i><b>3.2.1</b> Linux</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-no-modo-de-processamento-em-lote.html"><a href="r-no-modo-de-processamento-em-lote.html#windows-2"><i class="fa fa-check"></i><b>3.2.2</b> Windows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> RStudio</a><ul>
 <li class="chapter" data-level="4.1" data-path="visão-geral-do-rstudio.html"><a href="visão-geral-do-rstudio.html"><i class="fa fa-check"></i><b>4.1</b> Visão geral do RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="verificação-ortográfica.html"><a href="verificação-ortográfica.html"><i class="fa fa-check"></i><b>4.2</b> Verificação ortográfica</a></li>
+<li class="chapter" data-level="4.2" data-path="git-no-rstudio.html"><a href="git-no-rstudio.html"><i class="fa fa-check"></i><b>4.2</b> Git no RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>IV Fundamentos do R</b></span></li>
 <li class="chapter" data-level="5" data-path="operbasic.html"><a href="operbasic.html"><i class="fa fa-check"></i><b>5</b> Operações básicas</a><ul>
@@ -291,8 +323,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html"><i class="fa fa-check"></i><b>11.3</b> Pacotes Gráficos</a><ul>
 <li class="chapter" data-level="11.3.1" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#graphics"><i class="fa fa-check"></i><b>11.3.1</b> graphics</a></li>
 <li class="chapter" data-level="11.3.2" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#grid"><i class="fa fa-check"></i><b>11.3.2</b> grid</a></li>
-<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <a href="http://lattice.r-forge.r-project.org/">lattice</a></a></li>
-<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <a href="http://ggplot2.org/">ggplot2</a></a></li>
+<li class="chapter" data-level="11.3.3" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#lattice"><i class="fa fa-check"></i><b>11.3.3</b> <span>lattice</span></a></li>
+<li class="chapter" data-level="11.3.4" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>11.3.4</b> <span>ggplot2</span></a></li>
 <li class="chapter" data-level="11.3.5" data-path="pacotes-gráficos.html"><a href="pacotes-gráficos.html#terminologia-funções-de-alto-e-baixo-nível"><i class="fa fa-check"></i><b>11.3.5</b> Terminologia: funções de alto e baixo nível</a></li>
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="funções-gráficas-básicas.html"><a href="funções-gráficas-básicas.html"><i class="fa fa-check"></i><b>11.4</b> Funções gráficas básicas</a><ul>
@@ -307,13 +339,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="11.5.6" data-path="parâmetros-gráficos.html"><a href="parâmetros-gráficos.html#adicionando-legenda"><i class="fa fa-check"></i><b>11.5.6</b> Adicionando legenda</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html"><i class="fa fa-check"></i><b>11.6</b> ggplot2</a><ul>
-<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.1</b> Dados</a></li>
-</ul></li>
-<li class="chapter" data-level="11.7" data-path="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><a href="gráfico-do-tempo-de-santa-maria-rs-em-2020.html"><i class="fa fa-check"></i><b>11.7</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
-<li class="chapter" data-level="11.8" data-path="histograma-e-colunas.html"><a href="histograma-e-colunas.html"><i class="fa fa-check"></i><b>11.8</b> Histograma e colunas</a></li>
-<li class="chapter" data-level="11.9" data-path="imagem-2d.html"><a href="imagem-2d.html"><i class="fa fa-check"></i><b>11.9</b> Imagem 2D</a></li>
-<li class="chapter" data-level="11.10" data-path="dados-espaciais.html"><a href="dados-espaciais.html"><i class="fa fa-check"></i><b>11.10</b> Dados espaciais</a><ul>
-<li class="chapter" data-level="11.10.1" data-path="dados-espaciais.html"><a href="dados-espaciais.html#mapas-básicos"><i class="fa fa-check"></i><b>11.10.1</b> Mapas básicos</a></li>
+<li class="chapter" data-level="11.6.1" data-path="ggplot2-1.html"><a href="ggplot2-1.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>11.6.1</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="11.6.2" data-path="ggplot2-1.html"><a href="ggplot2-1.html#dados-2"><i class="fa fa-check"></i><b>11.6.2</b> Dados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="ggplot2-1.html"><a href="ggplot2-1.html#gráfico-do-tempo-de-santa-maria-rs-em-2020"><i class="fa fa-check"></i><b>11.6.3</b> Gráfico do tempo de Santa Maria-RS em 2020</a></li>
+<li class="chapter" data-level="11.6.4" data-path="ggplot2-1.html"><a href="ggplot2-1.html#histograma-e-colunas"><i class="fa fa-check"></i><b>11.6.4</b> Histograma e colunas</a></li>
+<li class="chapter" data-level="11.6.5" data-path="ggplot2-1.html"><a href="ggplot2-1.html#imagem-2d"><i class="fa fa-check"></i><b>11.6.5</b> Imagem 2D</a></li>
+<li class="chapter" data-level="11.6.6" data-path="ggplot2-1.html"><a href="ggplot2-1.html#facetas"><i class="fa fa-check"></i><b>11.6.6</b> Facetas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>12</b> Referências</a></li>
@@ -370,7 +401,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="C.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>C.2</b> Markdown</a><ul>
 <li class="chapter" data-level="C.2.1" data-path="markdown.html"><a href="markdown.html#cabeçalhos"><i class="fa fa-check"></i><b>C.2.1</b> Cabeçalhos</a></li>
 <li class="chapter" data-level="C.2.2" data-path="markdown.html"><a href="markdown.html#parágrafos"><i class="fa fa-check"></i><b>C.2.2</b> Parágrafos</a></li>
-<li class="chapter" data-level="C.2.3" data-path="listas.html"><a href="listas.html#listas"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
+<li class="chapter" data-level="C.2.3" data-path="markdown.html"><a href="markdown.html#listas-1"><i class="fa fa-check"></i><b>C.2.3</b> Listas</a></li>
 <li class="chapter" data-level="C.2.4" data-path="markdown.html"><a href="markdown.html#linhas-horizontais"><i class="fa fa-check"></i><b>C.2.4</b> Linhas horizontais</a></li>
 <li class="chapter" data-level="C.2.5" data-path="markdown.html"><a href="markdown.html#citações-diretas"><i class="fa fa-check"></i><b>C.2.5</b> Citações diretas</a></li>
 <li class="chapter" data-level="C.2.6" data-path="markdown.html"><a href="markdown.html#tabelas"><i class="fa fa-check"></i><b>C.2.6</b> Tabelas</a></li>
@@ -409,71 +440,71 @@ code > span. { color: #1f1c1b; } /* Normal */
 COLOCAR TUDO EM UMA TABELA SÓ 
 -->
 <p>Então, a coerção da variável <code>vetor_num</code> para inteiro pode ser feita com:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_num
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="kw">as.integer</span>(vetor_num)
-<span class="co">#&gt; [1] -1  0  1  2 NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.integer</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;integer&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="conversão-entre-tipos-de-dados.html#cb100-1"></a>vetor_num</span>
+<span id="cb100-2"><a href="conversão-entre-tipos-de-dados.html#cb100-2"></a><span class="co">#&gt; [1] -1  0  1  2 NA</span></span>
+<span id="cb100-3"><a href="conversão-entre-tipos-de-dados.html#cb100-3"></a><span class="kw">as.integer</span>(vetor_num)</span>
+<span id="cb100-4"><a href="conversão-entre-tipos-de-dados.html#cb100-4"></a><span class="co">#&gt; [1] -1  0  1  2 NA</span></span>
+<span id="cb100-5"><a href="conversão-entre-tipos-de-dados.html#cb100-5"></a><span class="co"># verificação do resultado</span></span>
+<span id="cb100-6"><a href="conversão-entre-tipos-de-dados.html#cb100-6"></a><span class="kw">typeof</span>(<span class="kw">as.integer</span>(vetor_num))</span>
+<span id="cb100-7"><a href="conversão-entre-tipos-de-dados.html#cb100-7"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
 <p>Já a sua coerção para lógico</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.logical</span>(vetor_num)
-<span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE    NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.logical</span>(vetor_num))
-<span class="co">#&gt; [1] &quot;logical&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="conversão-entre-tipos-de-dados.html#cb101-1"></a><span class="kw">as.logical</span>(vetor_num)</span>
+<span id="cb101-2"><a href="conversão-entre-tipos-de-dados.html#cb101-2"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE    NA</span></span>
+<span id="cb101-3"><a href="conversão-entre-tipos-de-dados.html#cb101-3"></a><span class="co"># verificação do resultado</span></span>
+<span id="cb101-4"><a href="conversão-entre-tipos-de-dados.html#cb101-4"></a><span class="kw">typeof</span>(<span class="kw">as.logical</span>(vetor_num))</span>
+<span id="cb101-5"><a href="conversão-entre-tipos-de-dados.html#cb101-5"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
 <p>converte <strong>0</strong> para <code>FALSE</code> e <strong>qualquer outro número</strong> para <code>TRUE</code>.</p>
 <p>A coerção da variável <code>vetor_log</code> para numérica</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_log
-<span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span>
-<span class="kw">as.numeric</span>(vetor_log)
-<span class="co">#&gt; [1]  0 NA  0  1</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_log))
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="conversão-entre-tipos-de-dados.html#cb102-1"></a>vetor_log</span>
+<span id="cb102-2"><a href="conversão-entre-tipos-de-dados.html#cb102-2"></a><span class="co">#&gt; [1] FALSE    NA FALSE  TRUE</span></span>
+<span id="cb102-3"><a href="conversão-entre-tipos-de-dados.html#cb102-3"></a><span class="kw">as.numeric</span>(vetor_log)</span>
+<span id="cb102-4"><a href="conversão-entre-tipos-de-dados.html#cb102-4"></a><span class="co">#&gt; [1]  0 NA  0  1</span></span>
+<span id="cb102-5"><a href="conversão-entre-tipos-de-dados.html#cb102-5"></a><span class="co"># verificação do resultado</span></span>
+<span id="cb102-6"><a href="conversão-entre-tipos-de-dados.html#cb102-6"></a><span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_log))</span>
+<span id="cb102-7"><a href="conversão-entre-tipos-de-dados.html#cb102-7"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>converte os valores <code>FALSE</code> para <strong>0</strong> e <strong>TRUE</strong> para <code>1</code>.</p>
 <p>A coerção da variável <code>vetor_char</code> para numérica ou inteiro</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_char
-<span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">as.integer</span>(vetor_char)
-<span class="co">#&gt; Warning: NAs introduced by coercion</span>
-<span class="co">#&gt; [1] NA NA NA</span>
-<span class="co"># verificação do resultado</span>
-<span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_char))
-<span class="co">#&gt; Warning in typeof(as.numeric(vetor_char)): NAs introduced by coercion</span>
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="conversão-entre-tipos-de-dados.html#cb103-1"></a>vetor_char</span>
+<span id="cb103-2"><a href="conversão-entre-tipos-de-dados.html#cb103-2"></a><span class="co">#&gt; [1] &quot;ae&quot; NA   &quot;ou&quot;</span></span>
+<span id="cb103-3"><a href="conversão-entre-tipos-de-dados.html#cb103-3"></a><span class="kw">as.integer</span>(vetor_char)</span>
+<span id="cb103-4"><a href="conversão-entre-tipos-de-dados.html#cb103-4"></a><span class="co">#&gt; Warning: NAs introduzidos por coerção</span></span>
+<span id="cb103-5"><a href="conversão-entre-tipos-de-dados.html#cb103-5"></a><span class="co">#&gt; [1] NA NA NA</span></span>
+<span id="cb103-6"><a href="conversão-entre-tipos-de-dados.html#cb103-6"></a><span class="co"># verificação do resultado</span></span>
+<span id="cb103-7"><a href="conversão-entre-tipos-de-dados.html#cb103-7"></a><span class="kw">typeof</span>(<span class="kw">as.numeric</span>(vetor_char))</span>
+<span id="cb103-8"><a href="conversão-entre-tipos-de-dados.html#cb103-8"></a><span class="co">#&gt; Warning in typeof(as.numeric(vetor_char)): NAs introduzidos por coerção</span></span>
+<span id="cb103-9"><a href="conversão-entre-tipos-de-dados.html#cb103-9"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>gera <code>NA</code>.</p>
 <p>Como vetores atômicos podem ter dados de um único tipo, a concatenação de vetores de tipos diferentes levará a coerção automática (ou implícita) dos dados pelo <img src="images/logo_r.png" width="20">, para o tipo mais fácil de ser convertido.</p>
 <p>Misturando <code>numeric</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_num_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_num, vetor_char))
-<span class="co">#&gt; [1] &quot;-1&quot; &quot;0&quot;  &quot;1&quot;  &quot;2&quot;  NA   &quot;ae&quot; NA   &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_num_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="conversão-entre-tipos-de-dados.html#cb104-1"></a>(vmix_num_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_num, vetor_char))</span>
+<span id="cb104-2"><a href="conversão-entre-tipos-de-dados.html#cb104-2"></a><span class="co">#&gt; [1] &quot;-1&quot; &quot;0&quot;  &quot;1&quot;  &quot;2&quot;  NA   &quot;ae&quot; NA   &quot;ou&quot;</span></span>
+<span id="cb104-3"><a href="conversão-entre-tipos-de-dados.html#cb104-3"></a><span class="kw">typeof</span>(vmix_num_char)</span>
+<span id="cb104-4"><a href="conversão-entre-tipos-de-dados.html#cb104-4"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Misturando <code>logical</code> com <code>numeric</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_num &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_num))
-<span class="co">#&gt; [1]  0 NA  0  1 -1  0  1  2 NA</span>
-<span class="kw">typeof</span>(vmix_log_num)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="conversão-entre-tipos-de-dados.html#cb105-1"></a>(vmix_log_num &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_num))</span>
+<span id="cb105-2"><a href="conversão-entre-tipos-de-dados.html#cb105-2"></a><span class="co">#&gt; [1]  0 NA  0  1 -1  0  1  2 NA</span></span>
+<span id="cb105-3"><a href="conversão-entre-tipos-de-dados.html#cb105-3"></a><span class="kw">typeof</span>(vmix_log_num)</span>
+<span id="cb105-4"><a href="conversão-entre-tipos-de-dados.html#cb105-4"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>Misturando <code>double</code> com <code>integer</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_dbl_int &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_dbl, vetor_int))
-<span class="co">#&gt; [1] -1.51  0.33  1.46  2.04  1.00  6.00 10.00    NA</span>
-<span class="kw">typeof</span>(vmix_dbl_int)
-<span class="co">#&gt; [1] &quot;double&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="conversão-entre-tipos-de-dados.html#cb106-1"></a>(vmix_dbl_int &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_dbl, vetor_int))</span>
+<span id="cb106-2"><a href="conversão-entre-tipos-de-dados.html#cb106-2"></a><span class="co">#&gt; [1] -1.51  0.33  1.46  2.04  1.00  6.00 10.00    NA</span></span>
+<span id="cb106-3"><a href="conversão-entre-tipos-de-dados.html#cb106-3"></a><span class="kw">typeof</span>(vmix_dbl_int)</span>
+<span id="cb106-4"><a href="conversão-entre-tipos-de-dados.html#cb106-4"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>Misturando <code>lógical</code> com <code>character</code> resulta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vmix_log_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_char))
-<span class="co">#&gt; [1] &quot;FALSE&quot; NA      &quot;FALSE&quot; &quot;TRUE&quot;  &quot;ae&quot;    NA      &quot;ou&quot;</span>
-<span class="kw">typeof</span>(vmix_log_char)
-<span class="co">#&gt; [1] &quot;character&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="conversão-entre-tipos-de-dados.html#cb107-1"></a>(vmix_log_char &lt;-<span class="st"> </span><span class="kw">c</span>(vetor_log, vetor_char))</span>
+<span id="cb107-2"><a href="conversão-entre-tipos-de-dados.html#cb107-2"></a><span class="co">#&gt; [1] &quot;FALSE&quot; NA      &quot;FALSE&quot; &quot;TRUE&quot;  &quot;ae&quot;    NA      &quot;ou&quot;</span></span>
+<span id="cb107-3"><a href="conversão-entre-tipos-de-dados.html#cb107-3"></a><span class="kw">typeof</span>(vmix_log_char)</span>
+<span id="cb107-4"><a href="conversão-entre-tipos-de-dados.html#cb107-4"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>A hierarquia usada na coerção entre tipos de dados segue a relação:</p>
 <p style="color:DodgerBlue; font-size:1.3em; font-weight: bold;text-align:center;">
 <code>logical &lt; integer &lt; numeric &lt;  character</code>
 </p>
 <p>A coerção implícita pode ser bastante útil em operações com variáveis lógicas. Para descobrirmos quantos números são positivos na variável <code>vetor_num</code>, podemos fazer:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
-vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> 
-<span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE    NA</span>
-<span class="kw">sum</span>(vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 2</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="conversão-entre-tipos-de-dados.html#cb108-1"></a><span class="co"># vetor lógico</span></span>
+<span id="cb108-2"><a href="conversão-entre-tipos-de-dados.html#cb108-2"></a>vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> </span>
+<span id="cb108-3"><a href="conversão-entre-tipos-de-dados.html#cb108-3"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE    NA</span></span>
+<span id="cb108-4"><a href="conversão-entre-tipos-de-dados.html#cb108-4"></a><span class="kw">sum</span>(vetor_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb108-5"><a href="conversão-entre-tipos-de-dados.html#cb108-5"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 <p>Neste exemplo, os valores lógicos obtidos com o operador <code>&gt;</code> foram implicitamente convertidos para numéricos (<code>TRUE</code> para <code>1</code>, <code>FALSE</code> para <code>0</code>) antes de se obter a soma dos casos verdadeiros. O argumento <code>na.rm = TRUE</code> habilita a funcionalidade de realizar a soma ignorando os itens faltantes.</p>
 </div>
             </section>
@@ -537,7 +568,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -2,7 +2,7 @@
 title: "Análise de Dados Ambientais com R"
 #subtitle: "Versão preliminar"
 author: "Jônatan Tatsch"
-date: "2020-07-20"
+date: "2020-11-07"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -70,6 +70,8 @@ O texto é organizado em 7 capítulos:
 
 - \@ref(data-wrangle) Processamento de dados
 
+- \@ref(data-vis) Visualização de dados
+
 
 <!-- 
 # estrutura de conteúdo de livro ideal
@@ -79,24 +81,10 @@ https://github.com/lhmet-forks/eda-for-bio
 https://tavareshugo.github.io/r-eda-gapminder/
 -->
 
-<!-- 
-https://github.com/ELToulemonde/dataPreparation
-https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html
--->
 
 
-<!--
-- Para um futuro capítulo de EDA
- https://www.udemy.com/course/automating-data-exploration-with-r/
- 
- # top demais!
- https://github.com/mstaniak/autoEDA-resources
- 
-  https://boxuancui.github.io/DataExplorer/
- 
--->
 
-<!-- - AUTOMAÇÂO COM R 
+<!-- - AUTOMAÇÂO COM R  - PROCESS AUTOMATION WITH R
 https://datacarpentry.org/rr-automation/ 
 
 # The Automation of GitHub Processes in RStudio
