@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.1 Pré-requisitos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.1 Pré-requisitos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-08" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -94,6 +94,7 @@ code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
 code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
 code > span. { color: #1f1c1b; } /* Normal */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -595,7 +596,6 @@ sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span clas
 <span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tair =</span> <span class="kw">mean</span>(tair, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tair =</span> <span class="kw">ifelse</span>(<span class="kw">is.nan</span>(tair), <span class="ot">NA</span>, tair))
-<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 
 <span class="kw">glimpse</span>(tair_poa_dly)
 <span class="co">#&gt; Rows: 5,579</span>
@@ -613,11 +613,10 @@ sulbr_dh &lt;-<span class="st"> </span><span class="kw">import</span>(<span clas
             <span class="dt">n_obs =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(tair))
             ) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>()
-<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 tair_poa_clim
 <span class="co">#&gt; # A tibble: 366 x 8</span>
 <span class="co">#&gt;      doy   med   max   min    q5   q95 n_anos n_obs</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  * &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1     1  24.3  27.5  19.6  20.0  27.4     15    15</span>
 <span class="co">#&gt;  2     2  24.2  28.4  20.2  20.3  28.1     15    15</span>
 <span class="co">#&gt;  3     3  23.5  27.3  16.0  19.8  27.3     15    15</span>

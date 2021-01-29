@@ -569,9 +569,9 @@ Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="imag
 
 ```r
 Sys.Date()
-#> [1] "2020-11-08"
+#> [1] "2021-01-29"
 Sys.time()
-#> [1] "2020-11-08 20:45:35 UTC"
+#> [1] "2021-01-29 21:35:47 UTC"
 ```
 
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
@@ -629,7 +629,7 @@ Para extrair informações de uma data, como por exemplo o ano, podemos usar a f
 
 ```r
 format(x = Sys.Date(), format = "%Y")
-#> [1] "2020"
+#> [1] "2021"
 ```
 
 O argumento format também pode ser especificado nas funções `as.Date()` e `as.POSIXct()`, assim provendo grande versatilidade para ler datas em diferentes formatos. No exemplo a seguir, vamos converter um caractere com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.

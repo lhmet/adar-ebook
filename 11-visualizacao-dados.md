@@ -290,7 +290,6 @@ tair_poa_dly <- sulbr_dh %>%
   group_by(date = as.Date(date)) %>%
   summarise(tair = mean(tair, na.rm = TRUE)) %>%
   mutate(tair = ifelse(is.nan(tair), NA, tair))
-#> `summarise()` ungrouping output (override with `.groups` argument)
 
 glimpse(tair_poa_dly)
 #> Rows: 5,579
@@ -312,11 +311,10 @@ tair_poa_clim <- tair_poa_dly %>%
             n_obs = sum(!is.na(tair))
             ) %>% 
   ungroup()
-#> `summarise()` ungrouping output (override with `.groups` argument)
 tair_poa_clim
 #> # A tibble: 366 x 8
 #>      doy   med   max   min    q5   q95 n_anos n_obs
-#>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <int> <int>
+#>  * <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <int> <int>
 #>  1     1  24.3  27.5  19.6  20.0  27.4     15    15
 #>  2     2  24.2  28.4  20.2  20.3  28.1     15    15
 #>  3     3  23.5  27.3  16.0  19.8  27.3     15    15
