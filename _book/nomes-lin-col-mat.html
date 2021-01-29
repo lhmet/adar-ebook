@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.2 Nomes das linhas e colunas de uma matriz | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.2 Nomes das linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="A.2 Nomes das linhas e colunas de uma matriz | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -437,49 +437,49 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">A.2</span> Nomes das linhas e colunas de uma matriz</h2>
 <p>Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara.
 Vamos usar os vetores de temperatura mensal dos anos de <code>1990:1992</code>para construir uma matriz com os meses ao longo das colunas e os anos ao longo das linhas.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="nomes-lin-col-mat.html#cb485-1"></a><span class="co"># temperatura do ar média mensal do ano de 1990</span></span>
-<span id="cb485-2"><a href="nomes-lin-col-mat.html#cb485-2"></a>temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb485-3"><a href="nomes-lin-col-mat.html#cb485-3"></a>  <span class="fl">25.00</span>, <span class="fl">23.20</span>, <span class="fl">22.50</span>, <span class="fl">21.00</span>, <span class="fl">19.00</span>, <span class="fl">17.60</span>,</span>
-<span id="cb485-4"><a href="nomes-lin-col-mat.html#cb485-4"></a>  <span class="fl">18.00</span>, <span class="fl">19.70</span>, <span class="fl">21.30</span>, <span class="fl">22.00</span>, <span class="fl">24.00</span>, <span class="fl">26.80</span></span>
-<span id="cb485-5"><a href="nomes-lin-col-mat.html#cb485-5"></a>)</span>
-<span id="cb485-6"><a href="nomes-lin-col-mat.html#cb485-6"></a><span class="co"># temperatura do ar média mensal do ano de 1991</span></span>
-<span id="cb485-7"><a href="nomes-lin-col-mat.html#cb485-7"></a>temp91 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb485-8"><a href="nomes-lin-col-mat.html#cb485-8"></a>  <span class="fl">24.89</span>, <span class="fl">24.07</span>, <span class="fl">23.56</span>, <span class="fl">23.11</span>, <span class="fl">18.29</span>, <span class="fl">18.22</span>,</span>
-<span id="cb485-9"><a href="nomes-lin-col-mat.html#cb485-9"></a>  <span class="fl">16.72</span>, <span class="fl">19.37</span>, <span class="fl">20.08</span>, <span class="fl">21.45</span>, <span class="fl">26.61</span>, <span class="fl">25.99</span></span>
-<span id="cb485-10"><a href="nomes-lin-col-mat.html#cb485-10"></a>)</span>
-<span id="cb485-11"><a href="nomes-lin-col-mat.html#cb485-11"></a><span class="co"># temperatura do ar média mensal do ano de 1992</span></span>
-<span id="cb485-12"><a href="nomes-lin-col-mat.html#cb485-12"></a>temp92 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb485-13"><a href="nomes-lin-col-mat.html#cb485-13"></a>  <span class="fl">23.2</span>, <span class="fl">26.61</span>, <span class="dv">18</span>, <span class="fl">23.11</span>, <span class="fl">26.8</span>, <span class="fl">21.3</span>, <span class="fl">18.22</span>,</span>
-<span id="cb485-14"><a href="nomes-lin-col-mat.html#cb485-14"></a>  <span class="fl">21.45</span>, <span class="fl">19.7</span>, <span class="fl">22.5</span>, <span class="fl">24.07</span>, <span class="fl">20.08</span></span>
-<span id="cb485-15"><a href="nomes-lin-col-mat.html#cb485-15"></a>)</span>
-<span id="cb485-16"><a href="nomes-lin-col-mat.html#cb485-16"></a><span class="co"># vetor com as temperaturas dos 3 anos</span></span>
-<span id="cb485-17"><a href="nomes-lin-col-mat.html#cb485-17"></a>vtemp &lt;-<span class="st"> </span><span class="kw">c</span>(temp90, temp91, temp92)</span>
-<span id="cb485-18"><a href="nomes-lin-col-mat.html#cb485-18"></a>vtemp</span>
-<span id="cb485-19"><a href="nomes-lin-col-mat.html#cb485-19"></a><span class="co">#&gt;  [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
-<span id="cb485-20"><a href="nomes-lin-col-mat.html#cb485-20"></a><span class="co">#&gt; [13] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
-<span id="cb485-21"><a href="nomes-lin-col-mat.html#cb485-21"></a><span class="co">#&gt; [25] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
-<span id="cb485-22"><a href="nomes-lin-col-mat.html#cb485-22"></a><span class="co"># arranjar matrix com meses ao longo das colunas e anos ao longo das linhas</span></span>
-<span id="cb485-23"><a href="nomes-lin-col-mat.html#cb485-23"></a>temp_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vtemp, <span class="dt">ncol =</span> <span class="dv">12</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb485-24"><a href="nomes-lin-col-mat.html#cb485-24"></a>temp_mat</span>
-<span id="cb485-25"><a href="nomes-lin-col-mat.html#cb485-25"></a><span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></span>
-<span id="cb485-26"><a href="nomes-lin-col-mat.html#cb485-26"></a><span class="co">#&gt; [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
-<span id="cb485-27"><a href="nomes-lin-col-mat.html#cb485-27"></a><span class="co">#&gt; [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
-<span id="cb485-28"><a href="nomes-lin-col-mat.html#cb485-28"></a><span class="co">#&gt; [3,] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
-<span id="cb485-29"><a href="nomes-lin-col-mat.html#cb485-29"></a><span class="co"># cópia da matriz temp_mat (sem nomes)</span></span>
-<span id="cb485-30"><a href="nomes-lin-col-mat.html#cb485-30"></a>temp_matO &lt;-<span class="st"> </span>temp_mat</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="nomes-lin-col-mat.html#cb495-1"></a><span class="co"># temperatura do ar média mensal do ano de 1990</span></span>
+<span id="cb495-2"><a href="nomes-lin-col-mat.html#cb495-2"></a>temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb495-3"><a href="nomes-lin-col-mat.html#cb495-3"></a>  <span class="fl">25.00</span>, <span class="fl">23.20</span>, <span class="fl">22.50</span>, <span class="fl">21.00</span>, <span class="fl">19.00</span>, <span class="fl">17.60</span>,</span>
+<span id="cb495-4"><a href="nomes-lin-col-mat.html#cb495-4"></a>  <span class="fl">18.00</span>, <span class="fl">19.70</span>, <span class="fl">21.30</span>, <span class="fl">22.00</span>, <span class="fl">24.00</span>, <span class="fl">26.80</span></span>
+<span id="cb495-5"><a href="nomes-lin-col-mat.html#cb495-5"></a>)</span>
+<span id="cb495-6"><a href="nomes-lin-col-mat.html#cb495-6"></a><span class="co"># temperatura do ar média mensal do ano de 1991</span></span>
+<span id="cb495-7"><a href="nomes-lin-col-mat.html#cb495-7"></a>temp91 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb495-8"><a href="nomes-lin-col-mat.html#cb495-8"></a>  <span class="fl">24.89</span>, <span class="fl">24.07</span>, <span class="fl">23.56</span>, <span class="fl">23.11</span>, <span class="fl">18.29</span>, <span class="fl">18.22</span>,</span>
+<span id="cb495-9"><a href="nomes-lin-col-mat.html#cb495-9"></a>  <span class="fl">16.72</span>, <span class="fl">19.37</span>, <span class="fl">20.08</span>, <span class="fl">21.45</span>, <span class="fl">26.61</span>, <span class="fl">25.99</span></span>
+<span id="cb495-10"><a href="nomes-lin-col-mat.html#cb495-10"></a>)</span>
+<span id="cb495-11"><a href="nomes-lin-col-mat.html#cb495-11"></a><span class="co"># temperatura do ar média mensal do ano de 1992</span></span>
+<span id="cb495-12"><a href="nomes-lin-col-mat.html#cb495-12"></a>temp92 &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb495-13"><a href="nomes-lin-col-mat.html#cb495-13"></a>  <span class="fl">23.2</span>, <span class="fl">26.61</span>, <span class="dv">18</span>, <span class="fl">23.11</span>, <span class="fl">26.8</span>, <span class="fl">21.3</span>, <span class="fl">18.22</span>,</span>
+<span id="cb495-14"><a href="nomes-lin-col-mat.html#cb495-14"></a>  <span class="fl">21.45</span>, <span class="fl">19.7</span>, <span class="fl">22.5</span>, <span class="fl">24.07</span>, <span class="fl">20.08</span></span>
+<span id="cb495-15"><a href="nomes-lin-col-mat.html#cb495-15"></a>)</span>
+<span id="cb495-16"><a href="nomes-lin-col-mat.html#cb495-16"></a><span class="co"># vetor com as temperaturas dos 3 anos</span></span>
+<span id="cb495-17"><a href="nomes-lin-col-mat.html#cb495-17"></a>vtemp &lt;-<span class="st"> </span><span class="kw">c</span>(temp90, temp91, temp92)</span>
+<span id="cb495-18"><a href="nomes-lin-col-mat.html#cb495-18"></a>vtemp</span>
+<span id="cb495-19"><a href="nomes-lin-col-mat.html#cb495-19"></a><span class="co">#&gt;  [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb495-20"><a href="nomes-lin-col-mat.html#cb495-20"></a><span class="co">#&gt; [13] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb495-21"><a href="nomes-lin-col-mat.html#cb495-21"></a><span class="co">#&gt; [25] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb495-22"><a href="nomes-lin-col-mat.html#cb495-22"></a><span class="co"># arranjar matrix com meses ao longo das colunas e anos ao longo das linhas</span></span>
+<span id="cb495-23"><a href="nomes-lin-col-mat.html#cb495-23"></a>temp_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vtemp, <span class="dt">ncol =</span> <span class="dv">12</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb495-24"><a href="nomes-lin-col-mat.html#cb495-24"></a>temp_mat</span>
+<span id="cb495-25"><a href="nomes-lin-col-mat.html#cb495-25"></a><span class="co">#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11] [,12]</span></span>
+<span id="cb495-26"><a href="nomes-lin-col-mat.html#cb495-26"></a><span class="co">#&gt; [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb495-27"><a href="nomes-lin-col-mat.html#cb495-27"></a><span class="co">#&gt; [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb495-28"><a href="nomes-lin-col-mat.html#cb495-28"></a><span class="co">#&gt; [3,] 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb495-29"><a href="nomes-lin-col-mat.html#cb495-29"></a><span class="co"># cópia da matriz temp_mat (sem nomes)</span></span>
+<span id="cb495-30"><a href="nomes-lin-col-mat.html#cb495-30"></a>temp_matO &lt;-<span class="st"> </span>temp_mat</span></code></pre></div>
 <p>Atribuindo nomes às linhas (<code>rownames()</code>) e colunas (<code>colnames()</code>) da matriz criada dos vetores de temperatura mensal (<code>temp_mat</code>).</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="nomes-lin-col-mat.html#cb486-1"></a><span class="co"># atribuindo nomes as colunas e linhas da temp_mat</span></span>
-<span id="cb486-2"><a href="nomes-lin-col-mat.html#cb486-2"></a><span class="kw">rownames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ano1990&quot;</span>, <span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;ano1992&quot;</span>)</span>
-<span id="cb486-3"><a href="nomes-lin-col-mat.html#cb486-3"></a><span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb486-4"><a href="nomes-lin-col-mat.html#cb486-4"></a>  <span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>,</span>
-<span id="cb486-5"><a href="nomes-lin-col-mat.html#cb486-5"></a>  <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>,</span>
-<span id="cb486-6"><a href="nomes-lin-col-mat.html#cb486-6"></a>  <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span></span>
-<span id="cb486-7"><a href="nomes-lin-col-mat.html#cb486-7"></a>)</span>
-<span id="cb486-8"><a href="nomes-lin-col-mat.html#cb486-8"></a>temp_mat</span>
-<span id="cb486-9"><a href="nomes-lin-col-mat.html#cb486-9"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
-<span id="cb486-10"><a href="nomes-lin-col-mat.html#cb486-10"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
-<span id="cb486-11"><a href="nomes-lin-col-mat.html#cb486-11"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
-<span id="cb486-12"><a href="nomes-lin-col-mat.html#cb486-12"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="nomes-lin-col-mat.html#cb496-1"></a><span class="co"># atribuindo nomes as colunas e linhas da temp_mat</span></span>
+<span id="cb496-2"><a href="nomes-lin-col-mat.html#cb496-2"></a><span class="kw">rownames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ano1990&quot;</span>, <span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;ano1992&quot;</span>)</span>
+<span id="cb496-3"><a href="nomes-lin-col-mat.html#cb496-3"></a><span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb496-4"><a href="nomes-lin-col-mat.html#cb496-4"></a>  <span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>,</span>
+<span id="cb496-5"><a href="nomes-lin-col-mat.html#cb496-5"></a>  <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>,</span>
+<span id="cb496-6"><a href="nomes-lin-col-mat.html#cb496-6"></a>  <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span></span>
+<span id="cb496-7"><a href="nomes-lin-col-mat.html#cb496-7"></a>)</span>
+<span id="cb496-8"><a href="nomes-lin-col-mat.html#cb496-8"></a>temp_mat</span>
+<span id="cb496-9"><a href="nomes-lin-col-mat.html#cb496-9"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb496-10"><a href="nomes-lin-col-mat.html#cb496-10"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb496-11"><a href="nomes-lin-col-mat.html#cb496-11"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb496-12"><a href="nomes-lin-col-mat.html#cb496-12"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span></code></pre></div>
 </div>
             </section>
 

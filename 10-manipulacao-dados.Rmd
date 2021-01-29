@@ -1464,7 +1464,7 @@ $ tmin <dbl> 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1, 17.2, 2
 
 
 
-Estrutura da tabela resultante:
+A estrutura da tabela resultante é:
 
 ```
 Rows: 3
@@ -1489,15 +1489,28 @@ datas_comp
 datas_obs
 ```
 
+Os resultados esperados, estruturados em um tibble, são:
 
-
-
+```
+Rows: 8
+Columns: 2
+$ date  <date> 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-18, 2018-07-19, 2018-07-20
+$ theta <dbl> 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
+```
 
 
 
   b. a tabela resultante contenha exatamente as datas da tabela `data_comp` (em ordem cronológica) e as observações de umidade do solo (`theta`) sejam preenchidas com `NA`.
-  
 
+
+Os resultados esperados, estruturados em um tibble, são:
+
+```
+Rows: 7
+Columns: 2
+$ date  <date> 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-18, 2018-07-19, 2018-07-20
+$ theta <dbl> 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA
+```
 
 
 
@@ -1506,7 +1519,16 @@ datas_obs
 9. Utilizando os dados horários de estações meteorológicas automáticas (EMA) do RS (`dados_rs_08_16`), determine a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável `site`).
 
 
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
+```
+Rows: 42
+Columns: 6
+$ site           <chr> "A899", "A897", "A894", "A889", "A886", "A884", "A883", "A882", "A881", "A880", "A879", "A878", "A856", "…
+$ inicio         <dttm> 2008-03-07 21:00:00, 2016-11-23 21:00:00, 2016-06-30 21:00:00, 2016-06-30 21:00:00, 2016-08-10 21:00:00,…
+$ fim            <dttm> 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00,…
+$ period         <dbl> 8.32, 0.10, 0.50, 0.50, 0.39, 2.59, 3.55, 3.75, 6.20, 8.19, 7.86, 8.31, 8.35, 8.50, 8.50, 8.50, 8.50, 8.5…
+```
 
 
 
@@ -1514,14 +1536,37 @@ datas_obs
 
 10. Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.
 
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
+```
+Rows: 42
+Columns: 6
+$ site <chr> "A801", "A802", "A803", "A804", "A805", "A808", "A809", "A810", "A811", "A812", "A813", "A826", "A827", "A828", "A8…
+$ tair <int> 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 96, 95, 94, 95, 96, 96, 96, 97, 94, 99, 96, 96, 89, 98, 98,…
+$ rh   <int> 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 96, 95, 94, 95, 96, 94, 96, 97, 94, 99, 96, 96, 89, 98, 98,…
+$ prec <int> 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 96, 90, 91, 95, 96, 96, 96, 97, 94, 99, 96, 95, 88, 98, 98,…
+$ rg   <int> 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 51, 50, 50, 50, 49, 50, 50, 50, 49, 50, 51, 51, 47, 51, 51,…
+$ ws   <int> 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 75, 95, 94, 95, 92, 95, 96, 97, 94, 99, 96, 96, 89, 98, 98,…
+```
 
 
 - - -
 
 11. Com o resultado da questão anterior, adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações. 
-  
 
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
+
+```
+Rows: 42
+Columns: 7
+$ site     <chr> "A894", "A886", "A801", "A884", "A839", "A889", "A879", "A853", "A854", "A880", "A882", "A827", "A897", "A837",…
+$ tair     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96, 97, 96, 96, 97, 97, 96, 96, 96, 96, 96, 95, 96, 95, 96, 9…
+$ rh       <int> 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, 97, 96, 96, 97, 95, 96, 96, 96, 96, 94, 95, 91, 95, 96, 97…
+$ prec     <int> 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96, 97, 96, 97, 97, 95, 96, 96, 96, 95, 96, 95, 96, 93, 96, 8…
+$ rg       <int> 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 50, 51, 51, 48, 51, 51, 51, 50, 51, 50, 50, 50, 50, 49, 48,…
+$ ws       <int> 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 97, 97, 96, 96, 97, 96, 95, 96, 96, 95, 95, 96, 96, 92, 97,…
+$ disp_med <dbl> 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6, 88.2, 88.2, 87.8, 87.8, 87.6, 87.2, 87.2, 87.0, 87.0, 87.…
+```
 
 
 - - -
@@ -1531,7 +1576,15 @@ datas_obs
 > Dica: Para extrair as horas das datas use a função `lubridate::hour(date)`.
 
 
+A estrutura esperada do *tibble* resultante é mostrada abaixo:
 
+```
+Rows: 24
+Columns: 3
+$ hour      <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+$ tair_med  <dbl> 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15.73293, 15.57606, 15.70728, 16.40075, 17.63952, 19.12996, …
+$ tair_disp <dbl> 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96.10431, 96.10431, 96.00773, 96.13651, 96.74823, 96.81262, …
+```
 
 
 
@@ -1542,6 +1595,41 @@ datas_obs
 > Dica: para obter o dia a partir da data e hora (coluna `date` do tipo `POSIXct`) use `lubridate::floor_date(date, unit = "day")`.
 
 
+Os resultados para (a) são mostrados abaixo:
+
+```
+nrow(sm_tair)
+74544
+
+glimpse(dias_completos)
+Rows: 2,945
+Columns: 1
+$ dias <dttm> 2008-01-01, 2008-01-02, 2008-01-03, 2008-01-04, 2008-01-05, 2008-01-06, 2008-01-07, 2008-01-08, 2008-01-09, 2008-01…
+
+glimpse(tail(dias_completos))
+Rows: 6
+Columns: 1
+$ day <dttm> 2016-12-25, 2016-12-26, 2016-12-27, 2016-12-28, 2016-12-29, 2016-12-30
+```
+
+A estrutura dos resultados para (b) é mostrada abaixo:
+
+```
+glimpse(freq_htmin)
+Rows: 24
+Columns: 2
+$ h_tmin <int> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+$ n      <int> 75, 60, 90, 122, 190, 311, 720, 560, 196, 28, 16, 7, 8, 3, 7, 6, 4, 7, 2, 6, 15, 29, 47, 436
+```
+
+A estrutura dos resultados para (c) é mostrada abaixo:
+
+```
+Rows: 24
+Columns: 2
+$ h_tmin <int> 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 11, 14, 17, 15, 19, 16, 13, 18
+$ n      <int> 720, 560, 436, 311, 196, 190, 122, 90, 75, 60, 47, 29, 28, 16, 15, 8, 7, 7, 7, 6, 6, 4, 3, 2
+```
 
 
 - - -
@@ -1566,8 +1654,21 @@ datas_obs
 
 
 
+A estrutura dos dados resultantes esperados é mostrada abaixo.
 
-
+```
+Rows: 8
+Columns: 9
+$ site_ema <chr> "A803", "A803", "A803", "A803", "A803", "A803", "A803", "A803"
+$ date     <dttm> 2009-10-30, 2009-10-31, 2013-12-26, 2014-02-05, 2014-02-06, 2014-02-07, 2014-02-09, 2014-10-29
+$ tmax     <dbl> 35.80, 36.80, 38.35, 38.00, 38.30, 39.50, 38.30, 36.75
+$ tmin     <dbl> 20.40, 21.80, 21.20, 23.85, 24.35, 23.20, 22.90, 22.45
+$ nobs     <int> 24, 24, 24, 24, 24, 24, 24, 24
+$ mes      <dbl> 10, 10, 12, 2, 2, 2, 2, 10
+$ site_emc <chr> "83936", "83936", "83936", "83936", "83936", "83936", "83936", "83936"
+$ tmin_abs <dbl> 3.6, 3.6, 7.2, 10.4, 10.4, 10.4, 10.4, 3.6
+$ tmax_abs <dbl> 35.5, 35.5, 38.3, 37.6, 37.6, 37.6, 37.6, 35.5
+```
 
 
 

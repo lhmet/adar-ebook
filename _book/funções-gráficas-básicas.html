@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.4 Funções gráficas básicas | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.4 Funções gráficas básicas | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="11.4 Funções gráficas básicas | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -438,36 +438,36 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="diferentes-entradas-de-dados-na-plot" class="section level3">
 <h3><span class="header-section-number">11.4.1</span> Diferentes entradas de dados na <code>plot()</code></h3>
 <p>A função <code>plot()</code> é o carro chefe do Sistema Básico do <img src="images/logo_r.png" width="20">. Quando especificamos apenas um vetor é plotado seus valores no eixo y em função de seu tamanho <code>1:length(x)</code> no eixo x.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="funções-gráficas-básicas.html#cb423-1"></a><span class="kw">plot</span>(y1)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="funções-gráficas-básicas.html#cb433-1"></a><span class="kw">plot</span>(y1)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Você também pode especificar os parâmetros x e y.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="funções-gráficas-básicas.html#cb424-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="funções-gráficas-básicas.html#cb434-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Também podemos especificar no primeiro argumento da <code>plot()</code> uma fórmula, p.ex.: <code>y ~ x</code> que pode ser interpretada como y (variável) em função de x.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="funções-gráficas-básicas.html#cb425-1"></a><span class="kw">plot</span>(y1 <span class="op">~</span><span class="st"> </span>x1)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="funções-gráficas-básicas.html#cb435-1"></a><span class="kw">plot</span>(y1 <span class="op">~</span><span class="st"> </span>x1)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Se você tem seus dados em um quadro de dados, utilize o argumento <code>data</code> e o nome das variáveis que deseja plotar na fórmula.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="funções-gráficas-básicas.html#cb426-1"></a><span class="kw">plot</span>(tmed <span class="op">~</span><span class="st"> </span>alt,  <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="funções-gráficas-básicas.html#cb436-1"></a><span class="kw">plot</span>(tmed <span class="op">~</span><span class="st"> </span>alt,  <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Aplicando a <code>plot()</code> a um <em>quadro de dados</em> com duas variáveis resulta um gráfico equivalente ao caso anterior.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="funções-gráficas-básicas.html#cb427-1"></a><span class="kw">plot</span>(onda)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="funções-gráficas-básicas.html#cb437-1"></a><span class="kw">plot</span>(onda)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="gráficos-de-dispersão" class="section level4">
 <h4><span class="header-section-number">11.4.1.1</span> Gráficos de dispersão</h4>
 <p>Aplicando a <code>plot()</code> a um quadro de dados com mais de duas variáveis resulta um gráfico de dispersão entre todas as variáveis do <em>quadro de dados</em>.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="funções-gráficas-básicas.html#cb428-1"></a><span class="co">## plot de todas colunas de aq, exceto a 1a coluna</span></span>
-<span id="cb428-2"><a href="funções-gráficas-básicas.html#cb428-2"></a><span class="kw">plot</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="funções-gráficas-básicas.html#cb438-1"></a><span class="co">## plot de todas colunas de aq, exceto a 1a coluna</span></span>
+<span id="cb438-2"><a href="funções-gráficas-básicas.html#cb438-2"></a><span class="kw">plot</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
 <p><img src="images/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.</p>
 <p>Existe uma função gráfica específica para produção deste tipo de gráfico: a função <code>pairs()</code>.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="funções-gráficas-básicas.html#cb429-1"></a><span class="co"># plote de pares</span></span>
-<span id="cb429-2"><a href="funções-gráficas-básicas.html#cb429-2"></a><span class="kw">pairs</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="funções-gráficas-básicas.html#cb439-1"></a><span class="co"># plote de pares</span></span>
+<span id="cb439-2"><a href="funções-gráficas-básicas.html#cb439-2"></a><span class="kw">pairs</span>(<span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
 <p><img src="images/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A função <code>pairs.panels()</code> do pacote <code>psych</code> fornece um gráfico de pares bastante informativo e foi expandida a partir da função <code>pairs()</code>.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="funções-gráficas-básicas.html#cb430-1"></a><span class="kw">pairs.panels</span>(<span class="dt">x =</span> <span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="funções-gráficas-básicas.html#cb440-1"></a><span class="kw">pairs.panels</span>(<span class="dt">x =</span> <span class="kw">select</span>(aq, <span class="op">-</span>date))</span></code></pre></div>
 <p><img src="images/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Para fechar as janelas gráficas abertas:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="funções-gráficas-básicas.html#cb431-1"></a><span class="kw">graphics.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="funções-gráficas-básicas.html#cb441-1"></a><span class="kw">graphics.off</span>()</span></code></pre></div>
 </div>
 </div>
 </div>

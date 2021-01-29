@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.5 Exercícios | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.5 Exercícios | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="10.5 Exercícios | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -556,7 +556,7 @@ $ tmin &lt;dbl&gt; 16.0, 13.5, 18.2, 24.1, 19.0, 13.7, 16.3, 22.3, 21.0, 14.1, 1
 <ol start="7" style="list-style-type: decimal">
 <li>Faça uma junção da tabela de dados de informações das estações de poluição (<code>eatacoes</code>, dada abaixo) com os períodos de duração de poluição crítica (<code>poluentes</code>). A tabela resultante deve conter somente estações que tenham coordenadas espaciais e medidas de poluentes válidas.</li>
 </ol>
-<p>Estrutura da tabela resultante:</p>
+<p>A estrutura da tabela resultante é:</p>
 <pre><code>Rows: 3
 Columns: 5
 $ id       &lt;int&gt; 1, 1, 2
@@ -575,21 +575,57 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 <span id="cb401-2"><a href="exercícios-4.html#cb401-2"></a>datas_comp</span>
 <span id="cb401-3"><a href="exercícios-4.html#cb401-3"></a><span class="co"># datas das observações de theta</span></span>
 <span id="cb401-4"><a href="exercícios-4.html#cb401-4"></a>datas_obs</span></code></pre></div>
+<p>Os resultados esperados, estruturados em um tibble, são:</p>
+<pre><code>Rows: 8
+Columns: 2
+$ date  &lt;date&gt; 2018-07-13, 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-18, 2018-07-19, 2018-07-20
+$ theta &lt;dbl&gt; 0.3295812, 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>a tabela resultante contenha exatamente as datas da tabela <code>data_comp</code> (em ordem cronológica) e as observações de umidade do solo (<code>theta</code>) sejam preenchidas com <code>NA</code>.</li>
 </ol>
+<p>Os resultados esperados, estruturados em um tibble, são:</p>
+<pre><code>Rows: 7
+Columns: 2
+$ date  &lt;date&gt; 2018-07-14, 2018-07-15, 2018-07-16, 2018-07-17, 2018-07-18, 2018-07-19, 2018-07-20
+$ theta &lt;dbl&gt; 0.4123798, 0.3917322, NA, NA, 0.3268883, NA, NA</code></pre>
 <hr />
 <ol start="9" style="list-style-type: decimal">
 <li>Utilizando os dados horários de estações meteorológicas automáticas (EMA) do RS (<code>dados_rs_08_16</code>), determine a data inicial, final e o período de dados (em anos) de cada estação (identificada pela variável <code>site</code>).</li>
 </ol>
+<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<pre><code>Rows: 42
+Columns: 6
+$ site           &lt;chr&gt; &quot;A899&quot;, &quot;A897&quot;, &quot;A894&quot;, &quot;A889&quot;, &quot;A886&quot;, &quot;A884&quot;, &quot;A883&quot;, &quot;A882&quot;, &quot;A881&quot;, &quot;A880&quot;, &quot;A879&quot;, &quot;A878&quot;, &quot;A856&quot;, &quot;…
+$ inicio         &lt;dttm&gt; 2008-03-07 21:00:00, 2016-11-23 21:00:00, 2016-06-30 21:00:00, 2016-06-30 21:00:00, 2016-08-10 21:00:00,…
+$ fim            &lt;dttm&gt; 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00, 2016-12-31 20:00:00,…
+$ period         &lt;dbl&gt; 8.32, 0.10, 0.50, 0.50, 0.39, 2.59, 3.55, 3.75, 6.20, 8.19, 7.86, 8.31, 8.35, 8.50, 8.50, 8.50, 8.50, 8.5…</code></pre>
 <hr />
 <ol start="10" style="list-style-type: decimal">
 <li>Determine a porcentagem de dados válidos (ou seja, não faltantes) de cada variável para cada EMA. Aproxime os valores para números inteiros.</li>
 </ol>
+<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<pre><code>Rows: 42
+Columns: 6
+$ site &lt;chr&gt; &quot;A801&quot;, &quot;A802&quot;, &quot;A803&quot;, &quot;A804&quot;, &quot;A805&quot;, &quot;A808&quot;, &quot;A809&quot;, &quot;A810&quot;, &quot;A811&quot;, &quot;A812&quot;, &quot;A813&quot;, &quot;A826&quot;, &quot;A827&quot;, &quot;A828&quot;, &quot;A8…
+$ tair &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 86, 97, 96, 96, 94, 97, 95, 96, 95, 94, 95, 96, 96, 96, 97, 94, 99, 96, 96, 89, 98, 98,…
+$ rh   &lt;int&gt; 99, 86, 96, 77, 93, 91, 97, 86, 95, 96, 96, 94, 97, 95, 96, 95, 94, 95, 96, 94, 96, 97, 94, 99, 96, 96, 89, 98, 98,…
+$ prec &lt;int&gt; 99, 93, 96, 80, 93, 96, 97, 87, 95, 96, 97, 93, 97, 93, 96, 90, 91, 95, 96, 96, 96, 97, 94, 99, 96, 95, 88, 98, 98,…
+$ rg   &lt;int&gt; 52, 49, 51, 44, 49, 50, 48, 46, 51, 51, 51, 49, 51, 50, 51, 50, 50, 50, 49, 50, 50, 50, 49, 50, 51, 51, 47, 51, 51,…
+$ ws   &lt;int&gt; 99, 93, 95, 80, 93, 96, 96, 87, 97, 97, 96, 94, 97, 96, 75, 95, 94, 95, 92, 95, 96, 97, 94, 99, 96, 96, 89, 98, 98,…</code></pre>
 <hr />
 <ol start="11" style="list-style-type: decimal">
 <li>Com o resultado da questão anterior, adicione uma variável indicativa da porcentagem média de observações válidas de todas variáveis. Ordene esta tabela em ordem decrescente da disponibilidade média de observações.</li>
 </ol>
+<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<pre><code>Rows: 42
+Columns: 7
+$ site     &lt;chr&gt; &quot;A894&quot;, &quot;A886&quot;, &quot;A801&quot;, &quot;A884&quot;, &quot;A839&quot;, &quot;A889&quot;, &quot;A879&quot;, &quot;A853&quot;, &quot;A854&quot;, &quot;A880&quot;, &quot;A882&quot;, &quot;A827&quot;, &quot;A897&quot;, &quot;A837&quot;,…
+$ tair     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 98, 97, 96, 97, 96, 96, 97, 97, 96, 96, 96, 96, 96, 95, 96, 95, 96, 9…
+$ rh       &lt;int&gt; 100, 99, 99, 99, 99, 94, 98, 98, 98, 98, 98, 97, 96, 97, 96, 96, 97, 95, 96, 96, 96, 96, 94, 95, 91, 95, 96, 97…
+$ prec     &lt;int&gt; 100, 99, 99, 99, 99, 100, 98, 98, 98, 98, 95, 97, 96, 97, 96, 97, 97, 95, 96, 96, 96, 95, 96, 95, 96, 93, 96, 8…
+$ rg       &lt;int&gt; 53, 55, 52, 52, 50, 53, 52, 51, 51, 52, 52, 51, 56, 50, 51, 51, 48, 51, 51, 51, 50, 51, 50, 50, 50, 50, 49, 48,…
+$ ws       &lt;int&gt; 99, 99, 99, 99, 99, 99, 98, 98, 98, 95, 98, 97, 95, 97, 97, 96, 96, 97, 96, 95, 96, 96, 95, 95, 96, 96, 92, 97,…
+$ disp_med &lt;dbl&gt; 90.4, 90.2, 89.6, 89.6, 89.2, 89.2, 88.8, 88.6, 88.6, 88.2, 88.2, 87.8, 87.8, 87.6, 87.2, 87.2, 87.0, 87.0, 87.…</code></pre>
 <hr />
 <ol start="12" style="list-style-type: decimal">
 <li>Para a EMA de Santa Maria (ver <code>info_emas_rs_08_16</code>) obtenha o ciclo diurno médio da temperatura do ar e a porcentagem de dados válidos usados para compor a <code>tair</code> média de cada hora.</li>
@@ -597,6 +633,12 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 <blockquote>
 <p>Dica: Para extrair as horas das datas use a função <code>lubridate::hour(date)</code>.</p>
 </blockquote>
+<p>A estrutura esperada do <em>tibble</em> resultante é mostrada abaixo:</p>
+<pre><code>Rows: 24
+Columns: 3
+$ hour      &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+$ tair_med  &lt;dbl&gt; 17.26933, 16.87304, 16.52604, 16.21440, 15.94268, 15.73293, 15.57606, 15.70728, 16.40075, 17.63952, 19.12996, …
+$ tair_disp &lt;dbl&gt; 96.68384, 96.55505, 96.42627, 96.26529, 96.13651, 96.10431, 96.10431, 96.00773, 96.13651, 96.74823, 96.81262, …</code></pre>
 <hr />
 <ol start="13" style="list-style-type: decimal">
 <li>Com os dados de temperatura do ar (<code>tair</code>) filtrados para EMA de Santa Maria (a) selecione somente os dias observações válidas nas 24 horas (dias completos, ou seja, sem nenhuma falha nas 24 h). A partir destes dados (b) obtenha a frequência de ocorrência da temperatura mínima para cada horário do dia. (c) Apresente a tabela de resultados em ordem decrescente da frequência de ocorrência.</li>
@@ -604,6 +646,30 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 <blockquote>
 <p>Dica: para obter o dia a partir da data e hora (coluna <code>date</code> do tipo <code>POSIXct</code>) use <code>lubridate::floor_date(date, unit = "day")</code>.</p>
 </blockquote>
+<p>Os resultados para (a) são mostrados abaixo:</p>
+<pre><code>nrow(sm_tair)
+74544
+
+glimpse(dias_completos)
+Rows: 2,945
+Columns: 1
+$ dias &lt;dttm&gt; 2008-01-01, 2008-01-02, 2008-01-03, 2008-01-04, 2008-01-05, 2008-01-06, 2008-01-07, 2008-01-08, 2008-01-09, 2008-01…
+
+glimpse(tail(dias_completos))
+Rows: 6
+Columns: 1
+$ day &lt;dttm&gt; 2016-12-25, 2016-12-26, 2016-12-27, 2016-12-28, 2016-12-29, 2016-12-30</code></pre>
+<p>A estrutura dos resultados para (b) é mostrada abaixo:</p>
+<pre><code>glimpse(freq_htmin)
+Rows: 24
+Columns: 2
+$ h_tmin &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+$ n      &lt;int&gt; 75, 60, 90, 122, 190, 311, 720, 560, 196, 28, 16, 7, 8, 3, 7, 6, 4, 7, 2, 6, 15, 29, 47, 436</code></pre>
+<p>A estrutura dos resultados para (c) é mostrada abaixo:</p>
+<pre><code>Rows: 24
+Columns: 2
+$ h_tmin &lt;int&gt; 6, 7, 23, 5, 8, 4, 3, 2, 0, 1, 22, 21, 9, 10, 20, 12, 11, 14, 17, 15, 19, 16, 13, 18
+$ n      &lt;int&gt; 720, 560, 436, 311, 196, 190, 122, 90, 75, 60, 47, 29, 28, 16, 15, 8, 7, 7, 7, 6, 6, 4, 3, 2</code></pre>
 <hr />
 <ol start="14" style="list-style-type: decimal">
 <li>Neste exercício aplicaremos um controle de qualidade básico de dados meteorológicos. Você irá verificar se nos dados da EMA de Santa Maria (A803, mesmos dados do item <strong>a</strong> do exercício anterior) ocorreram casos em que a temperatura máxima (mínima) diária foi acima (abaixo) dos recordes históricos registrados pela estação meteorológica convencional do INMET de Santa Maria (site 83936). Os recordes históricos de temperatura máxima e mínima estão disponíveis nos dados <code>recordes_temp</code> para cada mês do ano. Você deve obter os casos suspeitos na estrutura conforme abaixo.</li>
@@ -621,6 +687,18 @@ $ duracao  &lt;chr&gt; &quot;1h&quot;, &quot;1h&quot;, &quot;8h&quot;</code></pr
 8 2014-10-29 00:00:00  36.8  22.4    10 83936
 # ... with 2 more variables: tmin_abs &lt;dbl&gt;,
 #   tmax_abs &lt;dbl&gt;</code></pre>
+<p>A estrutura dos dados resultantes esperados é mostrada abaixo.</p>
+<pre><code>Rows: 8
+Columns: 9
+$ site_ema &lt;chr&gt; &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;, &quot;A803&quot;
+$ date     &lt;dttm&gt; 2009-10-30, 2009-10-31, 2013-12-26, 2014-02-05, 2014-02-06, 2014-02-07, 2014-02-09, 2014-10-29
+$ tmax     &lt;dbl&gt; 35.80, 36.80, 38.35, 38.00, 38.30, 39.50, 38.30, 36.75
+$ tmin     &lt;dbl&gt; 20.40, 21.80, 21.20, 23.85, 24.35, 23.20, 22.90, 22.45
+$ nobs     &lt;int&gt; 24, 24, 24, 24, 24, 24, 24, 24
+$ mes      &lt;dbl&gt; 10, 10, 12, 2, 2, 2, 2, 10
+$ site_emc &lt;chr&gt; &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;, &quot;83936&quot;
+$ tmin_abs &lt;dbl&gt; 3.6, 3.6, 7.2, 10.4, 10.4, 10.4, 10.4, 3.6
+$ tmax_abs &lt;dbl&gt; 35.5, 35.5, 38.3, 37.6, 37.6, 37.6, 37.6, 35.5</code></pre>
 <!-- 
 Controle de qualidade e validação de dados
 

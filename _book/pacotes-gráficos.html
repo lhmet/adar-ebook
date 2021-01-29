@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.3 Pacotes Gráficos | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.3 Pacotes Gráficos | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="11.3 Pacotes Gráficos | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -439,86 +439,86 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">11.3.1</span> graphics</h3>
 <p>O sistema básico de gráficos do <img src="images/logo_r.png" width="20"> está implementado no pacote <strong><code>{graphics}</code></strong>. Ele é carregado quando iniciamos o R. Veja a saída da função <code>sessionInfo()</code> para verificar nas informações de sua sessão os pacotes carregados.
 Para ver exemplos de gráficos básicos digite <code>demo("graphics")</code> e <code>library(help = "graphics")</code> para listar as funções disponíveis no <strong><code>{graphics}</code></strong>.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="pacotes-gráficos.html#cb415-1"></a><span class="co"># lista de funções do pacote graphics</span></span>
-<span id="cb415-2"><a href="pacotes-gráficos.html#cb415-2"></a><span class="kw">library</span>(<span class="dt">help =</span> <span class="st">&quot;graphics&quot;</span>)</span>
-<span id="cb415-3"><a href="pacotes-gráficos.html#cb415-3"></a><span class="co"># exemplos de gráficos</span></span>
-<span id="cb415-4"><a href="pacotes-gráficos.html#cb415-4"></a><span class="kw">demo</span>(<span class="st">&quot;graphics&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="pacotes-gráficos.html#cb425-1"></a><span class="co"># lista de funções do pacote graphics</span></span>
+<span id="cb425-2"><a href="pacotes-gráficos.html#cb425-2"></a><span class="kw">library</span>(<span class="dt">help =</span> <span class="st">&quot;graphics&quot;</span>)</span>
+<span id="cb425-3"><a href="pacotes-gráficos.html#cb425-3"></a><span class="co"># exemplos de gráficos</span></span>
+<span id="cb425-4"><a href="pacotes-gráficos.html#cb425-4"></a><span class="kw">demo</span>(<span class="st">&quot;graphics&quot;</span>)</span></code></pre></div>
 <p>Um exemplo simples de uso da função <code>graphics::plot()</code> é mostrado abaixo:</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="pacotes-gráficos.html#cb416-1"></a><span class="kw">with</span>(</span>
-<span id="cb416-2"><a href="pacotes-gráficos.html#cb416-2"></a>  sulbr_md,</span>
-<span id="cb416-3"><a href="pacotes-gráficos.html#cb416-3"></a>  <span class="kw">plot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmax_med)</span>
-<span id="cb416-4"><a href="pacotes-gráficos.html#cb416-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="pacotes-gráficos.html#cb426-1"></a><span class="kw">with</span>(</span>
+<span id="cb426-2"><a href="pacotes-gráficos.html#cb426-2"></a>  sulbr_md,</span>
+<span id="cb426-3"><a href="pacotes-gráficos.html#cb426-3"></a>  <span class="kw">plot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmax_med)</span>
+<span id="cb426-4"><a href="pacotes-gráficos.html#cb426-4"></a>)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Para ilustrar os diferentes sistemas gráficos disponíveis no <img src="images/logo_r.png" width="20">, vamos mostrar como gerar este mesmo gráfico usando o sistema <strong><code>{grid}</code></strong>, <strong><code>{lattice}</code></strong> e <strong><code>{ggplot2}</code></strong>.</p>
 </div>
 <div id="grid" class="section level3">
 <h3><span class="header-section-number">11.3.2</span> grid</h3>
 <p>O sistema <strong>{grid}</strong> também faz parte da distribuição básica do <img src="images/logo_r.png" width="20">, mas o pacote precisa ser carregado (<code>library(grid)</code>)</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="pacotes-gráficos.html#cb417-1"></a><span class="kw">library</span>(grid)</span>
-<span id="cb417-2"><a href="pacotes-gráficos.html#cb417-2"></a><span class="co">## define tamanho da região para plot (viewport)</span></span>
-<span id="cb417-3"><a href="pacotes-gráficos.html#cb417-3"></a><span class="kw">pushViewport</span>(<span class="kw">plotViewport</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)))</span>
-<span id="cb417-4"><a href="pacotes-gráficos.html#cb417-4"></a><span class="co">## define intervalos de variação das escalas x e y</span></span>
-<span id="cb417-5"><a href="pacotes-gráficos.html#cb417-5"></a><span class="kw">pushViewport</span>(</span>
-<span id="cb417-6"><a href="pacotes-gráficos.html#cb417-6"></a>  <span class="kw">dataViewport</span>(</span>
-<span id="cb417-7"><a href="pacotes-gráficos.html#cb417-7"></a>    <span class="dt">xData =</span> sulbr_md<span class="op">$</span>alt,</span>
-<span id="cb417-8"><a href="pacotes-gráficos.html#cb417-8"></a>    <span class="dt">yData =</span> sulbr_md<span class="op">$</span>tmed</span>
-<span id="cb417-9"><a href="pacotes-gráficos.html#cb417-9"></a>  )</span>
-<span id="cb417-10"><a href="pacotes-gráficos.html#cb417-10"></a>)</span>
-<span id="cb417-11"><a href="pacotes-gráficos.html#cb417-11"></a><span class="co">## retângulo em torno da região do plot</span></span>
-<span id="cb417-12"><a href="pacotes-gráficos.html#cb417-12"></a><span class="kw">grid.rect</span>()</span>
-<span id="cb417-13"><a href="pacotes-gráficos.html#cb417-13"></a><span class="co">## eixos x e y</span></span>
-<span id="cb417-14"><a href="pacotes-gráficos.html#cb417-14"></a><span class="kw">grid.xaxis</span>()</span>
-<span id="cb417-15"><a href="pacotes-gráficos.html#cb417-15"></a><span class="kw">grid.yaxis</span>()</span>
-<span id="cb417-16"><a href="pacotes-gráficos.html#cb417-16"></a><span class="co">## labels dos eixos x e y</span></span>
-<span id="cb417-17"><a href="pacotes-gráficos.html#cb417-17"></a><span class="kw">grid.text</span>(<span class="st">&quot;Altitude (m)&quot;</span>, <span class="dt">y =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>))</span>
-<span id="cb417-18"><a href="pacotes-gráficos.html#cb417-18"></a><span class="kw">grid.text</span>(<span class="st">&quot;Temperatura (°C)&quot;</span>, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>), <span class="dt">rot =</span> <span class="dv">90</span>)</span>
-<span id="cb417-19"><a href="pacotes-gráficos.html#cb417-19"></a><span class="co">## símbolos dos dados</span></span>
-<span id="cb417-20"><a href="pacotes-gráficos.html#cb417-20"></a><span class="kw">grid.points</span>(</span>
-<span id="cb417-21"><a href="pacotes-gráficos.html#cb417-21"></a>  <span class="dt">x =</span> sulbr_md<span class="op">$</span>alt,</span>
-<span id="cb417-22"><a href="pacotes-gráficos.html#cb417-22"></a>  <span class="dt">y =</span> sulbr_md<span class="op">$</span>tmed,</span>
-<span id="cb417-23"><a href="pacotes-gráficos.html#cb417-23"></a>  <span class="dt">name =</span> <span class="st">&quot;dataSymbols&quot;</span></span>
-<span id="cb417-24"><a href="pacotes-gráficos.html#cb417-24"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="pacotes-gráficos.html#cb427-1"></a><span class="kw">library</span>(grid)</span>
+<span id="cb427-2"><a href="pacotes-gráficos.html#cb427-2"></a><span class="co">## define tamanho da região para plot (viewport)</span></span>
+<span id="cb427-3"><a href="pacotes-gráficos.html#cb427-3"></a><span class="kw">pushViewport</span>(<span class="kw">plotViewport</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)))</span>
+<span id="cb427-4"><a href="pacotes-gráficos.html#cb427-4"></a><span class="co">## define intervalos de variação das escalas x e y</span></span>
+<span id="cb427-5"><a href="pacotes-gráficos.html#cb427-5"></a><span class="kw">pushViewport</span>(</span>
+<span id="cb427-6"><a href="pacotes-gráficos.html#cb427-6"></a>  <span class="kw">dataViewport</span>(</span>
+<span id="cb427-7"><a href="pacotes-gráficos.html#cb427-7"></a>    <span class="dt">xData =</span> sulbr_md<span class="op">$</span>alt,</span>
+<span id="cb427-8"><a href="pacotes-gráficos.html#cb427-8"></a>    <span class="dt">yData =</span> sulbr_md<span class="op">$</span>tmed</span>
+<span id="cb427-9"><a href="pacotes-gráficos.html#cb427-9"></a>  )</span>
+<span id="cb427-10"><a href="pacotes-gráficos.html#cb427-10"></a>)</span>
+<span id="cb427-11"><a href="pacotes-gráficos.html#cb427-11"></a><span class="co">## retângulo em torno da região do plot</span></span>
+<span id="cb427-12"><a href="pacotes-gráficos.html#cb427-12"></a><span class="kw">grid.rect</span>()</span>
+<span id="cb427-13"><a href="pacotes-gráficos.html#cb427-13"></a><span class="co">## eixos x e y</span></span>
+<span id="cb427-14"><a href="pacotes-gráficos.html#cb427-14"></a><span class="kw">grid.xaxis</span>()</span>
+<span id="cb427-15"><a href="pacotes-gráficos.html#cb427-15"></a><span class="kw">grid.yaxis</span>()</span>
+<span id="cb427-16"><a href="pacotes-gráficos.html#cb427-16"></a><span class="co">## labels dos eixos x e y</span></span>
+<span id="cb427-17"><a href="pacotes-gráficos.html#cb427-17"></a><span class="kw">grid.text</span>(<span class="st">&quot;Altitude (m)&quot;</span>, <span class="dt">y =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>))</span>
+<span id="cb427-18"><a href="pacotes-gráficos.html#cb427-18"></a><span class="kw">grid.text</span>(<span class="st">&quot;Temperatura (°C)&quot;</span>, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="dv">3</span>, <span class="st">&quot;lines&quot;</span>), <span class="dt">rot =</span> <span class="dv">90</span>)</span>
+<span id="cb427-19"><a href="pacotes-gráficos.html#cb427-19"></a><span class="co">## símbolos dos dados</span></span>
+<span id="cb427-20"><a href="pacotes-gráficos.html#cb427-20"></a><span class="kw">grid.points</span>(</span>
+<span id="cb427-21"><a href="pacotes-gráficos.html#cb427-21"></a>  <span class="dt">x =</span> sulbr_md<span class="op">$</span>alt,</span>
+<span id="cb427-22"><a href="pacotes-gráficos.html#cb427-22"></a>  <span class="dt">y =</span> sulbr_md<span class="op">$</span>tmed,</span>
+<span id="cb427-23"><a href="pacotes-gráficos.html#cb427-23"></a>  <span class="dt">name =</span> <span class="st">&quot;dataSymbols&quot;</span></span>
+<span id="cb427-24"><a href="pacotes-gráficos.html#cb427-24"></a>)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="lattice" class="section level3">
 <h3><span class="header-section-number">11.3.3</span> <a href="http://lattice.r-forge.r-project.org/">lattice</a></h3>
 <p>É baseado no sistema <em>grid</em> e os gráficos são armazenados como variáveis (objetos que podem ser salvos). Isto possibilita plotar, fazer alterações e atualizações no objeto.</p>
 <p>Um grande atrativo do <strong>{<code>lattice</code>}</strong> são os gráficos multipainel para análise de dados multivariados.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="pacotes-gráficos.html#cb418-1"></a><span class="co"># exemplo lattice</span></span>
-<span id="cb418-2"><a href="pacotes-gráficos.html#cb418-2"></a><span class="kw">library</span>(lattice)</span>
-<span id="cb418-3"><a href="pacotes-gráficos.html#cb418-3"></a><span class="co"># interface usando fórmula</span></span>
-<span id="cb418-4"><a href="pacotes-gráficos.html#cb418-4"></a> <span class="kw">xyplot</span>(tmed <span class="op">~</span><span class="st"> </span>alt, <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="pacotes-gráficos.html#cb428-1"></a><span class="co"># exemplo lattice</span></span>
+<span id="cb428-2"><a href="pacotes-gráficos.html#cb428-2"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb428-3"><a href="pacotes-gráficos.html#cb428-3"></a><span class="co"># interface usando fórmula</span></span>
+<span id="cb428-4"><a href="pacotes-gráficos.html#cb428-4"></a> <span class="kw">xyplot</span>(tmed <span class="op">~</span><span class="st"> </span>alt, <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ggplot2" class="section level3">
 <h3><span class="header-section-number">11.3.4</span> <a href="http://ggplot2.org/">ggplot2</a></h3>
 <p>Assim como lattice também foi construído baseado no sistema <em>grid</em>. É um sistema poderoso de gráficos que torna mais fácil a produção de gráficos complexos com multicamadas. Usa os aspectos bons de ambos sistemas <strong>base</strong> e <strong>lattice</strong>. O principal fator da popularidade do <strong><code>{ggplot2}</code></strong> é o seu modelo mental mais claro e ser altamente customizável, apesar de um processamento mais lento.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="pacotes-gráficos.html#cb419-1"></a><span class="co">## exemplo ggplot2</span></span>
-<span id="cb419-2"><a href="pacotes-gráficos.html#cb419-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb419-3"><a href="pacotes-gráficos.html#cb419-3"></a> <span class="kw">qplot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmed, <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="pacotes-gráficos.html#cb429-1"></a><span class="co">## exemplo ggplot2</span></span>
+<span id="cb429-2"><a href="pacotes-gráficos.html#cb429-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb429-3"><a href="pacotes-gráficos.html#cb429-3"></a> <span class="kw">qplot</span>(<span class="dt">x =</span> alt, <span class="dt">y =</span> tmed, <span class="dt">data =</span> sulbr_md)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="terminologia-funções-de-alto-e-baixo-nível" class="section level3">
 <h3><span class="header-section-number">11.3.5</span> Terminologia: funções de alto e baixo nível</h3>
 <p><strong>Funções de alto nível</strong> produzem um gráfico completo. Por exemplo:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="pacotes-gráficos.html#cb420-1"></a><span class="co"># exemplo função gráfica de alto nível</span></span>
-<span id="cb420-2"><a href="pacotes-gráficos.html#cb420-2"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="pacotes-gráficos.html#cb430-1"></a><span class="co"># exemplo função gráfica de alto nível</span></span>
+<span id="cb430-2"><a href="pacotes-gráficos.html#cb430-2"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Funções de baixo nível</strong> adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. Considere o gráfico da onda abaixo:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="pacotes-gráficos.html#cb421-1"></a><span class="co"># exemplo função gráfica de alto nível</span></span>
-<span id="cb421-2"><a href="pacotes-gráficos.html#cb421-2"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="pacotes-gráficos.html#cb431-1"></a><span class="co"># exemplo função gráfica de alto nível</span></span>
+<span id="cb431-2"><a href="pacotes-gráficos.html#cb431-2"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="images/plot-alto-nivel-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As expressões a seguir adicionam pontos, linhas de grade, uma linha horizontal de referência em <code>y = 0</code>, título e uma borda ao gráfico básico gerado no código anterior. Todas estas funções são de baixo nível.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="pacotes-gráficos.html#cb422-1"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span>
-<span id="cb422-2"><a href="pacotes-gráficos.html#cb422-2"></a><span class="co"># exemplo funções gráficas de baixo nível</span></span>
-<span id="cb422-3"><a href="pacotes-gráficos.html#cb422-3"></a><span class="kw">points</span>(x1, y1,                    <span class="co"># adiciona pontos com cor e símbolo</span></span>
-<span id="cb422-4"><a href="pacotes-gráficos.html#cb422-4"></a>       <span class="dt">col =</span> <span class="dv">2</span>,                   <span class="co"># cor do ponto</span></span>
-<span id="cb422-5"><a href="pacotes-gráficos.html#cb422-5"></a>       <span class="dt">pch =</span> <span class="dv">20</span>,                  <span class="co"># tipo (círculo preenchido)</span></span>
-<span id="cb422-6"><a href="pacotes-gráficos.html#cb422-6"></a>       <span class="dt">cex =</span> <span class="fl">0.8</span>)                 <span class="co"># tamanho relativo do símbolo (default =1) </span></span>
-<span id="cb422-7"><a href="pacotes-gráficos.html#cb422-7"></a><span class="kw">grid</span>()                            <span class="co"># adiciona linhas de grade</span></span>
-<span id="cb422-8"><a href="pacotes-gráficos.html#cb422-8"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>,<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)        <span class="co"># linhade referência (y = 0)</span></span>
-<span id="cb422-9"><a href="pacotes-gráficos.html#cb422-9"></a><span class="kw">title</span>(<span class="dt">main =</span> <span class="st">&quot;Gráfico a partir de funções de baixo nível&quot;</span>)      <span class="co"># adiciona título ao gráfico</span></span>
-<span id="cb422-10"><a href="pacotes-gráficos.html#cb422-10"></a><span class="kw">box</span>(<span class="dt">lwd =</span> <span class="dv">2</span>)                      <span class="co"># adiciona retângulo em torna da região do gráfico, com linha mais larga</span></span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="pacotes-gráficos.html#cb432-1"></a><span class="kw">plot</span>(x1, y1, <span class="dt">las =</span> <span class="dv">1</span>)</span>
+<span id="cb432-2"><a href="pacotes-gráficos.html#cb432-2"></a><span class="co"># exemplo funções gráficas de baixo nível</span></span>
+<span id="cb432-3"><a href="pacotes-gráficos.html#cb432-3"></a><span class="kw">points</span>(x1, y1,                    <span class="co"># adiciona pontos com cor e símbolo</span></span>
+<span id="cb432-4"><a href="pacotes-gráficos.html#cb432-4"></a>       <span class="dt">col =</span> <span class="dv">2</span>,                   <span class="co"># cor do ponto</span></span>
+<span id="cb432-5"><a href="pacotes-gráficos.html#cb432-5"></a>       <span class="dt">pch =</span> <span class="dv">20</span>,                  <span class="co"># tipo (círculo preenchido)</span></span>
+<span id="cb432-6"><a href="pacotes-gráficos.html#cb432-6"></a>       <span class="dt">cex =</span> <span class="fl">0.8</span>)                 <span class="co"># tamanho relativo do símbolo (default =1) </span></span>
+<span id="cb432-7"><a href="pacotes-gráficos.html#cb432-7"></a><span class="kw">grid</span>()                            <span class="co"># adiciona linhas de grade</span></span>
+<span id="cb432-8"><a href="pacotes-gráficos.html#cb432-8"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>,<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)        <span class="co"># linhade referência (y = 0)</span></span>
+<span id="cb432-9"><a href="pacotes-gráficos.html#cb432-9"></a><span class="kw">title</span>(<span class="dt">main =</span> <span class="st">&quot;Gráfico a partir de funções de baixo nível&quot;</span>)      <span class="co"># adiciona título ao gráfico</span></span>
+<span id="cb432-10"><a href="pacotes-gráficos.html#cb432-10"></a><span class="kw">box</span>(<span class="dt">lwd =</span> <span class="dv">2</span>)                      <span class="co"># adiciona retângulo em torna da região do gráfico, com linha mais larga</span></span></code></pre></div>
 <p><img src="images/funcoes-baixo-nivel-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Ambos os Sistemas Básico e de Grade fornecem funções gráficas de baixo nível. O Sistema de Grade também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem). A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.</p>
 <p>Neste capítulo será dado foco a produção de gráficos usando o Sistema Básico do <img src="images/logo_r.png" width="20">.</p>

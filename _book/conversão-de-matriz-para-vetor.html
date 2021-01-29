@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.7 Conversão de matriz para vetor | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.7 Conversão de matriz para vetor | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="A.7 Conversão de matriz para vetor | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -436,42 +436,42 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="conversão-de-matriz-para-vetor" class="section level2">
 <h2><span class="header-section-number">A.7</span> Conversão de matriz para vetor</h2>
 <p>Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: <code>temp_mat</code>) no início da seção ela foi baseada em um vetor (<code>vtemp</code>). Como fazemos para voltar aquele vetor original a partir da matriz?</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="conversão-de-matriz-para-vetor.html#cb495-1"></a>temp_mat[<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">ncol</span>(temp_mat) ]</span>
-<span id="cb495-2"><a href="conversão-de-matriz-para-vetor.html#cb495-2"></a><span class="co"># vetor de temperaturas</span></span>
-<span id="cb495-3"><a href="conversão-de-matriz-para-vetor.html#cb495-3"></a>vtemp &lt;-<span class="st"> </span>temp_mat[<span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(temp_mat))]</span>
-<span id="cb495-4"><a href="conversão-de-matriz-para-vetor.html#cb495-4"></a>vtemp</span>
-<span id="cb495-5"><a href="conversão-de-matriz-para-vetor.html#cb495-5"></a><span class="co"># outra forma de converte temp_mat para vetor</span></span>
-<span id="cb495-6"><a href="conversão-de-matriz-para-vetor.html#cb495-6"></a><span class="kw">c</span>(temp_mat)</span>
-<span id="cb495-7"><a href="conversão-de-matriz-para-vetor.html#cb495-7"></a><span class="co"># função formal para converter</span></span>
-<span id="cb495-8"><a href="conversão-de-matriz-para-vetor.html#cb495-8"></a><span class="kw">as.vector</span>(temp_mat)</span>
-<span id="cb495-9"><a href="conversão-de-matriz-para-vetor.html#cb495-9"></a><span class="co"># para desmanchar a matriz com os elementos seguindo a ordem das linhas</span></span>
-<span id="cb495-10"><a href="conversão-de-matriz-para-vetor.html#cb495-10"></a><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</span>
-<span id="cb495-11"><a href="conversão-de-matriz-para-vetor.html#cb495-11"></a><span class="kw">as.vector</span>(<span class="kw">t</span>(temp_mat))</span>
-<span id="cb495-12"><a href="conversão-de-matriz-para-vetor.html#cb495-12"></a><span class="co"># serie temporal de temp_mat</span></span>
-<span id="cb495-13"><a href="conversão-de-matriz-para-vetor.html#cb495-13"></a>stemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</span>
-<span id="cb495-14"><a href="conversão-de-matriz-para-vetor.html#cb495-14"></a><span class="kw">plot</span>(stemp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span>
-<span id="cb495-15"><a href="conversão-de-matriz-para-vetor.html#cb495-15"></a><span class="co"># criar matriz com colunas temp e meses 1:12</span></span>
-<span id="cb495-16"><a href="conversão-de-matriz-para-vetor.html#cb495-16"></a><span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">nrow</span>(temp_mat)), stemp)</span>
-<span id="cb495-17"><a href="conversão-de-matriz-para-vetor.html#cb495-17"></a><span class="co"># dados de temp e meses</span></span>
-<span id="cb495-18"><a href="conversão-de-matriz-para-vetor.html#cb495-18"></a>tempdat &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, stemp)</span>
-<span id="cb495-19"><a href="conversão-de-matriz-para-vetor.html#cb495-19"></a><span class="co"># plot da temperatura pelos meses (os meses repetem)</span></span>
-<span id="cb495-20"><a href="conversão-de-matriz-para-vetor.html#cb495-20"></a><span class="kw">plot</span>(</span>
-<span id="cb495-21"><a href="conversão-de-matriz-para-vetor.html#cb495-21"></a>  tempdat,</span>
-<span id="cb495-22"><a href="conversão-de-matriz-para-vetor.html#cb495-22"></a>  <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="co"># tipo de grafico: pontos</span></span>
-<span id="cb495-23"><a href="conversão-de-matriz-para-vetor.html#cb495-23"></a>  <span class="dt">pch =</span> <span class="dv">20</span>, <span class="co"># codigo numérico do simbolo do ponto</span></span>
-<span id="cb495-24"><a href="conversão-de-matriz-para-vetor.html#cb495-24"></a>  <span class="dt">col =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores dos pontos</span></span>
-<span id="cb495-25"><a href="conversão-de-matriz-para-vetor.html#cb495-25"></a>  <span class="dt">cex =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># aumenta tamanho dos pontos</span></span>
-<span id="cb495-26"><a href="conversão-de-matriz-para-vetor.html#cb495-26"></a>  <span class="dt">las =</span> <span class="dv">1</span>, <span class="co"># orientação dos labels dos eixos perpendiculares ao eixo</span></span>
-<span id="cb495-27"><a href="conversão-de-matriz-para-vetor.html#cb495-27"></a>  <span class="dt">ylab =</span> <span class="kw">expression</span>(Tar <span class="op">~</span><span class="st"> </span>(degree <span class="op">~</span><span class="st"> </span>C)), <span class="co"># label da variável y</span></span>
-<span id="cb495-28"><a href="conversão-de-matriz-para-vetor.html#cb495-28"></a>  <span class="dt">xlab =</span> <span class="st">&quot;meses&quot;</span>, <span class="co"># label da variavel x</span></span>
-<span id="cb495-29"><a href="conversão-de-matriz-para-vetor.html#cb495-29"></a>  <span class="dt">main =</span> <span class="st">&quot;Temperatura mensal (1990-1992)&quot;</span> <span class="co"># título</span></span>
-<span id="cb495-30"><a href="conversão-de-matriz-para-vetor.html#cb495-30"></a>) <span class="co"># end plot</span></span>
-<span id="cb495-31"><a href="conversão-de-matriz-para-vetor.html#cb495-31"></a><span class="co"># para entender a variação nas cores e símbolos usadas no gráfico</span></span>
-<span id="cb495-32"><a href="conversão-de-matriz-para-vetor.html#cb495-32"></a><span class="kw">cbind</span>(</span>
-<span id="cb495-33"><a href="conversão-de-matriz-para-vetor.html#cb495-33"></a>  <span class="dt">meses =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">temp =</span> stemp,</span>
-<span id="cb495-34"><a href="conversão-de-matriz-para-vetor.html#cb495-34"></a>  <span class="dt">cores =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores</span></span>
-<span id="cb495-35"><a href="conversão-de-matriz-para-vetor.html#cb495-35"></a>  <span class="dt">simb_tam =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat))</span>
-<span id="cb495-36"><a href="conversão-de-matriz-para-vetor.html#cb495-36"></a>) <span class="co"># tamanho dos símbolos</span></span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="conversão-de-matriz-para-vetor.html#cb505-1"></a>temp_mat[<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">ncol</span>(temp_mat) ]</span>
+<span id="cb505-2"><a href="conversão-de-matriz-para-vetor.html#cb505-2"></a><span class="co"># vetor de temperaturas</span></span>
+<span id="cb505-3"><a href="conversão-de-matriz-para-vetor.html#cb505-3"></a>vtemp &lt;-<span class="st"> </span>temp_mat[<span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(temp_mat) <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(temp_mat))]</span>
+<span id="cb505-4"><a href="conversão-de-matriz-para-vetor.html#cb505-4"></a>vtemp</span>
+<span id="cb505-5"><a href="conversão-de-matriz-para-vetor.html#cb505-5"></a><span class="co"># outra forma de converte temp_mat para vetor</span></span>
+<span id="cb505-6"><a href="conversão-de-matriz-para-vetor.html#cb505-6"></a><span class="kw">c</span>(temp_mat)</span>
+<span id="cb505-7"><a href="conversão-de-matriz-para-vetor.html#cb505-7"></a><span class="co"># função formal para converter</span></span>
+<span id="cb505-8"><a href="conversão-de-matriz-para-vetor.html#cb505-8"></a><span class="kw">as.vector</span>(temp_mat)</span>
+<span id="cb505-9"><a href="conversão-de-matriz-para-vetor.html#cb505-9"></a><span class="co"># para desmanchar a matriz com os elementos seguindo a ordem das linhas</span></span>
+<span id="cb505-10"><a href="conversão-de-matriz-para-vetor.html#cb505-10"></a><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</span>
+<span id="cb505-11"><a href="conversão-de-matriz-para-vetor.html#cb505-11"></a><span class="kw">as.vector</span>(<span class="kw">t</span>(temp_mat))</span>
+<span id="cb505-12"><a href="conversão-de-matriz-para-vetor.html#cb505-12"></a><span class="co"># serie temporal de temp_mat</span></span>
+<span id="cb505-13"><a href="conversão-de-matriz-para-vetor.html#cb505-13"></a>stemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(temp_mat))</span>
+<span id="cb505-14"><a href="conversão-de-matriz-para-vetor.html#cb505-14"></a><span class="kw">plot</span>(stemp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span>
+<span id="cb505-15"><a href="conversão-de-matriz-para-vetor.html#cb505-15"></a><span class="co"># criar matriz com colunas temp e meses 1:12</span></span>
+<span id="cb505-16"><a href="conversão-de-matriz-para-vetor.html#cb505-16"></a><span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="kw">nrow</span>(temp_mat)), stemp)</span>
+<span id="cb505-17"><a href="conversão-de-matriz-para-vetor.html#cb505-17"></a><span class="co"># dados de temp e meses</span></span>
+<span id="cb505-18"><a href="conversão-de-matriz-para-vetor.html#cb505-18"></a>tempdat &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, stemp)</span>
+<span id="cb505-19"><a href="conversão-de-matriz-para-vetor.html#cb505-19"></a><span class="co"># plot da temperatura pelos meses (os meses repetem)</span></span>
+<span id="cb505-20"><a href="conversão-de-matriz-para-vetor.html#cb505-20"></a><span class="kw">plot</span>(</span>
+<span id="cb505-21"><a href="conversão-de-matriz-para-vetor.html#cb505-21"></a>  tempdat,</span>
+<span id="cb505-22"><a href="conversão-de-matriz-para-vetor.html#cb505-22"></a>  <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="co"># tipo de grafico: pontos</span></span>
+<span id="cb505-23"><a href="conversão-de-matriz-para-vetor.html#cb505-23"></a>  <span class="dt">pch =</span> <span class="dv">20</span>, <span class="co"># codigo numérico do simbolo do ponto</span></span>
+<span id="cb505-24"><a href="conversão-de-matriz-para-vetor.html#cb505-24"></a>  <span class="dt">col =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores dos pontos</span></span>
+<span id="cb505-25"><a href="conversão-de-matriz-para-vetor.html#cb505-25"></a>  <span class="dt">cex =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># aumenta tamanho dos pontos</span></span>
+<span id="cb505-26"><a href="conversão-de-matriz-para-vetor.html#cb505-26"></a>  <span class="dt">las =</span> <span class="dv">1</span>, <span class="co"># orientação dos labels dos eixos perpendiculares ao eixo</span></span>
+<span id="cb505-27"><a href="conversão-de-matriz-para-vetor.html#cb505-27"></a>  <span class="dt">ylab =</span> <span class="kw">expression</span>(Tar <span class="op">~</span><span class="st"> </span>(degree <span class="op">~</span><span class="st"> </span>C)), <span class="co"># label da variável y</span></span>
+<span id="cb505-28"><a href="conversão-de-matriz-para-vetor.html#cb505-28"></a>  <span class="dt">xlab =</span> <span class="st">&quot;meses&quot;</span>, <span class="co"># label da variavel x</span></span>
+<span id="cb505-29"><a href="conversão-de-matriz-para-vetor.html#cb505-29"></a>  <span class="dt">main =</span> <span class="st">&quot;Temperatura mensal (1990-1992)&quot;</span> <span class="co"># título</span></span>
+<span id="cb505-30"><a href="conversão-de-matriz-para-vetor.html#cb505-30"></a>) <span class="co"># end plot</span></span>
+<span id="cb505-31"><a href="conversão-de-matriz-para-vetor.html#cb505-31"></a><span class="co"># para entender a variação nas cores e símbolos usadas no gráfico</span></span>
+<span id="cb505-32"><a href="conversão-de-matriz-para-vetor.html#cb505-32"></a><span class="kw">cbind</span>(</span>
+<span id="cb505-33"><a href="conversão-de-matriz-para-vetor.html#cb505-33"></a>  <span class="dt">meses =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">temp =</span> stemp,</span>
+<span id="cb505-34"><a href="conversão-de-matriz-para-vetor.html#cb505-34"></a>  <span class="dt">cores =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat)), <span class="co"># cores</span></span>
+<span id="cb505-35"><a href="conversão-de-matriz-para-vetor.html#cb505-35"></a>  <span class="dt">simb_tam =</span> <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">each =</span> <span class="kw">ncol</span>(temp_mat))</span>
+<span id="cb505-36"><a href="conversão-de-matriz-para-vetor.html#cb505-36"></a>) <span class="co"># tamanho dos símbolos</span></span></code></pre></div>
 </div>
             </section>
 

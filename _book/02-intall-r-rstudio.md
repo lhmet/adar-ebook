@@ -433,8 +433,8 @@ e ao digitar:
 
 ```r
 > .libPaths()
-[1] "C:/Users/bitev/Documents/R/win-library/4.0"
-[2] "C:/Program Files/R/R-4.0.3/library"        
+[1] "/home/hidrometeorologista/.R/libs" "/usr/local/lib/R/site-library"    
+[3] "/usr/lib/R/site-library"           "/usr/lib/R/library"               
 ```
     
 o seu diretório `/home/usuario/.R/libs` [^rlibs] deve aparecer em primeiro lugar. Indicando que este local tem prioridade para instalação dos pacotes. Caso o diretório deixe de existir os diretórios seguintes  serão usados.
@@ -748,7 +748,7 @@ $ sudo apt-get install git
 ```
 
 
-Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Windows 10 x64 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
+Ao terminar, verifique a instalação digitando num terminal o comando `git --version`. A versão disponível nos repositórios do Ubuntu 20.04.1 quando este livro foi escrito era a `gsub("git version ", "", system("git --version", intern = TRUE))`.
 
 
 

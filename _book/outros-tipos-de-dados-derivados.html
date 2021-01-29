@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.4 Outros tipos de dados derivados | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.4 Outros tipos de dados derivados | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="6.4 Outros tipos de dados derivados | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -496,9 +496,9 @@ summary(intensidade_no)
 <p><code>Date</code> armazena apenas datas, enquanto <code>POSIXct</code> armazena a datas associadas com horários. Ambos dados são representados como o número de dias (<strong><code>Date</code></strong>) ou de segundos (<strong><code>POSIXct</code></strong>) decorridos desde 1 de Janeiro de 1970.</p>
 <p>Exemplos de cada um destes tipos de dados podem ser obtidos com o <img src="images/logo_r.png" width="20"> usando as funções internas <code>Sys.Date()</code> e <code>Sys.time()</code> que informam a data e a hora atual:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="outros-tipos-de-dados-derivados.html#cb118-1"></a><span class="kw">Sys.Date</span>()</span>
-<span id="cb118-2"><a href="outros-tipos-de-dados-derivados.html#cb118-2"></a><span class="co">#&gt; [1] &quot;2020-11-07&quot;</span></span>
+<span id="cb118-2"><a href="outros-tipos-de-dados-derivados.html#cb118-2"></a><span class="co">#&gt; [1] &quot;2021-01-29&quot;</span></span>
 <span id="cb118-3"><a href="outros-tipos-de-dados-derivados.html#cb118-3"></a><span class="kw">Sys.time</span>()</span>
-<span id="cb118-4"><a href="outros-tipos-de-dados-derivados.html#cb118-4"></a><span class="co">#&gt; [1] &quot;2020-11-07 21:35:28 -03&quot;</span></span></code></pre></div>
+<span id="cb118-4"><a href="outros-tipos-de-dados-derivados.html#cb118-4"></a><span class="co">#&gt; [1] &quot;2021-01-29 15:04:18 -03&quot;</span></span></code></pre></div>
 <!-- Na saída da `Sys.time()` a última parte (`03`) refere-se ao fuso horário (3h antes do meridiano de Greenwich). -->
 <p>As datas seguem o formato padrão de representação <a href="https://pt.wikipedia.org/wiki/ISO_8601">ISO-8601</a>, ou seja o formato <code>YYYY-MM-DD</code> para <code>ano-mês-dia</code>, independente do local onde você mora.</p>
 <p>Datas são criadas a partir da coerção de dados do tipo <code>character</code> para <code>date</code>:</p>
@@ -565,7 +565,7 @@ summary(intensidade_no)
 <p>Há vários outros códigos adicionais, por exemplo, para usar abreviações de meses como <code>Jan</code> (<code>%b</code>), e estes códigos são listados em <code>?strptime</code>.</p>
 <p>Para extrair informações de uma data, como por exemplo o ano, podemos usar a função <code>format()</code> passando o código de formato ao argumento <code>format</code>.</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="outros-tipos-de-dados-derivados.html#cb121-1"></a><span class="kw">format</span>(<span class="dt">x =</span> <span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</span>
-<span id="cb121-2"><a href="outros-tipos-de-dados-derivados.html#cb121-2"></a><span class="co">#&gt; [1] &quot;2020&quot;</span></span></code></pre></div>
+<span id="cb121-2"><a href="outros-tipos-de-dados-derivados.html#cb121-2"></a><span class="co">#&gt; [1] &quot;2021&quot;</span></span></code></pre></div>
 <p>O argumento format também pode ser especificado nas funções <code>as.Date()</code> e <code>as.POSIXct()</code>, assim provendo grande versatilidade para ler datas em diferentes formatos. No exemplo a seguir, vamos converter um caractere com as informações de data com horário armazenadas na ordem dia, mês, ano, hora, minuto e segundo, sem nenhum delimitador.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="outros-tipos-de-dados-derivados.html#cb122-1"></a><span class="kw">as.POSIXct</span>(</span>
 <span id="cb122-2"><a href="outros-tipos-de-dados-derivados.html#cb122-2"></a>  <span class="dt">x =</span> <span class="st">&quot;prec010120001942.grib&quot;</span>,</span>

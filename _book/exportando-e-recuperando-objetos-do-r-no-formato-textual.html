@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="B.2 Exportando e recuperando objetos do R no formato textual | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -438,48 +438,48 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="dput-dget-dump-e-source." class="section level3">
 <h3><span class="header-section-number">B.2.1</span> <code>dput()</code>, <code>dget</code>, <code>dump</code> e <code>source</code>.</h3>
 <p>Uma função útil para compartilhar dados com alguém que precisa reproduzi-los é a função <code>dput()</code> (que pode ser traduzido como "despejar"). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função <code>dget()</code>.</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-1"></a>x</span>
-<span id="cb517-2"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-2"></a><span class="co"># representação textual do objeto x</span></span>
-<span id="cb517-3"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-3"></a><span class="kw">dput</span>(x)</span>
-<span id="cb517-4"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-4"></a><span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></span>
-<span id="cb517-5"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-5"></a>(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
-<span id="cb517-6"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-6"></a>(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
-<span id="cb517-7"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-7"></a><span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)</span>
-<span id="cb517-8"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-8"></a><span class="co"># recuperando x a partir do arquivo</span></span>
-<span id="cb517-9"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-9"></a>y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)</span>
-<span id="cb517-10"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-10"></a><span class="co"># alterar valores de y</span></span>
-<span id="cb517-11"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-11"></a>y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb517-12"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-12"></a>y</span>
-<span id="cb517-13"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-13"></a><span class="co"># verificar existência de x e y</span></span>
-<span id="cb517-14"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-14"></a><span class="kw">ls</span>()</span>
-<span id="cb517-15"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-15"></a><span class="co"># listando variáveis que começam com x ou y</span></span>
-<span id="cb517-16"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-16"></a><span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</span>
-<span id="cb517-17"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-17"></a><span class="co"># salvando mais de um objeto em um arquivo</span></span>
-<span id="cb517-18"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-18"></a>(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
-<span id="cb517-19"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-19"></a><span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)</span>
-<span id="cb517-20"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-20"></a><span class="co"># vamos apagar x e y do espaco de trabalho</span></span>
-<span id="cb517-21"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-21"></a><span class="kw">rm</span>(x, y)</span>
-<span id="cb517-22"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-22"></a><span class="co"># x e y não existem mais</span></span>
-<span id="cb517-23"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-23"></a><span class="kw">ls</span>()</span>
-<span id="cb517-24"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-24"></a><span class="co"># recuperando os objetos x e y salvos em xy.R</span></span>
-<span id="cb517-25"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-25"></a><span class="kw">source</span>(xy_dest_file)</span>
-<span id="cb517-26"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-26"></a><span class="kw">ls</span>()</span>
-<span id="cb517-27"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-27"></a>x</span>
-<span id="cb517-28"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb517-28"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-1"></a>x</span>
+<span id="cb527-2"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-2"></a><span class="co"># representação textual do objeto x</span></span>
+<span id="cb527-3"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-3"></a><span class="kw">dput</span>(x)</span>
+<span id="cb527-4"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-4"></a><span class="co"># salva representação textual de x em um arquivo temporário, você pode substituir tempfile() por um caminho de seu computador, p.ex. &quot;~/Downloads&quot;</span></span>
+<span id="cb527-5"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-5"></a>(aq_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
+<span id="cb527-6"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-6"></a>(x_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
+<span id="cb527-7"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-7"></a><span class="kw">dput</span>(x, <span class="dt">file =</span> x_dest_file)</span>
+<span id="cb527-8"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-8"></a><span class="co"># recuperando x a partir do arquivo</span></span>
+<span id="cb527-9"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-9"></a>y &lt;-<span class="st"> </span><span class="kw">dget</span>(x_dest_file)</span>
+<span id="cb527-10"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-10"></a><span class="co"># alterar valores de y</span></span>
+<span id="cb527-11"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-11"></a>y &lt;-<span class="st"> </span>y[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>] <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb527-12"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-12"></a>y</span>
+<span id="cb527-13"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-13"></a><span class="co"># verificar existência de x e y</span></span>
+<span id="cb527-14"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-14"></a><span class="kw">ls</span>()</span>
+<span id="cb527-15"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-15"></a><span class="co"># listando variáveis que começam com x ou y</span></span>
+<span id="cb527-16"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-16"></a><span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</span>
+<span id="cb527-17"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-17"></a><span class="co"># salvando mais de um objeto em um arquivo</span></span>
+<span id="cb527-18"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-18"></a>(xy_dest_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>())</span>
+<span id="cb527-19"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-19"></a><span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> xy_dest_file)</span>
+<span id="cb527-20"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-20"></a><span class="co"># vamos apagar x e y do espaco de trabalho</span></span>
+<span id="cb527-21"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-21"></a><span class="kw">rm</span>(x, y)</span>
+<span id="cb527-22"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-22"></a><span class="co"># x e y não existem mais</span></span>
+<span id="cb527-23"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-23"></a><span class="kw">ls</span>()</span>
+<span id="cb527-24"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-24"></a><span class="co"># recuperando os objetos x e y salvos em xy.R</span></span>
+<span id="cb527-25"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-25"></a><span class="kw">source</span>(xy_dest_file)</span>
+<span id="cb527-26"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-26"></a><span class="kw">ls</span>()</span>
+<span id="cb527-27"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-27"></a>x</span>
+<span id="cb527-28"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb527-28"></a>y</span></code></pre></div>
 <p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget("nomedoarquivo")</code>.</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-1"></a><span class="co"># representação textual de um data.frame</span></span>
-<span id="cb518-2"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-2"></a>dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(</span>
-<span id="cb518-3"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-3"></a>  <span class="kw">list</span>(</span>
-<span id="cb518-4"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-4"></a>    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),</span>
-<span id="cb518-5"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-5"></a>    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),</span>
-<span id="cb518-6"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-6"></a>    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),</span>
-<span id="cb518-7"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-7"></a>    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)</span>
-<span id="cb518-8"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-8"></a>  ),</span>
-<span id="cb518-9"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-9"></a>  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),</span>
-<span id="cb518-10"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-10"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,</span>
-<span id="cb518-11"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-11"></a>  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)</span>
-<span id="cb518-12"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-12"></a>)</span>
-<span id="cb518-13"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb518-13"></a>dados3est</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-1"></a><span class="co"># representação textual de um data.frame</span></span>
+<span id="cb528-2"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-2"></a>dados3est &lt;-<span class="st"> </span><span class="kw">structure</span>(</span>
+<span id="cb528-3"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-3"></a>  <span class="kw">list</span>(</span>
+<span id="cb528-4"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-4"></a>    <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),</span>
+<span id="cb528-5"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-5"></a>    <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>),</span>
+<span id="cb528-6"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-6"></a>    <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L),</span>
+<span id="cb528-7"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-7"></a>    <span class="dt">chuva =</span> <span class="kw">c</span>(3L, 10L, 14L)</span>
+<span id="cb528-8"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-8"></a>  ),</span>
+<span id="cb528-9"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-9"></a>  <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;temperatura&quot;</span>, <span class="st">&quot;chuva&quot;</span>),</span>
+<span id="cb528-10"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-10"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>,</span>
+<span id="cb528-11"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-11"></a>  <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L)</span>
+<span id="cb528-12"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-12"></a>)</span>
+<span id="cb528-13"><a href="exportando-e-recuperando-objetos-do-r-no-formato-textual.html#cb528-13"></a>dados3est</span></code></pre></div>
 <p><strong>Vantagens:</strong></p>
 <ul>
 <li>armazena os <strong>dados e os metadados</strong></li>

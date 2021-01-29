@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.9 Atribuição por indexação | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.9 Atribuição por indexação | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="A.9 Atribuição por indexação | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -436,26 +436,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="atribuição-por-indexação" class="section level2">
 <h2><span class="header-section-number">A.9</span> Atribuição por indexação</h2>
 <p>Uma matriz <code>mat</code> poderia ser criada especificando os valores de cada elemento :</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="atribuição-por-indexação.html#cb497-1"></a><span class="co"># criando a matriz gerada com dim</span></span>
-<span id="cb497-2"><a href="atribuição-por-indexação.html#cb497-2"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb497-3"><a href="atribuição-por-indexação.html#cb497-3"></a>mat</span>
-<span id="cb497-4"><a href="atribuição-por-indexação.html#cb497-4"></a>mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb497-5"><a href="atribuição-por-indexação.html#cb497-5"></a>mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb497-6"><a href="atribuição-por-indexação.html#cb497-6"></a>mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb497-7"><a href="atribuição-por-indexação.html#cb497-7"></a>mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb497-8"><a href="atribuição-por-indexação.html#cb497-8"></a>mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb497-9"><a href="atribuição-por-indexação.html#cb497-9"></a>mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></span>
-<span id="cb497-10"><a href="atribuição-por-indexação.html#cb497-10"></a>mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></span>
-<span id="cb497-11"><a href="atribuição-por-indexação.html#cb497-11"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></span>
-<span id="cb497-12"><a href="atribuição-por-indexação.html#cb497-12"></a>mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></span>
-<span id="cb497-13"><a href="atribuição-por-indexação.html#cb497-13"></a>mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb497-14"><a href="atribuição-por-indexação.html#cb497-14"></a>mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></span>
-<span id="cb497-15"><a href="atribuição-por-indexação.html#cb497-15"></a>mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></span>
-<span id="cb497-16"><a href="atribuição-por-indexação.html#cb497-16"></a>mat</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="atribuição-por-indexação.html#cb507-1"></a><span class="co"># criando a matriz gerada com dim</span></span>
+<span id="cb507-2"><a href="atribuição-por-indexação.html#cb507-2"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb507-3"><a href="atribuição-por-indexação.html#cb507-3"></a>mat</span>
+<span id="cb507-4"><a href="atribuição-por-indexação.html#cb507-4"></a>mat[<span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb507-5"><a href="atribuição-por-indexação.html#cb507-5"></a>mat[<span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb507-6"><a href="atribuição-por-indexação.html#cb507-6"></a>mat[<span class="dv">3</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb507-7"><a href="atribuição-por-indexação.html#cb507-7"></a>mat[<span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb507-8"><a href="atribuição-por-indexação.html#cb507-8"></a>mat[<span class="dv">2</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb507-9"><a href="atribuição-por-indexação.html#cb507-9"></a>mat[<span class="dv">3</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">6</span></span>
+<span id="cb507-10"><a href="atribuição-por-indexação.html#cb507-10"></a>mat[<span class="dv">1</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">7</span></span>
+<span id="cb507-11"><a href="atribuição-por-indexação.html#cb507-11"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">8</span></span>
+<span id="cb507-12"><a href="atribuição-por-indexação.html#cb507-12"></a>mat[<span class="dv">3</span>, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span></span>
+<span id="cb507-13"><a href="atribuição-por-indexação.html#cb507-13"></a>mat[<span class="dv">1</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb507-14"><a href="atribuição-por-indexação.html#cb507-14"></a>mat[<span class="dv">2</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">11</span></span>
+<span id="cb507-15"><a href="atribuição-por-indexação.html#cb507-15"></a>mat[<span class="dv">3</span>, <span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">12</span></span>
+<span id="cb507-16"><a href="atribuição-por-indexação.html#cb507-16"></a>mat</span></code></pre></div>
 <p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="atribuição-por-indexação.html#cb498-1"></a>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></span>
-<span id="cb498-2"><a href="atribuição-por-indexação.html#cb498-2"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb498-3"><a href="atribuição-por-indexação.html#cb498-3"></a>mat</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="atribuição-por-indexação.html#cb508-1"></a>vetor &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></span>
+<span id="cb508-2"><a href="atribuição-por-indexação.html#cb508-2"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb508-3"><a href="atribuição-por-indexação.html#cb508-3"></a>mat</span></code></pre></div>
 </div>
             </section>
 

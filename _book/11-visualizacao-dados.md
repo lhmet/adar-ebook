@@ -125,7 +125,7 @@ onda
 #>  8  -99.6 -0.00221
 #>  9  -99.6 -0.00231
 #> 10  -99.6 -0.00240
-#> # ... with 3,991 more rows
+#> # … with 3,991 more rows
 ```
 
   + Dados de qualidade do ar em NY
@@ -177,9 +177,9 @@ head(prec)
 #>   codigo            nome estado mes value
 #> 1  82704 Cruzeiro do Sul     AC jan 257.9
 #> 2  82915      Rio Branco     AC jan 289.0
-#> 3  82807       TarauacÃ¡     AC jan 286.6
+#> 3  82807        Tarauacá     AC jan 286.6
 #> 4  83098        Coruripe     AL jan  21.6
-#> 5  82994         MaceiÃ³     AL jan  78.1
+#> 5  82994          Maceió     AL jan  78.1
 #> 6  82988     Mata Grande     AL jan  62.1
 ```
 
@@ -245,7 +245,7 @@ sulbr_md
 #>  8 A809      25.5     15.0   10.5  2006-09-28 2015-12-31    9.3       40
 #>  9 A810      26.5     15.3   11.2  2006-11-15 2015-12-31    9.1       39
 #> 10 A811      20.9     13.0    7.84 2007-01-24 2015-12-31    8.9       37
-#> # ... with 72 more rows, and 10 more variables: min_tair <dbl>, missing <dbl>,
+#> # … with 72 more rows, and 10 more variables: min_tair <dbl>, missing <dbl>,
 #> #   long_gap <dbl>, sdate_lg <dttm>, name <chr>, state <chr>, lon <dbl>,
 #> #   lat <dbl>, alt <dbl>, tmed <dbl>
 ```
@@ -268,15 +268,15 @@ sulbr_dh <- import("https://www.dropbox.com/s/iesn64ij633rofp/data_inmet_sul_RS.
 glimpse(sulbr_dh)
 #> Rows: 2,806,728
 #> Columns: 9
-#> $ site  <chr> "A801", "A801", "A801", "A801", "A801", "A801", "A801", "A801...
-#> $ date  <dttm> 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:0...
-#> $ tair  <dbl> NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15....
-#> $ rh    <dbl> NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 4...
-#> $ prec  <dbl> NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-#> $ rg    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111...
-#> $ wd    <dbl> NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, ...
-#> $ ws    <dbl> NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, ...
-#> $ wsmax <dbl> NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, ...
+#> $ site  <chr> "A801", "A801", "A801", "A801", "A801", "A801", "A801", "A801",…
+#> $ date  <dttm> 2000-09-22 00:00:00, 2000-09-22 01:00:00, 2000-09-22 02:00:00,…
+#> $ tair  <dbl> NA, NA, NA, NA, 15.5, 15.3, 15.1, 14.8, 14.5, 14.4, 14.4, 15.3,…
+#> $ rh    <dbl> NA, NA, NA, NA, 94, 95, 94, 95, 94, 85, 86, 84, 76, 62, 49, 45,…
+#> $ prec  <dbl> NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+#> $ rg    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 16.944444, 141.111111, …
+#> $ wd    <dbl> NA, NA, NA, NA, 231, 255, 245, 246, 239, 177, 217, 166, 159, 18…
+#> $ ws    <dbl> NA, NA, NA, NA, 1.2, 2.2, 1.9, 1.5, 1.7, 1.7, 1.8, 2.2, 2.2, 2.…
+#> $ wsmax <dbl> NA, NA, NA, NA, 4.4, 4.2, 4.1, 3.9, 3.3, 6.7, 7.6, 5.3, 6.1, 4.…
 #range(sulbr_dh$date)
 ```
 
@@ -295,8 +295,8 @@ tair_poa_dly <- sulbr_dh %>%
 glimpse(tair_poa_dly)
 #> Rows: 5,579
 #> Columns: 2
-#> $ date <date> 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 2...
-#> $ tair <dbl> 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18...
+#> $ date <date> 2000-09-22, 2000-09-23, 2000-09-24, 2000-09-25, 2000-09-26, 200…
+#> $ tair <dbl> 17.12000, 17.60417, 14.99583, 10.70417, 11.83333, 14.52917, 18.5…
 ```
 
 
@@ -327,7 +327,7 @@ tair_poa_clim
 #>  8     8  25.6  28.5  23.4  23.5  27.9     15    15
 #>  9     9  26.0  29.5  21.9  23.8  28.5     15    15
 #> 10    10  25.8  29.4  22.3  22.8  28.6     15    15
-#> # ... with 356 more rows
+#> # … with 356 more rows
 ```
 
 

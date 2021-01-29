@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.6 Matriz transposta e diagonal | Análise de Dados Ambientais com R</title>
   <meta name="description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.6 Matriz transposta e diagonal | Análise de Dados Ambientais com R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/TB1.jpg" />
+  <meta property="og:image" content="/images/TB1.jpg" />
   <meta property="og:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
   <meta name="github-repo" content="lhmet/adar-ebook" />
 
@@ -19,12 +19,12 @@
   <meta name="twitter:title" content="A.6 Matriz transposta e diagonal | Análise de Dados Ambientais com R" />
   
   <meta name="twitter:description" content="Livro baseado nas notas de aula da disciplina FSC1104 do curso de graduação em Meteorologia da UFSM." />
-  <meta name="twitter:image" content="images/TB1.jpg" />
+  <meta name="twitter:image" content="/images/TB1.jpg" />
 
 <meta name="author" content="Jônatan Tatsch" />
 
 
-<meta name="date" content="2020-11-07" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -436,28 +436,28 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="matriz-transposta-e-diagonal" class="section level2">
 <h2><span class="header-section-number">A.6</span> Matriz transposta e diagonal</h2>
 <p>A primeira entre as diversas funções de álgebra matricial no R é a transposta <code>t()</code>.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="matriz-transposta-e-diagonal.html#cb494-1"></a>temp_mat</span>
-<span id="cb494-2"><a href="matriz-transposta-e-diagonal.html#cb494-2"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
-<span id="cb494-3"><a href="matriz-transposta-e-diagonal.html#cb494-3"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
-<span id="cb494-4"><a href="matriz-transposta-e-diagonal.html#cb494-4"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
-<span id="cb494-5"><a href="matriz-transposta-e-diagonal.html#cb494-5"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
-<span id="cb494-6"><a href="matriz-transposta-e-diagonal.html#cb494-6"></a><span class="kw">t</span>(temp_mat)</span>
-<span id="cb494-7"><a href="matriz-transposta-e-diagonal.html#cb494-7"></a><span class="co">#&gt;     ano1990 ano1991 ano1992</span></span>
-<span id="cb494-8"><a href="matriz-transposta-e-diagonal.html#cb494-8"></a><span class="co">#&gt; Jan    25.0   24.89   23.20</span></span>
-<span id="cb494-9"><a href="matriz-transposta-e-diagonal.html#cb494-9"></a><span class="co">#&gt; Fev    23.2   24.07   26.61</span></span>
-<span id="cb494-10"><a href="matriz-transposta-e-diagonal.html#cb494-10"></a><span class="co">#&gt; Mar    22.5   23.56   18.00</span></span>
-<span id="cb494-11"><a href="matriz-transposta-e-diagonal.html#cb494-11"></a><span class="co">#&gt; Abr    21.0   23.11   23.11</span></span>
-<span id="cb494-12"><a href="matriz-transposta-e-diagonal.html#cb494-12"></a><span class="co">#&gt; Mai    19.0   18.29   26.80</span></span>
-<span id="cb494-13"><a href="matriz-transposta-e-diagonal.html#cb494-13"></a><span class="co">#&gt; Jun    17.6   18.22   21.30</span></span>
-<span id="cb494-14"><a href="matriz-transposta-e-diagonal.html#cb494-14"></a><span class="co">#&gt; Jul    18.0   16.72   18.22</span></span>
-<span id="cb494-15"><a href="matriz-transposta-e-diagonal.html#cb494-15"></a><span class="co">#&gt; Ago    19.7   19.37   21.45</span></span>
-<span id="cb494-16"><a href="matriz-transposta-e-diagonal.html#cb494-16"></a><span class="co">#&gt; Set    21.3   20.08   19.70</span></span>
-<span id="cb494-17"><a href="matriz-transposta-e-diagonal.html#cb494-17"></a><span class="co">#&gt; Out    22.0   21.45   22.50</span></span>
-<span id="cb494-18"><a href="matriz-transposta-e-diagonal.html#cb494-18"></a><span class="co">#&gt; Nov    24.0   26.61   24.07</span></span>
-<span id="cb494-19"><a href="matriz-transposta-e-diagonal.html#cb494-19"></a><span class="co">#&gt; Dez    26.8   25.99   20.08</span></span>
-<span id="cb494-20"><a href="matriz-transposta-e-diagonal.html#cb494-20"></a><span class="co"># diagonal </span></span>
-<span id="cb494-21"><a href="matriz-transposta-e-diagonal.html#cb494-21"></a><span class="kw">diag</span>(temp_mat)</span>
-<span id="cb494-22"><a href="matriz-transposta-e-diagonal.html#cb494-22"></a><span class="co">#&gt; [1] 25.00 24.07 18.00</span></span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="matriz-transposta-e-diagonal.html#cb504-1"></a>temp_mat</span>
+<span id="cb504-2"><a href="matriz-transposta-e-diagonal.html#cb504-2"></a><span class="co">#&gt;           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez</span></span>
+<span id="cb504-3"><a href="matriz-transposta-e-diagonal.html#cb504-3"></a><span class="co">#&gt; ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00 26.80</span></span>
+<span id="cb504-4"><a href="matriz-transposta-e-diagonal.html#cb504-4"></a><span class="co">#&gt; ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61 25.99</span></span>
+<span id="cb504-5"><a href="matriz-transposta-e-diagonal.html#cb504-5"></a><span class="co">#&gt; ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07 20.08</span></span>
+<span id="cb504-6"><a href="matriz-transposta-e-diagonal.html#cb504-6"></a><span class="kw">t</span>(temp_mat)</span>
+<span id="cb504-7"><a href="matriz-transposta-e-diagonal.html#cb504-7"></a><span class="co">#&gt;     ano1990 ano1991 ano1992</span></span>
+<span id="cb504-8"><a href="matriz-transposta-e-diagonal.html#cb504-8"></a><span class="co">#&gt; Jan    25.0   24.89   23.20</span></span>
+<span id="cb504-9"><a href="matriz-transposta-e-diagonal.html#cb504-9"></a><span class="co">#&gt; Fev    23.2   24.07   26.61</span></span>
+<span id="cb504-10"><a href="matriz-transposta-e-diagonal.html#cb504-10"></a><span class="co">#&gt; Mar    22.5   23.56   18.00</span></span>
+<span id="cb504-11"><a href="matriz-transposta-e-diagonal.html#cb504-11"></a><span class="co">#&gt; Abr    21.0   23.11   23.11</span></span>
+<span id="cb504-12"><a href="matriz-transposta-e-diagonal.html#cb504-12"></a><span class="co">#&gt; Mai    19.0   18.29   26.80</span></span>
+<span id="cb504-13"><a href="matriz-transposta-e-diagonal.html#cb504-13"></a><span class="co">#&gt; Jun    17.6   18.22   21.30</span></span>
+<span id="cb504-14"><a href="matriz-transposta-e-diagonal.html#cb504-14"></a><span class="co">#&gt; Jul    18.0   16.72   18.22</span></span>
+<span id="cb504-15"><a href="matriz-transposta-e-diagonal.html#cb504-15"></a><span class="co">#&gt; Ago    19.7   19.37   21.45</span></span>
+<span id="cb504-16"><a href="matriz-transposta-e-diagonal.html#cb504-16"></a><span class="co">#&gt; Set    21.3   20.08   19.70</span></span>
+<span id="cb504-17"><a href="matriz-transposta-e-diagonal.html#cb504-17"></a><span class="co">#&gt; Out    22.0   21.45   22.50</span></span>
+<span id="cb504-18"><a href="matriz-transposta-e-diagonal.html#cb504-18"></a><span class="co">#&gt; Nov    24.0   26.61   24.07</span></span>
+<span id="cb504-19"><a href="matriz-transposta-e-diagonal.html#cb504-19"></a><span class="co">#&gt; Dez    26.8   25.99   20.08</span></span>
+<span id="cb504-20"><a href="matriz-transposta-e-diagonal.html#cb504-20"></a><span class="co"># diagonal </span></span>
+<span id="cb504-21"><a href="matriz-transposta-e-diagonal.html#cb504-21"></a><span class="kw">diag</span>(temp_mat)</span>
+<span id="cb504-22"><a href="matriz-transposta-e-diagonal.html#cb504-22"></a><span class="co">#&gt; [1] 25.00 24.07 18.00</span></span></code></pre></div>
 </div>
             </section>
 

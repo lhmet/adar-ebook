@@ -343,7 +343,7 @@ O <img src="images/logo_r.png" width="20"> diferencia letras maiúsculas de min�
 m_kg
 #> [1] 100
 M_KG
-#> Error in eval(expr, envir, enclos): objeto 'M_KG' não encontrado
+#> Error in eval(expr, envir, enclos): object 'M_KG' not found
 ```
 
 Como criamos apenas a variável `m_kg`, `M_kg` não foi encontrada. 
@@ -488,18 +488,18 @@ As expressões abaixo ilustram o que acontece quando cometemos alguns erros bem 
 
 ```r
 srt(2)
-#> Error in srt(2): não foi possível encontrar a função "srt"
+#> Error in srt(2): could not find function "srt"
 m * g
-#> Error in eval(expr, envir, enclos): objeto 'm' não encontrado
+#> Error in eval(expr, envir, enclos): object 'm' not found
 2 + 4(log(5))
-#> Error in eval(expr, envir, enclos): tentativa de aplicar uma não-função
+#> Error in eval(expr, envir, enclos): attempt to apply non-function
 setwd("algum/caminho/no/alem")
-#> Error in setwd("algum/caminho/no/alem"): não é possível mudar o diretório de trabalho
+#> Error in setwd("algum/caminho/no/alem"): cannot change working directory
 save(file = "outro/caminho/no/alem")
 #> Warning in save(file = "outro/caminho/no/alem"): nothing specified to be save()d
-#> Warning in gzfile(file, "wb"): não foi possível abrir o arquivo comprimido
-#> 'outro/caminho/no/alem', motivo provável 'No such file or directory'
-#> Error in gzfile(file, "wb"): não é possível abrir a conexão
+#> Warning in gzfile(file, "wb"): cannot open compressed file 'outro/caminho/no/
+#> alem', probable reason 'No such file or directory'
+#> Error in gzfile(file, "wb"): cannot open the connection
 ```
 
 
@@ -516,7 +516,7 @@ No trecho de código acima, na avaliação da expressão com a função `save()`
 
 ```r
 sqrt(-1)
-#> Warning in sqrt(-1): NaNs produzidos
+#> Warning in sqrt(-1): NaNs produced
 #> [1] NaN
 ```
 
